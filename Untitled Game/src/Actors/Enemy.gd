@@ -45,10 +45,11 @@ func _physics_process(_delta: float) -> void:
 	if(_inAir):
 		if(self.has_node("CollisionBox")):
 			get_node("CollisionBox").disabled = true
+	else:
+		if(self.has_node("CollisionBox")):
+			get_node("CollisionBox").disabled = false
 	
 	if(!_isStunned && !_inAir):
-		if(self.has_node("CollisionBox")):
-			get_node("CollisionBox").disabled = true
 		var targetDirection = try_chase()
 		get_next_state(targetDirection)
 	
