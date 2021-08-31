@@ -1,0 +1,178 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://src/Actors/LirikYaki.gd" type="Script" id=1]
+[ext_resource path="res://assets/LirikYakiSpritesheet.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 11.2938, 21.1046 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Hurt"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Idle"
+length = 0.45
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4, 5 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "SideSwipe"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 8, 9, 10, 11 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AreaHitBox/CollisionHitBox:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_finishedAttack"
+} ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Walk"
+length = 0.45
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15, 16, 17 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "hurt"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "SideSwipe"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "Walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+
+[sub_resource type="AnimationNodeStateMachine" id=16]
+states/Hurt/node = SubResource( 7 )
+states/Hurt/position = Vector2( 542, 212 )
+states/Idle/node = SubResource( 8 )
+states/Idle/position = Vector2( 520, 111 )
+states/SideSwipe/node = SubResource( 6 )
+states/SideSwipe/position = Vector2( 809, 111 )
+states/Walk/node = SubResource( 9 )
+states/Walk/position = Vector2( 221, 121 )
+transitions = [ "Idle", "Hurt", SubResource( 10 ), "Hurt", "Idle", SubResource( 11 ), "Idle", "SideSwipe", SubResource( 12 ), "SideSwipe", "Idle", SubResource( 13 ), "Idle", "Walk", SubResource( 14 ), "Walk", "Idle", SubResource( 15 ) ]
+start_node = "Idle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=17]
+
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 10, 14.6118 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="yaki_lirik" type="KinematicBody2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="yaki_lirik"]
+position = Vector2( 41.5839, 26.7514 )
+texture = ExtResource( 2 )
+hframes = 6
+vframes = 4
+frame = 1
+
+[node name="hurtbox" type="CollisionShape2D" parent="yaki_lirik"]
+position = Vector2( 36.2541, 29.4515 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="yaki_lirik"]
+anims/Hurt = SubResource( 2 )
+anims/Idle = SubResource( 3 )
+anims/SideSwipe = SubResource( 4 )
+anims/Walk = SubResource( 5 )
+
+[node name="AnimationTree" type="AnimationTree" parent="yaki_lirik"]
+tree_root = SubResource( 16 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 17 )
+
+[node name="AreaHitBox" type="Area2D" parent="yaki_lirik"]
+
+[node name="CollisionHitBox" type="CollisionShape2D" parent="yaki_lirik/AreaHitBox"]
+position = Vector2( 56.6813, 28.6055 )
+shape = SubResource( 18 )
+disabled = true
