@@ -1,0 +1,105 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/MockupRoomAssets/level_with_rooms_mockup.png" type="Texture" id=1]
+[ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/MockupRoomAssets/orange_wall.png" type="Texture" id=3]
+[ext_resource path="res://assets/MockupRoomAssets/green_wall.png" type="Texture" id=4]
+[ext_resource path="res://assets/MockupRoomAssets/blue_wall.png" type="Texture" id=5]
+[ext_resource path="res://assets/MockupRoomAssets/LevelWithRoomsMockup.gd" type="Script" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 859.668, 4.53991 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 34.6583 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="background" type="Sprite" parent="."]
+position = Vector2( 936.208, 88.3883 )
+texture = ExtResource( 1 )
+
+[node name="TopArea" type="StaticBody2D" parent="background"]
+
+[node name="TopCollision" type="CollisionShape2D" parent="background/TopArea"]
+position = Vector2( -81.08, -6.57899 )
+shape = SubResource( 1 )
+
+[node name="BottomArea" type="StaticBody2D" parent="background"]
+
+[node name="BottomCollision" type="CollisionShape2D" parent="background/BottomArea"]
+position = Vector2( -47.4411, 74.7644 )
+shape = SubResource( 1 )
+
+[node name="LeftArea" type="StaticBody2D" parent="background"]
+position = Vector2( -977.045, 18.4656 )
+
+[node name="LeftCollision" type="CollisionPolygon2D" parent="background/LeftArea"]
+polygon = PoolVector2Array( 64.7174, 46.4093, 41.9995, -12.8355, 41.6256, -25.2383, 34.4823, -26.032, 34.8723, -13.2809, 57.1448, 51.3092, 67.8355, 50.4184 )
+
+[node name="RightArea" type="StaticBody2D" parent="background"]
+
+[node name="RightCollision" type="CollisionPolygon2D" parent="background/RightArea"]
+polygon = PoolVector2Array( 813.283, 67.1021, 778.984, 9.19371, 779.887, -11.9317, 789.014, -12.3286, 788.784, 7.85736, 812.393, 49.2841 )
+
+[node name="LirikYaki" parent="." instance=ExtResource( 2 )]
+position = Vector2( 107.15, 101.197 )
+
+[node name="OrangeWall" type="Sprite" parent="."]
+position = Vector2( 378.966, 83.5329 )
+texture = ExtResource( 3 )
+
+[node name="OrangeWallBody" type="StaticBody2D" parent="OrangeWall"]
+position = Vector2( 8.48526, -9.54593 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OrangeWall/OrangeWallBody"]
+polygon = PoolVector2Array( -29.1481, 21.4771, -25.259, -2.56448, -22.4306, -13.5246, -8.64203, -8.57489, 1.25745, -3.27159, 5.50009, 1.67815, 12.5711, 9.45631, 12.2176, -10.3427, -28.0875, -32.2629 )
+
+[node name="OrangeWallBodyPart2" type="StaticBody2D" parent="OrangeWall"]
+
+[node name="OrangeWallCollisionPart2" type="CollisionPolygon2D" parent="OrangeWall/OrangeWallBodyPart2"]
+polygon = PoolVector2Array( 13.2782, 60.0144, 22.1171, 45.5187, 21.7635, 70.621 )
+
+[node name="BlueWall" type="Sprite" parent="."]
+position = Vector2( 778.959, 84.384 )
+texture = ExtResource( 5 )
+
+[node name="BlueWallBody" type="StaticBody2D" parent="BlueWall"]
+position = Vector2( 8.48526, -9.54593 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BlueWall/BlueWallBody"]
+polygon = PoolVector2Array( -29.1481, 21.4771, -25.259, -2.56448, -22.4306, -13.5246, -8.64203, -8.57489, 1.25745, -3.27159, 5.50009, 1.67815, 12.5711, 9.45631, 12.2176, -10.3427, -28.0875, -32.2629 )
+
+[node name="BlueWallBodyPart2" type="StaticBody2D" parent="BlueWall"]
+
+[node name="BlueWallCollisionPart2" type="CollisionPolygon2D" parent="BlueWall/BlueWallBodyPart2"]
+polygon = PoolVector2Array( 13.2782, 60.0144, 22.1171, 45.5187, 21.7635, 70.621 )
+
+[node name="GreenWall" type="Sprite" parent="."]
+position = Vector2( 1153.59, 83.9871 )
+texture = ExtResource( 4 )
+
+[node name="GreenWallBody" type="StaticBody2D" parent="GreenWall"]
+position = Vector2( 8.48526, -9.54593 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GreenWall/GreenWallBody"]
+polygon = PoolVector2Array( -29.1481, 21.4771, -25.259, -2.56448, -22.4306, -13.5246, -8.64203, -8.57489, 1.25745, -3.27159, 5.50009, 1.67815, 12.5711, 9.45631, 12.2176, -10.3427, -28.0875, -32.2629 )
+
+[node name="GreenWallBodyPart2" type="StaticBody2D" parent="GreenWall"]
+
+[node name="GreenWallCollisionPart2" type="CollisionPolygon2D" parent="GreenWall/GreenWallBodyPart2"]
+polygon = PoolVector2Array( 13.2782, 60.0144, 22.1171, 45.5187, 21.7635, 70.621 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 20, 50 )
+current = true
+zoom = Vector2( 0.5, 0.5 )
+
+[node name="FirstRoomLockArea" type="Area2D" parent="."]
+
+[node name="FirstRoomAreaCollision" type="CollisionShape2D" parent="FirstRoomLockArea"]
+position = Vector2( 572.922, 121.83 )
+shape = SubResource( 2 )
+
+[connection signal="area_entered" from="FirstRoomLockArea" to="." method="_on_FirstRoomLockArea_area_entered"]

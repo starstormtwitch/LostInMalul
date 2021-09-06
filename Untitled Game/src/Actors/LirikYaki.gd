@@ -92,7 +92,6 @@ func evaluatePlayerInput() -> Vector2:
 	else:
 		$AnimationTree.get("parameters/playback").travel("Walk")
 		$AnimationTree.set("parameters/Walk/blend_position", direction.x)
-	
 	return direction
 
 
