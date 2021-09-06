@@ -18,8 +18,6 @@ func _process(delta):
 		camera.position = player.position
 
 func _on_FirstRoomLockArea_area_entered(area):
-
 	print("first collision detect: " + area.name)
-	if(area.name == "FirstRoomLockArea"):
-		_lockCamera = true
-		firstLockCollision.monitoring = false
+	_lockCamera = true
+	firstLockCollision.monitoring = false
