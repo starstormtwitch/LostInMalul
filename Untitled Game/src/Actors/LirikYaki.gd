@@ -3,6 +3,7 @@ extends Actor
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
 
 var _isAttacking = false
+var _isPlayingHurtAnimation = false
 var _canTakeDamage = false
 var _directionFacing = Vector2.ZERO
 var _trail = []
@@ -59,6 +60,8 @@ func add_trail():
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if _canTakeDamage:
 		_canTakeDamage = false
+		_isPlayingHurtAnimation = true
+		print("play hurt animation")
 		$AnimationTree.get("parameters/playback").travel("Hurt")
 		_invincibilityTimer.start(2)
 		.take_damage(damage, direction, force)
@@ -82,10 +85,11 @@ func evaluatePlayerInput() -> Vector2:
 	
 	
 	#set animation for direction and return for movement
-	if direction == Vector2.ZERO:
-		$AnimationTree.get("parameters/playback").travel("Idle")
-	else:
-		$AnimationTree.get("parameters/playback").travel("Walk")
+	if !_isPlayingHurtAnimation:
+		if direction == Vector2.ZERO:
+			$AnimationTree.get("parameters/playback").travel("Idle")
+		else:
+			$AnimationTree.get("parameters/playback").travel("Walk")
 	
 	return direction
 
@@ -115,6 +119,11 @@ func _handleCollidersForDifferentDirections(x_direction):
 
 func _finishedAttack():
 	_isAttacking = false
+
+
+func _hurtAnimationFinished():
+	print("hurt animation done")
+	_isPlayingHurtAnimation = false
 
 
 func _on_attack_area_entered(area):

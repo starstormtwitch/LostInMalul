@@ -4,11 +4,11 @@
 [ext_resource path="res://assets/LirikYakiSpritesheet.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 21.6636, 6.96997 )
+extents = Vector2( 16.1116, 6.96997 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "HurtLeft"
-length = 0.5
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -21,9 +21,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 42 ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_hurtAnimationFinished"
+} ]
+}
 
 [sub_resource type="Animation" id=3]
-length = 0.5
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -35,6 +49,20 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 18 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_hurtAnimationFinished"
+} ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -271,9 +299,9 @@ blend_point_1/pos = -1.0
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
 switch_mode = 2
-auto_advance = true
+priority = 2
 
 [sub_resource type="AnimationNodeStateMachine" id=28]
 states/Hurt/node = SubResource( 12 )
@@ -284,7 +312,7 @@ states/SideSwipe/node = SubResource( 18 )
 states/SideSwipe/position = Vector2( 774, 43.4241 )
 states/Walk/node = SubResource( 21 )
 states/Walk/position = Vector2( 318, 43.4241 )
-transitions = [ "Idle", "SideSwipe", SubResource( 22 ), "Idle", "Walk", SubResource( 23 ), "Walk", "Idle", SubResource( 24 ), "Idle", "Hurt", SubResource( 25 ), "SideSwipe", "Idle", SubResource( 26 ), "Hurt", "Idle", SubResource( 27 ) ]
+transitions = [ "Idle", "SideSwipe", SubResource( 22 ), "Idle", "Walk", SubResource( 23 ), "Walk", "Idle", SubResource( 24 ), "Idle", "Hurt", SubResource( 25 ), "SideSwipe", "Idle", SubResource( 26 ), "Hurt", "Idle", SubResource( 32 ) ]
 start_node = "Idle"
 graph_offset = Vector2( 0, -5.90611 )
 
@@ -330,7 +358,7 @@ tree_root = SubResource( 28 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 29 )
-parameters/Hurt/blend_position = 1.0223
+parameters/Hurt/blend_position = -1.00148
 parameters/Idle/blend_position = -0.29718
 parameters/SideSwipe/blend_position = 1.09255
 parameters/Walk/blend_position = 1.094
@@ -370,5 +398,6 @@ disabled = true
 position = Vector2( -38.7053, -33.2906 )
 scale = Vector2( 10.5, 1 )
 polygon = PoolVector2Array( 3.65999, -4.16923, 3.65999, 38.296, 0.596727, 38.296, 0.596727, -3.959 )
+disabled = true
 
 [connection signal="area_entered" from="attack" to="." method="_on_attack_area_entered"]
