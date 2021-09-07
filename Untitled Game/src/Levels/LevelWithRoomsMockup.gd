@@ -2,8 +2,9 @@ extends Node2D
 
 
 onready var camera = $Camera2D
-onready var player = $yaki_lirik
-onready var firstLockCollision = $FirstRoomLockArea
+onready var player = $LirikYaki
+onready var firstLockCollision = $FirstRoomLockArea/FirstRoomLockCollision
+onready var cameraManager = CameraManager.new(player, camera)
 
 var _lockCamera = false
 
@@ -14,12 +15,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if !_lockCamera:
-		camera.position = player.position
+	cameraManager.followPlayerIfUnlocked()
 
 
-func _onFirstRoomCollisionDetected(area):
-	if(area.name == "FirstRoomLockArea"):
-		print("first collision detect")
-		_lockCamera = true
-		firstLockCollision.monitoring = false
+func _on_FirstRoomLockArea_area_entered(area):
+	print("first collision detect: " + area.name)
+	# I use players position to lock the camera to, but it might be better to define
+	# an actual space on the map/scene
+	cameraManager.lockCameraToPosition(player.position)
+	firstLockCollision.disabled = true
