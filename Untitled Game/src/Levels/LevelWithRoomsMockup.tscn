@@ -19,7 +19,7 @@ extents = Vector2( 10, 32.0799 )
 script = ExtResource( 6 )
 
 [node name="background" type="Sprite" parent="."]
-position = Vector2( 936.208, 88.3883 )
+position = Vector2( 935.911, 88.3883 )
 texture = ExtResource( 1 )
 
 [node name="TopArea" type="StaticBody2D" parent="background"]
@@ -47,6 +47,7 @@ polygon = PoolVector2Array( 813.283, 67.1021, 778.984, 9.19371, 779.887, -11.931
 
 [node name="LirikYaki" parent="." instance=ExtResource( 2 )]
 position = Vector2( 107.15, 101.197 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="Area2D" type="Area2D" parent="LirikYaki"]
 

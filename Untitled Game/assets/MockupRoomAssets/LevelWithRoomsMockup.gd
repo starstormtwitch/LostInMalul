@@ -3,7 +3,7 @@ extends Node2D
 
 onready var camera = $Camera2D
 onready var player = $LirikYaki
-onready var firstLockCollision = $FirstRoomLockArea
+onready var firstLockCollision = $FirstRoomLockArea/FirstRoomLockCollision
 
 var _lockCamera = false
 
@@ -20,4 +20,4 @@ func _process(delta):
 func _on_FirstRoomLockArea_area_entered(area):
 	print("first collision detect: " + area.name)
 	_lockCamera = true
-	firstLockCollision.monitoring = false
+	firstLockCollision.disabled = true
