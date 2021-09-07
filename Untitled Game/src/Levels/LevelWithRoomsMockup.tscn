@@ -111,4 +111,15 @@ zoom = Vector2( 0.5, 0.5 )
 position = Vector2( 572.922, 121.83 )
 shape = SubResource( 3 )
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_left = 553.872
+margin_top = 29.1355
+margin_right = 593.872
+margin_bottom = 43.1355
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="area_entered" from="FirstRoomLockArea" to="." method="_on_FirstRoomLockArea_area_entered"]
