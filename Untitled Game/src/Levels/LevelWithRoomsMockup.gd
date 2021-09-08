@@ -8,7 +8,7 @@ var _timerOn = false
 
 onready var camera = $Camera2D
 onready var player = $LirikYaki
-onready var firstLockCollision = $FirstRoomLockArea/FirstRoomLockCollision
+onready var firstLockArea = $FirstRoomLockArea
 onready var cameraManager = CameraManager.new(player, camera)
 onready var label = $CanvasLayer/Label
 
@@ -28,19 +28,20 @@ func _on_FirstRoomLockArea_area_entered(area):
 	# I use players position to lock the camera to, but it might be better to define
 	# an actual space on the map/scene
 	cameraManager.lockCameraToPosition(player.position)
-	firstLockCollision.disabled = true
+	firstLockArea.queue_free()
 	_startTimer()
 
 
 func _handleTimerUpdate(delta):
-	_startCountDown -= delta
-	#print("Updating time: " + String(_startCountDown))
-	if _startCountDown > 0:
-		_updateTimerText(_startCountDown)
-	else:
-		_timerOn = false
-		hideTimerText()
-		cameraManager.unlockTheCamera()
+	if _timerOn:
+		_startCountDown -= delta
+		#print("Updating time: " + String(_startCountDown))
+		if _startCountDown > 0:
+			_updateTimerText(_startCountDown)
+		else:
+			_timerOn = false
+			hideTimerText()
+			cameraManager.unlockTheCamera()
 
 
 func _updateTimerText(time):

@@ -101,7 +101,7 @@ polygon = PoolVector2Array( -29.1481, 21.4771, -25.259, -2.56448, -22.4306, -13.
 polygon = PoolVector2Array( 13.2782, 60.0144, 22.1171, 45.5187, 21.7635, 70.621 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2( 20, 50 )
+offset = Vector2( 20, 0 )
 current = true
 zoom = Vector2( 0.5, 0.5 )
 
