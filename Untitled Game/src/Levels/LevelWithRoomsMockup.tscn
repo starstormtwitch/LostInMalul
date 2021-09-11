@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/MockupRoomAssets/level_with_rooms_mockup.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
@@ -13,7 +13,13 @@ extents = Vector2( 859.668, 4.53991 )
 [sub_resource type="RectangleShape2D" id=2]
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 10, 32.0799 )
+extents = Vector2( 10, 34.6509 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 10, 33.8005 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 10, 34.9569 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 6 )
@@ -103,12 +109,12 @@ polygon = PoolVector2Array( 13.2782, 60.0144, 22.1171, 45.5187, 21.7635, 70.621 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 20, 0 )
 current = true
-zoom = Vector2( 0.5, 0.5 )
+zoom = Vector2( 0.33, 0.33 )
 
 [node name="FirstRoomLockArea" type="Area2D" parent="."]
 
 [node name="FirstRoomLockCollision" type="CollisionShape2D" parent="FirstRoomLockArea"]
-position = Vector2( 572.922, 121.83 )
+position = Vector2( 620.262, 121.83 )
 shape = SubResource( 3 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -121,5 +127,17 @@ margin_bottom = 43.1355
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FirstRoomBattleBoundary" type="StaticBody2D" parent="."]
+
+[node name="LeftSide" type="CollisionShape2D" parent="FirstRoomBattleBoundary"]
+position = Vector2( 395.913, 122.661 )
+shape = SubResource( 4 )
+disabled = true
+
+[node name="RightSide" type="CollisionShape2D" parent="FirstRoomBattleBoundary"]
+position = Vector2( 749.253, 122.23 )
+shape = SubResource( 5 )
+disabled = true
 
 [connection signal="area_entered" from="FirstRoomLockArea" to="." method="_on_FirstRoomLockArea_area_entered"]
