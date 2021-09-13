@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://src/Actors/LirikYaki.gd" type="Script" id=1]
 [ext_resource path="res://assets/LirikYakiSpritesheet.png" type="Texture" id=2]
@@ -299,7 +299,7 @@ blend_point_1/pos = -1.0
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
 switch_mode = 2
 priority = 2
 
@@ -312,7 +312,7 @@ states/SideSwipe/node = SubResource( 18 )
 states/SideSwipe/position = Vector2( 774, 43.4241 )
 states/Walk/node = SubResource( 21 )
 states/Walk/position = Vector2( 318, 43.4241 )
-transitions = [ "Idle", "SideSwipe", SubResource( 22 ), "Idle", "Walk", SubResource( 23 ), "Walk", "Idle", SubResource( 24 ), "Idle", "Hurt", SubResource( 25 ), "SideSwipe", "Idle", SubResource( 26 ), "Hurt", "Idle", SubResource( 32 ) ]
+transitions = [ "Idle", "SideSwipe", SubResource( 22 ), "Idle", "Walk", SubResource( 23 ), "Walk", "Idle", SubResource( 24 ), "Idle", "Hurt", SubResource( 25 ), "SideSwipe", "Idle", SubResource( 26 ), "Hurt", "Idle", SubResource( 27 ) ]
 start_node = "Idle"
 graph_offset = Vector2( 0, -5.90611 )
 
@@ -320,9 +320,6 @@ graph_offset = Vector2( 0, -5.90611 )
 
 [sub_resource type="RectangleShape2D" id=30]
 extents = Vector2( 18.9853, 39.5829 )
-
-[sub_resource type="RectangleShape2D" id=31]
-extents = Vector2( 19.4519, 38.5712 )
 
 [node name="LirikYaki" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -332,16 +329,11 @@ position = Vector2( 7.29028, -45.3817 )
 texture = ExtResource( 2 )
 hframes = 6
 vframes = 8
-frame = 2
+frame = 31
 
-[node name="RightFacingCollider" type="CollisionShape2D" parent="."]
-position = Vector2( -1.50406, -6.5239 )
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2( 6.35316, -7.92697 )
 shape = SubResource( 1 )
-
-[node name="LeftFacingCollider" type="CollisionShape2D" parent="."]
-position = Vector2( 16.9698, -6.52392 )
-shape = SubResource( 1 )
-disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/HurtLeft = SubResource( 2 )
@@ -356,7 +348,6 @@ anims/WalkRight = SubResource( 9 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 28 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/playback = SubResource( 29 )
 parameters/Hurt/blend_position = 1.0223
 parameters/Idle/blend_position = -0.29718
@@ -374,14 +365,9 @@ position = Vector2( -2.65, -23.75 )
 collision_layer = 64
 collision_mask = 4096
 
-[node name="hurtboxFacingRight" type="CollisionShape2D" parent="HurtArea"]
-position = Vector2( 1.30159, -15.9562 )
+[node name="HurtBox" type="CollisionShape2D" parent="HurtArea"]
+position = Vector2( 8.59758, -15.9562 )
 shape = SubResource( 30 )
-
-[node name="hurtboxFacingLeft" type="CollisionShape2D" parent="HurtArea"]
-position = Vector2( 19.9653, -14.6554 )
-shape = SubResource( 31 )
-disabled = true
 
 [node name="attack" type="Area2D" parent="."]
 position = Vector2( -2.9, -23.75 )
@@ -389,14 +375,14 @@ collision_layer = 128
 collision_mask = 0
 
 [node name="sideSwipeRight" type="CollisionPolygon2D" parent="attack"]
-position = Vector2( 46.7959, -25.0948 )
-scale = Vector2( 10.5, 1 )
+position = Vector2( 56.3368, -31.6679 )
+scale = Vector2( 10.5, 1.28879 )
 polygon = PoolVector2Array( 0.662512, -11.7343, 0.702554, 31.9923, -2.66103, 31.5719, -2.66103, -11.7343 )
 disabled = true
 
 [node name="sideSwipeLeft" type="CollisionPolygon2D" parent="attack"]
-position = Vector2( -38.7053, -33.2906 )
-scale = Vector2( 10.5, 1 )
+position = Vector2( -49.0881, -39.6268 )
+scale = Vector2( 10.5, 1.28911 )
 polygon = PoolVector2Array( 3.65999, -4.16923, 3.65999, 38.296, 0.596727, 38.296, 0.596727, -3.959 )
 
 [connection signal="area_entered" from="attack" to="." method="_on_attack_area_entered"]

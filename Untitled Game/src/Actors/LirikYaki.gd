@@ -9,10 +9,6 @@ var _trail = []
 var _invincibilityTimer = Timer.new()
 
 onready var sprite = $Sprite
-onready var leftFacingCollider = $LeftFacingCollider
-onready var rightFacingCollider = $RightFacingCollider
-onready var leftFacingHurtbox = $HurtArea/hurtboxFacingLeft
-onready var rightFacingHurtBox = $HurtArea/hurtboxFacingRight
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -71,7 +67,6 @@ func evaluatePlayerInput() -> Vector2:
 		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	)
 		
-	_handleCollidersForDifferentDirections(direction.x)
 	_setBlendPositions(direction.x)
 	
 	#check attack inputs
@@ -96,20 +91,6 @@ func _setBlendPositions(x_direction):
 		$AnimationTree.set("parameters/Walk/blend_position", x_direction)
 		$AnimationTree.set("parameters/Idle/blend_position", x_direction)
 		$AnimationTree.set("parameters/SideSwipe/blend_position", x_direction)
-
-
-#Disable and enable colliders depending which direction your facing
-func _handleCollidersForDifferentDirections(x_direction):
-	if x_direction > 0:
-		leftFacingCollider.disabled = true
-		rightFacingCollider.disabled = false
-		leftFacingHurtbox.disabled = true
-		rightFacingHurtBox.disabled = false
-	elif x_direction < 0:
-		leftFacingCollider.disabled = false
-		rightFacingCollider.disabled = true
-		leftFacingHurtbox.disabled = false
-		rightFacingHurtBox.disabled = true
 
 
 func _finishedAttack():
