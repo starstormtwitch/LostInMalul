@@ -476,7 +476,7 @@ texture = ExtResource( 1 )
 offset = Vector2( 0, -14 )
 hframes = 13
 vframes = 16
-frame = 104
+frame = 108
 
 [node name="attack" type="Area2D" parent="."]
 position = Vector2( -2.9, -23.75 )

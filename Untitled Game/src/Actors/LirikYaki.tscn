@@ -98,13 +98,13 @@ tracks/0/keys = {
 "values": [ 13, 14, 15, 16, 17 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "hurt"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "SideSwipe"
 
 [sub_resource type="AnimationNodeAnimation" id=9]
@@ -126,11 +126,11 @@ auto_advance = true
 [sub_resource type="AnimationNodeStateMachineTransition" id=15]
 
 [sub_resource type="AnimationNodeStateMachine" id=16]
-states/Hurt/node = SubResource( 7 )
+states/Hurt/node = SubResource( 6 )
 states/Hurt/position = Vector2( 542, 212 )
-states/Idle/node = SubResource( 8 )
+states/Idle/node = SubResource( 7 )
 states/Idle/position = Vector2( 520, 111 )
-states/SideSwipe/node = SubResource( 6 )
+states/SideSwipe/node = SubResource( 8 )
 states/SideSwipe/position = Vector2( 809, 111 )
 states/Walk/node = SubResource( 9 )
 states/Walk/position = Vector2( 221, 121 )
