@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://src/Actors/Actor.gd"
 }, {
 "base": "Object",
+"class": "ArenaRoomManager",
+"language": "GDScript",
+"path": "res://src/Helpers/ArenaRoomManager.gd"
+}, {
+"base": "Object",
 "class": "CameraManager",
 "language": "GDScript",
 "path": "res://src/Helpers/CameraManager.gd"
@@ -26,6 +31,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Actor": "",
+"ArenaRoomManager": "",
 "CameraManager": "",
 "Enemy": ""
 }

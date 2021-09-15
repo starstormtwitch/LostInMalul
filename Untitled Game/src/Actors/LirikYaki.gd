@@ -66,6 +66,8 @@ func evaluatePlayerInput() -> Vector2:
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	)
+	if(direction != Vector2.ZERO):
+		_directionFacing = direction
 		
 	_setBlendPositions(direction.x)
 	
@@ -74,8 +76,7 @@ func evaluatePlayerInput() -> Vector2:
 		$AnimationTree.get("parameters/playback").travel("SideSwipe")
 		_isAttacking = true
 		return Vector2.ZERO
-	
-	
+		
 	#set animation for direction and return for movement
 	if direction == Vector2.ZERO:
 		$AnimationTree.get("parameters/playback").travel("Idle")
