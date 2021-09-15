@@ -18,6 +18,12 @@ var firstArenaManager: ArenaRoomManager
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	assert(player, "Player Node does not exist.")
+	assert(camera, "Camera2D Node does not exist")
+	assert(firstLockArea, "FirstRoomLockArea does not exist")
+	assert(label, "label does not exist")
+	assert(leftFirstRoomCollider, "LeftFirstRoomCollider does not exist")
+	assert(rightFirstRoomCollider, "RightFirstRoomCollider does not exist")
 	cameraManager = CameraManager.new(player, camera)
 	var array = [leftFirstRoomCollider, rightFirstRoomCollider]
 	firstArenaManager = ArenaRoomManager.new(cameraManager, firstLockArea, array, label)

@@ -11,6 +11,8 @@ var _currentCameraPosition: Vector2
 const _SMOOTHING = 0.05
 
 func _init(player, camera):
+	assert(player, "player does not exist")
+	assert(camera, "camera does not exist")
 	_camera = camera
 	_player = player
 	_currentCameraPosition = player.position

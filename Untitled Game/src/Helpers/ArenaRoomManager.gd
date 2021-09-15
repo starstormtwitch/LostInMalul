@@ -15,6 +15,10 @@ var _startCountDown = 5
 var _timerOn = false
 
 func _init(cameraManager, arenaRoomTrigger, arenaRoomColliders, timerText):
+	assert(cameraManager, "cameraManager does not exist")
+	assert(arenaRoomTrigger, "arenaRoomTrigger does not exist")
+	assert(arenaRoomColliders, "arenaRoomColliders does not exist")
+	assert(timerText, "timerText does not exist")
 	_cameraManager = cameraManager
 	_arenaRoomTrigger = arenaRoomTrigger
 	_arenaRoomColliders = arenaRoomColliders
