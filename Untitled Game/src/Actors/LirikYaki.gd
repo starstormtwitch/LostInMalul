@@ -1,8 +1,11 @@
 extends Actor
 
+const trail_scene = preload("res://src/Helpers/Trail.tscn")
+
 var _isAttacking = false
 var _canTakeDamage = false
 var _directionFacing = Vector2.ZERO
+var _trail = []
 var _invincibilityTimer = Timer.new()
 
 onready var sprite = $Sprite
@@ -13,10 +16,12 @@ func _ready():
 	_invincibilityTimer.one_shot = true
 	add_child(_invincibilityTimer)
 	_invincibilityTimer.start(3)
+	
 	_health = 10
 	_acceleration = .1
 	_speed = 600
 	_directionFacing.x = .1;
+	$TrailTimer.connect("timeout", self, "add_trail")
 	$AnimationTree.active = true
 
 
@@ -38,15 +43,19 @@ func _on_invincibility_timeout():
 	_canTakeDamage = true
 
 
-func _on_attack_area_entered(area):
-	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
-		area.get_parent().take_damage(1, _directionFacing, 100000)
-		$AnimationTree.get("parameters/playback").travel("Hurt")
+func add_trail():
+	if(get_parent() != null):
+		var trail      = trail_scene.instance()
+		trail.player   = self
+		trail.position = self.position
+		get_parent().add_child(trail)
+		_trail.push_front(trail)
 
 
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if _canTakeDamage:
 		_canTakeDamage = false
+		$AnimationTree.get("parameters/playback").travel("Hurt")
 		_invincibilityTimer.start(2)
 		.take_damage(damage, direction, force)
 
@@ -60,7 +69,7 @@ func evaluatePlayerInput() -> Vector2:
 	if(direction != Vector2.ZERO):
 		_directionFacing = direction
 		
-	_flipSpriteIfNeeded(direction.x)
+	_setBlendPositions(direction.x)
 	
 	#check attack inputs
 	if Input.is_action_just_pressed("side_swipe_attack") or Input.is_action_pressed("side_swipe_attack"):
@@ -75,14 +84,20 @@ func evaluatePlayerInput() -> Vector2:
 		$AnimationTree.get("parameters/playback").travel("Walk")
 	return direction
 
-
-#Flip sprite according to what input pressed, if 0 nothing is pressed and we leave as is
-func _flipSpriteIfNeeded(x_direction):
-	if x_direction > 0:
-		sprite.scale.x = 1
-	elif x_direction < 0:
-		sprite.scale.x = -1
+#Set value of blend for the next time we we call the animation
+#Ignore value of 0, since we either arent moving or walking vertically
+func _setBlendPositions(x_direction):
+	if x_direction != 0:
+		$AnimationTree.set("parameters/Hurt/blend_position", x_direction)
+		$AnimationTree.set("parameters/Walk/blend_position", x_direction)
+		$AnimationTree.set("parameters/Idle/blend_position", x_direction)
+		$AnimationTree.set("parameters/SideSwipe/blend_position", x_direction)
 
 
 func _finishedAttack():
 	_isAttacking = false
+
+
+func _on_attack_area_entered(area):
+	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
+		area.get_parent().take_damage(1, _directionFacing, 100000)
