@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://src/Actors/Slime.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
@@ -14,7 +14,10 @@
 [ext_resource path="res://src/Props/Nightstand.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/Props/Lamp1.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/Props/Table1.tscn" type="PackedScene" id=14]
-[ext_resource path="res://src/Props/tvstand.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/Props/TVstand.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/Props/Dumbbells.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/Props/DrawersWithMirror.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/Props/Wardrobe.tscn" type="PackedScene" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 51.2464, 8.42657 )
@@ -67,9 +70,6 @@ radius = 10.6215
 [sub_resource type="SegmentShape2D" id=14]
 a = Vector2( -227.475, 0.0775146 )
 b = Vector2( 250.865, 0.176788 )
-
-[sub_resource type="RectangleShape2D" id=15]
-extents = Vector2( 41.4342, 5.38531 )
 
 [sub_resource type="SegmentShape2D" id=16]
 a = Vector2( -289.783, 0.615585 )
@@ -224,10 +224,6 @@ shape = SubResource( 13 )
 position = Vector2( 701.157, 300.142 )
 shape = SubResource( 14 )
 
-[node name="temp1" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bedroom"]
-position = Vector2( 498.711, 190.5 )
-shape = SubResource( 15 )
-
 [node name="top_segment" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bedroom"]
 position = Vector2( 643.611, 182.883 )
 shape = SubResource( 16 )
@@ -308,8 +304,17 @@ position = Vector2( -0.479553, -32.9276 )
 [node name="Table1" parent="YSort/Props/Bedroom" instance=ExtResource( 14 )]
 position = Vector2( 568.984, 296.964 )
 
-[node name="tvstand" parent="YSort/Props/Bedroom" instance=ExtResource( 15 )]
+[node name="Tvstand" parent="YSort/Props/Bedroom" instance=ExtResource( 15 )]
 position = Vector2( 744.022, 294.041 )
+
+[node name="Dumbbells" parent="YSort/Props/Bedroom" instance=ExtResource( 16 )]
+position = Vector2( 687.632, 295.746 )
+
+[node name="DrawersWithMirror" parent="YSort/Props/Bedroom" instance=ExtResource( 17 )]
+position = Vector2( 852.625, 214.383 )
+
+[node name="Wardrobe" parent="YSort/Props/Bedroom" instance=ExtResource( 18 )]
+position = Vector2( 498.214, 190.363 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 234.523, 251.754 )
