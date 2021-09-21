@@ -52,8 +52,7 @@ polygon = PoolVector2Array( 64.7174, 46.4093, 41.9995, -12.8355, 41.6256, -25.23
 polygon = PoolVector2Array( 813.283, 67.1021, 778.984, 9.19371, 779.887, -11.9317, 789.014, -12.3286, 788.784, 7.85736, 812.393, 49.2841 )
 
 [node name="LirikYaki" parent="." instance=ExtResource( 2 )]
-position = Vector2( 107.15, 101.197 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 103.94, 113.22 )
 
 [node name="Area2D" type="Area2D" parent="LirikYaki"]
 
