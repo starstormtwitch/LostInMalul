@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://src/Actors/Slime.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
@@ -12,6 +12,9 @@
 [ext_resource path="res://src/Props/Plant3.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Props/Bed.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/Props/Nightstand.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/Props/Lamp1.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/Props/Table1.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/Props/tvstand.tscn" type="PackedScene" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 51.2464, 8.42657 )
@@ -251,7 +254,7 @@ scale = Vector2( 0.6, 0.6 )
 remote_path = NodePath("../../../../Camera2D")
 
 [node name="Enemy" parent="YSort/Actors" instance=ExtResource( 1 )]
-position = Vector2( 816.938, 256.156 )
+position = Vector2( 804.917, 214.083 )
 scale = Vector2( 1, 1 )
 
 [node name="Props" type="YSort" parent="YSort"]
@@ -278,11 +281,35 @@ position = Vector2( 443.683, 288.462 )
 [node name="Nightstand_left" parent="YSort/Props/Bedroom" instance=ExtResource( 12 )]
 position = Vector2( 606.26, 188.308 )
 
+[node name="Nightstand_right" parent="YSort/Props/Bedroom" instance=ExtResource( 12 )]
+position = Vector2( 704.253, 188.196 )
+
 [node name="Plant3" parent="YSort/Props/Bedroom" instance=ExtResource( 10 )]
 position = Vector2( 487.668, 291.483 )
 
+[node name="Plant4" parent="YSort/Props/Bedroom" instance=ExtResource( 10 )]
+position = Vector2( 923.704, 291.425 )
+
 [node name="Bed" parent="YSort/Props/Bedroom" instance=ExtResource( 11 )]
 position = Vector2( 666.508, 187.996 )
+
+[node name="Lamp1" parent="YSort/Props/Bedroom" instance=ExtResource( 13 )]
+position = Vector2( 606.005, 192.411 )
+
+[node name="Sprite" parent="YSort/Props/Bedroom/Lamp1" index="0"]
+position = Vector2( -0.479553, -32.9276 )
+
+[node name="Lamp2" parent="YSort/Props/Bedroom" instance=ExtResource( 13 )]
+position = Vector2( 704, 192.453 )
+
+[node name="Sprite" parent="YSort/Props/Bedroom/Lamp2" index="0"]
+position = Vector2( -0.479553, -32.9276 )
+
+[node name="Table1" parent="YSort/Props/Bedroom" instance=ExtResource( 14 )]
+position = Vector2( 568.984, 296.964 )
+
+[node name="tvstand" parent="YSort/Props/Bedroom" instance=ExtResource( 15 )]
+position = Vector2( 744.022, 294.041 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 234.523, 251.754 )
@@ -294,3 +321,6 @@ zoom = Vector2( 0.4, 0.4 )
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Bedroom_To_Bathroom" to="." method="_on_Transition_Bedroom_To_Bathroom_body_entered"]
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Bedroom_To_Studio" to="." method="_on_Bedroom_To_Studio_body_entered"]
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Studio_To_Bedroom" to="." method="_on_Studio_To_Bedroom_body_entered"]
+
+[editable path="YSort/Props/Bedroom/Lamp1"]
+[editable path="YSort/Props/Bedroom/Lamp2"]
