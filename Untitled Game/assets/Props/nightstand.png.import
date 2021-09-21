@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Bathroom_v2.png-bc4d0bb92b88890b4849e036023d49ac.stex"
+path="res://.import/nightstand.png-338867d6c97d2bd156e6ae0776d4b509.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bathroom/Bathroom_v2.png"
-dest_files=[ "res://.import/Bathroom_v2.png-bc4d0bb92b88890b4849e036023d49ac.stex" ]
+source_file="res://assets/Props/nightstand.png"
+dest_files=[ "res://.import/nightstand.png-338867d6c97d2bd156e6ae0776d4b509.stex" ]
 
 [params]
 

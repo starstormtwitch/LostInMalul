@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cactus.png-906c36399b69b7e986243f3ce21a9da5.stex"
+path="res://.import/bathtub.png-44d1055db192d1f4cf32723ae0aa36f6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bathroom/cactus.png"
-dest_files=[ "res://.import/cactus.png-906c36399b69b7e986243f3ce21a9da5.stex" ]
+source_file="res://assets/Props/bathtub.png"
+dest_files=[ "res://.import/bathtub.png-44d1055db192d1f4cf32723ae0aa36f6.stex" ]
 
 [params]
 

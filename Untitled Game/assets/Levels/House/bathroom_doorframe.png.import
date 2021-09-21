@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bathtub.png-641c9418cdde0c58e7d0de1ee9496b16.stex"
+path="res://.import/bathroom_doorframe.png-bce10555d765df8fd1fd4d8a470f73c7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bathroom/bathtub.png"
-dest_files=[ "res://.import/bathtub.png-641c9418cdde0c58e7d0de1ee9496b16.stex" ]
+source_file="res://assets/Levels/House/bathroom_doorframe.png"
+dest_files=[ "res://.import/bathroom_doorframe.png-bce10555d765df8fd1fd4d8a470f73c7.stex" ]
 
 [params]
 
