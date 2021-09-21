@@ -2,20 +2,20 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/LirikYakiSpritesheet.png-2986f08ae4fbf623342f21e000e1f4dc.stex"
+path="res://.import/LirikYakiSpritesheet.png-9baac2d40632f78477327268524c6b2d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/LirikYakiSpritesheet.png"
-dest_files=[ "res://.import/LirikYakiSpritesheet.png-2986f08ae4fbf623342f21e000e1f4dc.stex" ]
+source_file="res://src/Actors/LirikYakiSpritesheet.png"
+dest_files=[ "res://.import/LirikYakiSpritesheet.png-9baac2d40632f78477327268524c6b2d.stex" ]
 
 [params]
 
-compress/mode=3
-compress/lossy_quality=1.0
+compress/mode=0
+compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
