@@ -190,7 +190,7 @@ position = Vector2( -5, -1 )
 scale = Vector2( 4, 4 )
 z_as_relative = false
 collision_layer = 1024
-collision_mask = 33
+collision_mask = 5
 script = ExtResource( 2 )
 
 [node name="enemy" type="Sprite" parent="."]
@@ -218,8 +218,8 @@ parameters/playback = SubResource( 22 )
 "hurtbox",
 ]]
 position = Vector2( 1.5, -4.25 )
-collision_layer = 2048
-collision_mask = 128
+collision_layer = 4096
+collision_mask = 16
 
 [node name="HurtBoxArea" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource( 23 )
@@ -237,8 +237,8 @@ collide_with_bodies = false
 "enemy",
 ]]
 position = Vector2( -0.25, 0 )
-collision_layer = 8192
-collision_mask = 8192
+collision_layer = 262144
+collision_mask = 262144
 
 [node name="FlockBoxArea" type="CollisionShape2D" parent="FlockBox"]
 position = Vector2( 1.75, -4.25 )
