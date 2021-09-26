@@ -19,10 +19,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Helpers/ArenaRoomManager.gd"
 }, {
-"base": "Object",
+"base": "Node",
 "class": "CameraManager",
 "language": "GDScript",
 "path": "res://src/Helpers/CameraManager.gd"
+}, {
+"base": "Camera2D",
+"class": "CustomCamera2D",
+"language": "GDScript",
+"path": "res://src/Helpers/CustomCamera2D.gd"
 }, {
 "base": "Actor",
 "class": "Enemy",
@@ -33,6 +38,7 @@ _global_script_class_icons={
 "Actor": "",
 "ArenaRoomManager": "",
 "CameraManager": "",
+"CustomCamera2D": "",
 "Enemy": ""
 }
 
