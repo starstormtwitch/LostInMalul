@@ -26,8 +26,6 @@ func _on_Transition_Bedroom_To_Bathroom_body_entered(body):
 func _on_Transition_Bathroom_To_Bedroom_body_entered(body):
 	if body == _player:
 		setCameraToBedroom()
-		#cameraManager.temporarylyFocusOn(get_node("YSort/Actors/Enemy/enemy"), 2, Vector2(0.2,0.2))
-		cameraManager.panToTarget(get_node("YSort/Actors/Enemy/enemy"), 2)
 
 func _on_Bedroom_To_Studio_body_entered(body):
 	if body == _player:
@@ -45,3 +43,7 @@ func setCameraToBedroom():
 
 func setCameraToStudio():
 	cameraManager.limitCameraToPositions(_camPos_Studio_TopLeft, _camPos_Studio_BottomRight) 
+
+func _on_VisibilityNotifier2D_screen_entered():
+	cameraManager.panToTarget(get_node("YSort/Actors/Enemy/enemy"), 2)
+	get_node("YSort/Actors/Enemy/VisibilityNotifier2D").queue_free()

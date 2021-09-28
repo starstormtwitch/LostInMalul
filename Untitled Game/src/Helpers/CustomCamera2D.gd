@@ -38,10 +38,10 @@ func _ready():
 func _process(delta):
 	if _panTarget != null:
 		var panTargetPosition = _panTarget.get_global_position()
-		self.position = lerp(self.get_global_position(), _panTarget.get_global_position(),  delta * _panSpeed)
+		self.position = lerp(self.get_global_position(), _panTarget.get_global_position(),  delta * _panSpeed) #formula can/must be improved
 		var distanceToTarget = self.position.distance_to(panTargetPosition)
-		self.zoom = lerp(self.zoom, _panZoom, (delta * _panZoomSpeed) / distanceToTarget)
-		if distanceToTarget < 25:
+		self.zoom = lerp(self.zoom, _panZoom, (delta * _panZoomSpeed) / distanceToTarget) #formula can/must be improved
+		if distanceToTarget < 25: #magic number that works well enough for now
 			if _panTime == null:
 				_panTime = _DEFAULT_PAN_TIME
 			yield(self.get_tree().create_timer(_panTime), "timeout")
@@ -54,14 +54,16 @@ func panToTarget(target: Node, time: float = _DEFAULT_PAN_TIME, zoom: Vector2 = 
 	_panTarget = target
 	_panTime = time
 	_panSpeed = speed
+	_panZoom = zoom
 	
 func clearPan() -> void:
-	_panTarget = null
-	setRemoteUpdates(true)
-	self.zoom = _DEFAULT_CAMERA_ZOOM
-	_panTime = _DEFAULT_PAN_TIME
-	_panSpeed = _DEFAULT_PAN_SPEED
-	_panZoom = _DEFAULT_PAN_ZOOM
+	if _panTarget != null:
+		_panTarget = null
+		setRemoteUpdates(true)
+		self.zoom = _DEFAULT_CAMERA_ZOOM
+		_panTime = _DEFAULT_PAN_TIME
+		_panSpeed = _DEFAULT_PAN_SPEED
+		_panZoom = _DEFAULT_PAN_ZOOM
 		
 func temporarylyFocusOn(target: Node, time: float, zoom: Vector2) -> void:
 	if _verbose:
@@ -83,9 +85,10 @@ func setRemoteUpdates(update: bool) -> void:
 	_remoteTransform2d.update_scale = update
 		
 func limitCameraToPositions(topLeft: Position2D, bottomRight: Position2D) -> void:
-	limitCameraToCoordinates(topLeft.position.y, topLeft.position.x, bottomRight.position.y, bottomRight.position.x)
+	limitCameraToCoordinates(topLeft.get_global_position().y, topLeft.position.x, bottomRight.position.y, bottomRight.position.x)
 
-func limitCameraToCoordinates(top: float, left: float, bottom: float, right: float) -> void:
+func limitCameraToCoordinates(top: int, left: int, bottom: int, right: int) -> void:
+	clearPan() #todo: review this, but its a good idea to clear camera effects if the camera changes limits
 	self.limit_top = top
 	self.limit_left = left
 	self.limit_bottom = bottom

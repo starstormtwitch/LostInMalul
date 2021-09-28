@@ -45,7 +45,15 @@ _global_script_class_icons={
 [application]
 
 config/name="Test Project"
+run/main_scene="res://src/Levels/House.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/height=576
+window/size/fullscreen=true
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [importer_defaults]
 
@@ -95,7 +103,6 @@ move_right={
 side_swipe_attack={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777238,"unicode":0,"echo":false,"script":null)
-
  ]
 }
 

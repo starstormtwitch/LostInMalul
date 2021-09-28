@@ -79,7 +79,7 @@ func temporarylyFocusOn(target: Node, time: float, zoom: Vector2) -> void:
 func limitCameraToPositions(topLeft: Position2D, bottomRight: Position2D) -> void:
 	limitCameraToCoordinates(topLeft.position.y, topLeft.position.x, bottomRight.position.y, bottomRight.position.x)
 
-func limitCameraToCoordinates(top: float, left: float, bottom: float, right: float) -> void:
+func limitCameraToCoordinates(top: int, left: int, bottom: int, right: int) -> void:
 	_camera.limit_top = top
 	_camera.limit_left = left
 	_camera.limit_bottom = bottom

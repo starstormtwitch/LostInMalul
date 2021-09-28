@@ -252,6 +252,10 @@ scale = Vector2( 0.6, 0.6 )
 position = Vector2( 805.512, 215.272 )
 scale = Vector2( 1, 1 )
 
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="YSort/Actors/Enemy"]
+position = Vector2( 0.694519, -6.2504 )
+scale = Vector2( 0.801575, 0.791653 )
+
 [node name="Enemy2" parent="YSort/Actors" instance=ExtResource( 1 )]
 position = Vector2( 828.106, 262.841 )
 scale = Vector2( 1, 1 )
@@ -327,6 +331,7 @@ position = Vector2( 498.214, 190.363 )
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Bedroom_To_Bathroom" to="." method="_on_Transition_Bedroom_To_Bathroom_body_entered"]
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Bedroom_To_Studio" to="." method="_on_Bedroom_To_Studio_body_entered"]
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Studio_To_Bedroom" to="." method="_on_Studio_To_Bedroom_body_entered"]
+[connection signal="screen_entered" from="YSort/Actors/Enemy/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 
 [editable path="YSort/Props/Bedroom/Lamp1"]
 [editable path="YSort/Props/Bedroom/Lamp2"]
