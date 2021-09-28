@@ -242,12 +242,22 @@ shape = SubResource( 17 )
 
 [node name="Actors" type="YSort" parent="YSort"]
 
-[node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 2 )]
+[node name="LirikYaki" parent="YSort/Actors" groups=[
+"Player",
+] instance=ExtResource( 2 )]
 position = Vector2( 234.523, 251.754 )
 scale = Vector2( 0.6, 0.6 )
 
 [node name="Enemy" parent="YSort/Actors" instance=ExtResource( 1 )]
-position = Vector2( 804.917, 214.083 )
+position = Vector2( 805.512, 215.272 )
+scale = Vector2( 1, 1 )
+
+[node name="Enemy2" parent="YSort/Actors" instance=ExtResource( 1 )]
+position = Vector2( 828.106, 262.841 )
+scale = Vector2( 1, 1 )
+
+[node name="Enemy3" parent="YSort/Actors" instance=ExtResource( 1 )]
+position = Vector2( 749.024, 211.11 )
 scale = Vector2( 1, 1 )
 
 [node name="Props" type="YSort" parent="YSort"]
