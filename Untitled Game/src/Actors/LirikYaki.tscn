@@ -3,8 +3,9 @@
 [ext_resource path="res://src/Actors/LirikYaki.gd" type="Script" id=1]
 [ext_resource path="res://assets/LirikYakiSpritesheet.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 11.034, 4.00559 )
+[sub_resource type="CapsuleShape2D" id=31]
+radius = 3.88493
+height = 14.2566
 
 [sub_resource type="Animation" id=2]
 resource_name = "HurtLeft"
@@ -332,11 +333,13 @@ position = Vector2( -0.48801, -21.6264 )
 texture = ExtResource( 2 )
 hframes = 6
 vframes = 8
-frame = 1
+frame = 2
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -0.674954, -3.05031 )
-shape = SubResource( 1 )
+rotation = 1.5708
+scale = Vector2( 1.01091, 1.11191 )
+shape = SubResource( 31 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/HurtLeft = SubResource( 2 )
@@ -379,7 +382,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="sideSwipeRight" type="CollisionPolygon2D" parent="attack"]
-position = Vector2( 32.4814, -2.14974 )
+position = Vector2( 32.7463, -2.14974 )
 scale = Vector2( 6.35679, 0.776732 )
 polygon = PoolVector2Array( 0.662512, -11.7343, 0.702554, 31.9923, -2.66103, 31.5719, -2.66103, -11.7343 )
 disabled = true
@@ -388,5 +391,6 @@ disabled = true
 position = Vector2( -36.3283, -8.34402 )
 scale = Vector2( 6.92114, 0.829665 )
 polygon = PoolVector2Array( 3.65999, -4.16923, 3.65999, 38.296, 0.596727, 38.296, 0.596727, -3.959 )
+disabled = true
 
 [connection signal="area_entered" from="attack" to="." method="_on_attack_area_entered"]

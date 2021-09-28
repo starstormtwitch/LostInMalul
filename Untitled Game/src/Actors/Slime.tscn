@@ -218,7 +218,7 @@ parameters/playback = SubResource( 22 )
 "hurtbox",
 ]]
 position = Vector2( 1.5, -4.25 )
-collision_layer = 4096
+collision_layer = 16384
 collision_mask = 16
 
 [node name="HurtBoxArea" type="CollisionShape2D" parent="HurtBox"]
