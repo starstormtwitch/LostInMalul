@@ -39,6 +39,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Test Project"
+run/main_scene="res://src/Levels/PrototypeLevel.tscn"
 config/icon="res://icon.png"
 
 [importer_defaults]
@@ -108,7 +109,3 @@ side_swipe_attack={
 [physics]
 
 common/enable_pause_aware_picking=true
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"
