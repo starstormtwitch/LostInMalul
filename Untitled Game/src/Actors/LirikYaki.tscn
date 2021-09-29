@@ -1,10 +1,11 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://src/Actors/LirikYaki.gd" type="Script" id=1]
 [ext_resource path="res://assets/LirikYakiSpritesheet.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16.1116, 6.96997 )
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 4.91093
+height = 12.3793
 
 [sub_resource type="Animation" id=2]
 resource_name = "HurtLeft"
@@ -21,20 +22,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 42 ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.2 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "_hurtAnimationFinished"
-} ]
-}
 
 [sub_resource type="Animation" id=3]
 length = 0.3
@@ -49,20 +36,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 18 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.2 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "_hurtAnimationFinished"
-} ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -238,18 +211,18 @@ tracks/0/keys = {
 "values": [ 12, 13, 14, 15, 16, 17 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=10]
-animation = "HurtRight"
-
-[sub_resource type="AnimationNodeAnimation" id=11]
+[sub_resource type="AnimationNodeAnimation" id=35]
 animation = "HurtLeft"
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=12]
-blend_point_0/node = SubResource( 10 )
-blend_point_0/pos = 1.0
-blend_point_1/node = SubResource( 11 )
-blend_point_1/pos = -1.0
-max_space = 1.04
+[sub_resource type="AnimationNodeAnimation" id=36]
+animation = "HurtRight"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=37]
+blend_point_0/node = SubResource( 35 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 36 )
+blend_point_1/pos = Vector2( 1, 0 )
+blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id=13]
 animation = "IdleLeft"
@@ -294,45 +267,60 @@ blend_point_1/pos = -1.0
 [sub_resource type="AnimationNodeStateMachineTransition" id=24]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=25]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=26]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=27]
-switch_mode = 2
-priority = 2
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
 
-[sub_resource type="AnimationNodeStateMachine" id=28]
-states/Hurt/node = SubResource( 12 )
-states/Hurt/position = Vector2( 542, 179.094 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=40]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=41]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=42]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=43]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id=32]
+states/Hurt/node = SubResource( 37 )
+states/Hurt/position = Vector2( 541, 125.094 )
 states/Idle/node = SubResource( 15 )
 states/Idle/position = Vector2( 542, 43.4241 )
 states/SideSwipe/node = SubResource( 18 )
 states/SideSwipe/position = Vector2( 774, 43.4241 )
 states/Walk/node = SubResource( 21 )
 states/Walk/position = Vector2( 318, 43.4241 )
-transitions = [ "Idle", "SideSwipe", SubResource( 22 ), "Idle", "Walk", SubResource( 23 ), "Walk", "Idle", SubResource( 24 ), "Idle", "Hurt", SubResource( 25 ), "SideSwipe", "Idle", SubResource( 26 ), "Hurt", "Idle", SubResource( 27 ) ]
+transitions = [ "Idle", "SideSwipe", SubResource( 22 ), "Idle", "Walk", SubResource( 23 ), "Walk", "Idle", SubResource( 24 ), "SideSwipe", "Idle", SubResource( 25 ), "Walk", "Hurt", SubResource( 38 ), "Hurt", "Walk", SubResource( 39 ), "Idle", "Hurt", SubResource( 40 ), "Hurt", "Idle", SubResource( 41 ), "SideSwipe", "Hurt", SubResource( 42 ), "Hurt", "SideSwipe", SubResource( 43 ) ]
 start_node = "Idle"
 graph_offset = Vector2( 0, -5.90611 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=29]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=33]
 
-[sub_resource type="RectangleShape2D" id=30]
-extents = Vector2( 18.9853, 39.5829 )
+[sub_resource type="RectangleShape2D" id=34]
+extents = Vector2( 12.9261, 20.0919 )
 
 [node name="LirikYaki" type="KinematicBody2D"]
+position = Vector2( 0.707108, -1.41422 )
+collision_layer = 4
+collision_mask = 1025
+collision/safe_margin = 0.001
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 7.29028, -45.3817 )
+position = Vector2( -0.48801, -21.6264 )
 texture = ExtResource( 2 )
 hframes = 6
 vframes = 8
-frame = 2
+frame = 3
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2( 6.35316, -7.92697 )
+position = Vector2( -0.674954, -4.30031 )
+rotation = 1.5708
+scale = Vector2( 1.01091, 1.11191 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -346,13 +334,13 @@ anims/WalkLeft = SubResource( 8 )
 anims/WalkRight = SubResource( 9 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 28 )
+tree_root = SubResource( 32 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 29 )
-parameters/Hurt/blend_position = 1.0223
+parameters/playback = SubResource( 33 )
+parameters/Hurt/blend_position = Vector2( -1, 0.0103092 )
 parameters/Idle/blend_position = -0.29718
-parameters/SideSwipe/blend_position = 1.09255
+parameters/SideSwipe/blend_position = -1.0
 parameters/Walk/blend_position = 1.094
 
 [node name="TrailTimer" type="Timer" parent="."]
@@ -367,23 +355,24 @@ collision_layer = 64
 collision_mask = 4096
 
 [node name="HurtBox" type="CollisionShape2D" parent="HurtArea"]
-position = Vector2( 8.59758, -15.9562 )
-shape = SubResource( 30 )
+position = Vector2( 2.03366, 5.10524 )
+shape = SubResource( 34 )
 
 [node name="attack" type="Area2D" parent="."]
 position = Vector2( -2.9, -23.75 )
-collision_layer = 128
+collision_layer = 16
 collision_mask = 0
 
 [node name="sideSwipeRight" type="CollisionPolygon2D" parent="attack"]
-position = Vector2( 56.3368, -31.6679 )
-scale = Vector2( 10.5, 1.28879 )
+position = Vector2( 32.7463, -2.14974 )
+scale = Vector2( 6.35679, 0.776732 )
 polygon = PoolVector2Array( 0.662512, -11.7343, 0.702554, 31.9923, -2.66103, 31.5719, -2.66103, -11.7343 )
 disabled = true
 
 [node name="sideSwipeLeft" type="CollisionPolygon2D" parent="attack"]
-position = Vector2( -49.0881, -39.6268 )
-scale = Vector2( 10.5, 1.28911 )
+position = Vector2( -36.3283, -8.34402 )
+scale = Vector2( 6.92114, 0.829665 )
 polygon = PoolVector2Array( 3.65999, -4.16923, 3.65999, 38.296, 0.596727, 38.296, 0.596727, -3.959 )
+disabled = true
 
 [connection signal="area_entered" from="attack" to="." method="_on_attack_area_entered"]

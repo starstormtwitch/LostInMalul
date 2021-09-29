@@ -55,7 +55,6 @@ func add_trail():
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if _canTakeDamage:
 		_canTakeDamage = false
-		$AnimationTree.get("parameters/playback").travel("Hurt")
 		_invincibilityTimer.start(2)
 		.take_damage(damage, direction, force)
 

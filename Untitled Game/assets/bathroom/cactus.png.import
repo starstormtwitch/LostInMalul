@@ -2,25 +2,25 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/LirikYakiSpritesheet.png-2986f08ae4fbf623342f21e000e1f4dc.stex"
+path="res://.import/cactus.png-906c36399b69b7e986243f3ce21a9da5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/LirikYakiSpritesheet.png"
-dest_files=[ "res://.import/LirikYakiSpritesheet.png-2986f08ae4fbf623342f21e000e1f4dc.stex" ]
+source_file="res://assets/bathroom/cactus.png"
+dest_files=[ "res://.import/cactus.png-906c36399b69b7e986243f3ce21a9da5.stex" ]
 
 [params]
 
-compress/mode=3
-compress/lossy_quality=1.0
+compress/mode=0
+compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

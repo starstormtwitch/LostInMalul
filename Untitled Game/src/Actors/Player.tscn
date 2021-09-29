@@ -464,7 +464,7 @@ extents = Vector2( 7.5, 13.75 )
 
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 4, 4 )
-collision_layer = 32
+collision_layer = 4
 collision_mask = 1025
 script = ExtResource( 2 )
 
@@ -480,7 +480,7 @@ frame = 107
 
 [node name="attack" type="Area2D" parent="."]
 position = Vector2( -2.9, -23.75 )
-collision_layer = 128
+collision_layer = 16
 collision_mask = 0
 
 [node name="sideSwipeRight" type="CollisionPolygon2D" parent="attack"]
