@@ -35,8 +35,9 @@ func _ready():
 	var parent = get_parent()
 	if(parent != null):
 		var tree = parent.get_tree()
-		var root = tree.get_root()
-		_target = root.find_node("Player", true, false)
+		var players = tree.get_nodes_in_group("Player")
+		if(players.size() > 0):
+			_target = players[0]
 
 func _physics_process(_delta: float) -> void:
 	var direction = Vector2.ZERO
