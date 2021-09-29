@@ -83,9 +83,14 @@ func setRemoteUpdates(update: bool) -> void:
 	_remoteTransform2d.update_position = update
 	_remoteTransform2d.update_rotation = update
 	_remoteTransform2d.update_scale = update
+	
+func limitCameraToDelimiter(delimiter: CustomDelimiter2D) -> void:
+	limitCameraToCoordinates(delimiter.getTop(), delimiter.getLeft(), delimiter.getBottom(), delimiter.getRight())
 		
 func limitCameraToPositions(topLeft: Position2D, bottomRight: Position2D) -> void:
-	limitCameraToCoordinates(topLeft.get_global_position().y, topLeft.position.x, bottomRight.position.y, bottomRight.position.x)
+	var globalTopLeft = topLeft.get_global_position()
+	var globalBottomRight = bottomRight.get_global_position()
+	limitCameraToCoordinates(globalTopLeft.y, globalTopLeft.x, globalBottomRight.y, globalBottomRight.x)
 
 func limitCameraToCoordinates(top: int, left: int, bottom: int, right: int) -> void:
 	clearPan() #todo: review this, but its a good idea to clear camera effects if the camera changes limits

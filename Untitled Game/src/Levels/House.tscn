@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://src/Actors/Slime.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://src/Props/DrawersWithMirror.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/Props/Wardrobe.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/Levels/House.gd" type="Script" id=19]
+[ext_resource path="res://src/Helpers/CustomDelimiter2D.tscn" type="PackedScene" id=20]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 51.2464, 8.42657 )
@@ -99,35 +100,35 @@ __meta__ = {
 
 [node name="CameraPositions" type="Node" parent="LevelBackground"]
 
-[node name="Bathroom_Top_Left" type="Position2D" parent="LevelBackground/CameraPositions"]
+[node name="Bathroom_Delimiter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
 position = Vector2( 6.972, 50 )
 
-[node name="Bathroom_Bottom_Right" type="Position2D" parent="LevelBackground/CameraPositions"]
-position = Vector2( 475.412, 300 )
+[node name="BottomRight" parent="LevelBackground/CameraPositions/Bathroom_Delimiter" index="1"]
+position = Vector2( 467.842, 250 )
 
-[node name="Bedroom_Top_Left" type="Position2D" parent="LevelBackground/CameraPositions"]
-position = Vector2( 427.009, 50 )
+[node name="Bedroom_Delimiter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
+position = Vector2( 426.998, 50 )
 
-[node name="Bedroom_Bottom_Right" type="Position2D" parent="LevelBackground/CameraPositions"]
-position = Vector2( 949.25, 300 )
+[node name="BottomRight" parent="LevelBackground/CameraPositions/Bedroom_Delimiter" index="1"]
+position = Vector2( 522.259, 250 )
 
-[node name="StreamingRoom_Top_Left" type="Position2D" parent="LevelBackground/CameraPositions"]
-position = Vector2( 896.597, 50 )
+[node name="StreamingRoom_Delimiter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
+position = Vector2( 896.573, 50 )
 
-[node name="StreamingRoom_Bottom_Right" type="Position2D" parent="LevelBackground/CameraPositions"]
-position = Vector2( 1423.22, 300 )
+[node name="BottomRight" parent="LevelBackground/CameraPositions/StreamingRoom_Delimiter" index="1"]
+position = Vector2( 526.638, 250 )
 
-[node name="LivingRoom_Top_Left" type="Position2D" parent="LevelBackground/CameraPositions"]
-position = Vector2( 1366.51, 50 )
+[node name="LivingRoom_Delimiter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
+position = Vector2( 1366.5, 50 )
 
-[node name="LivingRoom_Bottom_Right" type="Position2D" parent="LevelBackground/CameraPositions"]
-position = Vector2( 1893.92, 300 )
+[node name="BottomRight" parent="LevelBackground/CameraPositions/LivingRoom_Delimiter" index="1"]
+position = Vector2( 527.409, 250 )
 
-[node name="Kitchen_Top_Left" type="Position2D" parent="LevelBackground/CameraPositions"]
-position = Vector2( 1836.62, 50 )
+[node name="Kitchen_Delimiter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
+position = Vector2( 1836.67, 50 )
 
-[node name="Kitchen_Bottom_Right" type="Position2D" parent="LevelBackground/CameraPositions"]
-position = Vector2( 2455.49, 300 )
+[node name="BottomRight" parent="LevelBackground/CameraPositions/Kitchen_Delimiter" index="1"]
+position = Vector2( 618.83, 250 )
 
 [node name="AreaTransitions" type="Node" parent="LevelBackground"]
 
@@ -409,5 +410,10 @@ position = Vector2( 1923.45, 293.484 )
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Livingroom_To_Kitchen" to="." method="_on_Livingroom_To_Kitchen_body_entered"]
 [connection signal="screen_entered" from="YSort/Actors/Enemy/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 
+[editable path="LevelBackground/CameraPositions/Bathroom_Delimiter"]
+[editable path="LevelBackground/CameraPositions/Bedroom_Delimiter"]
+[editable path="LevelBackground/CameraPositions/StreamingRoom_Delimiter"]
+[editable path="LevelBackground/CameraPositions/LivingRoom_Delimiter"]
+[editable path="LevelBackground/CameraPositions/Kitchen_Delimiter"]
 [editable path="YSort/Props/Bedroom/Nightstand_left/Lamp1"]
 [editable path="YSort/Props/Bedroom/Nightstand_right/Lamp2"]
