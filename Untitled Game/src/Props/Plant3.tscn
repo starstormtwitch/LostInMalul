@@ -9,7 +9,7 @@ height = 2.76862
 [node name="Plant3" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -1.17142, -15.9533 )
+position = Vector2( -1.09709, -17.0682 )
 texture = ExtResource( 1 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Sprite"]

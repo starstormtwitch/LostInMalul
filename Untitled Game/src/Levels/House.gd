@@ -9,8 +9,12 @@ onready var _camPos_Bathroom_TopLeft = get_node("LevelBackground/CameraPositions
 onready var _camPos_Bathroom_BottomRight = get_node("LevelBackground/CameraPositions/Bathroom_Bottom_Right")
 onready var _camPos_Bedroom_TopLeft = get_node("LevelBackground/CameraPositions/Bedroom_Top_Left")
 onready var _camPos_Bedroom_BottomRight = get_node("LevelBackground/CameraPositions/Bedroom_Bottom_Right")
-onready var _camPos_Studio_TopLeft = get_node("LevelBackground/CameraPositions/Studio_Top_Left")
-onready var _camPos_Studio_BottomRight = get_node("LevelBackground/CameraPositions/Studio_Bottom_Right")
+onready var _camPos_StreamingRoom_TopLeft = get_node("LevelBackground/CameraPositions/StreamingRoom_Top_Left")
+onready var _camPos_StreamingRoom_BottomRight = get_node("LevelBackground/CameraPositions/StreamingRoom_Bottom_Right")
+onready var _camPos_LivingRoom_TopLeft = get_node("LevelBackground/CameraPositions/LivingRoom_Top_Left")
+onready var _camPos_LivingRoom_BottomRight = get_node("LevelBackground/CameraPositions/LivingRoom_Bottom_Right")
+onready var _camPos_Kitchen_TopLeft = get_node("LevelBackground/CameraPositions/Kitchen_Top_Left")
+onready var _camPos_Kitchen_BottomRight = get_node("LevelBackground/CameraPositions/Kitchen_Bottom_Right")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,21 +23,41 @@ func _ready():
 	cameraManager = CustomCamera2D.new(_player, true)		
 	setCameraToBathroom()
 
-func _on_Transition_Bedroom_To_Bathroom_body_entered(body):
+func _on_VisibilityNotifier2D_screen_entered():
+	cameraManager.panToTarget(get_node("YSort/Actors/Enemy/enemy"), 2)
+	get_node("YSort/Actors/Enemy/VisibilityNotifier2D").queue_free()
+
+func _on_Bedroom_To_Bathroom_body_entered(body):
 	if body == _player:
 		setCameraToBathroom()
 
-func _on_Transition_Bathroom_To_Bedroom_body_entered(body):
+func _on_Bathroom_To_Bedroom_body_entered(body):
 	if body == _player:
 		setCameraToBedroom()
 
-func _on_Bedroom_To_Studio_body_entered(body):
+func _on_Bedroom_To_StreamingRoom_body_entered(body):
 	if body == _player:
-		setCameraToStudio()
+		setCameraToStreamingRoom()
 
-func _on_Studio_To_Bedroom_body_entered(body):
+func _on_StreamingRoom_To_Bedroom_body_entered(body):
 	if body == _player:
 		setCameraToBedroom()
+
+func _on_Livingroom_To_StreamingRoom_body_entered(body):
+	if body == _player:
+		setCameraToStreamingRoom()
+
+func _on_StreamingRoom_To_Livingroom_body_entered(body):
+	if body == _player:
+		setCameraToLivingRoom()
+
+func _on_Kitchen_To_Livingroom_body_entered(body):
+	if body == _player:
+		setCameraToLivingRoom()
+
+func _on_Livingroom_To_Kitchen_body_entered(body):
+	if body == _player:
+		setCameraToKitchen()
 
 func setCameraToBathroom():
 	cameraManager.limitCameraToPositions(_camPos_Bathroom_TopLeft, _camPos_Bathroom_BottomRight) 
@@ -41,9 +65,15 @@ func setCameraToBathroom():
 func setCameraToBedroom():
 	cameraManager.limitCameraToPositions(_camPos_Bedroom_TopLeft, _camPos_Bedroom_BottomRight) 
 
-func setCameraToStudio():
-	cameraManager.limitCameraToPositions(_camPos_Studio_TopLeft, _camPos_Studio_BottomRight) 
+func setCameraToStreamingRoom():
+	cameraManager.limitCameraToPositions(_camPos_StreamingRoom_TopLeft, _camPos_StreamingRoom_BottomRight) 
 
-func _on_VisibilityNotifier2D_screen_entered():
-	cameraManager.panToTarget(get_node("YSort/Actors/Enemy/enemy"), 2)
-	get_node("YSort/Actors/Enemy/VisibilityNotifier2D").queue_free()
+func setCameraToLivingRoom():	
+	cameraManager.limitCameraToPositions(_camPos_LivingRoom_TopLeft, _camPos_LivingRoom_BottomRight) 
+	
+func setCameraToKitchen():
+	cameraManager.limitCameraToPositions(_camPos_Kitchen_TopLeft, _camPos_Kitchen_BottomRight) 
+
+
+
+

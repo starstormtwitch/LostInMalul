@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://src/Actors/Slime.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/Props/Plant1.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Props/Plant2.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Props/House/BathroomDoorframe.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Props/Door1.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/Props/Plant3.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Props/Bed.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/Props/Nightstand.tscn" type="PackedScene" id=12]
@@ -99,22 +100,34 @@ __meta__ = {
 [node name="CameraPositions" type="Node" parent="LevelBackground"]
 
 [node name="Bathroom_Top_Left" type="Position2D" parent="LevelBackground/CameraPositions"]
-position = Vector2( 6.972, 40 )
+position = Vector2( 6.972, 50 )
 
 [node name="Bathroom_Bottom_Right" type="Position2D" parent="LevelBackground/CameraPositions"]
-position = Vector2( 470.993, 299.208 )
+position = Vector2( 475.412, 300 )
 
 [node name="Bedroom_Top_Left" type="Position2D" parent="LevelBackground/CameraPositions"]
 position = Vector2( 427.009, 50 )
 
 [node name="Bedroom_Bottom_Right" type="Position2D" parent="LevelBackground/CameraPositions"]
-position = Vector2( 949.25, 300.603 )
+position = Vector2( 949.25, 300 )
 
-[node name="Studio_Top_Left" type="Position2D" parent="LevelBackground/CameraPositions"]
-position = Vector2( 896.597, 53.8928 )
+[node name="StreamingRoom_Top_Left" type="Position2D" parent="LevelBackground/CameraPositions"]
+position = Vector2( 896.597, 50 )
 
-[node name="Studio_Bottom_Right" type="Position2D" parent="LevelBackground/CameraPositions"]
-position = Vector2( 1422.77, 300.424 )
+[node name="StreamingRoom_Bottom_Right" type="Position2D" parent="LevelBackground/CameraPositions"]
+position = Vector2( 1423.22, 300 )
+
+[node name="LivingRoom_Top_Left" type="Position2D" parent="LevelBackground/CameraPositions"]
+position = Vector2( 1366.51, 50 )
+
+[node name="LivingRoom_Bottom_Right" type="Position2D" parent="LevelBackground/CameraPositions"]
+position = Vector2( 1893.92, 300 )
+
+[node name="Kitchen_Top_Left" type="Position2D" parent="LevelBackground/CameraPositions"]
+position = Vector2( 1836.62, 50 )
+
+[node name="Kitchen_Bottom_Right" type="Position2D" parent="LevelBackground/CameraPositions"]
+position = Vector2( 2455.49, 300 )
 
 [node name="AreaTransitions" type="Node" parent="LevelBackground"]
 
@@ -138,24 +151,64 @@ rotation = 1.5708
 shape = SubResource( 2 )
 one_way_collision = true
 
-[node name="Bedroom_To_Studio" type="Area2D" parent="LevelBackground/AreaTransitions"]
+[node name="Bedroom_To_StreamingRoom" type="Area2D" parent="LevelBackground/AreaTransitions"]
 position = Vector2( 935.487, 236.811 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Bedroom_To_Studio"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Bedroom_To_StreamingRoom"]
 position = Vector2( -0.360962, -6.84293 )
 rotation = -1.5708
 shape = SubResource( 1 )
 one_way_collision = true
 
-[node name="Studio_To_Bedroom" type="Area2D" parent="LevelBackground/AreaTransitions"]
+[node name="StreamingRoom_To_Bedroom" type="Area2D" parent="LevelBackground/AreaTransitions"]
 position = Vector2( 893.832, 279.944 )
 collision_layer = 0
 collision_mask = 33
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Studio_To_Bedroom"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/StreamingRoom_To_Bedroom"]
 position = Vector2( 3.38936, -4.9917 )
 rotation = 1.5708
 shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="Livingroom_To_StreamingRoom" type="Area2D" parent="LevelBackground/AreaTransitions"]
+position = Vector2( 1368.49, 279.453 )
+collision_layer = 0
+collision_mask = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Livingroom_To_StreamingRoom"]
+position = Vector2( 3.38936, -4.9917 )
+rotation = 1.5708
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="StreamingRoom_To_Livingroom" type="Area2D" parent="LevelBackground/AreaTransitions"]
+position = Vector2( 1406.3, 233.402 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/StreamingRoom_To_Livingroom"]
+position = Vector2( -0.360962, -6.84293 )
+rotation = -1.5708
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="Kitchen_To_Livingroom" type="Area2D" parent="LevelBackground/AreaTransitions"]
+position = Vector2( 1839.73, 279.878 )
+collision_layer = 0
+collision_mask = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Kitchen_To_Livingroom"]
+position = Vector2( 3.38936, -4.9917 )
+rotation = 1.5708
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="Livingroom_To_Kitchen" type="Area2D" parent="LevelBackground/AreaTransitions"]
+position = Vector2( 1877.05, 231.843 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Livingroom_To_Kitchen"]
+position = Vector2( -0.360962, -6.84293 )
+rotation = -1.5708
+shape = SubResource( 1 )
 one_way_collision = true
 
 [node name="Boundaries" type="Node" parent="LevelBackground"]
@@ -285,35 +338,39 @@ position = Vector2( 443.683, 288.462 )
 
 [node name="Bedroom" type="YSort" parent="YSort/Props"]
 
+[node name="Door1" parent="YSort/Props/Bedroom" instance=ExtResource( 9 )]
+position = Vector2( 505.309, 293.542 )
+
 [node name="Nightstand_left" parent="YSort/Props/Bedroom" instance=ExtResource( 12 )]
-position = Vector2( 606.26, 188.308 )
+position = Vector2( 609.239, 188.315 )
+
+[node name="Lamp1" parent="YSort/Props/Bedroom/Nightstand_left" instance=ExtResource( 13 )]
+position = Vector2( -0.255005, 4.103 )
+
+[node name="Sprite" parent="YSort/Props/Bedroom/Nightstand_left/Lamp1" index="0"]
+position = Vector2( -0.479553, -32.9276 )
 
 [node name="Nightstand_right" parent="YSort/Props/Bedroom" instance=ExtResource( 12 )]
-position = Vector2( 704.253, 188.196 )
+position = Vector2( 717.223, 188.249 )
+
+[node name="Lamp2" parent="YSort/Props/Bedroom/Nightstand_right" instance=ExtResource( 13 )]
+position = Vector2( -0.252991, 4.257 )
+
+[node name="Sprite" parent="YSort/Props/Bedroom/Nightstand_right/Lamp2" index="0"]
+position = Vector2( -0.479553, -32.9276 )
 
 [node name="Plant3" parent="YSort/Props/Bedroom" instance=ExtResource( 10 )]
-position = Vector2( 487.668, 291.483 )
+position = Vector2( 485.397, 293.564 )
+scale = Vector2( -1, 1 )
 
 [node name="Plant4" parent="YSort/Props/Bedroom" instance=ExtResource( 10 )]
-position = Vector2( 923.704, 291.425 )
+position = Vector2( 921.6, 292.591 )
 
 [node name="Bed" parent="YSort/Props/Bedroom" instance=ExtResource( 11 )]
-position = Vector2( 666.508, 187.996 )
-
-[node name="Lamp1" parent="YSort/Props/Bedroom" instance=ExtResource( 13 )]
-position = Vector2( 606.005, 192.411 )
-
-[node name="Sprite" parent="YSort/Props/Bedroom/Lamp1" index="0"]
-position = Vector2( -0.479553, -32.9276 )
-
-[node name="Lamp2" parent="YSort/Props/Bedroom" instance=ExtResource( 13 )]
-position = Vector2( 704, 192.453 )
-
-[node name="Sprite" parent="YSort/Props/Bedroom/Lamp2" index="0"]
-position = Vector2( -0.479553, -32.9276 )
+position = Vector2( 675.528, 187.917 )
 
 [node name="Table1" parent="YSort/Props/Bedroom" instance=ExtResource( 14 )]
-position = Vector2( 568.984, 296.964 )
+position = Vector2( 568.981, 286.429 )
 
 [node name="Tvstand" parent="YSort/Props/Bedroom" instance=ExtResource( 15 )]
 position = Vector2( 744.022, 294.041 )
@@ -327,11 +384,30 @@ position = Vector2( 852.625, 214.383 )
 [node name="Wardrobe" parent="YSort/Props/Bedroom" instance=ExtResource( 18 )]
 position = Vector2( 498.214, 190.363 )
 
-[connection signal="body_entered" from="LevelBackground/AreaTransitions/Bathroom_To_Bedroom" to="." method="_on_Transition_Bathroom_To_Bedroom_body_entered"]
-[connection signal="body_entered" from="LevelBackground/AreaTransitions/Bedroom_To_Bathroom" to="." method="_on_Transition_Bedroom_To_Bathroom_body_entered"]
-[connection signal="body_entered" from="LevelBackground/AreaTransitions/Bedroom_To_Studio" to="." method="_on_Bedroom_To_Studio_body_entered"]
-[connection signal="body_entered" from="LevelBackground/AreaTransitions/Studio_To_Bedroom" to="." method="_on_Studio_To_Bedroom_body_entered"]
+[node name="StreamingRoom" type="YSort" parent="YSort/Props"]
+
+[node name="Door1" parent="YSort/Props/StreamingRoom" instance=ExtResource( 9 )]
+position = Vector2( 978.456, 293.485 )
+
+[node name="Livingroom" type="YSort" parent="YSort/Props"]
+
+[node name="Door1" parent="YSort/Props/Livingroom" instance=ExtResource( 9 )]
+position = Vector2( 1452.45, 293.478 )
+
+[node name="Kitchen" type="YSort" parent="YSort/Props"]
+
+[node name="Door1" parent="YSort/Props/Kitchen" instance=ExtResource( 9 )]
+position = Vector2( 1923.45, 293.484 )
+
+[connection signal="body_entered" from="LevelBackground/AreaTransitions/Bathroom_To_Bedroom" to="." method="_on_Bathroom_To_Bedroom_body_entered"]
+[connection signal="body_entered" from="LevelBackground/AreaTransitions/Bedroom_To_Bathroom" to="." method="_on_Bedroom_To_Bathroom_body_entered"]
+[connection signal="body_entered" from="LevelBackground/AreaTransitions/Bedroom_To_StreamingRoom" to="." method="_on_Bedroom_To_StreamingRoom_body_entered"]
+[connection signal="body_entered" from="LevelBackground/AreaTransitions/StreamingRoom_To_Bedroom" to="." method="_on_StreamingRoom_To_Bedroom_body_entered"]
+[connection signal="body_entered" from="LevelBackground/AreaTransitions/Livingroom_To_StreamingRoom" to="." method="_on_Livingroom_To_StreamingRoom_body_entered"]
+[connection signal="body_entered" from="LevelBackground/AreaTransitions/StreamingRoom_To_Livingroom" to="." method="_on_StreamingRoom_To_Livingroom_body_entered"]
+[connection signal="body_entered" from="LevelBackground/AreaTransitions/Kitchen_To_Livingroom" to="." method="_on_Kitchen_To_Livingroom_body_entered"]
+[connection signal="body_entered" from="LevelBackground/AreaTransitions/Livingroom_To_Kitchen" to="." method="_on_Livingroom_To_Kitchen_body_entered"]
 [connection signal="screen_entered" from="YSort/Actors/Enemy/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 
-[editable path="YSort/Props/Bedroom/Lamp1"]
-[editable path="YSort/Props/Bedroom/Lamp2"]
+[editable path="YSort/Props/Bedroom/Nightstand_left/Lamp1"]
+[editable path="YSort/Props/Bedroom/Nightstand_right/Lamp2"]
