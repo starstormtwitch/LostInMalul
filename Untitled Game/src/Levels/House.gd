@@ -1,8 +1,7 @@
 extends Node2D
 
 #onready var _camera = $Camera2D
-onready var _player = get_node("YSort/Actors/LirikYaki")
-
+var _player : Actor
 onready var cameraManager: CustomCamera2D
 
 onready var _cam_Delimiter_Bathroom = get_node("LevelBackground/CameraPositions/Bathroom_Delimiter")
@@ -13,14 +12,21 @@ onready var _cam_Delimiter_Kitchen = get_node("LevelBackground/CameraPositions/K
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var parent = get_parent()
+	if(parent != null):
+		var tree = parent.get_tree()
+		var players = tree.get_nodes_in_group("Player")
+		if(players.size() > 0):
+			_player = players[0]
 	assert(_player, "Player Node does not exist.")
 	#assert(_camera, "Camera2D Node does not exist")
 	cameraManager = CustomCamera2D.new(_player, true)		
 	setCameraToBathroom()
 
 func _on_VisibilityNotifier2D_screen_entered():
-	cameraManager.panToTarget(get_node("YSort/Actors/Enemy/enemy"), 2)
-	get_node("YSort/Actors/Enemy/VisibilityNotifier2D").queue_free()
+	pass
+#	cameraManager.panToTarget(get_node("YSort/Actors/Enemy/enemy"), 2)
+#	get_node("YSort/Actors/Enemy/VisibilityNotifier2D").queue_free()
 
 func _on_Bedroom_To_Bathroom_body_entered(body):
 	if body == _player:

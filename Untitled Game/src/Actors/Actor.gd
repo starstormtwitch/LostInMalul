@@ -48,21 +48,21 @@ func getMovement(direction: Vector2, speed: float, acceleration: float) -> Vecto
 	else:
 		_groundPosition = self.position.y
 		
-	#give the movement some friction
+	#give the movement some frictionas
 	if(resultingVelocity.x > 0):
-		resultingVelocity.x = floor(resultingVelocity.x / 10) * 10
+		resultingVelocity.x = floor(resultingVelocity.x / 5) * 5
 	else:
-		resultingVelocity.x = ceil(resultingVelocity.x / 10) * 10
+		resultingVelocity.x = ceil(resultingVelocity.x / 5) * 5
 	if(resultingVelocity.y > 0):
-		resultingVelocity.y = floor(resultingVelocity.y / 10) * 10
+		resultingVelocity.y = floor(resultingVelocity.y / 5) * 5
 	else:
-		resultingVelocity.y = ceil(resultingVelocity.y / 10) * 10
+		resultingVelocity.y = ceil(resultingVelocity.y / 5) * 5
 		
 	return resultingVelocity
 	
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if($AnimationTree != null):
-		$AnimationTree.get("parameters/playback").travel("hurt")
+		$AnimationTree.get("parameters/playback").travel("Hurt")
 	_health-=damage
 	#knockback
 	var knockbackVelocity = getMovement(direction, force, _acceleration)

@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Helpers/ArenaRoomManager.gd"
 }, {
-"base": "Node",
+"base": "Object",
 "class": "CameraManager",
 "language": "GDScript",
 "path": "res://src/Helpers/CameraManager.gd"
@@ -59,6 +59,7 @@ config/icon="res://icon.png"
 window/size/height=576
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
 [importer_defaults]
 
 texture={

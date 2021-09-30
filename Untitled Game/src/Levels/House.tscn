@@ -143,8 +143,6 @@ one_way_collision = true
 
 [node name="Bedroom_To_Bathroom" type="Area2D" parent="LevelBackground/AreaTransitions"]
 position = Vector2( 418.883, 279.855 )
-collision_layer = 0
-collision_mask = 33
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Bedroom_To_Bathroom"]
 position = Vector2( 3.38936, -4.9917 )
@@ -162,9 +160,7 @@ shape = SubResource( 1 )
 one_way_collision = true
 
 [node name="StreamingRoom_To_Bedroom" type="Area2D" parent="LevelBackground/AreaTransitions"]
-position = Vector2( 893.832, 279.944 )
-collision_layer = 0
-collision_mask = 33
+position = Vector2( 894.956, 274.7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/StreamingRoom_To_Bedroom"]
 position = Vector2( 3.38936, -4.9917 )
@@ -174,8 +170,6 @@ one_way_collision = true
 
 [node name="Livingroom_To_StreamingRoom" type="Area2D" parent="LevelBackground/AreaTransitions"]
 position = Vector2( 1368.49, 279.453 )
-collision_layer = 0
-collision_mask = 33
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Livingroom_To_StreamingRoom"]
 position = Vector2( 3.38936, -4.9917 )
@@ -194,8 +188,6 @@ one_way_collision = true
 
 [node name="Kitchen_To_Livingroom" type="Area2D" parent="LevelBackground/AreaTransitions"]
 position = Vector2( 1839.73, 279.878 )
-collision_layer = 0
-collision_mask = 33
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Kitchen_To_Livingroom"]
 position = Vector2( 3.38936, -4.9917 )
@@ -279,7 +271,7 @@ position = Vector2( 701.157, 300.142 )
 shape = SubResource( 14 )
 
 [node name="top_segment" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bedroom"]
-position = Vector2( 643.611, 182.883 )
+position = Vector2( 643.945, 182.883 )
 shape = SubResource( 15 )
 
 [node name="right_wall_top_segment" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bedroom"]
@@ -300,7 +292,7 @@ shape = SubResource( 17 )
 "Player",
 ] instance=ExtResource( 2 )]
 position = Vector2( 234.523, 251.754 )
-scale = Vector2( 0.6, 0.6 )
+scale = Vector2( 1, 1 )
 
 [node name="Enemy" parent="YSort/Actors" instance=ExtResource( 1 )]
 position = Vector2( 805.512, 215.272 )

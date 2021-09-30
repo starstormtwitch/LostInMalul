@@ -99,4 +99,4 @@ func _finishedAttack():
 
 func _on_attack_area_entered(area):
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
-		area.get_parent().take_damage(1, _directionFacing, 100000)
+		area.get_parent().take_damage(1, _directionFacing, 50000)
