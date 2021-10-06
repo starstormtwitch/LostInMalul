@@ -1,6 +1,4 @@
-# UntitledLirikGame
-Game for lirik
-
+# UntitledGame
 All pull requests must be approved by starstorm
 
 ## Setup
