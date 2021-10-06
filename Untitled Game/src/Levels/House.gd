@@ -4,11 +4,18 @@ extends Node2D
 var _player : Actor
 onready var cameraManager: CustomCamera2D
 
+const _INTERACT_EVENT = "interact"
+
 onready var _cam_Delimiter_Bathroom = get_node("LevelBackground/CameraPositions/Bathroom_Delimiter")
 onready var _cam_Delimiter_Bedroom = get_node("LevelBackground/CameraPositions/Bedroom_Delimiter")
 onready var _cam_Delimiter_StreamingRooom = get_node("LevelBackground/CameraPositions/StreamingRoom_Delimiter")
 onready var _cam_Delimiter_LivingRoom = get_node("LevelBackground/CameraPositions/LivingRoom_Delimiter")
 onready var _cam_Delimiter_Kitchen = get_node("LevelBackground/CameraPositions/Kitchen_Delimiter")
+onready var _cam_Delimiter_Basement = get_node("LevelBackground/CameraPositions/Basement_Delimeter")
+onready var _teleport_Basement = get_node("LevelBackground/Basement_Teleport")
+onready var _teleport_Kitchen = get_node("LevelBackground/Kitchen_Teleport")
+onready var _kitchen_Teleport_Area: Area2D = get_node("LevelBackground/AreaTransitions/Kitchen_To_Basement")
+onready var _basement_Teleport_Area: Area2D = get_node("LevelBackground/AreaTransitions/Basement_To_Kitchen")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,6 +29,19 @@ func _ready():
 	#assert(_camera, "Camera2D Node does not exist")
 	cameraManager = CustomCamera2D.new(_player, true)		
 	setCameraToBathroom()
+
+# node to handle player input, and call the proper response
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed(_INTERACT_EVENT):
+		_handleInteractEvent()
+
+# Call when the "Interact" event is called. Will check which area player is in to
+# call the proper result
+func _handleInteractEvent() -> void:
+	if _kitchen_Teleport_Area.overlaps_body(_player):
+		setCameraToBasement()
+	elif _basement_Teleport_Area.overlaps_body(_player):
+		setCameraToKitchenTeleport()
 
 func _on_VisibilityNotifier2D_screen_entered():
 	pass
@@ -75,6 +95,10 @@ func setCameraToLivingRoom():
 func setCameraToKitchen():
 	cameraManager.limitCameraToDelimiter(_cam_Delimiter_Kitchen) 
 
+func setCameraToBasement() -> void:
+	cameraManager.limitCameraToDelimiter(_cam_Delimiter_Basement)
+	_player.position = _teleport_Basement.position
 
-
-
+func setCameraToKitchenTeleport() -> void:
+	setCameraToKitchen()
+	_player.position = _teleport_Kitchen.position
