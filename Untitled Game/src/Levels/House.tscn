@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://src/Actors/Slime.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
@@ -19,7 +19,10 @@
 [ext_resource path="res://src/Props/DrawersWithMirror.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/Props/Wardrobe.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/Levels/House.gd" type="Script" id=19]
-[ext_resource path="res://src/Helpers/CustomDelimiter2D.tscn" type="PackedScene" id=20]
+[ext_resource path="res://src/Helpers/Camera/CustomDelimiter2D.tscn" type="PackedScene" id=20]
+[ext_resource path="res://assets/GUI/profile.png" type="Texture" id=21]
+[ext_resource path="res://assets/GUI/cash.png" type="Texture" id=22]
+[ext_resource path="res://src/Helpers/GUI/HealthBar.tscn" type="PackedScene" id=23]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 51.2464, 8.42657 )
@@ -391,6 +394,40 @@ position = Vector2( 1452.45, 293.478 )
 
 [node name="Door1" parent="YSort/Props/Kitchen" instance=ExtResource( 9 )]
 position = Vector2( 1923.45, 293.484 )
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="GUI"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Profile" type="TextureRect" parent="GUI/Control"]
+margin_left = 15.0
+margin_top = 16.0
+margin_right = 90.0
+margin_bottom = 91.0
+texture = ExtResource( 21 )
+expand = true
+
+[node name="Cash" type="TextureRect" parent="GUI/Control"]
+margin_left = 96.7937
+margin_top = 49.9046
+margin_right = 238.794
+margin_bottom = 75.9046
+texture = ExtResource( 22 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="healthBar" parent="GUI/Control" instance=ExtResource( 23 )]
+margin_left = 103.0
+margin_top = 32.0
+margin_right = 306.0
+margin_bottom = 53.0
 
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Bathroom_To_Bedroom" to="." method="_on_Bathroom_To_Bedroom_body_entered"]
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Bedroom_To_Bathroom" to="." method="_on_Bedroom_To_Bathroom_body_entered"]

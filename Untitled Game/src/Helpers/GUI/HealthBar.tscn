@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/Helpers/GUI/HealthBar.gd" type="Script" id=1]
+[ext_resource path="res://src/Helpers/GUI/HealthBar.tres" type="Gradient" id=2]
+
+[node name="healthBar" type="HBoxContainer"]
+margin_right = 366.0
+margin_bottom = 50.0
+custom_constants/separation = -6
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+healthGradient = ExtResource( 2 )
