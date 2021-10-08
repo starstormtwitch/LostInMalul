@@ -29,6 +29,16 @@ func _ready():
 	#assert(_camera, "Camera2D Node does not exist")
 	cameraManager = CustomCamera2D.new(_player, true)		
 	setCameraToBathroom()
+	_player.connect("health_changed", self, "_on_Player_health_changed")
+	_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)
+	
+	
+	
+func _on_Player_health_changed(_oldHealth, newHealth, maxHealth):
+	var healthBar = get_node("GUI/Control/healthBar")
+	healthBar.Health = newHealth
+	healthBar.MaxHealth = maxHealth
+	healthBar.update_health()
 
 # node to handle player input, and call the proper response
 func _input(event: InputEvent) -> void:

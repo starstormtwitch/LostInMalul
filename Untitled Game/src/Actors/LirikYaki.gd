@@ -17,12 +17,14 @@ func _ready():
 	add_child(_invincibilityTimer)
 	_invincibilityTimer.start(3)
 	
-	_health = 10
+	_maxHealth = 10
+	_health = _maxHealth
 	_acceleration = .1
 	_speed = 200
 	_directionFacing.x = .1;
 	$TrailTimer.connect("timeout", self, "add_trail")
 	$AnimationTree.active = true
+	
 
 
 func _physics_process(_delta: float) -> void:
