@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://src/Actors/Slime.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
@@ -19,10 +19,13 @@
 [ext_resource path="res://src/Props/DrawersWithMirror.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/Props/Wardrobe.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/Levels/House.gd" type="Script" id=19]
-[ext_resource path="res://src/Helpers/CustomDelimiter2D.tscn" type="PackedScene" id=20]
-[ext_resource path="res://assets/actions/tile_0395.png" type="Texture" id=21]
+[ext_resource path="res://src/Helpers/Camera/CustomDelimiter2D.tscn" type="PackedScene" id=20]
+[ext_resource path="res://assets/GUI/profile.png" type="Texture" id=21]
 [ext_resource path="res://src/Helpers/ShowPromptInArea.gd" type="Script" id=22]
-[ext_resource path="res://src/Helpers/CustomDelimiter2D.gd" type="Script" id=23]
+[ext_resource path="res://src/Helpers/GUI/HealthBar.tscn" type="PackedScene" id=23]
+[ext_resource path="res://assets/GUI/cash.png" type="Texture" id=24]
+[ext_resource path="res://assets/actions/tile_0395.png" type="Texture" id=25]
+[ext_resource path="res://src/Helpers/Camera/CustomDelimiter2D.gd" type="Script" id=26]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 51.2464, 8.42657 )
@@ -140,7 +143,7 @@ position = Vector2( 1836.67, 50 )
 position = Vector2( 618.83, 250 )
 
 [node name="Basement_Delimeter" type="Node2D" parent="LevelBackground/CameraPositions"]
-script = ExtResource( 23 )
+script = ExtResource( 26 )
 
 [node name="TopLeft" type="Position2D" parent="LevelBackground/CameraPositions/Basement_Delimeter"]
 position = Vector2( 1.05636, 301.256 )
@@ -235,7 +238,7 @@ shape = SubResource( 3 )
 [node name="F_Prompt" type="Sprite" parent="LevelBackground/AreaTransitions/Kitchen_To_Basement"]
 visible = false
 position = Vector2( 0.192505, -80.2288 )
-texture = ExtResource( 21 )
+texture = ExtResource( 25 )
 
 [node name="Basement_To_Kitchen" type="Area2D" parent="LevelBackground/AreaTransitions"]
 position = Vector2( 146.278, 374.874 )
@@ -244,7 +247,7 @@ script = ExtResource( 22 )
 [node name="F_Prompt" type="Sprite" parent="LevelBackground/AreaTransitions/Basement_To_Kitchen"]
 visible = false
 position = Vector2( -19.0213, -63.2198 )
-texture = ExtResource( 21 )
+texture = ExtResource( 25 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Basement_To_Kitchen"]
 position = Vector2( 1.25993, -0.629944 )
@@ -443,6 +446,40 @@ position = Vector2( 1452.45, 293.478 )
 
 [node name="Door1" parent="YSort/Props/Kitchen" instance=ExtResource( 9 )]
 position = Vector2( 1923.45, 293.484 )
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="GUI"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Profile" type="TextureRect" parent="GUI/Control"]
+margin_left = 15.0
+margin_top = 16.0
+margin_right = 90.0
+margin_bottom = 91.0
+texture = ExtResource( 21 )
+expand = true
+
+[node name="Cash" type="TextureRect" parent="GUI/Control"]
+margin_left = 96.7937
+margin_top = 49.9046
+margin_right = 238.794
+margin_bottom = 75.9046
+texture = ExtResource( 24 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="healthBar" parent="GUI/Control" instance=ExtResource( 23 )]
+margin_left = 103.0
+margin_top = 32.0
+margin_right = 306.0
+margin_bottom = 53.0
 
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Bathroom_To_Bedroom" to="." method="_on_Bathroom_To_Bedroom_body_entered"]
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Bedroom_To_Bathroom" to="." method="_on_Bedroom_To_Bathroom_body_entered"]
