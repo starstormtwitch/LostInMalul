@@ -90,7 +90,7 @@ func temporarylyFocusOn(target: Node, time: float, zoom: Vector2) -> void:
 
 func setRemoteUpdates(update: bool) -> void:
 	if _verbose:
-		print("CustomCamera2D: Set remote updates (follow player) to " + str(update))
+		print("CustomCamera2D: Set remote updates (follow target) to " + str(update))
 	_remoteTransform2d.update_position = update
 	_remoteTransform2d.update_rotation = update
 	_remoteTransform2d.update_scale = update
@@ -123,9 +123,6 @@ func limitCameraToCoordinates(top: int, left: int, bottom: int, right: int, smoo
 			_limit_smooth_target_position.y = bottom - yDist
 		if self.limit_right > _limit_smooth_right:
 			_limit_smooth_target_position.x = right - xDist
-		#print(_limit_smooth_target_position)
-		#var x = _limit_smooth_left + (self.get_viewport_rect().size.x / 2) * self.zoom.x
-		#var y = _limit_smooth_bottom + (self.get_viewport_rect().size.y / 2) * self.zoom.y
 	else:
 		clearPan() #todo: review this, but its a good idea to clear camera effects if the camera changes limits
 		self.limit_top = top
@@ -146,7 +143,6 @@ func resetLimits() -> void:
 #inner classes
 
 class CustomCamera2DPanTarget:
-	#variables for any pan effect in progress
 	const _DEFAULT_PAN_TIME = 1
 	const _DEFAULT_PAN_SPEED = 1
 	const _DEFAULT_PAN_ZOOM = Vector2(0.2,0.2)
