@@ -166,7 +166,7 @@ one_way_collision = true
 position = Vector2( 894.956, 274.7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/StreamingRoom_To_Bedroom"]
-position = Vector2( 3.38936, -4.9917 )
+position = Vector2( 2.32867, -0.0419922 )
 rotation = 1.5708
 shape = SubResource( 2 )
 one_way_collision = true

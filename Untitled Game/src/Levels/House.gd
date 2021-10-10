@@ -21,10 +21,9 @@ func _ready():
 	assert(_player, "Player Node does not exist.")
 	#assert(_camera, "Camera2D Node does not exist")
 	cameraManager = CustomCamera2D.new(_player, true)		
-	setCameraToBathroom()
+	cameraManager.limitCameraToDelimiter(_cam_Delimiter_Bathroom) 
 	_player.connect("health_changed", self, "_on_Player_health_changed")
-	_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)
-	
+	_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)	
 	
 	
 func _on_Player_health_changed(_oldHealth, newHealth, maxHealth):
@@ -71,10 +70,10 @@ func _on_Livingroom_To_Kitchen_body_entered(body):
 		setCameraToKitchen()
 
 func setCameraToBathroom():
-	cameraManager.limitCameraToDelimiter(_cam_Delimiter_Bathroom) 
+	cameraManager.limitCameraToDelimiter(_cam_Delimiter_Bathroom, true) 
 
 func setCameraToBedroom():
-	cameraManager.limitCameraToDelimiter(_cam_Delimiter_Bedroom) 
+	cameraManager.limitCameraToDelimiter(_cam_Delimiter_Bedroom, true) 
 
 func setCameraToStreamingRoom():
 	cameraManager.limitCameraToDelimiter(_cam_Delimiter_StreamingRooom) 
