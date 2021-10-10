@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://src/Actors/Slime.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
@@ -88,6 +88,8 @@ height = 94.9965
 radius = 5.49353
 height = 22.1447
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id=18]
+
 [node name="House" type="Node2D"]
 script = ExtResource( 19 )
 __meta__ = {
@@ -136,7 +138,7 @@ position = Vector2( 618.83, 250 )
 [node name="AreaTransitions" type="Node" parent="LevelBackground"]
 
 [node name="Bathroom_To_Bedroom" type="Area2D" parent="LevelBackground/AreaTransitions"]
-position = Vector2( 460.118, 240.534 )
+position = Vector2( 465.737, 240.159 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Bathroom_To_Bedroom"]
 position = Vector2( -0.360962, -6.84293 )
@@ -154,7 +156,7 @@ shape = SubResource( 2 )
 one_way_collision = true
 
 [node name="Bedroom_To_StreamingRoom" type="Area2D" parent="LevelBackground/AreaTransitions"]
-position = Vector2( 935.487, 236.811 )
+position = Vector2( 939.498, 238.227 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Bedroom_To_StreamingRoom"]
 position = Vector2( -0.360962, -6.84293 )
@@ -181,7 +183,7 @@ shape = SubResource( 2 )
 one_way_collision = true
 
 [node name="StreamingRoom_To_Livingroom" type="Area2D" parent="LevelBackground/AreaTransitions"]
-position = Vector2( 1406.3, 233.402 )
+position = Vector2( 1413.05, 234.402 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/StreamingRoom_To_Livingroom"]
 position = Vector2( -0.360962, -6.84293 )
@@ -199,7 +201,7 @@ shape = SubResource( 2 )
 one_way_collision = true
 
 [node name="Livingroom_To_Kitchen" type="Area2D" parent="LevelBackground/AreaTransitions"]
-position = Vector2( 1877.05, 231.843 )
+position = Vector2( 1882.3, 233.093 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Livingroom_To_Kitchen"]
 position = Vector2( -0.360962, -6.84293 )
@@ -296,6 +298,12 @@ shape = SubResource( 17 )
 ] instance=ExtResource( 2 )]
 position = Vector2( 234.523, 251.754 )
 scale = Vector2( 1, 1 )
+
+[node name="Sprite" parent="YSort/Actors/LirikYaki" index="0"]
+frame = 4
+
+[node name="AnimationTree" parent="YSort/Actors/LirikYaki" index="3"]
+parameters/playback = SubResource( 18 )
 
 [node name="Enemy" parent="YSort/Actors" instance=ExtResource( 1 )]
 position = Vector2( 805.512, 215.272 )
@@ -444,5 +452,6 @@ margin_bottom = 53.0
 [editable path="LevelBackground/CameraPositions/StreamingRoom_Delimiter"]
 [editable path="LevelBackground/CameraPositions/LivingRoom_Delimiter"]
 [editable path="LevelBackground/CameraPositions/Kitchen_Delimiter"]
+[editable path="YSort/Actors/LirikYaki"]
 [editable path="YSort/Props/Bedroom/Nightstand_left/Lamp1"]
 [editable path="YSort/Props/Bedroom/Nightstand_right/Lamp2"]

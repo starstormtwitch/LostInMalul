@@ -70,10 +70,10 @@ func _on_Livingroom_To_Kitchen_body_entered(body):
 		setCameraToKitchen()
 
 func setCameraToBathroom():
-	cameraManager.limitCameraToDelimiter(_cam_Delimiter_Bathroom, true) 
+	cameraManager.limitCameraToDelimiter(_cam_Delimiter_Bathroom) 
 
 func setCameraToBedroom():
-	cameraManager.limitCameraToDelimiter(_cam_Delimiter_Bedroom, true) 
+	cameraManager.limitCameraToDelimiter(_cam_Delimiter_Bedroom) 
 
 func setCameraToStreamingRoom():
 	cameraManager.limitCameraToDelimiter(_cam_Delimiter_StreamingRooom) 

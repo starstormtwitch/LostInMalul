@@ -3,11 +3,12 @@ extends Camera2D
 #In charge of handling camera movements and events in scenes
 class_name CustomCamera2D
 
-const _DEFAULT_CAMERA_LIMIT_TOP_LEFT = -10000000
-const _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT = 10000000
-const _DEFAULT_CAMERA_ZOOM = Vector2(0.4,0.4)
+const _DEFAULT_CAMERA_LIMIT_TOP_LEFT: int = -10000000
+const _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT: int = 10000000
+const _DEFAULT_CAMERA_ZOOM: Vector2 = Vector2(0.4,0.4)
+const _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED: int = 4
 
-const _SMOOTHING = 0.05
+#const _SMOOTHING = 0.05
 
 var _remoteTransform2d: RemoteTransform2D
 var _panTarget: CustomCamera2DPanTarget
@@ -36,17 +37,16 @@ func _ready():
 
 func _process(delta):
 	if _limit_smooth_active:
-		var smoothSpeed = 4
 		var cameraReachedTarget = self.position.x == _limit_smooth_target_position.x && self.position.y == _limit_smooth_target_position.y
 		if !cameraReachedTarget:
-			self.position.x = move_toward(self.position.x, _limit_smooth_target_position.x, smoothSpeed)
-			self.position.y = move_toward(self.position.y, _limit_smooth_target_position.y, smoothSpeed)
+			self.position.x = move_toward(self.position.x, _limit_smooth_target_position.x, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
+			self.position.y = move_toward(self.position.y, _limit_smooth_target_position.y, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
 		var limitsReachedTarget = self.limit_top == _limit_smooth_top && self.limit_bottom == _limit_smooth_bottom && self.limit_left == _limit_smooth_left && self.limit_right == _limit_smooth_right
 		if !limitsReachedTarget:
-			self.limit_top = move_toward(self.limit_top, _limit_smooth_top, smoothSpeed)
-			self.limit_bottom = move_toward(self.limit_bottom, _limit_smooth_bottom, smoothSpeed)
-			self.limit_left = move_toward(self.limit_left, _limit_smooth_left, smoothSpeed)
-			self.limit_right = move_toward(self.limit_right, _limit_smooth_right, smoothSpeed)
+			self.limit_top = move_toward(self.limit_top, _limit_smooth_top, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
+			self.limit_bottom = move_toward(self.limit_bottom, _limit_smooth_bottom, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
+			self.limit_left = move_toward(self.limit_left, _limit_smooth_left, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
+			self.limit_right = move_toward(self.limit_right, _limit_smooth_right, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
 		if cameraReachedTarget && limitsReachedTarget:
 			_limit_smooth_active = false
 			self.smoothing_enabled = false
