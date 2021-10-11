@@ -12,6 +12,7 @@ const _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED: int = 4
 
 var _remoteTransform2d: RemoteTransform2D
 var _panTarget: CustomCamera2DPanTarget
+var _animationPlayer: CustomCamera2DSimpleTransitionPlayer
 
 #variables for any smooth limit in progress
 var _limit_smooth_top: float
@@ -31,6 +32,7 @@ func _init(cameraTarget: Node, current: bool):
 	cameraTarget.add_child(_remoteTransform2d)
 	self.zoom = _DEFAULT_CAMERA_ZOOM
 	self.current = current
+	_animationPlayer = CustomCamera2DSimpleTransitionPlayer.new(cameraTarget.get_tree().current_scene)
 
 func _ready():
 	self.set_process(true)
@@ -112,15 +114,16 @@ func limitCameraToCoordinates(top: int, left: int, bottom: int, right: int, smoo
 		_limit_smooth_left = left
 		_limit_smooth_bottom = bottom
 		_limit_smooth_right = right
-		var xDist = (self.get_viewport_rect().size.x / 2) * self.zoom.x
-		var yDist = (self.get_viewport_rect().size.y / 2) * self.zoom.y
+		var viewportRectSize = self.get_viewport_rect()
+		var xDist = (viewportRectSize.size.x / 2) * self.zoom.x
+		var yDist = (viewportRectSize.size.y / 2) * self.zoom.y
 		_limit_smooth_target_position = Vector2(self.position.x, self.position.y)
 		if self.limit_top < _limit_smooth_top:
 			_limit_smooth_target_position.y = top + yDist
-		if self.limit_left < _limit_smooth_left: 
-			_limit_smooth_target_position.x = left + xDist
 		if self.limit_bottom > _limit_smooth_bottom:
 			_limit_smooth_target_position.y = bottom - yDist
+		if self.limit_left < _limit_smooth_left: 
+			_limit_smooth_target_position.x = left + xDist
 		if self.limit_right > _limit_smooth_right:
 			_limit_smooth_target_position.x = right - xDist
 	else:
@@ -138,10 +141,63 @@ func resetLimits() -> void:
 	if _verbose:
 		print("CustomCamera2D: Reset camera limits.")
 	limitCameraToCoordinates(_DEFAULT_CAMERA_LIMIT_TOP_LEFT, _DEFAULT_CAMERA_LIMIT_TOP_LEFT, _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT, _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT)
-	
+#
+func playFade(fadeLength: float = 0, fadeIdleTime: float = 0) -> void:
+	_animationPlayer.playFade(fadeLength, fadeIdleTime)
 
 #inner classes
 
+#simple transitions class
+class CustomCamera2DSimpleTransitionPlayer:
+	const _Animation_Fade_Name: String = "fade"
+	const _Animation_Fade_DefaultLength: float = 1.0
+	const _Animation_Fade_DefaultTime: float = 0.2
+	var _Animation_Fade_TrackIndex: int
+	var _Animation_Fade_Animation: Animation
+	var _canvas: CanvasLayer
+	var _colorRect: ColorRect
+	var _player: AnimationPlayer
+	var _scene: Node
+	
+	func _init(scene: Node):
+		_scene = scene
+		_setupAnimationPlayer()
+		_setupSimpleFade()
+	
+	func _setupAnimationPlayer() -> void:
+		_canvas = CanvasLayer.new()
+		_player = AnimationPlayer.new()
+		_scene.add_child(_canvas)
+		_scene.add_child(_player)
+		_colorRect = ColorRect.new()
+		_colorRect.mouse_filter = Control.MOUSE_FILTER_PASS
+		_colorRect.color = Color(0,0,0,0)		
+		_colorRect.set_size(Vector2(_scene.get_viewport().size.x * 2, _scene.get_viewport().size.y * 2))
+		_canvas.add_child(_colorRect)
+	
+	func _setupSimpleFade() -> void:
+		_Animation_Fade_Animation = Animation.new()
+		_Animation_Fade_Animation.length = _Animation_Fade_DefaultLength
+		_Animation_Fade_TrackIndex = _Animation_Fade_Animation.add_track(Animation.TYPE_VALUE)
+		var animationTargetPath = _canvas.name + "/" + _colorRect.name + ":color"	
+		_Animation_Fade_Animation.track_set_path(_Animation_Fade_TrackIndex, animationTargetPath)
+		_Animation_Fade_Animation.track_insert_key(_Animation_Fade_TrackIndex, 0, Color(0,0,0,0)) #key 1
+		_Animation_Fade_Animation.track_insert_key(_Animation_Fade_TrackIndex, _Animation_Fade_DefaultLength, Color(0,0,0,1)) #key 2
+		_Animation_Fade_Animation.track_set_interpolation_type(_Animation_Fade_TrackIndex, Animation.INTERPOLATION_LINEAR)
+		_player.add_animation(_Animation_Fade_Name, _Animation_Fade_Animation)
+	
+	func playFade(fadeLength: float = 0, fadeIdleTime: float = 0) -> void:
+		if fadeLength == null || fadeLength == 0:
+			fadeLength = _Animation_Fade_DefaultLength
+		if fadeIdleTime == null || fadeIdleTime == 0:
+			fadeIdleTime = _Animation_Fade_DefaultTime
+		var animationPlayTime = 1 / fadeLength
+		#fadeIdleTime = max(fadeIdleTime - (animationPlayTime * 2), fadeIdleTime)
+		_player.play(_Animation_Fade_Name, -1, animationPlayTime, false) #forward
+		yield(_player.get_tree().create_timer(animationPlayTime + fadeIdleTime), "timeout")
+		_player.play(_Animation_Fade_Name, -1, -animationPlayTime, true) #backwards
+
+#pan class
 class CustomCamera2DPanTarget:
 	const _DEFAULT_PAN_TIME = 1
 	const _DEFAULT_PAN_SPEED = 1

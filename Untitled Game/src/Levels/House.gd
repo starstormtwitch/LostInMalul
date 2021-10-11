@@ -21,11 +21,10 @@ func _ready():
 	assert(_player, "Player Node does not exist.")
 	#assert(_camera, "Camera2D Node does not exist")
 	cameraManager = CustomCamera2D.new(_player, true)		
-	cameraManager.limitCameraToDelimiter(_cam_Delimiter_Bathroom) 
+	cameraManager.limitCameraToDelimiter(_cam_Delimiter_Bathroom) 	
 	_player.connect("health_changed", self, "_on_Player_health_changed")
-	_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)	
-	
-	
+	_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)		
+
 func _on_Player_health_changed(_oldHealth, newHealth, maxHealth):
 	var healthBar = get_node("GUI/Control/healthBar")
 	healthBar.Health = newHealth
@@ -40,6 +39,7 @@ func _on_VisibilityNotifier2D_screen_entered():
 func _on_Bedroom_To_Bathroom_body_entered(body):
 	if body == _player:
 		setCameraToBathroom()
+		cameraManager.playFade()
 
 func _on_Bathroom_To_Bedroom_body_entered(body):
 	if body == _player:

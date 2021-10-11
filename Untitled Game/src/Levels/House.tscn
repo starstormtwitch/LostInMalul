@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://src/Actors/Slime.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
@@ -87,8 +87,6 @@ height = 94.9965
 [sub_resource type="CapsuleShape2D" id=17]
 radius = 5.49353
 height = 22.1447
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=18]
 
 [node name="House" type="Node2D"]
 script = ExtResource( 19 )
@@ -299,12 +297,6 @@ shape = SubResource( 17 )
 position = Vector2( 234.523, 251.754 )
 scale = Vector2( 1, 1 )
 
-[node name="Sprite" parent="YSort/Actors/LirikYaki" index="0"]
-frame = 4
-
-[node name="AnimationTree" parent="YSort/Actors/LirikYaki" index="3"]
-parameters/playback = SubResource( 18 )
-
 [node name="Enemy" parent="YSort/Actors" instance=ExtResource( 1 )]
 position = Vector2( 805.512, 215.272 )
 scale = Vector2( 1, 1 )
@@ -419,6 +411,9 @@ margin_right = 90.0
 margin_bottom = 91.0
 texture = ExtResource( 21 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Cash" type="TextureRect" parent="GUI/Control"]
 margin_left = 96.7937
@@ -452,6 +447,5 @@ margin_bottom = 53.0
 [editable path="LevelBackground/CameraPositions/StreamingRoom_Delimiter"]
 [editable path="LevelBackground/CameraPositions/LivingRoom_Delimiter"]
 [editable path="LevelBackground/CameraPositions/Kitchen_Delimiter"]
-[editable path="YSort/Actors/LirikYaki"]
 [editable path="YSort/Props/Bedroom/Nightstand_left/Lamp1"]
 [editable path="YSort/Props/Bedroom/Nightstand_right/Lamp2"]
