@@ -65,7 +65,6 @@ func _on_Livingroom_To_Kitchen_body_entered(body):
 		cameraManager.limitCameraToDelimiter(_cam_Delimiter_Kitchen) 
 
 func _on_VisibilityNotifier2D_viewport_entered(viewport):
-	var panTarget = cameraManager.CustomCamera2DPanTarget.new(get_node("VisibilityNotifier2D"), 5)
-	cameraManager.panToTarget(panTarget)
+	cameraManager.panToTarget(get_node("VisibilityNotifier2D"), 5)
 	yield(cameraManager, "pan_finished")
 	get_node("VisibilityNotifier2D").queue_free()

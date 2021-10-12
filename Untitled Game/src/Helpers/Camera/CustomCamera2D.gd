@@ -7,6 +7,12 @@ const _DEFAULT_CAMERA_LIMIT_TOP_LEFT: int = -10000000
 const _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT: int = 10000000
 const _DEFAULT_CAMERA_ZOOM: Vector2 = Vector2(0.4,0.4)
 const _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED: int = 4
+
+const _DEFAULT_PAN_TIME = 1
+const _DEFAULT_PAN_SPEED = 1
+const _DEFAULT_PAN_ZOOM = Vector2(0.2,0.2)
+const _DEFAULT_PAN_ZOOM_SPEED = 7
+
 #const _SMOOTHING = 0.05
 
 enum TransitionTypeEnum {INSTANT = 0, SMOOTH = 1, FADE = 2}
@@ -69,11 +75,11 @@ func _process(delta):
 			yield(_panTarget.startPanTimer(), "timeout")
 			clearPan()
 
-func panToTarget(target: CustomCamera2DPanTarget) -> void:
+func panToTarget(target: Node, time: float = _DEFAULT_PAN_TIME, speed: float = _DEFAULT_PAN_SPEED, zoom: Vector2 = _DEFAULT_PAN_ZOOM, zoomSpeed: float = _DEFAULT_PAN_ZOOM_SPEED) -> void:
 	if _verbose:
 		print("CustomCamera2D: Pan to target.")
 	setRemoteUpdates(false)
-	_panTarget = target
+	_panTarget = CustomCamera2DPanTarget.new(target, time, speed, zoom, zoomSpeed)
 	emit_signal("pan_started")
 
 func clearPan() -> void:
@@ -232,11 +238,7 @@ class CustomCamera2DSimpleTransitionPlayer:
 		_player.play(_Animation_Fade_Name, -1, -(1 / fadeLength), true)
 
 #pan class
-class CustomCamera2DPanTarget:
-	const _DEFAULT_PAN_TIME = 1
-	const _DEFAULT_PAN_SPEED = 1
-	const _DEFAULT_PAN_ZOOM = Vector2(0.2,0.2)
-	const _DEFAULT_PAN_ZOOM_SPEED = 7
+class CustomCamera2DPanTarget:	
 	var _target: Node = null
 	var _time: float
 	var _speed: float
@@ -244,7 +246,7 @@ class CustomCamera2DPanTarget:
 	var _zoomSpeed: float
 	var _clearTimer: SceneTreeTimer = null
 	
-	func _init(target: Node, time: float = _DEFAULT_PAN_TIME, speed: float = _DEFAULT_PAN_SPEED, zoom: Vector2 = _DEFAULT_PAN_ZOOM, zoomSpeed: float = _DEFAULT_PAN_ZOOM_SPEED):
+	func _init(target: Node, time: float, speed: float, zoom: Vector2, zoomSpeed: float):
 		_target = target
 		_time = time
 		_speed = speed

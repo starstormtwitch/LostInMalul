@@ -39,7 +39,6 @@ func _on_VisibilityNotifier2D_screen_entered():
 func _on_Bedroom_To_Bathroom_body_entered(body):
 	if body == _player:
 		setCameraToBathroom()
-		cameraManager.playFade()
 
 func _on_Bathroom_To_Bedroom_body_entered(body):
 	if body == _player:
