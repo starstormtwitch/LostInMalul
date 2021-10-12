@@ -7,8 +7,10 @@ const _DEFAULT_CAMERA_LIMIT_TOP_LEFT: int = -10000000
 const _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT: int = 10000000
 const _DEFAULT_CAMERA_ZOOM: Vector2 = Vector2(0.4,0.4)
 const _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED: int = 4
-
 #const _SMOOTHING = 0.05
+
+signal pan_started
+signal pan_finished
 
 var _remoteTransform2d: RemoteTransform2D
 var _panTarget: CustomCamera2DPanTarget
@@ -58,7 +60,7 @@ func _process(delta):
 		var distanceToTarget = self.position.distance_to(panTargetPosition)
 		self.position = lerp(self.get_global_position(), panTargetPosition,  delta * _panTarget._speed * abs(log(distanceToTarget)))
 		self.zoom = lerp(self.zoom, _panTarget._zoom , (delta * _panTarget._zoomSpeed) / distanceToTarget) #formula can/must be improved
-		if _panTarget.ClearTimer == null && distanceToTarget < 25: #magic number that works well enough for now
+		if _panTarget._clearTimer == null && distanceToTarget < 25: #magic number that works well enough for now
 			yield(_panTarget.startPanTimer(), "timeout")
 			clearPan()
 
@@ -67,6 +69,7 @@ func panToTarget(target: CustomCamera2DPanTarget) -> void:
 		print("CustomCamera2D: Pan to target.")
 	setRemoteUpdates(false)
 	_panTarget = target
+	emit_signal("pan_started")
 
 func clearPan() -> void:
 	if _panTarget != null:
@@ -75,6 +78,7 @@ func clearPan() -> void:
 		_panTarget = null
 		setRemoteUpdates(true)
 		self.zoom = _DEFAULT_CAMERA_ZOOM
+		emit_signal("pan_finished")
 
 func temporarylyFocusOn(target: Node, time: float, zoom: Vector2) -> void:
 	if _verbose:
