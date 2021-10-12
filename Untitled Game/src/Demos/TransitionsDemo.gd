@@ -54,6 +54,7 @@ func _on_Livingroom_To_StreamingRoom_body_entered(body):
 func _on_StreamingRoom_To_Livingroom_body_entered(body):
 	if body == _player && !cameraManager.compareCameraLimitIsEqualToDelimiter(_cam_Delimiter_LivingRoom):
 		cameraManager.limitCameraToDelimiter(_cam_Delimiter_LivingRoom, cameraManager.TransitionTypeEnum.FADE) #fade
+		#a custom fade can be played if cameraManager._animationPlayer functions are directly used
 
 func _on_Kitchen_To_Livingroom_body_entered(body):
 	if body == _player:
