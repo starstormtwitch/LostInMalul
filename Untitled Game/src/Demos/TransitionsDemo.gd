@@ -33,37 +33,27 @@ func _on_Player_health_changed(_oldHealth, newHealth, maxHealth):
 
 func _on_Bedroom_To_Bathroom_body_entered(body):
 	if body == _player:
-		cameraManager.limitCameraToDelimiter(_cam_Delimiter_Bathroom) #snap
+		cameraManager.limitCameraToDelimiter(_cam_Delimiter_Bathroom, cameraManager.TransitionTypeEnum.INSTANT) #snap
 
 func _on_Bathroom_To_Bedroom_body_entered(body):
 	if body == _player:
-		cameraManager.limitCameraToDelimiter(_cam_Delimiter_Bedroom)  #snap
+		cameraManager.limitCameraToDelimiter(_cam_Delimiter_Bedroom, cameraManager.TransitionTypeEnum.INSTANT)  #snap
 
 func _on_Bedroom_To_StreamingRoom_body_entered(body):
 	if body == _player:
-		cameraManager.limitCameraToDelimiter(_cam_Delimiter_StreamingRooom, true)  #smooth
+		cameraManager.limitCameraToDelimiter(_cam_Delimiter_StreamingRooom, cameraManager.TransitionTypeEnum.SMOOTH)  #smooth
 
 func _on_StreamingRoom_To_Bedroom_body_entered(body):
 	if body == _player:
-		cameraManager.limitCameraToDelimiter(_cam_Delimiter_Bedroom, true) #smooth
+		cameraManager.limitCameraToDelimiter(_cam_Delimiter_Bedroom, cameraManager.TransitionTypeEnum.SMOOTH) #smooth
 
 func _on_Livingroom_To_StreamingRoom_body_entered(body):
 	if body == _player && !cameraManager.compareCameraLimitIsEqualToDelimiter(_cam_Delimiter_StreamingRooom):
-#		if cameraManager._animationPlayer._player.current_animation == cameraManager._animationPlayer._Animation_Fade_Name:
-#			yield(cameraManager._animationPlayer._player, "animation_finished")
-		cameraManager._animationPlayer.playFadeIn(0.5)
-		yield(cameraManager._animationPlayer._player, "animation_finished")
-		cameraManager.limitCameraToDelimiter(_cam_Delimiter_StreamingRooom) 
-		cameraManager._animationPlayer.playFadeOut(0.5)
+		cameraManager.limitCameraToDelimiter(_cam_Delimiter_StreamingRooom, cameraManager.TransitionTypeEnum.FADE) #fade
 
 func _on_StreamingRoom_To_Livingroom_body_entered(body):
 	if body == _player && !cameraManager.compareCameraLimitIsEqualToDelimiter(_cam_Delimiter_LivingRoom):
-#		if cameraManager._animationPlayer._player.current_animation == cameraManager._animationPlayer._Animation_Fade_Name:
-#			yield(cameraManager._animationPlayer._player, "animation_finished")
-		cameraManager._animationPlayer.playFadeIn(0.5)
-		yield(cameraManager._animationPlayer._player, "animation_finished")
-		cameraManager.limitCameraToDelimiter(_cam_Delimiter_LivingRoom) 
-		cameraManager._animationPlayer.playFadeOut(0.5)
+		cameraManager.limitCameraToDelimiter(_cam_Delimiter_LivingRoom, cameraManager.TransitionTypeEnum.FADE) #fade
 
 func _on_Kitchen_To_Livingroom_body_entered(body):
 	if body == _player:

@@ -9,8 +9,12 @@ const _DEFAULT_CAMERA_ZOOM: Vector2 = Vector2(0.4,0.4)
 const _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED: int = 4
 #const _SMOOTHING = 0.05
 
+enum TransitionTypeEnum {INSTANT = 0, SMOOTH = 1, FADE = 2}
+
 signal pan_started
 signal pan_finished
+signal smooth_limit_started
+signal smooth_limit_finished
 
 var _remoteTransform2d: RemoteTransform2D
 var _panTarget: CustomCamera2DPanTarget
@@ -55,6 +59,7 @@ func _process(delta):
 			_limit_smooth_active = false
 			self.smoothing_enabled = false
 			setRemoteUpdates(true)
+			emit_signal("smooth_limit_finished")
 	elif _panTarget != null:
 		var panTargetPosition = _panTarget.getPosition()
 		var distanceToTarget = self.position.distance_to(panTargetPosition)
@@ -101,16 +106,19 @@ func setRemoteUpdates(update: bool) -> void:
 	_remoteTransform2d.update_rotation = update
 	_remoteTransform2d.update_scale = update
 
-func limitCameraToDelimiter(delimiter: CustomDelimiter2D, smooth: bool = false) -> void:
-	limitCameraToCoordinates(delimiter.getTop(), delimiter.getLeft(), delimiter.getBottom(), delimiter.getRight(), smooth)
+func limitCameraToDelimiter(delimiter: CustomDelimiter2D, transitionType: int = TransitionTypeEnum.INSTANT) -> void:
+	limitCameraToCoordinates(delimiter.getTop(), delimiter.getLeft(), delimiter.getBottom(), delimiter.getRight(), transitionType)
 
-func limitCameraToPositions(topLeft: Position2D, bottomRight: Position2D, smooth: bool = false) -> void:
+func limitCameraToPositions(topLeft: Position2D, bottomRight: Position2D, transitionType: int = TransitionTypeEnum.INSTANT) -> void:
 	var globalTopLeft = topLeft.get_global_position()
 	var globalBottomRight = bottomRight.get_global_position()
-	limitCameraToCoordinates(globalTopLeft.y, globalTopLeft.x, globalBottomRight.y, globalBottomRight.x, smooth)
+	limitCameraToCoordinates(globalTopLeft.y, globalTopLeft.x, globalBottomRight.y, globalBottomRight.x, transitionType)
 
-func limitCameraToCoordinates(top: int, left: int, bottom: int, right: int, smooth: bool = false) -> void:
-	if smooth:
+func limitCameraToCoordinates(top: int, left: int, bottom: int, right: int, transitionType: int = TransitionTypeEnum.INSTANT) -> void:
+	if transitionType == TransitionTypeEnum.INSTANT:
+		clearPan() #todo: review this, but its a good idea to clear camera effects if the camera changes limits
+		setLimits(top, left, bottom, right)
+	elif transitionType == TransitionTypeEnum.SMOOTH:
 		setRemoteUpdates(false)
 		self.smoothing_enabled = true
 		self.smoothing_speed = 100
@@ -130,15 +138,16 @@ func limitCameraToCoordinates(top: int, left: int, bottom: int, right: int, smoo
 			_limit_smooth_target_position.x = left + xDist
 		if self.limit_right > _limit_smooth_right:
 			_limit_smooth_target_position.x = right - xDist
-	else:
-		clearPan() #todo: review this, but its a good idea to clear camera effects if the camera changes limits
-		self.limit_top = top
-		self.limit_left = left
-		self.limit_bottom = bottom
-		self.limit_right = right
-	_limit_smooth_active = smooth
+		emit_signal("smooth_limit_started")
+	elif transitionType == TransitionTypeEnum.FADE:
+		_animationPlayer.playFadeIn()
+		yield(_animationPlayer._player, "animation_finished")
+		setLimits(top, left, bottom, right)
+		_animationPlayer.playFadeOut()
+		yield(_animationPlayer._player, "animation_finished")
+	_limit_smooth_active = transitionType == TransitionTypeEnum.SMOOTH
 	if _verbose:
-		print("CustomCamera2D: New camera limits (Smooth:"+str(smooth)+") Top/Left/Bottom/Right " 
+		print("CustomCamera2D: New camera limits (Smooth:"+str(_limit_smooth_active)+") Top/Left/Bottom/Right " 
 		+ str(top) + "/" + str(left) + "/" + str(bottom) + "/" + str(right))
 
 func compareCameraLimitIsEqual(top: int, left: int, bottom: int, right: int) -> bool:
@@ -147,6 +156,12 @@ func compareCameraLimitIsEqual(top: int, left: int, bottom: int, right: int) -> 
 func compareCameraLimitIsEqualToDelimiter(delimiter: CustomDelimiter2D) -> bool:
 	return compareCameraLimitIsEqual(delimiter.getTop(), delimiter.getLeft(), delimiter.getBottom(), delimiter.getRight())
 
+func setLimits(top: int, left: int, bottom: int, right: int) -> void:
+	self.limit_top = top
+	self.limit_left = left
+	self.limit_bottom = bottom
+	self.limit_right = right
+	
 func resetLimits() -> void:
 	if _verbose:
 		print("CustomCamera2D: Reset camera limits.")
@@ -157,8 +172,10 @@ func resetLimits() -> void:
 #simple transitions class
 class CustomCamera2DSimpleTransitionPlayer:
 	const _Animation_Fade_Name: String = "fade"
-	const _Animation_Fade_DefaultLength: float = 1.0
-	const _Animation_Fade_DefaultTime: float = 0.2
+	const _Animation_Fade_DefaultLength: float = 0.5
+	const _Animation_Fade_DefaultIdleTime: float = 0.2
+	signal animation_started
+	signal animation_finished
 	var _Animation_Fade_TrackIndex: int
 	var _Animation_Fade_Animation: Animation
 	var _canvas: CanvasLayer
@@ -193,20 +210,23 @@ class CustomCamera2DSimpleTransitionPlayer:
 		_Animation_Fade_Animation.track_set_interpolation_type(_Animation_Fade_TrackIndex, Animation.INTERPOLATION_LINEAR)
 		_player.add_animation(_Animation_Fade_Name, _Animation_Fade_Animation)
 	
-	func playFade(fadeLength: float = 0, fadeIdleTime: float = 0) -> void:
-		if fadeLength == null || fadeLength == 0:
-			fadeLength = _Animation_Fade_DefaultLength
+	func playFade(fadeLength: float = _Animation_Fade_DefaultLength, fadeIdleTime: float = _Animation_Fade_DefaultIdleTime) -> void:
 		if fadeIdleTime == null || fadeIdleTime == 0:
-			fadeIdleTime = _Animation_Fade_DefaultTime
+			fadeIdleTime = _Animation_Fade_DefaultIdleTime
 		playFadeIn(fadeLength)
+		yield(_scene.get_tree().create_timer(fadeIdleTime), "timeout")
 		playFadeOut(fadeLength)
 	
-	func playFadeIn(fadeLength: float) -> void:
+	func playFadeIn(fadeLength: float = _Animation_Fade_DefaultLength) -> void:
+		if fadeLength == null || fadeLength == 0:
+			fadeLength = _Animation_Fade_DefaultLength
 		if _player.current_animation == _Animation_Fade_Name:
 			yield(_player,  "animation_finished")
 		_player.play(_Animation_Fade_Name, -1, 1 / fadeLength, false)
 		
-	func playFadeOut(fadeLength: float) -> void:
+	func playFadeOut(fadeLength: float = _Animation_Fade_DefaultLength) -> void:
+		if fadeLength == null || fadeLength == 0:
+			fadeLength = _Animation_Fade_DefaultLength
 		if _player.current_animation == _Animation_Fade_Name:
 			yield(_player, "animation_finished")
 		_player.play(_Animation_Fade_Name, -1, -(1 / fadeLength), true)
