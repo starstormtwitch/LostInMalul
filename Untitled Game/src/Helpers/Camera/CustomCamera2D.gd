@@ -43,7 +43,7 @@ func _process(delta):
 		if !cameraReachedTarget:
 			self.position.x = move_toward(self.position.x, _limit_smooth_target_position.x, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
 			self.position.y = move_toward(self.position.y, _limit_smooth_target_position.y, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
-		var limitsReachedTarget = self.limit_top == _limit_smooth_top && self.limit_bottom == _limit_smooth_bottom && self.limit_left == _limit_smooth_left && self.limit_right == _limit_smooth_right
+		var limitsReachedTarget = compareCameraLimitIsEqual(_limit_smooth_top, _limit_smooth_left, _limit_smooth_bottom, _limit_smooth_right)
 		if !limitsReachedTarget:
 			self.limit_top = move_toward(self.limit_top, _limit_smooth_top, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
 			self.limit_bottom = move_toward(self.limit_bottom, _limit_smooth_bottom, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
@@ -137,13 +137,16 @@ func limitCameraToCoordinates(top: int, left: int, bottom: int, right: int, smoo
 		print("CustomCamera2D: New camera limits (Smooth:"+str(smooth)+") Top/Left/Bottom/Right " 
 		+ str(top) + "/" + str(left) + "/" + str(bottom) + "/" + str(right))
 
+func compareCameraLimitIsEqual(top: int, left: int, bottom: int, right: int) -> bool:
+	return self.limit_top == top && self.limit_left == left && self.limit_bottom == bottom && self.limit_right == right
+	
+func compareCameraLimitIsEqualToDelimiter(delimiter: CustomDelimiter2D) -> bool:
+	return compareCameraLimitIsEqual(delimiter.getTop(), delimiter.getLeft(), delimiter.getBottom(), delimiter.getRight())
+
 func resetLimits() -> void:
 	if _verbose:
 		print("CustomCamera2D: Reset camera limits.")
 	limitCameraToCoordinates(_DEFAULT_CAMERA_LIMIT_TOP_LEFT, _DEFAULT_CAMERA_LIMIT_TOP_LEFT, _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT, _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT)
-#
-func playFade(fadeLength: float = 0, fadeIdleTime: float = 0) -> void:
-	_animationPlayer.playFade(fadeLength, fadeIdleTime)
 
 #inner classes
 
@@ -181,8 +184,8 @@ class CustomCamera2DSimpleTransitionPlayer:
 		_Animation_Fade_TrackIndex = _Animation_Fade_Animation.add_track(Animation.TYPE_VALUE)
 		var animationTargetPath = _canvas.name + "/" + _colorRect.name + ":color"	
 		_Animation_Fade_Animation.track_set_path(_Animation_Fade_TrackIndex, animationTargetPath)
-		_Animation_Fade_Animation.track_insert_key(_Animation_Fade_TrackIndex, 0, Color(0,0,0,0)) #key 1
-		_Animation_Fade_Animation.track_insert_key(_Animation_Fade_TrackIndex, _Animation_Fade_DefaultLength, Color(0,0,0,1)) #key 2
+		_Animation_Fade_Animation.track_insert_key(_Animation_Fade_TrackIndex, 0, Color(0,0,0,0)) #key idx 1
+		_Animation_Fade_Animation.track_insert_key(_Animation_Fade_TrackIndex, _Animation_Fade_DefaultLength, Color(0,0,0,1)) #key idx 2
 		_Animation_Fade_Animation.track_set_interpolation_type(_Animation_Fade_TrackIndex, Animation.INTERPOLATION_LINEAR)
 		_player.add_animation(_Animation_Fade_Name, _Animation_Fade_Animation)
 	
@@ -191,11 +194,18 @@ class CustomCamera2DSimpleTransitionPlayer:
 			fadeLength = _Animation_Fade_DefaultLength
 		if fadeIdleTime == null || fadeIdleTime == 0:
 			fadeIdleTime = _Animation_Fade_DefaultTime
-		var animationPlayTime = 1 / fadeLength
-		#fadeIdleTime = max(fadeIdleTime - (animationPlayTime * 2), fadeIdleTime)
-		_player.play(_Animation_Fade_Name, -1, animationPlayTime, false) #forward
-		yield(_player.get_tree().create_timer(animationPlayTime + fadeIdleTime), "timeout")
-		_player.play(_Animation_Fade_Name, -1, -animationPlayTime, true) #backwards
+		playFadeIn(fadeLength)
+		playFadeOut(fadeLength)
+	
+	func playFadeIn(fadeLength: float) -> void:
+		if _player.current_animation == _Animation_Fade_Name:
+			yield(_player,  "animation_finished")
+		_player.play(_Animation_Fade_Name, -1, 1 / fadeLength, false)
+		
+	func playFadeOut(fadeLength: float) -> void:
+		if _player.current_animation == _Animation_Fade_Name:
+			yield(_player, "animation_finished")
+		_player.play(_Animation_Fade_Name, -1, -(1 / fadeLength), true)
 
 #pan class
 class CustomCamera2DPanTarget:
