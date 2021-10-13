@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://src/Actors/Slime.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
@@ -21,8 +21,11 @@
 [ext_resource path="res://src/Levels/House.gd" type="Script" id=19]
 [ext_resource path="res://src/Helpers/Camera/CustomDelimiter2D.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/GUI/profile.png" type="Texture" id=21]
-[ext_resource path="res://assets/GUI/cash.png" type="Texture" id=22]
+[ext_resource path="res://src/Helpers/ShowPromptInArea.gd" type="Script" id=22]
 [ext_resource path="res://src/Helpers/GUI/HealthBar.tscn" type="PackedScene" id=23]
+[ext_resource path="res://assets/GUI/cash.png" type="Texture" id=24]
+[ext_resource path="res://assets/actions/tile_0395.png" type="Texture" id=25]
+[ext_resource path="res://src/Helpers/Camera/CustomDelimiter2D.gd" type="Script" id=26]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 51.2464, 8.42657 )
@@ -30,61 +33,67 @@ extents = Vector2( 51.2464, 8.42657 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 25.3294, 8.94611 )
 
-[sub_resource type="SegmentShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 16.1947, 5.43341 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 16.9334, 5.61752 )
+
+[sub_resource type="SegmentShape2D" id=5]
 a = Vector2( -474.143, 0.37738 )
 b = Vector2( 473.64, -0.0213013 )
 
-[sub_resource type="SegmentShape2D" id=4]
+[sub_resource type="SegmentShape2D" id=6]
 a = Vector2( 112.378, -133.176 )
 b = Vector2( -96.1585, 102.474 )
 
-[sub_resource type="SegmentShape2D" id=5]
+[sub_resource type="SegmentShape2D" id=7]
 a = Vector2( 0.106964, -81.1892 )
 b = Vector2( 0.201141, 93.6674 )
 
-[sub_resource type="SegmentShape2D" id=6]
+[sub_resource type="SegmentShape2D" id=8]
 a = Vector2( 7.45972, -18.0979 )
 b = Vector2( -27.6262, 18.7458 )
 
-[sub_resource type="SegmentShape2D" id=7]
+[sub_resource type="SegmentShape2D" id=9]
 a = Vector2( -62.3273, 0.0838928 )
 b = Vector2( 66.1284, -0.135284 )
 
-[sub_resource type="SegmentShape2D" id=8]
+[sub_resource type="SegmentShape2D" id=10]
 a = Vector2( -6.73212, -3.28427 )
 b = Vector2( 8.43494, 13.7811 )
 
-[sub_resource type="SegmentShape2D" id=9]
+[sub_resource type="SegmentShape2D" id=11]
 a = Vector2( -0.90564, -54.8257 )
 b = Vector2( -1.06165, 131.149 )
 
-[sub_resource type="CapsuleShape2D" id=10]
+[sub_resource type="CapsuleShape2D" id=12]
 radius = 13.9306
 height = 8.93292
 
-[sub_resource type="CapsuleShape2D" id=11]
+[sub_resource type="CapsuleShape2D" id=13]
 height = 124.984
 
-[sub_resource type="CapsuleShape2D" id=12]
+[sub_resource type="CapsuleShape2D" id=14]
 radius = 9.66589
 height = 52.9998
 
-[sub_resource type="CapsuleShape2D" id=13]
+[sub_resource type="CapsuleShape2D" id=15]
 radius = 10.6215
 
-[sub_resource type="SegmentShape2D" id=14]
+[sub_resource type="SegmentShape2D" id=16]
 a = Vector2( -227.475, 0.0775146 )
 b = Vector2( 250.865, 0.176788 )
 
-[sub_resource type="SegmentShape2D" id=15]
+[sub_resource type="SegmentShape2D" id=17]
 a = Vector2( -289.783, 0.615585 )
 b = Vector2( 189.195, 1.36696 )
 
-[sub_resource type="CapsuleShape2D" id=16]
+[sub_resource type="CapsuleShape2D" id=18]
 radius = 4.26944
 height = 94.9965
 
-[sub_resource type="CapsuleShape2D" id=17]
+[sub_resource type="CapsuleShape2D" id=19]
 radius = 5.49353
 height = 22.1447
 
@@ -132,6 +141,15 @@ position = Vector2( 1836.67, 50 )
 
 [node name="BottomRight" parent="LevelBackground/CameraPositions/Kitchen_Delimiter" index="1"]
 position = Vector2( 618.83, 250 )
+
+[node name="Basement_Delimeter" type="Node2D" parent="LevelBackground/CameraPositions"]
+script = ExtResource( 26 )
+
+[node name="TopLeft" type="Position2D" parent="LevelBackground/CameraPositions/Basement_Delimeter"]
+position = Vector2( 1.05636, 301.256 )
+
+[node name="BottomRight" type="Position2D" parent="LevelBackground/CameraPositions/Basement_Delimeter"]
+position = Vector2( 1279.83, 596.925 )
 
 [node name="AreaTransitions" type="Node" parent="LevelBackground"]
 
@@ -207,6 +225,34 @@ rotation = -1.5708
 shape = SubResource( 1 )
 one_way_collision = true
 
+[node name="Kitchen_To_Basement" type="Area2D" parent="LevelBackground/AreaTransitions"]
+position = Vector2( 1972.81, 192.324 )
+collision_layer = 3
+collision_mask = 64
+script = ExtResource( 22 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Kitchen_To_Basement"]
+position = Vector2( -0.196415, -2.48631 )
+shape = SubResource( 3 )
+
+[node name="F_Prompt" type="Sprite" parent="LevelBackground/AreaTransitions/Kitchen_To_Basement"]
+visible = false
+position = Vector2( 0.192505, -80.2288 )
+texture = ExtResource( 25 )
+
+[node name="Basement_To_Kitchen" type="Area2D" parent="LevelBackground/AreaTransitions"]
+position = Vector2( 146.278, 374.874 )
+script = ExtResource( 22 )
+
+[node name="F_Prompt" type="Sprite" parent="LevelBackground/AreaTransitions/Basement_To_Kitchen"]
+visible = false
+position = Vector2( -19.0213, -63.2198 )
+texture = ExtResource( 25 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Basement_To_Kitchen"]
+position = Vector2( 1.25993, -0.629944 )
+shape = SubResource( 4 )
+
 [node name="Boundaries" type="Node" parent="LevelBackground"]
 
 [node name="Bathroom" type="StaticBody2D" parent="LevelBackground/Boundaries"]
@@ -215,77 +261,83 @@ scale = Vector2( 0.497642, 0.497642 )
 
 [node name="bottom_segment" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bathroom"]
 position = Vector2( 0, -11.1645 )
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
 [node name="left_segment" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bathroom"]
 position = Vector2( -323.757, -113.262 )
-shape = SubResource( 4 )
+shape = SubResource( 6 )
 
 [node name="shower_segment1" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bathroom"]
 position = Vector2( -178.621, -204.531 )
 rotation = 1.5708
-shape = SubResource( 5 )
+shape = SubResource( 7 )
 
 [node name="shower_segment2" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bathroom"]
 position = Vector2( -70.9061, -222.698 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="top_segment1" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bathroom"]
 position = Vector2( -2.63983, -240.329 )
-shape = SubResource( 7 )
+shape = SubResource( 9 )
 
 [node name="top_segment2" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bathroom"]
 position = Vector2( 63.7875, -237.133 )
-shape = SubResource( 8 )
+shape = SubResource( 10 )
 
 [node name="top_segment3" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bathroom"]
 position = Vector2( 202.248, -222.799 )
 rotation = 1.5708
-shape = SubResource( 9 )
+shape = SubResource( 11 )
 
 [node name="top_plant" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bathroom"]
 position = Vector2( -28.7172, -244.667 )
-shape = SubResource( 10 )
+shape = SubResource( 12 )
 
 [node name="top_can" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bathroom"]
 position = Vector2( 28.4277, -242.932 )
-shape = SubResource( 10 )
+shape = SubResource( 12 )
 
 [node name="right_wall_segment1" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bathroom"]
 position = Vector2( 312.83, -175.318 )
 rotation = -0.786011
 scale = Vector2( 0.902676, 1.382 )
-shape = SubResource( 11 )
+shape = SubResource( 13 )
 
 [node name="right_wall_segment2" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bathroom"]
 position = Vector2( 451.958, -36.222 )
 rotation = -0.782152
-shape = SubResource( 12 )
+shape = SubResource( 14 )
 
 [node name="right_cat_litter" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bathroom"]
 position = Vector2( 307.45, -155.338 )
 rotation = -0.865714
-shape = SubResource( 13 )
+shape = SubResource( 15 )
 
 [node name="Bedroom" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 
 [node name="bottom_segment" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bedroom"]
 position = Vector2( 701.157, 300.142 )
-shape = SubResource( 14 )
+shape = SubResource( 16 )
 
 [node name="top_segment" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bedroom"]
 position = Vector2( 643.945, 182.883 )
-shape = SubResource( 15 )
+shape = SubResource( 17 )
 
 [node name="right_wall_top_segment" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bedroom"]
 position = Vector2( 868.959, 217.382 )
 rotation = -0.779384
-shape = SubResource( 16 )
+shape = SubResource( 18 )
 
 [node name="right_wall_bottom_segment" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bedroom"]
 position = Vector2( 940.27, 288.057 )
 rotation = -0.81955
-shape = SubResource( 17 )
+shape = SubResource( 19 )
+
+[node name="Basement_Teleport" type="Position2D" parent="LevelBackground"]
+position = Vector2( 147.265, 375.217 )
+
+[node name="Kitchen_Teleport" type="Position2D" parent="LevelBackground"]
+position = Vector2( 1973.24, 190.455 )
 
 [node name="YSort" type="YSort" parent="."]
 
@@ -417,7 +469,7 @@ margin_left = 96.7937
 margin_top = 49.9046
 margin_right = 238.794
 margin_bottom = 75.9046
-texture = ExtResource( 22 )
+texture = ExtResource( 24 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -437,6 +489,10 @@ margin_bottom = 53.0
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/StreamingRoom_To_Livingroom" to="." method="_on_StreamingRoom_To_Livingroom_body_entered"]
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Kitchen_To_Livingroom" to="." method="_on_Kitchen_To_Livingroom_body_entered"]
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Livingroom_To_Kitchen" to="." method="_on_Livingroom_To_Kitchen_body_entered"]
+[connection signal="body_entered" from="LevelBackground/AreaTransitions/Kitchen_To_Basement" to="LevelBackground/AreaTransitions/Kitchen_To_Basement" method="_show_prompt_if_player_within_body"]
+[connection signal="body_exited" from="LevelBackground/AreaTransitions/Kitchen_To_Basement" to="LevelBackground/AreaTransitions/Kitchen_To_Basement" method="_hide_prompt_if_player_leaves_body"]
+[connection signal="body_entered" from="LevelBackground/AreaTransitions/Basement_To_Kitchen" to="LevelBackground/AreaTransitions/Basement_To_Kitchen" method="_show_prompt_if_player_within_body"]
+[connection signal="body_exited" from="LevelBackground/AreaTransitions/Basement_To_Kitchen" to="LevelBackground/AreaTransitions/Basement_To_Kitchen" method="_hide_prompt_if_player_leaves_body"]
 [connection signal="screen_entered" from="YSort/Actors/Enemy/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 
 [editable path="LevelBackground/CameraPositions/Bathroom_Delimiter"]

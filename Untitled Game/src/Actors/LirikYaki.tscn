@@ -349,14 +349,14 @@ parameters/Walk/blend_position = 1.094
 wait_time = 0.1
 autostart = true
 
-[node name="HurtArea" type="Area2D" parent="." groups=[
+[node name="PlayerHurtArea" type="Area2D" parent="." groups=[
 "hurtbox",
 ]]
 position = Vector2( -2.65, -23.75 )
 collision_layer = 64
 collision_mask = 4096
 
-[node name="HurtBox" type="CollisionShape2D" parent="HurtArea"]
+[node name="HurtBox" type="CollisionShape2D" parent="PlayerHurtArea"]
 position = Vector2( 2.03366, 5.10524 )
 shape = SubResource( 34 )
 
