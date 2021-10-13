@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Dungeon_Tileset.png-86e6a28e5a50f836ca9e00bd5d864744.stex"
+path="res://.import/Adventurer Sprite Sheet v1.1.png-ed3f3b1a80d792660969b5a6303c05eb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Dungeon_Tileset.png"
-dest_files=[ "res://.import/Dungeon_Tileset.png-86e6a28e5a50f836ca9e00bd5d864744.stex" ]
+source_file="res://assets/SpriteSheets/Adventurer Sprite Sheet v1.1.png"
+dest_files=[ "res://.import/Adventurer Sprite Sheet v1.1.png-ed3f3b1a80d792660969b5a6303c05eb.stex" ]
 
 [params]
 

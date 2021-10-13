@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/LirikYakiSpritesheet.png-2986f08ae4fbf623342f21e000e1f4dc.stex"
+path="res://.import/sussy_spritesheet.png-bd1436e6eff418a5186f478a5f7baaf0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/LirikYakiSpritesheet.png"
-dest_files=[ "res://.import/LirikYakiSpritesheet.png-2986f08ae4fbf623342f21e000e1f4dc.stex" ]
+source_file="res://assets/SpriteSheets/sussy_spritesheet.png"
+dest_files=[ "res://.import/sussy_spritesheet.png-bd1436e6eff418a5186f478a5f7baaf0.stex" ]
 
 [params]
 
