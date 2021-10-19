@@ -2,17 +2,17 @@ extends Actor
 
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
 
-var _isAttacking = false
-var _isPlayingHurtAnimation = false
-var _canTakeDamage = false
-var _directionFacing = Vector2.ZERO
+var _isAttacking: bool = false
+var _isPlayingHurtAnimation: bool = false
+var _canTakeDamage: bool = false
+var _directionFacing: Vector2 = Vector2.ZERO
 var _trail = []
-var _invincibilityTimer = Timer.new()
+var _invincibilityTimer: Timer = Timer.new()
 
-onready var sprite = $Sprite
+onready var sprite: Sprite = $Sprite
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	_invincibilityTimer.connect("timeout",self,"_on_invincibility_timeout") 
 	_invincibilityTimer.one_shot = true
 	add_child(_invincibilityTimer)
@@ -25,7 +25,6 @@ func _ready():
 	_directionFacing.x = .1;
 	$TrailTimer.connect("timeout", self, "add_trail")
 	$AnimationTree.active = true
-	
 
 
 func _physics_process(_delta: float) -> void:
@@ -41,12 +40,12 @@ func _physics_process(_delta: float) -> void:
 	_velocity = move_and_slide(_velocity)
 
 
-func _on_invincibility_timeout():
+func _on_invincibility_timeout() -> void:
 	self.modulate = Color(1,1,1,1)
 	_canTakeDamage = true
 
 
-func add_trail():
+func add_trail() -> void:
 	if(get_parent() != null):
 		var trail      = trail_scene.instance()
 		trail.player   = self
@@ -93,7 +92,7 @@ func evaluatePlayerInput() -> Vector2:
 
 #Set value of blend for the next time we we call the animation
 #Ignore value of 0, since we either arent moving or walking vertically
-func _setBlendPositions(x_direction):
+func _setBlendPositions(x_direction: float) -> void:
 	if x_direction != 0:
 		$AnimationTree.set("parameters/Hurt/blend_position", x_direction)
 		$AnimationTree.set("parameters/Walk/blend_position", x_direction)
@@ -101,15 +100,15 @@ func _setBlendPositions(x_direction):
 		$AnimationTree.set("parameters/SideSwipe/blend_position", x_direction)
 
 
-func _finishedAttack():
+func _finishedAttack() -> void:
 	_isAttacking = false
 
 
-func _hurtAnimationFinished():
+func _hurtAnimationFinished() -> void:
 	print("hurt animation done")
 	_isPlayingHurtAnimation = false
 
 
-func _on_attack_area_entered(area):
+func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
 		area.get_parent().take_damage(1, _directionFacing, 50000)

@@ -245,12 +245,11 @@ animation = "HurtLeft"
 [sub_resource type="AnimationNodeAnimation" id=11]
 animation = "HurtRight"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=12]
+[sub_resource type="AnimationNodeBlendSpace1D" id=12]
 blend_point_0/node = SubResource( 10 )
-blend_point_0/pos = Vector2( -1, 0 )
+blend_point_0/pos = -0.5
 blend_point_1/node = SubResource( 11 )
-blend_point_1/pos = Vector2( 1, 0 )
-blend_mode = 1
+blend_point_1/pos = 0.5
 
 [sub_resource type="AnimationNodeAnimation" id=13]
 animation = "IdleLeft"
@@ -313,18 +312,17 @@ auto_advance = true
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id=32]
 states/Hurt/node = SubResource( 12 )
-states/Hurt/position = Vector2( 541, 125.094 )
+states/Hurt/position = Vector2( 542, 134.094 )
 states/Idle/node = SubResource( 15 )
 states/Idle/position = Vector2( 542, 43.4241 )
 states/SideSwipe/node = SubResource( 18 )
 states/SideSwipe/position = Vector2( 774, 43.4241 )
 states/Walk/node = SubResource( 21 )
 states/Walk/position = Vector2( 318, 43.4241 )
-transitions = [ "Idle", "SideSwipe", SubResource( 22 ), "Idle", "Walk", SubResource( 23 ), "Walk", "Idle", SubResource( 24 ), "SideSwipe", "Idle", SubResource( 25 ), "Walk", "Hurt", SubResource( 26 ), "Hurt", "Walk", SubResource( 27 ), "Idle", "Hurt", SubResource( 28 ), "Hurt", "Idle", SubResource( 29 ), "SideSwipe", "Hurt", SubResource( 30 ), "Hurt", "SideSwipe", SubResource( 31 ) ]
+transitions = [ "Idle", "SideSwipe", SubResource( 22 ), "Idle", "Walk", SubResource( 23 ), "Walk", "Idle", SubResource( 24 ), "SideSwipe", "Idle", SubResource( 25 ), "SideSwipe", "Hurt", SubResource( 26 ), "Hurt", "SideSwipe", SubResource( 27 ), "Idle", "Hurt", SubResource( 28 ), "Hurt", "Idle", SubResource( 29 ), "Hurt", "Walk", SubResource( 30 ), "Walk", "Hurt", SubResource( 31 ) ]
 start_node = "Idle"
 graph_offset = Vector2( 0, -5.90611 )
 
@@ -346,7 +344,7 @@ position = Vector2( -0.48801, -21.6264 )
 texture = ExtResource( 2 )
 hframes = 6
 vframes = 8
-frame = 3
+frame = 2
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -0.674954, -4.30031 )
@@ -369,7 +367,7 @@ tree_root = SubResource( 32 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 33 )
-parameters/Hurt/blend_position = Vector2( 0.881849, -0.0206186 )
+parameters/Hurt/blend_position = -0.576923
 parameters/Idle/blend_position = -0.29718
 parameters/SideSwipe/blend_position = -1.0
 parameters/Walk/blend_position = 1.094
