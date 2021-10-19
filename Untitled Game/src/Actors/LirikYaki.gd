@@ -10,10 +10,6 @@ var _trail = []
 var _invincibilityTimer = Timer.new()
 
 onready var sprite = $Sprite
-onready var leftFacingCollider = $LeftFacingCollider
-onready var rightFacingCollider = $RightFacingCollider
-onready var leftFacingHurtbox = $HurtArea/hurtboxFacingLeft
-onready var rightFacingHurtBox = $HurtArea/hurtboxFacingRight
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,12 +18,14 @@ func _ready():
 	add_child(_invincibilityTimer)
 	_invincibilityTimer.start(3)
 	
-	_health = 10
+	_maxHealth = 10
+	_health = _maxHealth
 	_acceleration = .1
-	_speed = 600
+	_speed = 200
 	_directionFacing.x = .1;
 	$TrailTimer.connect("timeout", self, "add_trail")
 	$AnimationTree.active = true
+	
 
 
 func _physics_process(_delta: float) -> void:
@@ -73,8 +71,9 @@ func evaluatePlayerInput() -> Vector2:
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	)
+	if(direction != Vector2.ZERO):
+		_directionFacing = direction
 		
-	_handleCollidersForDifferentDirections(direction.x)
 	_setBlendPositions(direction.x)
 	
 	#check attack inputs
@@ -82,8 +81,7 @@ func evaluatePlayerInput() -> Vector2:
 		$AnimationTree.get("parameters/playback").travel("SideSwipe")
 		_isAttacking = true
 		return Vector2.ZERO
-	
-	
+		
 	#set animation for direction and return for movement
 	if !_isPlayingHurtAnimation:
 		if direction == Vector2.ZERO:
@@ -103,20 +101,6 @@ func _setBlendPositions(x_direction):
 		$AnimationTree.set("parameters/SideSwipe/blend_position", x_direction)
 
 
-#Disable and enable colliders depending which direction your facing
-func _handleCollidersForDifferentDirections(x_direction):
-	if x_direction > 0:
-		leftFacingCollider.disabled = true
-		rightFacingCollider.disabled = false
-		leftFacingHurtbox.disabled = true
-		rightFacingHurtBox.disabled = false
-	elif x_direction < 0:
-		leftFacingCollider.disabled = false
-		rightFacingCollider.disabled = true
-		leftFacingHurtbox.disabled = false
-		rightFacingHurtBox.disabled = true
-
-
 func _finishedAttack():
 	_isAttacking = false
 
@@ -128,4 +112,4 @@ func _hurtAnimationFinished():
 
 func _on_attack_area_entered(area):
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
-		area.get_parent().take_damage(1, _directionFacing, 100000)
+		area.get_parent().take_damage(1, _directionFacing, 50000)

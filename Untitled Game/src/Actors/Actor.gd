@@ -7,9 +7,12 @@ var _acceleration = .2
 var _inAir = false
 var _speed = 0
 var _health = 1
+var _maxHealth = 1
 var _gravity = Vector2(0.0, 30.0)
 var _groundPosition = self.position.y;
 const MAXVELOCITY = 500
+
+signal health_changed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -48,22 +51,24 @@ func getMovement(direction: Vector2, speed: float, acceleration: float) -> Vecto
 	else:
 		_groundPosition = self.position.y
 		
-	#give the movement some friction
+	#give the movement some frictionas
 	if(resultingVelocity.x > 0):
-		resultingVelocity.x = floor(resultingVelocity.x / 10) * 10
+		resultingVelocity.x = floor(resultingVelocity.x / 5) * 5
 	else:
-		resultingVelocity.x = ceil(resultingVelocity.x / 10) * 10
+		resultingVelocity.x = ceil(resultingVelocity.x / 5) * 5
 	if(resultingVelocity.y > 0):
-		resultingVelocity.y = floor(resultingVelocity.y / 10) * 10
+		resultingVelocity.y = floor(resultingVelocity.y / 5) * 5
 	else:
-		resultingVelocity.y = ceil(resultingVelocity.y / 10) * 10
+		resultingVelocity.y = ceil(resultingVelocity.y / 5) * 5
 		
 	return resultingVelocity
 	
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if($AnimationTree != null):
-		$AnimationTree.get("parameters/playback").travel("hurt")
-	_health-=damage
+		$AnimationTree.get("parameters/playback").travel("Hurt")
+	var newHealth = _health-damage
+	emit_signal("health_changed", _health, newHealth, _maxHealth)
+	_health=newHealth
 	#knockback
 	var knockbackVelocity = getMovement(direction, force, _acceleration)
 	_velocity = move_and_slide(knockbackVelocity)

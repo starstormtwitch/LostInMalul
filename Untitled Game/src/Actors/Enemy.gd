@@ -35,8 +35,9 @@ func _ready():
 	var parent = get_parent()
 	if(parent != null):
 		var tree = parent.get_tree()
-		var root = tree.get_root()
-		_target = root.find_node("Player", true, false)
+		var players = tree.get_nodes_in_group("Player")
+		if(players.size() > 0):
+			_target = players[0]
 
 func _physics_process(_delta: float) -> void:
 	var direction = Vector2.ZERO
@@ -93,10 +94,8 @@ func _flock_direction(direction: Vector2):
 			if distanceFromFlockMate == 0:
 				distanceFromFlockMate = 1
 				
-			var randDirection = flockmate.position
-			randDirection.y += rand_range(-300,300)
 			if distanceFromFlockMate < _seperation_distance:
-				separation -= (randDirection - self.position).normalized() * (_seperation_distance / distanceFromFlockMate * ((_velocity.x + _velocity.y) / 2))
+				separation -= (flockmate.position - self.position).normalized() * (_seperation_distance / distanceFromFlockMate * ((_velocity.x + _velocity.y) / 2))
 	return (direction + separation * .5)
 	
 func try_chase() -> Vector2:

@@ -4,7 +4,7 @@ extends Enemy
 func _ready():
 	_health = 10
 	_acceleration = 0.2
-	_speed = 100
+	_speed = 50
 	_attack_range = 200
 	if($AnimationTree != null):
 		$AnimationTree.active = true
