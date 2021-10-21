@@ -3,7 +3,7 @@ extends Actor
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
 
 var _isAttacking: bool = false
-var _isPlayingHurtAnimation: bool = false
+var _beingHurt: bool = false
 var _canTakeDamage: bool = false
 var _directionFacing: Vector2 = Vector2.ZERO
 var _trail = []
@@ -36,8 +36,9 @@ func _physics_process(_delta: float) -> void:
 	if(!_isAttacking):
 		direction = evaluatePlayerInput()
 		
-	_velocity = getMovement(direction, _speed, _acceleration)
-	_velocity = move_and_slide(_velocity)
+	if(!_beingHurt):
+		_velocity = getMovement(direction, _speed, _acceleration)
+		_velocity = move_and_slide(_velocity)
 
 
 func _on_invincibility_timeout() -> void:
@@ -57,7 +58,7 @@ func add_trail() -> void:
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if _canTakeDamage:
 		_canTakeDamage = false
-		_isPlayingHurtAnimation = true
+		_beingHurt = true
 		print("play hurt animation")
 		$AnimationTree.get("parameters/playback").travel("Hurt")
 		_invincibilityTimer.start(2)
@@ -82,7 +83,7 @@ func evaluatePlayerInput() -> Vector2:
 		return Vector2.ZERO
 		
 	#set animation for direction and return for movement
-	if !_isPlayingHurtAnimation:
+	if !_beingHurt:
 		if direction == Vector2.ZERO:
 			$AnimationTree.get("parameters/playback").travel("Idle")
 		else:
@@ -106,7 +107,7 @@ func _finishedAttack() -> void:
 
 func _hurtAnimationFinished() -> void:
 	print("hurt animation done")
-	_isPlayingHurtAnimation = false
+	_beingHurt = false
 
 
 func _on_attack_area_entered(area: Area2D) -> void:
