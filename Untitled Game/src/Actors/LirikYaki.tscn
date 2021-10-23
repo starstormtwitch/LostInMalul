@@ -3,10 +3,8 @@
 [ext_resource path="res://src/Actors/LirikYaki.gd" type="Script" id=1]
 [ext_resource path="res://assets/SpriteSheets/LirikYakiSpritesheet.png" type="Texture" id=2]
 
-
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 4.91093
-height = 12.3793
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 2.48964, 8.90355 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "HurtLeft"
@@ -318,10 +316,10 @@ position = Vector2( -0.48801, -21.6264 )
 texture = ExtResource( 2 )
 hframes = 6
 vframes = 8
-frame = 3
+frame = 4
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2( -0.674954, -4.30031 )
+position = Vector2( -0.689455, -1.26315 )
 rotation = 1.5708
 scale = Vector2( 1.01091, 1.11191 )
 shape = SubResource( 1 )
