@@ -2,16 +2,17 @@ extends Actor
 
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
 
-var _isAttacking = false
-var _canTakeDamage = false
-var _directionFacing = Vector2.ZERO
+var _isAttacking: bool = false
+var _beingHurt: bool = false
+var _canTakeDamage: bool = false
+var _directionFacing: Vector2 = Vector2.ZERO
 var _trail = []
-var _invincibilityTimer = Timer.new()
+var _invincibilityTimer: Timer = Timer.new()
 
-onready var sprite = $Sprite
+onready var sprite: Sprite = $Sprite
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	_invincibilityTimer.connect("timeout",self,"_on_invincibility_timeout") 
 	_invincibilityTimer.one_shot = true
 	add_child(_invincibilityTimer)
@@ -24,7 +25,6 @@ func _ready():
 	_directionFacing.x = .1;
 	$TrailTimer.connect("timeout", self, "add_trail")
 	$AnimationTree.active = true
-	
 
 
 func _physics_process(_delta: float) -> void:
@@ -36,16 +36,17 @@ func _physics_process(_delta: float) -> void:
 	if(!_isAttacking):
 		direction = evaluatePlayerInput()
 		
-	_velocity = getMovement(direction, _speed, _acceleration)
-	_velocity = move_and_slide(_velocity)
+	if(!_beingHurt):
+		_velocity = getMovement(direction, _speed, _acceleration)
+		_velocity = move_and_slide(_velocity)
 
 
-func _on_invincibility_timeout():
+func _on_invincibility_timeout() -> void:
 	self.modulate = Color(1,1,1,1)
 	_canTakeDamage = true
 
 
-func add_trail():
+func add_trail() -> void:
 	if(get_parent() != null):
 		var trail      = trail_scene.instance()
 		trail.player   = self
@@ -57,6 +58,9 @@ func add_trail():
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if _canTakeDamage:
 		_canTakeDamage = false
+		_beingHurt = true
+		print("play hurt animation")
+		$AnimationTree.get("parameters/playback").travel("Hurt")
 		_invincibilityTimer.start(2)
 		.take_damage(damage, direction, force)
 
@@ -79,15 +83,17 @@ func evaluatePlayerInput() -> Vector2:
 		return Vector2.ZERO
 		
 	#set animation for direction and return for movement
-	if direction == Vector2.ZERO:
-		$AnimationTree.get("parameters/playback").travel("Idle")
-	else:
-		$AnimationTree.get("parameters/playback").travel("Walk")
+	if !_beingHurt:
+		if direction == Vector2.ZERO:
+			$AnimationTree.get("parameters/playback").travel("Idle")
+		else:
+			$AnimationTree.get("parameters/playback").travel("Walk")
+	
 	return direction
 
 #Set value of blend for the next time we we call the animation
 #Ignore value of 0, since we either arent moving or walking vertically
-func _setBlendPositions(x_direction):
+func _setBlendPositions(x_direction: float) -> void:
 	if x_direction != 0:
 		$AnimationTree.set("parameters/Hurt/blend_position", x_direction)
 		$AnimationTree.set("parameters/Walk/blend_position", x_direction)
@@ -95,10 +101,15 @@ func _setBlendPositions(x_direction):
 		$AnimationTree.set("parameters/SideSwipe/blend_position", x_direction)
 
 
-func _finishedAttack():
+func _finishedAttack() -> void:
 	_isAttacking = false
 
 
-func _on_attack_area_entered(area):
+func _hurtAnimationFinished() -> void:
+	print("hurt animation done")
+	_beingHurt = false
+
+
+func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
 		area.get_parent().take_damage(1, _directionFacing, 50000)
