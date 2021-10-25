@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/Levels/House/bathroom_doorframe.png" type="Texture" id=1]
+
+[node name="Doorframe" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -27.5123, -123.009 )
+texture = ExtResource( 1 )
