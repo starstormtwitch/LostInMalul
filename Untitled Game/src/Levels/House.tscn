@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=87 format=2]
 
 [ext_resource path="res://src/Actors/Slime.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
@@ -59,6 +59,20 @@
 [ext_resource path="res://src/Props/bedroom/bedroom_rug.tscn" type="PackedScene" id=57]
 [ext_resource path="res://src/Props/bedroom/bedroom_wardrobe.tscn" type="PackedScene" id=58]
 [ext_resource path="res://src/Props/bedroom/bedroom_window.tscn" type="PackedScene" id=59]
+[ext_resource path="res://src/Props/Kitchen/ChairNextToBasement.tscn" type="PackedScene" id=60]
+[ext_resource path="res://src/Props/Kitchen/BasementDoor.tscn" type="PackedScene" id=61]
+[ext_resource path="res://src/Props/Kitchen/Calendar.tscn" type="PackedScene" id=62]
+[ext_resource path="res://src/Props/Kitchen/SpiceRack.tscn" type="PackedScene" id=63]
+[ext_resource path="res://src/Props/Kitchen/Bowls.tscn" type="PackedScene" id=64]
+[ext_resource path="res://src/Props/Kitchen/Feeder.tscn" type="PackedScene" id=65]
+[ext_resource path="res://src/Props/Kitchen/BurgerPic.tscn" type="PackedScene" id=66]
+[ext_resource path="res://src/Props/Kitchen/Fridge.tscn" type="PackedScene" id=67]
+[ext_resource path="res://src/Props/Kitchen/Counter.tscn" type="PackedScene" id=68]
+[ext_resource path="res://src/Props/Kitchen/DiningTable.tscn" type="PackedScene" id=69]
+[ext_resource path="res://src/Props/Kitchen/Island.tscn" type="PackedScene" id=70]
+[ext_resource path="res://src/Props/Kitchen/BottomCounter.tscn" type="PackedScene" id=71]
+[ext_resource path="res://src/Props/Kitchen/Plant.tscn" type="PackedScene" id=72]
+[ext_resource path="res://src/Props/Kitchen/LightSwitch.tscn" type="PackedScene" id=73]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 51.2464, 7.22803 )
@@ -252,13 +266,13 @@ shape = SubResource( 1 )
 one_way_collision = true
 
 [node name="Kitchen_To_Basement" type="Area2D" parent="LevelBackground/AreaTransitions"]
-position = Vector2( 1972.81, 192.324 )
+position = Vector2( 2636.19, 193.166 )
 collision_layer = 3
 collision_mask = 64
 script = ExtResource( 22 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Kitchen_To_Basement"]
-position = Vector2( -0.196415, -2.48631 )
+position = Vector2( 664.301, 0.881077 )
 shape = SubResource( 3 )
 
 [node name="F_Prompt" type="Sprite" parent="LevelBackground/AreaTransitions/Kitchen_To_Basement"]
@@ -340,7 +354,7 @@ shape = SubResource( 11 )
 position = Vector2( 147.265, 375.217 )
 
 [node name="Kitchen_Teleport" type="Position2D" parent="LevelBackground"]
-position = Vector2( 1973.24, 190.455 )
+position = Vector2( 2636.61, 193.542 )
 
 [node name="YSort" type="YSort" parent="."]
 
@@ -528,10 +542,59 @@ visible = false
 position = Vector2( 1452.45, 293.478 )
 
 [node name="Kitchen" type="YSort" parent="YSort/Props"]
-visible = false
+position = Vector2( 2474.16, 0 )
+
+[node name="Node2D" parent="YSort/Props/Kitchen" instance=ExtResource( 14 )]
+position = Vector2( 28.8264, 234.965 )
+
+[node name="Counter" parent="YSort/Props/Kitchen" instance=ExtResource( 68 )]
+position = Vector2( 459.84, 196.948 )
+
+[node name="BurgerPic" parent="YSort/Props/Kitchen" instance=ExtResource( 66 )]
+position = Vector2( 273.25, 156 )
+
+[node name="Feeder" parent="YSort/Props/Kitchen" instance=ExtResource( 65 )]
+position = Vector2( 272.625, 186.375 )
+
+[node name="Calendar" parent="YSort/Props/Kitchen" instance=ExtResource( 62 )]
+position = Vector2( 203.133, 160.224 )
+
+[node name="ChairNextToBasement" parent="YSort/Props/Kitchen" instance=ExtResource( 60 )]
+position = Vector2( 132.229, 196.924 )
+
+[node name="BottomCounter" parent="YSort/Props/Kitchen" instance=ExtResource( 71 )]
+position = Vector2( 565.369, 275.737 )
+
+[node name="Plant" parent="YSort/Props/Kitchen" instance=ExtResource( 72 )]
+position = Vector2( 482.072, 282.222 )
+
+[node name="Chair" parent="YSort/Props/Kitchen" instance=ExtResource( 61 )]
+position = Vector2( 163.341, 188.003 )
 
 [node name="Door1" parent="YSort/Props/Kitchen" instance=ExtResource( 9 )]
-position = Vector2( 1923.45, 293.484 )
+visible = false
+position = Vector2( 94.8481, 230.666 )
+
+[node name="SpiceRack" parent="YSort/Props/Kitchen" instance=ExtResource( 63 )]
+position = Vector2( 239.222, 166.185 )
+
+[node name="Bowls" parent="YSort/Props/Kitchen" instance=ExtResource( 64 )]
+position = Vector2( 240.048, 191.981 )
+
+[node name="Fridge" parent="YSort/Props/Kitchen" instance=ExtResource( 67 )]
+position = Vector2( 313.422, 196.463 )
+
+[node name="Island" parent="YSort/Props/Kitchen" instance=ExtResource( 70 )]
+position = Vector2( 437.259, 222.402 )
+
+[node name="DiningTable" parent="YSort/Props/Kitchen" instance=ExtResource( 69 )]
+position = Vector2( 218.654, 237.698 )
+
+[node name="LightSwitch" parent="YSort/Props/Kitchen" instance=ExtResource( 73 )]
+position = Vector2( 587.745, 223.361 )
+
+[node name="KitchenExit" parent="YSort/Props/Kitchen" instance=ExtResource( 15 )]
+position = Vector2( 608.351, 230.997 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
