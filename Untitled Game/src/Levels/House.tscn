@@ -92,14 +92,7 @@ b = Vector2( 6849.88, 3.13074 )
 
 [sub_resource type="SegmentShape2D" id=6]
 a = Vector2( -719.258, 3.29889 )
-b = Vector2( 1789.32, 3.29889 )
-
-[sub_resource type="SegmentShape2D" id=7]
-a = Vector2( 1966.82, 130.324 )
-b = Vector2( 735.438, 129.859 )
-
-[sub_resource type="SegmentShape2D" id=8]
-a = Vector2( 445.27, 9.95645 )
+b = Vector2( 2699.4, 2.97202 )
 
 [sub_resource type="CapsuleShape2D" id=9]
 height = 124.984
@@ -119,6 +112,14 @@ height = 86.2525
 [sub_resource type="CapsuleShape2D" id=13]
 radius = 5.49353
 height = 15.7604
+
+[sub_resource type="SegmentShape2D" id=14]
+a = Vector2( 45.7026, -42.6635 )
+b = Vector2( -66.2954, 70.8334 )
+
+[sub_resource type="SegmentShape2D" id=15]
+a = Vector2( 465.977, -8.95142 )
+b = Vector2( 526.283, 44.9877 )
 
 [node name="House" type="Node2D"]
 script = ExtResource( 19 )
@@ -330,17 +331,9 @@ position = Vector2( 7.10455, -9.74359 )
 shape = SubResource( 5 )
 
 [node name="top_segment" type="CollisionShape2D" parent="LevelBackground/Boundaries/Universal"]
-position = Vector2( 1180.53, -249.547 )
+position = Vector2( 1181.1, -248.206 )
 scale = Vector2( 2.00948, 2.00948 )
 shape = SubResource( 6 )
-
-[node name="top segment2" type="CollisionShape2D" parent="LevelBackground/Boundaries/Universal"]
-position = Vector2( 4119.63, -369.92 )
-shape = SubResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/Boundaries/Universal"]
-position = Vector2( 6161.96, -250.728 )
-shape = SubResource( 8 )
 
 [node name="Bathroom" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 
@@ -376,6 +369,16 @@ shape = SubResource( 13 )
 position = Vector2( 590.994, 186.467 )
 shape = SubResource( 11 )
 
+[node name="Kitchen" type="StaticBody2D" parent="LevelBackground/Boundaries"]
+position = Vector2( 2586.28, 247.613 )
+
+[node name="LeftWall" type="CollisionShape2D" parent="LevelBackground/Boundaries/Kitchen"]
+position = Vector2( -43.8254, -18.3543 )
+shape = SubResource( 14 )
+
+[node name="RIghtWall" type="CollisionShape2D" parent="LevelBackground/Boundaries/Kitchen"]
+shape = SubResource( 15 )
+
 [node name="Teleports" type="Node" parent="LevelBackground"]
 
 [node name="Basement_Teleport" type="Position2D" parent="LevelBackground/Teleports"]
@@ -409,7 +412,7 @@ position = Vector2( 2400.04, 275.052 )
 position = Vector2( 2526.54, 274.552 )
 
 [node name="Kitchen_Exit_Teleport" type="Position2D" parent="LevelBackground/Teleports"]
-position = Vector2( 3029.04, 258.552 )
+position = Vector2( 3041.49, 255.639 )
 
 [node name="Foyer_Entrance_Teleport" type="Position2D" parent="LevelBackground/Teleports"]
 position = Vector2( 3185.06, 259.675 )
@@ -621,10 +624,10 @@ position = Vector2( 203.133, 160.224 )
 position = Vector2( 132.229, 196.924 )
 
 [node name="BottomCounter" parent="YSort/Props/Kitchen" instance=ExtResource( 71 )]
-position = Vector2( 565.369, 275.737 )
+position = Vector2( 565.075, 299.31 )
 
 [node name="Plant" parent="YSort/Props/Kitchen" instance=ExtResource( 72 )]
-position = Vector2( 482.072, 282.222 )
+position = Vector2( 478.894, 284.076 )
 
 [node name="Chair" parent="YSort/Props/Kitchen" instance=ExtResource( 61 )]
 position = Vector2( 163.341, 188.003 )
@@ -637,13 +640,13 @@ position = Vector2( 94.8481, 230.666 )
 position = Vector2( 239.222, 166.185 )
 
 [node name="Bowls" parent="YSort/Props/Kitchen" instance=ExtResource( 64 )]
-position = Vector2( 240.048, 191.981 )
+position = Vector2( 240.382, 191.814 )
 
 [node name="Fridge" parent="YSort/Props/Kitchen" instance=ExtResource( 67 )]
 position = Vector2( 313.422, 196.463 )
 
 [node name="Island" parent="YSort/Props/Kitchen" instance=ExtResource( 70 )]
-position = Vector2( 437.495, 222.166 )
+position = Vector2( 485.568, 230.21 )
 
 [node name="DiningTable" parent="YSort/Props/Kitchen" instance=ExtResource( 69 )]
 position = Vector2( 218.654, 237.698 )

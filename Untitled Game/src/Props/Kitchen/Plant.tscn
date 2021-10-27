@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/Props/Kitchen/plant.png" type="Texture" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 11.4009, 18.6394 )
+extents = Vector2( 8.40091, 8.26436 )
 
 [node name="Plant" type="StaticBody2D"]
 
@@ -12,5 +12,5 @@ position = Vector2( 0, -2.57077 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.025913, -3.61064 )
+position = Vector2( 0.599087, 7.01436 )
 shape = SubResource( 1 )
