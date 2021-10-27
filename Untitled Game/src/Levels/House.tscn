@@ -174,13 +174,22 @@ position = Vector2( 454, -4 )
 position = Vector2( 1083.41, 251 )
 
 [node name="Kitchen_Delimiter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
-position = Vector2( 1836.67, 50 )
+position = Vector2( 2615.6, 92.8114 )
 
 [node name="TopLeft" parent="LevelBackground/CameraPositions/Kitchen_Delimiter" index="0"]
-position = Vector2( 648, 16 )
+position = Vector2( -138.66, -45.2442 )
 
 [node name="BottomRight" parent="LevelBackground/CameraPositions/Kitchen_Delimiter" index="1"]
-position = Vector2( 1273.83, 252 )
+position = Vector2( 497.426, 205.331 )
+
+[node name="Foyer_Delimiter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
+position = Vector2( 3272.34, 65.4472 )
+
+[node name="TopLeft" parent="LevelBackground/CameraPositions/Foyer_Delimiter" index="0"]
+position = Vector2( -138.66, -45.2442 )
+
+[node name="BottomRight" parent="LevelBackground/CameraPositions/Foyer_Delimiter" index="1"]
+position = Vector2( 368.367, 235.044 )
 
 [node name="Basement_Delimeter" type="Node2D" parent="LevelBackground/CameraPositions"]
 script = ExtResource( 26 )
@@ -221,46 +230,64 @@ shape = SubResource( 1 )
 one_way_collision = true
 
 [node name="StreamingRoom_To_Bedroom" type="Area2D" parent="LevelBackground/AreaTransitions"]
-position = Vector2( 1165.93, 268.026 )
+position = Vector2( 1180.2, 273.972 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/StreamingRoom_To_Bedroom"]
-position = Vector2( 16.3444, -3.37903 )
+position = Vector2( 0.884949, -8.13586 )
 rotation = 1.5708
 shape = SubResource( 2 )
 one_way_collision = true
 
 [node name="Livingroom_To_StreamingRoom" type="Area2D" parent="LevelBackground/AreaTransitions"]
-position = Vector2( 1368.49, 279.453 )
+position = Vector2( 1837.04, 271.723 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Livingroom_To_StreamingRoom"]
-position = Vector2( 3.38936, -4.9917 )
+position = Vector2( 0.172607, -4.66675 )
 rotation = 1.5708
 shape = SubResource( 2 )
 one_way_collision = true
 
 [node name="StreamingRoom_To_Livingroom" type="Area2D" parent="LevelBackground/AreaTransitions"]
-position = Vector2( 1413.05, 234.402 )
+position = Vector2( 1763.27, 269.484 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/StreamingRoom_To_Livingroom"]
-position = Vector2( -0.360962, -6.84293 )
+position = Vector2( -3.32739, -22.4972 )
 rotation = -1.5708
 shape = SubResource( 1 )
 one_way_collision = true
 
 [node name="Kitchen_To_Livingroom" type="Area2D" parent="LevelBackground/AreaTransitions"]
-position = Vector2( 1839.73, 279.878 )
+position = Vector2( 2498.55, 278.094 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Kitchen_To_Livingroom"]
-position = Vector2( 3.38936, -4.9917 )
+position = Vector2( 6.84741, -23.8044 )
+rotation = 1.5708
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="Foyer_To_Kitchen" type="Area2D" parent="LevelBackground/AreaTransitions"]
+position = Vector2( 3159.12, 254.43 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Foyer_To_Kitchen"]
+position = Vector2( 2.9187, -1.35498 )
 rotation = 1.5708
 shape = SubResource( 2 )
 one_way_collision = true
 
 [node name="Livingroom_To_Kitchen" type="Area2D" parent="LevelBackground/AreaTransitions"]
-position = Vector2( 1882.3, 233.093 )
+position = Vector2( 2418.63, 287.202 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Livingroom_To_Kitchen"]
-position = Vector2( -0.360962, -6.84293 )
+position = Vector2( -0.361084, -40.7356 )
+rotation = -1.5708
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="Kitchen_To_Foyer" type="Area2D" parent="LevelBackground/AreaTransitions"]
+position = Vector2( 3076.04, 233.437 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Kitchen_To_Foyer"]
+position = Vector2( -0.361, -20 )
 rotation = -1.5708
 shape = SubResource( 1 )
 one_way_collision = true
@@ -272,7 +299,6 @@ collision_mask = 64
 script = ExtResource( 22 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Kitchen_To_Basement"]
-position = Vector2( 664.301, 0.881077 )
 shape = SubResource( 3 )
 
 [node name="F_Prompt" type="Sprite" parent="LevelBackground/AreaTransitions/Kitchen_To_Basement"]
@@ -350,11 +376,43 @@ shape = SubResource( 13 )
 position = Vector2( 590.994, 186.467 )
 shape = SubResource( 11 )
 
-[node name="Basement_Teleport" type="Position2D" parent="LevelBackground"]
+[node name="Teleports" type="Node" parent="LevelBackground"]
+
+[node name="Basement_Teleport" type="Position2D" parent="LevelBackground/Teleports"]
 position = Vector2( 147.265, 375.217 )
 
-[node name="Kitchen_Teleport" type="Position2D" parent="LevelBackground"]
+[node name="Kitchen_Basement_Door_Teleport" type="Position2D" parent="LevelBackground/Teleports"]
 position = Vector2( 2636.61, 193.542 )
+
+[node name="Bedroom_Entrance_Teleport" type="Position2D" parent="LevelBackground/Teleports"]
+position = Vector2( 555.471, 265.68 )
+
+[node name="Bathroom_Exit_Teleport" type="Position2D" parent="LevelBackground/Teleports"]
+position = Vector2( 416.721, 270.399 )
+
+[node name="Bedroom_Exit_Teleport" type="Position2D" parent="LevelBackground/Teleports"]
+position = Vector2( 1068.25, 269.917 )
+
+[node name="Streaming_Entrance_Teleport" type="Position2D" parent="LevelBackground/Teleports"]
+position = Vector2( 1204.17, 271.805 )
+
+[node name="Streaming_Exit_Teleport" type="Position2D" parent="LevelBackground/Teleports"]
+position = Vector2( 1736.04, 276.052 )
+
+[node name="LivingRoom_Entrance_Teleport" type="Position2D" parent="LevelBackground/Teleports"]
+position = Vector2( 1865.54, 272.552 )
+
+[node name="LivingRoom_Exit_Teleport" type="Position2D" parent="LevelBackground/Teleports"]
+position = Vector2( 2400.04, 275.052 )
+
+[node name="Kitchen_Entrance_Teleport" type="Position2D" parent="LevelBackground/Teleports"]
+position = Vector2( 2526.54, 274.552 )
+
+[node name="Kitchen_Exit_Teleport" type="Position2D" parent="LevelBackground/Teleports"]
+position = Vector2( 3029.04, 258.552 )
+
+[node name="Foyer_Entrance_Teleport" type="Position2D" parent="LevelBackground/Teleports"]
+position = Vector2( 3185.06, 259.675 )
 
 [node name="YSort" type="YSort" parent="."]
 
@@ -585,7 +643,7 @@ position = Vector2( 240.048, 191.981 )
 position = Vector2( 313.422, 196.463 )
 
 [node name="Island" parent="YSort/Props/Kitchen" instance=ExtResource( 70 )]
-position = Vector2( 437.259, 222.402 )
+position = Vector2( 437.495, 222.166 )
 
 [node name="DiningTable" parent="YSort/Props/Kitchen" instance=ExtResource( 69 )]
 position = Vector2( 218.654, 237.698 )
@@ -640,7 +698,9 @@ margin_bottom = 53.0
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Livingroom_To_StreamingRoom" to="." method="_on_Livingroom_To_StreamingRoom_body_entered"]
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/StreamingRoom_To_Livingroom" to="." method="_on_StreamingRoom_To_Livingroom_body_entered"]
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Kitchen_To_Livingroom" to="." method="_on_Kitchen_To_Livingroom_body_entered"]
+[connection signal="body_entered" from="LevelBackground/AreaTransitions/Foyer_To_Kitchen" to="." method="_on_Foyer_To_Kitchen_body_entered"]
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Livingroom_To_Kitchen" to="." method="_on_Livingroom_To_Kitchen_body_entered"]
+[connection signal="body_entered" from="LevelBackground/AreaTransitions/Kitchen_To_Foyer" to="." method="_on_Kitchen_To_Foyer_body_entered"]
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Kitchen_To_Basement" to="LevelBackground/AreaTransitions/Kitchen_To_Basement" method="_show_prompt_if_player_within_body"]
 [connection signal="body_exited" from="LevelBackground/AreaTransitions/Kitchen_To_Basement" to="LevelBackground/AreaTransitions/Kitchen_To_Basement" method="_hide_prompt_if_player_leaves_body"]
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Basement_To_Kitchen" to="LevelBackground/AreaTransitions/Basement_To_Kitchen" method="_show_prompt_if_player_within_body"]
@@ -652,3 +712,4 @@ margin_bottom = 53.0
 [editable path="LevelBackground/CameraPositions/StreamingRoom_Delimiter"]
 [editable path="LevelBackground/CameraPositions/LivingRoom_Delimiter"]
 [editable path="LevelBackground/CameraPositions/Kitchen_Delimiter"]
+[editable path="LevelBackground/CameraPositions/Foyer_Delimiter"]

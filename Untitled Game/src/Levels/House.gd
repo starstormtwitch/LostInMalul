@@ -12,8 +12,21 @@ onready var _cam_Delimiter_StreamingRooom = get_node("LevelBackground/CameraPosi
 onready var _cam_Delimiter_LivingRoom = get_node("LevelBackground/CameraPositions/LivingRoom_Delimiter")
 onready var _cam_Delimiter_Kitchen = get_node("LevelBackground/CameraPositions/Kitchen_Delimiter")
 onready var _cam_Delimiter_Basement = get_node("LevelBackground/CameraPositions/Basement_Delimeter")
-onready var _teleport_Basement = get_node("LevelBackground/Basement_Teleport")
-onready var _teleport_Kitchen = get_node("LevelBackground/Kitchen_Teleport")
+onready var _cam_Delimiter_Foyer = get_node("LevelBackground/CameraPositions/Foyer_Delimiter")
+
+onready var _teleport_Basement: Position2D = get_node("LevelBackground/Teleports/Basement_Teleport")
+onready var _teleport_Bathroom: Position2D = get_node("LevelBackground/Teleports/Bathroom_Exit_Teleport")
+onready var _teleport_Kitchen_Basement_Door: Position2D = get_node("LevelBackground/Teleports/Kitchen_Basement_Door_Teleport")
+onready var _teleport_Bedroom_Entrance: Position2D = get_node("LevelBackground/Teleports/Bedroom_Entrance_Teleport")
+onready var _teleport_Bedroom_Exit: Position2D = get_node("LevelBackground/Teleports/Bedroom_Exit_Teleport")
+onready var _teleport_StreamRoom_Entrance: Position2D = get_node("LevelBackground/Teleports/Streaming_Entrance_Teleport")
+onready var _teleport_StreamRoom_Exit: Position2D = get_node("LevelBackground/Teleports/Streaming_Exit_Teleport")
+onready var _teleport_LivingRoom_Entrance: Position2D = get_node("LevelBackground/Teleports/LivingRoom_Entrance_Teleport")
+onready var _teleport_LivingRoom_Exit: Position2D = get_node("LevelBackground/Teleports/LivingRoom_Exit_Teleport")
+onready var _teleport_Kitchen_Entrance: Position2D = get_node("LevelBackground/Teleports/Kitchen_Entrance_Teleport")
+onready var _teleport_Kitchen_Exit: Position2D = get_node("LevelBackground/Teleports/Kitchen_Exit_Teleport")
+onready var _teleport_Foyer_Entrance: Position2D = get_node("LevelBackground/Teleports/Foyer_Entrance_Teleport")
+
 onready var _kitchen_Teleport_Area: Area2D = get_node("LevelBackground/AreaTransitions/Kitchen_To_Basement")
 onready var _basement_Teleport_Area: Area2D = get_node("LevelBackground/AreaTransitions/Basement_To_Kitchen")
 
@@ -59,34 +72,52 @@ func _on_VisibilityNotifier2D_screen_entered():
 func _on_Bedroom_To_Bathroom_body_entered(body):
 	if body == _player:
 		setCameraToBathroom()
+		_player.position = _teleport_Bathroom.position
 
 func _on_Bathroom_To_Bedroom_body_entered(body):
 	if body == _player:
 		setCameraToBedroom()
+		_player.position = _teleport_Bedroom_Entrance.position
 
 func _on_Bedroom_To_StreamingRoom_body_entered(body):
 	if body == _player:
 		setCameraToStreamingRoom()
+		_player.position = _teleport_StreamRoom_Entrance.position
 
 func _on_StreamingRoom_To_Bedroom_body_entered(body):
 	if body == _player:
 		setCameraToBedroom()
+		_player.position = _teleport_Bedroom_Exit.position
 
 func _on_Livingroom_To_StreamingRoom_body_entered(body):
 	if body == _player:
 		setCameraToStreamingRoom()
+		_player.position = _teleport_StreamRoom_Exit.position
 
 func _on_StreamingRoom_To_Livingroom_body_entered(body):
 	if body == _player:
 		setCameraToLivingRoom()
+		_player.position = _teleport_LivingRoom_Entrance.position
 
 func _on_Kitchen_To_Livingroom_body_entered(body):
 	if body == _player:
 		setCameraToLivingRoom()
+		_player.position = _teleport_LivingRoom_Exit.position
 
 func _on_Livingroom_To_Kitchen_body_entered(body):
 	if body == _player:
 		setCameraToKitchen()
+		_player.position = _teleport_Kitchen_Entrance.position
+		
+func _on_Kitchen_To_Foyer_body_entered(body):
+	if body == _player:
+		setCameraToFoyer()
+		_player.position = _teleport_Foyer_Entrance.position
+
+func _on_Foyer_To_Kitchen_body_entered(body):
+	if body == _player:
+		setCameraToKitchen()
+		_player.position = _teleport_Kitchen_Exit.position
 
 func setCameraToBathroom():
 	cameraManager.limitCameraToDelimiter(_cam_Delimiter_Bathroom) 
@@ -103,10 +134,13 @@ func setCameraToLivingRoom():
 func setCameraToKitchen():
 	cameraManager.limitCameraToDelimiter(_cam_Delimiter_Kitchen) 
 
+func setCameraToFoyer():
+	cameraManager.limitCameraToDelimiter(_cam_Delimiter_Foyer) 
+
 func setCameraToBasement() -> void:
 	cameraManager.limitCameraToDelimiter(_cam_Delimiter_Basement)
 	_player.position = _teleport_Basement.position
 
 func setCameraToKitchenTeleport() -> void:
 	setCameraToKitchen()
-	_player.position = _teleport_Kitchen.position
+	_player.position = _teleport_Kitchen_Basement_Door.position
