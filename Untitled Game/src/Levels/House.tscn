@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=2]
+[gd_scene load_steps=102 format=2]
 
 [ext_resource path="res://src/Actors/Slime.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
@@ -73,6 +73,21 @@
 [ext_resource path="res://src/Props/Kitchen/BottomCounter.tscn" type="PackedScene" id=71]
 [ext_resource path="res://src/Props/Kitchen/Plant.tscn" type="PackedScene" id=72]
 [ext_resource path="res://src/Props/Kitchen/LightSwitch.tscn" type="PackedScene" id=73]
+[ext_resource path="res://src/Props/Basement/Stairs.tscn" type="PackedScene" id=74]
+[ext_resource path="res://src/Props/Basement/BasementEntranceDoor.tscn" type="PackedScene" id=75]
+[ext_resource path="res://src/Props/Basement/MiddleBoxesNextToStairs.tscn" type="PackedScene" id=76]
+[ext_resource path="res://src/Props/Basement/TopBoxesNextToStairs.tscn" type="PackedScene" id=77]
+[ext_resource path="res://src/Props/Basement/LeftGreyPipes.tscn" type="PackedScene" id=78]
+[ext_resource path="res://src/Props/Basement/LowerPipes.tscn" type="PackedScene" id=79]
+[ext_resource path="res://src/Props/Basement/BookCase.tscn" type="PackedScene" id=80]
+[ext_resource path="res://src/Props/Basement/UpperPipes.tscn" type="PackedScene" id=81]
+[ext_resource path="res://src/Props/Basement/Vent.tscn" type="PackedScene" id=82]
+[ext_resource path="res://src/Props/Basement/Power.tscn" type="PackedScene" id=83]
+[ext_resource path="res://src/Props/Basement/Cheese.tscn" type="PackedScene" id=84]
+[ext_resource path="res://src/Props/Basement/BoxNextToBookcase.tscn" type="PackedScene" id=85]
+[ext_resource path="res://src/Props/Basement/MiddlePipes.tscn" type="PackedScene" id=86]
+[ext_resource path="res://src/Props/Basement/BoxLeftOfTable.tscn" type="PackedScene" id=87]
+[ext_resource path="res://src/Props/Basement/Table.tscn" type="PackedScene" id=88]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 51.2464, 7.22803 )
@@ -94,30 +109,30 @@ b = Vector2( 6849.88, 3.13074 )
 a = Vector2( -719.258, 3.29889 )
 b = Vector2( 2699.4, 2.97202 )
 
-[sub_resource type="CapsuleShape2D" id=9]
+[sub_resource type="CapsuleShape2D" id=7]
 height = 124.984
 
-[sub_resource type="CapsuleShape2D" id=10]
+[sub_resource type="CapsuleShape2D" id=8]
 radius = 9.66589
 height = 52.9998
 
-[sub_resource type="SegmentShape2D" id=11]
+[sub_resource type="SegmentShape2D" id=9]
 a = Vector2( 11.8608, -3.81705 )
 b = Vector2( -103.09, 114.215 )
 
-[sub_resource type="CapsuleShape2D" id=12]
+[sub_resource type="CapsuleShape2D" id=10]
 radius = 4.26944
 height = 86.2525
 
-[sub_resource type="CapsuleShape2D" id=13]
+[sub_resource type="CapsuleShape2D" id=11]
 radius = 5.49353
 height = 15.7604
 
-[sub_resource type="SegmentShape2D" id=14]
+[sub_resource type="SegmentShape2D" id=12]
 a = Vector2( 45.7026, -42.6635 )
 b = Vector2( -66.2954, 70.8334 )
 
-[sub_resource type="SegmentShape2D" id=15]
+[sub_resource type="SegmentShape2D" id=13]
 a = Vector2( 465.977, -8.95142 )
 b = Vector2( 526.283, 44.9877 )
 
@@ -341,43 +356,43 @@ shape = SubResource( 6 )
 position = Vector2( 395.683, 218.487 )
 rotation = -0.786011
 scale = Vector2( 0.449209, 0.687741 )
-shape = SubResource( 9 )
+shape = SubResource( 7 )
 
 [node name="right_wall_segment2" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bathroom"]
 position = Vector2( 464.919, 287.707 )
 rotation = -0.782152
 scale = Vector2( 0.497642, 0.497642 )
-shape = SubResource( 10 )
+shape = SubResource( 8 )
 
 [node name="LeftWall" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bathroom"]
 position = Vector2( 109.018, 187.359 )
-shape = SubResource( 11 )
+shape = SubResource( 9 )
 
 [node name="Bedroom" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 
 [node name="right_wall_top_segment" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bedroom"]
 position = Vector2( 1055.84, 219.384 )
 rotation = -0.779384
-shape = SubResource( 12 )
+shape = SubResource( 10 )
 
 [node name="right_wall_bottom_segment" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bedroom"]
 position = Vector2( 1122.63, 287.025 )
 rotation = -0.81955
-shape = SubResource( 13 )
+shape = SubResource( 11 )
 
 [node name="LeftWall" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bedroom"]
 position = Vector2( 590.994, 186.467 )
-shape = SubResource( 11 )
+shape = SubResource( 9 )
 
 [node name="Kitchen" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 2586.28, 247.613 )
 
 [node name="LeftWall" type="CollisionShape2D" parent="LevelBackground/Boundaries/Kitchen"]
 position = Vector2( -43.8254, -18.3543 )
-shape = SubResource( 14 )
+shape = SubResource( 12 )
 
 [node name="RIghtWall" type="CollisionShape2D" parent="LevelBackground/Boundaries/Kitchen"]
-shape = SubResource( 15 )
+shape = SubResource( 13 )
 
 [node name="Teleports" type="Node" parent="LevelBackground"]
 
@@ -656,6 +671,54 @@ position = Vector2( 587.745, 223.361 )
 
 [node name="KitchenExit" parent="YSort/Props/Kitchen" instance=ExtResource( 15 )]
 position = Vector2( 608.351, 230.997 )
+
+[node name="Basement" type="YSort" parent="YSort/Props"]
+position = Vector2( 71.8405, 356.782 )
+
+[node name="BoxLeftOfTable" parent="YSort/Props/Basement" instance=ExtResource( 87 )]
+position = Vector2( 400.34, 137.331 )
+
+[node name="BookCases" parent="YSort/Props/Basement" instance=ExtResource( 80 )]
+position = Vector2( 292.335, 135.387 )
+
+[node name="TopBoxNextToStairs" parent="YSort/Props/Basement" instance=ExtResource( 77 )]
+position = Vector2( 138.907, 137.194 )
+
+[node name="LowerPipes" parent="YSort/Props/Basement" instance=ExtResource( 79 )]
+position = Vector2( 611.645, 122.244 )
+
+[node name="BasementEntranceDoor" parent="YSort/Props/Basement" instance=ExtResource( 75 )]
+position = Vector2( 78.25, 11.25 )
+
+[node name="Stairs" parent="YSort/Props/Basement" instance=ExtResource( 74 )]
+position = Vector2( 80.2704, 11.4794 )
+
+[node name="MiddleBoxNextToStairs" parent="YSort/Props/Basement" instance=ExtResource( 76 )]
+position = Vector2( 83.8348, 186.776 )
+
+[node name="LeftGreyPipes" parent="YSort/Props/Basement" instance=ExtResource( 78 )]
+position = Vector2( 190.673, 139.201 )
+
+[node name="MiddleBoxNextToStairs2" parent="YSort/Props/Basement" instance=ExtResource( 85 )]
+position = Vector2( 346.815, 138.335 )
+
+[node name="Table" parent="YSort/Props/Basement" instance=ExtResource( 88 )]
+position = Vector2( 449.863, 136.433 )
+
+[node name="MiddlePipes" parent="YSort/Props/Basement" instance=ExtResource( 86 )]
+position = Vector2( 377.088, 136.497 )
+
+[node name="Vent" parent="YSort/Props/Basement" instance=ExtResource( 82 )]
+position = Vector2( 237.757, 80.4408 )
+
+[node name="Power" parent="YSort/Props/Basement" instance=ExtResource( 83 )]
+position = Vector2( -43.087, 121.442 )
+
+[node name="Cheese" parent="YSort/Props/Basement" instance=ExtResource( 84 )]
+position = Vector2( 241.399, 135.39 )
+
+[node name="UpperPipes" parent="YSort/Props/Basement" instance=ExtResource( 81 )]
+position = Vector2( 609.149, 28.8347 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
