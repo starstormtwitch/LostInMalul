@@ -25,7 +25,7 @@ extents = Vector2( 10, 56.6757 )
 script = ExtResource( 5 )
 
 [node name="LevelBackground" type="Sprite" parent="."]
-position = Vector2( 509.181, 251.754 )
+position = Vector2( 509.535, 251.754 )
 texture = ExtResource( 2 )
 centered = false
 offset = Vector2( -509.742, -251.754 )

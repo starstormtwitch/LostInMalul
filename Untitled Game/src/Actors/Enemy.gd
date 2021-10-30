@@ -143,7 +143,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	
 	#knockback/knockup
 	_inAir = true
-	direction.y -= 2
+	direction.y -= 4
 	var knockbackVelocity = getMovement(direction, force, _acceleration)
 	_velocity = move_and_slide(knockbackVelocity)
 	
