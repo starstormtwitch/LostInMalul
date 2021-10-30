@@ -107,20 +107,22 @@ func doSideSwipeAttack():
 	_attackResetTimer.start(COMBOTIME)
 	if _attackPoints == 5:
 		$AnimationTree.get("parameters/playback").travel("SideSwipe1")
+		_attackPoints = _attackPoints - 1
 	elif _attackPoints == 4:
 		$AnimationTree.get("parameters/playback").travel("SideSwipe2")
+		_attackPoints = _attackPoints - 1
 	elif _attackPoints == 3:
 		$AnimationTree.get("parameters/playback").travel("SideSwipeKick")
+		_attackPoints = _attackPoints - 1
 	elif _attackPoints == 2:
 		$AnimationTree.get("parameters/playback").travel("SideSwipe1")
+		_attackPoints = _attackPoints - 1
 	elif _attackPoints == 1:
 		$AnimationTree.get("parameters/playback").travel("SideSwipeKick")
+		_attackPoints = _attackPoints - 1
 	else:
-		_attackResetTimer.stop()
 		_attackPoints = 5
 		_isAttacking = false
-	_attackPoints = _attackPoints - 1
-	
 
 
 #Set value of blend for the next time we we call the animation
