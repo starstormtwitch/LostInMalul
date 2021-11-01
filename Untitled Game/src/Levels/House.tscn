@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=2]
+[gd_scene load_steps=119 format=2]
 
 [ext_resource path="res://src/Actors/Slime.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
@@ -88,6 +88,23 @@
 [ext_resource path="res://src/Props/Basement/MiddlePipes.tscn" type="PackedScene" id=86]
 [ext_resource path="res://src/Props/Basement/BoxLeftOfTable.tscn" type="PackedScene" id=87]
 [ext_resource path="res://src/Props/Basement/Table.tscn" type="PackedScene" id=88]
+[ext_resource path="res://src/Props/Basement/Heater.tscn" type="PackedScene" id=89]
+[ext_resource path="res://src/Props/Basement/BoxRightOfHeater.tscn" type="PackedScene" id=90]
+[ext_resource path="res://src/Props/Basement/ToolRack.tscn" type="PackedScene" id=91]
+[ext_resource path="res://src/Props/Basement/ToolCase.tscn" type="PackedScene" id=92]
+[ext_resource path="res://src/Props/Basement/BoxRightOfGenerator.tscn" type="PackedScene" id=93]
+[ext_resource path="res://src/Props/Basement/Generator.tscn" type="PackedScene" id=94]
+[ext_resource path="res://src/Props/Basement/GiantRightPipe.tscn" type="PackedScene" id=95]
+[ext_resource path="res://src/Props/Basement/DoubleFuel.tscn" type="PackedScene" id=96]
+[ext_resource path="res://src/Props/Basement/SingleFuel.tscn" type="PackedScene" id=97]
+[ext_resource path="res://src/Props/Basement/RightDoublePipes.tscn" type="PackedScene" id=98]
+[ext_resource path="res://src/Props/Basement/BoxUnderMap.tscn" type="PackedScene" id=99]
+[ext_resource path="res://src/Props/Basement/Ladder.tscn" type="PackedScene" id=100]
+[ext_resource path="res://src/Props/Basement/BoxRightOfLadder.tscn" type="PackedScene" id=101]
+[ext_resource path="res://src/Props/Basement/Lights.tscn" type="PackedScene" id=102]
+[ext_resource path="res://src/Props/Basement/GiantPipe.tscn" type="PackedScene" id=103]
+[ext_resource path="res://src/Props/Basement/Map.tscn" type="PackedScene" id=104]
+[ext_resource path="res://src/Props/Basement/CheeseFlag.tscn" type="PackedScene" id=105]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 51.2464, 7.22803 )
@@ -678,17 +695,47 @@ position = Vector2( 71.8405, 356.782 )
 [node name="BoxLeftOfTable" parent="YSort/Props/Basement" instance=ExtResource( 87 )]
 position = Vector2( 400.34, 137.331 )
 
+[node name="Vent3" parent="YSort/Props/Basement" instance=ExtResource( 104 )]
+position = Vector2( 886.824, 96.0658 )
+
+[node name="GiantRightPipe" parent="YSort/Props/Basement" instance=ExtResource( 95 )]
+position = Vector2( 1081.79, 145.13 )
+
+[node name="BoxRightOfHeater" parent="YSort/Props/Basement" instance=ExtResource( 90 )]
+position = Vector2( 548.403, 140.771 )
+
+[node name="ToolRack" parent="YSort/Props/Basement" instance=ExtResource( 91 )]
+position = Vector2( 443.544, 104.285 )
+
+[node name="ToolCase" parent="YSort/Props/Basement" instance=ExtResource( 92 )]
+position = Vector2( 595.594, 133.003 )
+
 [node name="BookCases" parent="YSort/Props/Basement" instance=ExtResource( 80 )]
 position = Vector2( 292.335, 135.387 )
 
 [node name="TopBoxNextToStairs" parent="YSort/Props/Basement" instance=ExtResource( 77 )]
 position = Vector2( 138.907, 137.194 )
 
+[node name="Lights" parent="YSort/Props/Basement" instance=ExtResource( 102 )]
+position = Vector2( 176.861, 171.996 )
+
+[node name="Lights2" parent="YSort/Props/Basement" instance=ExtResource( 102 )]
+position = Vector2( 440.171, 171.996 )
+
+[node name="Lights3" parent="YSort/Props/Basement" instance=ExtResource( 102 )]
+position = Vector2( 732.206, 171.996 )
+
+[node name="Lights4" parent="YSort/Props/Basement" instance=ExtResource( 102 )]
+position = Vector2( 1003.38, 171.996 )
+
 [node name="LowerPipes" parent="YSort/Props/Basement" instance=ExtResource( 79 )]
-position = Vector2( 611.645, 122.244 )
+position = Vector2( 610.615, 122.332 )
 
 [node name="BasementEntranceDoor" parent="YSort/Props/Basement" instance=ExtResource( 75 )]
 position = Vector2( 78.25, 11.25 )
+
+[node name="BoxRightOfLadder" parent="YSort/Props/Basement" instance=ExtResource( 101 )]
+position = Vector2( 1045.42, 140.342 )
 
 [node name="Stairs" parent="YSort/Props/Basement" instance=ExtResource( 74 )]
 position = Vector2( 80.2704, 11.4794 )
@@ -705,17 +752,56 @@ position = Vector2( 346.815, 138.335 )
 [node name="Table" parent="YSort/Props/Basement" instance=ExtResource( 88 )]
 position = Vector2( 449.863, 136.433 )
 
+[node name="Heater" parent="YSort/Props/Basement" instance=ExtResource( 89 )]
+position = Vector2( 511.73, 139.4 )
+
 [node name="MiddlePipes" parent="YSort/Props/Basement" instance=ExtResource( 86 )]
 position = Vector2( 377.088, 136.497 )
 
+[node name="Ladder" parent="YSort/Props/Basement" instance=ExtResource( 100 )]
+position = Vector2( 951.72, 142.569 )
+
+[node name="BoxUnderMap" parent="YSort/Props/Basement" instance=ExtResource( 99 )]
+position = Vector2( 883.552, 131.051 )
+
+[node name="RightDoublePipes" parent="YSort/Props/Basement" instance=ExtResource( 98 )]
+position = Vector2( 828.397, 136.403 )
+
+[node name="BoxRightOfGenerator" parent="YSort/Props/Basement" instance=ExtResource( 93 )]
+position = Vector2( 790.557, 135.031 )
+
+[node name="Generator" parent="YSort/Props/Basement" instance=ExtResource( 94 )]
+position = Vector2( 721.267, 137.358 )
+
+[node name="SingleFuel" parent="YSort/Props/Basement" instance=ExtResource( 97 )]
+position = Vector2( 747.661, 138.849 )
+
+[node name="DoubleFuel" parent="YSort/Props/Basement" instance=ExtResource( 96 )]
+position = Vector2( 666.792, 139.476 )
+
+[node name="GiantPipe" parent="YSort/Props/Basement" instance=ExtResource( 103 )]
+position = Vector2( 637.099, 140.559 )
+
 [node name="Vent" parent="YSort/Props/Basement" instance=ExtResource( 82 )]
 position = Vector2( 237.757, 80.4408 )
+
+[node name="Vent2" parent="YSort/Props/Basement" instance=ExtResource( 82 )]
+position = Vector2( 568.628, 80.2152 )
+
+[node name="CheeseFlag" parent="YSort/Props/Basement" instance=ExtResource( 105 )]
+position = Vector2( 1022.16, 89.718 )
+
+[node name="Vent4" parent="YSort/Props/Basement" instance=ExtResource( 82 )]
+position = Vector2( 961.378, 80.4652 )
 
 [node name="Power" parent="YSort/Props/Basement" instance=ExtResource( 83 )]
 position = Vector2( -43.087, 121.442 )
 
 [node name="Cheese" parent="YSort/Props/Basement" instance=ExtResource( 84 )]
 position = Vector2( 241.399, 135.39 )
+
+[node name="Cheese2" parent="YSort/Props/Basement" instance=ExtResource( 84 )]
+position = Vector2( 1004.4, 141.688 )
 
 [node name="UpperPipes" parent="YSort/Props/Basement" instance=ExtResource( 81 )]
 position = Vector2( 609.149, 28.8347 )
