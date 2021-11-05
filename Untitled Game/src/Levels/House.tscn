@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=2]
+[gd_scene load_steps=123 format=2]
 
 [ext_resource path="res://src/Actors/Slime.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
@@ -70,8 +70,7 @@
 [ext_resource path="res://src/Props/Kitchen/Counter.tscn" type="PackedScene" id=68]
 [ext_resource path="res://src/Props/Kitchen/DiningTable.tscn" type="PackedScene" id=69]
 [ext_resource path="res://src/Props/Kitchen/Island.tscn" type="PackedScene" id=70]
-[ext_resource path="res://src/Props/Kitchen/BottomCounter.tscn" type="PackedScene" id=71]
-[ext_resource path="res://src/Props/Kitchen/Plant.tscn" type="PackedScene" id=72]
+[ext_resource path="res://src/Props/Kitchen/BottomRight.tscn" type="PackedScene" id=71]
 [ext_resource path="res://src/Props/Kitchen/LightSwitch.tscn" type="PackedScene" id=73]
 [ext_resource path="res://src/Props/Basement/Stairs.tscn" type="PackedScene" id=74]
 [ext_resource path="res://src/Props/Basement/BasementEntranceDoor.tscn" type="PackedScene" id=75]
@@ -660,14 +659,11 @@ position = Vector2( 203.133, 160.224 )
 [node name="ChairNextToBasement" parent="YSort/Props/Kitchen" instance=ExtResource( 60 )]
 position = Vector2( 132.229, 196.924 )
 
-[node name="BottomCounter" parent="YSort/Props/Kitchen" instance=ExtResource( 71 )]
-position = Vector2( 565.075, 299.31 )
-
-[node name="Plant" parent="YSort/Props/Kitchen" instance=ExtResource( 72 )]
-position = Vector2( 478.894, 284.076 )
-
 [node name="Chair" parent="YSort/Props/Kitchen" instance=ExtResource( 61 )]
 position = Vector2( 163.341, 188.003 )
+
+[node name="Node2D2" parent="YSort/Props/Kitchen" instance=ExtResource( 71 )]
+position = Vector2( 540.762, 298.707 )
 
 [node name="Door1" parent="YSort/Props/Kitchen" instance=ExtResource( 9 )]
 visible = false
@@ -683,7 +679,7 @@ position = Vector2( 240.382, 191.814 )
 position = Vector2( 313.422, 196.463 )
 
 [node name="Island" parent="YSort/Props/Kitchen" instance=ExtResource( 70 )]
-position = Vector2( 485.568, 230.21 )
+position = Vector2( 447.705, 219.965 )
 
 [node name="DiningTable" parent="YSort/Props/Kitchen" instance=ExtResource( 69 )]
 position = Vector2( 218.654, 237.698 )
