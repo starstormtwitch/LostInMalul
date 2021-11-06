@@ -347,7 +347,6 @@ position = Vector2( 1973.24, 190.455 )
 "Player",
 ] instance=ExtResource( 2 )]
 position = Vector2( 234.523, 251.754 )
-scale = Vector2( 1, 1 )
 
 [node name="Enemy" parent="YSort/Actors" instance=ExtResource( 1 )]
 position = Vector2( 805.512, 215.272 )
