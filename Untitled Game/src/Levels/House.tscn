@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=2]
+[gd_scene load_steps=143 format=2]
 
 [ext_resource path="res://src/Actors/Slime.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
@@ -71,6 +71,7 @@
 [ext_resource path="res://src/Props/Kitchen/DiningTable.tscn" type="PackedScene" id=69]
 [ext_resource path="res://src/Props/Kitchen/Island.tscn" type="PackedScene" id=70]
 [ext_resource path="res://src/Props/Kitchen/BottomRight.tscn" type="PackedScene" id=71]
+[ext_resource path="res://src/Props/LivingRoom/Fireplace.tscn" type="PackedScene" id=72]
 [ext_resource path="res://src/Props/Kitchen/LightSwitch.tscn" type="PackedScene" id=73]
 [ext_resource path="res://src/Props/Basement/Stairs.tscn" type="PackedScene" id=74]
 [ext_resource path="res://src/Props/Basement/BasementEntranceDoor.tscn" type="PackedScene" id=75]
@@ -109,9 +110,26 @@
 [ext_resource path="res://src/Props/Basement/Spot2.tscn" type="PackedScene" id=108]
 [ext_resource path="res://src/Props/Basement/Spot1.tscn" type="PackedScene" id=109]
 [ext_resource path="res://src/Props/Basement/Spot3.tscn" type="PackedScene" id=110]
+[ext_resource path="res://src/Props/LivingRoom/Clock.tscn" type="PackedScene" id=111]
+[ext_resource path="res://src/Props/LivingRoom/Window1.tscn" type="PackedScene" id=112]
+[ext_resource path="res://src/Props/LivingRoom/Window2.tscn" type="PackedScene" id=113]
+[ext_resource path="res://src/Props/LivingRoom/Dresser.tscn" type="PackedScene" id=114]
+[ext_resource path="res://src/Props/LivingRoom/Sofa1.tscn" type="PackedScene" id=115]
+[ext_resource path="res://src/Props/LivingRoom/Sofa2.tscn" type="PackedScene" id=116]
+[ext_resource path="res://src/Props/LivingRoom/Rug.tscn" type="PackedScene" id=117]
+[ext_resource path="res://src/Props/LivingRoom/LongLamp.tscn" type="PackedScene" id=118]
+[ext_resource path="res://src/Props/LivingRoom/Table.tscn" type="PackedScene" id=119]
+[ext_resource path="res://src/Props/LivingRoom/CatBed.tscn" type="PackedScene" id=120]
+[ext_resource path="res://src/Props/LivingRoom/CatTree.tscn" type="PackedScene" id=121]
+[ext_resource path="res://src/Props/LivingRoom/Lamp.tscn" type="PackedScene" id=122]
+[ext_resource path="res://src/Props/LivingRoom/Yarn1.tscn" type="PackedScene" id=123]
+[ext_resource path="res://src/Props/LivingRoom/Yarn2.tscn" type="PackedScene" id=124]
+[ext_resource path="res://src/Props/LivingRoom/Mouse2.tscn" type="PackedScene" id=125]
+[ext_resource path="res://src/Props/LivingRoom/Mouse1.tscn" type="PackedScene" id=126]
+[ext_resource path="res://src/Props/LivingRoom/Mouse3.tscn" type="PackedScene" id=127]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 51.2464, 7.22803 )
+extents = Vector2( 36.5089, 7.22803 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 25.3294, 8.94611 )
@@ -156,6 +174,14 @@ b = Vector2( -66.2954, 70.8334 )
 [sub_resource type="SegmentShape2D" id=13]
 a = Vector2( 465.977, -8.95142 )
 b = Vector2( 526.283, 44.9877 )
+
+[sub_resource type="SegmentShape2D" id=14]
+a = Vector2( -109.369, 227.974 )
+b = Vector2( 3.13098, 116.661 )
+
+[sub_resource type="SegmentShape2D" id=15]
+a = Vector2( 414.052, 108.314 )
+b = Vector2( 537.613, 230.464 )
 
 [node name="House" type="Node2D"]
 script = ExtResource( 19 )
@@ -261,7 +287,7 @@ one_way_collision = true
 position = Vector2( 1093.34, 232.97 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Bedroom_To_StreamingRoom"]
-position = Vector2( 6.73743, -10.6711 )
+position = Vector2( 6.38391, 2.05688 )
 rotation = -1.5708
 shape = SubResource( 1 )
 one_way_collision = true
@@ -315,7 +341,7 @@ one_way_collision = true
 position = Vector2( 2418.63, 287.202 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Livingroom_To_Kitchen"]
-position = Vector2( -0.361084, -40.7356 )
+position = Vector2( -0.549072, -45.0366 )
 rotation = -1.5708
 shape = SubResource( 1 )
 one_way_collision = true
@@ -414,6 +440,15 @@ shape = SubResource( 12 )
 
 [node name="RIghtWall" type="CollisionShape2D" parent="LevelBackground/Boundaries/Kitchen"]
 shape = SubResource( 13 )
+
+[node name="LivingRoom" type="StaticBody2D" parent="LevelBackground/Boundaries"]
+position = Vector2( 1921.75, 69.2884 )
+
+[node name="Left" type="CollisionShape2D" parent="LevelBackground/Boundaries/LivingRoom"]
+shape = SubResource( 14 )
+
+[node name="Right" type="CollisionShape2D" parent="LevelBackground/Boundaries/LivingRoom"]
+shape = SubResource( 15 )
 
 [node name="Teleports" type="Node" parent="LevelBackground"]
 
@@ -633,10 +668,68 @@ visible = false
 position = Vector2( 978.456, 293.485 )
 
 [node name="Livingroom" type="YSort" parent="YSort/Props"]
-visible = false
+position = Vector2( 1818.63, 0 )
 
-[node name="Door1" parent="YSort/Props/Livingroom" instance=ExtResource( 9 )]
-position = Vector2( 1452.45, 293.478 )
+[node name="Mouse1" parent="YSort/Props/Livingroom" instance=ExtResource( 126 )]
+position = Vector2( 444.551, 198.309 )
+
+[node name="Mouse2" parent="YSort/Props/Livingroom" instance=ExtResource( 125 )]
+position = Vector2( 461.412, 205.733 )
+
+[node name="Mouse3" parent="YSort/Props/Livingroom" instance=ExtResource( 127 )]
+position = Vector2( 207.517, 219.706 )
+
+[node name="Yarn1" parent="YSort/Props/Livingroom" instance=ExtResource( 123 )]
+position = Vector2( 490.154, 199.358 )
+
+[node name="Yarn2" parent="YSort/Props/Livingroom" instance=ExtResource( 124 )]
+position = Vector2( 163.544, 208.403 )
+
+[node name="door1" parent="YSort/Props/Livingroom" instance=ExtResource( 10 )]
+position = Vector2( 603.604, 234.875 )
+
+[node name="CatTree" parent="YSort/Props/Livingroom" instance=ExtResource( 121 )]
+position = Vector2( 461.732, 196.483 )
+
+[node name="CatBed" parent="YSort/Props/Livingroom" instance=ExtResource( 120 )]
+position = Vector2( 175.401, 196.805 )
+
+[node name="Lamp" parent="YSort/Props/Livingroom" instance=ExtResource( 122 )]
+position = Vector2( 477.437, 254.5 )
+
+[node name="door2" parent="YSort/Props/Livingroom" instance=ExtResource( 10 )]
+position = Vector2( 14.6997, 240.99 )
+scale = Vector2( -1, 1 )
+
+[node name="Table" parent="YSort/Props/Livingroom" instance=ExtResource( 119 )]
+position = Vector2( 339.408, 253.683 )
+
+[node name="LongLamp" parent="YSort/Props/Livingroom" instance=ExtResource( 118 )]
+position = Vector2( 315.28, 254.597 )
+
+[node name="Rug" parent="YSort/Props/Livingroom" instance=ExtResource( 117 )]
+position = Vector2( 370, 197 )
+
+[node name="Window1" parent="YSort/Props/Livingroom" instance=ExtResource( 112 )]
+position = Vector2( 283.532, 150.108 )
+
+[node name="Window2" parent="YSort/Props/Livingroom" instance=ExtResource( 113 )]
+position = Vector2( 417.578, 150.108 )
+
+[node name="Dresser" parent="YSort/Props/Livingroom" instance=ExtResource( 114 )]
+position = Vector2( 500.273, 183.9 )
+
+[node name="Fireplace" parent="YSort/Props/Livingroom" instance=ExtResource( 72 )]
+position = Vector2( 350.391, 190.03 )
+
+[node name="Sofa1" parent="YSort/Props/Livingroom" instance=ExtResource( 115 )]
+position = Vector2( 415.392, 258.133 )
+
+[node name="Sofa2" parent="YSort/Props/Livingroom" instance=ExtResource( 116 )]
+position = Vector2( 295.929, 229.813 )
+
+[node name="Clock" parent="YSort/Props/Livingroom" instance=ExtResource( 111 )]
+position = Vector2( 351.103, 122.607 )
 
 [node name="Kitchen" type="YSort" parent="YSort/Props"]
 position = Vector2( 2474.16, 0 )
