@@ -1,4 +1,4 @@
-[gd_scene load_steps=143 format=2]
+[gd_scene load_steps=156 format=2]
 
 [ext_resource path="res://src/Actors/Slime.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
@@ -127,6 +127,17 @@
 [ext_resource path="res://src/Props/LivingRoom/Mouse2.tscn" type="PackedScene" id=125]
 [ext_resource path="res://src/Props/LivingRoom/Mouse1.tscn" type="PackedScene" id=126]
 [ext_resource path="res://src/Props/LivingRoom/Mouse3.tscn" type="PackedScene" id=127]
+[ext_resource path="res://src/Props/StreamingRoom/BigCabinet.tscn" type="PackedScene" id=128]
+[ext_resource path="res://src/Props/StreamingRoom/FRPainting.tscn" type="PackedScene" id=129]
+[ext_resource path="res://src/Props/StreamingRoom/Desk.tscn" type="PackedScene" id=130]
+[ext_resource path="res://src/Props/StreamingRoom/Cables.tscn" type="PackedScene" id=131]
+[ext_resource path="res://src/Props/StreamingRoom/ConsoleTable.tscn" type="PackedScene" id=132]
+[ext_resource path="res://src/Props/StreamingRoom/PotatoPainting.tscn" type="PackedScene" id=133]
+[ext_resource path="res://src/Props/StreamingRoom/FallGuysPainting.tscn" type="PackedScene" id=134]
+[ext_resource path="res://src/Props/StreamingRoom/Controller1.tscn" type="PackedScene" id=135]
+[ext_resource path="res://src/Props/StreamingRoom/Controller2.tscn" type="PackedScene" id=136]
+[ext_resource path="res://src/Props/StreamingRoom/Shelves.tscn" type="PackedScene" id=137]
+[ext_resource path="res://src/Props/StreamingRoom/CatBed.tscn" type="PackedScene" id=138]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 36.5089, 7.22803 )
@@ -182,6 +193,14 @@ b = Vector2( 3.13098, 116.661 )
 [sub_resource type="SegmentShape2D" id=15]
 a = Vector2( 414.052, 108.314 )
 b = Vector2( 537.613, 230.464 )
+
+[sub_resource type="SegmentShape2D" id=16]
+a = Vector2( 5.87524, 109.657 )
+b = Vector2( -106.958, 222.489 )
+
+[sub_resource type="SegmentShape2D" id=17]
+a = Vector2( 424.847, 110.532 )
+b = Vector2( 536.476, 222.161 )
 
 [node name="House" type="Node2D"]
 script = ExtResource( 19 )
@@ -450,6 +469,15 @@ shape = SubResource( 14 )
 [node name="Right" type="CollisionShape2D" parent="LevelBackground/Boundaries/LivingRoom"]
 shape = SubResource( 15 )
 
+[node name="StreamingRoom" type="StaticBody2D" parent="LevelBackground/Boundaries"]
+position = Vector2( 1257.65, 74.1624 )
+
+[node name="Left" type="CollisionShape2D" parent="LevelBackground/Boundaries/StreamingRoom"]
+shape = SubResource( 16 )
+
+[node name="Right" type="CollisionShape2D" parent="LevelBackground/Boundaries/StreamingRoom"]
+shape = SubResource( 17 )
+
 [node name="Teleports" type="Node" parent="LevelBackground"]
 
 [node name="Basement_Teleport" type="Position2D" parent="LevelBackground/Teleports"]
@@ -662,10 +690,50 @@ position = Vector2( 655.307, 158.591 )
 position = Vector2( 813.903, 124.759 )
 
 [node name="StreamingRoom" type="YSort" parent="YSort/Props"]
-visible = false
+position = Vector2( 1159.75, 0 )
 
-[node name="Door1" parent="YSort/Props/StreamingRoom" instance=ExtResource( 9 )]
-position = Vector2( 978.456, 293.485 )
+[node name="LightSwitch" parent="YSort/Props/StreamingRoom" instance=ExtResource( 73 )]
+position = Vector2( 579.231, 212.928 )
+
+[node name="RightDoor" parent="YSort/Props/StreamingRoom" instance=ExtResource( 10 )]
+position = Vector2( 601.297, 228.676 )
+
+[node name="LeftDoor" parent="YSort/Props/StreamingRoom" instance=ExtResource( 10 )]
+position = Vector2( 16.3921, 237.54 )
+scale = Vector2( -1, 1 )
+
+[node name="ConsoleTable" parent="YSort/Props/StreamingRoom" instance=ExtResource( 132 )]
+position = Vector2( 170.154, 189.997 )
+
+[node name="CatBed" parent="YSort/Props/StreamingRoom" instance=ExtResource( 138 )]
+position = Vector2( 435.204, 225.397 )
+
+[node name="PotatoPainting" parent="YSort/Props/StreamingRoom" instance=ExtResource( 133 )]
+position = Vector2( 149.838, 141.103 )
+
+[node name="BigCabinet" parent="YSort/Props/StreamingRoom" instance=ExtResource( 128 )]
+position = Vector2( 306.972, 196.209 )
+
+[node name="FRPainting" parent="YSort/Props/StreamingRoom" instance=ExtResource( 129 )]
+position = Vector2( 455.439, 164.16 )
+
+[node name="FallGuysPainting" parent="YSort/Props/StreamingRoom" instance=ExtResource( 134 )]
+position = Vector2( 195.097, 152.473 )
+
+[node name="Desk" parent="YSort/Props/StreamingRoom" instance=ExtResource( 130 )]
+position = Vector2( 347.362, 248.146 )
+
+[node name="Controller1" parent="YSort/Props/StreamingRoom" instance=ExtResource( 135 )]
+position = Vector2( 259.697, 236.088 )
+
+[node name="Controller2" parent="YSort/Props/StreamingRoom" instance=ExtResource( 136 )]
+position = Vector2( 278.702, 249.601 )
+
+[node name="Shelves" parent="YSort/Props/StreamingRoom" instance=ExtResource( 137 )]
+position = Vector2( 555.637, 198.254 )
+
+[node name="Cables" parent="YSort/Props/StreamingRoom" instance=ExtResource( 131 )]
+position = Vector2( 301.489, 179.433 )
 
 [node name="Livingroom" type="YSort" parent="YSort/Props"]
 position = Vector2( 1818.63, 0 )
