@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://src/Actors/LirikYaki.gd" type="Script" id=1]
 [ext_resource path="res://assets/SpriteSheets/mc_spritesheet_v1-Sheet.png" type="Texture" id=2]
@@ -7,7 +7,7 @@
 extents = Vector2( 3.71682, 10.7663 )
 
 [sub_resource type="Animation" id=2]
-length = 0.5
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -27,7 +27,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.4 ),
+"times": PoolRealArray( 0.3 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -213,7 +213,6 @@ animation = "WalkRight"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=15]
 switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=16]
 switch_mode = 2
@@ -234,7 +233,6 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=22]
 switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=23]
 
@@ -249,7 +247,6 @@ switch_mode = 2
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=28]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=29]
 switch_mode = 2
@@ -264,14 +261,28 @@ switch_mode = 2
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=33]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=34]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=35]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=40]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=41]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=42]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=43]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=44]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=45]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=46]
 
 [sub_resource type="AnimationNodeStateMachine" id=36]
 states/Hurt/node = SubResource( 8 )
@@ -286,9 +297,9 @@ states/SideSwipeKick/node = SubResource( 12 )
 states/SideSwipeKick/position = Vector2( 649.246, 347.388 )
 states/Walk/node = SubResource( 13 )
 states/Walk/position = Vector2( 299.246, 66.3882 )
-transitions = [ "Idle", "SideSwipe1", SubResource( 14 ), "SideSwipe1", "Idle", SubResource( 15 ), "SideSwipe1", "SideSwipe2", SubResource( 16 ), "SideSwipe2", "SideSwipe1", SubResource( 17 ), "SideSwipe2", "SideSwipeKick", SubResource( 18 ), "SideSwipe1", "SideSwipeKick", SubResource( 19 ), "SideSwipeKick", "SideSwipe1", SubResource( 20 ), "Idle", "Hurt", SubResource( 21 ), "Hurt", "Idle", SubResource( 22 ), "Idle", "Walk", SubResource( 23 ), "Walk", "Idle", SubResource( 24 ), "Walk", "Hurt", SubResource( 25 ), "Hurt", "Walk", SubResource( 26 ), "SideSwipeKick", "Hurt", SubResource( 27 ), "SideSwipe2", "Hurt", SubResource( 28 ), "SideSwipe1", "Hurt", SubResource( 29 ), "Hurt", "SideSwipe1", SubResource( 30 ), "Hurt", "SideSwipe2", SubResource( 31 ), "Hurt", "SideSwipeKick", SubResource( 32 ), "SideSwipeKick", "Idle", SubResource( 33 ), "SideSwipe2", "Idle", SubResource( 34 ), "Idle", "SideSwipeKick", SubResource( 35 ) ]
+transitions = [ "Idle", "SideSwipe1", SubResource( 14 ), "SideSwipe1", "Idle", SubResource( 15 ), "SideSwipe1", "SideSwipe2", SubResource( 16 ), "SideSwipe2", "SideSwipe1", SubResource( 17 ), "SideSwipe2", "SideSwipeKick", SubResource( 18 ), "SideSwipe1", "SideSwipeKick", SubResource( 19 ), "SideSwipeKick", "SideSwipe1", SubResource( 20 ), "Idle", "Hurt", SubResource( 21 ), "Hurt", "Idle", SubResource( 22 ), "Idle", "Walk", SubResource( 23 ), "Walk", "Idle", SubResource( 24 ), "Walk", "Hurt", SubResource( 25 ), "Hurt", "Walk", SubResource( 26 ), "SideSwipeKick", "Hurt", SubResource( 27 ), "SideSwipe2", "Hurt", SubResource( 28 ), "SideSwipe1", "Hurt", SubResource( 29 ), "Hurt", "SideSwipe1", SubResource( 30 ), "Hurt", "SideSwipe2", SubResource( 31 ), "Hurt", "SideSwipeKick", SubResource( 32 ), "SideSwipeKick", "Idle", SubResource( 33 ), "SideSwipe2", "Idle", SubResource( 34 ), "Idle", "SideSwipeKick", SubResource( 35 ), "SideSwipeKick", "SideSwipe2", SubResource( 40 ), "SideSwipeKick", "Walk", SubResource( 41 ), "SideSwipe2", "Walk", SubResource( 42 ), "SideSwipe1", "Walk", SubResource( 43 ), "Walk", "SideSwipe1", SubResource( 44 ), "Walk", "SideSwipe2", SubResource( 45 ), "Walk", "SideSwipeKick", SubResource( 46 ) ]
 start_node = "Idle"
-graph_offset = Vector2( 146.246, -9.6118 )
+graph_offset = Vector2( 146.246, 26.0876 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=37]
 
@@ -296,7 +307,7 @@ graph_offset = Vector2( 146.246, -9.6118 )
 extents = Vector2( 14.0577, 5.53115 )
 
 [sub_resource type="RectangleShape2D" id=39]
-extents = Vector2( 6.90825, 24.08 )
+extents = Vector2( 10.2453, 24.08 )
 
 [node name="LirikYaki" type="KinematicBody2D"]
 position = Vector2( 0.707108, -1.41422 )
@@ -355,7 +366,7 @@ collision_mask = 0
 
 [node name="sideSwipeRight" type="CollisionShape2D" parent="attack"]
 modulate = Color( 0.6, 0.298039, 1, 1 )
-position = Vector2( 21.1906, 2.50283 )
+position = Vector2( 11.6799, 3.50396 )
 shape = SubResource( 39 )
 disabled = true
 
