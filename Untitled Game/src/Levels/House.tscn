@@ -1,4 +1,4 @@
-[gd_scene load_steps=156 format=2]
+[gd_scene load_steps=172 format=2]
 
 [ext_resource path="res://src/Actors/Slime.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
@@ -138,6 +138,20 @@
 [ext_resource path="res://src/Props/StreamingRoom/Controller2.tscn" type="PackedScene" id=136]
 [ext_resource path="res://src/Props/StreamingRoom/Shelves.tscn" type="PackedScene" id=137]
 [ext_resource path="res://src/Props/StreamingRoom/CatBed.tscn" type="PackedScene" id=138]
+[ext_resource path="res://src/Props/Foyer/Slippers.tscn" type="PackedScene" id=139]
+[ext_resource path="res://src/Props/Foyer/FrontDoor.tscn" type="PackedScene" id=140]
+[ext_resource path="res://src/Props/Foyer/Rug.tscn" type="PackedScene" id=141]
+[ext_resource path="res://src/Props/Foyer/Window.tscn" type="PackedScene" id=142]
+[ext_resource path="res://src/Props/Foyer/ShoeCabinet.tscn" type="PackedScene" id=143]
+[ext_resource path="res://src/Props/Foyer/PlantInCorner.tscn" type="PackedScene" id=144]
+[ext_resource path="res://src/Props/Foyer/Plant.tscn" type="PackedScene" id=145]
+[ext_resource path="res://src/Props/Foyer/Couch.tscn" type="PackedScene" id=146]
+[ext_resource path="res://src/Props/Foyer/Lamp.tscn" type="PackedScene" id=147]
+[ext_resource path="res://src/Props/Foyer/Cat2.tscn" type="PackedScene" id=148]
+[ext_resource path="res://src/Props/Foyer/Cat1.tscn" type="PackedScene" id=149]
+[ext_resource path="res://src/Props/Kitchen/Cabinet.tscn" type="PackedScene" id=150]
+[ext_resource path="res://src/Props/Foyer/BlueCatBed.tscn" type="PackedScene" id=151]
+[ext_resource path="res://src/Props/Foyer/Clock.tscn" type="PackedScene" id=152]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 36.5089, 7.22803 )
@@ -201,6 +215,14 @@ b = Vector2( -106.958, 222.489 )
 [sub_resource type="SegmentShape2D" id=17]
 a = Vector2( 424.847, 110.532 )
 b = Vector2( 536.476, 222.161 )
+
+[sub_resource type="SegmentShape2D" id=18]
+a = Vector2( -18.4714, 95.4507 )
+b = Vector2( -132.14, 209.578 )
+
+[sub_resource type="SegmentShape2D" id=19]
+a = Vector2( 265.118, 96.8658 )
+b = Vector2( 379.397, 211.267 )
 
 [node name="House" type="Node2D"]
 script = ExtResource( 19 )
@@ -369,7 +391,7 @@ one_way_collision = true
 position = Vector2( 3076.04, 233.437 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Kitchen_To_Foyer"]
-position = Vector2( -0.361, -20 )
+position = Vector2( -0.361084, -2.39502 )
 rotation = -1.5708
 shape = SubResource( 1 )
 one_way_collision = true
@@ -477,6 +499,15 @@ shape = SubResource( 16 )
 
 [node name="Right" type="CollisionShape2D" parent="LevelBackground/Boundaries/StreamingRoom"]
 shape = SubResource( 17 )
+
+[node name="Foyer" type="StaticBody2D" parent="LevelBackground/Boundaries"]
+position = Vector2( 3264.4, 88.3407 )
+
+[node name="Left" type="CollisionShape2D" parent="LevelBackground/Boundaries/Foyer"]
+shape = SubResource( 18 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/Boundaries/Foyer"]
+shape = SubResource( 19 )
 
 [node name="Teleports" type="Node" parent="LevelBackground"]
 
@@ -1031,6 +1062,70 @@ position = Vector2( 953.235, 161.915 )
 
 [node name="Spot12" parent="YSort/Props/Basement" instance=ExtResource( 109 )]
 position = Vector2( 1066.73, 219.458 )
+
+[node name="Foyer" type="YSort" parent="YSort/Props"]
+position = Vector2( 3150.02, 0 )
+
+[node name="Cabinet" parent="YSort/Props/Foyer" instance=ExtResource( 150 )]
+position = Vector2( 201.875, 194.811 )
+
+[node name="Cat1" parent="YSort/Props/Foyer" instance=ExtResource( 149 )]
+position = Vector2( 175.759, 153.71 )
+
+[node name="Cat2" parent="YSort/Props/Foyer" instance=ExtResource( 148 )]
+position = Vector2( 230.896, 153.525 )
+
+[node name="Cat3" parent="YSort/Props/Foyer" instance=ExtResource( 148 )]
+position = Vector2( 312.775, 154.34 )
+
+[node name="Node2D" parent="YSort/Props/Foyer" instance=ExtResource( 10 )]
+position = Vector2( 9.27051, 237.027 )
+scale = Vector2( -1, 1 )
+
+[node name="DoorToGarage" parent="YSort/Props/Foyer" instance=ExtResource( 61 )]
+position = Vector2( 137.489, 187.992 )
+
+[node name="Clock" parent="YSort/Props/Foyer" instance=ExtResource( 152 )]
+position = Vector2( 271.5, 148 )
+
+[node name="Plant" parent="YSort/Props/Foyer" instance=ExtResource( 145 )]
+position = Vector2( 468.537, 299.097 )
+
+[node name="Couch" parent="YSort/Props/Foyer" instance=ExtResource( 146 )]
+position = Vector2( 270.809, 196.124 )
+
+[node name="PlantInCorner" parent="YSort/Props/Foyer" instance=ExtResource( 144 )]
+position = Vector2( 371.531, 194.362 )
+
+[node name="Lamp" parent="YSort/Props/Foyer" instance=ExtResource( 147 )]
+position = Vector2( 337.29, 194.963 )
+
+[node name="FrontDoor" parent="YSort/Props/Foyer" instance=ExtResource( 140 )]
+position = Vector2( 444.688, 184.776 )
+
+[node name="Rug" parent="YSort/Props/Foyer" instance=ExtResource( 141 )]
+position = Vector2( 416.317, 251.088 )
+
+[node name="Carpet" parent="YSort/Props/Foyer" instance=ExtResource( 117 )]
+position = Vector2( 297.17, 215.203 )
+
+[node name="Window" parent="YSort/Props/Foyer" instance=ExtResource( 142 )]
+position = Vector2( 417.47, 203.511 )
+
+[node name="ShoeCabinet" parent="YSort/Props/Foyer" instance=ExtResource( 143 )]
+position = Vector2( 409.524, 237.679 )
+
+[node name="Yarn1" parent="YSort/Props/Foyer" instance=ExtResource( 123 )]
+position = Vector2( 101.5, 266.5 )
+
+[node name="Mouse3" parent="YSort/Props/Foyer" instance=ExtResource( 127 )]
+position = Vector2( 141, 273 )
+
+[node name="CatBed" parent="YSort/Props/Foyer" instance=ExtResource( 151 )]
+position = Vector2( 121, 288 )
+
+[node name="Slippers" parent="YSort/Props/Foyer" instance=ExtResource( 139 )]
+position = Vector2( 384.384, 223.881 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
