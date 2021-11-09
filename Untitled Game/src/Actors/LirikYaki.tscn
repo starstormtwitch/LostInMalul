@@ -247,6 +247,7 @@ switch_mode = 2
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=28]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=29]
 switch_mode = 2
@@ -322,7 +323,7 @@ texture = ExtResource( 2 )
 flip_h = true
 hframes = 9
 vframes = 4
-frame = 1
+frame = 3
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -2.42837, -0.854357 )
