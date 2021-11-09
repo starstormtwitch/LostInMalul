@@ -15,8 +15,7 @@ var _attackPoints = 5;
 var _attackResetTimer: Timer = Timer.new()
 
 onready var sprite: Sprite = $Sprite
-onready var leftHitBox: CollisionPolygon2D = $attack/sideSwipeLeft
-onready var rightHitBox: CollisionPolygon2D = $attack/sideSwipeRight
+onready var rightHitBox: CollisionShape2D = $attack/sideSwipeRight
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -91,8 +90,10 @@ func evaluatePlayerInput() -> Vector2:
 		_directionFacing = direction
 	
 	if direction.x < 0:
+		rightHitBox.position.x = -abs(rightHitBox.position.x)
 		sprite.flip_h = true
 	elif direction.x > 0:
+		rightHitBox.position.x = abs(rightHitBox.position.x)
 		sprite.flip_h = false
 	#_setBlendPositions(direction.x)
 	
@@ -113,7 +114,6 @@ func evaluatePlayerInput() -> Vector2:
 func doSideSwipeAttack():
 	_isAttacking = true
 	_attackResetTimer.start(COMBOTIME)
-	_enableCorrectHitBoxes(_directionFacing.x)
 	print("Going to attack with " + String(_attackPoints))
 	if _attackPoints == 5:
 		$AnimationTree.get("parameters/playback").travel("SideSwipe1")
@@ -135,21 +135,6 @@ func doSideSwipeAttack():
 		_isAttacking = false
 
 
-func _enableCorrectHitBoxes(xDirection: float) -> void:
-	if xDirection < 0:
-		leftHitBox.set_deferred("disabled", false)
-		rightHitBox.set_deferred("disabled", true)
-	elif xDirection > 0:
-		leftHitBox.set_deferred("disabled", true)
-		rightHitBox.set_deferred("disabled", false)
-
-#Function to disable hitboxes. have to use set_deffered to guaranty hitboxes are
-# disabled on next physics process. If i dont hitboxes may still be enabled if
-# using normal method
-func _disableAllHitBoxes() -> void:
-	leftHitBox.set_deferred("disabled", true)
-	rightHitBox.set_deferred("disabled", true)
-
 #Set value of blend for the next time we we call the animation
 #Ignore value of 0, since we either arent moving or walking vertically
 func _setBlendPositions(x_direction: float) -> void:
@@ -162,7 +147,6 @@ func _setBlendPositions(x_direction: float) -> void:
 
 func _finishedAttack() -> void:
 	_isAttacking = false
-	_disableAllHitBoxes()
 
 
 func _hurtAnimationFinished() -> void:
