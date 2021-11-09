@@ -2,6 +2,8 @@ extends Actor
 
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
 const COMBOTIME = 1;
+const _LEFT_FACING_SCALE = -1.0
+const _RIGHT_FACING_SCALE = 1.0
 
 var _isAttacking: bool = false
 var _beingHurt: bool = false
@@ -13,6 +15,7 @@ var _attackPoints = 5;
 var _attackResetTimer: Timer = Timer.new()
 
 onready var sprite: Sprite = $Sprite
+onready var rightHitBox: CollisionShape2D = $attack/sideSwipeRight
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -85,8 +88,14 @@ func evaluatePlayerInput() -> Vector2:
 	)
 	if(direction != Vector2.ZERO):
 		_directionFacing = direction
-		
-	_setBlendPositions(direction.x)
+	
+	if direction.x < 0:
+		rightHitBox.position.x = -abs(rightHitBox.position.x)
+		sprite.flip_h = true
+	elif direction.x > 0:
+		rightHitBox.position.x = abs(rightHitBox.position.x)
+		sprite.flip_h = false
+	#_setBlendPositions(direction.x)
 	
 	#check attack inputs
 	if Input.is_action_just_pressed("side_swipe_attack") or Input.is_action_pressed("side_swipe_attack"):
@@ -105,6 +114,7 @@ func evaluatePlayerInput() -> Vector2:
 func doSideSwipeAttack():
 	_isAttacking = true
 	_attackResetTimer.start(COMBOTIME)
+	print("Going to attack with " + String(_attackPoints))
 	if _attackPoints == 5:
 		$AnimationTree.get("parameters/playback").travel("SideSwipe1")
 		_attackPoints = _attackPoints - 1

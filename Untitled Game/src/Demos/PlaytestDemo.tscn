@@ -68,8 +68,7 @@ position = Vector2( 1280.42, 295.973 )
 [node name="LirikYaki" parent="objects/actors" groups=[
 "Player",
 ] instance=ExtResource( 3 )]
-position = Vector2( 264.692, 274.976 )
-scale = Vector2( 1, 1 )
+position = Vector2( 264.692, 274.695 )
 
 [node name="Enemy" parent="objects/actors" instance=ExtResource( 4 )]
 position = Vector2( 510.927, 221.792 )
