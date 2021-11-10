@@ -1,4 +1,4 @@
-[gd_scene load_steps=172 format=2]
+[gd_scene load_steps=202 format=2]
 
 [ext_resource path="res://src/Actors/Slime.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
@@ -152,6 +152,27 @@
 [ext_resource path="res://src/Props/Kitchen/Cabinet.tscn" type="PackedScene" id=150]
 [ext_resource path="res://src/Props/Foyer/BlueCatBed.tscn" type="PackedScene" id=151]
 [ext_resource path="res://src/Props/Foyer/Clock.tscn" type="PackedScene" id=152]
+[ext_resource path="res://src/Props/Garage/Pogorshe.tscn" type="PackedScene" id=153]
+[ext_resource path="res://src/Props/Garage/WaterCleaner.tscn" type="PackedScene" id=154]
+[ext_resource path="res://src/Props/Garage/ToolCabinet.tscn" type="PackedScene" id=155]
+[ext_resource path="res://src/Props/Garage/Tires.tscn" type="PackedScene" id=156]
+[ext_resource path="res://src/Props/Garage/SmallTools.tscn" type="PackedScene" id=157]
+[ext_resource path="res://src/Props/Garage/Audi.tscn" type="PackedScene" id=158]
+[ext_resource path="res://src/Props/Garage/ToolWorkshop.tscn" type="PackedScene" id=159]
+[ext_resource path="res://src/Props/Garage/Shelves.tscn" type="PackedScene" id=160]
+[ext_resource path="res://src/Props/Garage/BoxesAtRight.tscn" type="PackedScene" id=161]
+[ext_resource path="res://src/Props/Garage/GarageDoor.tscn" type="PackedScene" id=162]
+[ext_resource path="res://src/Props/Garage/BoxesNextToDoor.tscn" type="PackedScene" id=163]
+[ext_resource path="res://src/Props/Garage/Color.tscn" type="PackedScene" id=164]
+[ext_resource path="res://src/Props/Garage/Firehydrant.tscn" type="PackedScene" id=165]
+[ext_resource path="res://src/Props/Garage/Gas.tscn" type="PackedScene" id=166]
+[ext_resource path="res://src/Props/Garage/LeftShelves.tscn" type="PackedScene" id=167]
+[ext_resource path="res://src/Props/Garage/Table.tscn" type="PackedScene" id=168]
+[ext_resource path="res://src/Props/Garage/Trash.tscn" type="PackedScene" id=169]
+[ext_resource path="res://src/Props/Garage/Lawnmower.tscn" type="PackedScene" id=170]
+[ext_resource path="res://src/Props/Garage/Spot1.tscn" type="PackedScene" id=171]
+[ext_resource path="res://src/Props/Garage/Spot3.tscn" type="PackedScene" id=172]
+[ext_resource path="res://src/Props/Garage/Spot2.tscn" type="PackedScene" id=173]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 36.5089, 7.22803 )
@@ -164,6 +185,9 @@ extents = Vector2( 16.1947, 5.43341 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 16.9334, 5.61752 )
+
+[sub_resource type="RectangleShape2D" id=28]
+extents = Vector2( 19.1467, 7.46371 )
 
 [sub_resource type="SegmentShape2D" id=5]
 a = Vector2( -474.143, 0.37738 )
@@ -223,6 +247,38 @@ b = Vector2( -132.14, 209.578 )
 [sub_resource type="SegmentShape2D" id=19]
 a = Vector2( 265.118, 96.8658 )
 b = Vector2( 379.397, 211.267 )
+
+[sub_resource type="SegmentShape2D" id=20]
+a = Vector2( -399.114, 196.919 )
+b = Vector2( -287.535, 82.7866 )
+
+[sub_resource type="SegmentShape2D" id=21]
+a = Vector2( 423.631, 195.137 )
+b = Vector2( 308.102, 79.9708 )
+
+[sub_resource type="SegmentShape2D" id=22]
+a = Vector2( -289.054, 81.8366 )
+b = Vector2( 310.076, 82.1077 )
+
+[sub_resource type="SegmentShape2D" id=23]
+a = Vector2( -398.034, 199.417 )
+b = Vector2( 427.967, 198.604 )
+
+[sub_resource type="SegmentShape2D" id=24]
+a = Vector2( -220.139, 169.62 )
+b = Vector2( -255.975, 205.758 )
+
+[sub_resource type="SegmentShape2D" id=25]
+a = Vector2( -79.9308, 92.0679 )
+b = Vector2( 899.808, 91.8126 )
+
+[sub_resource type="SegmentShape2D" id=26]
+a = Vector2( 900.856, 91.7268 )
+b = Vector2( 1014.24, 206.202 )
+
+[sub_resource type="SegmentShape2D" id=27]
+a = Vector2( -256.938, 208.497 )
+b = Vector2( 1016.59, 208.444 )
 
 [node name="House" type="Node2D"]
 script = ExtResource( 19 )
@@ -294,6 +350,15 @@ position = Vector2( -138.66, -45.2442 )
 
 [node name="BottomRight" parent="LevelBackground/CameraPositions/Foyer_Delimiter" index="1"]
 position = Vector2( 368.367, 235.044 )
+
+[node name="Garage_Delimiter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
+position = Vector2( 3085.45, 363.256 )
+
+[node name="TopLeft" parent="LevelBackground/CameraPositions/Garage_Delimiter" index="0"]
+position = Vector2( -266.066, -46.0703 )
+
+[node name="BottomRight" parent="LevelBackground/CameraPositions/Garage_Delimiter" index="1"]
+position = Vector2( 554.782, 234.572 )
 
 [node name="Basement_Delimeter" type="Node2D" parent="LevelBackground/CameraPositions"]
 script = ExtResource( 26 )
@@ -423,6 +488,32 @@ texture = ExtResource( 25 )
 position = Vector2( 1.25993, -0.629944 )
 shape = SubResource( 4 )
 
+[node name="Foyer_To_Garage" type="Area2D" parent="LevelBackground/AreaTransitions"]
+position = Vector2( 3286.78, 197.171 )
+script = ExtResource( 22 )
+
+[node name="F_Prompt" type="Sprite" parent="LevelBackground/AreaTransitions/Foyer_To_Garage"]
+visible = false
+position = Vector2( -0.500547, -82.9087 )
+texture = ExtResource( 25 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Foyer_To_Garage"]
+position = Vector2( 0.500732, -1.50171 )
+shape = SubResource( 28 )
+
+[node name="Garage_To_Foyer" type="Area2D" parent="LevelBackground/AreaTransitions"]
+position = Vector2( 3044.39, 493.805 )
+script = ExtResource( 22 )
+
+[node name="F_Prompt" type="Sprite" parent="LevelBackground/AreaTransitions/Garage_To_Foyer"]
+visible = false
+position = Vector2( -0.500547, -82.9087 )
+texture = ExtResource( 25 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/AreaTransitions/Garage_To_Foyer"]
+position = Vector2( 0.500732, -1.50171 )
+shape = SubResource( 28 )
+
 [node name="Boundaries" type="Node" parent="LevelBackground"]
 
 [node name="Universal" type="StaticBody2D" parent="LevelBackground/Boundaries"]
@@ -509,6 +600,36 @@ shape = SubResource( 18 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/Boundaries/Foyer"]
 shape = SubResource( 19 )
 
+[node name="Garage" type="StaticBody2D" parent="LevelBackground/Boundaries"]
+position = Vector2( 3216.99, 400.452 )
+
+[node name="Left" type="CollisionShape2D" parent="LevelBackground/Boundaries/Garage"]
+shape = SubResource( 20 )
+
+[node name="Right" type="CollisionShape2D" parent="LevelBackground/Boundaries/Garage"]
+shape = SubResource( 21 )
+
+[node name="Top" type="CollisionShape2D" parent="LevelBackground/Boundaries/Garage"]
+shape = SubResource( 22 )
+
+[node name="Bottom" type="CollisionShape2D" parent="LevelBackground/Boundaries/Garage"]
+shape = SubResource( 23 )
+
+[node name="Basement" type="StaticBody2D" parent="LevelBackground/Boundaries"]
+position = Vector2( 265.644, 389.773 )
+
+[node name="Left" type="CollisionShape2D" parent="LevelBackground/Boundaries/Basement"]
+shape = SubResource( 24 )
+
+[node name="Top" type="CollisionShape2D" parent="LevelBackground/Boundaries/Basement"]
+shape = SubResource( 25 )
+
+[node name="Right" type="CollisionShape2D" parent="LevelBackground/Boundaries/Basement"]
+shape = SubResource( 26 )
+
+[node name="Bottom" type="CollisionShape2D" parent="LevelBackground/Boundaries/Basement"]
+shape = SubResource( 27 )
+
 [node name="Teleports" type="Node" parent="LevelBackground"]
 
 [node name="Basement_Teleport" type="Position2D" parent="LevelBackground/Teleports"]
@@ -546,6 +667,12 @@ position = Vector2( 3041.49, 255.639 )
 
 [node name="Foyer_Entrance_Teleport" type="Position2D" parent="LevelBackground/Teleports"]
 position = Vector2( 3185.06, 259.675 )
+
+[node name="Foyer_Garage_Door_Teleport" type="Position2D" parent="LevelBackground/Teleports"]
+position = Vector2( 3286.77, 196.902 )
+
+[node name="Garage_Teleport" type="Position2D" parent="LevelBackground/Teleports"]
+position = Vector2( 3042.36, 494.073 )
 
 [node name="YSort" type="YSort" parent="."]
 
@@ -1127,6 +1254,93 @@ position = Vector2( 121, 288 )
 [node name="Slippers" parent="YSort/Props/Foyer" instance=ExtResource( 139 )]
 position = Vector2( 384.384, 223.881 )
 
+[node name="Garage" type="YSort" parent="YSort/Props"]
+position = Vector2( 2952.64, 356.782 )
+
+[node name="LeftShelves" parent="YSort/Props/Garage" instance=ExtResource( 167 )]
+position = Vector2( -34.2947, 152.028 )
+
+[node name="Lawnmower" parent="YSort/Props/Garage" instance=ExtResource( 170 )]
+position = Vector2( -20.4907, 233.861 )
+
+[node name="Trash" parent="YSort/Props/Garage" instance=ExtResource( 169 )]
+position = Vector2( -85.7715, 234.61 )
+
+[node name="Gas" parent="YSort/Props/Garage" instance=ExtResource( 166 )]
+position = Vector2( -76.7212, 205.061 )
+
+[node name="Table" parent="YSort/Props/Garage" instance=ExtResource( 168 )]
+position = Vector2( -60.811, 174.655 )
+
+[node name="Pogorshe2" parent="YSort/Props/Garage" instance=ExtResource( 164 )]
+position = Vector2( 46.4314, 94.0535 )
+
+[node name="Firehydrant" parent="YSort/Props/Garage" instance=ExtResource( 165 )]
+position = Vector2( 14.8306, 134.412 )
+
+[node name="ToolWorkshop" parent="YSort/Props/Garage" instance=ExtResource( 159 )]
+position = Vector2( 450.356, 137.402 )
+
+[node name="BoxesNextToDoor" parent="YSort/Props/Garage" instance=ExtResource( 163 )]
+position = Vector2( 44.4995, 138.674 )
+
+[node name="GarageDoor" parent="YSort/Props/Garage" instance=ExtResource( 162 )]
+position = Vector2( 593.291, 59.9244 )
+
+[node name="BoxesAtRight" parent="YSort/Props/Garage" instance=ExtResource( 161 )]
+position = Vector2( 555.124, 136.938 )
+
+[node name="Shelves" parent="YSort/Props/Garage" instance=ExtResource( 160 )]
+position = Vector2( 505.649, 135.478 )
+
+[node name="Pogorshe" parent="YSort/Props/Garage" instance=ExtResource( 153 )]
+position = Vector2( 167.189, 91.1028 )
+
+[node name="Audi" parent="YSort/Props/Garage" instance=ExtResource( 158 )]
+position = Vector2( 443.662, 84.0597 )
+
+[node name="SmallTools" parent="YSort/Props/Garage" instance=ExtResource( 157 )]
+position = Vector2( 396.718, 137.162 )
+
+[node name="Tires" parent="YSort/Props/Garage" instance=ExtResource( 156 )]
+position = Vector2( 193.218, 137.154 )
+
+[node name="ToolCabinet" parent="YSort/Props/Garage" instance=ExtResource( 155 )]
+position = Vector2( 293.998, 135.113 )
+
+[node name="WaterCleaner" parent="YSort/Props/Garage" instance=ExtResource( 154 )]
+position = Vector2( 135.82, 139.825 )
+
+[node name="Spot1" parent="YSort/Props/Garage" instance=ExtResource( 171 )]
+position = Vector2( 21.8271, 152.789 )
+
+[node name="Spot2" parent="YSort/Props/Garage" instance=ExtResource( 173 )]
+position = Vector2( 101.117, 195.998 )
+
+[node name="Spot3" parent="YSort/Props/Garage" instance=ExtResource( 172 )]
+position = Vector2( 119.381, 151.898 )
+
+[node name="Spot4" parent="YSort/Props/Garage" instance=ExtResource( 171 )]
+position = Vector2( 246.779, 217.825 )
+
+[node name="Spot5" parent="YSort/Props/Garage" instance=ExtResource( 173 )]
+position = Vector2( 305.133, 155.016 )
+
+[node name="Spot6" parent="YSort/Props/Garage" instance=ExtResource( 172 )]
+position = Vector2( 375.068, 212.034 )
+
+[node name="Spot7" parent="YSort/Props/Garage" instance=ExtResource( 171 )]
+position = Vector2( 506, 154.5 )
+
+[node name="Spot8" parent="YSort/Props/Garage" instance=ExtResource( 173 )]
+position = Vector2( 511, 209 )
+
+[node name="Spot9" parent="YSort/Props/Garage" instance=ExtResource( 172 )]
+position = Vector2( 592, 181.5 )
+
+[node name="BasementDoor" parent="YSort/Props/Garage" instance=ExtResource( 61 )]
+position = Vector2( 91.9744, 128.276 )
+
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="GUI"]
@@ -1178,6 +1392,10 @@ margin_bottom = 53.0
 [connection signal="body_exited" from="LevelBackground/AreaTransitions/Kitchen_To_Basement" to="LevelBackground/AreaTransitions/Kitchen_To_Basement" method="_hide_prompt_if_player_leaves_body"]
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Basement_To_Kitchen" to="LevelBackground/AreaTransitions/Basement_To_Kitchen" method="_show_prompt_if_player_within_body"]
 [connection signal="body_exited" from="LevelBackground/AreaTransitions/Basement_To_Kitchen" to="LevelBackground/AreaTransitions/Basement_To_Kitchen" method="_hide_prompt_if_player_leaves_body"]
+[connection signal="body_entered" from="LevelBackground/AreaTransitions/Foyer_To_Garage" to="LevelBackground/AreaTransitions/Foyer_To_Garage" method="_show_prompt_if_player_within_body"]
+[connection signal="body_exited" from="LevelBackground/AreaTransitions/Foyer_To_Garage" to="LevelBackground/AreaTransitions/Foyer_To_Garage" method="_hide_prompt_if_player_leaves_body"]
+[connection signal="body_entered" from="LevelBackground/AreaTransitions/Garage_To_Foyer" to="LevelBackground/AreaTransitions/Garage_To_Foyer" method="_show_prompt_if_player_within_body"]
+[connection signal="body_exited" from="LevelBackground/AreaTransitions/Garage_To_Foyer" to="LevelBackground/AreaTransitions/Garage_To_Foyer" method="_hide_prompt_if_player_leaves_body"]
 [connection signal="screen_entered" from="YSort/Actors/Enemy/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 
 [editable path="LevelBackground/CameraPositions/Bathroom_Delimiter"]
@@ -1186,3 +1404,4 @@ margin_bottom = 53.0
 [editable path="LevelBackground/CameraPositions/LivingRoom_Delimiter"]
 [editable path="LevelBackground/CameraPositions/Kitchen_Delimiter"]
 [editable path="LevelBackground/CameraPositions/Foyer_Delimiter"]
+[editable path="LevelBackground/CameraPositions/Garage_Delimiter"]

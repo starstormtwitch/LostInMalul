@@ -6,13 +6,14 @@ onready var cameraManager: CustomCamera2D
 
 const _INTERACT_EVENT = "interact"
 
-onready var _cam_Delimiter_Bathroom = get_node("LevelBackground/CameraPositions/Bathroom_Delimiter")
-onready var _cam_Delimiter_Bedroom = get_node("LevelBackground/CameraPositions/Bedroom_Delimiter")
-onready var _cam_Delimiter_StreamingRooom = get_node("LevelBackground/CameraPositions/StreamingRoom_Delimiter")
-onready var _cam_Delimiter_LivingRoom = get_node("LevelBackground/CameraPositions/LivingRoom_Delimiter")
-onready var _cam_Delimiter_Kitchen = get_node("LevelBackground/CameraPositions/Kitchen_Delimiter")
-onready var _cam_Delimiter_Basement = get_node("LevelBackground/CameraPositions/Basement_Delimeter")
-onready var _cam_Delimiter_Foyer = get_node("LevelBackground/CameraPositions/Foyer_Delimiter")
+onready var _cam_Delimiter_Bathroom: CustomDelimiter2D = get_node("LevelBackground/CameraPositions/Bathroom_Delimiter")
+onready var _cam_Delimiter_Bedroom: CustomDelimiter2D = get_node("LevelBackground/CameraPositions/Bedroom_Delimiter")
+onready var _cam_Delimiter_StreamingRooom: CustomDelimiter2D = get_node("LevelBackground/CameraPositions/StreamingRoom_Delimiter")
+onready var _cam_Delimiter_LivingRoom: CustomDelimiter2D = get_node("LevelBackground/CameraPositions/LivingRoom_Delimiter")
+onready var _cam_Delimiter_Kitchen: CustomDelimiter2D = get_node("LevelBackground/CameraPositions/Kitchen_Delimiter")
+onready var _cam_Delimiter_Basement: CustomDelimiter2D = get_node("LevelBackground/CameraPositions/Basement_Delimeter")
+onready var _cam_Delimiter_Foyer: CustomDelimiter2D = get_node("LevelBackground/CameraPositions/Foyer_Delimiter")
+onready var _cam_Delimiter_Garage: CustomDelimiter2D = get_node("LevelBackground/CameraPositions/Garage_Delimiter")
 
 onready var _teleport_Basement: Position2D = get_node("LevelBackground/Teleports/Basement_Teleport")
 onready var _teleport_Bathroom: Position2D = get_node("LevelBackground/Teleports/Bathroom_Exit_Teleport")
@@ -26,9 +27,13 @@ onready var _teleport_LivingRoom_Exit: Position2D = get_node("LevelBackground/Te
 onready var _teleport_Kitchen_Entrance: Position2D = get_node("LevelBackground/Teleports/Kitchen_Entrance_Teleport")
 onready var _teleport_Kitchen_Exit: Position2D = get_node("LevelBackground/Teleports/Kitchen_Exit_Teleport")
 onready var _teleport_Foyer_Entrance: Position2D = get_node("LevelBackground/Teleports/Foyer_Entrance_Teleport")
+onready var _teleport_Foyer_Garage_Door: Position2D = get_node("LevelBackground/Teleports/Foyer_Garage_Door_Teleport")
+onready var _teleport_Garage_Entrance: Position2D = get_node("LevelBackground/Teleports/Garage_Teleport")
 
 onready var _kitchen_Teleport_Area: Area2D = get_node("LevelBackground/AreaTransitions/Kitchen_To_Basement")
 onready var _basement_Teleport_Area: Area2D = get_node("LevelBackground/AreaTransitions/Basement_To_Kitchen")
+onready var _foyer_Teleport_Area: Area2D = get_node("LevelBackground/AreaTransitions/Foyer_To_Garage")
+onready var _garage_Teleport_Area: Area2D = get_node("LevelBackground/AreaTransitions/Garage_To_Foyer")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -63,6 +68,10 @@ func _handleInteractEvent() -> void:
 		setCameraToBasement()
 	elif _basement_Teleport_Area.overlaps_body(_player):
 		setCameraToKitchenTeleport()
+	elif _foyer_Teleport_Area.overlaps_body(_player):
+		setCameraToGarage()
+	elif _garage_Teleport_Area.overlaps_body(_player):
+		setCameraToFoyerTeleport()
 
 func _on_VisibilityNotifier2D_screen_entered():
 	pass
@@ -144,3 +153,11 @@ func setCameraToBasement() -> void:
 func setCameraToKitchenTeleport() -> void:
 	setCameraToKitchen()
 	_player.position = _teleport_Kitchen_Basement_Door.position
+
+func setCameraToGarage() -> void:
+	cameraManager.limitCameraToDelimiter(_cam_Delimiter_Garage)
+	_player.position = _teleport_Garage_Entrance.position
+
+func setCameraToFoyerTeleport() -> void:
+	setCameraToFoyer()
+	_player.position = _teleport_Foyer_Garage_Door.position
