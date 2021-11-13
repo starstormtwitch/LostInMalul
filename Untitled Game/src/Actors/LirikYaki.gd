@@ -1,6 +1,7 @@
 extends Actor
 
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
+const _JUMP_EVENT = "Jump"
 
 var _isAttacking: bool = false
 var _beingHurt: bool = false

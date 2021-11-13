@@ -169,7 +169,8 @@ states/jump_attack/node = SubResource( 8 )
 states/jump_attack/position = Vector2( 581, 168 )
 transitions = [ "idle", "hurt", SubResource( 9 ), "hurt", "idle", SubResource( 10 ), "hurt", "die", SubResource( 11 ), "die", "hurt", SubResource( 12 ), "idle", "die", SubResource( 13 ), "die", "idle", SubResource( 14 ), "hurt", "jump_attack", SubResource( 15 ), "jump_attack", "idle", SubResource( 16 ), "idle", "jump_attack", SubResource( 17 ), "jump_attack", "die", SubResource( 18 ), "jump_attack", "hurt", SubResource( 19 ), "die", "jump_attack", SubResource( 20 ) ]
 start_node = "idle"
-graph_offset = Vector2( -100.741, 0 )
+end_node = "die"
+graph_offset = Vector2( -81.741, -28 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=22]
 
@@ -196,14 +197,13 @@ collision_mask = 5
 script = ExtResource( 2 )
 
 [node name="enemy" type="Sprite" parent="."]
-position = Vector2( 3.93391, -19.2297 )
+position = Vector2( 4.28746, -34.079 )
 scale = Vector2( 2, 2 )
 z_as_relative = false
 texture = ExtResource( 1 )
 offset = Vector2( 0, -15 )
 hframes = 13
 vframes = 4
-frame = 39
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/die = SubResource( 1 )
@@ -214,12 +214,13 @@ anims/jump_attack = SubResource( 4 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 21 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/playback = SubResource( 22 )
 
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
 ]]
-position = Vector2( 1.5, -4.25 )
+position = Vector2( 1.85355, -19.0993 )
 collision_layer = 16384
 collision_mask = 16
 
@@ -227,10 +228,11 @@ collision_mask = 16
 shape = SubResource( 23 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1.5, -4.25 )
+position = Vector2( 1.85355, -19.0993 )
 shape = SubResource( 24 )
 
 [node name="Sight" type="RayCast2D" parent="."]
+position = Vector2( 0.353554, -14.8493 )
 enabled = true
 cast_to = Vector2( 0, 100 )
 collide_with_bodies = false
@@ -238,7 +240,7 @@ collide_with_bodies = false
 [node name="FlockBox" type="Area2D" parent="." groups=[
 "enemy",
 ]]
-position = Vector2( -0.25, 0 )
+position = Vector2( 0.103554, -14.8493 )
 collision_layer = 262144
 collision_mask = 262144
 
@@ -248,6 +250,7 @@ shape = SubResource( 25 )
 
 [node name="Attack" type="Area2D" parent="."]
 modulate = Color( 0.431373, 1, 0, 1 )
+position = Vector2( 0.353554, -14.8493 )
 collision_layer = 4096
 collision_mask = 0
 
