@@ -2,7 +2,7 @@ extends Actor
 class_name Enemy
 
 #Enemy properties
-var _seperation_distance = 50
+var _seperation_distance = 20
 var _attack_range = 20
 var _initial_attack_cooldown = .5 #in seconds
 var _stun_duration = 50 #in seconds
@@ -91,11 +91,11 @@ func _flock_direction(direction: Vector2):
 	for flockmate in _flock:
 		if is_instance_valid(flockmate):
 			var distanceFromFlockMate = self.position.distance_to(flockmate.position)
-			if distanceFromFlockMate == 0:
-				distanceFromFlockMate = 1
+			if distanceFromFlockMate < 1:
+				distanceFromFlockMate = rand_range(-8,8)
 				
 			if distanceFromFlockMate < _seperation_distance:
-				separation -= (flockmate.position - self.position).normalized() * (_seperation_distance / distanceFromFlockMate * ((_velocity.x + _velocity.y) / 2))
+				separation -= (flockmate.position - self.position).normalized() * (_seperation_distance / distanceFromFlockMate * _speed)
 	return (direction + separation * .5)
 	
 func try_chase() -> Vector2:
@@ -143,7 +143,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	
 	#knockback/knockup
 	_inAir = true
-	direction.y -= 2
+	direction.y -= 4
 	var knockbackVelocity = getMovement(direction, force, _acceleration)
 	_velocity = move_and_slide(knockbackVelocity)
 	

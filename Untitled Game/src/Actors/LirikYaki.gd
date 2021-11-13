@@ -2,6 +2,9 @@ extends Actor
 
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
 const _JUMP_EVENT = "Jump"
+const COMBOTIME = 1;
+const _LEFT_FACING_SCALE = -1.0
+const _RIGHT_FACING_SCALE = 1.0
 
 var _isAttacking: bool = false
 var _beingHurt: bool = false
@@ -9,14 +12,22 @@ var _canTakeDamage: bool = false
 var _directionFacing: Vector2 = Vector2.ZERO
 var _trail = []
 var _invincibilityTimer: Timer = Timer.new()
+var _attackPoints = 5;
+var _attackResetTimer: Timer = Timer.new()
 
 onready var sprite: Sprite = $Sprite
+onready var rightHitBox: CollisionShape2D = $attack/sideSwipeRight
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_invincibilityTimer.connect("timeout",self,"_on_invincibility_timeout") 
 	_invincibilityTimer.one_shot = true
 	add_child(_invincibilityTimer)
+	
+	_attackResetTimer.connect("timeout",self,"_on_combo_timeout") 
+	_attackResetTimer.one_shot = true
+	add_child(_attackResetTimer)
+	
 	_invincibilityTimer.start(3)
 	
 	_maxHealth = 10
@@ -45,6 +56,10 @@ func _physics_process(_delta: float) -> void:
 func _on_invincibility_timeout() -> void:
 	self.modulate = Color(1,1,1,1)
 	_canTakeDamage = true
+	
+	
+func _on_combo_timeout() -> void:
+	_attackPoints = 5
 
 
 func add_trail() -> void:
@@ -74,13 +89,18 @@ func evaluatePlayerInput() -> Vector2:
 	)
 	if(direction != Vector2.ZERO):
 		_directionFacing = direction
-		
-	_setBlendPositions(direction.x)
+	
+	if direction.x < 0:
+		rightHitBox.position.x = -abs(rightHitBox.position.x)
+		sprite.flip_h = true
+	elif direction.x > 0:
+		rightHitBox.position.x = abs(rightHitBox.position.x)
+		sprite.flip_h = false
+	#_setBlendPositions(direction.x)
 	
 	#check attack inputs
 	if Input.is_action_just_pressed("side_swipe_attack") or Input.is_action_pressed("side_swipe_attack"):
-		$AnimationTree.get("parameters/playback").travel("SideSwipe")
-		_isAttacking = true
+		doSideSwipeAttack()
 		return Vector2.ZERO
 		
 	#set animation for direction and return for movement
@@ -91,6 +111,30 @@ func evaluatePlayerInput() -> Vector2:
 			$AnimationTree.get("parameters/playback").travel("Walk")
 	
 	return direction
+	
+func doSideSwipeAttack():
+	_isAttacking = true
+	_attackResetTimer.start(COMBOTIME)
+	print("Going to attack with " + String(_attackPoints))
+	if _attackPoints == 5:
+		$AnimationTree.get("parameters/playback").travel("SideSwipe1")
+		_attackPoints = _attackPoints - 1
+	elif _attackPoints == 4:
+		$AnimationTree.get("parameters/playback").travel("SideSwipe2")
+		_attackPoints = _attackPoints - 1
+	elif _attackPoints == 3:
+		$AnimationTree.get("parameters/playback").travel("SideSwipeKick")
+		_attackPoints = _attackPoints - 1
+	elif _attackPoints == 2:
+		$AnimationTree.get("parameters/playback").travel("SideSwipe1")
+		_attackPoints = _attackPoints - 1
+	elif _attackPoints == 1:
+		$AnimationTree.get("parameters/playback").travel("SideSwipeKick")
+		_attackPoints = _attackPoints - 1
+	else:
+		_attackPoints = 5
+		_isAttacking = false
+
 
 #Set value of blend for the next time we we call the animation
 #Ignore value of 0, since we either arent moving or walking vertically
