@@ -21,10 +21,8 @@ func _ready():
 func getMovement(direction: Vector2, speed: float, acceleration: float) -> Vector2:
 	var targetVelocity = (direction.normalized() * speed);
 	
-	
 	var verticalAcceleration = acceleration
 	var horizontalAcceleration = acceleration
-	
 	
 	#max target velocity is 5000, modify acceleration instead on higher force targets
 	if(targetVelocity.x > MAXVELOCITY || targetVelocity.y > MAXVELOCITY 

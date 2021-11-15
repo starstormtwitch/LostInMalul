@@ -19,7 +19,7 @@ func _init(kinematicBody: KinematicBody2D):
 
 func _physics_process(delta):
 	if _isJumping:
-		velocity.y -= _GRAVITY
+		velocity.y += _GRAVITY
 
 func jump(): 
 	if !_isJumping:
