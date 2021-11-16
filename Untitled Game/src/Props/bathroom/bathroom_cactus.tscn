@@ -6,7 +6,7 @@
 radius = 7.37622
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 4.98703, 4.94997 )
+extents = Vector2( 4.98703, 4.88327 )
 
 [node name="Node2D" type="Node2D"]
 
@@ -20,5 +20,5 @@ position = Vector2( -0.561232, 11.2246 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite/StaticBody2D"]
-position = Vector2( -0.420925, 0 )
+position = Vector2( -0.526035, 1.78691 )
 shape = SubResource( 2 )
