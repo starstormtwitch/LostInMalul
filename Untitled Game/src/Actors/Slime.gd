@@ -2,7 +2,7 @@ extends Enemy
 
 const _GRAVITY = 10
 const _JUMPFORCE = -160
-const _JUMP_SPEED = 40
+const _JUMP_SPEED = 60
 
 var _jumpVelocity = Vector2()
 var _jumpDirection = Vector2()
@@ -31,12 +31,12 @@ func _ready():
 
 
 func _handleJumpPhysics():
-	_jumpVelocity.y += _GRAVITY
+	#_jumpVelocity.y += _GRAVITY
 	_velocity = move_and_slide(_jumpVelocity)
 
 func _on_jump_attack():
 	_isJumping = true
-	_jumpVelocity.y = _JUMPFORCE
+	#_jumpVelocity.y = _JUMPFORCE
 	var targetDirection = get_target_direction()
 	_jumpVelocity.x = targetDirection.x * _JUMP_SPEED
 	_velocity = move_and_slide(_jumpVelocity)
