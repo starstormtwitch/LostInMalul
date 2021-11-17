@@ -1,6 +1,7 @@
 extends Actor
 
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
+const _JUMP_EVENT = "Jump"
 const COMBOTIME = 1;
 const _LEFT_FACING_SCALE = -1.0
 const _RIGHT_FACING_SCALE = 1.0
