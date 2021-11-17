@@ -74,7 +74,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if _canTakeDamage:
 		_canTakeDamage = false
 		_beingHurt = true
-		print("play hurt animation")
+		#print("play hurt animation")
 		$AnimationTree.get("parameters/playback").travel("Hurt")
 		_invincibilityTimer.start(2)
 		.take_damage(damage, direction, force)
@@ -150,10 +150,15 @@ func _finishedAttack() -> void:
 
 
 func _hurtAnimationFinished() -> void:
-	print("hurt animation done")
+	#print("hurt animation done")
 	_beingHurt = false
 
 
 func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
 		area.get_parent().take_damage(1, _directionFacing, 50000)
+
+
+func sendPlayerDeadSignal():
+	#restarting game, instead of sending signal
+	get_tree().reload_current_scene()
