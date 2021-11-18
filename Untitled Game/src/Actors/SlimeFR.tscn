@@ -184,7 +184,7 @@ extents = Vector2( 12.25, 4 )
 radius = 27.0104
 
 [sub_resource type="RectangleShape2D" id=26]
-extents = Vector2( 13, 5.25 )
+extents = Vector2( 21.3305, 6.49812 )
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemy",
@@ -255,9 +255,8 @@ collision_layer = 4096
 collision_mask = 0
 
 [node name="BodyAttack" type="CollisionShape2D" parent="Attack"]
-position = Vector2( 1.31271, -3.31356 )
+position = Vector2( 2.90011, 8.09588 )
 shape = SubResource( 26 )
-disabled = true
 
 [connection signal="area_entered" from="FlockBox" to="." method="_on_FlockBox_area_entered"]
 [connection signal="area_exited" from="FlockBox" to="." method="_on_FlockBox_area_exited"]
