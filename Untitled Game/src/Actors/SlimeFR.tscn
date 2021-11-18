@@ -257,7 +257,6 @@ collision_mask = 0
 [node name="BodyAttack" type="CollisionShape2D" parent="Attack"]
 position = Vector2( 2.90011, 8.09588 )
 shape = SubResource( 26 )
-disabled = true
 
 [connection signal="area_entered" from="FlockBox" to="." method="_on_FlockBox_area_entered"]
 [connection signal="area_exited" from="FlockBox" to="." method="_on_FlockBox_area_exited"]

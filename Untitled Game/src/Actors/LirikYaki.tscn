@@ -432,7 +432,8 @@ collision_mask = 0
 
 [node name="sideSwipeRight" type="CollisionShape2D" parent="attack"]
 modulate = Color( 0.6, 0.298039, 1, 1 )
-position = Vector2( 11.6799, 3.50396 )
+position = Vector2( 11.9026, 3.50396 )
 shape = SubResource( 54 )
+disabled = true
 
 [connection signal="area_entered" from="attack" to="." method="_on_attack_area_entered"]
