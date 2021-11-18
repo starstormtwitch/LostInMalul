@@ -81,7 +81,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=4]
 resource_name = "jump_attack"
-length = 1.3
+length = 1.8
 loop = true
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -90,7 +90,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.2, 1 ),
+"times": PoolRealArray( 0.6, 1.79 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -107,7 +107,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2 ),
+"times": PoolRealArray( 0, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51 ]
@@ -183,27 +183,26 @@ extents = Vector2( 12.25, 4 )
 radius = 27.0104
 
 [sub_resource type="RectangleShape2D" id=26]
-extents = Vector2( 13, 5.25 )
+extents = Vector2( 21.678, 5.25 )
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemy",
 ]]
 position = Vector2( -5, -1 )
-scale = Vector2( 4, 4 )
 z_as_relative = false
 collision_layer = 1024
 collision_mask = 5
 script = ExtResource( 2 )
 
 [node name="enemy" type="Sprite" parent="."]
-position = Vector2( 3.93391, -19.2297 )
+position = Vector2( 8.41732, -33.3878 )
 scale = Vector2( 2, 2 )
 z_as_relative = false
 texture = ExtResource( 1 )
 offset = Vector2( 0, -15 )
 hframes = 13
 vframes = 4
-frame = 39
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/die = SubResource( 1 )
@@ -214,12 +213,13 @@ anims/jump_attack = SubResource( 4 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 21 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/playback = SubResource( 22 )
 
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
 ]]
-position = Vector2( 1.5, -4.25 )
+position = Vector2( 5.98341, -18.4081 )
 collision_layer = 16384
 collision_mask = 16
 
@@ -227,10 +227,11 @@ collision_mask = 16
 shape = SubResource( 23 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1.5, -4.25 )
+position = Vector2( 5.98341, -18.4081 )
 shape = SubResource( 24 )
 
 [node name="Sight" type="RayCast2D" parent="."]
+position = Vector2( 4.48341, -14.1581 )
 enabled = true
 cast_to = Vector2( 0, 100 )
 collide_with_bodies = false
@@ -238,7 +239,7 @@ collide_with_bodies = false
 [node name="FlockBox" type="Area2D" parent="." groups=[
 "enemy",
 ]]
-position = Vector2( -0.25, 0 )
+position = Vector2( 4.23341, -14.1581 )
 collision_layer = 262144
 collision_mask = 262144
 
@@ -248,13 +249,13 @@ shape = SubResource( 25 )
 
 [node name="Attack" type="Area2D" parent="."]
 modulate = Color( 0.431373, 1, 0, 1 )
+position = Vector2( 4.48341, -14.1581 )
 collision_layer = 4096
 collision_mask = 0
 
 [node name="BodyAttack" type="CollisionShape2D" parent="Attack"]
-position = Vector2( 1.31271, -3.31356 )
+position = Vector2( 0.604809, 9.42874 )
 shape = SubResource( 26 )
-disabled = true
 
 [connection signal="area_entered" from="FlockBox" to="." method="_on_FlockBox_area_entered"]
 [connection signal="area_exited" from="FlockBox" to="." method="_on_FlockBox_area_exited"]

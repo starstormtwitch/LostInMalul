@@ -1,6 +1,5 @@
 [gd_scene load_steps=200 format=2]
 
-[ext_resource path="res://src/Actors/Slime.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Props/bathroom/bathroom_shelves_right.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/Levels/House/House_level.png" type="Texture" id=4]
@@ -173,6 +172,7 @@
 [ext_resource path="res://src/Props/Garage/Spot1.tscn" type="PackedScene" id=171]
 [ext_resource path="res://src/Props/Garage/Spot3.tscn" type="PackedScene" id=172]
 [ext_resource path="res://src/Props/Garage/Spot2.tscn" type="PackedScene" id=173]
+[ext_resource path="res://src/Actors/SlimeFR.tscn" type="PackedScene" id=174]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 36.5089, 7.22803 )
@@ -665,21 +665,17 @@ position = Vector2( 3042.36, 494.073 )
 position = Vector2( 234.523, 251.754 )
 scale = Vector2( 1, 1 )
 
-[node name="Enemy" parent="YSort/Actors" instance=ExtResource( 1 )]
-position = Vector2( 948.789, 206.49 )
-scale = Vector2( 1, 1 )
+[node name="Enemy" parent="YSort/Actors" instance=ExtResource( 174 )]
+position = Vector2( 959.494, 212.546 )
+scale = Vector2( 0.5, 0.5 )
 
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="YSort/Actors/Enemy"]
-position = Vector2( 0.694519, -6.2504 )
-scale = Vector2( 0.801575, 0.791653 )
+[node name="Enemy2" parent="YSort/Actors" instance=ExtResource( 174 )]
+position = Vector2( 1007.76, 264.741 )
+scale = Vector2( 0.5, 0.5 )
 
-[node name="Enemy2" parent="YSort/Actors" instance=ExtResource( 1 )]
-position = Vector2( 1012.24, 266.034 )
-scale = Vector2( 1, 1 )
-
-[node name="Enemy3" parent="YSort/Actors" instance=ExtResource( 1 )]
-position = Vector2( 668.031, 237.764 )
-scale = Vector2( 1, 1 )
+[node name="Enemy3" parent="YSort/Actors" instance=ExtResource( 174 )]
+position = Vector2( 675.511, 235.557 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="Props" type="YSort" parent="YSort"]
 
@@ -1377,7 +1373,6 @@ margin_bottom = 53.0
 [connection signal="body_exited" from="LevelBackground/AreaTransitions/Foyer_To_Garage" to="LevelBackground/AreaTransitions/Foyer_To_Garage" method="_hide_prompt_if_player_leaves_body"]
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Garage_To_Foyer" to="LevelBackground/AreaTransitions/Garage_To_Foyer" method="_show_prompt_if_player_within_body"]
 [connection signal="body_exited" from="LevelBackground/AreaTransitions/Garage_To_Foyer" to="LevelBackground/AreaTransitions/Garage_To_Foyer" method="_hide_prompt_if_player_leaves_body"]
-[connection signal="screen_entered" from="YSort/Actors/Enemy/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 
 [editable path="LevelBackground/CameraPositions/Bathroom_Delimiter"]
 [editable path="LevelBackground/CameraPositions/Bedroom_Delimiter"]
