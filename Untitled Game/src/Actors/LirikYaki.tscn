@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://src/Actors/LirikYaki.gd" type="Script" id=1]
 [ext_resource path="res://assets/SpriteSheets/mc_spritesheet_v1-Sheet_with_death.png" type="Texture" id=2]
@@ -104,7 +104,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.4 ),
+"times": PoolRealArray( 0.39 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -145,7 +145,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.4 ),
+"times": PoolRealArray( 0.39 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -186,7 +186,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.6 ),
+"times": PoolRealArray( 0.59 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -310,6 +310,7 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id=35]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=36]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=37]
 
@@ -343,6 +344,8 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=50]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
+
 [sub_resource type="AnimationNodeStateMachine" id=51]
 states/Hurt/node = SubResource( 9 )
 states/Hurt/position = Vector2( 344.246, 239.388 )
@@ -358,9 +361,9 @@ states/Walk/node = SubResource( 14 )
 states/Walk/position = Vector2( 299.246, 66.3882 )
 states/die/node = SubResource( 15 )
 states/die/position = Vector2( 40.3395, 148.82 )
-transitions = [ "Idle", "SideSwipe1", SubResource( 16 ), "SideSwipe1", "Idle", SubResource( 17 ), "SideSwipe1", "SideSwipe2", SubResource( 18 ), "SideSwipe2", "SideSwipe1", SubResource( 19 ), "SideSwipe2", "SideSwipeKick", SubResource( 20 ), "SideSwipe1", "SideSwipeKick", SubResource( 21 ), "SideSwipeKick", "SideSwipe1", SubResource( 22 ), "Idle", "Hurt", SubResource( 23 ), "Hurt", "Idle", SubResource( 24 ), "Idle", "Walk", SubResource( 25 ), "Walk", "Idle", SubResource( 26 ), "Walk", "Hurt", SubResource( 27 ), "Hurt", "Walk", SubResource( 28 ), "SideSwipeKick", "Hurt", SubResource( 29 ), "SideSwipe2", "Hurt", SubResource( 30 ), "SideSwipe1", "Hurt", SubResource( 31 ), "Hurt", "SideSwipe1", SubResource( 32 ), "Hurt", "SideSwipe2", SubResource( 33 ), "Hurt", "SideSwipeKick", SubResource( 34 ), "SideSwipeKick", "Idle", SubResource( 35 ), "SideSwipe2", "Idle", SubResource( 36 ), "Idle", "SideSwipeKick", SubResource( 37 ), "SideSwipeKick", "SideSwipe2", SubResource( 38 ), "SideSwipeKick", "Walk", SubResource( 39 ), "SideSwipe2", "Walk", SubResource( 40 ), "SideSwipe1", "Walk", SubResource( 41 ), "Walk", "SideSwipe1", SubResource( 42 ), "Walk", "SideSwipe2", SubResource( 43 ), "Walk", "SideSwipeKick", SubResource( 44 ), "Idle", "die", SubResource( 45 ), "Walk", "die", SubResource( 46 ), "SideSwipe1", "die", SubResource( 47 ), "SideSwipe2", "die", SubResource( 48 ), "SideSwipeKick", "die", SubResource( 49 ), "Hurt", "die", SubResource( 50 ) ]
+transitions = [ "Idle", "SideSwipe1", SubResource( 16 ), "SideSwipe1", "Idle", SubResource( 17 ), "SideSwipe1", "SideSwipe2", SubResource( 18 ), "SideSwipe2", "SideSwipe1", SubResource( 19 ), "SideSwipe2", "SideSwipeKick", SubResource( 20 ), "SideSwipe1", "SideSwipeKick", SubResource( 21 ), "SideSwipeKick", "SideSwipe1", SubResource( 22 ), "Idle", "Hurt", SubResource( 23 ), "Hurt", "Idle", SubResource( 24 ), "Idle", "Walk", SubResource( 25 ), "Walk", "Idle", SubResource( 26 ), "Walk", "Hurt", SubResource( 27 ), "Hurt", "Walk", SubResource( 28 ), "SideSwipeKick", "Hurt", SubResource( 29 ), "SideSwipe2", "Hurt", SubResource( 30 ), "SideSwipe1", "Hurt", SubResource( 31 ), "Hurt", "SideSwipe1", SubResource( 32 ), "Hurt", "SideSwipe2", SubResource( 33 ), "Hurt", "SideSwipeKick", SubResource( 34 ), "SideSwipeKick", "Idle", SubResource( 35 ), "SideSwipe2", "Idle", SubResource( 36 ), "Idle", "SideSwipeKick", SubResource( 37 ), "SideSwipeKick", "SideSwipe2", SubResource( 38 ), "SideSwipeKick", "Walk", SubResource( 39 ), "SideSwipe2", "Walk", SubResource( 40 ), "SideSwipe1", "Walk", SubResource( 41 ), "Walk", "SideSwipe1", SubResource( 42 ), "Walk", "SideSwipe2", SubResource( 43 ), "Walk", "SideSwipeKick", SubResource( 44 ), "Idle", "die", SubResource( 45 ), "Walk", "die", SubResource( 46 ), "SideSwipe1", "die", SubResource( 47 ), "SideSwipe2", "die", SubResource( 48 ), "SideSwipeKick", "die", SubResource( 49 ), "Hurt", "die", SubResource( 50 ), "Idle", "SideSwipe2", SubResource( 55 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -34.6605, -8.16432 )
+graph_offset = Vector2( 161.34, 134.836 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=52]
 
@@ -382,7 +385,7 @@ position = Vector2( -0.893405, -25.8187 )
 texture = ExtResource( 2 )
 hframes = 11
 vframes = 5
-frame = 11
+frame = 25
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -2.42837, -0.854357 )
@@ -431,6 +434,5 @@ collision_mask = 0
 modulate = Color( 0.6, 0.298039, 1, 1 )
 position = Vector2( 11.6799, 3.50396 )
 shape = SubResource( 54 )
-disabled = true
 
 [connection signal="area_entered" from="attack" to="." method="_on_attack_area_entered"]

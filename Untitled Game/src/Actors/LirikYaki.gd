@@ -12,7 +12,7 @@ var _canTakeDamage: bool = false
 var _directionFacing: Vector2 = Vector2.ZERO
 var _trail = []
 var _invincibilityTimer: Timer = Timer.new()
-var _attackPoints = 5;
+var _attackPoints = 3;
 var _attackResetTimer: Timer = Timer.new()
 
 onready var sprite: Sprite = $Sprite
@@ -59,7 +59,8 @@ func _on_invincibility_timeout() -> void:
 	
 	
 func _on_combo_timeout() -> void:
-	_attackPoints = 5
+	print("combo reset")
+	_attackPoints = 3
 
 
 func add_trail() -> void:
@@ -116,23 +117,17 @@ func doSideSwipeAttack():
 	_isAttacking = true
 	_attackResetTimer.start(COMBOTIME)
 	print("Going to attack with " + String(_attackPoints))
-	if _attackPoints == 5:
+	if _attackPoints == 3:
 		$AnimationTree.get("parameters/playback").travel("SideSwipe1")
-		_attackPoints = _attackPoints - 1
-	elif _attackPoints == 4:
-		$AnimationTree.get("parameters/playback").travel("SideSwipe2")
-		_attackPoints = _attackPoints - 1
-	elif _attackPoints == 3:
-		$AnimationTree.get("parameters/playback").travel("SideSwipeKick")
 		_attackPoints = _attackPoints - 1
 	elif _attackPoints == 2:
-		$AnimationTree.get("parameters/playback").travel("SideSwipe1")
+		$AnimationTree.get("parameters/playback").travel("SideSwipe2")
 		_attackPoints = _attackPoints - 1
 	elif _attackPoints == 1:
 		$AnimationTree.get("parameters/playback").travel("SideSwipeKick")
 		_attackPoints = _attackPoints - 1
 	else:
-		_attackPoints = 5
+		_attackPoints = 3
 		_isAttacking = false
 
 
@@ -147,6 +142,7 @@ func _setBlendPositions(x_direction: float) -> void:
 
 
 func _finishedAttack() -> void:
+	print("attack finished")
 	_isAttacking = false
 
 
