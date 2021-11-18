@@ -18,16 +18,16 @@ func _ready():
 		$AnimationTree.active = true
 		
 #disabling attacking for now
-#func _physics_process(_delta: float) -> void:
-#	match _state:
-#		EnemyState.ATTACK_IN_PLACE:
-#			#print("attack state")
-#			if !_isAttacking:
-#				_isAttacking = true
-#				if($AnimationTree != null):
-#					$AnimationTree.get("parameters/playback").travel("jump_attack")
-#	if _isJumping:
-#		_handleJumpPhysics()
+func _physics_process(_delta: float) -> void:
+	match _state:
+		EnemyState.ATTACK_IN_PLACE:
+			#print("attack state")
+			if !_isAttacking:
+				_isAttacking = true
+				if($AnimationTree != null):
+					$AnimationTree.get("parameters/playback").travel("jump_attack")
+	if _isJumping:
+		_handleJumpPhysics()
 
 
 func _handleJumpPhysics():

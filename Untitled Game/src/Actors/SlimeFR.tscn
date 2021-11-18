@@ -81,7 +81,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=4]
 resource_name = "jump_attack"
-length = 1.3
+length = 1.8
 loop = true
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -90,7 +90,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.2, 1 ),
+"times": PoolRealArray( 0.6, 1.79 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -107,7 +107,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2 ),
+"times": PoolRealArray( 0, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51 ]
@@ -204,6 +204,7 @@ texture = ExtResource( 1 )
 offset = Vector2( 0, -15 )
 hframes = 13
 vframes = 4
+frame = 39
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/die = SubResource( 1 )
@@ -214,7 +215,6 @@ anims/jump_attack = SubResource( 4 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 21 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/playback = SubResource( 22 )
 
 [node name="HurtBox" type="Area2D" parent="." groups=[
