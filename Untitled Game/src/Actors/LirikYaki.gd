@@ -43,7 +43,7 @@ func _physics_process(_delta: float) -> void:
 	var direction = Vector2.ZERO
 	
 	if !_canTakeDamage:
-		self.modulate =  Color(10,10,10,10) if Engine.get_frames_drawn() % 5 == 0 else Color(1,1,1,1)
+		self.modulate =  Color(2,2,2,2) if Engine.get_frames_drawn() % 5 == 0 else Color(1,1,1,1)
 	
 	if(!_isAttacking):
 		direction = evaluatePlayerInput()
@@ -97,7 +97,6 @@ func evaluatePlayerInput() -> Vector2:
 	elif direction.x > 0:
 		rightHitBox.position.x = abs(rightHitBox.position.x)
 		sprite.flip_h = false
-	#_setBlendPositions(direction.x)
 	
 	#check attack inputs
 	if Input.is_action_just_pressed("side_swipe_attack") or Input.is_action_pressed("side_swipe_attack"):
@@ -110,9 +109,9 @@ func evaluatePlayerInput() -> Vector2:
 			$AnimationTree.get("parameters/playback").travel("Idle")
 		else:
 			$AnimationTree.get("parameters/playback").travel("Walk")
-	
 	return direction
-	
+
+
 func doSideSwipeAttack():
 	_isAttacking = true
 	_attackResetTimer.start(COMBOTIME)
@@ -129,16 +128,6 @@ func doSideSwipeAttack():
 	else:
 		_attackPoints = 3
 		_isAttacking = false
-
-
-#Set value of blend for the next time we we call the animation
-#Ignore value of 0, since we either arent moving or walking vertically
-func _setBlendPositions(x_direction: float) -> void:
-	if x_direction != 0:
-		$AnimationTree.set("parameters/Hurt/blend_position", x_direction)
-		$AnimationTree.set("parameters/Walk/blend_position", x_direction)
-		$AnimationTree.set("parameters/Idle/blend_position", x_direction)
-		$AnimationTree.set("parameters/SideSwipe/blend_position", x_direction)
 
 
 func _finishedAttack() -> void:
