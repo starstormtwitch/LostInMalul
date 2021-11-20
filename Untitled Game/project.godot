@@ -38,6 +38,16 @@ _global_script_classes=[ {
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://src/Actors/Enemy.gd"
+}, {
+"base": "Area2D",
+"class": "InteractPromptArea",
+"language": "GDScript",
+"path": "res://src/Helpers/Interacts/InteractPromptArea.gd"
+}, {
+"base": "Control",
+"class": "TextBox",
+"language": "GDScript",
+"path": "res://src/GUI/Textbox.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
@@ -45,7 +55,9 @@ _global_script_class_icons={
 "CameraManager": "",
 "CustomCamera2D": "",
 "CustomDelimiter2D": "",
-"Enemy": ""
+"Enemy": "",
+"InteractPromptArea": "",
+"TextBox": ""
 }
 
 [application]
@@ -53,6 +65,10 @@ _global_script_class_icons={
 config/name="Test Project"
 run/main_scene="res://src/Levels/House.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+EventsList="*res://src/Helpers/EventsList.gd"
 
 [display]
 

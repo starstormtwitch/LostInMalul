@@ -1,5 +1,6 @@
-[gd_scene load_steps=200 format=2]
+[gd_scene load_steps=203 format=2]
 
+[ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Props/bathroom/bathroom_shelves_right.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/Levels/House/House_level.png" type="Texture" id=4]
@@ -173,6 +174,7 @@
 [ext_resource path="res://src/Props/Garage/Spot3.tscn" type="PackedScene" id=172]
 [ext_resource path="res://src/Props/Garage/Spot2.tscn" type="PackedScene" id=173]
 [ext_resource path="res://src/Actors/SlimeFR.tscn" type="PackedScene" id=174]
+[ext_resource path="res://src/Helpers/Interacts/InteractPromptArea.tscn" type="PackedScene" id=175]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 36.5089, 7.22803 )
@@ -273,18 +275,24 @@ b = Vector2( 1014.24, 206.202 )
 a = Vector2( -256.938, 208.497 )
 b = Vector2( 1016.59, 208.444 )
 
+[sub_resource type="RectangleShape2D" id=27]
+extents = Vector2( 42.0483, 10 )
+
 [node name="House" type="Node2D"]
+pause_mode = 2
 script = ExtResource( 19 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+pause_mode = 1
 visible = false
 position = Vector2( 1431.57, 299.322 )
 texture = ExtResource( 4 )
 
 [node name="LevelBackground" type="Sprite" parent="."]
+pause_mode = 1
 texture = ExtResource( 8 )
 centered = false
 __meta__ = {
@@ -655,14 +663,32 @@ position = Vector2( 3286.77, 196.902 )
 [node name="Garage_Teleport" type="Position2D" parent="LevelBackground/Teleports"]
 position = Vector2( 3042.36, 494.073 )
 
+[node name="Interactions" type="Node" parent="LevelBackground"]
+
+[node name="Kitchen" type="Node" parent="LevelBackground/Interactions"]
+
+[node name="InteractPromptArea" parent="LevelBackground/Interactions/Kitchen" instance=ExtResource( 175 )]
+position = Vector2( 237.133, 249.326 )
+interactableText = "hello"
+playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/InteractPromptArea"]
+shape = SubResource( 27 )
+
+[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Kitchen/InteractPromptArea"]
+visible = false
+position = Vector2( -2.52271, 23.9656 )
+texture = ExtResource( 25 )
+
 [node name="YSort" type="YSort" parent="."]
+pause_mode = 1
 
 [node name="Actors" type="YSort" parent="YSort"]
 
 [node name="LirikYaki" parent="YSort/Actors" groups=[
 "Player",
 ] instance=ExtResource( 2 )]
-position = Vector2( 234.523, 251.754 )
+position = Vector2( 237.466, 234.516 )
 scale = Vector2( 1, 1 )
 
 [node name="Enemy" parent="YSort/Actors" instance=ExtResource( 174 )]
@@ -1355,6 +1381,16 @@ margin_top = 32.0
 margin_right = 306.0
 margin_bottom = 53.0
 
+[node name="TextBox" parent="GUI" instance=ExtResource( 1 )]
+pause_mode = 2
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+margin_left = -512.0
+margin_top = -576.0
+margin_right = 512.0
+
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Bathroom_To_Bedroom" to="." method="_on_Bathroom_To_Bedroom_body_entered"]
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Bedroom_To_Bathroom" to="." method="_on_Bedroom_To_Bathroom_body_entered"]
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Bedroom_To_StreamingRoom" to="." method="_on_Bedroom_To_StreamingRoom_body_entered"]
@@ -1373,6 +1409,7 @@ margin_bottom = 53.0
 [connection signal="body_exited" from="LevelBackground/AreaTransitions/Foyer_To_Garage" to="LevelBackground/AreaTransitions/Foyer_To_Garage" method="_hide_prompt_if_player_leaves_body"]
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Garage_To_Foyer" to="LevelBackground/AreaTransitions/Garage_To_Foyer" method="_show_prompt_if_player_within_body"]
 [connection signal="body_exited" from="LevelBackground/AreaTransitions/Garage_To_Foyer" to="LevelBackground/AreaTransitions/Garage_To_Foyer" method="_hide_prompt_if_player_leaves_body"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Kitchen/InteractPromptArea" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 
 [editable path="LevelBackground/CameraPositions/Bathroom_Delimiter"]
 [editable path="LevelBackground/CameraPositions/Bedroom_Delimiter"]

@@ -4,8 +4,6 @@ extends Node2D
 var _player : Actor
 onready var cameraManager: CustomCamera2D
 
-const _INTERACT_EVENT = "interact"
-
 onready var _cam_Delimiter_Bathroom: CustomDelimiter2D = get_node("LevelBackground/CameraPositions/Bathroom_Delimiter")
 onready var _cam_Delimiter_Bedroom: CustomDelimiter2D = get_node("LevelBackground/CameraPositions/Bedroom_Delimiter")
 onready var _cam_Delimiter_StreamingRooom: CustomDelimiter2D = get_node("LevelBackground/CameraPositions/StreamingRoom_Delimiter")
@@ -35,6 +33,9 @@ onready var _basement_Teleport_Area: Area2D = get_node("LevelBackground/AreaTran
 onready var _foyer_Teleport_Area: Area2D = get_node("LevelBackground/AreaTransitions/Foyer_To_Garage")
 onready var _garage_Teleport_Area: Area2D = get_node("LevelBackground/AreaTransitions/Garage_To_Foyer")
 
+onready var _bathtub_Interact_Area: Area2D = $LevelBackground/Interactions/Kitchen/BathtubInteract
+onready var _textBox: TextBox = $GUI/TextBox
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var parent = get_parent()
@@ -58,13 +59,15 @@ func _on_Player_health_changed(_oldHealth, newHealth, maxHealth):
 
 # node to handle player input, and call the proper response
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(_INTERACT_EVENT):
+	if event.is_action_pressed(EventsList._INTERACT_EVENT):
 		_handleInteractEvent()
 
 # Call when the "Interact" event is called. Will check which area player is in to
 # call the proper result
 func _handleInteractEvent() -> void:
-	if _kitchen_Teleport_Area.overlaps_body(_player):
+	if _textBox.isShowing:
+		_hideTextBox()
+	elif _kitchen_Teleport_Area.overlaps_body(_player):
 		setCameraToBasement()
 	elif _basement_Teleport_Area.overlaps_body(_player):
 		setCameraToKitchenTeleport()
@@ -72,6 +75,10 @@ func _handleInteractEvent() -> void:
 		setCameraToGarage()
 	elif _garage_Teleport_Area.overlaps_body(_player):
 		setCameraToFoyerTeleport()
+
+func _hideTextBox(): 
+	_textBox.hideText()
+	get_tree().set_input_as_handled()
 
 func _on_VisibilityNotifier2D_screen_entered():
 	pass
@@ -161,3 +168,6 @@ func setCameraToGarage() -> void:
 func setCameraToFoyerTeleport() -> void:
 	setCameraToFoyer()
 	_player.position = _teleport_Foyer_Garage_Door.position
+
+func _on_InteractPromptArea_interactable_text_signal(text):
+	_textBox.showText(text)
