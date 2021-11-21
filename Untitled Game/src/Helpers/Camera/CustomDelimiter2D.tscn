@@ -2,7 +2,6 @@
 
 [ext_resource path="res://src/Helpers/Camera/CustomDelimiter2D.gd" type="Script" id=1]
 
-
 [node name="CustomDelimiter2D" type="Node2D"]
 script = ExtResource( 1 )
 

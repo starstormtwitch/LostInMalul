@@ -347,7 +347,7 @@ vframes = 8
 frame = 2
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2( -0.674954, -4.30031 )
+position = Vector2( -0.689455, -1.26315 )
 rotation = 1.5708
 scale = Vector2( 1.01091, 1.11191 )
 shape = SubResource( 1 )

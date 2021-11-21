@@ -130,26 +130,27 @@ func get_target_direction() -> Vector2:
 	
 
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
-	#stun enemy
-	_isStunned = true
-	_stunTimer.start(_stun_duration)
+	if !isDying:
+		#stun enemy
+		_isStunned = true
+		_stunTimer.start(_stun_duration)
+			
+		#mark damage
+		self.modulate =  Color(10,10,10,10) 
+		_hitFlashTimer.start(.2)
+		if($AnimationTree != null):
+			$AnimationTree.get("parameters/playback").travel("hurt")
+		_health-=damage
 		
-	#mark damage
-	self.modulate =  Color(10,10,10,10) 
-	_hitFlashTimer.start(.2)
-	if($AnimationTree != null):
-		$AnimationTree.get("parameters/playback").travel("hurt")
-	_health-=damage
-	
-	#knockback/knockup
-	_inAir = true
-	direction.y -= 2
-	var knockbackVelocity = getMovement(direction, force, _acceleration)
-	_velocity = move_and_slide(knockbackVelocity)
-	
-	#death check
-	if(_health <= 0):
-		die()
+		#knockback/knockup
+		_inAir = true
+		direction.y -= 2
+		var knockbackVelocity = getMovement(direction, force, _acceleration)
+		_velocity = move_and_slide(knockbackVelocity)
+		
+		#death check
+		if(_health <= 0):
+			die()
 		
 func _on_attack_cooldown_timeout():
 	_isReadyToAttack = true
