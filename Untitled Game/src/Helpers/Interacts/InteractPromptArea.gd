@@ -12,9 +12,10 @@ onready var _f_prompt: Sprite = get_node("FPrompt")
 onready var _player: Node = get_node(playerNodePath)
 
 func _ready():
-	assert(_collisionShape, "Add child node of type CollisionShape2D with name CollisionShape")
-	assert(_f_prompt, "Add child node of type Sprite with name FPrompt")
-	assert(_player, "Make sure the player has been added by giving the playerNodePath in the editor")
+	var path = self.get_path()
+	assert(_collisionShape, "Add child node of type CollisionShape2D with name CollisionShape in: " + path)
+	assert(_f_prompt, "Add child node of type Sprite with name FPrompt in: " + path)
+	assert(_player, "Make sure the player has been added by giving the playerNodePath in the editor in: " + path)
 	self.connect("body_entered", self, "_showPrompt")
 	self.connect("body_exited", self, "_hidePrompt")
 
