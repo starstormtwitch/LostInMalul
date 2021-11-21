@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mc_spritesheet_v1.2.png-068974a8b756475b04046196f285847a.stex"
+path="res://.import/green_button.png-21b3ad9b42485e4c8dab4765b2b43e46.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/SpriteSheets/mc_spritesheet_v1.2.png"
-dest_files=[ "res://.import/mc_spritesheet_v1.2.png-068974a8b756475b04046196f285847a.stex" ]
+source_file="res://assets/GUI/green_button.png"
+dest_files=[ "res://.import/green_button.png-21b3ad9b42485e4c8dab4765b2b43e46.stex" ]
 
 [params]
 
