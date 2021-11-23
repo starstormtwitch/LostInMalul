@@ -4,4 +4,5 @@ extends Node
 # events that we will be using throught out the project. 
 
 
-const _INTERACT_EVENT = "interact"
+const INTERACT_EVENT = "interact"
+const UI_CANCEL_EVENT = "ui_cancel"

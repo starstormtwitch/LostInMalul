@@ -59,15 +59,15 @@ func _on_Player_health_changed(_oldHealth, newHealth, maxHealth):
 
 # node to handle player input, and call the proper response
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(EventsList._INTERACT_EVENT):
+	if event.is_action_pressed(EventsList.UI_CANCEL_EVENT):
+		_handleUICancelEvent()
+	elif event.is_action_pressed(EventsList.INTERACT_EVENT):
 		_handleInteractEvent()
 
 # Call when the "Interact" event is called. Will check which area player is in to
 # call the proper result
 func _handleInteractEvent() -> void:
-	if _textBox.isShowing:
-		_hideTextBox()
-	elif _kitchen_Teleport_Area.overlaps_body(_player):
+	if _kitchen_Teleport_Area.overlaps_body(_player):
 		setCameraToBasement()
 	elif _basement_Teleport_Area.overlaps_body(_player):
 		setCameraToKitchenTeleport()
@@ -75,6 +75,11 @@ func _handleInteractEvent() -> void:
 		setCameraToGarage()
 	elif _garage_Teleport_Area.overlaps_body(_player):
 		setCameraToFoyerTeleport()
+
+# Call when the "UI_Cacnel" event is called. will close textboxes if open
+func _handleUICancelEvent() -> void:
+	if _textBox.isShowing:
+		_hideTextBox()
 
 func _hideTextBox(): 
 	_textBox.hideText()

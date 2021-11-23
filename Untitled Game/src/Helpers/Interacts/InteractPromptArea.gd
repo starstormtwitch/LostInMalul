@@ -22,13 +22,12 @@ func _ready():
 
 # node to handle player input, and call the proper response
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(EventsList._INTERACT_EVENT) and self.overlaps_body(_player):
+	if event.is_action_pressed(EventsList.INTERACT_EVENT) and self.overlaps_body(_player):
 		get_tree().set_input_as_handled()
 		_emitInteractableText()
 		
 
 func _emitInteractableText():
-	print("emitting event poggers")
 	emit_signal("interactable_text_signal", interactableText)
 
 
