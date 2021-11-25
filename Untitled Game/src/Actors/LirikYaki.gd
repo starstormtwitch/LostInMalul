@@ -33,7 +33,7 @@ func _ready() -> void:
 	_maxHealth = 10
 	_health = _maxHealth
 	_acceleration = .1
-	_speed = 200
+	_speed = 150
 	_directionFacing.x = .1;
 	$TrailTimer.connect("timeout", self, "add_trail")
 	$AnimationTree.active = true
