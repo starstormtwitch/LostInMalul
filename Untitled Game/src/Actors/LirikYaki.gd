@@ -44,7 +44,9 @@ func _physics_process(_delta: float) -> void:
 	var direction = Vector2.ZERO
 	
 	if !_canTakeDamage:
-		self.modulate =  Color(2,2,2,2) if Engine.get_frames_drawn() % 5 == 0 else Color(1,1,1,1)
+		#self.modulate =  Color(2,2,2,2) if Engine.get_frames_drawn() % 5 == 0 else Color(1,1,1,1)
+		#self.modulate =  Color(1.3,1.3,1.3,1.3) if Engine.get_frames_drawn() % 5 == 0 else Color(1,1,1,1)
+		self.modulate =  Color(1.5,1.2,1.2,1.3) if Engine.get_frames_drawn() % 5 == 0 else Color(1,1,1,1)
 	
 	if(!_isAttacking):
 		direction = evaluatePlayerInput()
