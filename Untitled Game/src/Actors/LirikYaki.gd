@@ -17,6 +17,7 @@ var _attackResetTimer: Timer = Timer.new()
 
 onready var sprite: Sprite = $Sprite
 onready var rightHitBox: CollisionShape2D = $attack/sideSwipeRight
+onready var hitAudioPlayer: HitAudioPlayer = $HitAudioPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -123,12 +124,15 @@ func doSideSwipeAttack():
 	_attackResetTimer.start(COMBOTIME)
 	print("Going to attack with " + String(_attackPoints))
 	if _attackPoints == 3:
+		hitAudioPlayer.playerAttacks()
 		$AnimationTree.get("parameters/playback").travel("SideSwipe1")
 		_attackPoints = _attackPoints - 1
 	elif _attackPoints == 2:
+		hitAudioPlayer.playerAttacks()
 		$AnimationTree.get("parameters/playback").travel("SideSwipe2")
 		_attackPoints = _attackPoints - 1
 	elif _attackPoints == 1:
+		hitAudioPlayer.playerAttacks()
 		$AnimationTree.get("parameters/playback").travel("SideSwipeKick")
 		_attackPoints = _attackPoints - 1
 	else:
@@ -155,3 +159,7 @@ func _on_attack_area_entered(area: Area2D) -> void:
 func sendPlayerDeadSignal():
 	#restarting game, instead of sending signal
 	get_tree().reload_current_scene()
+
+
+func _on_enemy_hit():
+	hitAudioPlayer.playHitSound()

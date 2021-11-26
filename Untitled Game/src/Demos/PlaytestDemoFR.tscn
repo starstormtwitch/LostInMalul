@@ -286,6 +286,11 @@ margin_right = 306.0
 margin_bottom = 53.0
 mouse_filter = 2
 
+[connection signal="enemy_hit" from="objects/actors/Enemy" to="objects/actors/LirikYaki" method="_on_enemy_hit"]
+[connection signal="enemy_hit" from="objects/actors/Enemy2" to="objects/actors/LirikYaki" method="_on_enemy_hit"]
+[connection signal="enemy_hit" from="objects/actors/Enemy3" to="objects/actors/LirikYaki" method="_on_enemy_hit"]
+[connection signal="enemy_hit" from="objects/actors/Enemy4" to="objects/actors/LirikYaki" method="_on_enemy_hit"]
+[connection signal="enemy_hit" from="objects/actors/Enemy5" to="objects/actors/LirikYaki" method="_on_enemy_hit"]
 [connection signal="pressed" from="GUI/GameMenu/VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="GUI/GameMenu/VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
 [connection signal="pressed" from="GUI/GameMenu/VBoxContainer/GoBackButton" to="." method="_on_GoBackButton_pressed"]

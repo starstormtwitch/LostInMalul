@@ -1,6 +1,8 @@
 extends Actor
 class_name Enemy
 
+signal enemy_hit
+
 #Enemy properties
 var _seperation_distance = 20
 var _attack_range = 20
@@ -136,6 +138,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		_stunTimer.start(_stun_duration)
 			
 		#mark damage
+		emit_signal("enemy_hit")
 		self.modulate =  Color(10,10,10,10) 
 		_hitFlashTimer.start(.2)
 		if($AnimationTree != null):
