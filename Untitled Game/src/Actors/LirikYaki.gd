@@ -75,6 +75,7 @@ func add_trail() -> void:
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if _canTakeDamage:
 		_canTakeDamage = false
+		_beingHurt = true
 		print("call hurt logic")
 		$AnimationTree.get("parameters/playback").travel("Hurt")
 		_invincibilityTimer.start(2)
@@ -83,7 +84,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 # callback function to for when the hurt animation is playing
 func setHurtAnimationPlaying():
 	print("play hurt animation")
-	_beingHurt = true
+	#_beingHurt = true
 
 func evaluatePlayerInput() -> Vector2:
 	#get direction for inputs
@@ -101,17 +102,19 @@ func evaluatePlayerInput() -> Vector2:
 		rightHitBox.position.x = abs(rightHitBox.position.x)
 		sprite.flip_h = false
 	
+	if _beingHurt:
+		return Vector2.ZERO
+		
 	#check attack inputs
 	if Input.is_action_just_pressed("side_swipe_attack") or Input.is_action_pressed("side_swipe_attack"):
 		doSideSwipeAttack()
 		return Vector2.ZERO
 		
 	#set animation for direction and return for movement
-	if !_beingHurt:
-		if direction == Vector2.ZERO:
-			$AnimationTree.get("parameters/playback").travel("Idle")
-		else:
-			$AnimationTree.get("parameters/playback").travel("Walk")
+	if direction == Vector2.ZERO:
+		$AnimationTree.get("parameters/playback").travel("Idle")
+	else:
+		$AnimationTree.get("parameters/playback").travel("Walk")
 	return direction
 
 
