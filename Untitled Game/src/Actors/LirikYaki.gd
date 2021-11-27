@@ -16,6 +16,7 @@ var _attackPoints = 3;
 var _attackResetTimer: Timer = Timer.new()
 
 onready var sprite: Sprite = $Sprite
+onready var shadow: Sprite = $Shadow
 onready var rightHitBox: CollisionShape2D = $attack/sideSwipeRight
 onready var hitAudioPlayer: HitAudioPlayer = $HitAudioPlayer
 
@@ -101,9 +102,11 @@ func evaluatePlayerInput() -> Vector2:
 	if direction.x < 0:
 		rightHitBox.position.x = -abs(rightHitBox.position.x)
 		sprite.flip_h = true
+		shadow.flip_h = true
 	elif direction.x > 0:
 		rightHitBox.position.x = abs(rightHitBox.position.x)
 		sprite.flip_h = false
+		shadow.flip_h = false
 	
 	if _beingHurt:
 		return Vector2.ZERO
