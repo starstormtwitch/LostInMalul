@@ -1,8 +1,10 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://src/Actors/LirikYaki.gd" type="Script" id=1]
 [ext_resource path="res://assets/SpriteSheets/mc_spritesheet_v1-Sheet_with_death.png" type="Texture" id=2]
-[ext_resource path="res://assets/audio/roblox-death-sound_1.mp3" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/sfx_deathscream_human1.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/Retro Impact Punch Hurt 01.wav" type="AudioStream" id=4]
+[ext_resource path="res://src/Helpers/Audio/HitAudioPlayer.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.71682, 10.7663 )
@@ -45,7 +47,7 @@ tracks/2/enabled = true
 tracks/2/keys = {
 "clips": [ {
 "end_offset": 0.0,
-"start_offset": 0.5,
+"start_offset": 0.0,
 "stream": ExtResource( 3 )
 } ],
 "times": PoolRealArray( 0 )
@@ -81,6 +83,20 @@ tracks/1/keys = {
 "args": [  ],
 "method": "_hurtAnimationFinished"
 } ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 4 )
+} ],
+"times": PoolRealArray( 0 )
 }
 
 [sub_resource type="Animation" id=4]
@@ -389,7 +405,6 @@ position = Vector2( -0.893405, -25.8187 )
 texture = ExtResource( 2 )
 hframes = 11
 vframes = 5
-frame = 33
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -2.42837, -0.854357 )
@@ -398,7 +413,9 @@ scale = Vector2( 1.01091, 1.11191 )
 shape = SubResource( 1 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
+stream = ExtResource( 4 )
+
+[node name="HitAudioPlayer" parent="." instance=ExtResource( 5 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Die = SubResource( 2 )
@@ -439,6 +456,5 @@ collision_mask = 0
 modulate = Color( 0.6, 0.298039, 1, 1 )
 position = Vector2( 11.9026, 3.50396 )
 shape = SubResource( 55 )
-disabled = true
 
 [connection signal="area_entered" from="attack" to="." method="_on_attack_area_entered"]
