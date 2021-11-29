@@ -36,7 +36,7 @@ var _limit_smooth_target_position: Vector2
 
 var _verbose = true
 
-func _init(cameraTarget: Node, current: bool):
+func _init(cameraTarget: Node, current: bool = true):
 	assert(cameraTarget, "Camera target is not a node.")
 	cameraTarget.get_tree().current_scene.add_child(self)
 	_remoteTransform2d = RemoteTransform2D.new()
@@ -172,6 +172,9 @@ func resetLimits() -> void:
 	if _verbose:
 		print("CustomCamera2D: Reset camera limits.")
 	limitCameraToCoordinates(_DEFAULT_CAMERA_LIMIT_TOP_LEFT, _DEFAULT_CAMERA_LIMIT_TOP_LEFT, _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT, _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT)
+
+func getAnimationPlayer() -> CustomCamera2DSimpleTransitionPlayer:
+	return _animationPlayer
 
 #inner classes
 
