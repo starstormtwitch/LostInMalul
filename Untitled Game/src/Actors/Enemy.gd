@@ -62,11 +62,25 @@ func _physics_process(_delta: float) -> void:
 		
 			direction = _flock_direction(direction)
 			
-		
 	_velocity = getMovement(direction, _speed, _acceleration)
 	_velocity = move_and_slide(_velocity)
-		
-	
+	_flipBoxesIfNecessary(_velocity.x)
+
+
+func _flipBoxesIfNecessary(velocity_x):
+	var rightHitBox: CollisionShape2D = get_node("Attack/AttackBox")
+	var sprite: Sprite = get_node("enemy")
+	var shadow: Sprite = get_node("Shadow")
+	if velocity_x > 0:
+		rightHitBox.position.x = abs(rightHitBox.position.x)
+		sprite.flip_h = true
+		shadow.flip_h = true
+	elif velocity_x < 0:
+		rightHitBox.position.x = -abs(rightHitBox.position.x)
+		sprite.flip_h = false
+		shadow.flip_h = false
+
+
 func get_next_state(targetDirection: Vector2):
 	if(_target != null):
 		var dist_to_target = self.global_position.distance_to(_target.global_position)
