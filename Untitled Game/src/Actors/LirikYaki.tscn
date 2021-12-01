@@ -548,5 +548,6 @@ collision_mask = 0
 modulate = Color( 0.6, 0.298039, 1, 1 )
 position = Vector2( 11.9026, 3.50396 )
 shape = SubResource( 55 )
+disabled = true
 
 [connection signal="area_entered" from="attack" to="." method="_on_attack_area_entered"]
