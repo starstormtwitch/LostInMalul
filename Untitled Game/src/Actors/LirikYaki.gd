@@ -14,6 +14,8 @@ var _trail = []
 var _invincibilityTimer: Timer = Timer.new()
 var _attackPoints = 3;
 var _attackResetTimer: Timer = Timer.new()
+var _hitDoneTimer: Timer = Timer.new()
+var _hitAnimationTime = 1
 
 onready var sprite: Sprite = $Sprite
 onready var shadow: Sprite = $Shadow
@@ -22,13 +24,18 @@ onready var hitAudioPlayer: HitAudioPlayer = $HitAudioPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_invincibilityTimer.connect("timeout",self,"_on_invincibility_timeout") 
+	_invincibilityTimer.connect("timeout", self, "_on_invincibility_timeout") 
 	_invincibilityTimer.one_shot = true
 	add_child(_invincibilityTimer)
 	
-	_attackResetTimer.connect("timeout",self,"_on_combo_timeout") 
+	_attackResetTimer.connect("timeout", self, "_on_combo_timeout") 
 	_attackResetTimer.one_shot = true
 	add_child(_attackResetTimer)
+	
+	_hitAnimationTime = $AnimationPlayer.get_animation("HurtRight").length
+	_hitDoneTimer.one_shot = true
+	_hitDoneTimer.connect("timeout", self, "_hit_timer_done") 
+	add_child(_hitDoneTimer)
 	
 	_invincibilityTimer.start(3)
 	
@@ -67,6 +74,13 @@ func _on_combo_timeout() -> void:
 	_attackPoints = 3
 
 
+#timer callback for when hit animation should be done. Doing this cause 
+# there is some issue with animation not playing properly and not resetting this 
+# flag causing the player to be stuck in animations. 
+func _hit_timer_done():
+	print("hurt timer done")
+	_beingHurt = false
+
 func add_trail() -> void:
 	if(get_parent() != null):
 		var trail      = trail_scene.instance()
@@ -81,6 +95,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		_canTakeDamage = false
 		_beingHurt = true
 		print("call hurt logic")
+		_hitDoneTimer.start(_hitAnimationTime)
 		$AnimationTree.get("parameters/playback").travel("Hurt")
 		_invincibilityTimer.start(2)
 		.take_damage(damage, direction, force)
