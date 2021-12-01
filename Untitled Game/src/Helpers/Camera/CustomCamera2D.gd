@@ -34,7 +34,7 @@ var _limit_smooth_right: float
 var _limit_smooth_active: bool = false
 var _limit_smooth_target_position: Vector2
 
-var _verbose = true
+var _verbose = false
 
 func _init(cameraTarget: Node, current: bool = true):
 	assert(cameraTarget, "Camera target is not a node.")

@@ -1,4 +1,4 @@
-extends Node2D
+extends Position2D
 
 class_name CustomDelimiter2D
 
@@ -6,23 +6,17 @@ class_name CustomDelimiter2D
 export var AutomaticTransition: bool = true
 
 func _ready():
-	assert($TopLeft.position.x < $BottomRight.position.x, "Invalid X coordinates.")
-	assert($TopLeft.position.y < $BottomRight.position.y, "Invalid Y coordinates.")
+	assert(getLeft() < getRight(), "Invalid X coordinates.")
+	assert(getTop() < getBottom(), "Invalid Y coordinates.")
 	
 	if AutomaticTransition:
-		#Calculate a rectangle that covers the area between the two position nodes.
-		var x = $TopLeft.position.x + $BottomRight.position.x
-		var y = $TopLeft.position.y + $BottomRight.position.y
-		var area_center = Vector2(x / 2, y / 2)
-		$AutomaticTransition_Area2D.position = area_center
-		var rect: RectangleShape2D = $AutomaticTransition_Area2D/CollisionShape2D.shape
-		rect.extents = Vector2(x - area_center.x, y - area_center.y)
+		_configureAutomaticTransitionArea2D()
 
 func getTop() -> float:
-	return $TopLeft.get_global_position().y
+	return self.get_global_position().y
 
 func getLeft() -> float:
-	return $TopLeft.get_global_position().x
+	return self.get_global_position().x
 
 func getBottom() -> float:
 	return $BottomRight.get_global_position().y
@@ -30,6 +24,27 @@ func getBottom() -> float:
 func getRight() -> float:
 	return $BottomRight.get_global_position().x
 
+func _configureAutomaticTransitionArea2D() -> void:
+	#This instantiation can be done in the editor but this way I avoid a problem I encountered
+	# where sometimes on _onready the $Area2D object could be null
+	var area: Area2D = Area2D.new()
+	var coll: CollisionShape2D = CollisionShape2D.new()
+	var rect: RectangleShape2D = RectangleShape2D.new()
+	coll.shape = rect
+	area.add_child(coll)
+	self.add_child(area)
+	#Calculate a rectangle that covers the area between the two position nodes.
+	#BottomRight node positions are local and relative to the parent node (aka TopLeft)
+	var x = $BottomRight.position.x
+	var y = $BottomRight.position.y
+	var area_center = Vector2(x / 2, y / 2)
+	area.position = area_center
+	#The rectangle's half extents. The width and height of this shape is twice the half extents.
+	rect.extents = Vector2(x - area_center.x, y - area_center.y)
+	#Connect signal
+	area.connect("body_entered", self, "_on_AutomaticTransition_Area2D_body_entered")
+
 func _on_AutomaticTransition_Area2D_body_entered(body) -> void:
 	if AutomaticTransition && body == LevelGlobals.GetPlayerActor():
+		print("Delimiter triggered: " + self.name)
 		TransitionsManager.CameraTransitionToDelimiter(self)

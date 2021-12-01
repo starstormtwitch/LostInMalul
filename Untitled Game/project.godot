@@ -29,7 +29,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Helpers/Camera/CustomCamera2D.gd"
 }, {
-"base": "Node2D",
+"base": "Position2D",
 "class": "CustomDelimiter2D",
 "language": "GDScript",
 "path": "res://src/Helpers/Camera/CustomDelimiter2D.gd"
@@ -38,6 +38,16 @@ _global_script_classes=[ {
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://src/Actors/Enemy.gd"
+}, {
+"base": "Node2D",
+"class": "TeleportNode2D",
+"language": "GDScript",
+"path": "res://src/Helpers/Utilities/TeleportNode2D.gd"
+}, {
+"base": "Node2D",
+"class": "TwoWayTeleportNode2D",
+"language": "GDScript",
+"path": "res://src/Helpers/Utilities/TwoWayTeleportNode2D.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
@@ -45,7 +55,9 @@ _global_script_class_icons={
 "CameraManager": "",
 "CustomCamera2D": "",
 "CustomDelimiter2D": "",
-"Enemy": ""
+"Enemy": "",
+"TeleportNode2D": "",
+"TwoWayTeleportNode2D": ""
 }
 
 [application]
