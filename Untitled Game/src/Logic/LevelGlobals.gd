@@ -5,6 +5,9 @@ var _player: Actor
 func _ready():
 	_findPlayerEntity()
 
+func SceneHasPlayerActor() -> bool:
+	return _player != null
+
 func GetPlayerActor() -> Actor:
 	assert(_player, "Player node not found.")
 	return _player;

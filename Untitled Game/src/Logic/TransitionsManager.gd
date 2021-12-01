@@ -3,8 +3,12 @@ extends Node
 var _cameraManager: CustomCamera2D
 
 func _ready():
-	_cameraManager = CustomCamera2D.new(LevelGlobals.GetPlayerActor(), true)
+	if LevelGlobals.SceneHasPlayerActor():
+		InitCameraManager()
 	
+func InitCameraManager() -> void:
+	_cameraManager = CustomCamera2D.new(LevelGlobals.GetPlayerActor(), true)
+
 func GetCameraManager() -> CustomCamera2D:
 	return _cameraManager
 
