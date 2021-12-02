@@ -63,7 +63,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Test Project"
-run/main_scene="res://src/Demos/PlaytestDemoFR.tscn"
+run/main_scene="res://src/Demos/PlaytestDemoWithRats.tscn"
 config/icon="res://icon.png"
 
 [display]

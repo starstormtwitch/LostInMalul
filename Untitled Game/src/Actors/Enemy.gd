@@ -60,12 +60,12 @@ func _physics_process(_delta: float) -> void:
 				direction = targetDirection;
 		
 			direction = _flock_direction(direction)
+		if (_state == EnemyState.CHASE or _state == EnemyState.ROAM) and !_isAttacking:
+			_play_walk_animation_if_available(targetDirection.x)
+		_flipBoxesIfNecessary(targetDirection.x)
 			
 	_velocity = getMovement(direction, _speed, _acceleration)
 	_velocity = move_and_slide(_velocity)
-	if (_state == EnemyState.CHASE or _state == EnemyState.ROAM) and !_isAttacking:
-		_play_walk_animation_if_available(_velocity.x)
-	_flipBoxesIfNecessary(_velocity.x)
 
 
 func _flipBoxesIfNecessary(velocity_x: float):

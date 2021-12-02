@@ -12,7 +12,7 @@ func _ready():
 	_health = 10
 	_acceleration = 0.2
 	_speed = 65
-	_attack_range = 200
+	_attack_range = 50
 	if($AnimationTree != null):
 		$AnimationTree.active = true
 		
