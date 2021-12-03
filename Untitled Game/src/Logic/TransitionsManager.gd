@@ -5,9 +5,25 @@ var _cameraManager: CustomCamera2D
 func _ready():
 	if LevelGlobals.SceneHasPlayerActor():
 		InitCameraManager()
-	
+		RegisterTeleporterSignals()
+		RegisterDelimiterSignals()
+
 func InitCameraManager() -> void:
-	_cameraManager = CustomCamera2D.new(LevelGlobals.GetPlayerActor(), true)
+	_cameraManager = CustomCamera2D.new(LevelGlobals.GetPlayerActor(), true)	
+
+func RegisterTeleporterSignals() -> void:
+	var teleporters = self.get_parent().get_tree().get_nodes_in_group("TeleportNode")
+	for _tp in teleporters:
+		var tp: TwoWayTeleportNode2D = _tp
+		tp.connect("TeleportActivated", self, "TeleportPlayerToPosition")
+	print("Registered teleporters.")
+
+func RegisterDelimiterSignals() -> void:
+	var delimiters = self.get_parent().get_tree().get_nodes_in_group("DelimiterNode")
+	for _dl in delimiters:
+		var dl: CustomDelimiter2D = _dl
+		dl.connect("PlayerEnteredAreaDelimiter", self, "CameraTransitionToDelimiter")
+	print("Registered delimiters.")
 
 func GetCameraManager() -> CustomCamera2D:
 	return _cameraManager

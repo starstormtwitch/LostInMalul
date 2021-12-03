@@ -45,6 +45,8 @@ func _init(cameraTarget: Node, current: bool = true):
 	self.zoom = _DEFAULT_CAMERA_ZOOM
 	self.current = current
 	_animationPlayer = CustomCamera2DSimpleTransitionPlayer.new(cameraTarget.get_tree().current_scene)
+	if _verbose:
+		print("Initialized camera manager.")
 
 func _ready():
 	self.set_process(true)

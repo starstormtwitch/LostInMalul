@@ -542,7 +542,7 @@ position = Vector2( 0.33374, 11.6798 )
 
 [node name="Actors" type="YSort" parent="YSort"]
 
-[node name="LirikYaki" parent="YSort/Actors" groups=["Player"] instance=ExtResource( 2 )]
+[node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 2 )]
 position = Vector2( 234.523, 251.754 )
 scale = Vector2( 1, 1 )
 

@@ -19,7 +19,12 @@ export var RequirePlayerAction: bool = false
 ##Fade animation time for both steps of the animation (in and out).
 export var FadeAnimationTime: float = 0.4
 
-func _onready() -> void:
+signal TeleportActivated(targetPosition, fadeAnimationTime)
+
+func _init():
+	add_to_group("TeleportNode")
+
+func _onready():
 	pass
 
 #capute user input events
@@ -32,7 +37,7 @@ func _input(event: InputEvent) -> void:
 
 #on enter alpha
 func _on_EndpointAlpha_body_entered(body) -> void:
-	if body == LevelGlobals.GetPlayerActor():
+	if body.is_in_group("Player"):
 		if RequirePlayerAction:
 			$EndpointAlpha/Prompt.visible = true
 			_on_alpha = true
@@ -41,7 +46,7 @@ func _on_EndpointAlpha_body_entered(body) -> void:
 
 #on enter beta
 func _on_EndpointBeta_body_entered(body) -> void:
-	if body == LevelGlobals.GetPlayerActor():
+	if body.is_in_group("Player"):
 		if RequirePlayerAction:
 			$EndpointBeta/Prompt.visible = true
 			_on_beta = true
@@ -50,13 +55,13 @@ func _on_EndpointBeta_body_entered(body) -> void:
 
 #on exit alpha
 func _on_EndpointAlpha_body_exited(body) -> void:
-	if body == LevelGlobals.GetPlayerActor():
+	if body.is_in_group("Player"):
 		$EndpointAlpha/Prompt.visible = false
 		_on_alpha = false
 
 #on exit beta
 func _on_EndpointBeta_body_exited(body) -> void:
-	if body == LevelGlobals.GetPlayerActor():
+	if body.is_in_group("Player"):
 		$EndpointBeta/Prompt.visible = false
 		_on_beta = false
 
@@ -72,7 +77,8 @@ func _teleportPlayerToEndpoint(targetEndpointEnumValue: int) -> void:
 			push_error("Invalid target endpoint.")
 			return
 		_startInteractionTimeout()
-		TransitionsManager.TeleportPlayerToPosition(position, FadeAnimationTime)
+		emit_signal("TeleportActivated", position, FadeAnimationTime)
+		#TransitionsManager.TeleportPlayerToPosition(position, FadeAnimationTime)
 
 #cooldown for interaction
 func _startInteractionTimeout() -> void:

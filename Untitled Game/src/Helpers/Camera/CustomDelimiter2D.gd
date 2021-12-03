@@ -5,6 +5,11 @@ class_name CustomDelimiter2D
 ##If enabled the camera will transition automatically to the delimiter area when the player enters it.
 export var AutomaticTransition: bool = true
 
+signal PlayerEnteredAreaDelimiter(delimiter)
+
+func _init():
+	add_to_group("DelimiterNode")
+
 func _ready():
 	assert(getLeft() < getRight(), "Invalid X coordinates.")
 	assert(getTop() < getBottom(), "Invalid Y coordinates.")
@@ -45,6 +50,7 @@ func _configureAutomaticTransitionArea2D() -> void:
 	area.connect("body_entered", self, "_on_AutomaticTransition_Area2D_body_entered")
 
 func _on_AutomaticTransition_Area2D_body_entered(body) -> void:
-	if AutomaticTransition && body == LevelGlobals.GetPlayerActor():
+	if AutomaticTransition && body.is_in_group("Player"):
 		print("Delimiter triggered: " + self.name)
-		TransitionsManager.CameraTransitionToDelimiter(self)
+		emit_signal("PlayerEnteredAreaDelimiterSignal", self)
+		#TransitionsManager.CameraTransitionToDelimiter(self)

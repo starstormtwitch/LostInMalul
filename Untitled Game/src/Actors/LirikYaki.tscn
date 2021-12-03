@@ -331,7 +331,7 @@ graph_offset = Vector2( 0, -5.90611 )
 [sub_resource type="RectangleShape2D" id=34]
 extents = Vector2( 12.9261, 20.0919 )
 
-[node name="LirikYaki" type="KinematicBody2D"]
+[node name="LirikYaki" type="KinematicBody2D" groups=["Player"]]
 position = Vector2( 0.707108, -1.41422 )
 scale = Vector2( 2, 2 )
 collision_layer = 4
@@ -344,7 +344,7 @@ position = Vector2( -0.48801, -21.6264 )
 texture = ExtResource( 2 )
 hframes = 6
 vframes = 8
-frame = 2
+frame = 3
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -0.689455, -1.26315 )
@@ -376,9 +376,7 @@ parameters/Walk/blend_position = 1.094
 wait_time = 0.1
 autostart = true
 
-[node name="PlayerHurtArea" type="Area2D" parent="." groups=[
-"hurtbox",
-]]
+[node name="PlayerHurtArea" type="Area2D" parent="." groups=["hurtbox"]]
 position = Vector2( -2.65, -23.75 )
 collision_layer = 64
 collision_mask = 4096
