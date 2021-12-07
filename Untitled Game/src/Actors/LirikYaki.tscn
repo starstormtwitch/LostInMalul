@@ -337,6 +337,23 @@ tracks/1/keys = {
 "update": 1,
 "values": [ 11, 12, 13, 14, 15, 16, 17, 18 ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "generate_smoke_particle"
+}, {
+"args": [  ],
+"method": "generate_smoke_particle"
+} ]
+}
 
 [sub_resource type="AnimationNodeAnimation" id=9]
 animation = "HurtRight"
@@ -489,14 +506,14 @@ position = Vector2( -0.893, -25.819 )
 texture = ExtResource( 6 )
 hframes = 11
 vframes = 5
-frame = 44
+frame = 16
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -0.893405, -25.8187 )
 texture = ExtResource( 2 )
 hframes = 11
 vframes = 5
-frame = 44
+frame = 16
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -2.42837, -0.854357 )

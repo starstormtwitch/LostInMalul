@@ -48,6 +48,11 @@ _global_script_classes=[ {
 "class": "JumpHelper",
 "language": "GDScript",
 "path": "res://src/Helpers/JumpHelper.gd"
+}, {
+"base": "Particles2D",
+"class": "SmokeParticles",
+"language": "GDScript",
+"path": "res://src/Helpers/SmokeParticles.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
@@ -57,7 +62,8 @@ _global_script_class_icons={
 "CustomDelimiter2D": "",
 "Enemy": "",
 "HitAudioPlayer": "",
-"JumpHelper": ""
+"JumpHelper": "",
+"SmokeParticles": ""
 }
 
 [application]
