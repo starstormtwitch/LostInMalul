@@ -4,9 +4,6 @@ var _player : Actor
 
 onready var _textBox: TextBox = $GUI/TextBox
 
-onready var _bathtub_Interact_Area: Area2D = $LevelBackground/Interactions/Kitchen/BathtubInteract
-onready var _textBox: TextBox = $GUI/TextBox
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_player = LevelGlobals.GetPlayerActor()
