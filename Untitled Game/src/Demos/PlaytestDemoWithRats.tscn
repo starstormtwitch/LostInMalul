@@ -3,7 +3,7 @@
 [ext_resource path="res://src/Helpers/Camera/CustomDelimiter2D.gd" type="Script" id=1]
 [ext_resource path="res://assets/Levels/Basement.png" type="Texture" id=2]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/Actors/SlimeFR.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Actors/RatSoldier.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Demos/PlaytestDemo.gd" type="Script" id=5]
 [ext_resource path="res://assets/GUI/profile.png" type="Texture" id=6]
 [ext_resource path="res://assets/GUI/cash.png" type="Texture" id=7]
@@ -54,7 +54,7 @@ position = Vector2( 181.696, 244.935 )
 shape = SubResource( 2 )
 
 [node name="top" type="CollisionShape2D" parent="LevelBackground/Boundaries/BasementLevel"]
-position = Vector2( 679.186, 193.113 )
+position = Vector2( 679.561, 193.113 )
 shape = SubResource( 3 )
 
 [node name="right" type="CollisionShape2D" parent="LevelBackground/Boundaries/BasementLevel"]
@@ -83,24 +83,24 @@ pause_mode = 1
 position = Vector2( 264.692, 274.695 )
 
 [node name="Enemy" parent="objects/actors" instance=ExtResource( 4 )]
-position = Vector2( 488.322, 278.493 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 493, 278 )
+scale = Vector2( 1.3, 1.3 )
 
 [node name="Enemy2" parent="objects/actors" instance=ExtResource( 4 )]
-position = Vector2( 622.456, 238.084 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 662.622, 240.244 )
+scale = Vector2( 1.3, 1.3 )
 
 [node name="Enemy3" parent="objects/actors" instance=ExtResource( 4 )]
-position = Vector2( 829.55, 281.299 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 823.5, 284.5 )
+scale = Vector2( 1.3, 1.3 )
 
 [node name="Enemy4" parent="objects/actors" instance=ExtResource( 4 )]
-position = Vector2( 954.144, 230.227 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 964, 237 )
+scale = Vector2( 1.3, 1.3 )
 
 [node name="Enemy5" parent="objects/actors" instance=ExtResource( 4 )]
-position = Vector2( 1119.71, 274.003 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 1112, 285.5 )
+scale = Vector2( 1.3, 1.3 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
 

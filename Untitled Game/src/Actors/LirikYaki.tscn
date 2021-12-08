@@ -1,8 +1,11 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://src/Actors/LirikYaki.gd" type="Script" id=1]
 [ext_resource path="res://assets/SpriteSheets/mc_spritesheet_v1-Sheet_with_death.png" type="Texture" id=2]
-[ext_resource path="res://assets/audio/roblox-death-sound_1.mp3" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/sfx_deathscream_human1.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/Retro Impact Punch Hurt 01.wav" type="AudioStream" id=4]
+[ext_resource path="res://src/Helpers/Audio/HitAudioPlayer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/SpriteSheets/mc_shadow_sprite_sheet.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.71682, 10.7663 )
@@ -45,10 +48,22 @@ tracks/2/enabled = true
 tracks/2/keys = {
 "clips": [ {
 "end_offset": 0.0,
-"start_offset": 0.5,
+"start_offset": 0.0,
 "stream": ExtResource( 3 )
 } ],
 "times": PoolRealArray( 0 )
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Shadow:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -72,12 +87,41 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.3 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.29 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "setHurtAnimationPlaying"
+}, {
 "args": [  ],
 "method": "_hurtAnimationFinished"
 } ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 4 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Shadow:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 33 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -89,6 +133,18 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Shadow:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.5, 0.8 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
@@ -135,6 +191,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [ false, true ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Shadow:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 22, 23, 24 ]
+}
 
 [sub_resource type="Animation" id=6]
 length = 0.4
@@ -175,6 +243,18 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Shadow:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 25, 26, 27 ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -217,6 +297,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [ false, true ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Shadow:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 28, 29, 30 ]
+}
 
 [sub_resource type="Animation" id=8]
 length = 0.8
@@ -228,6 +320,18 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 11, 12, 13, 14, 15, 16, 17, 18 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Shadow:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
@@ -344,9 +448,9 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=50]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=55]
+[sub_resource type="AnimationNodeStateMachineTransition" id=51]
 
-[sub_resource type="AnimationNodeStateMachine" id=51]
+[sub_resource type="AnimationNodeStateMachine" id=52]
 states/Hurt/node = SubResource( 9 )
 states/Hurt/position = Vector2( 344.246, 239.388 )
 states/Idle/node = SubResource( 10 )
@@ -361,16 +465,16 @@ states/Walk/node = SubResource( 14 )
 states/Walk/position = Vector2( 299.246, 66.3882 )
 states/die/node = SubResource( 15 )
 states/die/position = Vector2( 40.3395, 148.82 )
-transitions = [ "Idle", "SideSwipe1", SubResource( 16 ), "SideSwipe1", "Idle", SubResource( 17 ), "SideSwipe1", "SideSwipe2", SubResource( 18 ), "SideSwipe2", "SideSwipe1", SubResource( 19 ), "SideSwipe2", "SideSwipeKick", SubResource( 20 ), "SideSwipe1", "SideSwipeKick", SubResource( 21 ), "SideSwipeKick", "SideSwipe1", SubResource( 22 ), "Idle", "Hurt", SubResource( 23 ), "Hurt", "Idle", SubResource( 24 ), "Idle", "Walk", SubResource( 25 ), "Walk", "Idle", SubResource( 26 ), "Walk", "Hurt", SubResource( 27 ), "Hurt", "Walk", SubResource( 28 ), "SideSwipeKick", "Hurt", SubResource( 29 ), "SideSwipe2", "Hurt", SubResource( 30 ), "SideSwipe1", "Hurt", SubResource( 31 ), "Hurt", "SideSwipe1", SubResource( 32 ), "Hurt", "SideSwipe2", SubResource( 33 ), "Hurt", "SideSwipeKick", SubResource( 34 ), "SideSwipeKick", "Idle", SubResource( 35 ), "SideSwipe2", "Idle", SubResource( 36 ), "Idle", "SideSwipeKick", SubResource( 37 ), "SideSwipeKick", "SideSwipe2", SubResource( 38 ), "SideSwipeKick", "Walk", SubResource( 39 ), "SideSwipe2", "Walk", SubResource( 40 ), "SideSwipe1", "Walk", SubResource( 41 ), "Walk", "SideSwipe1", SubResource( 42 ), "Walk", "SideSwipe2", SubResource( 43 ), "Walk", "SideSwipeKick", SubResource( 44 ), "Idle", "die", SubResource( 45 ), "Walk", "die", SubResource( 46 ), "SideSwipe1", "die", SubResource( 47 ), "SideSwipe2", "die", SubResource( 48 ), "SideSwipeKick", "die", SubResource( 49 ), "Hurt", "die", SubResource( 50 ), "Idle", "SideSwipe2", SubResource( 55 ) ]
+transitions = [ "Idle", "SideSwipe1", SubResource( 16 ), "SideSwipe1", "Idle", SubResource( 17 ), "SideSwipe1", "SideSwipe2", SubResource( 18 ), "SideSwipe2", "SideSwipe1", SubResource( 19 ), "SideSwipe2", "SideSwipeKick", SubResource( 20 ), "SideSwipe1", "SideSwipeKick", SubResource( 21 ), "SideSwipeKick", "SideSwipe1", SubResource( 22 ), "Idle", "Hurt", SubResource( 23 ), "Hurt", "Idle", SubResource( 24 ), "Idle", "Walk", SubResource( 25 ), "Walk", "Idle", SubResource( 26 ), "Walk", "Hurt", SubResource( 27 ), "Hurt", "Walk", SubResource( 28 ), "SideSwipeKick", "Hurt", SubResource( 29 ), "SideSwipe2", "Hurt", SubResource( 30 ), "SideSwipe1", "Hurt", SubResource( 31 ), "Hurt", "SideSwipe1", SubResource( 32 ), "Hurt", "SideSwipe2", SubResource( 33 ), "Hurt", "SideSwipeKick", SubResource( 34 ), "SideSwipeKick", "Idle", SubResource( 35 ), "SideSwipe2", "Idle", SubResource( 36 ), "Idle", "SideSwipeKick", SubResource( 37 ), "SideSwipeKick", "SideSwipe2", SubResource( 38 ), "SideSwipeKick", "Walk", SubResource( 39 ), "SideSwipe2", "Walk", SubResource( 40 ), "SideSwipe1", "Walk", SubResource( 41 ), "Walk", "SideSwipe1", SubResource( 42 ), "Walk", "SideSwipe2", SubResource( 43 ), "Walk", "SideSwipeKick", SubResource( 44 ), "Idle", "die", SubResource( 45 ), "Walk", "die", SubResource( 46 ), "SideSwipe1", "die", SubResource( 47 ), "SideSwipe2", "die", SubResource( 48 ), "SideSwipeKick", "die", SubResource( 49 ), "Hurt", "die", SubResource( 50 ), "Idle", "SideSwipe2", SubResource( 51 ) ]
 start_node = "Idle"
-graph_offset = Vector2( 161.34, 134.836 )
+graph_offset = Vector2( -101.66, -46.164 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=52]
-
-[sub_resource type="RectangleShape2D" id=53]
-extents = Vector2( 14.0577, 5.53115 )
+[sub_resource type="AnimationNodeStateMachinePlayback" id=53]
 
 [sub_resource type="RectangleShape2D" id=54]
+extents = Vector2( 14.0577, 5.53115 )
+
+[sub_resource type="RectangleShape2D" id=55]
 extents = Vector2( 10.2453, 24.08 )
 
 [node name="LirikYaki" type="KinematicBody2D"]
@@ -380,12 +484,19 @@ collision_mask = 1025
 collision/safe_margin = 0.001
 script = ExtResource( 1 )
 
+[node name="Shadow" type="Sprite" parent="."]
+position = Vector2( -0.893, -25.819 )
+texture = ExtResource( 6 )
+hframes = 11
+vframes = 5
+frame = 44
+
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -0.893405, -25.8187 )
 texture = ExtResource( 2 )
 hframes = 11
 vframes = 5
-frame = 25
+frame = 44
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -2.42837, -0.854357 )
@@ -395,6 +506,8 @@ shape = SubResource( 1 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+
+[node name="HitAudioPlayer" parent="." instance=ExtResource( 5 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Die = SubResource( 2 )
@@ -406,9 +519,9 @@ anims/SideSwipeRightKick = SubResource( 7 )
 anims/WalkRight = SubResource( 8 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 51 )
+tree_root = SubResource( 52 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 52 )
+parameters/playback = SubResource( 53 )
 
 [node name="TrailTimer" type="Timer" parent="."]
 wait_time = 0.1
@@ -423,7 +536,7 @@ collision_mask = 4096
 
 [node name="HurtBox" type="CollisionShape2D" parent="PlayerHurtArea"]
 position = Vector2( 0.882891, 22.5725 )
-shape = SubResource( 53 )
+shape = SubResource( 54 )
 
 [node name="attack" type="Area2D" parent="."]
 position = Vector2( -0.730887, -23.75 )
@@ -433,7 +546,7 @@ collision_mask = 0
 [node name="sideSwipeRight" type="CollisionShape2D" parent="attack"]
 modulate = Color( 0.6, 0.298039, 1, 1 )
 position = Vector2( 11.9026, 3.50396 )
-shape = SubResource( 54 )
+shape = SubResource( 55 )
 disabled = true
 
 [connection signal="area_entered" from="attack" to="." method="_on_attack_area_entered"]
