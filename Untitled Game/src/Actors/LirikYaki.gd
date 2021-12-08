@@ -1,6 +1,7 @@
 extends Actor
 
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
+const smoke_scene = preload("res://src/Helpers/SmokeParticles.tscn")
 const _JUMP_EVENT = "Jump"
 const COMBOTIME = 1;
 const _LEFT_FACING_SCALE = -1.0
@@ -73,6 +74,17 @@ func _on_combo_timeout() -> void:
 	print("combo reset")
 	_attackPoints = 3
 
+
+#Animation callback to generate smoke particle when feet touch the ground
+func generate_smoke_particle():
+	var smoke = smoke_scene.instance()
+	smoke.global_position = self.global_position
+	smoke.emitting = true
+	if _directionFacing.x > 0:
+		smoke.flipSide(false)
+	elif _directionFacing.x < 0:
+		smoke.flipSide(true)
+	get_parent().add_child(smoke)
 
 #timer callback for when hit animation should be done. Doing this cause 
 # there is some issue with animation not playing properly and not resetting this 
@@ -183,3 +195,4 @@ func sendPlayerDeadSignal():
 
 func _on_enemy_hit():
 	hitAudioPlayer.playHitSound()
+	#showHitMarkerParticleshow()
