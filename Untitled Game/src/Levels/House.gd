@@ -33,7 +33,6 @@ onready var _basement_Teleport_Area: Area2D = get_node("LevelBackground/AreaTran
 onready var _foyer_Teleport_Area: Area2D = get_node("LevelBackground/AreaTransitions/Foyer_To_Garage")
 onready var _garage_Teleport_Area: Area2D = get_node("LevelBackground/AreaTransitions/Garage_To_Foyer")
 
-onready var _bathtub_Interact_Area: Area2D = $LevelBackground/Interactions/Kitchen/BathtubInteract
 onready var _textBox: TextBox = $GUI/TextBox
 
 # Called when the node enters the scene tree for the first time.
