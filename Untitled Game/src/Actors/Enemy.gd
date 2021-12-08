@@ -19,6 +19,7 @@ var _flock = []
 var _attackCooldownTimer = Timer.new()
 var _stunTimer = Timer.new()
 var _hitFlashTimer = Timer.new()
+var _directionFacing = 0
 
 func _ready():
 	_attackCooldownTimer.connect("timeout",self,"_on_attack_cooldown_timeout") 
@@ -62,6 +63,7 @@ func _physics_process(_delta: float) -> void:
 			direction = _flock_direction(direction)
 		if (_state == EnemyState.CHASE or _state == EnemyState.ROAM) and !_isAttacking:
 			_play_walk_animation_if_available(targetDirection.x)
+		_directionFacing = targetDirection.x
 		_flipBoxesIfNecessary(targetDirection.x)
 			
 	_velocity = getMovement(direction, _speed, _acceleration)
@@ -136,7 +138,17 @@ func _play_walk_animation_if_available(velocity_x: float):
 		var animationPlayer: AnimationPlayer = $AnimationPlayer
 		if animationPlayer.has_animation("walk"):
 			$AnimationTree.get("parameters/playback").travel("walk")
-	
+
+func _show_hit_marker():
+	if $HitMarkerParticles != null:
+		var hitMarkerParticles: Particles2D = $HitMarkerParticles
+		if _directionFacing > 0:
+			hitMarkerParticles.position.x = abs(hitMarkerParticles.position.x)
+		elif _directionFacing < 0:
+			hitMarkerParticles.position.x = -abs(hitMarkerParticles.position.x)
+		hitMarkerParticles.restart()
+		hitMarkerParticles.emitting = true
+
 func get_target_direction() -> Vector2:
 	var direction = Vector2.ZERO
 	if(_target == null):
@@ -165,6 +177,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		if($AnimationTree != null):
 			$AnimationTree.get("parameters/playback").travel("hurt")
 		_health-=damage
+		_show_hit_marker()
 		
 		#knockback/knockup
 		_inAir = true

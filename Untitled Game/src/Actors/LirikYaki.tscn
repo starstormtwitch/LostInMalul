@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://src/Actors/LirikYaki.gd" type="Script" id=1]
 [ext_resource path="res://assets/SpriteSheets/mc_spritesheet_v1-Sheet_with_death.png" type="Texture" id=2]
@@ -6,25 +6,9 @@
 [ext_resource path="res://assets/audio/Retro Impact Punch Hurt 01.wav" type="AudioStream" id=4]
 [ext_resource path="res://src/Helpers/Audio/HitAudioPlayer.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/SpriteSheets/mc_shadow_sprite_sheet.png" type="Texture" id=6]
-[ext_resource path="res://assets/SpriteSheets/Effect 3 - Sprite Sheet.png" type="Texture" id=7]
-[ext_resource path="res://src/Helpers/CustomParticles.gd" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.71682, 10.7663 )
-
-[sub_resource type="CanvasItemMaterial" id=2]
-particles_animation = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 5
-particles_anim_loop = false
-
-[sub_resource type="ParticlesMaterial" id=3]
-flag_disable_z = true
-gravity = Vector3( 0, 0, 0 )
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 0.5
-anim_speed = 1.0
 
 [sub_resource type="Animation" id=4]
 length = 1.8
@@ -535,17 +519,6 @@ position = Vector2( -2.42837, -0.854357 )
 rotation = 1.5708
 scale = Vector2( 1.01091, 1.11191 )
 shape = SubResource( 1 )
-
-[node name="HitMarkerParticles" type="Particles2D" parent="."]
-material = SubResource( 2 )
-position = Vector2( 22.9863, -25.2826 )
-emitting = false
-amount = 1
-lifetime = 0.5
-one_shot = true
-process_material = SubResource( 3 )
-texture = ExtResource( 7 )
-script = ExtResource( 8 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
