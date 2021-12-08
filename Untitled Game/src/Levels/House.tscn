@@ -565,7 +565,6 @@ shape = SubResource( 31 )
 
 [node name="Bathroom_Bedroom_2WT" parent="LevelBackground/Teleports" instance=ExtResource( 22 )]
 position = Vector2( 501.341, 255.124 )
-RequirePlayerAction = true
 
 [node name="EndpointAlpha" parent="LevelBackground/Teleports/Bathroom_Bedroom_2WT" index="0"]
 position = Vector2( -83.3373, 14.983 )
