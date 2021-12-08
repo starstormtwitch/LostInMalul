@@ -12,7 +12,12 @@ export var RequirePlayerAction: bool = true
 ##Fade animation time for both steps of the animation (in and out).
 export var FadeAnimationTime: float = 0.4
 
-func _onready() -> void:
+signal TeleportActivated(targetPosition, fadeAnimationTime)
+
+func _init():
+	add_to_group("TeleportNode")
+
+func _onready():
 	pass
 
 #capute user input events
@@ -21,7 +26,7 @@ func _input(event: InputEvent) -> void:
 		_teleportPlayerToEndpoint()
 
 func _on_Endpoint_body_entered(body):
-	if body == LevelGlobals.GetPlayerActor():
+	if body.is_in_group("Player"):
 		if RequirePlayerAction:
 			$Endpoint/Prompt.visible = true
 			_on_activation_area = true
@@ -29,7 +34,7 @@ func _on_Endpoint_body_entered(body):
 			_teleportPlayerToEndpoint()
 
 func _on_Endpoint_body_exited(body):
-	if body == LevelGlobals.GetPlayerActor():
+	if body.is_in_group("Player"):
 		$Endpoint/Prompt.visible = false
 		_on_activation_area = false
 
@@ -37,7 +42,8 @@ func _on_Endpoint_body_exited(body):
 func _teleportPlayerToEndpoint() -> void:
 	if !_on_cooldown:
 		_startInteractionTimeout()
-		TransitionsManager.TeleportPlayerToPosition($Endpoint/Target.get_global_position(), FadeAnimationTime)
+		emit_signal("TeleportActivated", $Endpoint/Target.get_global_position(), FadeAnimationTime)
+		#TransitionsManager.TeleportPlayerToPosition($Endpoint/Target.get_global_position(), FadeAnimationTime)
 
 #cooldown for interaction
 func _startInteractionTimeout() -> void:

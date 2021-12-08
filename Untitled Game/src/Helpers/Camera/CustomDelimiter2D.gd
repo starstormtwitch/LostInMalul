@@ -52,5 +52,5 @@ func _configureAutomaticTransitionArea2D() -> void:
 func _on_AutomaticTransition_Area2D_body_entered(body) -> void:
 	if AutomaticTransition && body.is_in_group("Player"):
 		print("Delimiter triggered: " + self.name)
-		emit_signal("PlayerEnteredAreaDelimiterSignal", self)
+		emit_signal("PlayerEnteredAreaDelimiter", self)
 		#TransitionsManager.CameraTransitionToDelimiter(self)

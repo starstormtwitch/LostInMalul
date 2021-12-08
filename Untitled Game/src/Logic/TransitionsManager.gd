@@ -14,21 +14,23 @@ func InitCameraManager() -> void:
 func RegisterTeleporterSignals() -> void:
 	var teleporters = self.get_parent().get_tree().get_nodes_in_group("TeleportNode")
 	for _tp in teleporters:
-		var tp: TwoWayTeleportNode2D = _tp
-		tp.connect("TeleportActivated", self, "TeleportPlayerToPosition")
+		#var tp: TwoWayTeleportNode2D = _tp
+		assert(_tp.has_signal("TeleportActivated"), "Teleport node has no TeleportActivated signal.")
+		_tp.connect("TeleportActivated", self, "TeleportPlayerToPosition")
 	print("Registered teleporters.")
 
 func RegisterDelimiterSignals() -> void:
 	var delimiters = self.get_parent().get_tree().get_nodes_in_group("DelimiterNode")
 	for _dl in delimiters:
-		var dl: CustomDelimiter2D = _dl
-		dl.connect("PlayerEnteredAreaDelimiter", self, "CameraTransitionToDelimiter")
+		#var dl: CustomDelimiter2D = _dl
+		assert(_dl.has_signal("PlayerEnteredAreaDelimiter"), "Delimiter node has no PlayerEnteredAreaDelimiter signal.")
+		_dl.connect("PlayerEnteredAreaDelimiter", self, "CameraTransitionToDelimiter")
 	print("Registered delimiters.")
 
 func GetCameraManager() -> CustomCamera2D:
 	return _cameraManager
 
-func CameraTransitionToDelimiter(delimiter: CustomDelimiter2D) -> void:
+func CameraTransitionToDelimiter(delimiter: CustomDelimiter2D) -> void:	
 	_cameraManager.limitCameraToDelimiter(delimiter) 
 
 func TeleportPlayerToPosition(position: Vector2, playFadeTime: float = 0) -> void:

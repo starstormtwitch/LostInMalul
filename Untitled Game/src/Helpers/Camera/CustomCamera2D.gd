@@ -205,7 +205,7 @@ class CustomCamera2DSimpleTransitionPlayer:
 		_scene.add_child(_canvas)
 		_scene.add_child(_player)
 		_colorRect = ColorRect.new()
-		_colorRect.mouse_filter = Control.MOUSE_FILTER_PASS
+		_colorRect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		_colorRect.color = Color(0,0,0,0)		
 		_colorRect.set_size(Vector2(_scene.get_viewport().size.x * 2, _scene.get_viewport().size.y * 2))
 		_canvas.add_child(_colorRect)
