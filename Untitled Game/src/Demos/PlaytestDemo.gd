@@ -34,6 +34,7 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed(_MENU_EVENT) and _menuOpen:
 		_unpauseAndHideMenu()
 
+
 func _pauseAndShowMenu() -> void:
 	_menuOpen = true
 	get_tree().paused = true

@@ -22,6 +22,7 @@ onready var sprite: Sprite = $Sprite
 onready var shadow: Sprite = $Shadow
 onready var rightHitBox: CollisionShape2D = $attack/sideSwipeRight
 onready var hitAudioPlayer: HitAudioPlayer = $HitAudioPlayer
+onready var hitMarkerParticles: Particles2D = $HitMarkerParticles
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -74,6 +75,15 @@ func _on_combo_timeout() -> void:
 	print("combo reset")
 	_attackPoints = 3
 
+# callback to show hit marker, when player hits an enemy. Should be called in _on_enemy_hit  
+func showHitMarkerParticleshow():
+	#print("flip hitmarker: " + String())
+	if _directionFacing.x > 0:
+		hitMarkerParticles.position.x = abs(hitMarkerParticles.position.x)
+	elif _directionFacing.x < 0:
+		hitMarkerParticles.position.x = -abs(hitMarkerParticles.position.x)
+	hitMarkerParticles.restart()
+	hitMarkerParticles.emitting = true
 
 #Animation callback to generate smoke particle when feet touch the ground
 func generate_smoke_particle():
@@ -195,3 +205,4 @@ func sendPlayerDeadSignal():
 
 func _on_enemy_hit():
 	hitAudioPlayer.playHitSound()
+	showHitMarkerParticleshow()
