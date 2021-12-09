@@ -8,7 +8,7 @@ onready var _textBox: TextBox = $GUI/TextBox
 func _ready():
 	_player = LevelGlobals.GetPlayerActor()
 	_player.connect("health_changed", self, "_on_Player_health_changed")
-	_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)		
+	_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)
 
 func _on_Player_health_changed(_oldHealth, newHealth, maxHealth):
 	var healthBar = get_node("GUI/Control/healthBar")
@@ -16,19 +16,6 @@ func _on_Player_health_changed(_oldHealth, newHealth, maxHealth):
 	healthBar.MaxHealth = maxHealth
 	healthBar.update_health()
 
-# node to handle player input, and call the proper response
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(EventsList.UI_CANCEL_EVENT):
-		_handleUICancelEvent()
-
-# Call when the "UI_Cacnel" event is called. will close textboxes if open
-func _handleUICancelEvent() -> void:
-	if _textBox.isShowing:
-		_hideTextBox()
-
-func _hideTextBox(): 
-	_textBox.hideText()
-	get_tree().set_input_as_handled()
 
 func _on_InteractPromptArea_interactable_text_signal(text):
 	_textBox.showText(text)
