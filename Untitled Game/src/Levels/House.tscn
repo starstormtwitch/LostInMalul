@@ -275,11 +275,11 @@ b = Vector2( 1014.24, 206.202 )
 a = Vector2( -256.938, 208.497 )
 b = Vector2( 1016.59, 208.444 )
 
-[sub_resource type="RectangleShape2D" id=27]
-extents = Vector2( 60.7231, 25.8775 )
-
 [sub_resource type="RectangleShape2D" id=28]
 extents = Vector2( 11.8075, 11.755 )
+
+[sub_resource type="RectangleShape2D" id=27]
+extents = Vector2( 60.7231, 25.8775 )
 
 [sub_resource type="RectangleShape2D" id=29]
 extents = Vector2( 7.76685, 36.4999 )
@@ -678,20 +678,6 @@ position = Vector2( 3042.36, 494.073 )
 [node name="Interactions" type="Node" parent="LevelBackground"]
 
 [node name="Bathroom" type="Node" parent="LevelBackground/Interactions"]
-
-[node name="InteractPromptArea" parent="LevelBackground/Interactions/Bathroom" instance=ExtResource( 175 )]
-position = Vector2( 237.133, 249.326 )
-interactableText = "hello"
-playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
-
-[node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bathroom/InteractPromptArea"]
-position = Vector2( -0.333709, 21.0238 )
-shape = SubResource( 27 )
-
-[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Bathroom/InteractPromptArea"]
-visible = false
-position = Vector2( -2.52271, 23.9656 )
-texture = ExtResource( 25 )
 
 [node name="Toilet" parent="LevelBackground/Interactions/Bathroom" instance=ExtResource( 175 )]
 position = Vector2( 112.942, 215.255 )
@@ -1516,13 +1502,12 @@ margin_right = 512.0
 [connection signal="body_exited" from="LevelBackground/AreaTransitions/Foyer_To_Garage" to="LevelBackground/AreaTransitions/Foyer_To_Garage" method="_hide_prompt_if_player_leaves_body"]
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Garage_To_Foyer" to="LevelBackground/AreaTransitions/Garage_To_Foyer" method="_show_prompt_if_player_within_body"]
 [connection signal="body_exited" from="LevelBackground/AreaTransitions/Garage_To_Foyer" to="LevelBackground/AreaTransitions/Garage_To_Foyer" method="_hide_prompt_if_player_leaves_body"]
-[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/InteractPromptArea" to="." method="_on_InteractPromptArea_interactable_text_signal"]
-[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
-[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/Bed" to="." method="_on_InteractPromptArea_interactable_text_signal"]
-[connection signal="interactable_text_signal" from="LevelBackground/Interactions/LivingRoom/InteractPromptArea" to="." method="_on_InteractPromptArea_interactable_text_signal"]
-[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Kitchen/Coffee" to="." method="_on_InteractPromptArea_interactable_text_signal"]
-[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Kitchen/Fridge" to="." method="_on_InteractPromptArea_interactable_text_signal"]
-[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Kitchen/Microwave" to="." method="_on_InteractPromptArea_interactable_text_signal"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="GUI/TextBox" method="showText"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/Bed" to="GUI/TextBox" method="showText"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/LivingRoom/InteractPromptArea" to="GUI/TextBox" method="showText"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Kitchen/Coffee" to="GUI/TextBox" method="showText"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Kitchen/Fridge" to="GUI/TextBox" method="showText"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Kitchen/Microwave" to="GUI/TextBox" method="showText"]
 
 [editable path="LevelBackground/CameraPositions/Bathroom_Delimiter"]
 [editable path="LevelBackground/CameraPositions/Bedroom_Delimiter"]
