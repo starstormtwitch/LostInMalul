@@ -16,6 +16,5 @@ func _on_Player_health_changed(_oldHealth, newHealth, maxHealth):
 	healthBar.MaxHealth = maxHealth
 	healthBar.update_health()
 
-
 func _on_InteractPromptArea_interactable_text_signal(text):
 	_textBox.showText(text)
