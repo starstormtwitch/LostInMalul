@@ -34,10 +34,12 @@ func CameraTransitionToDelimiter(delimiter: CustomDelimiter2D) -> void:
 	_cameraManager.limitCameraToDelimiter(delimiter) 
 
 func TeleportPlayerToPosition(position: Vector2, playFadeTime: float = 0) -> void:
+	get_tree().paused = true
 	if playFadeTime > 0:
 		_cameraManager._animationPlayer.playFadeIn(playFadeTime)
 		yield(_cameraManager._animationPlayer._player, "animation_finished")
 	LevelGlobals.GetPlayerActor().position = position
 	if playFadeTime > 0:
 		_cameraManager._animationPlayer.playFadeOut(playFadeTime)
+	get_tree().paused = false
 	
