@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lirik_shadow.png-e5dbdcccd9d28ce68f200c243a884ce6.stex"
+path="res://.import/mc_shadow.png-4dc76afb36c43c0b40919db47700a2fb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/SpriteSheets/lirik_shadow.png"
-dest_files=[ "res://.import/lirik_shadow.png-e5dbdcccd9d28ce68f200c243a884ce6.stex" ]
+source_file="res://assets/SpriteSheets/mc_shadow.png"
+dest_files=[ "res://.import/mc_shadow.png-4dc76afb36c43c0b40919db47700a2fb.stex" ]
 
 [params]
 
