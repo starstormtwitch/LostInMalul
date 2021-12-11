@@ -110,9 +110,11 @@ func add_trail() -> void:
 
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if _canTakeDamage:
+		print("call hurt logic")
 		_canTakeDamage = false
 		_beingHurt = true
-		print("call hurt logic")
+		_isAttacking = false
+		_on_combo_timeout()
 		_hitDoneTimer.start(_hitAnimationTime)
 		$AnimationTree.get("parameters/playback").travel("Hurt")
 		_invincibilityTimer.start(2)
@@ -218,4 +220,3 @@ func sendPlayerDeadSignal():
 
 func _on_enemy_hit():
 	hitAudioPlayer.playHitSound()
-	#showHitMarkerParticleshow()
