@@ -77,11 +77,13 @@ func _flipBoxesIfNecessary(velocity_x: float):
 	if velocity_x > 0:
 		rightHitBox.position.x = abs(rightHitBox.position.x)
 		sprite.flip_h = true
-		shadow.flip_h = true
+		if shadow != null:
+			shadow.flip_h = true
 	elif velocity_x < 0:
 		rightHitBox.position.x = -abs(rightHitBox.position.x)
 		sprite.flip_h = false
-		shadow.flip_h = false
+		if shadow != null:
+			shadow.flip_h = false
 
 
 func get_next_state(targetDirection: Vector2):
