@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/Helpers/Camera/CustomDelimiter2D.gd" type="Script" id=1]
 [ext_resource path="res://assets/Levels/Basement.png" type="Texture" id=2]
@@ -8,8 +8,7 @@
 [ext_resource path="res://assets/GUI/profile.png" type="Texture" id=6]
 [ext_resource path="res://assets/GUI/cash.png" type="Texture" id=7]
 [ext_resource path="res://src/Helpers/GUI/HealthBar.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/GUI/green_button_Hover.png" type="Texture" id=9]
-[ext_resource path="res://assets/GUI/green_button.png" type="Texture" id=10]
+[ext_resource path="res://src/Helpers/GUI/PauseMenu.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 644.725, 4.32855 )
@@ -22,14 +21,6 @@ extents = Vector2( 507.743, 10 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 10, 56.6757 )
-
-[sub_resource type="Gradient" id=5]
-offsets = PoolRealArray( 0 )
-colors = PoolColorArray( 0.729412, 0.447059, 0, 1 )
-
-[sub_resource type="GradientTexture" id=6]
-gradient = SubResource( 5 )
-width = 200
 
 [node name="Sandbox" type="Node2D"]
 pause_mode = 2
@@ -104,148 +95,8 @@ scale = Vector2( 0.5, 0.5 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
-[node name="GameMenu" type="Control" parent="GUI"]
-pause_mode = 2
+[node name="PauseMenu" parent="GUI" instance=ExtResource( 9 )]
 visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -20.0
-margin_right = 20.0
-margin_bottom = 20.0
-mouse_filter = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="GUI/GameMenu"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -100.0
-margin_top = -100.0
-margin_right = 100.0
-margin_bottom = 100.0
-rect_scale = Vector2( 1, 200 )
-mouse_filter = 2
-texture = SubResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/GameMenu"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -97.5
-margin_top = -92.6581
-margin_right = 97.5
-margin_bottom = 92.6581
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="GUI/GameMenu/VBoxContainer"]
-margin_right = 195.0
-margin_bottom = 14.0
-text = "Menu"
-align = 1
-
-[node name="RestartButton" type="TextureButton" parent="GUI/GameMenu/VBoxContainer"]
-margin_left = 17.0
-margin_top = 18.0
-margin_right = 177.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 160, 30 )
-mouse_default_cursor_shape = 2
-size_flags_horizontal = 4
-texture_normal = ExtResource( 10 )
-texture_hover = ExtResource( 9 )
-expand = true
-
-[node name="Label" type="Label" parent="GUI/GameMenu/VBoxContainer/RestartButton"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -18.8775
-margin_top = -7.0
-margin_right = 26.1225
-margin_bottom = 7.0
-text = "Restart"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/GameMenu/VBoxContainer"]
-margin_top = 52.0
-margin_right = 195.0
-margin_bottom = 52.0
-mouse_filter = 2
-
-[node name="ExitButton" type="TextureButton" parent="GUI/GameMenu/VBoxContainer"]
-margin_left = 17.0
-margin_top = 56.0
-margin_right = 177.0
-margin_bottom = 86.0
-rect_min_size = Vector2( 160, 30 )
-mouse_default_cursor_shape = 2
-size_flags_horizontal = 4
-texture_normal = ExtResource( 10 )
-texture_hover = ExtResource( 9 )
-expand = true
-
-[node name="Label" type="Label" parent="GUI/GameMenu/VBoxContainer/ExitButton"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -19.4388
-margin_top = -7.0
-margin_right = 20.5612
-margin_bottom = 7.0
-text = "Exit"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer2" type="MarginContainer" parent="GUI/GameMenu/VBoxContainer"]
-margin_top = 90.0
-margin_right = 195.0
-margin_bottom = 90.0
-mouse_filter = 2
-
-[node name="GoBackButton" type="TextureButton" parent="GUI/GameMenu/VBoxContainer"]
-margin_left = 17.0
-margin_top = 94.0
-margin_right = 177.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 160, 30 )
-size_flags_horizontal = 4
-texture_normal = ExtResource( 10 )
-texture_hover = ExtResource( 9 )
-expand = true
-
-[node name="Label" type="Label" parent="GUI/GameMenu/VBoxContainer/GoBackButton"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -19.4388
-margin_top = -7.0
-margin_right = 20.5612
-margin_bottom = 7.0
-text = "Go Back"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="GameUI" type="Control" parent="GUI"]
 margin_right = 40.0
@@ -291,6 +142,5 @@ mouse_filter = 2
 [connection signal="enemy_hit" from="objects/actors/Enemy3" to="objects/actors/LirikYaki" method="_on_enemy_hit"]
 [connection signal="enemy_hit" from="objects/actors/Enemy4" to="objects/actors/LirikYaki" method="_on_enemy_hit"]
 [connection signal="enemy_hit" from="objects/actors/Enemy5" to="objects/actors/LirikYaki" method="_on_enemy_hit"]
-[connection signal="pressed" from="GUI/GameMenu/VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="GUI/GameMenu/VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
-[connection signal="pressed" from="GUI/GameMenu/VBoxContainer/GoBackButton" to="." method="_on_GoBackButton_pressed"]
+[connection signal="start_rat_level" from="GUI/PauseMenu" to="." method="loadRatDemo"]
+[connection signal="start_slime_level" from="GUI/PauseMenu" to="." method="loadSlimeDemo"]

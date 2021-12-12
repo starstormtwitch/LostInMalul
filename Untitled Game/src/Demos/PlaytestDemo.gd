@@ -9,7 +9,7 @@ onready var cameraManager: CustomCamera2D
 
 onready var _cam_Delimiter_Basement: CustomDelimiter2D = get_node("LevelBackground/CameraPositions/Basement_Delimiter")
 
-onready var _gameMenu: Control = get_node("GUI/GameMenu")
+onready var _gameMenu: PauseMenu = get_node("GUI/PauseMenu")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -55,27 +55,14 @@ func _on_Player_health_changed(_oldHealth, newHealth, maxHealth):
 
 
 func loadRatDemo():
-	# Remove the current level
-	var level = get_tree().root.get_node("Sandbox")
-	get_tree().root.remove_child(level)
-	level.call_deferred("free")
-
-	# Add the next level
-	var next_level_resource = load("res://src/Demos/PlaytestDemoWithRats.tscn")
-	var next_level = next_level_resource.instance()
-	get_tree().root.add_child(next_level)
+	get_tree().paused = false
+	get_tree().change_scene("res://src/Demos/PlaytestDemoWithRats.tscn")
 
 
 func loadSlimeDemo():
-	# Remove the current level
-	var level = get_tree().root.get_node("Sandbox")
-	get_tree().root.remove_child(level)
-	level.call_deferred("free")
+	get_tree().paused = false
+	get_tree().change_scene("res://src/Demos/PlaytestDemoFR.tscn")
 
-	# Add the next level
-	var next_level_resource = load("res://src/Demos/PlaytestDemoFR.tscn")
-	var next_level = next_level_resource.instance()
-	get_tree().root.add_child(next_level)
 
 func _on_RestartButton_pressed():
 	get_tree().paused = false

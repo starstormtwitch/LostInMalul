@@ -1,0 +1,228 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/GUI/green_button.png" type="Texture" id=1]
+[ext_resource path="res://assets/GUI/green_button_Hover.png" type="Texture" id=2]
+[ext_resource path="res://src/Helpers/GUI/PauseMenu.gd" type="Script" id=3]
+
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0.729412, 0.447059, 0, 1 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 7 )
+width = 200
+
+[node name="PauseMenu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.594604
+margin_top = -0.594604
+margin_right = -0.594604
+margin_bottom = -0.594604
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -100.0
+margin_right = 101.0
+margin_bottom = 150.0
+rect_scale = Vector2( 1, 230 )
+mouse_filter = 2
+texture = SubResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -97.5
+margin_top = -92.6581
+margin_right = 97.5
+margin_bottom = 157.342
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 195.0
+margin_bottom = 14.0
+text = "Menu"
+align = 1
+
+[node name="RestartButton" type="TextureButton" parent="VBoxContainer"]
+margin_left = 17.0
+margin_top = 18.0
+margin_right = 177.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 160, 30 )
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="VBoxContainer/RestartButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -18.8775
+margin_top = -7.0
+margin_right = 26.1225
+margin_bottom = 7.0
+text = "Restart"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 52.0
+margin_right = 195.0
+margin_bottom = 52.0
+mouse_filter = 2
+
+[node name="ExitButton" type="TextureButton" parent="VBoxContainer"]
+margin_left = 17.0
+margin_top = 56.0
+margin_right = 177.0
+margin_bottom = 86.0
+rect_min_size = Vector2( 160, 30 )
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="VBoxContainer/ExitButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -19.4388
+margin_top = -7.0
+margin_right = 20.5612
+margin_bottom = 7.0
+text = "Exit"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 90.0
+margin_right = 195.0
+margin_bottom = 90.0
+mouse_filter = 2
+
+[node name="GoBackButton" type="TextureButton" parent="VBoxContainer"]
+margin_left = 17.0
+margin_top = 94.0
+margin_right = 177.0
+margin_bottom = 124.0
+rect_min_size = Vector2( 160, 30 )
+size_flags_horizontal = 4
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="VBoxContainer/GoBackButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -19.4388
+margin_top = -7.0
+margin_right = 20.5612
+margin_bottom = 7.0
+text = "Go Back"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 128.0
+margin_right = 195.0
+margin_bottom = 128.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadSlimeLevelButton" type="TextureButton" parent="VBoxContainer"]
+margin_left = 17.0
+margin_top = 132.0
+margin_right = 177.0
+margin_bottom = 162.0
+rect_min_size = Vector2( 160, 30 )
+size_flags_horizontal = 4
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="VBoxContainer/LoadSlimeLevelButton"]
+anchor_left = 0.193
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_top = -7.0
+margin_right = 20.5612
+margin_bottom = 7.0
+text = "Load Slime Level"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 166.0
+margin_right = 195.0
+margin_bottom = 166.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadRatLevelButton" type="TextureButton" parent="VBoxContainer"]
+margin_left = 17.0
+margin_top = 170.0
+margin_right = 177.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 160, 30 )
+size_flags_horizontal = 4
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="VBoxContainer/LoadRatLevelButton"]
+anchor_left = 0.193
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_top = -7.0
+margin_right = 20.5612
+margin_bottom = 7.0
+text = "Load Rat Level"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="start_rat_level" from="." to="." method="loadRatDemo"]
+[connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/GoBackButton" to="." method="_unpauseAndHideMenu"]
+[connection signal="pressed" from="VBoxContainer/LoadSlimeLevelButton" to="." method="_on_LoadSlimeLevelButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoadRatLevelButton" to="." method="_on_LoadRatLevelButton_pressed"]
