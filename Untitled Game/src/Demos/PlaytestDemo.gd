@@ -54,6 +54,29 @@ func _on_Player_health_changed(_oldHealth, newHealth, maxHealth):
 	healthBar.update_health()
 
 
+func loadRatDemo():
+	# Remove the current level
+	var level = get_tree().root.get_node("Sandbox")
+	get_tree().root.remove_child(level)
+	level.call_deferred("free")
+
+	# Add the next level
+	var next_level_resource = load("res://src/Demos/PlaytestDemoWithRats.tscn")
+	var next_level = next_level_resource.instance()
+	get_tree().root.add_child(next_level)
+
+
+func loadSlimeDemo():
+	# Remove the current level
+	var level = get_tree().root.get_node("Sandbox")
+	get_tree().root.remove_child(level)
+	level.call_deferred("free")
+
+	# Add the next level
+	var next_level_resource = load("res://src/Demos/PlaytestDemoFR.tscn")
+	var next_level = next_level_resource.instance()
+	get_tree().root.add_child(next_level)
+
 func _on_RestartButton_pressed():
 	get_tree().paused = false
 	get_tree().reload_current_scene()
