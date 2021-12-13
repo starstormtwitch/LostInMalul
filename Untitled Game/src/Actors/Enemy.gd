@@ -169,6 +169,9 @@ func get_target_direction() -> Vector2:
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if !isDying:
 		#stun enemy
+		_velocity = getMovement(Vector2.ZERO, 0, .5)
+		#_velocity = move_and_slide(_velocity)
+		_finishedAttack(2)
 		_isStunned = true
 		_stunTimer.start(_stun_duration)
 			
