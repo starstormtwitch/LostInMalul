@@ -237,7 +237,7 @@ graph_offset = Vector2( -100.741, 38 )
 extents = Vector2( 12.25, 5 )
 
 [sub_resource type="RectangleShape2D" id=26]
-extents = Vector2( 12.25, 4 )
+extents = Vector2( 12.25, 6.66518 )
 
 [sub_resource type="CircleShape2D" id=27]
 radius = 27.0104
@@ -303,10 +303,11 @@ collision_layer = 16384
 collision_mask = 16
 
 [node name="HurtBoxArea" type="CollisionShape2D" parent="HurtBox"]
+visible = false
 shape = SubResource( 25 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1.85355, -19.0993 )
+position = Vector2( 3.52209, -15.9291 )
 shape = SubResource( 26 )
 
 [node name="Sight" type="RayCast2D" parent="."]
@@ -323,6 +324,7 @@ collision_layer = 262144
 collision_mask = 262144
 
 [node name="FlockBoxArea" type="CollisionShape2D" parent="FlockBox"]
+visible = false
 position = Vector2( 3.43559, -6.49746 )
 shape = SubResource( 27 )
 
@@ -333,6 +335,7 @@ collision_layer = 4096
 collision_mask = 0
 
 [node name="AttackBox" type="CollisionShape2D" parent="Attack"]
+visible = false
 position = Vector2( 2.90011, 8.09588 )
 shape = SubResource( 28 )
 

@@ -477,14 +477,14 @@ position = Vector2( -1.85797, -3.70731 )
 texture = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -0.893405, -25.8187 )
+position = Vector2( -0.893405, -23.5687 )
 texture = ExtResource( 6 )
 hframes = 10
 vframes = 7
 frame = 33
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2( -2.42837, -0.854357 )
+position = Vector2( -2.67837, -2.47936 )
 rotation = 1.5708
 scale = Vector2( 1.01091, 1.11191 )
 shape = SubResource( 1 )
@@ -521,7 +521,7 @@ collision_layer = 64
 collision_mask = 4096
 
 [node name="HurtBox" type="CollisionShape2D" parent="PlayerHurtArea"]
-position = Vector2( 0.882891, 22.5725 )
+position = Vector2( 0.132891, 19.5725 )
 shape = SubResource( 67 )
 
 [node name="attack" type="Area2D" parent="."]
@@ -531,7 +531,7 @@ collision_mask = 0
 
 [node name="sideSwipeRight" type="CollisionShape2D" parent="attack"]
 modulate = Color( 0.6, 0.298039, 1, 1 )
-position = Vector2( 12.5648, 6.54992 )
+position = Vector2( 12.5648, 7.92492 )
 shape = SubResource( 68 )
 disabled = true
 
