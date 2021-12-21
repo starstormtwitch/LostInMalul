@@ -1,5 +1,7 @@
 extends Actor
 
+signal player_hit_enemy
+
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
 const smoke_scene = preload("res://src/Helpers/SmokeParticles.tscn")
 const _JUMP_EVENT = "Jump"
@@ -220,3 +222,4 @@ func sendPlayerDeadSignal():
 
 func _on_enemy_hit():
 	hitAudioPlayer.playHitSound()
+	emit_signal("player_hit_enemy")

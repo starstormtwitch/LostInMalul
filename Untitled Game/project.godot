@@ -14,16 +14,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Actors/Actor.gd"
 }, {
-"base": "Object",
-"class": "ArenaRoomManager",
-"language": "GDScript",
-"path": "res://src/Helpers/Camera/ArenaRoomManager.gd"
-}, {
-"base": "Node",
-"class": "CameraManager",
-"language": "GDScript",
-"path": "res://src/Helpers/Camera/CameraManager.gd"
-}, {
 "base": "Camera2D",
 "class": "CustomCamera2D",
 "language": "GDScript",
@@ -66,8 +56,6 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Actor": "",
-"ArenaRoomManager": "",
-"CameraManager": "",
 "CustomCamera2D": "",
 "CustomDelimiter2D": "",
 "CustomParticles": "",

@@ -24,6 +24,7 @@ func _ready():
 	cameraManager = CustomCamera2D.new(_player, true)
 	cameraManager.limitCameraToDelimiter(_cam_Delimiter_Basement)
 	_player.connect("health_changed", self, "_on_Player_health_changed")
+	_player.connect("player_hit_enemy", cameraManager, "default_shake")
 	_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)
 
 
