@@ -1,0 +1,206 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://assets/SpriteSheets/Kaboom_Effect.png" type="Texture" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "attack"
+length = 1.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Attack/AttackBox:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 1.6
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1.08 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "dispose"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Attack/AttackBox:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+length = 0.4
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 16, 17 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "walk"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 32, 33, 34, 35, 36, 37, 38, 39 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "die"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "jump_attack"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id=20]
+states/die/node = SubResource( 5 )
+states/die/position = Vector2( 569, 50 )
+states/idle/node = SubResource( 6 )
+states/idle/position = Vector2( 265, 50 )
+states/jump_attack/node = SubResource( 7 )
+states/jump_attack/position = Vector2( 581, 168 )
+states/walk/node = SubResource( 8 )
+states/walk/position = Vector2( 385.259, -38 )
+transitions = [ "idle", "die", SubResource( 9 ), "die", "idle", SubResource( 10 ), "jump_attack", "idle", SubResource( 11 ), "idle", "jump_attack", SubResource( 12 ), "jump_attack", "die", SubResource( 13 ), "die", "jump_attack", SubResource( 14 ), "idle", "walk", SubResource( 15 ), "walk", "idle", SubResource( 16 ), "walk", "die", SubResource( 17 ), "walk", "jump_attack", SubResource( 18 ), "jump_attack", "walk", SubResource( 19 ) ]
+start_node = "idle"
+end_node = "die"
+graph_offset = Vector2( -141.741, -86.1937 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=21]
+
+[sub_resource type="RectangleShape2D" id=22]
+extents = Vector2( 35.144, 14.332 )
+
+[node name="LightningSpell" type="KinematicBody2D" groups=[
+"enemy",
+]]
+position = Vector2( -2.81732, -8.34173 )
+z_as_relative = false
+collision_layer = 1024
+collision_mask = 5
+
+[node name="sprite" type="Sprite" parent="."]
+position = Vector2( 3.34825, 29.4531 )
+z_as_relative = false
+texture = ExtResource( 1 )
+offset = Vector2( 0, -15 )
+hframes = 14
+frame = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/attack = SubResource( 1 )
+anims/die = SubResource( 2 )
+anims/idle = SubResource( 3 )
+anims/walk = SubResource( 4 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 20 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 21 )
+
+[node name="Attack" type="Area2D" parent="."]
+modulate = Color( 0.431373, 1, 0, 1 )
+position = Vector2( 0.353554, -14.8493 )
+collision_layer = 4096
+collision_mask = 0
+
+[node name="AttackBox" type="CollisionShape2D" parent="Attack"]
+position = Vector2( 3.52476, 11.1675 )
+shape = SubResource( 22 )
+
+[connection signal="area_entered" from="Attack" to="." method="_on_Attack_area_entered"]
