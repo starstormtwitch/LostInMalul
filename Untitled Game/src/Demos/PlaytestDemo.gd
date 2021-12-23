@@ -23,8 +23,9 @@ func _ready():
 	#assert(_camera, "Camera2D Node does not exist")
 	cameraManager = CustomCamera2D.new(_player, true)
 	cameraManager.limitCameraToDelimiter(_cam_Delimiter_Basement)
+	get_new_camera_shake_values()
 	_player.connect("health_changed", self, "_on_Player_health_changed")
-	_player.connect("player_hit_enemy", cameraManager, "default_shake")
+	_player.connect("player_hit_enemy", cameraManager, "shake")
 	_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)
 
 
@@ -76,3 +77,18 @@ func _on_ExitButton_pressed():
 
 func _on_GoBackButton_pressed():
 	_unpauseAndHideMenu()
+
+
+func get_new_camera_shake_values():
+	var values = Settings.load_screen_shake_settings()
+	cameraManager.set_shake_settings(values.duration, values.frequency, values.amplitude)
+
+
+func _on_SettingsMenu_settings_changed():
+	_gameMenu.visible = true
+	#we need to give camera function signal that settings changed
+	get_new_camera_shake_values()
+
+
+func show_settings():
+	_gameMenu.visible = false

@@ -4,6 +4,7 @@ class_name PauseMenu
 
 signal start_rat_level
 signal start_slime_level
+signal show_settings
 
 var _menuOpen = false
 
@@ -38,3 +39,7 @@ func _on_LoadSlimeLevelButton_pressed():
 
 func _on_LoadRatLevelButton_pressed():
 	emit_signal("start_rat_level")
+
+
+func _on_SettingsButton_pressed():
+	emit_signal("show_settings")

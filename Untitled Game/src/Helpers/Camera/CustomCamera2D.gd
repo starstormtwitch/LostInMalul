@@ -37,9 +37,9 @@ var _limit_smooth_target_position: Vector2
 var _verbose = true
 
 #variables for shaking
-var _duration = 0.2
+var _duration = 0.1
 var _period_in_ms = 15
-var _amplitude = 8
+var _amplitude = 4
 var _timer = 0.0
 var _last_shook_timer = 0
 var _previous_x = 0.0
@@ -90,7 +90,7 @@ func _process(delta):
 func handleShake(delta):
 	if _timer == 0:
 		return
-	print("continue shake")
+	#print("continue shake")
 	# Only shake on certain frames.
 	_last_shook_timer = _last_shook_timer + delta
 	# Be mathematically correct in the face of lag; usually only happens once.
@@ -216,15 +216,12 @@ func resetLimits() -> void:
 	limitCameraToCoordinates(_DEFAULT_CAMERA_LIMIT_TOP_LEFT, _DEFAULT_CAMERA_LIMIT_TOP_LEFT, _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT, _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT)
 
 # Kick off a new screenshake effect.
-func shake(duration, frequency, amplitude):
+func shake():
 	# Initialize variables.
 	print("start shake")
+	_timer = _duration
 	_is_shaking = true
-	_remoteTransform2d.update_position = false
-	_duration = duration
-	_timer = duration
-	_period_in_ms = 1.0 / frequency
-	_amplitude = amplitude
+	_remoteTransform2d.update_position = false 
 	_previous_x = rand_range(-1.0, 1.0)
 	_previous_y = rand_range(-1.0, 1.0)
 	# Reset previous offset, if any.
@@ -232,8 +229,10 @@ func shake(duration, frequency, amplitude):
 	_last_offset = Vector2(0, 0)
 
 
-func default_shake():
-	shake(0.1, 15, 4)
+func set_shake_settings(duration: float, frequency: float, amplitude: float):
+	_duration = duration
+	_period_in_ms = 1.0 / frequency
+	_amplitude = amplitude
 
 
 #inner classes
