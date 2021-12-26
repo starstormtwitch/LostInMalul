@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Retro Impact Punch 07.wav-1bc87e089239a069684c1f97bdb01792.sample"
+
+[deps]
+
+source_file="res://assets/audio/HitAudio/Retro Impact Punch 07.wav"
+dest_files=[ "res://.import/Retro Impact Punch 07.wav-1bc87e089239a069684c1f97bdb01792.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

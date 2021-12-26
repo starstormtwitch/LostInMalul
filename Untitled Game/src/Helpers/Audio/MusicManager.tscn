@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/audio/menu_music_yookz.mp3" type="AudioStream" id=1]
+[ext_resource path="res://assets/audio/game_track1_yookz.mp3" type="AudioStream" id=2]
+[ext_resource path="res://src/Helpers/Audio/MusicManager.gd" type="Script" id=3]
+
+[node name="MusicManager" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="MenuMusicStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -7.428
+
+[node name="NormalBattleStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+autoplay = true

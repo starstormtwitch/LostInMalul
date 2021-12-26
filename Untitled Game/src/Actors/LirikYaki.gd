@@ -10,6 +10,7 @@ const _ATTACK2_EVENT = "attack_2"
 const COMBOTIME = 1;
 const _LEFT_FACING_SCALE = -1.0
 const _RIGHT_FACING_SCALE = 1.0
+const _FOOTSTEP_PARTICLE_POSITION_OFFSET = -6
 
 var _isAttacking: bool = false
 var _beingHurt: bool = false
@@ -29,6 +30,7 @@ onready var sprite: Sprite = $Sprite
 onready var shadow: Sprite = $Shadow
 onready var rightHitBox: CollisionShape2D = $attack/sideSwipeRight
 onready var hitAudioPlayer: HitAudioPlayer = $HitAudioPlayer
+onready var footstepAudioPlayer: AudioStreamPlayer = $FootStepAudioStreamPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -83,16 +85,28 @@ func _on_combo_timeout() -> void:
 	_comboBPoints = 2
 
 
+# call function when foot hits floor. Play sounds and smoke particle
+func footstepCallback():
+	_generate_smoke_particle()
+	_play_footstep_sound()
+
+
 #Animation callback to generate smoke particle when feet touch the ground
-func generate_smoke_particle():
+func _generate_smoke_particle():
 	var smoke = smoke_scene.instance()
 	smoke.global_position = self.global_position
+	smoke.global_position.y += _FOOTSTEP_PARTICLE_POSITION_OFFSET
 	smoke.emitting = true
 	if _directionFacing.x > 0:
 		smoke.flipSide(false)
 	elif _directionFacing.x < 0:
 		smoke.flipSide(true)
 	get_parent().add_child(smoke)
+
+
+func _play_footstep_sound():
+	footstepAudioPlayer.play()
+
 
 #timer callback for when hit animation should be done. Doing this cause 
 # there is some issue with animation not playing properly and not resetting this 
