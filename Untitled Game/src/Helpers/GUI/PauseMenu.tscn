@@ -146,7 +146,7 @@ margin_left = -19.4388
 margin_top = -7.0
 margin_right = 20.5612
 margin_bottom = 7.0
-text = "Go Back"
+text = "Resume"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false

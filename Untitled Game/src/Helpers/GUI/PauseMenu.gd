@@ -5,6 +5,7 @@ class_name PauseMenu
 signal start_rat_level
 signal start_slime_level
 signal show_settings
+signal menu_hidden
 
 var _menuOpen = false
 
@@ -22,6 +23,7 @@ func _unpauseAndHideMenu():
 	_menuOpen = false
 	get_tree().paused = false
 	self.visible = false
+	emit_signal("menu_hidden")
 
 
 func _on_RestartButton_pressed():

@@ -10,6 +10,7 @@ onready var cameraManager: CustomCamera2D
 onready var _cam_Delimiter_Basement: CustomDelimiter2D = get_node("LevelBackground/CameraPositions/Basement_Delimiter")
 
 onready var _gameMenu: PauseMenu = get_node("GUI/PauseMenu")
+onready var _musicManager: MusicManager = get_node("MusicManager")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,12 +39,14 @@ func _input(event: InputEvent) -> void:
 
 
 func _pauseAndShowMenu() -> void:
+	_musicManager.playMenuMusic()
 	_menuOpen = true
 	get_tree().paused = true
 	_gameMenu.visible = true
 
 
 func _unpauseAndHideMenu():
+	_musicManager.playNormalBattleMusic()
 	_menuOpen = false
 	get_tree().paused = false
 	_gameMenu.visible = false
@@ -92,3 +95,7 @@ func _on_SettingsMenu_settings_changed():
 
 func show_settings():
 	_gameMenu.visible = false
+
+
+func _on_pause_menu_hidden():
+	_musicManager.playNormalBattleMusic()
