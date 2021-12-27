@@ -171,7 +171,9 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		#stun enemy
 		_velocity = getMovement(Vector2.ZERO, 0, .5)
 		#_velocity = move_and_slide(_velocity)
-		_finishedAttack(2)
+		#print("hit, reset attack")
+		disable_hurt_box_if_exists()
+		_finishedAttack(1)
 		_isStunned = true
 		_stunTimer.start(_stun_duration)
 			
@@ -194,6 +196,12 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		if(_health <= 0):
 			die()
 		
+func disable_hurt_box_if_exists():
+	var hitbox: CollisionShape2D = get_node("Attack/AttackBox")
+	if(hitbox != null):
+		#print("disable hit box")
+		hitbox.disabled = true
+	
 func _on_attack_cooldown_timeout():
 	_isReadyToAttack = true
 		

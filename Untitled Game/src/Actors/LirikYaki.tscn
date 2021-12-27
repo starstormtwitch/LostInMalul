@@ -304,7 +304,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.2, 0.6 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -499,7 +499,7 @@ position = Vector2( -0.893405, -23.5687 )
 texture = ExtResource( 6 )
 hframes = 10
 vframes = 7
-frame = 16
+frame = 10
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -2.67837, -2.47936 )

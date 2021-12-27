@@ -80,7 +80,7 @@ func _on_invincibility_timeout() -> void:
 	
 	
 func _on_combo_timeout() -> void:
-	print("combo reset")
+	#print("combo reset")
 	_comboAPoints = 2
 	_comboBPoints = 2
 
@@ -112,7 +112,7 @@ func _play_footstep_sound():
 # there is some issue with animation not playing properly and not resetting this 
 # flag causing the player to be stuck in animations. 
 func _hit_timer_done():
-	print("hurt timer done")
+	#print("hurt timer done")
 	_beingHurt = false
 
 func add_trail() -> void:
@@ -138,7 +138,8 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 
 # callback function to for when the hurt animation is playing
 func setHurtAnimationPlaying():
-	print("play hurt animation")
+	pass
+	#print("play hurt animation")
 	#_beingHurt = true
 
 func evaluatePlayerInput() -> Vector2:
@@ -214,13 +215,13 @@ func doSideSwipeKick():
 
 
 func _finishedAttack() -> void:
-	print("attack finished")
+	#print("attack finished")
 	_isAttacking = false
 
 
 # callback function for when hurt animation is done
 func _hurtAnimationFinished() -> void:
-	print("hurt animation done")
+	#print("hurt animation done")
 	_beingHurt = false
 
 

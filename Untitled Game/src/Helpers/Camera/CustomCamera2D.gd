@@ -218,7 +218,7 @@ func resetLimits() -> void:
 # Kick off a new screenshake effect.
 func shake():
 	# Initialize variables.
-	print("start shake")
+	#print("start shake")
 	_timer = _duration
 	_is_shaking = true
 	_remoteTransform2d.update_position = false 
