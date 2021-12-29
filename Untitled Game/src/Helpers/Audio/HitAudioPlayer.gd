@@ -9,7 +9,7 @@ func _ready():
 
 
 func playerAttacks():
-	print("attack sounds loaded")
+	#print("attack sounds loaded")
 	_attackLoaded = true
 
 

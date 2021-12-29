@@ -1,8 +1,10 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://assets/SpriteSheets/rat_soldier_shadow_sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/RatSoldier.gd" type="Script" id=2]
 [ext_resource path="res://assets/SpriteSheets/rat_soldier-Sheet.png" type="Texture" id=3]
+[ext_resource path="res://src/Helpers/CustomParticles.gd" type="Script" id=4]
+[ext_resource path="res://assets/SpriteSheets/Effect 3 - Sprite Sheet.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "die"
@@ -224,47 +226,38 @@ auto_advance = true
 [sub_resource type="AnimationNodeStateMachineTransition" id=13]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=14]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=15]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=16]
 switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=17]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=18]
 switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=19]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=20]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=21]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=22]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=23]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=24]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=25]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=26]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=27]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=28]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=29]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id=30]
+[sub_resource type="AnimationNodeStateMachine" id=27]
 states/die/node = SubResource( 6 )
 states/die/position = Vector2( 567, 50 )
 states/hurt/node = SubResource( 7 )
@@ -275,24 +268,37 @@ states/jump_attack/node = SubResource( 9 )
 states/jump_attack/position = Vector2( 581, 168 )
 states/walk/node = SubResource( 10 )
 states/walk/position = Vector2( 385.259, -38 )
-transitions = [ "idle", "hurt", SubResource( 11 ), "hurt", "idle", SubResource( 12 ), "hurt", "die", SubResource( 13 ), "die", "hurt", SubResource( 14 ), "idle", "die", SubResource( 15 ), "die", "idle", SubResource( 16 ), "hurt", "jump_attack", SubResource( 17 ), "jump_attack", "idle", SubResource( 18 ), "idle", "jump_attack", SubResource( 19 ), "jump_attack", "die", SubResource( 20 ), "jump_attack", "hurt", SubResource( 21 ), "die", "jump_attack", SubResource( 22 ), "idle", "walk", SubResource( 23 ), "walk", "idle", SubResource( 24 ), "walk", "die", SubResource( 25 ), "walk", "hurt", SubResource( 26 ), "walk", "jump_attack", SubResource( 27 ), "hurt", "walk", SubResource( 28 ), "jump_attack", "walk", SubResource( 29 ) ]
+transitions = [ "idle", "hurt", SubResource( 11 ), "hurt", "idle", SubResource( 12 ), "hurt", "die", SubResource( 13 ), "idle", "die", SubResource( 14 ), "hurt", "jump_attack", SubResource( 15 ), "jump_attack", "idle", SubResource( 16 ), "idle", "jump_attack", SubResource( 17 ), "jump_attack", "die", SubResource( 18 ), "jump_attack", "hurt", SubResource( 19 ), "idle", "walk", SubResource( 20 ), "walk", "idle", SubResource( 21 ), "walk", "die", SubResource( 22 ), "walk", "hurt", SubResource( 23 ), "walk", "jump_attack", SubResource( 24 ), "hurt", "walk", SubResource( 25 ), "jump_attack", "walk", SubResource( 26 ) ]
 start_node = "idle"
 end_node = "die"
-graph_offset = Vector2( -207.741, -61 )
+graph_offset = Vector2( -207.741, 42.0861 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=31]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=28]
 
-[sub_resource type="RectangleShape2D" id=32]
+[sub_resource type="RectangleShape2D" id=29]
 extents = Vector2( 13.5128, 14.2018 )
 
-[sub_resource type="RectangleShape2D" id=33]
+[sub_resource type="RectangleShape2D" id=30]
 extents = Vector2( 9.27378, 4 )
 
-[sub_resource type="CircleShape2D" id=34]
+[sub_resource type="CircleShape2D" id=31]
 radius = 13.2807
 
-[sub_resource type="RectangleShape2D" id=35]
+[sub_resource type="RectangleShape2D" id=32]
 extents = Vector2( 11.4738, 9.2776 )
+
+[sub_resource type="CanvasItemMaterial" id=33]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 5
+particles_anim_loop = false
+
+[sub_resource type="ParticlesMaterial" id=34]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+anim_speed = 1.0
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemy",
@@ -308,7 +314,7 @@ position = Vector2( 0, -23.7913 )
 texture = ExtResource( 1 )
 hframes = 11
 vframes = 5
-frame = 22
+frame = 44
 
 [node name="enemy" type="Sprite" parent="."]
 position = Vector2( 0, -8.795 )
@@ -317,7 +323,7 @@ texture = ExtResource( 3 )
 offset = Vector2( 0, -15 )
 hframes = 11
 vframes = 5
-frame = 22
+frame = 44
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/die = SubResource( 1 )
@@ -327,9 +333,9 @@ anims/jump_attack = SubResource( 4 )
 anims/walk = SubResource( 5 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 30 )
+tree_root = SubResource( 27 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 31 )
+parameters/playback = SubResource( 28 )
 
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
@@ -340,11 +346,11 @@ collision_mask = 16
 
 [node name="HurtBoxArea" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2( -0.936443, 4.8695 )
-shape = SubResource( 32 )
+shape = SubResource( 29 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 4.66372, -4.08509 )
-shape = SubResource( 33 )
+shape = SubResource( 30 )
 
 [node name="Sight" type="RayCast2D" parent="."]
 position = Vector2( 0.353554, -14.8493 )
@@ -361,7 +367,7 @@ collision_mask = 262144
 
 [node name="FlockBoxArea" type="CollisionShape2D" parent="FlockBox"]
 position = Vector2( 0.686863, 0.873051 )
-shape = SubResource( 34 )
+shape = SubResource( 31 )
 
 [node name="Attack" type="Area2D" parent="."]
 modulate = Color( 0.431373, 1, 0, 1 )
@@ -371,8 +377,19 @@ collision_mask = 0
 
 [node name="AttackBox" type="CollisionShape2D" parent="Attack"]
 position = Vector2( -16.7024, -0.0697699 )
-shape = SubResource( 35 )
+shape = SubResource( 32 )
 disabled = true
+
+[node name="HitMarkerParticles" type="Particles2D" parent="."]
+material = SubResource( 33 )
+position = Vector2( -7.88188, -22.2792 )
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+process_material = SubResource( 34 )
+texture = ExtResource( 5 )
+script = ExtResource( 4 )
 
 [connection signal="area_entered" from="FlockBox" to="." method="_on_FlockBox_area_entered"]
 [connection signal="area_exited" from="FlockBox" to="." method="_on_FlockBox_area_exited"]

@@ -1,14 +1,15 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/Helpers/Camera/CustomDelimiter2D.gd" type="Script" id=1]
 [ext_resource path="res://assets/Levels/Basement.png" type="Texture" id=2]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/Actors/SlimeFR.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Actors/RatKing/RatKing.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Demos/PlaytestDemo.gd" type="Script" id=5]
 [ext_resource path="res://assets/GUI/profile.png" type="Texture" id=6]
 [ext_resource path="res://assets/GUI/cash.png" type="Texture" id=7]
 [ext_resource path="res://src/Helpers/GUI/HealthBar.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/Helpers/GUI/PauseMenu.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Helpers/GUI/BossHealthBar.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 644.725, 4.32855 )
@@ -45,7 +46,7 @@ position = Vector2( 181.696, 244.935 )
 shape = SubResource( 2 )
 
 [node name="top" type="CollisionShape2D" parent="LevelBackground/Boundaries/BasementLevel"]
-position = Vector2( 679.186, 193.113 )
+position = Vector2( 679.561, 193.113 )
 shape = SubResource( 3 )
 
 [node name="right" type="CollisionShape2D" parent="LevelBackground/Boundaries/BasementLevel"]
@@ -73,25 +74,10 @@ pause_mode = 1
 ] instance=ExtResource( 3 )]
 position = Vector2( 264.692, 274.695 )
 
-[node name="Enemy" parent="objects/actors" instance=ExtResource( 4 )]
-position = Vector2( 488.322, 278.493 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Enemy2" parent="objects/actors" instance=ExtResource( 4 )]
-position = Vector2( 622.456, 238.084 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Enemy3" parent="objects/actors" instance=ExtResource( 4 )]
-position = Vector2( 829.55, 281.299 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Enemy4" parent="objects/actors" instance=ExtResource( 4 )]
-position = Vector2( 954.144, 230.227 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Enemy5" parent="objects/actors" instance=ExtResource( 4 )]
-position = Vector2( 1119.71, 274.003 )
-scale = Vector2( 0.5, 0.5 )
+[node name="Enemy" parent="objects/actors" groups=[
+"Boss",
+] instance=ExtResource( 4 )]
+position = Vector2( 1040.43, 260.71 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
@@ -105,6 +91,12 @@ mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="bossHealthBar" parent="GUI/GameUI" instance=ExtResource( 10 )]
+margin_left = 48.8811
+margin_top = 501.238
+margin_right = 974.881
+margin_bottom = 554.238
 
 [node name="Profile" type="TextureRect" parent="GUI/GameUI"]
 margin_left = 15.0
@@ -137,10 +129,5 @@ margin_right = 306.0
 margin_bottom = 53.0
 mouse_filter = 2
 
-[connection signal="enemy_hit" from="objects/actors/Enemy" to="objects/actors/LirikYaki" method="_on_enemy_hit"]
-[connection signal="enemy_hit" from="objects/actors/Enemy2" to="objects/actors/LirikYaki" method="_on_enemy_hit"]
-[connection signal="enemy_hit" from="objects/actors/Enemy3" to="objects/actors/LirikYaki" method="_on_enemy_hit"]
-[connection signal="enemy_hit" from="objects/actors/Enemy4" to="objects/actors/LirikYaki" method="_on_enemy_hit"]
-[connection signal="enemy_hit" from="objects/actors/Enemy5" to="objects/actors/LirikYaki" method="_on_enemy_hit"]
 [connection signal="start_rat_level" from="GUI/PauseMenu" to="." method="loadRatDemo"]
 [connection signal="start_slime_level" from="GUI/PauseMenu" to="." method="loadSlimeDemo"]

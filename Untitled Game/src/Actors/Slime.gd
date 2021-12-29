@@ -56,6 +56,10 @@ func _end_jump_attack():
 #	if(body.is_in_group("enemy")):
 #		remove_from_flock(body)
 
+func take_damage(damage: int, direction: Vector2, force: float) -> void:
+	_isJumping = false
+	.take_damage(damage, direction, force)
+
 func _on_Attack_area_entered(area):
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
 		area.get_parent().take_damage(1, _velocity.normalized(), 500)
