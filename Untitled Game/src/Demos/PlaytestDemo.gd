@@ -4,6 +4,7 @@ const _MENU_EVENT: String = "Menu"
 const _UI_CANCEL_EVENT: String = "ui_cancel"
 
 var _player : Actor
+var _boss : Actor
 var _menuOpen: bool = false
 onready var cameraManager: CustomCamera2D
 
@@ -19,12 +20,18 @@ func _ready():
 		var players = tree.get_nodes_in_group("Player")
 		if(players.size() > 0):
 			_player = players[0]
+		var bosses = tree.get_nodes_in_group("Boss")
+		if(bosses.size() > 0):
+			_boss = bosses[0]
 	assert(_player, "Player Node does not exist.")
+	assert(_boss, "Boss Node does not exist.")
 	#assert(_camera, "Camera2D Node does not exist")
 	cameraManager = CustomCamera2D.new(_player, true)
 	cameraManager.limitCameraToDelimiter(_cam_Delimiter_Basement)
 	_player.connect("health_changed", self, "_on_Player_health_changed")
+	_boss.connect("health_changed", self, "_on_Boss_health_changed")
 	_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)
+	_on_Boss_health_changed(_boss._health, _boss._health, _boss._maxHealth)
 
 
 # node to handle player input, and call the proper response
@@ -53,6 +60,12 @@ func _on_Player_health_changed(_oldHealth, newHealth, maxHealth):
 	healthBar.MaxHealth = maxHealth
 	healthBar.update_health()
 
+
+func _on_Boss_health_changed(_oldHealth, newHealth, maxHealth):
+	var healthBar = get_node("GUI/GameUI/bossHealthBar")
+	healthBar.Health = newHealth
+	healthBar.MaxHealth = maxHealth
+	healthBar.update_health()
 
 func loadRatDemo():
 	get_tree().paused = false

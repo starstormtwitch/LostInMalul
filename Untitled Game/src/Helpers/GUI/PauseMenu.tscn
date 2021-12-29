@@ -4,12 +4,12 @@
 [ext_resource path="res://assets/GUI/green_button_Hover.png" type="Texture" id=2]
 [ext_resource path="res://src/Helpers/GUI/PauseMenu.gd" type="Script" id=3]
 
-[sub_resource type="Gradient" id=7]
+[sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0 )
 colors = PoolColorArray( 0.729412, 0.447059, 0, 1 )
 
-[sub_resource type="GradientTexture" id=6]
-gradient = SubResource( 7 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 width = 200
 
 [node name="PauseMenu" type="Control"]
@@ -36,7 +36,7 @@ margin_right = 101.0
 margin_bottom = 150.0
 rect_scale = Vector2( 1, 230 )
 mouse_filter = 2
-texture = SubResource( 6 )
+texture = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

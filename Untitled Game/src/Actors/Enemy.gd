@@ -177,6 +177,8 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 			
 		#mark damage
 		emit_signal("enemy_hit")
+		var newHealth = _health-damage
+		emit_signal("health_changed", _health, newHealth, _maxHealth)
 		self.modulate =  Color(10,10,10,10) 
 		_hitFlashTimer.start(.2)
 		if($AnimationTree != null):

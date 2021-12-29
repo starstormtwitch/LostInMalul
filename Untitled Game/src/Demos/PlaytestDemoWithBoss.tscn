@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/Helpers/Camera/CustomDelimiter2D.gd" type="Script" id=1]
 [ext_resource path="res://assets/Levels/Basement.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/GUI/cash.png" type="Texture" id=7]
 [ext_resource path="res://src/Helpers/GUI/HealthBar.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/Helpers/GUI/PauseMenu.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Helpers/GUI/BossHealthBar.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 644.725, 4.32855 )
@@ -73,7 +74,9 @@ pause_mode = 1
 ] instance=ExtResource( 3 )]
 position = Vector2( 264.692, 274.695 )
 
-[node name="Enemy" parent="objects/actors" instance=ExtResource( 4 )]
+[node name="Enemy" parent="objects/actors" groups=[
+"Boss",
+] instance=ExtResource( 4 )]
 position = Vector2( 1040.43, 260.71 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
@@ -88,6 +91,12 @@ mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="bossHealthBar" parent="GUI/GameUI" instance=ExtResource( 10 )]
+margin_left = 48.8811
+margin_top = 501.238
+margin_right = 974.881
+margin_bottom = 554.238
 
 [node name="Profile" type="TextureRect" parent="GUI/GameUI"]
 margin_left = 15.0
