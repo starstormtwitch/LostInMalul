@@ -1,7 +1,10 @@
 extends Actor
 
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
+const smoke_scene = preload("res://src/Helpers/SmokeParticles.tscn")
 const _JUMP_EVENT = "Jump"
+const _ATTACK1_EVENT = "side_swipe_attack"
+const _ATTACK2_EVENT = "attack_2"
 const COMBOTIME = 1;
 const _LEFT_FACING_SCALE = -1.0
 const _RIGHT_FACING_SCALE = 1.0
@@ -12,7 +15,10 @@ var _canTakeDamage: bool = false
 var _directionFacing: Vector2 = Vector2.ZERO
 var _trail = []
 var _invincibilityTimer: Timer = Timer.new()
-var _attackPoints = 3;
+
+var _comboAPoints = 2;
+var _comboBPoints = 2;
+
 var _attackResetTimer: Timer = Timer.new()
 var _hitDoneTimer: Timer = Timer.new()
 var _hitAnimationTime = 1
@@ -45,7 +51,7 @@ func _ready() -> void:
 	_maxHealth = 10
 	_health = _maxHealth
 	_acceleration = .1
-	_speed = 200
+	_speed = 150
 	_directionFacing.x = .1;
 	$TrailTimer.connect("timeout", self, "add_trail")
 	$AnimationTree.active = true
@@ -74,8 +80,20 @@ func _on_invincibility_timeout() -> void:
 	
 func _on_combo_timeout() -> void:
 	print("combo reset")
-	_attackPoints = 3
+	_comboAPoints = 2
+	_comboBPoints = 2
 
+
+#Animation callback to generate smoke particle when feet touch the ground
+func generate_smoke_particle():
+	var smoke = smoke_scene.instance()
+	smoke.global_position = self.global_position
+	smoke.emitting = true
+	if _directionFacing.x > 0:
+		smoke.flipSide(false)
+	elif _directionFacing.x < 0:
+		smoke.flipSide(true)
+	get_parent().add_child(smoke)
 
 #timer callback for when hit animation should be done. Doing this cause 
 # there is some issue with animation not playing properly and not resetting this 
@@ -95,9 +113,11 @@ func add_trail() -> void:
 
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if _canTakeDamage:
+		print("call hurt logic")
 		_canTakeDamage = false
 		_beingHurt = true
-		print("call hurt logic")
+		_isAttacking = false
+		_on_combo_timeout()
 		_hitDoneTimer.start(_hitAnimationTime)
 		$AnimationTree.get("parameters/playback").travel("Hurt")
 		_invincibilityTimer.start(2)
@@ -130,8 +150,11 @@ func evaluatePlayerInput() -> Vector2:
 		return Vector2.ZERO
 		
 	#check attack inputs
-	if Input.is_action_just_pressed("side_swipe_attack") or Input.is_action_pressed("side_swipe_attack"):
+	if Input.is_action_just_pressed(_ATTACK1_EVENT) or Input.is_action_pressed(_ATTACK1_EVENT):
 		doSideSwipeAttack()
+		return Vector2.ZERO
+	elif Input.is_action_just_pressed(_ATTACK2_EVENT) or Input.is_action_pressed(_ATTACK2_EVENT):
+		doSideSwipeKick()
 		return Vector2.ZERO
 		
 	#set animation for direction and return for movement
@@ -145,21 +168,35 @@ func evaluatePlayerInput() -> Vector2:
 func doSideSwipeAttack():
 	_isAttacking = true
 	_attackResetTimer.start(COMBOTIME)
-	print("Going to attack with " + String(_attackPoints))
-	if _attackPoints == 3:
+	_comboBPoints = 2
+	print("Combo A: " + String(_comboAPoints))
+	if _comboAPoints == 2:
 		hitAudioPlayer.playerAttacks()
 		$AnimationTree.get("parameters/playback").travel("SideSwipe1")
-		_attackPoints = _attackPoints - 1
-	elif _attackPoints == 2:
+		_comboAPoints = _comboAPoints - 1
+	elif _comboAPoints == 1:
 		hitAudioPlayer.playerAttacks()
 		$AnimationTree.get("parameters/playback").travel("SideSwipe2")
-		_attackPoints = _attackPoints - 1
-	elif _attackPoints == 1:
+		_comboAPoints = _comboAPoints - 1
+	else:
+		_comboAPoints = 2
+		_isAttacking = false
+
+func doSideSwipeKick():
+	_isAttacking = true
+	_attackResetTimer.start(COMBOTIME)
+	_comboAPoints = 2
+	print("Combo B: " + String(_comboBPoints))
+	if _comboBPoints == 2:
 		hitAudioPlayer.playerAttacks()
 		$AnimationTree.get("parameters/playback").travel("SideSwipeKick")
-		_attackPoints = _attackPoints - 1
+		_comboBPoints = _comboBPoints - 1
+	elif _comboBPoints == 1:
+		hitAudioPlayer.playerAttacks()
+		$AnimationTree.get("parameters/playback").travel("SideSwipeRightKick2")
+		_comboBPoints = _comboBPoints - 1
 	else:
-		_attackPoints = 3
+		_comboBPoints = 2
 		_isAttacking = false
 
 
