@@ -21,13 +21,14 @@ func _ready():
 func _physics_process(_delta: float) -> void:
 	match _state:
 		EnemyState.ATTACK_IN_PLACE:
+			#print("attack state")
 			if !_isAttacking:
 				_isAttacking = true
 				if($AnimationTree != null):
 					$AnimationTree.get("parameters/playback").travel("jump_attack")
 	if _isJumping:
 		_handleJumpPhysics()
-
+    
 func _handleJumpPhysics():
 	#_jumpVelocity.y += _GRAVITY
 	_velocity = move_and_slide(_jumpVelocity)
