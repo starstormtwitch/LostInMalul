@@ -22,6 +22,9 @@ onready var shadow: Sprite = $Shadow
 onready var rightHitBox: CollisionShape2D = $attack/sideSwipeRight
 onready var hitAudioPlayer: HitAudioPlayer = $HitAudioPlayer
 
+func _init():
+	add_to_group("Player")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_invincibilityTimer.connect("timeout", self, "_on_invincibility_timeout") 
