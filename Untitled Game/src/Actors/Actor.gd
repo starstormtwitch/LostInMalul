@@ -9,7 +9,7 @@ var isDying = false
 var _speed = 0
 var _health = 1
 var _maxHealth = 1
-var _gravity = Vector2(0.0, 20.0)
+var _gravity = Vector2(0.0, 30.0)
 var _groundPosition = self.position.y;
 const MAXVELOCITY = 500
 
@@ -23,7 +23,10 @@ func getMovement(direction: Vector2, speed: float, acceleration: float) -> Vecto
 	var targetVelocity = (direction.normalized() * speed);
 	
 	var verticalAcceleration = acceleration
-	var horizontalAcceleration = acceleration
+	var horizontalAcceleration = acceleration	
+	#make objects significantly more floaty in air
+	if(_inAir):
+		verticalAcceleration = verticalAcceleration * .1
 	
 	#max target velocity is 5000, modify acceleration instead on higher force targets
 	if(targetVelocity.x > MAXVELOCITY || targetVelocity.y > MAXVELOCITY 

@@ -4,7 +4,7 @@ class_name Enemy
 signal enemy_hit
 
 #Enemy properties
-var _seperation_distance = 20
+var _seperation_distance = 50
 var _attack_range = 20
 var _initial_attack_cooldown = .5 #in seconds
 var _stun_duration = 50 #in seconds
