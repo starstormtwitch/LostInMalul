@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/GUI/text.png" type="Texture" id=1]
+[ext_resource path="res://assets/GUI/VormgeversCAPS.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/GUI/Textbox.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 450, 98 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 2 )
+
+[node name="TextBox" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.68179
+margin_top = -0.840881
+margin_right = 1.68176
+margin_bottom = -0.840881
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -108.0
+custom_constants/margin_right = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+margin_left = 16.0
+margin_right = 1008.0
+margin_bottom = 96.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+margin_left = 16.0
+margin_right = 1008.0
+margin_bottom = 96.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 972.0
+margin_bottom = 75.0
+size_flags_vertical = 2
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Very long text to test thing when the sentance gets very long. i hope it will autowrap into next line instead of going off screen plserino."
+autowrap = true

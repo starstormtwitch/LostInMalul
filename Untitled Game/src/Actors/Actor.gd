@@ -5,6 +5,7 @@ class_name Actor
 var _velocity: = Vector2.ZERO
 var _acceleration = .2
 var _inAir = false
+var isDying = false
 var _speed = 0
 var _health = 1
 var _maxHealth = 1
@@ -21,9 +22,8 @@ func _ready():
 func getMovement(direction: Vector2, speed: float, acceleration: float) -> Vector2:
 	var targetVelocity = (direction.normalized() * speed);
 	
-	
 	var verticalAcceleration = acceleration
-	var horizontalAcceleration = acceleration
+	var horizontalAcceleration = acceleration	
 	#make objects significantly more floaty in air
 	if(_inAir):
 		verticalAcceleration = verticalAcceleration * .1
@@ -76,6 +76,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		die()
 		
 func die() -> void:
+	_disableHurtbox()
 	if($AnimationTree != null):
 		$AnimationTree.get("parameters/playback").travel("die")
 	set_physics_process(false)
@@ -83,3 +84,6 @@ func die() -> void:
 func dispose() -> void:
 	queue_free()
 
+func _disableHurtbox():
+	print("trying to disable hurtbox")
+	isDying = true

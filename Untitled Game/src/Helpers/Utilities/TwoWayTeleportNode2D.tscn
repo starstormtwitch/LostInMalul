@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/Helpers/Utilities/TwoWayTeleportNode2D.gd" type="Script" id=1]
+[ext_resource path="res://assets/actions/tile_0395.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[node name="TwoWayTeleportNode2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="EndpointAlpha" type="Area2D" parent="."]
+position = Vector2( -50, 0 )
+
+[node name="ToBetaActivationArea" type="CollisionShape2D" parent="EndpointAlpha"]
+shape = SubResource( 1 )
+
+[node name="ToAlphaTeleportPosition" type="Position2D" parent="EndpointAlpha"]
+
+[node name="Prompt" type="Sprite" parent="EndpointAlpha"]
+visible = false
+position = Vector2( 0, -50 )
+texture = ExtResource( 2 )
+
+[node name="EndpointBeta" type="Area2D" parent="."]
+position = Vector2( 50, 0 )
+
+[node name="ToAlphaActivationArea" type="CollisionShape2D" parent="EndpointBeta"]
+shape = SubResource( 2 )
+
+[node name="ToBetaTeleportPosition" type="Position2D" parent="EndpointBeta"]
+
+[node name="Prompt" type="Sprite" parent="EndpointBeta"]
+visible = false
+position = Vector2( 0, -50 )
+texture = ExtResource( 2 )
+
+[connection signal="body_entered" from="EndpointAlpha" to="." method="_on_EndpointAlpha_body_entered"]
+[connection signal="body_exited" from="EndpointAlpha" to="." method="_on_EndpointAlpha_body_exited"]
+[connection signal="body_entered" from="EndpointBeta" to="." method="_on_EndpointBeta_body_entered"]
+[connection signal="body_exited" from="EndpointBeta" to="." method="_on_EndpointBeta_body_exited"]

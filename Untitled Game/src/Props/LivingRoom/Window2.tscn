@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/Props/LivingRoom/window_2.png" type="Texture" id=1]
+
+[node name="Window2" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0.221624, -22.2655 )
+texture = ExtResource( 1 )
