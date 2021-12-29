@@ -1,8 +1,10 @@
 extends Actor
 class_name Enemy
 
+signal enemy_hit
+
 #Enemy properties
-var _seperation_distance = 50
+var _seperation_distance = 20
 var _attack_range = 20
 var _initial_attack_cooldown = .5 #in seconds
 var _stun_duration = 50 #in seconds
@@ -17,6 +19,7 @@ var _flock = []
 var _attackCooldownTimer = Timer.new()
 var _stunTimer = Timer.new()
 var _hitFlashTimer = Timer.new()
+var _directionFacing = 0
 
 func _ready():
 	_attackCooldownTimer.connect("timeout",self,"_on_attack_cooldown_timeout") 
@@ -53,18 +56,36 @@ func _physics_process(_delta: float) -> void:
 	if(!_isStunned && !_inAir):
 		var targetDirection = try_chase()
 		get_next_state(targetDirection)
-	
 		if(!_isAttacking):
 			if(_state == EnemyState.CHASE):
 				direction = targetDirection;
 		
 			direction = _flock_direction(direction)
+		if (_state == EnemyState.CHASE or _state == EnemyState.ROAM) and !_isAttacking:
+			_play_walk_animation_if_available(targetDirection.x)
+		_directionFacing = targetDirection.x
+		_flipBoxesIfNecessary(targetDirection.x)
 			
-		
 	_velocity = getMovement(direction, _speed, _acceleration)
 	_velocity = move_and_slide(_velocity)
-		
-	
+
+
+func _flipBoxesIfNecessary(velocity_x: float):
+	var rightHitBox: CollisionShape2D = get_node("Attack/AttackBox")
+	var sprite: Sprite = get_node("enemy")
+	var shadow: Sprite = get_node("Shadow")
+	if velocity_x > 0:
+		rightHitBox.position.x = abs(rightHitBox.position.x)
+		sprite.flip_h = true
+		if shadow != null:
+			shadow.flip_h = true
+	elif velocity_x < 0:
+		rightHitBox.position.x = -abs(rightHitBox.position.x)
+		sprite.flip_h = false
+		if shadow != null:
+			shadow.flip_h = false
+
+
 func get_next_state(targetDirection: Vector2):
 	if(_target != null):
 		var dist_to_target = self.global_position.distance_to(_target.global_position)
@@ -91,11 +112,11 @@ func _flock_direction(direction: Vector2):
 	for flockmate in _flock:
 		if is_instance_valid(flockmate):
 			var distanceFromFlockMate = self.position.distance_to(flockmate.position)
-			if distanceFromFlockMate == 0:
-				distanceFromFlockMate = 1
+			if distanceFromFlockMate < 1:
+				distanceFromFlockMate = rand_range(-8,8)
 				
 			if distanceFromFlockMate < _seperation_distance:
-				separation -= (flockmate.position - self.position).normalized() * (_seperation_distance / distanceFromFlockMate * ((_velocity.x + _velocity.y) / 2))
+				separation -= (flockmate.position - self.position).normalized() * (_seperation_distance / distanceFromFlockMate * _speed)
 	return (direction + separation * .5)
 	
 func try_chase() -> Vector2:
@@ -113,7 +134,23 @@ func try_chase() -> Vector2:
 				direction = look.cast_to.normalized()
 				break
 	return direction
-	
+
+func _play_walk_animation_if_available(velocity_x: float):
+	if $AnimationTree != null and $AnimationPlayer != null and velocity_x != 0:
+		var animationPlayer: AnimationPlayer = $AnimationPlayer
+		if animationPlayer.has_animation("walk"):
+			$AnimationTree.get("parameters/playback").travel("walk")
+
+func _show_hit_marker():
+	if $HitMarkerParticles != null:
+		var hitMarkerParticles: Particles2D = $HitMarkerParticles
+		if _directionFacing > 0:
+			hitMarkerParticles.position.x = abs(hitMarkerParticles.position.x)
+		elif _directionFacing < 0:
+			hitMarkerParticles.position.x = -abs(hitMarkerParticles.position.x)
+		hitMarkerParticles.restart()
+		hitMarkerParticles.emitting = true
+
 func get_target_direction() -> Vector2:
 	var direction = Vector2.ZERO
 	if(_target == null):
@@ -130,26 +167,34 @@ func get_target_direction() -> Vector2:
 	
 
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
-	#stun enemy
-	_isStunned = true
-	_stunTimer.start(_stun_duration)
+	if !isDying:
+		#stun enemy
+		_velocity = getMovement(Vector2.ZERO, 0, .5)
+		#_velocity = move_and_slide(_velocity)
+		_finishedAttack(2)
+		_isStunned = true
+		_stunTimer.start(_stun_duration)
+			
+		#mark damage
+		emit_signal("enemy_hit")
+		var newHealth = _health-damage
+		emit_signal("health_changed", _health, newHealth, _maxHealth)
+		self.modulate =  Color(10,10,10,10) 
+		_hitFlashTimer.start(.2)
+		if($AnimationTree != null):
+			$AnimationTree.get("parameters/playback").travel("hurt")
+		_health-=damage
+		_show_hit_marker()
 		
-	#mark damage
-	self.modulate =  Color(10,10,10,10) 
-	_hitFlashTimer.start(.2)
-	if($AnimationTree != null):
-		$AnimationTree.get("parameters/playback").travel("hurt")
-	_health-=damage
-	
-	#knockback/knockup
-	_inAir = true
-	direction.y -= 2
-	var knockbackVelocity = getMovement(direction, force, _acceleration)
-	_velocity = move_and_slide(knockbackVelocity)
-	
-	#death check
-	if(_health <= 0):
-		die()
+		#knockback/knockup
+		_inAir = true
+		direction.y -= 4
+		var knockbackVelocity = getMovement(direction, force, _acceleration)
+		_velocity = move_and_slide(knockbackVelocity)
+		
+		#death check
+		if(_health <= 0):
+			die()
 		
 func _on_attack_cooldown_timeout():
 	_isReadyToAttack = true

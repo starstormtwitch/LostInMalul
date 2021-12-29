@@ -3,7 +3,6 @@
 [ext_resource path="res://assets/SpriteSheets/Slime Sprite Sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/Slime.gd" type="Script" id=2]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "die"
 length = 0.75
@@ -34,7 +33,7 @@ tracks/1/keys = {
 "values": [ 32, 33, 34, 35, 36, 37, 38, 39 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Attack/BodyAttack:disabled")
+tracks/2/path = NodePath("Attack/AttackBox:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -202,7 +201,7 @@ texture = ExtResource( 1 )
 offset = Vector2( 0, -15 )
 hframes = 8
 vframes = 5
-frame = 32
+frame = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/die = SubResource( 1 )
@@ -250,7 +249,7 @@ modulate = Color( 0.431373, 1, 0, 1 )
 collision_layer = 4096
 collision_mask = 0
 
-[node name="BodyAttack" type="CollisionShape2D" parent="Attack"]
+[node name="AttackBox" type="CollisionShape2D" parent="Attack"]
 position = Vector2( 1.5, -4.25 )
 shape = SubResource( 26 )
 
