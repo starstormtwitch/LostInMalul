@@ -781,8 +781,7 @@ pause_mode = 1
 [node name="LirikYaki" parent="YSort/Actors" groups=[
 "Player",
 ] instance=ExtResource( 2 )]
-position = Vector2( 237.466, 234.516 )
-scale = Vector2( 1, 1 )
+position = Vector2( 234.523, 251.754 )
 
 [node name="Enemy" parent="YSort/Actors" instance=ExtResource( 174 )]
 position = Vector2( 959.494, 212.546 )
