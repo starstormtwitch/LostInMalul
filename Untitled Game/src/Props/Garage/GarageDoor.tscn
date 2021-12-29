@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/Props/Garage/GarageDoor.png" type="Texture" id=1]
+
+[node name="GarageDoor" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 41.8692, 86.4446 )
+texture = ExtResource( 1 )

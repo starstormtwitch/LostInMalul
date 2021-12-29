@@ -2,9 +2,9 @@
 
 [ext_resource path="res://src/Demos/TransitionsDemo.gd" type="Script" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/Props/Bathtub.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Props/bathroom/Bathtub.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/Levels/House/House_level.png" type="Texture" id=4]
-[ext_resource path="res://src/Props/Cactus.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Props/bathroom/Cactus.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Props/Plant1.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Props/Plant2.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Props/House/BathroomDoorframe.tscn" type="PackedScene" id=8]

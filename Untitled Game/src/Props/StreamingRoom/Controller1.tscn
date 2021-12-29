@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/Props/StreamingRoom/controller1.png" type="Texture" id=1]
+
+[node name="Controller1" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -0.628616, -5.53621 )
+texture = ExtResource( 1 )

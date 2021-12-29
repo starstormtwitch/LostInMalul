@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/Props/Basement/spot_3.png" type="Texture" id=1]
+
+[node name="Spot3" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0.0566478, -3.60596 )
+texture = ExtResource( 1 )

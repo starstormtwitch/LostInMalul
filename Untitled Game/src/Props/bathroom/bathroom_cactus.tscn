@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/bathroom/bathroom_cactus.png" type="Texture" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 7.37622
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 4.98703, 4.88327 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/StaticBody2D"]
+position = Vector2( -0.561232, 11.2246 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite/StaticBody2D"]
+position = Vector2( -0.526035, 1.78691 )
+shape = SubResource( 2 )
