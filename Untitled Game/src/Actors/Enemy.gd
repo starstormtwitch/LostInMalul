@@ -160,7 +160,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 			
 		#mark damage
 		emit_signal("enemy_hit")
-    
+	
 		self.modulate =  Color(10,10,10,10) 
 		_hitFlashTimer.start(.2)
 		if($AnimationTree != null):
@@ -170,7 +170,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		#knockback/knockup
 		_inAir = true
 		direction.y -= 4
-    
+	
 		var knockbackVelocity = getMovement(direction, force, _acceleration)
 		_velocity = move_and_slide(knockbackVelocity)
 		
