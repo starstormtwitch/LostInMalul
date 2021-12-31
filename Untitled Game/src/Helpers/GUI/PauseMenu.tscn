@@ -6,7 +6,7 @@
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0 )
-colors = PoolColorArray( 0.729412, 0.447059, 0, 1 )
+colors = PoolColorArray( 0, 0.643137, 0.729412, 1 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
@@ -34,7 +34,7 @@ margin_left = -100.0
 margin_top = -100.0
 margin_right = 101.0
 margin_bottom = 150.0
-rect_scale = Vector2( 1, 230 )
+rect_scale = Vector2( 1, 260 )
 mouse_filter = 2
 texture = SubResource( 2 )
 __meta__ = {
@@ -46,9 +46,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -97.5
+margin_left = -98.0946
 margin_top = -92.6581
-margin_right = 97.5
+margin_right = 96.9054
 margin_bottom = 157.342
 __meta__ = {
 "_edit_use_anchors_": false
@@ -146,7 +146,7 @@ margin_left = -19.4388
 margin_top = -7.0
 margin_right = 20.5612
 margin_bottom = 7.0
-text = "Go Back"
+text = "Resume"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -220,9 +220,44 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="MarginContainer5" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 204.0
+margin_right = 195.0
+margin_bottom = 204.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsButton" type="TextureButton" parent="VBoxContainer"]
+margin_left = 17.0
+margin_top = 208.0
+margin_right = 177.0
+margin_bottom = 238.0
+rect_min_size = Vector2( 160, 30 )
+size_flags_horizontal = 4
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="VBoxContainer/SettingsButton"]
+anchor_left = 0.193
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_top = -7.0
+margin_right = 20.5612
+margin_bottom = 7.0
+text = "Settings"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="start_rat_level" from="." to="." method="loadRatDemo"]
 [connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/GoBackButton" to="." method="_unpauseAndHideMenu"]
 [connection signal="pressed" from="VBoxContainer/LoadSlimeLevelButton" to="." method="_on_LoadSlimeLevelButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/LoadRatLevelButton" to="." method="_on_LoadRatLevelButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]

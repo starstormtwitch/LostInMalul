@@ -15,6 +15,6 @@ func playerAttacks():
 
 func playHitSound():
 	if _attackLoaded:
-		print("attack sounds played")
+		#print("attack sounds played")
 		self.play()
 		_attackLoaded = false
