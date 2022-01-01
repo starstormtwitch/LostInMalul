@@ -7,7 +7,7 @@ var _player : Actor
 var _menuOpen: bool = false
 onready var cameraManager: CustomCamera2D
 
-onready var _cam_Delimiter_Basement: CustomDelimiter2D = get_node("LevelBackground/CameraPositions/Basement_Delimiter")
+onready var _cam_Delimiter_Basement: CustomDelimiter2D = $LevelBackground/CameraPositions/Basement_Delimeter
 
 onready var _gameMenu: PauseMenu = get_node("GUI/PauseMenu")
 onready var _musicManager: MusicManager = get_node("MusicManager")
@@ -57,16 +57,6 @@ func _on_Player_health_changed(_oldHealth, newHealth, maxHealth):
 	healthBar.Health = newHealth
 	healthBar.MaxHealth = maxHealth
 	healthBar.update_health()
-
-
-func loadRatDemo():
-	get_tree().paused = false
-	get_tree().change_scene("res://src/Demos/PlaytestDemoWithRats.tscn")
-
-
-func loadSlimeDemo():
-	get_tree().paused = false
-	get_tree().change_scene("res://src/Demos/PlaytestDemoFR.tscn")
 
 
 func _on_RestartButton_pressed():

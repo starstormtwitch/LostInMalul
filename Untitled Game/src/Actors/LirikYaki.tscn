@@ -483,7 +483,9 @@ extents = Vector2( 14.0577, 5.53115 )
 [sub_resource type="RectangleShape2D" id=68]
 extents = Vector2( 10.2453, 11.7708 )
 
-[node name="LirikYaki" type="KinematicBody2D"]
+[node name="LirikYaki" type="KinematicBody2D" groups=[
+"Player",
+]]
 position = Vector2( 0.707108, -1.41422 )
 collision_layer = 4
 collision_mask = 1025

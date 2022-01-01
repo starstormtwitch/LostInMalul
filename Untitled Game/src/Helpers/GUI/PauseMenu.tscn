@@ -17,9 +17,9 @@ pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -0.594604
-margin_top = -0.594604
+margin_top = -1.18921
 margin_right = -0.594604
-margin_bottom = -0.594604
+margin_bottom = -1.18921
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -34,7 +34,7 @@ margin_left = -100.0
 margin_top = -100.0
 margin_right = 101.0
 margin_bottom = 150.0
-rect_scale = Vector2( 1, 260 )
+rect_scale = Vector2( 1, 300 )
 mouse_filter = 2
 texture = SubResource( 2 )
 __meta__ = {
@@ -229,11 +229,45 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SettingsButton" type="TextureButton" parent="VBoxContainer"]
+[node name="LoadHouseLevelButton" type="TextureButton" parent="VBoxContainer"]
 margin_left = 17.0
 margin_top = 208.0
 margin_right = 177.0
 margin_bottom = 238.0
+rect_min_size = Vector2( 160, 30 )
+size_flags_horizontal = 4
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="VBoxContainer/LoadHouseLevelButton"]
+anchor_left = 0.193
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_top = -7.0
+margin_right = 20.5612
+margin_bottom = 7.0
+text = "Load House Level"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer6" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 242.0
+margin_right = 195.0
+margin_bottom = 242.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsButton" type="TextureButton" parent="VBoxContainer"]
+margin_left = 17.0
+margin_top = 246.0
+margin_right = 177.0
+margin_bottom = 276.0
 rect_min_size = Vector2( 160, 30 )
 size_flags_horizontal = 4
 texture_normal = ExtResource( 1 )
@@ -254,10 +288,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="start_rat_level" from="." to="." method="loadRatDemo"]
 [connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/GoBackButton" to="." method="_unpauseAndHideMenu"]
 [connection signal="pressed" from="VBoxContainer/LoadSlimeLevelButton" to="." method="_on_LoadSlimeLevelButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/LoadRatLevelButton" to="." method="_on_LoadRatLevelButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoadHouseLevelButton" to="." method="_on_LoadHouseLevelButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
