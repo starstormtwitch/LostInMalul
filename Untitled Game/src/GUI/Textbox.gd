@@ -6,6 +6,8 @@ onready var label = $MarginContainer/MarginContainer/Label
 
 var isShowing = false
 
+signal closed
+
 # node to handle player input, and call the proper response
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(EventsList.UI_CANCEL_EVENT):
@@ -25,6 +27,7 @@ func hideText():
 	self.visible = false
 	isShowing = false
 	label.text = ""
+	emit_signal("closed")
 
 
 func showText(text: String):

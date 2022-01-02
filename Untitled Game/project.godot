@@ -24,7 +24,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Helpers/Camera/CustomCamera2D.gd"
 }, {
-"base": "Position2D",
+"base": "Node2D",
 "class": "CustomDelimiter2D",
 "language": "GDScript",
 "path": "res://src/Helpers/Camera/CustomDelimiter2D.gd"
@@ -127,7 +127,6 @@ _global_script_class_icons={
 }
 
 [application]
-
 
 config/name="Test Project Yaki"
 run/main_scene="res://src/Levels/House.tscn"

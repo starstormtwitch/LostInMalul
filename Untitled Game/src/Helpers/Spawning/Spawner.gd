@@ -7,8 +7,13 @@ export(bool) var only_off_screen = false
 export(int) var duration_between_spawn = 0
 export(int) var count = 1
 
+var _countToSpawn = 1
+
 var prime_off_screen_add = false;
 var packed_scene;
+
+func ready():
+	_countToSpawn = count;
 
 func spawn(scene_spawn : PackedScene, position : Vector2):
 	#node ignores it's parents transformations, only transforms to globalwa space
@@ -21,8 +26,8 @@ func spawn(scene_spawn : PackedScene, position : Vector2):
 	#create instance of the actor scene
 	#add instance to spawner, defer call in case parent is still being setup
 	if not only_off_screen || not is_on_screen():
-		if(count > 0):
-			count=count-1;
+		if(_countToSpawn > 0):
+			_countToSpawn=_countToSpawn-1;
 			var spawnling = scene_spawn.instance();
 			parent.call_deferred("add_child", spawnling);
 			spawnling.global_position = position; 
@@ -36,7 +41,7 @@ func spawn(scene_spawn : PackedScene, position : Vector2):
 	
 func spawnMultiple(scene_spawn : PackedScene):
 	var spawnlings = []
-	for i in count:
+	for i in _countToSpawn:
 		spawn(scene_spawn, $Spawner.Position)
 	return spawnlings; 
 
@@ -44,7 +49,7 @@ func spawnMultipleInArea(scene_spawn : PackedScene):
 	var spawnlings = []
 	var t = Timer.new()
 	add_child(t)
-	for i in count:
+	for i in _countToSpawn:
 		#Change spawn location randomly
 		var spawnPosition = self.position + Vector2(randf() * self.rect.size.x, randf() * self.rect.size.y)
 		spawn(scene_spawn, spawnPosition)
