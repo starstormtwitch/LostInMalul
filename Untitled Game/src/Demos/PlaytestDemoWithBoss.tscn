@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/GUI/profile.png" type="Texture" id=6]
 [ext_resource path="res://assets/GUI/cash.png" type="Texture" id=7]
 [ext_resource path="res://src/Helpers/GUI/HealthBar.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/Helpers/GUI/PauseMenu.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Helpers/GUI/Pause/PauseMenu.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/Helpers/GUI/BossHealthBar.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -66,9 +66,7 @@ pause_mode = 1
 
 [node name="actors" type="YSort" parent="objects"]
 
-[node name="LirikYaki" parent="objects/actors" groups=[
-"Player",
-] instance=ExtResource( 3 )]
+[node name="LirikYaki" parent="objects/actors" instance=ExtResource( 3 )]
 position = Vector2( 264.692, 274.695 )
 
 [node name="Enemy" parent="objects/actors" groups=[

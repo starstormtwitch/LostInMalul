@@ -56,6 +56,8 @@ func _init(cameraTarget: Node, current: bool):
 	self.zoom = _DEFAULT_CAMERA_ZOOM
 	self.current = current
 	_animationPlayer = CustomCamera2DSimpleTransitionPlayer.new(cameraTarget.get_tree().current_scene)
+	_get_new_camera_shake_values()
+	_connect_to_settings_changed_signal()
 
 func _ready():
 	self.set_process(true)
@@ -229,11 +231,31 @@ func shake():
 	_last_offset = Vector2(0, 0)
 
 
-func set_shake_settings(duration: float, frequency: float, amplitude: float):
+func _set_shake_settings(duration: float, frequency: float, amplitude: float):
 	_duration = duration
 	_period_in_ms = 1.0 / frequency
 	_amplitude = amplitude
 
+
+func _connect_to_settings_changed_signal():
+	var parent = get_parent()
+	if(parent != null):
+		var tree = parent.get_tree()
+		var settings = tree.get_nodes_in_group("Settings")
+		if(settings.size() > 0):
+			var _settings = settings[0]
+			print("Connecting settings signal to camera2d")
+			_settings.connect("settings_changed", self, "_get_new_camera_shake_values")
+		else:
+			printerr("No node in Settings group in parent tree. Needed to connect to signals. CustomCamera2D.gd::250") 
+	else:
+		printerr("No parent found. Needed to connect to signals. CustomCamera2D.gd::252")
+		
+
+# Callback for settings updated signal in PauseScreenContainer node
+func _get_new_camera_shake_values():
+	var values = Settings.load_screen_shake_settings()
+	_set_shake_settings(values.duration, values.frequency, values.amplitude)
 
 #inner classes
 

@@ -2,14 +2,14 @@
 
 [ext_resource path="res://assets/GUI/green_button.png" type="Texture" id=1]
 [ext_resource path="res://assets/GUI/green_button_Hover.png" type="Texture" id=2]
-[ext_resource path="res://src/Helpers/GUI/PauseMenu.gd" type="Script" id=3]
+[ext_resource path="res://src/Helpers/GUI/Pause/PauseMenu.gd" type="Script" id=3]
 
-[sub_resource type="Gradient" id=1]
+[sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0 )
 colors = PoolColorArray( 0, 0.643137, 0.729412, 1 )
 
 [sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
+gradient = SubResource( 3 )
 width = 200
 
 [node name="PauseMenu" type="Control"]
@@ -290,7 +290,7 @@ __meta__ = {
 
 [connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/GoBackButton" to="." method="_unpauseAndHideMenu"]
+[connection signal="pressed" from="VBoxContainer/GoBackButton" to="." method="_on_GoBackButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/LoadSlimeLevelButton" to="." method="_on_LoadSlimeLevelButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/LoadRatLevelButton" to="." method="_on_LoadRatLevelButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/LoadHouseLevelButton" to="." method="_on_LoadHouseLevelButton_pressed"]

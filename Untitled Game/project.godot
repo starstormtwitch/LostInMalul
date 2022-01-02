@@ -64,15 +64,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Helpers/JumpHelper.gd"
 }, {
-"base": "Node2D",
-"class": "MusicManager",
-"language": "GDScript",
-"path": "res://src/Helpers/Audio/MusicManager.gd"
-}, {
 "base": "Control",
 "class": "PauseMenu",
 "language": "GDScript",
-"path": "res://src/Helpers/GUI/PauseMenu.gd"
+"path": "res://src/Helpers/GUI/Pause/PauseMenu.gd"
 }, {
 "base": "Object",
 "class": "ScreenShakeSettings",
@@ -121,7 +116,6 @@ _global_script_class_icons={
 "InteractPromptArea": "",
 "JSONBeautifier": "",
 "JumpHelper": "",
-"MusicManager": "",
 "PauseMenu": "",
 "ScreenShakeSettings": "",
 "Settings": "",
@@ -144,6 +138,7 @@ LevelGlobals="*res://src/Logic/LevelGlobals.gd"
 TransitionsManager="*res://src/Logic/TransitionsManager.gd"
 EventsList="*res://src/Helpers/EventsList.gd"
 ggsManager="*res://addons/GGS/src/ggs_manager.gd"
+MusicManager="*res://src/Helpers/Audio/MusicManager.tscn"
 
 [display]
 

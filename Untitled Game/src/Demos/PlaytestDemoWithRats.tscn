@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/Helpers/Camera/CustomDelimiter2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Levels/Basement.png" type="Texture" id=2]
@@ -8,9 +8,7 @@
 [ext_resource path="res://assets/GUI/profile.png" type="Texture" id=6]
 [ext_resource path="res://assets/GUI/cash.png" type="Texture" id=7]
 [ext_resource path="res://src/Helpers/GUI/HealthBar.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/Helpers/GUI/PauseMenu.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/Helpers/Audio/MusicManager.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/Helpers/GUI/SettingsMenu.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Helpers/GUI/Pause/PauseScreenContainer.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 644.725, 4.32855 )
@@ -67,9 +65,7 @@ pause_mode = 1
 
 [node name="actors" type="YSort" parent="objects"]
 
-[node name="LirikYaki" parent="objects/actors" groups=[
-"Player",
-] instance=ExtResource( 3 )]
+[node name="LirikYaki" parent="objects/actors" instance=ExtResource( 3 )]
 position = Vector2( 264.692, 274.695 )
 
 [node name="Enemy" parent="objects/actors" instance=ExtResource( 4 )]
@@ -92,15 +88,9 @@ scale = Vector2( 1.3, 1.3 )
 position = Vector2( 1112, 285.5 )
 scale = Vector2( 1.3, 1.3 )
 
-[node name="MusicManager" parent="." instance=ExtResource( 10 )]
-
 [node name="GUI" type="CanvasLayer" parent="."]
 
-[node name="PauseMenu" parent="GUI" instance=ExtResource( 9 )]
-visible = false
-
-[node name="SettingsMenu" parent="GUI" instance=ExtResource( 11 )]
-visible = false
+[node name="PauseScreenContainer" parent="GUI" instance=ExtResource( 9 )]
 
 [node name="GameUI" type="Control" parent="GUI"]
 margin_right = 40.0
@@ -146,9 +136,5 @@ mouse_filter = 2
 [connection signal="enemy_hit" from="objects/actors/Enemy3" to="objects/actors/LirikYaki" method="_on_enemy_hit"]
 [connection signal="enemy_hit" from="objects/actors/Enemy4" to="objects/actors/LirikYaki" method="_on_enemy_hit"]
 [connection signal="enemy_hit" from="objects/actors/Enemy5" to="objects/actors/LirikYaki" method="_on_enemy_hit"]
-[connection signal="menu_hidden" from="GUI/PauseMenu" to="." method="_on_pause_menu_hidden"]
-[connection signal="show_settings" from="GUI/PauseMenu" to="GUI/SettingsMenu" method="show_settings"]
-[connection signal="show_settings" from="GUI/PauseMenu" to="." method="show_settings"]
-[connection signal="settings_changed" from="GUI/SettingsMenu" to="." method="_on_SettingsMenu_settings_changed"]
 
 [editable path="LevelBackground/CameraPositions/Basement_Delimeter"]
