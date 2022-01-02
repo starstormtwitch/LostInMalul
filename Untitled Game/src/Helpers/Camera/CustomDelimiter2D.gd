@@ -1,4 +1,4 @@
-extends Position2D
+extends Node2D
 
 class_name CustomDelimiter2D
 

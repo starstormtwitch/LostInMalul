@@ -128,8 +128,9 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Test Project"
-run/main_scene="res://src/Demos/PlaytestDemoFR.tscn"
+
+config/name="Test Project Yaki"
+run/main_scene="res://src/Levels/House.tscn"
 config/icon="res://icon.png"
 
 [autoload]
