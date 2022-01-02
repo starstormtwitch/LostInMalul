@@ -175,103 +175,103 @@
 [ext_resource path="res://src/Actors/SlimeFR.tscn" type="PackedScene" id=174]
 [ext_resource path="res://src/Helpers/Interacts/InteractPromptArea.tscn" type="PackedScene" id=175]
 
-[sub_resource type="SegmentShape2D" id=6]
+[sub_resource type="SegmentShape2D" id=1]
 a = Vector2( -474.143, 0.37738 )
 b = Vector2( 6849.88, 3.13074 )
 
-[sub_resource type="SegmentShape2D" id=7]
+[sub_resource type="SegmentShape2D" id=2]
 a = Vector2( -719.258, 3.29889 )
 b = Vector2( 2699.4, 2.97202 )
 
-[sub_resource type="SegmentShape2D" id=8]
+[sub_resource type="SegmentShape2D" id=3]
 a = Vector2( -5.99417, -73.1816 )
 b = Vector2( -7.32773, 160.454 )
 
-[sub_resource type="SegmentShape2D" id=9]
+[sub_resource type="SegmentShape2D" id=4]
 a = Vector2( 11.8608, -3.81705 )
 b = Vector2( -103.09, 114.215 )
 
-[sub_resource type="SegmentShape2D" id=10]
+[sub_resource type="SegmentShape2D" id=5]
 a = Vector2( -58.2383, -62.4453 )
 b = Vector2( 56.2617, 51.5547 )
 
-[sub_resource type="SegmentShape2D" id=11]
+[sub_resource type="SegmentShape2D" id=6]
 a = Vector2( 45.7026, -42.6635 )
 b = Vector2( -66.2954, 70.8334 )
 
-[sub_resource type="SegmentShape2D" id=12]
+[sub_resource type="SegmentShape2D" id=7]
 a = Vector2( 465.977, -8.95142 )
 b = Vector2( 526.283, 44.9877 )
 
-[sub_resource type="SegmentShape2D" id=13]
+[sub_resource type="SegmentShape2D" id=8]
 a = Vector2( -109.369, 227.974 )
 b = Vector2( 3.13098, 116.661 )
 
-[sub_resource type="SegmentShape2D" id=14]
+[sub_resource type="SegmentShape2D" id=9]
 a = Vector2( 414.052, 108.314 )
 b = Vector2( 537.613, 230.464 )
 
-[sub_resource type="SegmentShape2D" id=15]
+[sub_resource type="SegmentShape2D" id=10]
 a = Vector2( 5.87524, 109.657 )
 b = Vector2( -106.958, 222.489 )
 
-[sub_resource type="SegmentShape2D" id=16]
+[sub_resource type="SegmentShape2D" id=11]
 a = Vector2( 424.847, 110.532 )
 b = Vector2( 536.476, 222.161 )
 
-[sub_resource type="SegmentShape2D" id=17]
+[sub_resource type="SegmentShape2D" id=12]
 a = Vector2( -18.4714, 95.4507 )
 b = Vector2( -132.14, 209.578 )
 
-[sub_resource type="SegmentShape2D" id=18]
+[sub_resource type="SegmentShape2D" id=13]
 a = Vector2( 265.118, 96.8658 )
 b = Vector2( 379.397, 211.267 )
 
-[sub_resource type="SegmentShape2D" id=19]
+[sub_resource type="SegmentShape2D" id=14]
 a = Vector2( -399.114, 196.919 )
 b = Vector2( -287.535, 82.7866 )
 
-[sub_resource type="SegmentShape2D" id=20]
+[sub_resource type="SegmentShape2D" id=15]
 a = Vector2( 423.631, 195.137 )
 b = Vector2( 308.102, 79.9708 )
 
-[sub_resource type="SegmentShape2D" id=21]
+[sub_resource type="SegmentShape2D" id=16]
 a = Vector2( -289.054, 81.8366 )
 b = Vector2( 310.076, 82.1077 )
 
-[sub_resource type="SegmentShape2D" id=22]
+[sub_resource type="SegmentShape2D" id=17]
 a = Vector2( -398.034, 199.417 )
 b = Vector2( 427.967, 198.604 )
 
-[sub_resource type="SegmentShape2D" id=23]
+[sub_resource type="SegmentShape2D" id=18]
 a = Vector2( -220.139, 169.62 )
 b = Vector2( -255.975, 205.758 )
 
-[sub_resource type="SegmentShape2D" id=24]
+[sub_resource type="SegmentShape2D" id=19]
 a = Vector2( -79.9308, 92.0679 )
 b = Vector2( 899.808, 91.8126 )
 
-[sub_resource type="SegmentShape2D" id=25]
+[sub_resource type="SegmentShape2D" id=20]
 a = Vector2( 900.856, 91.7268 )
 b = Vector2( 1014.24, 206.202 )
 
-[sub_resource type="SegmentShape2D" id=26]
+[sub_resource type="SegmentShape2D" id=21]
 a = Vector2( -256.938, 208.497 )
 b = Vector2( 1016.59, 208.444 )
 
-[sub_resource type="RectangleShape2D" id=28]
+[sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 11.8075, 11.755 )
 
-[sub_resource type="RectangleShape2D" id=27]
+[sub_resource type="RectangleShape2D" id=23]
 extents = Vector2( 60.7231, 25.8775 )
 
-[sub_resource type="RectangleShape2D" id=29]
+[sub_resource type="RectangleShape2D" id=24]
 extents = Vector2( 7.76685, 36.4999 )
 
-[sub_resource type="RectangleShape2D" id=30]
+[sub_resource type="RectangleShape2D" id=25]
 extents = Vector2( 17.2043, 37.1483 )
 
-[sub_resource type="RectangleShape2D" id=31]
+[sub_resource type="RectangleShape2D" id=26]
 extents = Vector2( 6.35352, 38.6898 )
 
 [node name="House" type="Node2D"]
@@ -303,12 +303,12 @@ scale = Vector2( 0.497642, 0.497642 )
 
 [node name="bottom_segment" type="CollisionShape2D" parent="LevelBackground/Boundaries/Universal"]
 position = Vector2( 7.10455, -9.74359 )
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 
 [node name="top_segment" type="CollisionShape2D" parent="LevelBackground/Boundaries/Universal"]
 position = Vector2( 1181.1, -248.206 )
 scale = Vector2( 2.00948, 2.00948 )
-shape = SubResource( 7 )
+shape = SubResource( 2 )
 
 [node name="Bathroom" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 
@@ -316,88 +316,88 @@ shape = SubResource( 7 )
 position = Vector2( 395.683, 218.487 )
 rotation = -0.786011
 scale = Vector2( 0.449209, 0.687741 )
-shape = SubResource( 8 )
+shape = SubResource( 3 )
 
 [node name="LeftWall" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bathroom"]
 position = Vector2( 109.018, 187.359 )
-shape = SubResource( 9 )
+shape = SubResource( 4 )
 
 [node name="Bedroom" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 
 [node name="LeftWall" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bedroom"]
 position = Vector2( 590.994, 186.467 )
-shape = SubResource( 9 )
+shape = SubResource( 4 )
 
 [node name="RightWall" type="CollisionShape2D" parent="LevelBackground/Boundaries/Bedroom"]
 position = Vector2( 1077.24, 246.945 )
-shape = SubResource( 10 )
+shape = SubResource( 5 )
 
 [node name="Kitchen" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 2586.28, 247.613 )
 
 [node name="LeftWall" type="CollisionShape2D" parent="LevelBackground/Boundaries/Kitchen"]
 position = Vector2( -43.8254, -18.3543 )
-shape = SubResource( 11 )
+shape = SubResource( 6 )
 
 [node name="RIghtWall" type="CollisionShape2D" parent="LevelBackground/Boundaries/Kitchen"]
-shape = SubResource( 12 )
+shape = SubResource( 7 )
 
 [node name="LivingRoom" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 1921.75, 69.2884 )
 
 [node name="Left" type="CollisionShape2D" parent="LevelBackground/Boundaries/LivingRoom"]
-shape = SubResource( 13 )
+shape = SubResource( 8 )
 
 [node name="Right" type="CollisionShape2D" parent="LevelBackground/Boundaries/LivingRoom"]
-shape = SubResource( 14 )
+shape = SubResource( 9 )
 
 [node name="StreamingRoom" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 1257.65, 74.1624 )
 
 [node name="Left" type="CollisionShape2D" parent="LevelBackground/Boundaries/StreamingRoom"]
-shape = SubResource( 15 )
+shape = SubResource( 10 )
 
 [node name="Right" type="CollisionShape2D" parent="LevelBackground/Boundaries/StreamingRoom"]
-shape = SubResource( 16 )
+shape = SubResource( 11 )
 
 [node name="Foyer" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 3264.4, 88.3407 )
 
 [node name="Left" type="CollisionShape2D" parent="LevelBackground/Boundaries/Foyer"]
-shape = SubResource( 17 )
+shape = SubResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/Boundaries/Foyer"]
-shape = SubResource( 18 )
+shape = SubResource( 13 )
 
 [node name="Garage" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 3216.99, 400.452 )
 
 [node name="Left" type="CollisionShape2D" parent="LevelBackground/Boundaries/Garage"]
-shape = SubResource( 19 )
+shape = SubResource( 14 )
 
 [node name="Right" type="CollisionShape2D" parent="LevelBackground/Boundaries/Garage"]
-shape = SubResource( 20 )
+shape = SubResource( 15 )
 
 [node name="Top" type="CollisionShape2D" parent="LevelBackground/Boundaries/Garage"]
-shape = SubResource( 21 )
+shape = SubResource( 16 )
 
 [node name="Bottom" type="CollisionShape2D" parent="LevelBackground/Boundaries/Garage"]
-shape = SubResource( 22 )
+shape = SubResource( 17 )
 
 [node name="Basement" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 265.644, 389.773 )
 
 [node name="Left" type="CollisionShape2D" parent="LevelBackground/Boundaries/Basement"]
-shape = SubResource( 23 )
+shape = SubResource( 18 )
 
 [node name="Top" type="CollisionShape2D" parent="LevelBackground/Boundaries/Basement"]
-shape = SubResource( 24 )
+shape = SubResource( 19 )
 
 [node name="Right" type="CollisionShape2D" parent="LevelBackground/Boundaries/Basement"]
-shape = SubResource( 25 )
+shape = SubResource( 20 )
 
 [node name="Bottom" type="CollisionShape2D" parent="LevelBackground/Boundaries/Basement"]
-shape = SubResource( 26 )
+shape = SubResource( 21 )
 
 [node name="CameraPositions" type="Node" parent="LevelBackground"]
 
@@ -465,7 +465,7 @@ texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bathroom/Toilet"]
 position = Vector2( -3.5, -6 )
-shape = SubResource( 28 )
+shape = SubResource( 22 )
 
 [node name="Bedroom" type="Node2D" parent="LevelBackground/Interactions"]
 position = Vector2( 604, 72.5 )
@@ -477,7 +477,7 @@ interactableText = "This is full of cat hair, havent cleaned it since a month no
 playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bedroom/Bed"]
-shape = SubResource( 27 )
+shape = SubResource( 23 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Bedroom/Bed"]
 visible = false
@@ -495,7 +495,7 @@ playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/LivingRoom/InteractPromptArea"]
 scale = Vector2( 0.383436, 0.775982 )
-shape = SubResource( 27 )
+shape = SubResource( 23 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/LivingRoom/InteractPromptArea"]
 visible = false
@@ -514,7 +514,7 @@ playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Coffee"]
 position = Vector2( -3.12475, 11.749 )
-shape = SubResource( 29 )
+shape = SubResource( 24 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Kitchen/Coffee"]
 visible = false
@@ -532,7 +532,7 @@ texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Fridge"]
 position = Vector2( -1.88745, 12.454 )
-shape = SubResource( 30 )
+shape = SubResource( 25 )
 
 [node name="Microwave" parent="LevelBackground/Interactions/Kitchen" instance=ExtResource( 175 )]
 position = Vector2( 281.583, 75.9244 )
@@ -545,7 +545,7 @@ texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Microwave"]
 position = Vector2( 2.65381, 19.7982 )
-shape = SubResource( 31 )
+shape = SubResource( 26 )
 
 [node name="Teleports" type="Node" parent="LevelBackground"]
 
@@ -664,7 +664,6 @@ pause_mode = 1
 
 [node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 2 )]
 position = Vector2( 237.466, 234.516 )
-scale = Vector2( 1, 1 )
 
 [node name="Enemy" parent="YSort/Actors" instance=ExtResource( 174 )]
 position = Vector2( 959.494, 212.546 )
