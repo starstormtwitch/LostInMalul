@@ -248,8 +248,7 @@ extents = Vector2( 21.3305, 6.49812 )
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemy",
 ]]
-position = Vector2( -5, -1 )
-scale = Vector2( 4, 4 )
+position = Vector2( -7.12134, -2.08167 )
 z_as_relative = false
 collision_layer = 1024
 collision_mask = 5
