@@ -4,13 +4,14 @@ const _MENU_EVENT: String = "Menu"
 const _UI_CANCEL_EVENT: String = "ui_cancel"
 
 var _player : Actor
+
 var _boss : Actor
 var _menuOpen: bool = false
+onready var _gameMenu: PauseMenu = get_node("GUI/PauseMenu")
+
 onready var cameraManager: CustomCamera2D
 
 onready var _cam_Delimiter_Basement: CustomDelimiter2D = get_node("LevelBackground/CameraPositions/Basement_Delimiter")
-
-onready var _gameMenu: PauseMenu = get_node("GUI/PauseMenu")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

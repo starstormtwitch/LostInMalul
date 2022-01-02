@@ -28,7 +28,7 @@ func _physics_process(_delta: float) -> void:
 					$AnimationTree.get("parameters/playback").travel("jump_attack")
 	if _isJumping:
 		_handleJumpPhysics()
-    
+	
 func _handleJumpPhysics():
 	#_jumpVelocity.y += _GRAVITY
 	_velocity = move_and_slide(_jumpVelocity)

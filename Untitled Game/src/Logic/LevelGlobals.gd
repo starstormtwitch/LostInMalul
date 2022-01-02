@@ -9,7 +9,10 @@ func SceneHasPlayerActor() -> bool:
 	return _player != null
 
 func GetPlayerActor() -> Actor:
-	assert(_player, "Player node not found.")
+	if(_player == null || !is_instance_valid(_player)):
+		_findPlayerEntity()
+	if(_player == null || !is_instance_valid(_player)):
+		assert(false, "Player node not found.")
 	return _player;
 
 func _findPlayerEntity() -> void:

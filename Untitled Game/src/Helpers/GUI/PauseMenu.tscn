@@ -162,6 +162,7 @@ __meta__ = {
 }
 
 [node name="LoadSlimeLevelButton" type="TextureButton" parent="VBoxContainer"]
+visible = false
 margin_left = 17.0
 margin_top = 132.0
 margin_right = 177.0
@@ -187,19 +188,20 @@ __meta__ = {
 }
 
 [node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 166.0
+margin_top = 132.0
 margin_right = 195.0
-margin_bottom = 166.0
+margin_bottom = 132.0
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LoadRatLevelButton" type="TextureButton" parent="VBoxContainer"]
+visible = false
 margin_left = 17.0
-margin_top = 170.0
+margin_top = 136.0
 margin_right = 177.0
-margin_bottom = 200.0
+margin_bottom = 166.0
 rect_min_size = Vector2( 160, 30 )
 size_flags_horizontal = 4
 texture_normal = ExtResource( 1 )
@@ -224,5 +226,3 @@ __meta__ = {
 [connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/GoBackButton" to="." method="_unpauseAndHideMenu"]
-[connection signal="pressed" from="VBoxContainer/LoadSlimeLevelButton" to="." method="_on_LoadSlimeLevelButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/LoadRatLevelButton" to="." method="_on_LoadRatLevelButton_pressed"]
