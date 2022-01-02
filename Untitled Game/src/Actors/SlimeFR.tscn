@@ -1,10 +1,25 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://assets/SpriteSheets/LirikFR_Sprite_Sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/Slime.gd" type="Script" id=2]
 [ext_resource path="res://assets/SpriteSheets/LirikFR_Shadows_Sheet.png" type="Texture" id=3]
-[sub_resource type="Animation" id=1]
-resource_name = "die"
+[ext_resource path="res://src/Helpers/CustomParticles.gd" type="Script" id=4]
+[ext_resource path="res://assets/SpriteSheets/Effect 3 - Sprite Sheet.png" type="Texture" id=5]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 5
+particles_anim_loop = false
+
+[sub_resource type="ParticlesMaterial" id=2]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+anim_speed = 1.0
+
+[sub_resource type="Animation" id=3]
 length = 1.1
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -57,9 +72,7 @@ tracks/3/keys = {
 "values": [ 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36 ]
 }
 
-
-[sub_resource type="Animation" id=2]
-resource_name = "hurt"
+[sub_resource type="Animation" id=4]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("enemy:frame")
@@ -86,8 +99,7 @@ tracks/1/keys = {
 "values": [ 13, 14, 15 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "idle"
+[sub_resource type="Animation" id=5]
 length = 0.6
 loop = true
 step = 0.2
@@ -116,8 +128,7 @@ tracks/1/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "jump_attack"
+[sub_resource type="Animation" id=6]
 length = 1.8
 loop = true
 tracks/0/type = "method"
@@ -162,28 +173,23 @@ tracks/2/keys = {
 "values": [ 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "die"
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "hurt"
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id=9]
 animation = "idle"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "jump_attack"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=11]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=12]
 switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=13]
 
@@ -194,45 +200,49 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=16]
 switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=17]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=18]
 switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=19]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=20]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id=21]
-states/die/node = SubResource( 5 )
+[sub_resource type="AnimationNodeStateMachine" id=23]
+states/die/node = SubResource( 7 )
 states/die/position = Vector2( 567, 50 )
-states/hurt/node = SubResource( 6 )
+states/hurt/node = SubResource( 8 )
 states/hurt/position = Vector2( 280, 168 )
-states/idle/node = SubResource( 7 )
+states/idle/node = SubResource( 9 )
 states/idle/position = Vector2( 265, 50 )
-states/jump_attack/node = SubResource( 8 )
+states/jump_attack/node = SubResource( 10 )
 states/jump_attack/position = Vector2( 581, 168 )
-transitions = [ "idle", "hurt", SubResource( 9 ), "hurt", "idle", SubResource( 10 ), "hurt", "die", SubResource( 11 ), "die", "hurt", SubResource( 12 ), "idle", "die", SubResource( 13 ), "die", "idle", SubResource( 14 ), "hurt", "jump_attack", SubResource( 15 ), "jump_attack", "idle", SubResource( 16 ), "idle", "jump_attack", SubResource( 17 ), "jump_attack", "die", SubResource( 18 ), "jump_attack", "hurt", SubResource( 19 ), "die", "jump_attack", SubResource( 20 ) ]
+transitions = [ "idle", "hurt", SubResource( 11 ), "hurt", "idle", SubResource( 12 ), "hurt", "die", SubResource( 13 ), "die", "hurt", SubResource( 14 ), "idle", "die", SubResource( 15 ), "die", "idle", SubResource( 16 ), "hurt", "jump_attack", SubResource( 17 ), "jump_attack", "idle", SubResource( 18 ), "idle", "jump_attack", SubResource( 19 ), "jump_attack", "die", SubResource( 20 ), "jump_attack", "hurt", SubResource( 21 ), "die", "jump_attack", SubResource( 22 ) ]
 start_node = "idle"
 end_node = "die"
-graph_offset = Vector2( -81.741, -28 )
+graph_offset = Vector2( -100.741, 38 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=22]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
 
-[sub_resource type="RectangleShape2D" id=23]
+[sub_resource type="RectangleShape2D" id=25]
 extents = Vector2( 12.25, 5 )
 
-[sub_resource type="RectangleShape2D" id=24]
-extents = Vector2( 12.25, 4 )
+[sub_resource type="RectangleShape2D" id=26]
+extents = Vector2( 12.25, 6.66518 )
 
-[sub_resource type="CircleShape2D" id=25]
+[sub_resource type="CircleShape2D" id=27]
 radius = 27.0104
 
-[sub_resource type="RectangleShape2D" id=26]
+[sub_resource type="RectangleShape2D" id=28]
 extents = Vector2( 21.3305, 6.49812 )
 
 [node name="Enemy" type="KinematicBody2D" groups=[
@@ -263,16 +273,27 @@ hframes = 13
 vframes = 4
 frame = 39
 
+[node name="HitMarkerParticles" type="Particles2D" parent="."]
+material = SubResource( 1 )
+position = Vector2( -7.88188, -22.2792 )
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+process_material = SubResource( 2 )
+texture = ExtResource( 5 )
+script = ExtResource( 4 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/die = SubResource( 1 )
-anims/hurt = SubResource( 2 )
-anims/idle = SubResource( 3 )
-anims/jump_attack = SubResource( 4 )
+anims/die = SubResource( 3 )
+anims/hurt = SubResource( 4 )
+anims/idle = SubResource( 5 )
+anims/jump_attack = SubResource( 6 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 21 )
+tree_root = SubResource( 23 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 22 )
+parameters/playback = SubResource( 24 )
 
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
@@ -282,11 +303,12 @@ collision_layer = 16384
 collision_mask = 16
 
 [node name="HurtBoxArea" type="CollisionShape2D" parent="HurtBox"]
-shape = SubResource( 23 )
+visible = false
+shape = SubResource( 25 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1.85355, -19.0993 )
-shape = SubResource( 24 )
+position = Vector2( 3.52209, -15.9291 )
+shape = SubResource( 26 )
 
 [node name="Sight" type="RayCast2D" parent="."]
 position = Vector2( 0.353554, -14.8493 )
@@ -302,8 +324,9 @@ collision_layer = 262144
 collision_mask = 262144
 
 [node name="FlockBoxArea" type="CollisionShape2D" parent="FlockBox"]
+visible = false
 position = Vector2( 3.43559, -6.49746 )
-shape = SubResource( 25 )
+shape = SubResource( 27 )
 
 [node name="Attack" type="Area2D" parent="."]
 modulate = Color( 0.431373, 1, 0, 1 )
@@ -312,8 +335,9 @@ collision_layer = 4096
 collision_mask = 0
 
 [node name="AttackBox" type="CollisionShape2D" parent="Attack"]
+visible = false
 position = Vector2( 2.90011, 8.09588 )
-shape = SubResource( 26 )
+shape = SubResource( 28 )
 
 [connection signal="area_entered" from="FlockBox" to="." method="_on_FlockBox_area_entered"]
 [connection signal="area_exited" from="FlockBox" to="." method="_on_FlockBox_area_exited"]

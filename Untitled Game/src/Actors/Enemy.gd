@@ -4,7 +4,7 @@ class_name Enemy
 signal enemy_hit
 
 #Enemy properties
-var _seperation_distance = 50
+var _seperation_distance = 20
 var _attack_range = 20
 var _initial_attack_cooldown = .5 #in seconds
 var _stun_duration = 50 #in seconds
@@ -19,6 +19,7 @@ var _flock = []
 var _attackCooldownTimer = Timer.new()
 var _stunTimer = Timer.new()
 var _hitFlashTimer = Timer.new()
+var _directionFacing = 0
 
 func _ready():
 	_attackCooldownTimer.connect("timeout",self,"_on_attack_cooldown_timeout") 
@@ -62,6 +63,7 @@ func _physics_process(_delta: float) -> void:
 			direction = _flock_direction(direction)
 		if (_state == EnemyState.CHASE or _state == EnemyState.ROAM) and !_isAttacking:
 			_play_walk_animation_if_available(targetDirection.x)
+		_directionFacing = targetDirection.x
 		_flipBoxesIfNecessary(targetDirection.x)
 			
 	_velocity = getMovement(direction, _speed, _acceleration)
@@ -75,11 +77,13 @@ func _flipBoxesIfNecessary(velocity_x: float):
 	if velocity_x > 0:
 		rightHitBox.position.x = abs(rightHitBox.position.x)
 		sprite.flip_h = true
-		shadow.flip_h = true
+		if shadow != null:
+			shadow.flip_h = true
 	elif velocity_x < 0:
 		rightHitBox.position.x = -abs(rightHitBox.position.x)
 		sprite.flip_h = false
-		shadow.flip_h = false
+		if shadow != null:
+			shadow.flip_h = false
 
 
 func get_next_state(targetDirection: Vector2):
@@ -136,7 +140,17 @@ func _play_walk_animation_if_available(velocity_x: float):
 		var animationPlayer: AnimationPlayer = $AnimationPlayer
 		if animationPlayer.has_animation("walk"):
 			$AnimationTree.get("parameters/playback").travel("walk")
-	
+
+func _show_hit_marker():
+	if $HitMarkerParticles != null:
+		var hitMarkerParticles: Particles2D = $HitMarkerParticles
+		if _directionFacing > 0:
+			hitMarkerParticles.position.x = abs(hitMarkerParticles.position.x)
+		elif _directionFacing < 0:
+			hitMarkerParticles.position.x = -abs(hitMarkerParticles.position.x)
+		hitMarkerParticles.restart()
+		hitMarkerParticles.emitting = true
+
 func get_target_direction() -> Vector2:
 	var direction = Vector2.ZERO
 	if(_target == null):
@@ -155,22 +169,26 @@ func get_target_direction() -> Vector2:
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if !isDying:
 		#stun enemy
+		_velocity = getMovement(Vector2.ZERO, 0, .5)
+		#_velocity = move_and_slide(_velocity)
+		#print("hit, reset attack")
+		disable_hurt_box_if_exists()
+		_finishedAttack(1)
 		_isStunned = true
 		_stunTimer.start(_stun_duration)
 			
 		#mark damage
 		emit_signal("enemy_hit")
-	
 		self.modulate =  Color(10,10,10,10) 
 		_hitFlashTimer.start(.2)
 		if($AnimationTree != null):
 			$AnimationTree.get("parameters/playback").travel("hurt")
 		_health-=damage
+		_show_hit_marker()
 		
 		#knockback/knockup
 		_inAir = true
 		direction.y -= 4
-	
 		var knockbackVelocity = getMovement(direction, force, _acceleration)
 		_velocity = move_and_slide(knockbackVelocity)
 		
@@ -178,6 +196,12 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		if(_health <= 0):
 			die()
 		
+func disable_hurt_box_if_exists():
+	var hitbox: CollisionShape2D = get_node("Attack/AttackBox")
+	if(hitbox != null):
+		#print("disable hit box")
+		hitbox.disabled = true
+	
 func _on_attack_cooldown_timeout():
 	_isReadyToAttack = true
 		

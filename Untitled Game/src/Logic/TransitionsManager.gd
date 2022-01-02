@@ -3,6 +3,9 @@ extends Node
 var _cameraManager: CustomCamera2D
 
 func _ready():
+	setup()
+
+func setup():
 	if LevelGlobals.SceneHasPlayerActor():
 		InitCameraManager()
 		RegisterTeleporterSignals()

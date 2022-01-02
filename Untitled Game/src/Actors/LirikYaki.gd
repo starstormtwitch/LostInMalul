@@ -1,5 +1,7 @@
 extends Actor
 
+signal player_hit_enemy
+
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
 const smoke_scene = preload("res://src/Helpers/SmokeParticles.tscn")
 const _JUMP_EVENT = "Jump"
@@ -8,6 +10,7 @@ const _ATTACK2_EVENT = "attack_2"
 const COMBOTIME = 1;
 const _LEFT_FACING_SCALE = -1.0
 const _RIGHT_FACING_SCALE = 1.0
+const _FOOTSTEP_PARTICLE_POSITION_OFFSET = -6
 
 var _isAttacking: bool = false
 var _beingHurt: bool = false
@@ -27,6 +30,7 @@ onready var sprite: Sprite = $Sprite
 onready var shadow: Sprite = $Shadow
 onready var rightHitBox: CollisionShape2D = $attack/sideSwipeRight
 onready var hitAudioPlayer: HitAudioPlayer = $HitAudioPlayer
+onready var footstepAudioPlayer: AudioStreamPlayer = $FootStepAudioStreamPlayer
 
 func _init():
 	add_to_group("Player")
@@ -79,15 +83,22 @@ func _on_invincibility_timeout() -> void:
 	
 	
 func _on_combo_timeout() -> void:
-	print("combo reset")
+	#print("combo reset")
 	_comboAPoints = 2
 	_comboBPoints = 2
 
 
+# call function when foot hits floor. Play sounds and smoke particle
+func footstepCallback():
+	_generate_smoke_particle()
+	_play_footstep_sound()
+
+
 #Animation callback to generate smoke particle when feet touch the ground
-func generate_smoke_particle():
+func _generate_smoke_particle():
 	var smoke = smoke_scene.instance()
 	smoke.global_position = self.global_position
+	smoke.global_position.y += _FOOTSTEP_PARTICLE_POSITION_OFFSET
 	smoke.emitting = true
 	if _directionFacing.x > 0:
 		smoke.flipSide(false)
@@ -95,11 +106,16 @@ func generate_smoke_particle():
 		smoke.flipSide(true)
 	get_parent().add_child(smoke)
 
+
+func _play_footstep_sound():
+	footstepAudioPlayer.play()
+
+
 #timer callback for when hit animation should be done. Doing this cause 
 # there is some issue with animation not playing properly and not resetting this 
 # flag causing the player to be stuck in animations. 
 func _hit_timer_done():
-	print("hurt timer done")
+	#print("hurt timer done")
 	_beingHurt = false
 
 func add_trail() -> void:
@@ -125,7 +141,8 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 
 # callback function to for when the hurt animation is playing
 func setHurtAnimationPlaying():
-	print("play hurt animation")
+	pass
+	#print("play hurt animation")
 	#_beingHurt = true
 
 func evaluatePlayerInput() -> Vector2:
@@ -201,13 +218,13 @@ func doSideSwipeKick():
 
 
 func _finishedAttack() -> void:
-	print("attack finished")
+	#print("attack finished")
 	_isAttacking = false
 
 
 # callback function for when hurt animation is done
 func _hurtAnimationFinished() -> void:
-	print("hurt animation done")
+	#print("hurt animation done")
 	_beingHurt = false
 
 
@@ -223,3 +240,4 @@ func sendPlayerDeadSignal():
 
 func _on_enemy_hit():
 	hitAudioPlayer.playHitSound()
+	emit_signal("player_hit_enemy")

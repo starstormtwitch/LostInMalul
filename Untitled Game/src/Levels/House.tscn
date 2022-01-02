@@ -1,4 +1,4 @@
-[gd_scene load_steps=201 format=2]
+[gd_scene load_steps=202 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://src/Helpers/GUI/HealthBar.tscn" type="PackedScene" id=23]
 [ext_resource path="res://assets/GUI/cash.png" type="Texture" id=24]
 [ext_resource path="res://assets/actions/tile_0395.png" type="Texture" id=25]
+[ext_resource path="res://src/Helpers/GUI/Pause/PauseScreenContainer.tscn" type="PackedScene" id=26]
 [ext_resource path="res://src/Props/bathroom/bathroom_bidet.tscn" type="PackedScene" id=27]
 [ext_resource path="res://src/Props/bathroom/bathroom_toilet.tscn" type="PackedScene" id=28]
 [ext_resource path="res://src/Props/bathroom/bathroom_light_switch.tscn" type="PackedScene" id=29]
@@ -1364,6 +1365,8 @@ anchor_right = 0.5
 margin_left = -512.0
 margin_top = -576.0
 margin_right = 512.0
+
+[node name="PauseScreenContainer" parent="GUI" instance=ExtResource( 26 )]
 
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/Bed" to="." method="_on_InteractPromptArea_interactable_text_signal"]

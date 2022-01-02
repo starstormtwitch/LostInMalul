@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/game_track1_yookz.mp3-53144f4bfe96efea6f9b3a9a283bfe3e.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/game_track1_yookz.mp3"
+dest_files=[ "res://.import/game_track1_yookz.mp3-53144f4bfe96efea6f9b3a9a283bfe3e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

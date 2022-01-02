@@ -1,0 +1,8 @@
+{
+	"default_logic_path": "res://src/Helpers/Settings/",
+	"auto_select_new_nodes": true,
+	"show_prints": true,
+	"show_errors": true,
+	"keybind_confirm_text": "Awaiting input...",
+	"keybind_assigned_text": "Already assigned..."
+}

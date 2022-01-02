@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/menu_music_yookz.mp3-370fb49891a9cec53825b2f198b8c0c8.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/menu_music_yookz.mp3"
+dest_files=[ "res://.import/menu_music_yookz.mp3-370fb49891a9cec53825b2f198b8c0c8.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
