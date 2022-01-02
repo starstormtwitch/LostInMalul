@@ -42,7 +42,8 @@ func spawn(scene_spawn : PackedScene, position : Vector2):
 func spawnMultiple(scene_spawn : PackedScene):
 	var spawnlings = []
 	for i in _countToSpawn:
-		spawn(scene_spawn, $Spawner.Position)
+		var spawnling = spawn(scene_spawn, $Spawner.Position)
+		spawnlings.append(spawnling)
 	return spawnlings; 
 
 func spawnMultipleInArea(scene_spawn : PackedScene):
@@ -52,7 +53,8 @@ func spawnMultipleInArea(scene_spawn : PackedScene):
 	for i in _countToSpawn:
 		#Change spawn location randomly
 		var spawnPosition = self.position + Vector2(randf() * self.rect.size.x, randf() * self.rect.size.y)
-		spawn(scene_spawn, spawnPosition)
+		var spawnling = spawn(scene_spawn, spawnPosition)
+		spawnlings.append(spawnling)
 		#Delay after spawning
 		if(duration_between_spawn > 0):
 			t.set_wait_time(duration_between_spawn)

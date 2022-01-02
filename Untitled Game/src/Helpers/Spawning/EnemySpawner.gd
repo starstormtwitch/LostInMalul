@@ -3,9 +3,10 @@ extends "res://src/Helpers/Spawning/Spawner.gd"
 #Names must match enum exactly
 const enemyDict = {
 	"Slime" : preload("res://src/Actors/Slime.tscn"),
-	"SlimeFR" : preload("res://src/Actors/SlimeFR.tscn")
+	"SlimeFR" : preload("res://src/Actors/SlimeFR.tscn"),
+	"RatKing" : preload("res://src/Actors/RatKing/RatKing.tscn")
 }  
-export(String, "Slime", "SlimeFR") var enemy = "Slime"
+export(String, "Slime", "SlimeFR", "RatKing") var enemy = "Slime"
 
 export(int) var level = 1
 signal AllEnemiesDefeated
@@ -22,7 +23,7 @@ func spawnEnemy():
 	var enemyToSpawn = enemyDict[enemy]
 	var enemiesSpawned = spawnMultipleInArea(enemyToSpawn)
 	for enemy in enemiesSpawned:
-		enemy.connect("_exit_tree", self, "check_enemies_disposed")
+		enemy.connect("tree_exited", self, "check_enemies_disposed")
 	pass
 
 func check_enemies_disposed():

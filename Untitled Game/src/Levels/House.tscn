@@ -279,7 +279,7 @@ extents = Vector2( 6.35352, 38.6898 )
 [sub_resource type="RectangleShape2D" id=27]
 extents = Vector2( 10, 72.1877 )
 
-[sub_resource type="RectangleShape2D" id=29]
+[sub_resource type="RectangleShape2D" id=28]
 extents = Vector2( 69.0192, 20.5003 )
 
 [node name="House" type="Node2D"]
@@ -596,7 +596,7 @@ texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Office/Computer"]
 position = Vector2( 1506.55, 227.483 )
-shape = SubResource( 29 )
+shape = SubResource( 28 )
 
 [node name="Teleports" type="Node" parent="LevelBackground"]
 
@@ -733,6 +733,28 @@ position = Vector2( 746.463, 234.926 )
 position = Vector2( 2839.86, 250.16 )
 automatic = false
 enemy = "SlimeFR"
+
+[node name="BasementL1" parent="YSort/Actors" instance=ExtResource( 176 )]
+position = Vector2( 200.939, 516.372 )
+rect = Rect2( 0, 0, 20, 80 )
+automatic = false
+only_off_screen = true
+duration_between_spawn = 8
+count = 3
+enemy = "SlimeFR"
+
+[node name="BasementR1" parent="YSort/Actors" instance=ExtResource( 176 )]
+position = Vector2( 717.26, 523.551 )
+rect = Rect2( 0, 0, 50, 70 )
+automatic = false
+only_off_screen = true
+count = 3
+enemy = "SlimeFR"
+
+[node name="RatKingSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
+position = Vector2( 1117.09, 541.514 )
+automatic = false
+enemy = "RatKing"
 
 [node name="Props" type="YSort" parent="YSort"]
 
