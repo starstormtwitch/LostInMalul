@@ -244,7 +244,7 @@ func _connect_to_settings_changed_signal():
 		var settings = tree.get_nodes_in_group("Settings")
 		if(settings.size() > 0):
 			var _settings = settings[0]
-			print("Connecting settings signal to camera2d")
+			print("Connecting settings signal to Camera2D")
 			_settings.connect("settings_changed", self, "_get_new_camera_shake_values")
 		else:
 			printerr("No node in Settings group in parent tree. Needed to connect to signals. CustomCamera2D.gd::250") 
