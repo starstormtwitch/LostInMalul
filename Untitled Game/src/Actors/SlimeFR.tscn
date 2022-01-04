@@ -248,24 +248,21 @@ extents = Vector2( 21.3305, 6.49812 )
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemy",
 ]]
-position = Vector2( -5, -1 )
-scale = Vector2( 4, 4 )
+position = Vector2( -7.12134, -2.08167 )
 z_as_relative = false
 collision_layer = 1024
 collision_mask = 5
 script = ExtResource( 2 )
 
 [node name="Shadow" type="Sprite" parent="."]
-position = Vector2( 3.99426, -60.3414 )
-scale = Vector2( 2, 2 )
+position = Vector2( 3.32684, -34.9794 )
 texture = ExtResource( 3 )
 hframes = 13
 vframes = 4
 frame = 39
 
 [node name="enemy" type="Sprite" parent="."]
-position = Vector2( 4.28746, -34.079 )
-scale = Vector2( 2, 2 )
+position = Vector2( 3.56418, -19.7197 )
 z_as_relative = false
 texture = ExtResource( 1 )
 offset = Vector2( 0, -15 )
@@ -298,16 +295,16 @@ parameters/playback = SubResource( 24 )
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
 ]]
-position = Vector2( 1.85355, -19.0993 )
+position = Vector2( 2.35411, -16.0959 )
 collision_layer = 16384
 collision_mask = 16
 
 [node name="HurtBoxArea" type="CollisionShape2D" parent="HurtBox"]
-visible = false
+position = Vector2( 1.00114, 6.6742 )
 shape = SubResource( 25 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 3.52209, -15.9291 )
+position = Vector2( 3.18838, -9.92232 )
 shape = SubResource( 26 )
 
 [node name="Sight" type="RayCast2D" parent="."]
