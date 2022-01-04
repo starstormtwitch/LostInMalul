@@ -1,4 +1,4 @@
-extends Node2D
+extends BaseLevelScript
 
 var _player : Actor
 
@@ -16,7 +16,7 @@ func _ready():
 		print("Player instance invalid")
 	_player.connect("health_changed", self, "_on_Player_health_changed")
 	_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)
-	TransitionsManager.setup()
+
 
 func _on_Player_health_changed(_oldHealth, newHealth, maxHealth):
 	var healthBar = get_node("GUI/Control/healthBar")

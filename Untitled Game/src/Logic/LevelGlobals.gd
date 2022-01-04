@@ -11,7 +11,7 @@ func SceneHasPlayerActor() -> bool:
 func GetPlayerActor() -> Actor:
 	_findPlayerEntity()
 	assert(_player, "Player node not found.")
-	print("found player")
+	print("Player found.")
 	return _player;
 
 func _findPlayerEntity() -> void:
@@ -22,4 +22,4 @@ func _findPlayerEntity() -> void:
 		if players.size() > 0:
 			_player = players[0]
 	else:
-		printerr("parent does not exist")
+		printerr("Parent does not exist.")
