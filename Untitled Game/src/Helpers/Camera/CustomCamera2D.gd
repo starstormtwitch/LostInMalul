@@ -25,6 +25,7 @@ signal smooth_limit_finished
 var _remoteTransform2d: RemoteTransform2D
 var _panTarget: CustomCamera2DPanTarget
 var _animationPlayer: CustomCamera2DSimpleTransitionPlayer
+var _currentDelimiter: CustomDelimiter2D = null
 
 #variables for any smooth limit in progress
 var _limit_smooth_top: float
@@ -89,14 +90,15 @@ func _process(delta):
 			clearPan()
 	handleShake(delta)
 
+
 func handleShake(delta):
 	if _timer == 0:
 		return
-	#print("continue shake")
 	# Only shake on certain frames.
 	_last_shook_timer = _last_shook_timer + delta
 	# Be mathematically correct in the face of lag; usually only happens once.
 	while _last_shook_timer >= _period_in_ms:
+		print("continue shake")
 		_last_shook_timer = _last_shook_timer - _period_in_ms
 		# Lerp between [amplitude] and 0.0 intensity based on remaining shake time.
 		var intensity = _amplitude * (1 - ((_duration - _timer) / _duration))
@@ -114,10 +116,26 @@ func handleShake(delta):
 	# Reset the offset when we're done shaking.
 	_timer = _timer - delta
 	if _timer <= 0:
+		print("shake End")
 		_is_shaking = false
-		_remoteTransform2d.update_position = true
 		_timer = 0
 		set_offset(get_offset() - _last_offset)
+
+
+# Kick off a new screenshake effect.
+func shake():
+	# Initialize variables.
+	print("start shake")
+	_timer = _duration
+	_is_shaking = true
+	_previous_x = rand_range(-1.0, 1.0)
+	_previous_y = rand_range(-1.0, 1.0)
+	# Reset previous offset, if any.
+	var currentOffset = get_offset()
+	print("Current camera offset" + String(currentOffset))
+	set_offset(get_offset() - _last_offset)
+	_last_offset = Vector2(0, 0)
+
 
 func panToTarget(target: Node, time: float = _DEFAULT_PAN_TIME, speed: float = _DEFAULT_PAN_SPEED, zoom: Vector2 = _DEFAULT_PAN_ZOOM, zoomSpeed: float = _DEFAULT_PAN_ZOOM_SPEED) -> void:
 	if _verbose:
@@ -125,6 +143,7 @@ func panToTarget(target: Node, time: float = _DEFAULT_PAN_TIME, speed: float = _
 	setRemoteUpdates(false)
 	_panTarget = CustomCamera2DPanTarget.new(target, time, speed, zoom, zoomSpeed)
 	emit_signal("pan_started")
+
 
 func clearPan() -> void:
 	if _panTarget != null:
@@ -134,6 +153,7 @@ func clearPan() -> void:
 		setRemoteUpdates(true)
 		self.zoom = _DEFAULT_CAMERA_ZOOM
 		emit_signal("pan_finished")
+
 
 func temporarylyFocusOn(target: Node, time: float, zoom: Vector2) -> void:
 	if _verbose:
@@ -149,6 +169,7 @@ func temporarylyFocusOn(target: Node, time: float, zoom: Vector2) -> void:
 	setRemoteUpdates(true)
 	self.zoom = _DEFAULT_CAMERA_ZOOM
 
+
 func setRemoteUpdates(update: bool) -> void:
 	if _verbose:
 		print("CustomCamera2D: Set remote updates (follow target) to " + str(update))
@@ -156,13 +177,18 @@ func setRemoteUpdates(update: bool) -> void:
 	_remoteTransform2d.update_rotation = update
 	_remoteTransform2d.update_scale = update
 
+
 func limitCameraToDelimiter(delimiter: CustomDelimiter2D, transitionType: int = TransitionTypeEnum.INSTANT) -> void:
+	print("Limiting to new area")
+	_currentDelimiter = delimiter
 	limitCameraToCoordinates(delimiter.getTop(), delimiter.getLeft(), delimiter.getBottom(), delimiter.getRight(), transitionType)
+
 
 func limitCameraToPositions(topLeft: Position2D, bottomRight: Position2D, transitionType: int = TransitionTypeEnum.INSTANT) -> void:
 	var globalTopLeft = topLeft.get_global_position()
 	var globalBottomRight = bottomRight.get_global_position()
 	limitCameraToCoordinates(globalTopLeft.y, globalTopLeft.x, globalBottomRight.y, globalBottomRight.x, transitionType)
+
 
 func limitCameraToCoordinates(top: int, left: int, bottom: int, right: int, transitionType: int = TransitionTypeEnum.INSTANT) -> void:
 	if transitionType == TransitionTypeEnum.INSTANT:
@@ -211,24 +237,13 @@ func setLimits(top: int, left: int, bottom: int, right: int) -> void:
 	self.limit_left = left
 	self.limit_bottom = bottom
 	self.limit_right = right
-	
+
+
 func resetLimits() -> void:
 	if _verbose:
 		print("CustomCamera2D: Reset camera limits.")
-	limitCameraToCoordinates(_DEFAULT_CAMERA_LIMIT_TOP_LEFT, _DEFAULT_CAMERA_LIMIT_TOP_LEFT, _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT, _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT)
-
-# Kick off a new screenshake effect.
-func shake():
-	# Initialize variables.
-	#print("start shake")
-	_timer = _duration
-	_is_shaking = true
-	_remoteTransform2d.update_position = false 
-	_previous_x = rand_range(-1.0, 1.0)
-	_previous_y = rand_range(-1.0, 1.0)
-	# Reset previous offset, if any.
-	set_offset(get_offset() - _last_offset)
-	_last_offset = Vector2(0, 0)
+	limitCameraToCoordinates(_DEFAULT_CAMERA_LIMIT_TOP_LEFT, _DEFAULT_CAMERA_LIMIT_TOP_LEFT,\
+		 _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT, _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT)
 
 
 func _set_shake_settings(duration: float, frequency: float, amplitude: float):
@@ -256,6 +271,12 @@ func _connect_to_settings_changed_signal():
 func _get_new_camera_shake_values():
 	var values = Settings.load_screen_shake_settings()
 	_set_shake_settings(values.duration, values.frequency, values.amplitude)
+	print("Load settings for camera shake")
+
+func connect_to_player_shake_signal(player: Actor):
+	print("Connect player hit enemy singal")
+	assert(player, "Player cannot be null")
+	player.connect("player_hit_enemy", self, "shake")
 
 #inner classes
 
