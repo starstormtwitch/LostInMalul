@@ -98,7 +98,7 @@ func handleShake(delta):
 	_last_shook_timer = _last_shook_timer + delta
 	# Be mathematically correct in the face of lag; usually only happens once.
 	while _last_shook_timer >= _period_in_ms:
-		print("continue shake")
+		#print("continue shake")
 		_last_shook_timer = _last_shook_timer - _period_in_ms
 		# Lerp between [amplitude] and 0.0 intensity based on remaining shake time.
 		var intensity = _amplitude * (1 - ((_duration - _timer) / _duration))
@@ -116,7 +116,7 @@ func handleShake(delta):
 	# Reset the offset when we're done shaking.
 	_timer = _timer - delta
 	if _timer <= 0:
-		print("shake End")
+		#print("shake End")
 		_is_shaking = false
 		_timer = 0
 		set_offset(get_offset() - _last_offset)
@@ -125,14 +125,14 @@ func handleShake(delta):
 # Kick off a new screenshake effect.
 func shake():
 	# Initialize variables.
-	print("start shake")
+	#print("start shake")
 	_timer = _duration
 	_is_shaking = true
 	_previous_x = rand_range(-1.0, 1.0)
 	_previous_y = rand_range(-1.0, 1.0)
 	# Reset previous offset, if any.
 	var currentOffset = get_offset()
-	print("Current camera offset" + String(currentOffset))
+	#print("Current camera offset" + String(currentOffset))
 	set_offset(get_offset() - _last_offset)
 	_last_offset = Vector2(0, 0)
 
@@ -271,7 +271,7 @@ func _connect_to_settings_changed_signal():
 func _get_new_camera_shake_values():
 	var values = Settings.load_screen_shake_settings()
 	_set_shake_settings(values.duration, values.frequency, values.amplitude)
-	print("Load settings for camera shake")
+	#print("Load settings for camera shake")
 
 func connect_to_player_shake_signal(player: Actor):
 	print("Connect player hit enemy singal")
