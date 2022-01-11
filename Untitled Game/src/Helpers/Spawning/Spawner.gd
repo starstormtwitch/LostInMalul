@@ -2,7 +2,6 @@ extends VisibilityNotifier2D
 
 signal spawned(spawn)
 
-export(bool) var automatic = true
 export(bool) var only_off_screen = false
 export(int) var duration_between_spawn = 0
 export(int) var count = 1

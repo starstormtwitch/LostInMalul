@@ -730,30 +730,29 @@ position = Vector2( 710.871, 232.969 )
 
 [node name="KitchenRat" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 2839.86, 250.16 )
-automatic = false
 enemy = "SlimeFR"
+automatic = false
 
 [node name="BasementL1" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 200.939, 516.372 )
 rect = Rect2( 0, 0, 20, 80 )
-automatic = false
-only_off_screen = true
-duration_between_spawn = 8
-count = 3
+duration_between_spawn = 3
+count = 4
 enemy = "SlimeFR"
+automatic = false
 
 [node name="BasementR1" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 717.26, 523.551 )
 rect = Rect2( 0, 0, 50, 70 )
-automatic = false
-only_off_screen = true
-count = 3
+duration_between_spawn = 3
+count = 4
 enemy = "SlimeFR"
+automatic = false
 
 [node name="RatKingSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 1117.09, 541.514 )
-automatic = false
 enemy = "RatKing"
+automatic = false
 
 [node name="Props" type="YSort" parent="YSort"]
 
