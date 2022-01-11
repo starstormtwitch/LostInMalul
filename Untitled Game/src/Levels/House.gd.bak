@@ -64,9 +64,10 @@ func _on_ExitButton_pressed():
 	get_tree().quit()
 
 
+<<<<<<< Updated upstream
 func _on_GoBackButton_pressed():
 	_unpauseAndHideMenu()
-	
+=======
 func _on_KitchenRat_AllEnemiesDefeated():
 	_textBox.showText("That was insane, it had to have come from the basement. I should go down there... but I should mentally prepare myself for what could possibly be down there first.")
 	get_node("LevelBackground/Teleports/Kitchen_Basement_2WT/EndpointAlpha/ToBetaActivationArea").disabled = false;
@@ -76,3 +77,4 @@ func _on_BasementEnc1_Delimiter_PlayerEnteredAreaDelimiter(delimiter):
 	_textBox.showText("That's a lot of rats, I have a bad feeling about this.")
 	get_node("YSort/Actors/BasementL1").spawnEnemy()
 	get_node("YSort/Actors/BasementR1").spawnEnemy()
+>>>>>>> Stashed changes

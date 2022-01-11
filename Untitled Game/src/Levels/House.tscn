@@ -402,6 +402,12 @@ shape = SubResource( 21 )
 
 [node name="CameraPositions" type="Node" parent="LevelBackground"]
 
+[node name="BasementEnc1_Delimiter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
+position = Vector2( 235.282, 314.002 )
+
+[node name="BottomRight" parent="LevelBackground/CameraPositions/BasementEnc1_Delimiter" index="0"]
+position = Vector2( 450.172, 278.228 )
+
 [node name="Bathroom_Delimiter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
 position = Vector2( 6.972, 50 )
 
@@ -1369,6 +1375,7 @@ margin_right = 512.0
 [node name="PauseMenu" parent="GUI" instance=ExtResource( 26 )]
 visible = false
 
+[connection signal="PlayerEnteredAreaDelimiter" from="LevelBackground/CameraPositions/BasementEnc1_Delimiter" to="." method="_on_BasementEnc1_Delimiter_PlayerEnteredAreaDelimiter"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/Bed" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/LivingRoom/InteractPromptArea" to="." method="_on_InteractPromptArea_interactable_text_signal"]
@@ -1376,6 +1383,7 @@ visible = false
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Kitchen/Fridge" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Kitchen/Microwave" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 
+[editable path="LevelBackground/CameraPositions/BasementEnc1_Delimiter"]
 [editable path="LevelBackground/CameraPositions/Bathroom_Delimiter"]
 [editable path="LevelBackground/CameraPositions/Bedroom_Delimiter"]
 [editable path="LevelBackground/CameraPositions/StreamingRoom_Delimiter"]

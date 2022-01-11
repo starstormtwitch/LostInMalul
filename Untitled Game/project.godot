@@ -29,7 +29,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Helpers/Camera/CustomCamera2D.gd"
 }, {
-"base": "Position2D",
+"base": "Node2D",
 "class": "CustomDelimiter2D",
 "language": "GDScript",
 "path": "res://src/Helpers/Camera/CustomDelimiter2D.gd"
@@ -104,7 +104,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="TestProject"
+config/name="Test Project Yaki"
 run/main_scene="res://src/Levels/House.tscn"
 config/icon="res://icon.png"
 
@@ -113,12 +113,18 @@ config/icon="res://icon.png"
 LevelGlobals="*res://src/Logic/LevelGlobals.gd"
 TransitionsManager="*res://src/Logic/TransitionsManager.gd"
 EventsList="*res://src/Helpers/EventsList.gd"
+ggsManager="*res://addons/GGS/src/ggs_manager.gd"
+MusicManager="*res://src/Helpers/Audio/MusicManager.tscn"
 
 [display]
 
 window/size/height=576
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/GGS/plugin.cfg" )
 
 [importer_defaults]
 
