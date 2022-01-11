@@ -1,0 +1,32 @@
+{
+	"0": {
+		"name": "Screen Shake Duration",
+		"default": {
+			"value": 0.1
+		},
+		"current": {
+			"value": 0.1
+		},
+		"logic": "res://src/Helpers/Settings/Screen Shake Duration.gd"
+	},
+	"1": {
+		"name": "Screen Shake Frequency",
+		"default": {
+			"value": 15
+		},
+		"current": {
+			"value": 15
+		},
+		"logic": "res://src/Helpers/Settings/Screen Shake Frequency.gd"
+	},
+	"2": {
+		"name": "Screen Shake Amplitude",
+		"default": {
+			"value": 4
+		},
+		"current": {
+			"value": 4
+		},
+		"logic": "res://src/Helpers/Settings/Screen Shake Amplitude.gd"
+	}
+}

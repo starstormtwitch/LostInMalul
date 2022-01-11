@@ -3,13 +3,17 @@ extends Node
 var _cameraManager: CustomCamera2D
 
 func _ready():
+	setup()
+
+func setup():
 	if LevelGlobals.SceneHasPlayerActor():
 		InitCameraManager()
 		RegisterTeleporterSignals()
 		RegisterDelimiterSignals()
 
 func InitCameraManager() -> void:
-	_cameraManager = CustomCamera2D.new(LevelGlobals.GetPlayerActor(), true)	
+	_cameraManager = CustomCamera2D.new(LevelGlobals.GetPlayerActor(), true)
+	_cameraManager.connect_to_player_shake_signal(LevelGlobals.GetPlayerActor())
 
 func RegisterTeleporterSignals() -> void:
 	var teleporters = self.get_parent().get_tree().get_nodes_in_group("TeleportNode")

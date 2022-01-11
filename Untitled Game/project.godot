@@ -14,15 +14,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Actors/Actor.gd"
 }, {
-"base": "Object",
-"class": "ArenaRoomManager",
+"base": "LineEdit",
+"class": "BaseInput",
 "language": "GDScript",
-"path": "res://src/Helpers/Camera/ArenaRoomManager.gd"
+"path": "res://addons/GGS/src/base_classes/base_input.gd"
 }, {
 "base": "Node",
-"class": "CameraManager",
+"class": "BaseLevelScript",
 "language": "GDScript",
-"path": "res://src/Helpers/Camera/CameraManager.gd"
+"path": "res://src/Levels/Base/BaseLevelScript.gd"
 }, {
 "base": "Camera2D",
 "class": "CustomCamera2D",
@@ -44,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Actors/Enemy.gd"
 }, {
+"base": "Node",
+"class": "GGSUtils",
+"language": "GDScript",
+"path": "res://addons/GGS/src/utils.gd"
+}, {
 "base": "AudioStreamPlayer",
 "class": "HitAudioPlayer",
 "language": "GDScript",
@@ -54,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Helpers/Interacts/InteractPromptArea.gd"
 }, {
+"base": "Reference",
+"class": "JSONBeautifier",
+"language": "GDScript",
+"path": "res://addons/GGS/_depedencies/json_beautifier/json_beautifier.gd"
+}, {
 "base": "Node",
 "class": "JumpHelper",
 "language": "GDScript",
@@ -62,7 +72,22 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "PauseMenu",
 "language": "GDScript",
-"path": "res://src/Helpers/GUI/PauseMenu.gd"
+"path": "res://src/Helpers/GUI/Pause/PauseMenu.gd"
+}, {
+"base": "Object",
+"class": "ScreenShakeSettings",
+"language": "GDScript",
+"path": "res://src/Helpers/Settings/ScreenShakeSettings.gd"
+}, {
+"base": "Control",
+"class": "Settings",
+"language": "GDScript",
+"path": "res://src/Helpers/Settings/Settings.gd"
+}, {
+"base": "Control",
+"class": "SettingsMenu",
+"language": "GDScript",
+"path": "res://src/Helpers/Settings/SettingsMenu.gd"
 }, {
 "base": "CustomParticles",
 "class": "SmokeParticles",
@@ -86,16 +111,21 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Actor": "",
-"ArenaRoomManager": "",
-"CameraManager": "",
+"BaseInput": "",
+"BaseLevelScript": "",
 "CustomCamera2D": "",
 "CustomDelimiter2D": "",
 "CustomParticles": "",
 "Enemy": "",
+"GGSUtils": "",
 "HitAudioPlayer": "",
 "InteractPromptArea": "",
+"JSONBeautifier": "",
 "JumpHelper": "",
 "PauseMenu": "",
+"ScreenShakeSettings": "",
+"Settings": "",
+"SettingsMenu": "",
 "SmokeParticles": "",
 "TeleportNode2D": "",
 "TextBox": "",
@@ -111,7 +141,6 @@ config/icon="res://icon.png"
 [autoload]
 
 LevelGlobals="*res://src/Logic/LevelGlobals.gd"
-TransitionsManager="*res://src/Logic/TransitionsManager.gd"
 EventsList="*res://src/Helpers/EventsList.gd"
 ggsManager="*res://addons/GGS/src/ggs_manager.gd"
 MusicManager="*res://src/Helpers/Audio/MusicManager.tscn"
@@ -124,7 +153,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/GGS/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [importer_defaults]
 

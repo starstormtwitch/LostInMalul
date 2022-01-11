@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/Helpers/GUI/Pause/PauseScreenContainer.gd" type="Script" id=1]
+[ext_resource path="res://src/Helpers/GUI/Pause/PauseMenu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Helpers/GUI/Pause/SettingsMenu.tscn" type="PackedScene" id=3]
+
+[node name="PauseScreenContainer" type="Control" groups=[
+"Settings",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.594604
+margin_right = 0.594604
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseMenu" parent="." instance=ExtResource( 2 )]
+visible = false
+
+[node name="SettingsMenu" parent="." instance=ExtResource( 3 )]
+visible = false
+
+[connection signal="show_settings" from="PauseMenu" to="." method="_on_show_settings"]
+[connection signal="settings_changed" from="SettingsMenu" to="." method="_on_settings_changed"]
