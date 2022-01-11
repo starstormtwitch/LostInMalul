@@ -14,8 +14,6 @@ export(int) var MaxCoins = 1
 export(bool) var DropsPowerup = true
 export(bool) var AutomaticOnDeath = true
 
-var EnemiesLeft = 1;
-
 func _ready():
 	count = 0
 	_countToSpawn = 0
@@ -29,7 +27,7 @@ func spawnLoot():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	if(MaxCoins > 0):
-		_countToSpawn += rng.randi_rand(MinCoins, MaxCoins)
+		_countToSpawn += rng.randi_range(MinCoins, MaxCoins)
 		spawnMultipleInArea(COIN)
 #	if(DropsPowerup == true):
 #		_countToSpawn += 1

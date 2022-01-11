@@ -11,7 +11,7 @@ var _countToSpawn = 1
 var prime_off_screen_add = false;
 var packed_scene;
 
-func ready():
+func _ready():
 	_countToSpawn = count;
 
 func spawn(scene_spawn : PackedScene, position : Vector2):
@@ -51,7 +51,7 @@ func spawnMultipleInArea(scene_spawn : PackedScene):
 	add_child(t)
 	for i in _countToSpawn:
 		#Change spawn location randomly
-		var spawnPosition = self.position + Vector2(randf() * self.rect.size.x, randf() * self.rect.size.y)
+		var spawnPosition = self.global_position + Vector2(randf() * self.rect.size.x, randf() * self.rect.size.y)
 		var spawnling = spawn(scene_spawn, spawnPosition)
 		spawnlings.append(spawnling)
 		#Delay after spawning

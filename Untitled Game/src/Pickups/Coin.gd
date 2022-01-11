@@ -6,4 +6,5 @@ func _ready():
 
 
 func _on_Coin_body_entered(body):
-	queue_free()
+#	queue_free()
+	pass
