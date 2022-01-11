@@ -1,10 +1,11 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://assets/SpriteSheets/rat_soldier_shadow_sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/RatSoldier.gd" type="Script" id=2]
 [ext_resource path="res://assets/SpriteSheets/rat_soldier-Sheet.png" type="Texture" id=3]
 [ext_resource path="res://src/Helpers/CustomParticles.gd" type="Script" id=4]
-[ext_resource path="res://assets/SpriteSheets/Effect 3 - Sprite Sheet.png" type="Texture" id=5]
+[ext_resource path="res://assets/SpriteSheets/hit markers/Effect 3 - Sprite Sheet.png" type="Texture" id=5]
+[ext_resource path="res://assets/SpriteSheets/hit markers/hits2-Sheet.png" type="Texture" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "die"
@@ -306,7 +307,22 @@ flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
+scale = 0.4
 anim_speed = 1.0
+
+[sub_resource type="CanvasItemMaterial" id=38]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticlesMaterial" id=39]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.3
+anim_speed = 2.0
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemy",
@@ -388,7 +404,7 @@ position = Vector2( -16.7024, -0.0697699 )
 shape = SubResource( 35 )
 disabled = true
 
-[node name="HitMarkerParticles" type="Particles2D" parent="."]
+[node name="PunchHitMarkerParticles" type="Particles2D" parent="."]
 material = SubResource( 36 )
 position = Vector2( -7.88188, -22.2792 )
 emitting = false
@@ -398,6 +414,15 @@ one_shot = true
 process_material = SubResource( 37 )
 texture = ExtResource( 5 )
 script = ExtResource( 4 )
+
+[node name="KickHitMarkerParticles" type="Particles2D" parent="."]
+material = SubResource( 38 )
+position = Vector2( -6.625, -22.875 )
+emitting = false
+amount = 1
+one_shot = true
+process_material = SubResource( 39 )
+texture = ExtResource( 6 )
 
 [connection signal="area_entered" from="FlockBox" to="." method="_on_FlockBox_area_entered"]
 [connection signal="area_exited" from="FlockBox" to="." method="_on_FlockBox_area_exited"]

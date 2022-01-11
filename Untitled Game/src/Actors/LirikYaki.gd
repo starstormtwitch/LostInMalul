@@ -231,6 +231,9 @@ func _hurtAnimationFinished() -> void:
 func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
 		area.get_parent().take_damage(1, _directionFacing, 50000)
+		var isPunch = _comboAPoints < 2
+		var isKick = _comboBPoints < 2
+		area.get_parent().show_hit_marker(isPunch, isKick)
 
 
 func sendPlayerDeadSignal():

@@ -142,15 +142,18 @@ func _play_walk_animation_if_available(velocity_x: float):
 		if animationPlayer.has_animation("walk"):
 			$AnimationTree.get("parameters/playback").travel("walk")
 
-func _show_hit_marker():
-	if $HitMarkerParticles != null:
-		var hitMarkerParticles: Particles2D = $HitMarkerParticles
+func show_hit_marker(isPunch: bool, isKick: bool):
+	if ($PunchHitMarkerParticles != null or $KickHitMarkerParticles != null) and _health > 0:
+		var hitMarkerParticles: Particles2D = $PunchHitMarkerParticles
+		if isKick:
+			hitMarkerParticles = $KickHitMarkerParticles
 		if _directionFacing > 0:
 			hitMarkerParticles.position.x = abs(hitMarkerParticles.position.x)
 		elif _directionFacing < 0:
 			hitMarkerParticles.position.x = -abs(hitMarkerParticles.position.x)
 		hitMarkerParticles.restart()
 		hitMarkerParticles.emitting = true
+
 
 func get_target_direction() -> Vector2:
 	var direction = Vector2.ZERO
@@ -177,7 +180,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		_finishedAttack(1)
 		_isStunned = true
 		_stunTimer.start(_stun_duration)
-			
+		
 		#mark damage
 		emit_signal("enemy_hit")
 		self.modulate =  Color(10,10,10,10) 
@@ -185,7 +188,6 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		if($AnimationTree != null):
 			$AnimationTree.get("parameters/playback").travel("hurt")
 		_health-=damage
-		_show_hit_marker()
 		
 		#knockback/knockup
 		_inAir = true
@@ -196,7 +198,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		#death check
 		if(_health <= 0):
 			die()
-		
+
 func disable_hurt_box_if_exists():
 	var hitbox: CollisionShape2D = get_node("Attack/AttackBox")
 	if(hitbox != null):
@@ -221,4 +223,3 @@ func _connect_hit_signal_to_player():
 	var player = LevelGlobals.GetPlayerActor()
 	assert(player, "Player must exist to hit")
 	self.connect("enemy_hit", player, "_on_enemy_hit")
-	

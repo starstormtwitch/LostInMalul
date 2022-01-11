@@ -4,7 +4,8 @@
 [ext_resource path="res://src/Actors/RatKing/RatKing.gd" type="Script" id=2]
 [ext_resource path="res://assets/SpriteSheets/rat_king_spritesheet.png" type="Texture" id=3]
 [ext_resource path="res://src/Helpers/CustomParticles.gd" type="Script" id=4]
-[ext_resource path="res://assets/SpriteSheets/Effect 3 - Sprite Sheet.png" type="Texture" id=5]
+[ext_resource path="res://assets/SpriteSheets/hit markers/Effect 3 - Sprite Sheet.png" type="Texture" id=5]
+
 
 [sub_resource type="Animation" id=3]
 resource_name = "attack"
