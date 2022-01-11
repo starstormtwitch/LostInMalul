@@ -1,19 +1,28 @@
 extends Node
 
+class_name BaseLevelScript
+
 var _cameraManager: CustomCamera2D
 
 func _ready():
-	setup()
+	_setup()
 
-func setup():
+func _setup():
 	if LevelGlobals.SceneHasPlayerActor():
+		print(self.name + ': setup start.')
 		InitCameraManager()
 		RegisterTeleporterSignals()
 		RegisterDelimiterSignals()
+		print(self.name + ': setup end.')
+	else:
+		print(self.name + ': player actor not available.')
 
 func InitCameraManager() -> void:
 	_cameraManager = CustomCamera2D.new(LevelGlobals.GetPlayerActor(), true)
 	_cameraManager.connect_to_player_shake_signal(LevelGlobals.GetPlayerActor())
+
+func GetCameraManager() -> CustomCamera2D:
+	return _cameraManager
 
 func RegisterTeleporterSignals() -> void:
 	var teleporters = self.get_parent().get_tree().get_nodes_in_group("TeleportNode")
@@ -31,9 +40,6 @@ func RegisterDelimiterSignals() -> void:
 		_dl.connect("PlayerEnteredAreaDelimiter", self, "CameraTransitionToDelimiter")
 	print("Registered delimiters.")
 
-func GetCameraManager() -> CustomCamera2D:
-	return _cameraManager
-
 func CameraTransitionToDelimiter(delimiter: CustomDelimiter2D) -> void:	
 	_cameraManager.limitCameraToDelimiter(delimiter) 
 
@@ -46,4 +52,3 @@ func TeleportPlayerToPosition(position: Vector2, playFadeTime: float = 0) -> voi
 	if playFadeTime > 0:
 		_cameraManager._animationPlayer.playFadeOut(playFadeTime)
 	get_tree().paused = false
-	

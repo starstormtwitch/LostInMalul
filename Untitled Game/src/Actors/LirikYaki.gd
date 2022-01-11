@@ -240,4 +240,5 @@ func sendPlayerDeadSignal():
 
 func _on_enemy_hit():
 	hitAudioPlayer.playHitSound()
+	#print("emit shake signal")
 	emit_signal("player_hit_enemy")
