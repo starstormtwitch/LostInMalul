@@ -8,6 +8,9 @@ const enemyDict = {
 export(String, "Slime", "SlimeFR") var enemy = "Slime"
 
 export(int) var level = 1
+signal AllEnemiesDefeated
+
+var EnemiesLeft = 1;
 
 func _ready():
 	if(automatic):
@@ -21,3 +24,10 @@ func spawnEnemy():
 		for enemy in enemiesSpawned:
 			enemy.connect("tree_exited", self, "check_enemies_disposed")
 	pass
+	
+
+func check_enemies_disposed():
+	EnemiesLeft = EnemiesLeft - 1;
+	if(EnemiesLeft == 0):
+	 emit_signal("AllEnemiesDefeated")
+	

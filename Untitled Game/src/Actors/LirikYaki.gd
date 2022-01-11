@@ -97,6 +97,7 @@ func footstepCallback():
 #Animation callback to generate smoke particle when feet touch the ground
 func _generate_smoke_particle():
 	var smoke = smoke_scene.instance()
+	get_parent().add_child(smoke)
 	smoke.global_position = self.global_position
 	smoke.global_position.y += _FOOTSTEP_PARTICLE_POSITION_OFFSET
 	smoke.emitting = true
@@ -104,7 +105,6 @@ func _generate_smoke_particle():
 		smoke.flipSide(false)
 	elif _directionFacing.x < 0:
 		smoke.flipSide(true)
-	get_parent().add_child(smoke)
 
 
 func _play_footstep_sound():

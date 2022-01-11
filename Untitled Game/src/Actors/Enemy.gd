@@ -201,7 +201,7 @@ func disable_hurt_box_if_exists():
 	var hitbox: CollisionShape2D = get_node("Attack/AttackBox")
 	if(hitbox != null):
 		#print("disable hit box")
-		hitbox.disabled = true
+		hitbox.set_deferred("disabled", true);
 	
 func _on_attack_cooldown_timeout():
 	_isReadyToAttack = true
