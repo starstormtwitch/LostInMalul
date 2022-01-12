@@ -181,44 +181,39 @@ func evaluatePlayerInput() -> Vector2:
 		$AnimationTree.get("parameters/playback").travel("Walk")
 	return direction
 
-
 func doSideSwipeAttack():
-	_isAttacking = true
-	_attackResetTimer.start(COMBOTIME)
-	_comboBPoints = 2
-	print("Combo A: " + String(_comboAPoints))
-	if _comboAPoints == 2:
-		hitAudioPlayer.playerAttacks()
-		$AnimationTree.get("parameters/playback").travel("SideSwipe1")
-		_comboAPoints = _comboAPoints - 1
-	elif _comboAPoints == 1:
-		hitAudioPlayer.playerAttacks()
-		$AnimationTree.get("parameters/playback").travel("SideSwipe2")
-		_comboAPoints = _comboAPoints - 1
-	else:
-		_comboAPoints = 2
-		_isAttacking = false
+	if !_isAttacking:
+		_isAttacking = true
+		_attackResetTimer.start(COMBOTIME)
+		_comboBPoints = 2
+		print("Combo A: " + String(_comboAPoints))
+		if _comboAPoints == 2:
+			hitAudioPlayer.playerAttacks()
+			$AnimationTree.get("parameters/playback").travel("SideSwipe1")
+			_comboAPoints = _comboAPoints - 1
+		elif _comboAPoints == 1:
+			hitAudioPlayer.playerAttacks()
+			$AnimationTree.get("parameters/playback").travel("SideSwipe2")
+			_comboAPoints = 2
 
 func doSideSwipeKick():
-	_isAttacking = true
-	_attackResetTimer.start(COMBOTIME)
-	_comboAPoints = 2
-	print("Combo B: " + String(_comboBPoints))
-	if _comboBPoints == 2:
-		hitAudioPlayer.playerAttacks()
-		$AnimationTree.get("parameters/playback").travel("SideSwipeKick")
-		_comboBPoints = _comboBPoints - 1
-	elif _comboBPoints == 1:
-		hitAudioPlayer.playerAttacks()
-		$AnimationTree.get("parameters/playback").travel("SideSwipeRightKick2")
-		_comboBPoints = _comboBPoints - 1
-	else:
-		_comboBPoints = 2
-		_isAttacking = false
+	if !_isAttacking:
+		_isAttacking = true
+		_attackResetTimer.start(COMBOTIME)
+		_comboAPoints = 2
+		print("Combo B: " + String(_comboBPoints))
+		if _comboBPoints == 2:
+			hitAudioPlayer.playerAttacks()
+			$AnimationTree.get("parameters/playback").travel("SideSwipeKick")
+			_comboBPoints = _comboBPoints - 1
+		elif _comboBPoints == 1:
+			hitAudioPlayer.playerAttacks()
+			$AnimationTree.get("parameters/playback").travel("SideSwipeRightKick2")
+			_comboBPoints = 2
 
 
 func _finishedAttack() -> void:
-	#print("attack finished")
+	print("attack finished")
 	_isAttacking = false
 
 
