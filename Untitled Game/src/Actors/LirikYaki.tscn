@@ -127,9 +127,12 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.29 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.2, 0.29 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "checkIfWePlayWooshSFX"
+}, {
 "args": [  ],
 "method": "_finishedAttack"
 } ]
@@ -153,7 +156,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.29 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -168,9 +171,12 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.29 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.2, 0.29 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "checkIfWePlayWooshSFX"
+}, {
 "args": [  ],
 "method": "_finishedAttack"
 } ]
@@ -194,7 +200,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.29 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -209,9 +215,12 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.29 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.3, 0.39 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "checkIfWePlayWooshSFX"
+}, {
 "args": [  ],
 "method": "_finishedAttack"
 } ]
@@ -251,9 +260,12 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.29 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.3, 0.39 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "checkIfWePlayWooshSFX"
+}, {
 "args": [  ],
 "method": "_finishedAttack"
 } ]
@@ -509,7 +521,7 @@ position = Vector2( -0.893405, -23.5687 )
 texture = ExtResource( 6 )
 hframes = 10
 vframes = 7
-frame = 30
+frame = 47
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 visible = false
@@ -572,5 +584,6 @@ collision_mask = 0
 modulate = Color( 0.6, 0.298039, 1, 1 )
 position = Vector2( 12.5648, 7.92492 )
 shape = SubResource( 70 )
+disabled = true
 
 [connection signal="area_entered" from="attack" to="." method="_on_attack_area_entered"]
