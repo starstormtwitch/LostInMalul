@@ -16,6 +16,7 @@ var _isAttacking: bool = false
 var _didHitEnemy: bool = false #To check to see if we should play woosh sfx if we missed
 var _beingHurt: bool = false
 var _canTakeDamage: bool = false
+var _isLastAttackAKick = false #Used to check which hitmarker to show
 var _directionFacing: Vector2 = Vector2.ZERO
 var _trail = []
 var _invincibilityTimer: Timer = Timer.new()
@@ -187,6 +188,7 @@ func doSideSwipeAttack():
 	if !_isAttacking:
 		_isAttacking = true
 		_didHitEnemy = false
+		_isLastAttackAKick = false
 		_attackResetTimer.start(COMBOTIME)
 		_comboBPoints = 2
 		print("Combo A: " + String(_comboAPoints))
@@ -203,6 +205,7 @@ func doSideSwipeKick():
 	if !_isAttacking:
 		_isAttacking = true
 		_didHitEnemy = false
+		_isLastAttackAKick = true
 		_attackResetTimer.start(COMBOTIME)
 		_comboAPoints = 2
 		print("Combo B: " + String(_comboBPoints))
@@ -236,9 +239,7 @@ func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
 		area.get_parent().take_damage(1, _directionFacing, 50000)
 		_didHitEnemy = true
-		var isPunch = _comboAPoints < 2
-		var isKick = _comboBPoints < 2
-		area.get_parent().show_hit_marker(isPunch, isKick)
+		area.get_parent().show_hit_marker(_isLastAttackAKick)
 
 
 func sendPlayerDeadSignal():

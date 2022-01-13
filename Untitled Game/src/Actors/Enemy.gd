@@ -142,7 +142,7 @@ func _play_walk_animation_if_available(velocity_x: float):
 		if animationPlayer.has_animation("walk"):
 			$AnimationTree.get("parameters/playback").travel("walk")
 
-func show_hit_marker(isPunch: bool, isKick: bool):
+func show_hit_marker(isKick: bool):
 	if ($PunchHitMarkerParticles != null or $KickHitMarkerParticles != null) and _health > 0:
 		var hitMarkerParticles: Particles2D = $PunchHitMarkerParticles
 		if isKick:
