@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rat_king_spritesheet.png-35db6359026281cf7571c9787ac2b55a.stex"
+path="res://.import/rat_soldier_shadow_sheet.png-29d5271ee29b1a8eea3942ed2c8bc9d5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/SpriteSheets/rat_king_spritesheet.png"
-dest_files=[ "res://.import/rat_king_spritesheet.png-35db6359026281cf7571c9787ac2b55a.stex" ]
+source_file="res://assets/SpriteSheets/rat soldier/rat_soldier_shadow_sheet.png"
+dest_files=[ "res://.import/rat_soldier_shadow_sheet.png-29d5271ee29b1a8eea3942ed2c8bc9d5.stex" ]
 
 [params]
 

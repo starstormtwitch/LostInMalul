@@ -1,8 +1,8 @@
 [gd_scene load_steps=46 format=2]
 
-[ext_resource path="res://assets/SpriteSheets/rat_soldier_shadow_sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/SpriteSheets/rat soldier/rat_soldier_shadow_sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/RatSoldier.gd" type="Script" id=2]
-[ext_resource path="res://assets/SpriteSheets/rat_soldier-Sheet.png" type="Texture" id=3]
+[ext_resource path="res://assets/SpriteSheets/rat soldier/rat_soldier-Sheet.png" type="Texture" id=3]
 [ext_resource path="res://src/Helpers/CustomParticles.gd" type="Script" id=4]
 [ext_resource path="res://assets/SpriteSheets/hit markers/Effect 3 - Sprite Sheet.png" type="Texture" id=5]
 [ext_resource path="res://assets/SpriteSheets/hit markers/hits2-Sheet.png" type="Texture" id=6]

@@ -1,13 +1,14 @@
 [gd_scene load_steps=79 format=2]
 
 [ext_resource path="res://src/Actors/LirikYaki.gd" type="Script" id=1]
-[ext_resource path="res://assets/SpriteSheets/mc_shadow.png" type="Texture" id=2]
+[ext_resource path="res://assets/SpriteSheets/main_char/mc_shadow.png" type="Texture" id=2]
 [ext_resource path="res://assets/audio/sfx_deathscream_human1.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/audio/HitAudio/Retro Impact Punch Hurt 01.wav" type="AudioStream" id=4]
 [ext_resource path="res://src/Helpers/Audio/HitAudioPlayer.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/SpriteSheets/mc_spritesheet_v1.3-Sheet.png" type="Texture" id=6]
+[ext_resource path="res://assets/SpriteSheets/main_char/mc_spritesheet_v1.3-Sheet.png" type="Texture" id=6]
 [ext_resource path="res://assets/audio/sfx_movement_footsteps1a.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/audio/HitAudio/swish-10.wav" type="AudioStream" id=8]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.71682, 10.7663 )

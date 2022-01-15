@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SmokeFX Lite 2A-Sheet.png-e65de5168f1e5670d25112db4b041adf.stex"
+path="res://.import/Kaboom_Effect.png-a86ce7e4dd254b0ebdb34a77bf84abf2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/SpriteSheets/SmokeFX Lite 2A-Sheet.png"
-dest_files=[ "res://.import/SmokeFX Lite 2A-Sheet.png-e65de5168f1e5670d25112db4b041adf.stex" ]
+source_file="res://assets/SpriteSheets/ratking/Kaboom_Effect.png"
+dest_files=[ "res://.import/Kaboom_Effect.png-a86ce7e4dd254b0ebdb34a77bf84abf2.stex" ]
 
 [params]
 
