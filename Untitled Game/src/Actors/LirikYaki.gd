@@ -11,6 +11,8 @@ const COMBOTIME = 1;
 const _LEFT_FACING_SCALE = -1.0
 const _RIGHT_FACING_SCALE = 1.0
 const _FOOTSTEP_PARTICLE_POSITION_OFFSET = -6
+const _START_A_COMBO = 3
+const _START_B_COMBO = 3
 
 var _isAttacking: bool = false
 var _didHitEnemy: bool = false #To check to see if we should play woosh sfx if we missed
@@ -21,8 +23,8 @@ var _directionFacing: Vector2 = Vector2.ZERO
 var _trail = []
 var _invincibilityTimer: Timer = Timer.new()
 
-var _comboAPoints = 2;
-var _comboBPoints = 2;
+var _comboAPoints = _START_A_COMBO;
+var _comboBPoints = _START_B_COMBO;
 
 var _attackResetTimer: Timer = Timer.new()
 var _hitDoneTimer: Timer = Timer.new()
@@ -87,8 +89,8 @@ func _on_invincibility_timeout() -> void:
 	
 func _on_combo_timeout() -> void:
 	#print("combo reset")
-	_comboAPoints = 2
-	_comboBPoints = 2
+	_comboAPoints = _START_A_COMBO
+	_comboBPoints = _START_B_COMBO
 
 
 # call function when foot hits floor. Play sounds and smoke particle
@@ -190,16 +192,20 @@ func doSideSwipeAttack():
 		_didHitEnemy = false
 		_isLastAttackAKick = false
 		_attackResetTimer.start(COMBOTIME)
-		_comboBPoints = 2
+		_comboBPoints = 3
 		print("Combo A: " + String(_comboAPoints))
-		if _comboAPoints == 2:
+		if _comboAPoints == 3:
 			hitAudioPlayer.playerAttacks()
 			$AnimationTree.get("parameters/playback").travel("SideSwipe1")
 			_comboAPoints = _comboAPoints - 1
-		elif _comboAPoints == 1:
+		elif _comboAPoints == 2:
 			hitAudioPlayer.playerAttacks()
 			$AnimationTree.get("parameters/playback").travel("SideSwipe2")
-			_comboAPoints = 2
+			_comboAPoints = _comboAPoints - 1
+		elif _comboAPoints == 1:
+			hitAudioPlayer.playerAttacks()
+			$AnimationTree.get("parameters/playback").travel("Hadouken")
+			_comboAPoints = _START_A_COMBO
 
 func doSideSwipeKick():
 	if !_isAttacking:
@@ -207,16 +213,20 @@ func doSideSwipeKick():
 		_didHitEnemy = false
 		_isLastAttackAKick = true
 		_attackResetTimer.start(COMBOTIME)
-		_comboAPoints = 2
+		_comboAPoints = 3
 		print("Combo B: " + String(_comboBPoints))
-		if _comboBPoints == 2:
+		if _comboBPoints == 3:
 			hitAudioPlayer.playerAttacks()
 			$AnimationTree.get("parameters/playback").travel("SideSwipeKick")
 			_comboBPoints = _comboBPoints - 1
-		elif _comboBPoints == 1:
+		elif _comboBPoints == 2:
 			hitAudioPlayer.playerAttacks()
 			$AnimationTree.get("parameters/playback").travel("SideSwipeRightKick2")
-			_comboBPoints = 2
+			_comboBPoints = _comboBPoints - 1
+		elif _comboBPoints == 1:
+			hitAudioPlayer.playerAttacks()
+			$AnimationTree.get("parameters/playback").travel("Shoryuken")
+			_comboBPoints = _START_B_COMBO
 
 
 func _finishedAttack() -> void:
@@ -251,3 +261,6 @@ func _on_enemy_hit():
 	hitAudioPlayer.playHitSound()
 	#print("emit shake signal")
 	emit_signal("player_hit_enemy")
+
+func summon_hadouken_blast():
+	pass
