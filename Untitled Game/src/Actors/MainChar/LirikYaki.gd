@@ -7,7 +7,7 @@ const smoke_scene = preload("res://src/Helpers/SmokeParticles.tscn")
 const _JUMP_EVENT = "Jump"
 const _ATTACK1_EVENT = "side_swipe_attack"
 const _ATTACK2_EVENT = "attack_2"
-const COMBOTIME = 1;
+const COMBOTIME = 1
 const _LEFT_FACING_SCALE = -1.0
 const _RIGHT_FACING_SCALE = 1.0
 const _FOOTSTEP_PARTICLE_POSITION_OFFSET = -6
@@ -186,47 +186,50 @@ func evaluatePlayerInput() -> Vector2:
 		$AnimationTree.get("parameters/playback").travel("Walk")
 	return direction
 
+func _attack_setup(is_kick: bool):
+	_isAttacking = true
+	_didHitEnemy = false
+	_isLastAttackAKick = is_kick
+	_attackResetTimer.start(COMBOTIME)
+
 func doSideSwipeAttack():
 	if !_isAttacking:
-		_isAttacking = true
-		_didHitEnemy = false
-		_isLastAttackAKick = false
-		_attackResetTimer.start(COMBOTIME)
-		_comboBPoints = 3
+		_attack_setup(false)
 		print("Combo A: " + String(_comboAPoints))
-		if _comboAPoints == 3:
+		if _comboAPoints == 1 or _comboBPoints == 1:
+			hitAudioPlayer.playerAttacks()
+			$AnimationTree.get("parameters/playback").travel("Hadouken")
+			_on_combo_timeout()
+		elif _comboAPoints == 3:
 			hitAudioPlayer.playerAttacks()
 			$AnimationTree.get("parameters/playback").travel("SideSwipe1")
 			_comboAPoints = _comboAPoints - 1
+			_comboBPoints = 3
 		elif _comboAPoints == 2:
 			hitAudioPlayer.playerAttacks()
 			$AnimationTree.get("parameters/playback").travel("SideSwipe2")
 			_comboAPoints = _comboAPoints - 1
-		elif _comboAPoints == 1:
-			hitAudioPlayer.playerAttacks()
-			$AnimationTree.get("parameters/playback").travel("Hadouken")
-			_comboAPoints = _START_A_COMBO
+			_comboBPoints = 3
+
 
 func doSideSwipeKick():
 	if !_isAttacking:
-		_isAttacking = true
-		_didHitEnemy = false
-		_isLastAttackAKick = true
-		_attackResetTimer.start(COMBOTIME)
-		_comboAPoints = 3
+		_attack_setup(true)
 		print("Combo B: " + String(_comboBPoints))
-		if _comboBPoints == 3:
+		if _comboBPoints == 1 or _comboAPoints == 1:
+			hitAudioPlayer.playerAttacks()
+			$AnimationTree.get("parameters/playback").travel("Shoryuken")
+			_on_combo_timeout()
+		elif _comboBPoints == 3:
 			hitAudioPlayer.playerAttacks()
 			$AnimationTree.get("parameters/playback").travel("SideSwipeKick")
 			_comboBPoints = _comboBPoints - 1
+			_comboAPoints = 3
 		elif _comboBPoints == 2:
 			hitAudioPlayer.playerAttacks()
 			$AnimationTree.get("parameters/playback").travel("SideSwipeRightKick2")
 			_comboBPoints = _comboBPoints - 1
-		elif _comboBPoints == 1:
-			hitAudioPlayer.playerAttacks()
-			$AnimationTree.get("parameters/playback").travel("Shoryuken")
-			_comboBPoints = _START_B_COMBO
+			_comboAPoints = 3
 
 
 func _finishedAttack() -> void:

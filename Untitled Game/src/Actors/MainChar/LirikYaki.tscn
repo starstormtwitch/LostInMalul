@@ -1,6 +1,6 @@
-[gd_scene load_steps=104 format=2]
+[gd_scene load_steps=106 format=2]
 
-[ext_resource path="res://src/Actors/LirikYaki.gd" type="Script" id=1]
+[ext_resource path="res://src/Actors/MainChar/LirikYaki.gd" type="Script" id=1]
 [ext_resource path="res://assets/SpriteSheets/main_char/mc_shadow.png" type="Texture" id=2]
 [ext_resource path="res://assets/audio/sfx_deathscream_human1.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/audio/HitAudio/Retro Impact Punch Hurt 01.wav" type="AudioStream" id=4]
@@ -608,13 +608,19 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=89]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=94]
+[sub_resource type="AnimationNodeStateMachineTransition" id=90]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=95]
+[sub_resource type="AnimationNodeStateMachineTransition" id=91]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id=90]
+[sub_resource type="AnimationNodeStateMachineTransition" id=96]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=97]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id=92]
 states/Hadouken/node = SubResource( 12 )
 states/Hadouken/position = Vector2( 1061.24, 353.289 )
 states/Hurt/node = SubResource( 13 )
@@ -630,21 +636,21 @@ states/SideSwipe2/position = Vector2( 918.246, 221.388 )
 states/SideSwipeKick/node = SubResource( 18 )
 states/SideSwipeKick/position = Vector2( 730.246, 377.388 )
 states/SideSwipeRightKick2/node = SubResource( 19 )
-states/SideSwipeRightKick2/position = Vector2( 318.241, 392.415 )
+states/SideSwipeRightKick2/position = Vector2( 318.241, 391.415 )
 states/Walk/node = SubResource( 20 )
 states/Walk/position = Vector2( 299.246, 66.3882 )
 states/die/node = SubResource( 21 )
 states/die/position = Vector2( 37.3395, 127.82 )
-transitions = [ "Idle", "SideSwipe1", SubResource( 22 ), "SideSwipe1", "Idle", SubResource( 23 ), "SideSwipe1", "SideSwipe2", SubResource( 24 ), "SideSwipe2", "SideSwipe1", SubResource( 25 ), "SideSwipe1", "SideSwipeKick", SubResource( 26 ), "SideSwipeKick", "SideSwipe1", SubResource( 27 ), "Idle", "Hurt", SubResource( 28 ), "Hurt", "Idle", SubResource( 29 ), "Idle", "Walk", SubResource( 30 ), "Walk", "Idle", SubResource( 31 ), "Walk", "Hurt", SubResource( 32 ), "Hurt", "Walk", SubResource( 33 ), "SideSwipeKick", "Hurt", SubResource( 34 ), "SideSwipe2", "Hurt", SubResource( 35 ), "SideSwipe1", "Hurt", SubResource( 36 ), "Hurt", "SideSwipe1", SubResource( 37 ), "Hurt", "SideSwipe2", SubResource( 38 ), "Hurt", "SideSwipeKick", SubResource( 39 ), "SideSwipeKick", "Idle", SubResource( 40 ), "SideSwipe2", "Idle", SubResource( 41 ), "Idle", "SideSwipeKick", SubResource( 42 ), "SideSwipeKick", "Walk", SubResource( 43 ), "SideSwipe2", "Walk", SubResource( 44 ), "SideSwipe1", "Walk", SubResource( 45 ), "Walk", "SideSwipe1", SubResource( 46 ), "Walk", "SideSwipe2", SubResource( 47 ), "Walk", "SideSwipeKick", SubResource( 48 ), "Idle", "die", SubResource( 49 ), "Walk", "die", SubResource( 50 ), "SideSwipe1", "die", SubResource( 51 ), "SideSwipe2", "die", SubResource( 52 ), "SideSwipeKick", "die", SubResource( 53 ), "Hurt", "die", SubResource( 54 ), "Idle", "SideSwipe2", SubResource( 55 ), "SideSwipeKick", "SideSwipeRightKick2", SubResource( 56 ), "SideSwipeRightKick2", "SideSwipeKick", SubResource( 57 ), "SideSwipeRightKick2", "die", SubResource( 58 ), "SideSwipeRightKick2", "Hurt", SubResource( 59 ), "Hurt", "SideSwipeRightKick2", SubResource( 60 ), "SideSwipeRightKick2", "Walk", SubResource( 61 ), "SideSwipeRightKick2", "Idle", SubResource( 62 ), "SideSwipeRightKick2", "SideSwipe1", SubResource( 63 ), "SideSwipe1", "SideSwipeRightKick2", SubResource( 64 ), "Idle", "SideSwipeRightKick2", SubResource( 65 ), "Walk", "SideSwipeRightKick2", SubResource( 66 ), "SideSwipeRightKick2", "SideSwipe2", SubResource( 67 ), "SideSwipe2", "SideSwipeRightKick2", SubResource( 68 ), "SideSwipe2", "SideSwipeKick", SubResource( 69 ), "SideSwipeKick", "SideSwipe2", SubResource( 70 ), "SideSwipe2", "Hadouken", SubResource( 71 ), "Hadouken", "SideSwipe2", SubResource( 72 ), "Hadouken", "SideSwipe1", SubResource( 73 ), "Hadouken", "SideSwipeKick", SubResource( 74 ), "Hadouken", "Idle", SubResource( 75 ), "Hadouken", "Walk", SubResource( 76 ), "Hadouken", "Hurt", SubResource( 77 ), "Shoryuken", "Hurt", SubResource( 78 ), "Shoryuken", "SideSwipeKick", SubResource( 79 ), "Shoryuken", "SideSwipeRightKick2", SubResource( 80 ), "Shoryuken", "SideSwipe1", SubResource( 81 ), "Shoryuken", "Idle", SubResource( 82 ), "Shoryuken", "Walk", SubResource( 83 ), "Shoryuken", "die", SubResource( 84 ), "Hadouken", "die", SubResource( 85 ), "SideSwipeRightKick2", "Shoryuken", SubResource( 86 ), "Idle", "Hadouken", SubResource( 87 ), "Idle", "Shoryuken", SubResource( 88 ), "Walk", "Hadouken", SubResource( 89 ), "SideSwipe1", "Hadouken", SubResource( 94 ), "SideSwipeKick", "Shoryuken", SubResource( 95 ) ]
+transitions = [ "Idle", "SideSwipe1", SubResource( 22 ), "SideSwipe1", "Idle", SubResource( 23 ), "SideSwipe1", "SideSwipe2", SubResource( 24 ), "SideSwipe2", "SideSwipe1", SubResource( 25 ), "SideSwipe1", "SideSwipeKick", SubResource( 26 ), "SideSwipeKick", "SideSwipe1", SubResource( 27 ), "Idle", "Hurt", SubResource( 28 ), "Hurt", "Idle", SubResource( 29 ), "Idle", "Walk", SubResource( 30 ), "Walk", "Idle", SubResource( 31 ), "Walk", "Hurt", SubResource( 32 ), "Hurt", "Walk", SubResource( 33 ), "SideSwipeKick", "Hurt", SubResource( 34 ), "SideSwipe2", "Hurt", SubResource( 35 ), "SideSwipe1", "Hurt", SubResource( 36 ), "Hurt", "SideSwipe1", SubResource( 37 ), "Hurt", "SideSwipe2", SubResource( 38 ), "Hurt", "SideSwipeKick", SubResource( 39 ), "SideSwipeKick", "Idle", SubResource( 40 ), "SideSwipe2", "Idle", SubResource( 41 ), "Idle", "SideSwipeKick", SubResource( 42 ), "SideSwipeKick", "Walk", SubResource( 43 ), "SideSwipe2", "Walk", SubResource( 44 ), "SideSwipe1", "Walk", SubResource( 45 ), "Walk", "SideSwipe1", SubResource( 46 ), "Walk", "SideSwipe2", SubResource( 47 ), "Walk", "SideSwipeKick", SubResource( 48 ), "Idle", "die", SubResource( 49 ), "Walk", "die", SubResource( 50 ), "SideSwipe1", "die", SubResource( 51 ), "SideSwipe2", "die", SubResource( 52 ), "SideSwipeKick", "die", SubResource( 53 ), "Hurt", "die", SubResource( 54 ), "Idle", "SideSwipe2", SubResource( 55 ), "SideSwipeKick", "SideSwipeRightKick2", SubResource( 56 ), "SideSwipeRightKick2", "SideSwipeKick", SubResource( 57 ), "SideSwipeRightKick2", "die", SubResource( 58 ), "SideSwipeRightKick2", "Hurt", SubResource( 59 ), "Hurt", "SideSwipeRightKick2", SubResource( 60 ), "SideSwipeRightKick2", "Walk", SubResource( 61 ), "SideSwipeRightKick2", "Idle", SubResource( 62 ), "SideSwipeRightKick2", "SideSwipe1", SubResource( 63 ), "SideSwipe1", "SideSwipeRightKick2", SubResource( 64 ), "Idle", "SideSwipeRightKick2", SubResource( 65 ), "Walk", "SideSwipeRightKick2", SubResource( 66 ), "SideSwipeRightKick2", "SideSwipe2", SubResource( 67 ), "SideSwipe2", "SideSwipeRightKick2", SubResource( 68 ), "SideSwipe2", "SideSwipeKick", SubResource( 69 ), "SideSwipeKick", "SideSwipe2", SubResource( 70 ), "SideSwipe2", "Hadouken", SubResource( 71 ), "Hadouken", "SideSwipe2", SubResource( 72 ), "Hadouken", "SideSwipe1", SubResource( 73 ), "Hadouken", "SideSwipeKick", SubResource( 74 ), "Hadouken", "Idle", SubResource( 75 ), "Hadouken", "Walk", SubResource( 76 ), "Hadouken", "Hurt", SubResource( 77 ), "Shoryuken", "Hurt", SubResource( 78 ), "Shoryuken", "SideSwipeKick", SubResource( 79 ), "Shoryuken", "SideSwipeRightKick2", SubResource( 80 ), "Shoryuken", "SideSwipe1", SubResource( 81 ), "Shoryuken", "Idle", SubResource( 82 ), "Shoryuken", "Walk", SubResource( 83 ), "Shoryuken", "die", SubResource( 84 ), "Hadouken", "die", SubResource( 85 ), "SideSwipeRightKick2", "Shoryuken", SubResource( 86 ), "Idle", "Hadouken", SubResource( 87 ), "Idle", "Shoryuken", SubResource( 88 ), "Walk", "Hadouken", SubResource( 89 ), "SideSwipe1", "Hadouken", SubResource( 90 ), "SideSwipeKick", "Shoryuken", SubResource( 91 ), "SideSwipeRightKick2", "Hadouken", SubResource( 96 ), "SideSwipe2", "Shoryuken", SubResource( 97 ) ]
 start_node = "Idle"
-graph_offset = Vector2( 8.2408, 283.937 )
+graph_offset = Vector2( 20.2408, 245.937 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=91]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=93]
 
-[sub_resource type="RectangleShape2D" id=92]
+[sub_resource type="RectangleShape2D" id=94]
 extents = Vector2( 14.0577, 5.53115 )
 
-[sub_resource type="RectangleShape2D" id=93]
+[sub_resource type="RectangleShape2D" id=95]
 extents = Vector2( 10.2453, 11.7708 )
 
 [node name="LirikYaki" type="KinematicBody2D" groups=[
@@ -664,7 +670,6 @@ position = Vector2( -0.893405, -23.5687 )
 texture = ExtResource( 6 )
 hframes = 10
 vframes = 10
-frame = 78
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 visible = false
@@ -699,10 +704,10 @@ anims/SideSwipeRightKick2 = SubResource( 10 )
 anims/WalkRight = SubResource( 11 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 90 )
+tree_root = SubResource( 92 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 91 )
+parameters/playback = SubResource( 93 )
 
 [node name="TrailTimer" type="Timer" parent="."]
 wait_time = 0.1
@@ -717,7 +722,7 @@ collision_mask = 4096
 
 [node name="HurtBox" type="CollisionShape2D" parent="PlayerHurtArea"]
 position = Vector2( 0.132891, 19.5725 )
-shape = SubResource( 92 )
+shape = SubResource( 94 )
 
 [node name="attack" type="Area2D" parent="."]
 position = Vector2( -0.730887, -23.75 )
@@ -727,7 +732,7 @@ collision_mask = 0
 [node name="sideSwipeRight" type="CollisionShape2D" parent="attack"]
 modulate = Color( 0.6, 0.298039, 1, 1 )
 position = Vector2( 12.5648, 7.92492 )
-shape = SubResource( 93 )
+shape = SubResource( 95 )
 disabled = true
 
 [connection signal="area_entered" from="attack" to="." method="_on_attack_area_entered"]
