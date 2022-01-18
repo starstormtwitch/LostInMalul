@@ -3,7 +3,9 @@ extends Actor
 signal player_hit_enemy
 
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
-const smoke_scene = preload("res://src/Helpers/SmokeParticles.tscn")
+const smoke_scene = preload("res://src/Actors/MainChar/SmokeParticles.tscn")
+const hadouken_scene = preload("res://src/Actors/MainChar/HadoukenBlast.tscn")
+
 const _JUMP_EVENT = "Jump"
 const _ATTACK1_EVENT = "side_swipe_attack"
 const _ATTACK2_EVENT = "attack_2"
@@ -36,6 +38,7 @@ onready var rightHitBox: CollisionShape2D = $attack/sideSwipeRight
 onready var hitAudioPlayer: HitAudioPlayer = $HitAudioPlayer
 onready var wooshAudioPlayer: AudioStreamPlayer = $WooshAudioPlayer
 onready var footstepAudioPlayer: AudioStreamPlayer = $FootStepAudioStreamPlayer
+onready var hadoukenSpawn: Position2D = $HadoukenSpawn
 
 func _init():
 	add_to_group("Player")
@@ -266,4 +269,8 @@ func _on_enemy_hit():
 	emit_signal("player_hit_enemy")
 
 func summon_hadouken_blast():
-	pass
+	var instance = hadouken_scene.instance()
+	instance.set_direction(_directionFacing)
+	instance.global_position = hadoukenSpawn.global_position
+	get_parent().add_child(instance)
+	

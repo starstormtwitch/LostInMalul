@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/GGS/src/utils.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "HadoukenBlast",
+"language": "GDScript",
+"path": "res://src/Actors/MainChar/HadoukenBlast.gd"
+}, {
 "base": "AudioStreamPlayer",
 "class": "HitAudioPlayer",
 "language": "GDScript",
@@ -92,7 +97,7 @@ _global_script_classes=[ {
 "base": "CustomParticles",
 "class": "SmokeParticles",
 "language": "GDScript",
-"path": "res://src/Helpers/SmokeParticles.gd"
+"path": "res://src/Actors/MainChar/SmokeParticles.gd"
 }, {
 "base": "Node2D",
 "class": "TeleportNode2D",
@@ -118,6 +123,7 @@ _global_script_class_icons={
 "CustomParticles": "",
 "Enemy": "",
 "GGSUtils": "",
+"HadoukenBlast": "",
 "HitAudioPlayer": "",
 "InteractPromptArea": "",
 "JSONBeautifier": "",
