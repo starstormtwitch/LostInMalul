@@ -713,6 +713,17 @@ parameters/playback = SubResource( 95 )
 wait_time = 0.1
 autostart = true
 
+[node name="DashDurationTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="DashCooldownTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="GhostTimer" type="Timer" parent="."]
+wait_time = 0.1
+
 [node name="PlayerHurtArea" type="Area2D" parent="." groups=[
 "hurtbox",
 ]]
@@ -738,4 +749,7 @@ disabled = true
 [node name="HadoukenSpawn" type="Position2D" parent="."]
 position = Vector2( 17.1474, -22.0971 )
 
+[connection signal="timeout" from="DashDurationTimer" to="." method="_on_DashDurationTimer_timeout"]
+[connection signal="timeout" from="DashCooldownTimer" to="." method="_on_DashCooldownTimer_timeout"]
+[connection signal="timeout" from="GhostTimer" to="." method="_on_GhostTimer_timeout"]
 [connection signal="area_entered" from="attack" to="." method="_on_attack_area_entered"]

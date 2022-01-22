@@ -5,10 +5,13 @@ signal player_hit_enemy
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
 const smoke_scene = preload("res://src/Actors/MainChar/SmokeParticles.tscn")
 const hadouken_scene = preload("res://src/Actors/MainChar/HadoukenBlast.tscn")
+const ghost_scene = preload("res://src/Helpers/Ghost.tscn")
 
 const _JUMP_EVENT = "Jump"
 const _ATTACK1_EVENT = "side_swipe_attack"
 const _ATTACK2_EVENT = "attack_2"
+const _DASH_EVENT = "Dodge"
+const _DODGE_SPEED = 450
 const COMBOTIME = 1
 const _LEFT_FACING_SCALE = -1.0
 const _RIGHT_FACING_SCALE = 1.0
@@ -21,7 +24,10 @@ var _didHitEnemy: bool = false #To check to see if we should play woosh sfx if w
 var _beingHurt: bool = false
 var _canTakeDamage: bool = false
 var _isLastAttackAKick = false #Used to check which hitmarker to show
+var _isDodging = false
+var _canDodge = true
 var _directionFacing: Vector2 = Vector2.ZERO
+var _dodgeDirection: Vector2 = Vector2.ZERO
 var _trail = []
 var _invincibilityTimer: Timer = Timer.new()
 
@@ -39,6 +45,9 @@ onready var hitAudioPlayer: HitAudioPlayer = $HitAudioPlayer
 onready var wooshAudioPlayer: AudioStreamPlayer = $WooshAudioPlayer
 onready var footstepAudioPlayer: AudioStreamPlayer = $FootStepAudioStreamPlayer
 onready var hadoukenSpawn: Position2D = $HadoukenSpawn
+onready var ghostTimer: Timer = $GhostTimer
+onready var dashDurationTimer: Timer = $DashDurationTimer
+onready var dashCooldownTimer: Timer = $DashCooldownTimer
 
 func _init():
 	add_to_group("Player")
@@ -79,8 +88,12 @@ func _physics_process(_delta: float) -> void:
 	
 	if(!_isAttacking):
 		direction = evaluatePlayerInput()
+	_dodgeDirection = direction
 		
-	if(!_beingHurt):
+	if _isDodging:
+		_velocity = getMovement(direction, _DODGE_SPEED, _acceleration)
+		_velocity = move_and_slide(_velocity)
+	elif !_beingHurt:
 		_velocity = getMovement(direction, _speed, _acceleration)
 		_velocity = move_and_slide(_velocity)
 
@@ -173,13 +186,7 @@ func evaluatePlayerInput() -> Vector2:
 	
 	if _beingHurt:
 		return Vector2.ZERO
-		
-	#check attack inputs
-	if Input.is_action_just_pressed(_ATTACK1_EVENT) or Input.is_action_pressed(_ATTACK1_EVENT):
-		doSideSwipeAttack()
-		return Vector2.ZERO
-	elif Input.is_action_just_pressed(_ATTACK2_EVENT) or Input.is_action_pressed(_ATTACK2_EVENT):
-		doSideSwipeKick()
+	if _check_for_events():
 		return Vector2.ZERO
 		
 	#set animation for direction and return for movement
@@ -188,6 +195,19 @@ func evaluatePlayerInput() -> Vector2:
 	else:
 		$AnimationTree.get("parameters/playback").travel("Walk")
 	return direction
+
+func _check_for_events() -> bool:
+	if Input.is_action_just_pressed(_ATTACK1_EVENT) or Input.is_action_pressed(_ATTACK1_EVENT):
+		doSideSwipeAttack()
+		return true
+	elif Input.is_action_just_pressed(_ATTACK2_EVENT) or Input.is_action_pressed(_ATTACK2_EVENT):
+		doSideSwipeKick()
+		return true
+	elif Input.is_action_just_pressed(_DASH_EVENT) or Input.is_action_pressed(_DASH_EVENT):
+		start_dash()
+		return true
+	else:
+		return false
 
 func _attack_setup(is_kick: bool):
 	_isAttacking = true
@@ -268,9 +288,32 @@ func _on_enemy_hit():
 	#print("emit shake signal")
 	emit_signal("player_hit_enemy")
 
+
 func summon_hadouken_blast():
 	var instance = hadouken_scene.instance()
 	instance.set_direction(_directionFacing)
 	instance.global_position = hadoukenSpawn.global_position
 	get_parent().add_child(instance)
-	
+
+
+func start_dash():
+	_isDodging = true
+	_canDodge = false
+	ghostTimer.start()
+	dashCooldownTimer.start()
+	dashDurationTimer.start()
+
+
+func _on_GhostTimer_timeout():
+	var this_ghost: Ghost = ghost_scene.instance()
+	get_parent().add_child(this_ghost)
+	this_ghost.set_paramaters_for_ghost(sprite, sprite.global_position)
+
+
+func _on_DashDurationTimer_timeout():
+	_isDodging = false
+	ghostTimer.stop()
+
+
+func _on_DashCooldownTimer_timeout():
+	_canDodge = true
