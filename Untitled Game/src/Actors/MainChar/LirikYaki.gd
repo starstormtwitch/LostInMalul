@@ -11,7 +11,8 @@ const _JUMP_EVENT = "Jump"
 const _ATTACK1_EVENT = "side_swipe_attack"
 const _ATTACK2_EVENT = "attack_2"
 const _DASH_EVENT = "Dodge"
-const _DODGE_SPEED = 450
+const _DODGE_SPEED = 400
+const _DODGE_ACCELERATION = 1
 const COMBOTIME = 1
 const _LEFT_FACING_SCALE = -1.0
 const _RIGHT_FACING_SCALE = 1.0
@@ -45,7 +46,8 @@ onready var hitAudioPlayer: HitAudioPlayer = $HitAudioPlayer
 onready var wooshAudioPlayer: AudioStreamPlayer = $WooshAudioPlayer
 onready var footstepAudioPlayer: AudioStreamPlayer = $FootStepAudioStreamPlayer
 onready var hadoukenSpawn: Position2D = $HadoukenSpawn
-onready var ghostTimer: Timer = $GhostTimer
+onready var ghostIntervalTimer: Timer = $GhostIntervalTimer
+onready var ghostDurationTimer: Timer = $GhostDurationTImer
 onready var dashDurationTimer: Timer = $DashDurationTimer
 onready var dashCooldownTimer: Timer = $DashCooldownTimer
 
@@ -86,12 +88,12 @@ func _physics_process(_delta: float) -> void:
 		#self.modulate =  Color(1.3,1.3,1.3,1.3) if Engine.get_frames_drawn() % 5 == 0 else Color(1,1,1,1)
 		self.modulate =  Color(1.5,1.2,1.2,1.3) if Engine.get_frames_drawn() % 5 == 0 else Color(1,1,1,1)
 	
-	if(!_isAttacking):
+	if(!_isAttacking and !_isDodging):
 		direction = evaluatePlayerInput()
-	_dodgeDirection = direction
+		_dodgeDirection = direction
 		
 	if _isDodging:
-		_velocity = getMovement(direction, _DODGE_SPEED, _acceleration)
+		_velocity = getMovement(_dodgeDirection, _DODGE_SPEED, _DODGE_ACCELERATION)
 		_velocity = move_and_slide(_velocity)
 	elif !_beingHurt:
 		_velocity = getMovement(direction, _speed, _acceleration)
@@ -205,7 +207,7 @@ func _check_for_events() -> bool:
 		return true
 	elif Input.is_action_just_pressed(_DASH_EVENT) or Input.is_action_pressed(_DASH_EVENT):
 		start_dash()
-		return true
+		return false
 	else:
 		return false
 
@@ -297,14 +299,16 @@ func summon_hadouken_blast():
 
 
 func start_dash():
-	_isDodging = true
-	_canDodge = false
-	ghostTimer.start()
-	dashCooldownTimer.start()
-	dashDurationTimer.start()
+	if _canDodge:
+		_isDodging = true
+		_canDodge = false
+		ghostIntervalTimer.start()
+		ghostDurationTimer.start()
+		dashCooldownTimer.start()
+		dashDurationTimer.start()
 
 
-func _on_GhostTimer_timeout():
+func _on_ghostIntervalTimer_timeout():
 	var this_ghost: Ghost = ghost_scene.instance()
 	get_parent().add_child(this_ghost)
 	this_ghost.set_paramaters_for_ghost(sprite, sprite.global_position)
@@ -312,8 +316,11 @@ func _on_GhostTimer_timeout():
 
 func _on_DashDurationTimer_timeout():
 	_isDodging = false
-	ghostTimer.stop()
 
 
 func _on_DashCooldownTimer_timeout():
 	_canDodge = true
+
+
+func _on_GhostDurationTImer_timeout():
+	ghostIntervalTimer.stop()
