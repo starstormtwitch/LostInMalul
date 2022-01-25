@@ -66,13 +66,13 @@ pause_mode = 1
 
 [node name="actors" type="YSort" parent="objects"]
 
-[node name="LirikYaki" parent="objects/actors" instance=ExtResource( 3 )]
-position = Vector2( 264.692, 274.695 )
-
 [node name="Enemy" parent="objects/actors" groups=[
 "Boss",
 ] instance=ExtResource( 4 )]
 position = Vector2( 1040.43, 260.71 )
+
+[node name="LirikYaki" parent="objects/actors" instance=ExtResource( 3 )]
+position = Vector2( 244.406, 264.346 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
 

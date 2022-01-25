@@ -9,7 +9,7 @@ var _jumpDirection = Vector2()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_health = 10
+	_health = 6
 	_acceleration = 0.2
 	_speed = 65
 	_attack_range = 50

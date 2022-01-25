@@ -279,7 +279,7 @@ states/walk/position = Vector2( 385.259, -38 )
 transitions = [ "idle", "hurt", SubResource( 11 ), "hurt", "idle", SubResource( 12 ), "hurt", "die", SubResource( 13 ), "die", "hurt", SubResource( 14 ), "idle", "die", SubResource( 15 ), "die", "idle", SubResource( 16 ), "hurt", "jump_attack", SubResource( 17 ), "jump_attack", "idle", SubResource( 18 ), "idle", "jump_attack", SubResource( 19 ), "jump_attack", "die", SubResource( 20 ), "jump_attack", "hurt", SubResource( 21 ), "die", "jump_attack", SubResource( 22 ), "idle", "walk", SubResource( 23 ), "walk", "idle", SubResource( 24 ), "walk", "die", SubResource( 25 ), "walk", "hurt", SubResource( 26 ), "walk", "jump_attack", SubResource( 27 ), "hurt", "walk", SubResource( 28 ), "jump_attack", "walk", SubResource( 29 ) ]
 start_node = "idle"
 end_node = "die"
-graph_offset = Vector2( -252.741, 24 )
+graph_offset = Vector2( -252.741, 41.2513 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=31]
 
@@ -322,7 +322,7 @@ position = Vector2( 0, -23.7913 )
 texture = ExtResource( 1 )
 hframes = 11
 vframes = 5
-frame = 11
+frame = 44
 
 [node name="enemy" type="Sprite" parent="."]
 position = Vector2( 0, -8.795 )
@@ -331,7 +331,7 @@ texture = ExtResource( 3 )
 offset = Vector2( 0, -15 )
 hframes = 11
 vframes = 5
-frame = 11
+frame = 44
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/die = SubResource( 1 )
