@@ -510,7 +510,9 @@ hframes = 10
 vframes = 7
 frame = 30
 
-[node name="Collider" type="CollisionShape2D" parent="."]
+[node name="Collider" type="CollisionShape2D" parent="." groups=[
+"Pickup",
+]]
 visible = false
 position = Vector2( -2.67837, -2.47936 )
 rotation = 1.5708

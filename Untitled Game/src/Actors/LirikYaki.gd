@@ -2,6 +2,8 @@ extends Actor
 
 signal player_hit_enemy
 
+const attack_sound = preload("res://assets/audio/HitAudio/Retro Impact Punch Hurt 01.wav")
+const hit_sound = preload("res://assets/audio/HitAudio/Quick Hit Swoosh.wav")
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
 const smoke_scene = preload("res://src/Helpers/SmokeParticles.tscn")
 const _JUMP_EVENT = "Jump"
@@ -29,7 +31,6 @@ var _hitAnimationTime = 1
 onready var sprite: Sprite = $Sprite
 onready var shadow: Sprite = $Shadow
 onready var rightHitBox: CollisionShape2D = $attack/sideSwipeRight
-onready var hitAudioPlayer: HitAudioPlayer = $HitAudioPlayer
 onready var footstepAudioPlayer: AudioStreamPlayer = $FootStepAudioStreamPlayer
 
 func _init():
@@ -188,11 +189,11 @@ func doSideSwipeAttack():
 	_comboBPoints = 2
 	print("Combo A: " + String(_comboAPoints))
 	if _comboAPoints == 2:
-		hitAudioPlayer.playerAttacks()
+		SoundPlayer.playSound(self, hit_sound, -10)
 		$AnimationTree.get("parameters/playback").travel("SideSwipe1")
 		_comboAPoints = _comboAPoints - 1
 	elif _comboAPoints == 1:
-		hitAudioPlayer.playerAttacks()
+		SoundPlayer.playSound(self, hit_sound, -10)
 		$AnimationTree.get("parameters/playback").travel("SideSwipe2")
 		_comboAPoints = _comboAPoints - 1
 	else:
@@ -205,11 +206,11 @@ func doSideSwipeKick():
 	_comboAPoints = 2
 	print("Combo B: " + String(_comboBPoints))
 	if _comboBPoints == 2:
-		hitAudioPlayer.playerAttacks()
+		SoundPlayer.playSound(self, hit_sound, -10)
 		$AnimationTree.get("parameters/playback").travel("SideSwipeKick")
 		_comboBPoints = _comboBPoints - 1
 	elif _comboBPoints == 1:
-		hitAudioPlayer.playerAttacks()
+		SoundPlayer.playSound(self, hit_sound, -10)
 		$AnimationTree.get("parameters/playback").travel("SideSwipeRightKick2")
 		_comboBPoints = _comboBPoints - 1
 	else:
@@ -239,6 +240,6 @@ func sendPlayerDeadSignal():
 
 
 func _on_enemy_hit():
-	hitAudioPlayer.playHitSound()
+	SoundPlayer.playSound(self, attack_sound, 0)
 	#print("emit shake signal")
 	emit_signal("player_hit_enemy")

@@ -339,7 +339,9 @@ shape = SubResource( 28 )
 
 [node name="LootDropper" parent="." instance=ExtResource( 6 )]
 position = Vector2( -6.62912, -19.4454 )
-MaxCoins = 3
+scale = Vector2( 0.990515, 1 )
+MinCoins = 0
+MaxCoins = 2
 
 [connection signal="area_entered" from="FlockBox" to="." method="_on_FlockBox_area_entered"]
 [connection signal="area_exited" from="FlockBox" to="." method="_on_FlockBox_area_exited"]
