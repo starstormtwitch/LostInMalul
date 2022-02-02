@@ -1,7 +1,6 @@
 extends Actor
 class_name Enemy
 
-signal enemy_hit
 
 #Enemy properties
 var _seperation_distance = 20
@@ -22,7 +21,6 @@ var _hitFlashTimer = Timer.new()
 var _directionFacing = 0
 
 func _ready():
-	_connect_hit_signal_to_player()
 	_attackCooldownTimer.connect("timeout",self,"_on_attack_cooldown_timeout") 
 	_attackCooldownTimer.one_shot = true
 	add_child(_attackCooldownTimer)
@@ -218,8 +216,3 @@ func _on_hitFlash_cooldown_timeout():
 func _finishedAttack(cooldown: int):
 	_attackCooldownTimer.start(cooldown)
 	_isAttacking = false
-
-func _connect_hit_signal_to_player():
-	var player = LevelGlobals.GetPlayerActor()
-	assert(player, "Player must exist to hit")
-	self.connect("enemy_hit", player, "_on_enemy_hit")

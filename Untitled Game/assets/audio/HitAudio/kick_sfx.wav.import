@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/swish-10.wav-9c5c89d325434b7c5b7ce64593f14ece.sample"
+path="res://.import/kick_sfx.wav-2932f51170978aa10a2c60f2b5c4e722.sample"
 
 [deps]
 
-source_file="res://assets/audio/HitAudio/swish-10.wav"
-dest_files=[ "res://.import/swish-10.wav-9c5c89d325434b7c5b7ce64593f14ece.sample" ]
+source_file="res://assets/audio/HitAudio/kick_sfx.wav"
+dest_files=[ "res://.import/kick_sfx.wav-2932f51170978aa10a2c60f2b5c4e722.sample" ]
 
 [params]
 

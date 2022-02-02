@@ -1,13 +1,15 @@
-[gd_scene load_steps=106 format=2]
+[gd_scene load_steps=108 format=2]
 
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.gd" type="Script" id=1]
 [ext_resource path="res://assets/SpriteSheets/main_char/mc_shadow.png" type="Texture" id=2]
-[ext_resource path="res://assets/audio/sfx_deathscream_human1.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/main_char_death_sfx.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/audio/HitAudio/Retro Impact Punch Hurt 01.wav" type="AudioStream" id=4]
 [ext_resource path="res://src/Helpers/Audio/HitAudioPlayer.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/SpriteSheets/main_char/lirik_sprite_with_supers-Sheet.png" type="Texture" id=6]
-[ext_resource path="res://assets/audio/sfx_movement_footsteps1a.wav" type="AudioStream" id=7]
-[ext_resource path="res://assets/audio/HitAudio/swish-10.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/footsteps_sfx.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/audio/HitAudio/miss_sfx.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/HitAudio/kick_sfx.wav" type="AudioStream" id=9]
+[ext_resource path="res://src/Helpers/Audio/HitAudioPlayer.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.71682, 10.7663 )
@@ -686,7 +688,12 @@ stream = ExtResource( 3 )
 stream = ExtResource( 7 )
 volume_db = -12.735
 
-[node name="HitAudioPlayer" parent="." instance=ExtResource( 5 )]
+[node name="PunchAudioPlayer" parent="." instance=ExtResource( 5 )]
+
+[node name="KickAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -8.155
+script = ExtResource( 10 )
 
 [node name="WooshAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )

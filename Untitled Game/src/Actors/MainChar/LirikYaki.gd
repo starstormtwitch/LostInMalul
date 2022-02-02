@@ -42,7 +42,8 @@ var _hitAnimationTime = 1
 onready var sprite: Sprite = $Sprite
 onready var shadow: Sprite = $Shadow
 onready var rightHitBox: CollisionShape2D = $attack/sideSwipeRight
-onready var hitAudioPlayer: HitAudioPlayer = $HitAudioPlayer
+onready var punchAudioPlayer: HitAudioPlayer = $PunchAudioPlayer
+onready var kickAudioPlayer: HitAudioPlayer = $KickAudioPlayer
 onready var wooshAudioPlayer: AudioStreamPlayer = $WooshAudioPlayer
 onready var footstepAudioPlayer: AudioStreamPlayer = $FootStepAudioStreamPlayer
 onready var hadoukenSpawn: Position2D = $HadoukenSpawn
@@ -103,8 +104,8 @@ func _physics_process(_delta: float) -> void:
 func _on_invincibility_timeout() -> void:
 	self.modulate = Color(1,1,1,1)
 	_canTakeDamage = true
-	
-	
+
+
 func _on_combo_timeout() -> void:
 	#print("combo reset")
 	_comboAPoints = _START_A_COMBO
@@ -141,6 +142,7 @@ func _hit_timer_done():
 	#print("hurt timer done")
 	_beingHurt = false
 
+
 func add_trail() -> void:
 	if(get_parent() != null):
 		var trail      = trail_scene.instance()
@@ -162,11 +164,11 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		_invincibilityTimer.start(2)
 		.take_damage(damage, direction, force)
 
+
 # callback function to for when the hurt animation is playing
 func setHurtAnimationPlaying():
 	pass
-	#print("play hurt animation")
-	#_beingHurt = true
+
 
 func evaluatePlayerInput() -> Vector2:
 	#get direction for inputs
@@ -198,6 +200,7 @@ func evaluatePlayerInput() -> Vector2:
 		$AnimationTree.get("parameters/playback").travel("Walk")
 	return direction
 
+
 func _check_for_events() -> bool:
 	if Input.is_action_just_pressed(_ATTACK1_EVENT) or Input.is_action_pressed(_ATTACK1_EVENT):
 		doSideSwipeAttack()
@@ -211,27 +214,29 @@ func _check_for_events() -> bool:
 	else:
 		return false
 
+
 func _attack_setup(is_kick: bool):
 	_isAttacking = true
 	_didHitEnemy = false
 	_isLastAttackAKick = is_kick
 	_attackResetTimer.start(COMBOTIME)
 
+
 func doSideSwipeAttack():
 	if !_isAttacking:
 		_attack_setup(false)
 		print("Combo A: " + String(_comboAPoints))
 		if _comboAPoints == 1 or _comboBPoints == 1:
-			hitAudioPlayer.playerAttacks()
+			punchAudioPlayer.playerAttacks()
 			$AnimationTree.get("parameters/playback").travel("Hadouken")
 			_on_combo_timeout()
 		elif _comboAPoints == 3:
-			hitAudioPlayer.playerAttacks()
+			punchAudioPlayer.playerAttacks()
 			$AnimationTree.get("parameters/playback").travel("SideSwipe1")
 			_comboAPoints = _comboAPoints - 1
 			_comboBPoints = 3
 		elif _comboAPoints == 2:
-			hitAudioPlayer.playerAttacks()
+			punchAudioPlayer.playerAttacks()
 			$AnimationTree.get("parameters/playback").travel("SideSwipe2")
 			_comboAPoints = _comboAPoints - 1
 			_comboBPoints = 3
@@ -242,16 +247,16 @@ func doSideSwipeKick():
 		_attack_setup(true)
 		print("Combo B: " + String(_comboBPoints))
 		if _comboBPoints == 1 or _comboAPoints == 1:
-			hitAudioPlayer.playerAttacks()
+			kickAudioPlayer.playerAttacks()
 			$AnimationTree.get("parameters/playback").travel("Shoryuken")
 			_on_combo_timeout()
 		elif _comboBPoints == 3:
-			hitAudioPlayer.playerAttacks()
+			kickAudioPlayer.playerAttacks()
 			$AnimationTree.get("parameters/playback").travel("SideSwipeKick")
 			_comboBPoints = _comboBPoints - 1
 			_comboAPoints = 3
 		elif _comboBPoints == 2:
-			hitAudioPlayer.playerAttacks()
+			kickAudioPlayer.playerAttacks()
 			$AnimationTree.get("parameters/playback").travel("SideSwipeRightKick2")
 			_comboBPoints = _comboBPoints - 1
 			_comboAPoints = 3
@@ -278,6 +283,7 @@ func _on_attack_area_entered(area: Area2D) -> void:
 		area.get_parent().take_damage(1, _directionFacing, 50000)
 		_didHitEnemy = true
 		area.get_parent().show_hit_marker(_isLastAttackAKick)
+		_on_enemy_hit()
 
 
 func sendPlayerDeadSignal():
@@ -286,7 +292,8 @@ func sendPlayerDeadSignal():
 
 
 func _on_enemy_hit():
-	hitAudioPlayer.playHitSound()
+	punchAudioPlayer.playHitSound()
+	kickAudioPlayer.playHitSound()
 	#print("emit shake signal")
 	emit_signal("player_hit_enemy")
 
