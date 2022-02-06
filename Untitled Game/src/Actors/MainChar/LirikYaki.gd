@@ -46,6 +46,7 @@ onready var punchAudioPlayer: HitAudioPlayer = $PunchAudioPlayer
 onready var kickAudioPlayer: HitAudioPlayer = $KickAudioPlayer
 onready var wooshAudioPlayer: AudioStreamPlayer = $WooshAudioPlayer
 onready var footstepAudioPlayer: AudioStreamPlayer = $FootStepAudioStreamPlayer
+onready var shoryukenAudioPlayer: AudioStreamPlayer = $ShoryukenStreamPlayer
 onready var hadoukenSpawn: Position2D = $HadoukenSpawn
 onready var ghostIntervalTimer: Timer = $GhostIntervalTimer
 onready var ghostDurationTimer: Timer = $GhostDurationTImer
@@ -227,7 +228,6 @@ func doSideSwipeAttack():
 		_attack_setup(false)
 		print("Combo A: " + String(_comboAPoints))
 		if _comboAPoints == 1 or _comboBPoints == 1:
-			punchAudioPlayer.playerAttacks()
 			$AnimationTree.get("parameters/playback").travel("Hadouken")
 			_on_combo_timeout()
 		elif _comboAPoints == 3:
@@ -247,7 +247,7 @@ func doSideSwipeKick():
 		_attack_setup(true)
 		print("Combo B: " + String(_comboBPoints))
 		if _comboBPoints == 1 or _comboAPoints == 1:
-			kickAudioPlayer.playerAttacks()
+			shoryukenAudioPlayer.play()
 			$AnimationTree.get("parameters/playback").travel("Shoryuken")
 			_on_combo_timeout()
 		elif _comboBPoints == 3:
