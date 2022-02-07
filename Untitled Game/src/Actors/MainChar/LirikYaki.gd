@@ -1,6 +1,10 @@
 extends Actor
 
 signal player_hit_enemy
+signal player_dodge
+
+
+class_name LirikYaki
 
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
 const smoke_scene = preload("res://src/Actors/MainChar/SmokeParticles.tscn")
@@ -210,7 +214,7 @@ func _check_for_events() -> bool:
 		doSideSwipeKick()
 		return true
 	elif Input.is_action_just_pressed(_DASH_EVENT) or Input.is_action_pressed(_DASH_EVENT):
-		start_dash()
+		_start_dash()
 		return false
 	else:
 		return false
@@ -305,14 +309,19 @@ func summon_hadouken_blast():
 	get_parent().add_child(instance)
 
 
-func start_dash():
+func _start_dash():
 	if _canDodge:
 		_isDodging = true
 		_canDodge = false
+		emit_signal("player_dodge")
 		ghostIntervalTimer.start()
 		ghostDurationTimer.start()
 		dashCooldownTimer.start()
 		dashDurationTimer.start()
+
+
+func getDodgeCooldownTime() -> float:
+	return dashCooldownTimer.wait_time
 
 
 func _on_ghostIntervalTimer_timeout():

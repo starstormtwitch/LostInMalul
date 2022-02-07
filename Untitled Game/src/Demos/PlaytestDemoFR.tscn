@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/Helpers/Camera/CustomDelimiter2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Levels/Basement.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/GUI/cash.png" type="Texture" id=7]
 [ext_resource path="res://src/Helpers/GUI/HealthBar.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/Helpers/GUI/Pause/PauseScreenContainer.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/GUI/DashCooldownUI.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 644.725, 4.32855 )
@@ -99,6 +100,12 @@ mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="DashCooldownUI" parent="GUI/GameUI" instance=ExtResource( 10 )]
+margin_left = 978.43
+margin_top = 4.67721
+margin_right = 978.43
+margin_bottom = 4.6772
 
 [node name="Profile" type="TextureRect" parent="GUI/GameUI"]
 margin_left = 15.0

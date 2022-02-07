@@ -1,4 +1,4 @@
-[gd_scene load_steps=206 format=2]
+[gd_scene load_steps=207 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
@@ -176,6 +176,7 @@
 [ext_resource path="res://src/Helpers/Interacts/InteractPromptArea.gd" type="Script" id=174]
 [ext_resource path="res://src/Helpers/Interacts/InteractPromptArea.tscn" type="PackedScene" id=175]
 [ext_resource path="res://src/Helpers/Spawning/EnemySpawner.tscn" type="PackedScene" id=176]
+[ext_resource path="res://src/GUI/DashCooldownUI.tscn" type="PackedScene" id=177]
 
 [sub_resource type="SegmentShape2D" id=1]
 a = Vector2( -474.143, 0.37738 )
@@ -1406,6 +1407,7 @@ position = Vector2( 91.9744, 128.276 )
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="GUI"]
+anchor_right = 1.0
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
@@ -1440,6 +1442,13 @@ margin_top = 32.0
 margin_right = 306.0
 margin_bottom = 53.0
 
+[node name="DashCooldownUI" parent="GUI/Control" instance=ExtResource( 177 )]
+anchor_left = 0.585
+margin_left = 358.648
+margin_top = 5.2125
+margin_right = 358.648
+margin_bottom = -34.7875
+
 [node name="TextBox" parent="GUI" instance=ExtResource( 1 )]
 pause_mode = 2
 visible = false
@@ -1456,8 +1465,8 @@ margin_top = -7.2651
 margin_right = -11.0607
 margin_bottom = -7.26508
 
-[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_Toilet_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_Toilet_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/Bed" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/LivingRoom/InteractPromptArea" to="." method="_on_InteractPromptArea_interactable_text_signal"]
