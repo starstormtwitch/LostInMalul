@@ -14,6 +14,7 @@ var _groundPosition = self.position.y;
 const MAXVELOCITY = 500
 
 signal health_changed
+signal died
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -80,6 +81,7 @@ func die() -> void:
 	if($AnimationTree != null):
 		$AnimationTree.get("parameters/playback").travel("die")
 	set_physics_process(false)
+	emit_signal("died")
 	
 func dispose() -> void:
 	queue_free()

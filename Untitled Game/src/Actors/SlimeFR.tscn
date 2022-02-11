@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://assets/SpriteSheets/slimeFr/LirikFR_Sprite_Sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/Slime.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/Helpers/CustomParticles.gd" type="Script" id=4]
 [ext_resource path="res://assets/SpriteSheets/hit markers/Effect 3 - Sprite Sheet.png" type="Texture" id=5]
 [ext_resource path="res://assets/SpriteSheets/hit markers/hits2-Sheet.png" type="Texture" id=6]
+[ext_resource path="res://src/Helpers/Spawning/LootSpawner.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 particles_animation = true
@@ -360,6 +361,12 @@ collision_mask = 0
 visible = false
 position = Vector2( 2.90011, 8.09588 )
 shape = SubResource( 30 )
+
+[node name="LootDropper" parent="." instance=ExtResource( 6 )]
+position = Vector2( -6.62912, -19.4454 )
+scale = Vector2( 0.990515, 1 )
+MinCoins = 0
+MaxCoins = 2
 
 [connection signal="area_entered" from="FlockBox" to="." method="_on_FlockBox_area_entered"]
 [connection signal="area_exited" from="FlockBox" to="." method="_on_FlockBox_area_exited"]

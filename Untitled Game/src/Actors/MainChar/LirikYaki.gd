@@ -6,6 +6,8 @@ signal player_dodge
 
 class_name LirikYaki
 
+const attack_sound = preload("res://assets/audio/HitAudio/Retro Impact Punch Hurt 01.wav")
+const hit_sound = preload("res://assets/audio/HitAudio/Quick Hit Swoosh.wav")
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
 const smoke_scene = preload("res://src/Actors/MainChar/SmokeParticles.tscn")
 const hadouken_scene = preload("res://src/Actors/MainChar/HadoukenBlast.tscn")
@@ -121,6 +123,7 @@ func footstepCallback():
 #Animation callback to generate smoke particle when feet touch the ground
 func _generate_smoke_particle():
 	var smoke = smoke_scene.instance()
+	get_parent().add_child(smoke)
 	smoke.global_position = self.global_position
 	smoke.global_position.y += _FOOTSTEP_PARTICLE_POSITION_OFFSET
 	smoke.emitting = true
@@ -128,7 +131,6 @@ func _generate_smoke_particle():
 		smoke.flipSide(false)
 	elif _directionFacing.x < 0:
 		smoke.flipSide(true)
-	get_parent().add_child(smoke)
 
 
 func _play_footstep_sound():

@@ -9,9 +9,10 @@ func SceneHasPlayerActor() -> bool:
 	return _player != null
 
 func GetPlayerActor() -> Actor:
-	_findPlayerEntity()
-	assert(_player, "Player node not found.")
-	print("Player found.")
+	if(_player == null || !is_instance_valid(_player)):
+		_findPlayerEntity()
+	if(_player == null || !is_instance_valid(_player)):
+		assert(false, "Player node not found.")
 	return _player;
 
 func _findPlayerEntity() -> void:
@@ -21,5 +22,3 @@ func _findPlayerEntity() -> void:
 		var players = tree.get_nodes_in_group("Player")
 		if players.size() > 0:
 			_player = players[0]
-	else:
-		printerr("Parent does not exist.")
