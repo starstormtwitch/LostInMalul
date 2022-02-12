@@ -180,14 +180,7 @@ func evaluatePlayerInput() -> Vector2:
 	if(direction != Vector2.ZERO):
 		_directionFacing = direction
 	
-	if direction.x < 0:
-		rightHitBox.position.x = -abs(rightHitBox.position.x)
-		sprite.flip_h = true
-		shadow.flip_h = true
-	elif direction.x > 0:
-		rightHitBox.position.x = abs(rightHitBox.position.x)
-		sprite.flip_h = false
-		shadow.flip_h = false
+	_flip_nodes(direction)
 	
 	if _beingHurt:
 		return Vector2.ZERO
@@ -200,6 +193,19 @@ func evaluatePlayerInput() -> Vector2:
 	else:
 		animationTree.get("parameters/playback").travel("Walk")
 	return direction
+
+
+func _flip_nodes(direction: Vector2):
+	if direction.x < 0:
+		rightHitBox.position.x = -abs(rightHitBox.position.x)
+		hadoukenSpawn.position.x = -abs(hadoukenSpawn.position.x)
+		sprite.flip_h = true
+		shadow.flip_h = true
+	elif direction.x > 0:
+		rightHitBox.position.x = abs(rightHitBox.position.x)
+		hadoukenSpawn.position.x = abs(hadoukenSpawn.position.x)
+		sprite.flip_h = false
+		shadow.flip_h = false
 
 
 func _check_for_events() -> bool:
