@@ -5,12 +5,15 @@ class_name AttackManager
 const _START_A_COMBO = 3
 const _START_B_COMBO = 3
 const COMBOTIME = 1
+const MAX_DAMAGE_FORCE = 50000
+const MIN_DAMAGE_FORCE = 50000
 
 var isAttacking: bool = false
 var _didHitEnemy: bool = false #To check to see if we should play woosh sfx if we missed
 var _beingHurt: bool = false
 var isLastAttackAKick = false #Used to check which hitmarker to show
 var _directionFacing: Vector2 = Vector2.ZERO
+var damageForce = 0
 
 var _comboAPoints = _START_A_COMBO;
 var _comboBPoints = _START_B_COMBO;
@@ -50,16 +53,19 @@ func doSideSwipeAttack():
 		if _comboAPoints == 1 or _comboBPoints == 1:
 			_animationTree.get("parameters/playback").travel("Hadouken")
 			combo_reset()
+			damageForce = MAX_DAMAGE_FORCE
 		elif _comboAPoints == 3:
 			_punchAudioPlayer.playerAttacks()
 			_animationTree.get("parameters/playback").travel("SideSwipe1")
 			_comboAPoints = _comboAPoints - 1
 			_comboBPoints = 3
+			damageForce = MIN_DAMAGE_FORCE
 		elif _comboAPoints == 2:
 			_punchAudioPlayer.playerAttacks()
 			_animationTree.get("parameters/playback").travel("SideSwipe2")
 			_comboAPoints = _comboAPoints - 1
 			_comboBPoints = 3
+			damageForce = MIN_DAMAGE_FORCE
 
 
 func doSideSwipeKick():
@@ -70,16 +76,19 @@ func doSideSwipeKick():
 			_shoryukenAudioPlayer.play()
 			_animationTree.get("parameters/playback").travel("Shoryuken")
 			combo_reset()
+			damageForce = MAX_DAMAGE_FORCE
 		elif _comboBPoints == 3:
 			_kickAudioPlayer.playerAttacks()
 			_animationTree.get("parameters/playback").travel("SideSwipeKick")
 			_comboBPoints = _comboBPoints - 1
 			_comboAPoints = 3
+			damageForce = MIN_DAMAGE_FORCE
 		elif _comboBPoints == 2:
 			_kickAudioPlayer.playerAttacks()
 			_animationTree.get("parameters/playback").travel("SideSwipeRightKick2")
 			_comboBPoints = _comboBPoints - 1
 			_comboAPoints = 3
+			damageForce = MIN_DAMAGE_FORCE
 
 
 func playHitSounds():

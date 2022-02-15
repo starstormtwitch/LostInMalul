@@ -239,7 +239,8 @@ func _hurtAnimationFinished() -> void:
 
 func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
-		area.get_parent().take_damage(1, _directionFacing, 50000)
+		print("direction of hit: " + String(_directionFacing.x))
+		area.get_parent().take_damage(1, _directionFacing, _attackManager.damageForce)
 		_didHitEnemy = true
 		area.get_parent().show_hit_marker(_attackManager.isLastAttackAKick)
 		_on_enemy_hit()

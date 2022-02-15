@@ -24,7 +24,7 @@ func getMovement(direction: Vector2, speed: float, acceleration: float) -> Vecto
 	var targetVelocity = (direction.normalized() * speed);
 	
 	var verticalAcceleration = acceleration
-	var horizontalAcceleration = acceleration	
+	var horizontalAcceleration = acceleration
 	#make objects significantly more floaty in air
 	if(_inAir):
 		verticalAcceleration = verticalAcceleration * .1
