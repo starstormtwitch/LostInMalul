@@ -23,14 +23,12 @@ func spawnEnemy():
 	assert(enemy != null, "Must set enemy in spawner node")
 	var enemyToSpawn = enemyDict[enemy]
 	var enemiesSpawned = spawnMultipleInArea(enemyToSpawn)
-	if(typeof(enemiesSpawned) == TYPE_ARRAY):
-		for enemy in enemiesSpawned:
-			enemy.connect("tree_exited", self, "check_enemies_disposed")
-	pass
+	return enemiesSpawned
 	
 
-func check_enemies_disposed():
+func _despawned():
 	EnemiesLeft = EnemiesLeft - 1;
 	if(EnemiesLeft == 0):
-	 emit_signal("AllEnemiesDefeated")
+		emit_signal("AllEnemiesDefeated")
+	
 	

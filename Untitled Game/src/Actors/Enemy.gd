@@ -10,7 +10,7 @@ var _initial_attack_cooldown = .5 #in seconds
 var _stun_duration = 50 #in seconds
 var _canTakeKnockup = true;
 #Enemy state
-var _isReadyToAttack = false
+var _isReadyToAttack = true
 var _isAttacking = false
 var _isStunned = false
 enum EnemyState {IDLE, CHASE, ATTACK_IN_PLACE, ROAM}
@@ -97,13 +97,12 @@ func get_next_state(targetDirection: Vector2):
 		return;
 	if(_target != null):
 		var dist_to_target = self.global_position.distance_to(_target.global_position)
-		if(dist_to_target <= _attack_range && _isReadyToAttack):
-			_isReadyToAttack = false
-			_state = EnemyState.ATTACK_IN_PLACE
-		elif  (targetDirection != Vector2.ZERO && targetDirection != Vector2.ZERO  && dist_to_target >= _maxDistanceToStayFromPlayer):
+		if  (targetDirection != Vector2.ZERO && targetDirection != Vector2.ZERO  && dist_to_target >= _maxDistanceToStayFromPlayer):
 			_state = EnemyState.CHASE
 		elif  (_state == EnemyState.CHASE && targetDirection != Vector2.ZERO && dist_to_target >= _minDistanceToStayFromPlayer):
 			_state = EnemyState.CHASE
+		elif(dist_to_target <= _attack_range):
+			_state = EnemyState.ATTACK_IN_PLACE
 		else:
 			_state = EnemyState.ROAM
 	else:
@@ -234,6 +233,7 @@ func _on_hitFlash_cooldown_timeout():
 		
 func _finishedAttack(cooldown: int):
 	_attackCooldownTimer.start(cooldown)
+	_isReadyToAttack = false
 	_isAttacking = false
 
 func _connect_hit_signal_to_player():

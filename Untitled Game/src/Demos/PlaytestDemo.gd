@@ -26,10 +26,15 @@ func _ready():
 	_player.connect("health_changed", self, "_on_Player_health_changed")
 	_player.connect("player_hit_enemy", cameraManager, "shake")
 	_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)
-
-
+	_player.connect("coin_changed", self, "_on_Player_coin_changed")
+	get_node("objects/actors/Enemy").IdlePhase = false;
+	$GUI/PlayerGui/Coins.text = String(_player.Coins);
+	
+func _on_Player_coin_changed():
+	$GUI/PlayerGui/Coins.text = String(_player.Coins);
+	
 func _on_Player_health_changed(_oldHealth, newHealth, maxHealth):
-	var healthBar = get_node("GUI/GameUI/healthBar")
+	var healthBar = get_node("GUI/PlayerGui/healthBar")
 	healthBar.Health = newHealth
 	healthBar.MaxHealth = maxHealth
 	healthBar.update_health()

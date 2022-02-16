@@ -7,6 +7,9 @@ var _ratSoldier = preload("res://src/Actors/RatSoldier.tscn");
 #staff knockback info
 var KNOCKBACK_COOLDOWN = 5;
 
+#rat king idle phase
+var IdlePhase = true;
+
 #rat spawn
 var _ratSpawnCooldownTimer = Timer.new()
 var _canDoRatSpawn = true;
@@ -29,14 +32,14 @@ var _enragePhase = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_maxHealth = 75
+	_maxHealth = 200
 	_health = _maxHealth
 	_acceleration = .5
 	_speed = 25
 	_attack_range = 700
 	_stun_duration = 0
 	_minDistanceToStayFromPlayer = 90;
-	_maxDistanceToStayFromPlayer = 120;
+	_maxDistanceToStayFromPlayer = 1200;
 	_canTakeKnockup = false;
 	if($AnimationTree != null):
 		$AnimationTree.active = true
@@ -66,42 +69,44 @@ func _ready():
 		
 #disabling attacking for now
 func _physics_process(_delta: float) -> void:
-	if(!_lightningPhase && _health < 50):
-		_lightningPhase = true;
-	if(!_enragePhase && _health < 15):
-		_enragePhase = true;
-		_lightningDuration = 30;
-		_lightningDurationBetweenStrikes = .10;
-		_lightningCooldown = 10;
-		_canDoLightningAttack = true;
-	if(_doingLightningAttack && _doNextStrike):
-		_doNextStrike = false;
-		_lightning_spell();
-		_lightningBetweenStrike.start(_lightningDurationBetweenStrikes)
-	match _state:
-		EnemyState.ATTACK_IN_PLACE:
-			if !_isAttacking:
-				var dist_to_target = self.global_position.distance_to(_target.global_position)
-				if($AnimationTree != null):
-					if(_lightningPhase && _canDoLightningAttack): #Do lightning spell
-						_lightningWhileTimer.start(_lightningDuration)
-						_doingLightningAttack = true;
-						_canDoLightningAttack = false;
-						_isAttacking = true
-						$AnimationTree.get("parameters/playback").travel("attack")
-						_lightning_spell();
-					elif(_canDoRatSpawn && !_doingLightningAttack):
-						_canDoRatSpawn = false;
-						_isAttacking = true
-						var ratsToSpawn = rand_range(2,5);
-						$AnimationTree.get("parameters/playback").travel("attack")
-						_ratSpawnCooldownTimer.start(_ratSpawnCooldown);
-						_spawn_rats(ratsToSpawn);
-					elif(dist_to_target <= 40): #only do slam attacak
-						_isAttacking = true
-						$AnimationTree.get("parameters/playback").travel("attack")
-					else:
-						_finishedAttack(KNOCKBACK_COOLDOWN)
+	if(!IdlePhase):
+		_maxDistanceToStayFromPlayer = 120;
+		if(!_lightningPhase && _health < 50):
+			_lightningPhase = true;
+		if(!_enragePhase && _health < 15):
+			_enragePhase = true;
+			_lightningDuration = 30;
+			_lightningDurationBetweenStrikes = .10;
+			_lightningCooldown = 10;
+			_canDoLightningAttack = true;
+		if(_doingLightningAttack && _doNextStrike):
+			_doNextStrike = false;
+			_lightning_spell();
+			_lightningBetweenStrike.start(_lightningDurationBetweenStrikes)
+		match _state:
+			EnemyState.ATTACK_IN_PLACE:
+				if !_isAttacking:
+					var dist_to_target = self.global_position.distance_to(_target.global_position)
+					if($AnimationTree != null):
+						if(_lightningPhase && _canDoLightningAttack): #Do lightning spell
+							_lightningWhileTimer.start(_lightningDuration)
+							_doingLightningAttack = true;
+							_canDoLightningAttack = false;
+							_isAttacking = true
+							$AnimationTree.get("parameters/playback").travel("attack")
+							_lightning_spell();
+						elif(_canDoRatSpawn && !_doingLightningAttack):
+							_canDoRatSpawn = false;
+							_isAttacking = true
+							var ratsToSpawn = rand_range(2,5);
+							$AnimationTree.get("parameters/playback").travel("attack")
+							_ratSpawnCooldownTimer.start(_ratSpawnCooldown);
+							_spawn_rats(ratsToSpawn);
+						elif(dist_to_target <= 40): #only do slam attacak
+							_isAttacking = true
+							$AnimationTree.get("parameters/playback").travel("attack")
+						else:
+							_finishedAttack(KNOCKBACK_COOLDOWN)
 			
 
 func _lightning_spell():
@@ -114,9 +119,8 @@ func _lightning_spell():
 
 func _spawn_rats(amount):
 	var ratSpawner = _spawner.instance();
-	ratSpawner.global_position.x = 274;
-	ratSpawner.global_position.y = 216;
-	ratSpawner.set_rect(Rect2(0,0,800,60));
+	ratSpawner.global_position = _target.global_position;
+	ratSpawner.set_rect(Rect2(0,0,200,60));
 	ratSpawner.duration_between_spawn = 1
 	ratSpawner.count = amount;
 	get_parent().add_child(ratSpawner);
