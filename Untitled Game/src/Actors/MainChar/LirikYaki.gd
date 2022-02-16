@@ -88,6 +88,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	._physics_process(_delta)
 	var direction = Vector2.ZERO
 	
 	if !_canTakeDamage:

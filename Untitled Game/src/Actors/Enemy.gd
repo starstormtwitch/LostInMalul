@@ -45,6 +45,7 @@ func _ready():
 			_target = players[0]
 
 func _physics_process(_delta: float) -> void:
+	._physics_process(_delta)
 	var direction = Vector2.ZERO
 	
 	#try disable collisions if in air.
@@ -70,8 +71,8 @@ func _physics_process(_delta: float) -> void:
 		_directionFacing = targetDirection.x
 		_flipBoxesIfNecessary(targetDirection.x)
 			
-	_velocity = getMovement(direction, _speed, _acceleration)
-	_velocity = move_and_slide(_velocity)
+		_velocity = getMovement(direction, _speed, _acceleration)
+		_velocity = move_and_slide(_velocity)
 
 
 func _flipBoxesIfNecessary(velocity_x: float):
@@ -213,7 +214,6 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 			_velocity = move_and_slide(knockbackVelocity)
 		else:
 			direction = Vector2.ZERO;
-			
 		
 		#death check
 		if(_health <= 0):

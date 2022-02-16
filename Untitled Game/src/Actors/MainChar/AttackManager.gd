@@ -5,8 +5,8 @@ class_name AttackManager
 const _START_A_COMBO = 3
 const _START_B_COMBO = 3
 const COMBOTIME = 1
-const MAX_DAMAGE_FORCE = 50000
-const MIN_DAMAGE_FORCE = 50000
+const MAX_DAMAGE_FORCE = 30000
+const MIN_DAMAGE_FORCE = 20000
 
 var isAttacking: bool = false
 var _didHitEnemy: bool = false #To check to see if we should play woosh sfx if we missed
