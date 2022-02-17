@@ -3,6 +3,7 @@ class_name Actor
 
 # props of all objects in game
 const MAXVELOCITY = 500
+const _BOUNDARY_COLLISON_MASK_BIT = 0
 
 var _velocity: = Vector2.ZERO
 var _acceleration = .2
@@ -40,6 +41,11 @@ func _handleGravity():
 		var gravityVelocity = _velocity
 		#gravityVelocity.x *= 0.1
 		move_and_slide(gravityVelocity)
+		setColliderStatusDisabled(false)
+
+
+func setColliderStatusDisabled(disable: bool):
+	set_collision_mask_bit(_BOUNDARY_COLLISON_MASK_BIT, disable)
 
 
 func getMovement(direction: Vector2, speed: float, acceleration: float) -> Vector2:

@@ -207,10 +207,10 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		
 		#knockback/knockup
 		if(_canTakeKnockup):
+			#setColliderStatusDisabled(true)
 			_inAir = true
 			direction.y -= 4
 			var knockbackVelocity = getMovement(direction, force, _acceleration)
-			print("Velocity of hit: " + String(knockbackVelocity.x) + " " + String(knockbackVelocity.y))
 			_velocity = move_and_slide(knockbackVelocity)
 		else:
 			direction = Vector2.ZERO;

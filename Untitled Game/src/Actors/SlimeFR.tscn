@@ -341,9 +341,10 @@ collision_mask = 16
 position = Vector2( 1.00114, 6.6742 )
 shape = SubResource( 27 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( 3.18838, -9.92232 )
 shape = SubResource( 28 )
+disabled = true
 
 [node name="Sight" type="RayCast2D" parent="."]
 position = Vector2( 0.353554, -14.8493 )
@@ -373,6 +374,7 @@ collision_mask = 0
 visible = false
 position = Vector2( 2.90011, 8.09588 )
 shape = SubResource( 30 )
+disabled = true
 
 [node name="LootDropper" parent="." instance=ExtResource( 6 )]
 position = Vector2( -6.62912, -19.4454 )

@@ -5,8 +5,8 @@ class_name AttackManager
 const _START_A_COMBO = 3
 const _START_B_COMBO = 3
 const COMBOTIME = 1
-const MAX_DAMAGE_FORCE = 30000
-const MIN_DAMAGE_FORCE = 20000
+const MAX_DAMAGE_FORCE = 25000
+const MIN_DAMAGE_FORCE = 1000
 
 var isAttacking: bool = false
 var _didHitEnemy: bool = false #To check to see if we should play woosh sfx if we missed
@@ -53,7 +53,7 @@ func doSideSwipeAttack():
 		if _comboAPoints == 1 or _comboBPoints == 1:
 			_animationTree.get("parameters/playback").travel("Hadouken")
 			combo_reset()
-			damageForce = MAX_DAMAGE_FORCE
+			damageForce = MIN_DAMAGE_FORCE
 		elif _comboAPoints == 3:
 			_punchAudioPlayer.playerAttacks()
 			_animationTree.get("parameters/playback").travel("SideSwipe1")

@@ -6,7 +6,6 @@
 [ext_resource path="res://src/Helpers/CustomParticles.gd" type="Script" id=4]
 [ext_resource path="res://assets/SpriteSheets/hit markers/Effect 3 - Sprite Sheet.png" type="Texture" id=5]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "attack"
 length = 1.6
@@ -298,7 +297,7 @@ texture = ExtResource( 3 )
 offset = Vector2( 0, -15 )
 hframes = 16
 vframes = 4
-frame = 52
+frame = 32
 
 [node name="Shadow" type="Sprite" parent="."]
 position = Vector2( 2.375, -27.7913 )
@@ -331,7 +330,7 @@ collision_mask = 16
 position = Vector2( -3.31485, 11.8561 )
 shape = SubResource( 29 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( 1.68728, -1.84176 )
 shape = SubResource( 30 )
 

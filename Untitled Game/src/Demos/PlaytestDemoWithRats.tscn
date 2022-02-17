@@ -79,9 +79,9 @@ enemy = "SlimeFR"
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="PauseScreenContainer" parent="GUI" instance=ExtResource( 9 )]
-margin_left = -24.3028
+margin_left = -23.6729
 margin_top = 10.0649
-margin_right = -24.3028
+margin_right = -23.6729
 margin_bottom = 10.0649
 
 [node name="GameUI" type="Control" parent="GUI"]
