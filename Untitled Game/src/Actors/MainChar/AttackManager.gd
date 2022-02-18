@@ -9,7 +9,7 @@ const MAX_DAMAGE_FORCE = 25000
 const MIN_DAMAGE_FORCE = 1000
 
 var isAttacking: bool = false
-var _didHitEnemy: bool = false #To check to see if we should play woosh sfx if we missed
+var didHitEnemy: bool = false #To check to see if we should play woosh sfx if we missed
 var _beingHurt: bool = false
 var isLastAttackAKick = false #Used to check which hitmarker to show
 var _directionFacing: Vector2 = Vector2.ZERO
@@ -41,7 +41,7 @@ func resetCombo():
 
 func _attack_setup(is_kick: bool):
 	isAttacking = true
-	_didHitEnemy = false
+	didHitEnemy = false
 	isLastAttackAKick = is_kick
 	_attackResetTimer.start(COMBOTIME)
 

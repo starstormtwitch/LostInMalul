@@ -23,7 +23,6 @@ const _LEFT_FACING_SCALE = -1.0
 const _RIGHT_FACING_SCALE = 1.0
 const _FOOTSTEP_PARTICLE_POSITION_OFFSET = -6
 
-var _didHitEnemy: bool = false #To check to see if we should play woosh sfx if we missed
 var _beingHurt: bool = false
 var _canTakeDamage: bool = false
 var _isDodging = false
@@ -229,7 +228,7 @@ func _finishedAttack() -> void:
 
 
 func checkIfWePlayWooshSFX():
-	if !_didHitEnemy:
+	if !_attackManager.didHitEnemy:
 		wooshAudioPlayer.play()
 
 
@@ -242,7 +241,7 @@ func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
 		print("direction of hit: " + String(_directionFacing.x))
 		area.get_parent().take_damage(1, _directionFacing, _attackManager.damageForce)
-		_didHitEnemy = true
+		_attackManager.didHitEnemy = true
 		area.get_parent().show_hit_marker(_attackManager.isLastAttackAKick)
 		_on_enemy_hit()
 
