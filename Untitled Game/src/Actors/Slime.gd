@@ -33,22 +33,17 @@ func _physics_process(_delta: float) -> void:
 		_handleJumpPhysics()
 	
 func _handleJumpPhysics():
-	#_jumpVelocity.y += _GRAVITY
 	_velocity = move_and_slide(_jumpVelocity)
 
 func _on_jump_attack():
 	_isJumping = true
-	#_jumpVelocity.y = _JUMPFORCE
 	var targetDirection = get_target_direction()
 	_jumpVelocity.x = targetDirection.x * _JUMP_SPEED
 	_velocity = move_and_slide(_jumpVelocity)
-	#_velocity = getMovement(targetDirection, 800, .5)
-	#_velocity = move_and_slide(_velocity)
 	
 func _end_jump_attack():
 	_isJumping = false
 	_velocity = getMovement(Vector2.ZERO, 0, .5)
-	#_velocity = move_and_slide(_velocity)
 	_finishedAttack(2)
 
 #func _on_FlockBox_body_entered(body):

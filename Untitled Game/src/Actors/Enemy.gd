@@ -190,10 +190,8 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if !isDying:
 		#stun enemy
 		_velocity = getMovement(Vector2.ZERO, 0, .5)
-		#_velocity = move_and_slide(_velocity)
-		#print("hit, reset attack")
 		disable_hurt_box_if_exists()
-		#_finishedAttack(1)
+		_finishedAttack(1) # reset cooldown
 		_isStunned = true
 		_stunTimer.start(_stun_duration)
 		
@@ -207,7 +205,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		
 		#knockback/knockup
 		if(_canTakeKnockup):
-			#setColliderStatusDisabled(true)
+			setColliderStatusDisabled(true)
 			_inAir = true
 			direction.y -= 4
 			var knockbackVelocity = getMovement(direction, force, _acceleration)
@@ -226,6 +224,7 @@ func disable_hurt_box_if_exists():
 		hitbox.set_deferred("disabled", true);
 	
 func _on_attack_cooldown_timeout():
+	#_isAttacking = false
 	_isReadyToAttack = true
 		
 func _on_stun_cooldown_timeout():
@@ -238,3 +237,4 @@ func _on_hitFlash_cooldown_timeout():
 func _finishedAttack(cooldown: int):
 	_attackCooldownTimer.start(cooldown)
 	_isAttacking = false
+	_state = EnemyState.IDLE
