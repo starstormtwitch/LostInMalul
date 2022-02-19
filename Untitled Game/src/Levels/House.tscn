@@ -1,4 +1,4 @@
-[gd_scene load_steps=206 format=2]
+[gd_scene load_steps=207 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
@@ -177,6 +177,7 @@
 [ext_resource path="res://src/Helpers/Interacts/InteractPromptArea.tscn" type="PackedScene" id=175]
 [ext_resource path="res://src/Helpers/Spawning/EnemySpawner.tscn" type="PackedScene" id=176]
 [ext_resource path="res://src/GUI/DashCooldownUI.tscn" type="PackedScene" id=177]
+[ext_resource path="res://src/Props/Basement/BoxRightOfLadder2.tscn" type="PackedScene" id=178]
 
 [sub_resource type="SegmentShape2D" id=1]
 a = Vector2( -474.143, 0.37738 )
@@ -1138,7 +1139,10 @@ scale = Vector2( -1, 1 )
 position = Vector2( 78.25, 11.25 )
 
 [node name="BoxRightOfLadder" parent="YSort/Props/Basement" instance=ExtResource( 101 )]
-position = Vector2( 1045.42, 140.342 )
+position = Vector2( 1046.15, 137.468 )
+
+[node name="BoxRightOfLadder2" parent="YSort/Props/Basement" instance=ExtResource( 178 )]
+position = Vector2( 1000.59, 127.364 )
 
 [node name="Stairs" parent="YSort/Props/Basement" instance=ExtResource( 74 )]
 position = Vector2( 80.2704, 11.4794 )

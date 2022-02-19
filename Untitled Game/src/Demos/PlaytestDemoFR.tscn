@@ -48,6 +48,7 @@ shape = SubResource( 2 )
 [node name="top" type="CollisionShape2D" parent="LevelBackground/Boundaries/BasementLevel"]
 position = Vector2( 679.186, 193.113 )
 shape = SubResource( 3 )
+disabled = true
 
 [node name="right" type="CollisionShape2D" parent="LevelBackground/Boundaries/BasementLevel"]
 position = Vector2( 1177.09, 239.51 )
