@@ -51,9 +51,10 @@ func doSideSwipeAttack():
 		_attack_setup(false)
 		print("Combo A: " + String(_comboAPoints))
 		if _comboAPoints == 1 or _comboBPoints == 1:
-			_animationTree.get("parameters/playback").travel("Hadouken")
+			_punchAudioPlayer.playerAttacks()
+			_animationTree.get("parameters/playback").travel("Headbutt")
 			combo_reset()
-			damageForce = MIN_DAMAGE_FORCE
+			damageForce = MAX_DAMAGE_FORCE
 		elif _comboAPoints == 3:
 			_punchAudioPlayer.playerAttacks()
 			_animationTree.get("parameters/playback").travel("SideSwipe1")
