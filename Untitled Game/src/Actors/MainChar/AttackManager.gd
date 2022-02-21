@@ -7,6 +7,9 @@ const _START_B_COMBO = 3
 const COMBOTIME = 1
 const MAX_DAMAGE_FORCE = 25000
 const MIN_DAMAGE_FORCE = 1000
+const ATTACK1_EVENT = "side_swipe_attack"
+const ATTACK2_EVENT = "attack_2"
+const SPECIAL_ATTACK_EVENT = "special_attack"
 
 var isAttacking: bool = false
 var didHitEnemy: bool = false #To check to see if we should play woosh sfx if we missed
@@ -90,6 +93,14 @@ func doSideSwipeKick():
 			_comboBPoints = _comboBPoints - 1
 			_comboAPoints = 3
 			damageForce = MIN_DAMAGE_FORCE
+
+
+func startSpecial():
+	_animationTree.get("parameters/playback").travel("Hadouken")
+
+
+func releaseSpecial():
+	_animationTree.get("parameters/playback").travel("Hadouken2")
 
 
 func playHitSounds():
