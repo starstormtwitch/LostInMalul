@@ -331,7 +331,7 @@ func _updateBoundLimits() -> void:
 	_leftBound.position = Vector2(self.limit_left - _boundWidth, ycenter)
 	_rightBound.position = Vector2(self.limit_right + _boundWidth, ycenter)
 	_upperBound.position = Vector2(xcenter, self.limit_top - _boundWidth)
-	_bottomBound.position = Vector2(xcenter, self.limit_bottom + _boundWidth -100)
+	_bottomBound.position = Vector2(xcenter, self.limit_bottom + _boundWidth)
 
 ## Base code for rectangle collision shape creation.
 func _createNewBound() -> StaticBody2D:
