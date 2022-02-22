@@ -1,8 +1,8 @@
 extends VisibilityNotifier2D
 
 signal spawned(spawn)
+signal despawned
 
-export(bool) var automatic = true
 export(bool) var only_off_screen = false
 export(int) var duration_between_spawn = 0
 export(int) var count = 1
@@ -12,7 +12,7 @@ var _countToSpawn = 1
 var prime_off_screen_add = false;
 var packed_scene;
 
-func ready():
+func _ready():
 	_countToSpawn = count;
 
 func spawn(scene_spawn : PackedScene, position : Vector2):
@@ -29,6 +29,7 @@ func spawn(scene_spawn : PackedScene, position : Vector2):
 		if(_countToSpawn > 0):
 			_countToSpawn=_countToSpawn-1;
 			var spawnling = scene_spawn.instance();
+			spawnling.connect("tree_exited", self, "_despawned")
 			parent.call_deferred("add_child", spawnling);
 			spawnling.global_position = position; 
 			emit_signal("spawned", spawnling);
@@ -52,7 +53,7 @@ func spawnMultipleInArea(scene_spawn : PackedScene):
 	add_child(t)
 	for i in _countToSpawn:
 		#Change spawn location randomly
-		var spawnPosition = self.position + Vector2(randf() * self.rect.size.x, randf() * self.rect.size.y)
+		var spawnPosition = self.global_position + Vector2(randf() * self.rect.size.x, randf() * self.rect.size.y)
 		var spawnling = spawn(scene_spawn, spawnPosition)
 		spawnlings.append(spawnling)
 		#Delay after spawning
@@ -62,6 +63,9 @@ func spawnMultipleInArea(scene_spawn : PackedScene):
 			t.start()
 			yield(t, "timeout")
 	return spawnlings;
+	
+func _despawned():
+	emit_signal("despawned");
 
 func _on_Spawner_screen_exited():
 	if(prime_off_screen_add && packed_scene != null):
