@@ -128,8 +128,8 @@ func shake():
 	#print("start shake")
 	_timer = _duration
 	_is_shaking = true
-	_previous_x = rand_range(-1.0, 1.0)
-	_previous_y = rand_range(-1.0, 1.0)
+	_previous_x = rand_range(-.3, .3)
+	_previous_y = rand_range(-.3, .3)
 	# Reset previous offset, if any.
 	var currentOffset = get_offset()
 	#print("Current camera offset" + String(currentOffset))
