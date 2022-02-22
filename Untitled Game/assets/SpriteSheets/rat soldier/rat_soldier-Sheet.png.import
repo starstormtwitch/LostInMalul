@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/LirikYakiSpritesheet.png-68c3dc8a5bf2dcf038b4ae771f14a2ed.stex"
+path="res://.import/rat_soldier-Sheet.png-0e7cd07cefcacbc0eb19bea01068848d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/SpriteSheets/LirikYakiSpritesheet.png"
-dest_files=[ "res://.import/LirikYakiSpritesheet.png-68c3dc8a5bf2dcf038b4ae771f14a2ed.stex" ]
+source_file="res://assets/SpriteSheets/rat soldier/rat_soldier-Sheet.png"
+dest_files=[ "res://.import/rat_soldier-Sheet.png-0e7cd07cefcacbc0eb19bea01068848d.stex" ]
 
 [params]
 

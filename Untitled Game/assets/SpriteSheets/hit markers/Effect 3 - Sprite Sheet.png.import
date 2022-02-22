@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/LirikFR_Shadows_Sheet.png-7194c71f1fa12caec9cb8c06cdff39c5.stex"
+path="res://.import/Effect 3 - Sprite Sheet.png-ecf86a71194ac3be5cbfe7eef2fc73fd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/SpriteSheets/LirikFR_Shadows_Sheet.png"
-dest_files=[ "res://.import/LirikFR_Shadows_Sheet.png-7194c71f1fa12caec9cb8c06cdff39c5.stex" ]
+source_file="res://assets/SpriteSheets/hit markers/Effect 3 - Sprite Sheet.png"
+dest_files=[ "res://.import/Effect 3 - Sprite Sheet.png-ecf86a71194ac3be5cbfe7eef2fc73fd.stex" ]
 
 [params]
 

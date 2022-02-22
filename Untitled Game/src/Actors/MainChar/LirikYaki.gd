@@ -2,32 +2,31 @@ extends Actor
 
 signal player_hit_enemy
 
-const attack_sound = preload("res://assets/audio/HitAudio/Retro Impact Punch Hurt 01.wav")
-const hit_sound = preload("res://assets/audio/HitAudio/Quick Hit Swoosh.wav")
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
-const smoke_scene = preload("res://src/Helpers/SmokeParticles.tscn")
+const smoke_scene = preload("res://src/Actors/MainChar/SmokeParticles.tscn")
+const hadouken_scene = preload("res://src/Actors/MainChar/HadoukenBlast.tscn")
+
 const _JUMP_EVENT = "Jump"
 const _ATTACK1_EVENT = "side_swipe_attack"
 const _ATTACK2_EVENT = "attack_2"
-const COMBOTIME = 1;
+const COMBOTIME = 1
 const _LEFT_FACING_SCALE = -1.0
 const _RIGHT_FACING_SCALE = 1.0
 const _FOOTSTEP_PARTICLE_POSITION_OFFSET = -6
+const _START_A_COMBO = 3
+const _START_B_COMBO = 3
 
-var Coins = 0;
 var _isAttacking: bool = false
+var _didHitEnemy: bool = false #To check to see if we should play woosh sfx if we missed
 var _beingHurt: bool = false
 var _canTakeDamage: bool = false
+var _isLastAttackAKick = false #Used to check which hitmarker to show
 var _directionFacing: Vector2 = Vector2.ZERO
 var _trail = []
 var _invincibilityTimer: Timer = Timer.new()
-var _defenseUpTimer: Timer = Timer.new()
-var _damageUpTimer: Timer = Timer.new()
-var _takeDamageModifier = 1.0;
-var _giveDamageModifier = 1.0;
 
-var _comboAPoints = 2;
-var _comboBPoints = 2;
+var _comboAPoints = _START_A_COMBO;
+var _comboBPoints = _START_B_COMBO;
 
 var _attackResetTimer: Timer = Timer.new()
 var _hitDoneTimer: Timer = Timer.new()
@@ -36,9 +35,10 @@ var _hitAnimationTime = 1
 onready var sprite: Sprite = $Sprite
 onready var shadow: Sprite = $Shadow
 onready var rightHitBox: CollisionShape2D = $attack/sideSwipeRight
+onready var hitAudioPlayer: HitAudioPlayer = $HitAudioPlayer
+onready var wooshAudioPlayer: AudioStreamPlayer = $WooshAudioPlayer
 onready var footstepAudioPlayer: AudioStreamPlayer = $FootStepAudioStreamPlayer
-
-signal coin_changed
+onready var hadoukenSpawn: Position2D = $HadoukenSpawn
 
 func _init():
 	add_to_group("Player")
@@ -48,14 +48,6 @@ func _ready() -> void:
 	_invincibilityTimer.connect("timeout", self, "_on_invincibility_timeout") 
 	_invincibilityTimer.one_shot = true
 	add_child(_invincibilityTimer)
-	
-	_defenseUpTimer.connect("timeout", self, "_on_defenseUp_timeout") 
-	_defenseUpTimer.one_shot = true
-	add_child(_defenseUpTimer)
-	
-	_damageUpTimer.connect("timeout", self, "_on_damageUp_timeout") 
-	_damageUpTimer.one_shot = true
-	add_child(_damageUpTimer)
 	
 	_attackResetTimer.connect("timeout", self, "_on_combo_timeout") 
 	_attackResetTimer.one_shot = true
@@ -80,24 +72,10 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	var direction = Vector2.ZERO
 	
-	var charColor = Color(1,1,1,1);
-	if _giveDamageModifier != 1 && _takeDamageModifier != 1:
-		var purple = Color(1.0, 0.0, 1.0)
-		var lightpurple = purple.lightened(0.4)
-		charColor =  lightpurple
-	elif _giveDamageModifier != 1:
-		var red = Color(1.0, 0.0, 0.0)
-		var pink = red.lightened(0.4)
-		charColor =  pink
-	elif _takeDamageModifier != 1:
-		var green = Color(0.0, 1.0, 0.0)
-		var lightgreen = green.lightened(0.4)
-		charColor =  lightgreen
-	self.modulate = charColor;
 	if !_canTakeDamage:
 		#self.modulate =  Color(2,2,2,2) if Engine.get_frames_drawn() % 5 == 0 else Color(1,1,1,1)
 		#self.modulate =  Color(1.3,1.3,1.3,1.3) if Engine.get_frames_drawn() % 5 == 0 else Color(1,1,1,1)
-		self.modulate =  Color(.5,.2,.2,.3) if Engine.get_frames_drawn() % 5 == 0 else charColor
+		self.modulate =  Color(1.5,1.2,1.2,1.3) if Engine.get_frames_drawn() % 5 == 0 else Color(1,1,1,1)
 	
 	if(!_isAttacking):
 		direction = evaluatePlayerInput()
@@ -111,19 +89,11 @@ func _on_invincibility_timeout() -> void:
 	self.modulate = Color(1,1,1,1)
 	_canTakeDamage = true
 	
-func _on_damageUp_timeout() -> void:
-	self.modulate = Color(1,50,0,0)
-	_giveDamageModifier = 1
-	
-func _on_defenseUp_timeout() -> void:
-	self.modulate = Color(1,0,0,50)
-	_takeDamageModifier = 1
-	
 	
 func _on_combo_timeout() -> void:
 	#print("combo reset")
-	_comboAPoints = 2
-	_comboBPoints = 2
+	_comboAPoints = _START_A_COMBO
+	_comboBPoints = _START_B_COMBO
 
 
 # call function when foot hits floor. Play sounds and smoke particle
@@ -135,7 +105,6 @@ func footstepCallback():
 #Animation callback to generate smoke particle when feet touch the ground
 func _generate_smoke_particle():
 	var smoke = smoke_scene.instance()
-	get_parent().add_child(smoke)
 	smoke.global_position = self.global_position
 	smoke.global_position.y += _FOOTSTEP_PARTICLE_POSITION_OFFSET
 	smoke.emitting = true
@@ -143,6 +112,7 @@ func _generate_smoke_particle():
 		smoke.flipSide(false)
 	elif _directionFacing.x < 0:
 		smoke.flipSide(true)
+	get_parent().add_child(smoke)
 
 
 func _play_footstep_sound():
@@ -164,26 +134,6 @@ func add_trail() -> void:
 		get_parent().add_child(trail)
 		_trail.push_front(trail)
 
-func collectCoin():
-	Coins = Coins + 1;
-	emit_signal("coin_changed")
-	
-	
-func damageUpCollected():
-	_damageUpTimer.start(15)
-	_giveDamageModifier = 2.0;
-	
-	
-func defenseUpCollected():
-	_defenseUpTimer.start(15)
-	_takeDamageModifier = .5;
-	
-func healthCollected():
-	var newHealth = _health + 1;
-	if(newHealth <= _maxHealth):
-		emit_signal("health_changed", _health, newHealth, _maxHealth)
-		_health = newHealth;
-	
 
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if _canTakeDamage:
@@ -195,7 +145,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		_hitDoneTimer.start(_hitAnimationTime)
 		$AnimationTree.get("parameters/playback").travel("Hurt")
 		_invincibilityTimer.start(2)
-		.take_damage(ceil(damage * _takeDamageModifier), direction, force)
+		.take_damage(damage, direction, force)
 
 # callback function to for when the hurt animation is playing
 func setHurtAnimationPlaying():
@@ -239,45 +189,60 @@ func evaluatePlayerInput() -> Vector2:
 		$AnimationTree.get("parameters/playback").travel("Walk")
 	return direction
 
+func _attack_setup(is_kick: bool):
+	_isAttacking = true
+	_didHitEnemy = false
+	_isLastAttackAKick = is_kick
+	_attackResetTimer.start(COMBOTIME)
 
 func doSideSwipeAttack():
-	_isAttacking = true
-	_attackResetTimer.start(COMBOTIME)
-	_comboBPoints = 2
-	print("Combo A: " + String(_comboAPoints))
-	if _comboAPoints == 2:
-		SoundPlayer.playSound(self, hit_sound, -10)
-		$AnimationTree.get("parameters/playback").travel("SideSwipe1")
-		_comboAPoints = _comboAPoints - 1
-	elif _comboAPoints == 1:
-		SoundPlayer.playSound(self, hit_sound, -10)
-		$AnimationTree.get("parameters/playback").travel("SideSwipe2")
-		_comboAPoints = _comboAPoints - 1
-	else:
-		_comboAPoints = 2
-		_isAttacking = false
+	if !_isAttacking:
+		_attack_setup(false)
+		print("Combo A: " + String(_comboAPoints))
+		if _comboAPoints == 1 or _comboBPoints == 1:
+			hitAudioPlayer.playerAttacks()
+			$AnimationTree.get("parameters/playback").travel("Hadouken")
+			_on_combo_timeout()
+		elif _comboAPoints == 3:
+			hitAudioPlayer.playerAttacks()
+			$AnimationTree.get("parameters/playback").travel("SideSwipe1")
+			_comboAPoints = _comboAPoints - 1
+			_comboBPoints = 3
+		elif _comboAPoints == 2:
+			hitAudioPlayer.playerAttacks()
+			$AnimationTree.get("parameters/playback").travel("SideSwipe2")
+			_comboAPoints = _comboAPoints - 1
+			_comboBPoints = 3
+
 
 func doSideSwipeKick():
-	_isAttacking = true
-	_attackResetTimer.start(COMBOTIME)
-	_comboAPoints = 2
-	print("Combo B: " + String(_comboBPoints))
-	if _comboBPoints == 2:
-		SoundPlayer.playSound(self, hit_sound, -10)
-		$AnimationTree.get("parameters/playback").travel("SideSwipeKick")
-		_comboBPoints = _comboBPoints - 1
-	elif _comboBPoints == 1:
-		SoundPlayer.playSound(self, hit_sound, -10)
-		$AnimationTree.get("parameters/playback").travel("SideSwipeRightKick2")
-		_comboBPoints = _comboBPoints - 1
-	else:
-		_comboBPoints = 2
-		_isAttacking = false
+	if !_isAttacking:
+		_attack_setup(true)
+		print("Combo B: " + String(_comboBPoints))
+		if _comboBPoints == 1 or _comboAPoints == 1:
+			hitAudioPlayer.playerAttacks()
+			$AnimationTree.get("parameters/playback").travel("Shoryuken")
+			_on_combo_timeout()
+		elif _comboBPoints == 3:
+			hitAudioPlayer.playerAttacks()
+			$AnimationTree.get("parameters/playback").travel("SideSwipeKick")
+			_comboBPoints = _comboBPoints - 1
+			_comboAPoints = 3
+		elif _comboBPoints == 2:
+			hitAudioPlayer.playerAttacks()
+			$AnimationTree.get("parameters/playback").travel("SideSwipeRightKick2")
+			_comboBPoints = _comboBPoints - 1
+			_comboAPoints = 3
 
 
 func _finishedAttack() -> void:
-	#print("attack finished")
+	print("attack finished")
 	_isAttacking = false
+
+
+func checkIfWePlayWooshSFX():
+	if !_didHitEnemy:
+		wooshAudioPlayer.play()
 
 
 # callback function for when hurt animation is done
@@ -288,7 +253,10 @@ func _hurtAnimationFinished() -> void:
 
 func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
-		area.get_parent().take_damage(ceil(1 * _giveDamageModifier), _directionFacing, 50000)
+		area.get_parent().take_damage(1, _directionFacing, 50000)
+		_didHitEnemy = true
+		area.get_parent().show_hit_marker(_isLastAttackAKick)
+
 
 func sendPlayerDeadSignal():
 	#restarting game, instead of sending signal
@@ -296,6 +264,13 @@ func sendPlayerDeadSignal():
 
 
 func _on_enemy_hit():
-	SoundPlayer.playSound(self, attack_sound, 0)
+	hitAudioPlayer.playHitSound()
 	#print("emit shake signal")
 	emit_signal("player_hit_enemy")
+
+func summon_hadouken_blast():
+	var instance = hadouken_scene.instance()
+	instance.set_direction(_directionFacing)
+	instance.global_position = hadoukenSpawn.global_position
+	get_parent().add_child(instance)
+	

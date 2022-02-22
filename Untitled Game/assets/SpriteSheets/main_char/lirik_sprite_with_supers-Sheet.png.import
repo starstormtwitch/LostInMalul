@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mc_spritesheet_v1.3-Sheet.png-197e6860df2e08c4e1093646ffe1cc27.stex"
+path="res://.import/lirik_sprite_with_supers-Sheet.png-b15c7d39f5b659b11e79bd417850efdc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/SpriteSheets/mc_spritesheet_v1.3-Sheet.png"
-dest_files=[ "res://.import/mc_spritesheet_v1.3-Sheet.png-197e6860df2e08c4e1093646ffe1cc27.stex" ]
+source_file="res://assets/SpriteSheets/main_char/lirik_sprite_with_supers-Sheet.png"
+dest_files=[ "res://.import/lirik_sprite_with_supers-Sheet.png-b15c7d39f5b659b11e79bd417850efdc.stex" ]
 
 [params]
 

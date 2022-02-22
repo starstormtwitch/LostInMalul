@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rat_king_spritesheet.png-35db6359026281cf7571c9787ac2b55a.stex"
+path="res://.import/hadouken_blast_sheet.png-ab065913697faf613b8a65cf6b0cfa9b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/SpriteSheets/rat_king_spritesheet.png"
-dest_files=[ "res://.import/rat_king_spritesheet.png-35db6359026281cf7571c9787ac2b55a.stex" ]
+source_file="res://assets/SpriteSheets/main_char/hadouken_blast_sheet.png"
+dest_files=[ "res://.import/hadouken_blast_sheet.png-ab065913697faf613b8a65cf6b0cfa9b.stex" ]
 
 [params]
 

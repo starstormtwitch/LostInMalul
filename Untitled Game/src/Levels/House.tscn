@@ -1,7 +1,7 @@
 [gd_scene load_steps=212 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Props/bathroom/bathroom_shelves_right.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/Levels/House/House_level.png" type="Texture" id=4]
 [ext_resource path="res://src/Props/bathroom/bathroom_toilet_paper.tscn" type="PackedScene" id=5]
@@ -1539,8 +1539,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_Toilet_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_Toilet_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/Bed" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/LivingRoom/InteractPromptArea" to="." method="_on_InteractPromptArea_interactable_text_signal"]

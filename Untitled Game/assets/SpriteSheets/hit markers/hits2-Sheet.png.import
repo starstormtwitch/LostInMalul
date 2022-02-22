@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Effect 3 - Sprite Sheet.png-91af0c64bd226dbd4fb2732d80d5dda8.stex"
+path="res://.import/hits2-Sheet.png-02a712a101a113d50a30f9c2c136b580.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/SpriteSheets/Effect 3 - Sprite Sheet.png"
-dest_files=[ "res://.import/Effect 3 - Sprite Sheet.png-91af0c64bd226dbd4fb2732d80d5dda8.stex" ]
+source_file="res://assets/SpriteSheets/hit markers/hits2-Sheet.png"
+dest_files=[ "res://.import/hits2-Sheet.png-02a712a101a113d50a30f9c2c136b580.stex" ]
 
 [params]
 

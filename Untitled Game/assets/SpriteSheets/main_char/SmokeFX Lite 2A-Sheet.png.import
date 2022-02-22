@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mc_spritesheet_v1-Sheet.png-950a9392b01ca543e4d8c0a93eafb23a.stex"
+path="res://.import/SmokeFX Lite 2A-Sheet.png-7ae5e60f038b772dcb71f2c3d6a0492d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/SpriteSheets/mc_spritesheet_v1-Sheet.png"
-dest_files=[ "res://.import/mc_spritesheet_v1-Sheet.png-950a9392b01ca543e4d8c0a93eafb23a.stex" ]
+source_file="res://assets/SpriteSheets/main_char/SmokeFX Lite 2A-Sheet.png"
+dest_files=[ "res://.import/SmokeFX Lite 2A-Sheet.png-7ae5e60f038b772dcb71f2c3d6a0492d.stex" ]
 
 [params]
 
