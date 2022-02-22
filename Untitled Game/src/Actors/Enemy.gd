@@ -1,13 +1,13 @@
 extends Actor
 class_name Enemy
 
-signal enemy_hit
 
 #Enemy properties
 var _seperation_distance = 20
 var _attack_range = 20
 var _initial_attack_cooldown = .5 #in seconds
 var _stun_duration = 50 #in seconds
+var _canTakeKnockup = true;
 #Enemy state
 var _isReadyToAttack = false
 var _isAttacking = false
@@ -20,9 +20,10 @@ var _attackCooldownTimer = Timer.new()
 var _stunTimer = Timer.new()
 var _hitFlashTimer = Timer.new()
 var _directionFacing = 0
+var _minDistanceToStayFromPlayer = 0;
+var _maxDistanceToStayFromPlayer = 0;
 
 func _ready():
-	_connect_hit_signal_to_player()
 	_attackCooldownTimer.connect("timeout",self,"_on_attack_cooldown_timeout") 
 	_attackCooldownTimer.one_shot = true
 	add_child(_attackCooldownTimer)
@@ -60,10 +61,12 @@ func _physics_process(_delta: float) -> void:
 		if(!_isAttacking):
 			if(_state == EnemyState.CHASE):
 				direction = targetDirection;
-		
+						
 			direction = _flock_direction(direction)
-		if (_state == EnemyState.CHASE or _state == EnemyState.ROAM) and !_isAttacking:
+		if (_state == EnemyState.CHASE):
 			_play_walk_animation_if_available(targetDirection.x)
+		if(_state == EnemyState.ROAM or _state == EnemyState.IDLE):
+			_play_idle_animation_if_available(targetDirection.x)
 		_directionFacing = targetDirection.x
 		_flipBoxesIfNecessary(targetDirection.x)
 			
@@ -88,12 +91,16 @@ func _flipBoxesIfNecessary(velocity_x: float):
 
 
 func get_next_state(targetDirection: Vector2):
+	if(_isAttacking):
+		return;
 	if(_target != null):
 		var dist_to_target = self.global_position.distance_to(_target.global_position)
 		if(dist_to_target <= _attack_range && _isReadyToAttack):
 			_isReadyToAttack = false
 			_state = EnemyState.ATTACK_IN_PLACE
-		elif  (targetDirection != Vector2.ZERO):
+		elif  (targetDirection != Vector2.ZERO && targetDirection != Vector2.ZERO  && dist_to_target >= _maxDistanceToStayFromPlayer):
+			_state = EnemyState.CHASE
+		elif  (_state == EnemyState.CHASE && targetDirection != Vector2.ZERO && dist_to_target >= _minDistanceToStayFromPlayer):
 			_state = EnemyState.CHASE
 		else:
 			_state = EnemyState.ROAM
@@ -142,15 +149,26 @@ func _play_walk_animation_if_available(velocity_x: float):
 		if animationPlayer.has_animation("walk"):
 			$AnimationTree.get("parameters/playback").travel("walk")
 
-func _show_hit_marker():
-	if $HitMarkerParticles != null:
-		var hitMarkerParticles: Particles2D = $HitMarkerParticles
+
+func _play_idle_animation_if_available(velocity_x: float):
+	if $AnimationTree != null and $AnimationPlayer != null:
+		var animationPlayer: AnimationPlayer = $AnimationPlayer
+		if animationPlayer.has_animation("idle"):
+			$AnimationTree.get("parameters/playback").travel("idle")
+
+
+func show_hit_marker(isKick: bool):
+	if ($PunchHitMarkerParticles != null or $KickHitMarkerParticles != null) and _health > 0:
+		var hitMarkerParticles: Particles2D = $PunchHitMarkerParticles
+		if isKick:
+			hitMarkerParticles = $KickHitMarkerParticles
 		if _directionFacing > 0:
 			hitMarkerParticles.position.x = abs(hitMarkerParticles.position.x)
 		elif _directionFacing < 0:
 			hitMarkerParticles.position.x = -abs(hitMarkerParticles.position.x)
 		hitMarkerParticles.restart()
 		hitMarkerParticles.emitting = true
+
 
 func get_target_direction() -> Vector2:
 	var direction = Vector2.ZERO
@@ -174,10 +192,10 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		#_velocity = move_and_slide(_velocity)
 		#print("hit, reset attack")
 		disable_hurt_box_if_exists()
-		_finishedAttack(1)
+		#_finishedAttack(1)
 		_isStunned = true
 		_stunTimer.start(_stun_duration)
-			
+		
 		#mark damage
 		emit_signal("enemy_hit")
 		self.modulate =  Color(10,10,10,10) 
@@ -185,23 +203,26 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		if($AnimationTree != null):
 			$AnimationTree.get("parameters/playback").travel("hurt")
 		_health-=damage
-		_show_hit_marker()
 		
 		#knockback/knockup
-		_inAir = true
-		direction.y -= 4
-		var knockbackVelocity = getMovement(direction, force, _acceleration)
-		_velocity = move_and_slide(knockbackVelocity)
+		if(_canTakeKnockup):
+			_inAir = true
+			direction.y -= 4
+			var knockbackVelocity = getMovement(direction, force, _acceleration)
+			_velocity = move_and_slide(knockbackVelocity)
+		else:
+			direction = Vector2.ZERO;
+			
 		
 		#death check
 		if(_health <= 0):
 			die()
-		
+
 func disable_hurt_box_if_exists():
 	var hitbox: CollisionShape2D = get_node("Attack/AttackBox")
 	if(hitbox != null):
 		#print("disable hit box")
-		hitbox.disabled = true
+		hitbox.set_deferred("disabled", true);
 	
 func _on_attack_cooldown_timeout():
 	_isReadyToAttack = true
@@ -216,9 +237,3 @@ func _on_hitFlash_cooldown_timeout():
 func _finishedAttack(cooldown: int):
 	_attackCooldownTimer.start(cooldown)
 	_isAttacking = false
-
-func _connect_hit_signal_to_player():
-	var player = LevelGlobals.GetPlayerActor()
-	assert(player, "Player must exist to hit")
-	self.connect("enemy_hit", player, "_on_enemy_hit")
-	

@@ -1,7 +1,7 @@
 [gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://src/Demos/TransitionsDemo.gd" type="Script" id=1]
-[ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Props/bathroom/Bathtub.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/Levels/House/House_level.png" type="Texture" id=4]
 [ext_resource path="res://src/Props/bathroom/Cactus.tscn" type="PackedScene" id=5]
@@ -24,6 +24,7 @@
 [ext_resource path="res://assets/GUI/cash.png" type="Texture" id=22]
 [ext_resource path="res://src/Helpers/GUI/HealthBar.tscn" type="PackedScene" id=23]
 [ext_resource path="res://assets/SpriteSheets/sussyFR_spriteframes.tres" type="SpriteFrames" id=24]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 51.2464, 8.42657 )

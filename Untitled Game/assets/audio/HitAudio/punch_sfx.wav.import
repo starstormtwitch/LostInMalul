@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/punch_sfx.wav-b099a3da3c83f5e31d1d42f7c66f1b55.sample"
+
+[deps]
+
+source_file="res://assets/audio/HitAudio/punch_sfx.wav"
+dest_files=[ "res://.import/punch_sfx.wav-b099a3da3c83f5e31d1d42f7c66f1b55.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

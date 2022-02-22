@@ -7,12 +7,15 @@ const _JUMP_SPEED = 60
 var _jumpVelocity = Vector2()
 var _jumpDirection = Vector2()
 
+onready var attackBox = $Attack/AttackBox
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_health = 10
+	_health = 6
 	_acceleration = 0.2
 	_speed = 65
 	_attack_range = 50
+	attackBox.disabled = true
 	if($AnimationTree != null):
 		$AnimationTree.active = true
 		

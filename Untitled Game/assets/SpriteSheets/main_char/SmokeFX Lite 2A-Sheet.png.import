@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/SmokeFX Lite 2A-Sheet.png-7ae5e60f038b772dcb71f2c3d6a0492d.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://assets/SpriteSheets/main_char/SmokeFX Lite 2A-Sheet.png"
+dest_files=[ "res://.import/SmokeFX Lite 2A-Sheet.png-7ae5e60f038b772dcb71f2c3d6a0492d.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0
