@@ -2,6 +2,8 @@ extends Actor
 
 signal player_hit_enemy
 
+const attack_sound = preload("res://assets/audio/HitAudio/Retro Impact Punch Hurt 01.wav")
+const hit_sound = preload("res://assets/audio/HitAudio/Quick Hit Swoosh.wav")
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
 const smoke_scene = preload("res://src/Helpers/SmokeParticles.tscn")
 const _JUMP_EVENT = "Jump"
@@ -12,12 +14,17 @@ const _LEFT_FACING_SCALE = -1.0
 const _RIGHT_FACING_SCALE = 1.0
 const _FOOTSTEP_PARTICLE_POSITION_OFFSET = -6
 
+var Coins = 0;
 var _isAttacking: bool = false
 var _beingHurt: bool = false
 var _canTakeDamage: bool = false
 var _directionFacing: Vector2 = Vector2.ZERO
 var _trail = []
 var _invincibilityTimer: Timer = Timer.new()
+var _defenseUpTimer: Timer = Timer.new()
+var _damageUpTimer: Timer = Timer.new()
+var _takeDamageModifier = 1.0;
+var _giveDamageModifier = 1.0;
 
 var _comboAPoints = 2;
 var _comboBPoints = 2;
@@ -29,8 +36,9 @@ var _hitAnimationTime = 1
 onready var sprite: Sprite = $Sprite
 onready var shadow: Sprite = $Shadow
 onready var rightHitBox: CollisionShape2D = $attack/sideSwipeRight
-onready var hitAudioPlayer: HitAudioPlayer = $HitAudioPlayer
 onready var footstepAudioPlayer: AudioStreamPlayer = $FootStepAudioStreamPlayer
+
+signal coin_changed
 
 func _init():
 	add_to_group("Player")
@@ -40,6 +48,14 @@ func _ready() -> void:
 	_invincibilityTimer.connect("timeout", self, "_on_invincibility_timeout") 
 	_invincibilityTimer.one_shot = true
 	add_child(_invincibilityTimer)
+	
+	_defenseUpTimer.connect("timeout", self, "_on_defenseUp_timeout") 
+	_defenseUpTimer.one_shot = true
+	add_child(_defenseUpTimer)
+	
+	_damageUpTimer.connect("timeout", self, "_on_damageUp_timeout") 
+	_damageUpTimer.one_shot = true
+	add_child(_damageUpTimer)
 	
 	_attackResetTimer.connect("timeout", self, "_on_combo_timeout") 
 	_attackResetTimer.one_shot = true
@@ -64,10 +80,24 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	var direction = Vector2.ZERO
 	
+	var charColor = Color(1,1,1,1);
+	if _giveDamageModifier != 1 && _takeDamageModifier != 1:
+		var purple = Color(1.0, 0.0, 1.0)
+		var lightpurple = purple.lightened(0.4)
+		charColor =  lightpurple
+	elif _giveDamageModifier != 1:
+		var red = Color(1.0, 0.0, 0.0)
+		var pink = red.lightened(0.4)
+		charColor =  pink
+	elif _takeDamageModifier != 1:
+		var green = Color(0.0, 1.0, 0.0)
+		var lightgreen = green.lightened(0.4)
+		charColor =  lightgreen
+	self.modulate = charColor;
 	if !_canTakeDamage:
 		#self.modulate =  Color(2,2,2,2) if Engine.get_frames_drawn() % 5 == 0 else Color(1,1,1,1)
 		#self.modulate =  Color(1.3,1.3,1.3,1.3) if Engine.get_frames_drawn() % 5 == 0 else Color(1,1,1,1)
-		self.modulate =  Color(1.5,1.2,1.2,1.3) if Engine.get_frames_drawn() % 5 == 0 else Color(1,1,1,1)
+		self.modulate =  Color(.5,.2,.2,.3) if Engine.get_frames_drawn() % 5 == 0 else charColor
 	
 	if(!_isAttacking):
 		direction = evaluatePlayerInput()
@@ -80,6 +110,14 @@ func _physics_process(_delta: float) -> void:
 func _on_invincibility_timeout() -> void:
 	self.modulate = Color(1,1,1,1)
 	_canTakeDamage = true
+	
+func _on_damageUp_timeout() -> void:
+	self.modulate = Color(1,50,0,0)
+	_giveDamageModifier = 1
+	
+func _on_defenseUp_timeout() -> void:
+	self.modulate = Color(1,0,0,50)
+	_takeDamageModifier = 1
 	
 	
 func _on_combo_timeout() -> void:
@@ -97,6 +135,7 @@ func footstepCallback():
 #Animation callback to generate smoke particle when feet touch the ground
 func _generate_smoke_particle():
 	var smoke = smoke_scene.instance()
+	get_parent().add_child(smoke)
 	smoke.global_position = self.global_position
 	smoke.global_position.y += _FOOTSTEP_PARTICLE_POSITION_OFFSET
 	smoke.emitting = true
@@ -104,7 +143,6 @@ func _generate_smoke_particle():
 		smoke.flipSide(false)
 	elif _directionFacing.x < 0:
 		smoke.flipSide(true)
-	get_parent().add_child(smoke)
 
 
 func _play_footstep_sound():
@@ -126,6 +164,26 @@ func add_trail() -> void:
 		get_parent().add_child(trail)
 		_trail.push_front(trail)
 
+func collectCoin():
+	Coins = Coins + 1;
+	emit_signal("coin_changed")
+	
+	
+func damageUpCollected():
+	_damageUpTimer.start(15)
+	_giveDamageModifier = 2.0;
+	
+	
+func defenseUpCollected():
+	_defenseUpTimer.start(15)
+	_takeDamageModifier = .5;
+	
+func healthCollected():
+	var newHealth = _health + 1;
+	if(newHealth <= _maxHealth):
+		emit_signal("health_changed", _health, newHealth, _maxHealth)
+		_health = newHealth;
+	
 
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if _canTakeDamage:
@@ -137,7 +195,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		_hitDoneTimer.start(_hitAnimationTime)
 		$AnimationTree.get("parameters/playback").travel("Hurt")
 		_invincibilityTimer.start(2)
-		.take_damage(damage, direction, force)
+		.take_damage(ceil(damage * _takeDamageModifier), direction, force)
 
 # callback function to for when the hurt animation is playing
 func setHurtAnimationPlaying():
@@ -188,11 +246,11 @@ func doSideSwipeAttack():
 	_comboBPoints = 2
 	print("Combo A: " + String(_comboAPoints))
 	if _comboAPoints == 2:
-		hitAudioPlayer.playerAttacks()
+		SoundPlayer.playSound(self, hit_sound, -10)
 		$AnimationTree.get("parameters/playback").travel("SideSwipe1")
 		_comboAPoints = _comboAPoints - 1
 	elif _comboAPoints == 1:
-		hitAudioPlayer.playerAttacks()
+		SoundPlayer.playSound(self, hit_sound, -10)
 		$AnimationTree.get("parameters/playback").travel("SideSwipe2")
 		_comboAPoints = _comboAPoints - 1
 	else:
@@ -205,11 +263,11 @@ func doSideSwipeKick():
 	_comboAPoints = 2
 	print("Combo B: " + String(_comboBPoints))
 	if _comboBPoints == 2:
-		hitAudioPlayer.playerAttacks()
+		SoundPlayer.playSound(self, hit_sound, -10)
 		$AnimationTree.get("parameters/playback").travel("SideSwipeKick")
 		_comboBPoints = _comboBPoints - 1
 	elif _comboBPoints == 1:
-		hitAudioPlayer.playerAttacks()
+		SoundPlayer.playSound(self, hit_sound, -10)
 		$AnimationTree.get("parameters/playback").travel("SideSwipeRightKick2")
 		_comboBPoints = _comboBPoints - 1
 	else:
@@ -230,8 +288,7 @@ func _hurtAnimationFinished() -> void:
 
 func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
-		area.get_parent().take_damage(1, _directionFacing, 50000)
-
+		area.get_parent().take_damage(ceil(1 * _giveDamageModifier), _directionFacing, 50000)
 
 func sendPlayerDeadSignal():
 	#restarting game, instead of sending signal
@@ -239,6 +296,6 @@ func sendPlayerDeadSignal():
 
 
 func _on_enemy_hit():
-	hitAudioPlayer.playHitSound()
+	SoundPlayer.playSound(self, attack_sound, 0)
 	#print("emit shake signal")
 	emit_signal("player_hit_enemy")

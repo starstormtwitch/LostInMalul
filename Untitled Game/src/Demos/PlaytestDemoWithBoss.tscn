@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/Helpers/Camera/CustomDelimiter2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Levels/Basement.png" type="Texture" id=2]
@@ -6,10 +6,11 @@
 [ext_resource path="res://src/Actors/RatKing/RatKing.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Demos/PlaytestDemo.gd" type="Script" id=5]
 [ext_resource path="res://assets/GUI/profile.png" type="Texture" id=6]
-[ext_resource path="res://assets/GUI/cash.png" type="Texture" id=7]
+[ext_resource path="res://assets/GUI/cashIcon.png" type="Texture" id=7]
 [ext_resource path="res://src/Helpers/GUI/HealthBar.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/Helpers/GUI/Pause/PauseMenu.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/Helpers/GUI/BossHealthBar.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/fonts/Early GameBoy.ttf" type="DynamicFontData" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 644.725, 4.32855 )
@@ -23,15 +24,25 @@ extents = Vector2( 507.743, 10 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 10, 56.6757 )
 
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 447.481, 28.3017 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 8
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+font_data = ExtResource( 11 )
+
 [node name="Sandbox" type="Node2D"]
 pause_mode = 2
 script = ExtResource( 5 )
 
 [node name="LevelBackground" type="Sprite" parent="."]
-position = Vector2( 511.594, 251.193 )
+position = Vector2( 228.312, 71 )
 texture = ExtResource( 2 )
 centered = false
-offset = Vector2( -509.742, -251.754 )
+offset = Vector2( -226.899, -71.1156 )
 
 [node name="Boundaries" type="Node" parent="LevelBackground"]
 
@@ -61,25 +72,35 @@ position = Vector2( 3.74511, 2.97438 )
 [node name="BottomRight" parent="LevelBackground/CameraPositions/Basement_Delimeter" index="0"]
 position = Vector2( 1290.36, 298.746 )
 
+[node name="SpecialZones" type="Node" parent="LevelBackground"]
+
+[node name="BossMobZone" type="Area2D" parent="LevelBackground/SpecialZones"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/SpecialZones/BossMobZone"]
+position = Vector2( 663.603, 250.502 )
+shape = SubResource( 6 )
+
 [node name="objects" type="YSort" parent="."]
 pause_mode = 1
 
 [node name="actors" type="YSort" parent="objects"]
-
-[node name="LirikYaki" parent="objects/actors" instance=ExtResource( 3 )]
-position = Vector2( 264.692, 274.695 )
 
 [node name="Enemy" parent="objects/actors" groups=[
 "Boss",
 ] instance=ExtResource( 4 )]
 position = Vector2( 1040.43, 260.71 )
 
+[node name="LirikYaki" parent="objects/actors" instance=ExtResource( 3 )]
+position = Vector2( 244.406, 264.346 )
+
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="GUI" instance=ExtResource( 9 )]
 visible = false
 
-[node name="GameUI" type="Control" parent="GUI"]
+[node name="PlayerGui" type="Control" parent="GUI"]
 margin_right = 40.0
 margin_bottom = 40.0
 mouse_filter = 2
@@ -87,13 +108,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="bossHealthBar" parent="GUI/GameUI" instance=ExtResource( 10 )]
+[node name="bossHealthBar" parent="GUI/PlayerGui" instance=ExtResource( 10 )]
 margin_left = 48.8811
 margin_top = 501.238
 margin_right = 974.881
 margin_bottom = 554.238
 
-[node name="Profile" type="TextureRect" parent="GUI/GameUI"]
+[node name="Profile" type="TextureRect" parent="GUI/PlayerGui"]
 margin_left = 15.0
 margin_top = 16.0
 margin_right = 90.0
@@ -105,11 +126,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Cash" type="TextureRect" parent="GUI/GameUI"]
-margin_left = 97.4237
-margin_top = 49.9046
-margin_right = 239.424
-margin_bottom = 75.9046
+[node name="Cash" type="TextureRect" parent="GUI/PlayerGui"]
+margin_left = 97.0
+margin_top = 50.0
+margin_right = 116.0
+margin_bottom = 71.0
 mouse_filter = 2
 texture = ExtResource( 7 )
 expand = true
@@ -117,11 +138,39 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="healthBar" parent="GUI/GameUI" instance=ExtResource( 8 )]
+[node name="healthBar" parent="GUI/PlayerGui" instance=ExtResource( 8 )]
 margin_left = 103.0
-margin_top = 32.0
+margin_top = 31.8949
 margin_right = 306.0
-margin_bottom = 53.0
+margin_bottom = 52.8949
 mouse_filter = 2
+
+[node name="Coins" type="Label" parent="GUI/PlayerGui"]
+margin_left = 130.041
+margin_top = 52.8196
+margin_right = 232.041
+margin_bottom = 62.8196
+rect_scale = Vector2( 1.6, 1.6 )
+size_flags_horizontal = 0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/PlayerGui"]
+margin_left = 116.108
+margin_top = 58.6466
+margin_right = 136.108
+margin_bottom = 88.6466
+rect_scale = Vector2( 1.6, 1.6 )
+size_flags_horizontal = 0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "x"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [editable path="LevelBackground/CameraPositions/Basement_Delimeter"]

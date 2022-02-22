@@ -1,4 +1,4 @@
-[gd_scene load_steps=205 format=2]
+[gd_scene load_steps=212 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
@@ -23,7 +23,7 @@
 [ext_resource path="res://assets/GUI/profile.png" type="Texture" id=21]
 [ext_resource path="res://src/Helpers/Utilities/TwoWayTeleportNode2D.tscn" type="PackedScene" id=22]
 [ext_resource path="res://src/Helpers/GUI/HealthBar.tscn" type="PackedScene" id=23]
-[ext_resource path="res://assets/GUI/cash.png" type="Texture" id=24]
+[ext_resource path="res://assets/GUI/cashIcon.png" type="Texture" id=24]
 [ext_resource path="res://assets/actions/tile_0395.png" type="Texture" id=25]
 [ext_resource path="res://src/Helpers/GUI/Pause/PauseScreenContainer.tscn" type="PackedScene" id=26]
 [ext_resource path="res://src/Props/bathroom/bathroom_bidet.tscn" type="PackedScene" id=27]
@@ -176,6 +176,7 @@
 [ext_resource path="res://src/Helpers/Interacts/InteractPromptArea.gd" type="Script" id=174]
 [ext_resource path="res://src/Helpers/Interacts/InteractPromptArea.tscn" type="PackedScene" id=175]
 [ext_resource path="res://src/Helpers/Spawning/EnemySpawner.tscn" type="PackedScene" id=176]
+[ext_resource path="res://assets/fonts/Early GameBoy.ttf" type="DynamicFontData" id=177]
 
 [sub_resource type="SegmentShape2D" id=1]
 a = Vector2( -474.143, 0.37738 )
@@ -262,25 +263,47 @@ a = Vector2( -256.938, 208.497 )
 b = Vector2( 1016.59, 208.444 )
 
 [sub_resource type="RectangleShape2D" id=22]
-extents = Vector2( 11.8075, 11.755 )
+extents = Vector2( 6.46179, 120.456 )
 
 [sub_resource type="RectangleShape2D" id=23]
-extents = Vector2( 9.60168, 10.0379 )
+extents = Vector2( 10, 106.123 )
 
 [sub_resource type="RectangleShape2D" id=24]
-extents = Vector2( 7.76685, 36.4999 )
+extents = Vector2( 11.8075, 11.755 )
 
 [sub_resource type="RectangleShape2D" id=25]
-extents = Vector2( 17.2043, 37.1483 )
+extents = Vector2( 9.60168, 10.0379 )
 
 [sub_resource type="RectangleShape2D" id=26]
-extents = Vector2( 6.35352, 38.6898 )
+extents = Vector2( 7.76685, 36.4999 )
 
 [sub_resource type="RectangleShape2D" id=27]
-extents = Vector2( 10, 72.1877 )
+extents = Vector2( 17.2043, 37.1483 )
 
 [sub_resource type="RectangleShape2D" id=28]
+extents = Vector2( 6.35352, 38.6898 )
+
+[sub_resource type="RectangleShape2D" id=29]
+extents = Vector2( 10, 72.1877 )
+
+[sub_resource type="RectangleShape2D" id=30]
 extents = Vector2( 69.0192, 20.5003 )
+
+[sub_resource type="RectangleShape2D" id=31]
+extents = Vector2( 23.5465, 58.5441 )
+
+[sub_resource type="RectangleShape2D" id=32]
+extents = Vector2( 10, 64.0051 )
+
+[sub_resource type="RectangleShape2D" id=33]
+extents = Vector2( 447.481, 28.3017 )
+
+[sub_resource type="DynamicFont" id=34]
+size = 8
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+font_data = ExtResource( 177 )
 
 [node name="House" type="Node2D"]
 pause_mode = 2
@@ -368,6 +391,12 @@ shape = SubResource( 10 )
 [node name="Right" type="CollisionShape2D" parent="LevelBackground/Boundaries/StreamingRoom"]
 shape = SubResource( 11 )
 
+[node name="Basement_Delimeter" parent="LevelBackground/Boundaries/StreamingRoom" instance=ExtResource( 20 )]
+position = Vector2( -1255.14, 228.986 )
+
+[node name="BottomRight" parent="LevelBackground/Boundaries/StreamingRoom/Basement_Delimeter" index="0"]
+position = Vector2( 1282.55, 293 )
+
 [node name="Foyer" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 3264.4, 88.3407 )
 
@@ -407,6 +436,15 @@ shape = SubResource( 20 )
 [node name="Bottom" type="CollisionShape2D" parent="LevelBackground/Boundaries/Basement"]
 shape = SubResource( 21 )
 
+[node name="BossSeperator" type="CollisionShape2D" parent="LevelBackground/Boundaries/Basement"]
+position = Vector2( 509.62, 90.1226 )
+shape = SubResource( 22 )
+
+[node name="Lockout" type="CollisionShape2D" parent="LevelBackground/Boundaries/Basement"]
+position = Vector2( -96.1665, 104.652 )
+shape = SubResource( 23 )
+disabled = true
+
 [node name="CameraPositions" type="Node" parent="LevelBackground"]
 
 [node name="Bathroom_Delimiter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
@@ -420,6 +458,12 @@ position = Vector2( 484.721, 50 )
 
 [node name="BottomRight" parent="LevelBackground/CameraPositions/Bedroom_Delimiter" index="0"]
 position = Vector2( 652.081, 250 )
+
+[node name="Garage_Delimiter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
+position = Vector2( 2813.72, 347 )
+
+[node name="BottomRight" parent="LevelBackground/CameraPositions/Garage_Delimiter" index="0"]
+position = Vector2( 832.379, 250 )
 
 [node name="StreamingRoom_Delimiter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
 position = Vector2( 1147.19, 50 )
@@ -445,18 +489,6 @@ position = Vector2( 3128.25, 50 )
 [node name="BottomRight" parent="LevelBackground/CameraPositions/Foyer_Delimiter" index="0"]
 position = Vector2( 517.918, 250 )
 
-[node name="Garage_Delimiter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
-position = Vector2( 2813.72, 347 )
-
-[node name="BottomRight" parent="LevelBackground/CameraPositions/Garage_Delimiter" index="0"]
-position = Vector2( 832.379, 250 )
-
-[node name="Basement_Delimeter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
-position = Vector2( 2.51066, 303.148 )
-
-[node name="BottomRight" parent="LevelBackground/CameraPositions/Basement_Delimeter" index="0"]
-position = Vector2( 1282.55, 293 )
-
 [node name="Interactions" type="Node" parent="LevelBackground"]
 
 [node name="Bathroom" type="Node" parent="LevelBackground/Interactions"]
@@ -473,7 +505,7 @@ texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bathroom/Toilet"]
 position = Vector2( -3.5, -6 )
-shape = SubResource( 22 )
+shape = SubResource( 24 )
 
 [node name="Bedroom" type="Node2D" parent="LevelBackground/Interactions"]
 position = Vector2( 604, 72.5 )
@@ -485,7 +517,7 @@ interactableText = "Another good night's rest.  Time to start the day."
 playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bedroom/Bed"]
-shape = SubResource( 23 )
+shape = SubResource( 25 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Bedroom/Bed"]
 visible = false
@@ -500,7 +532,7 @@ playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon"]
 position = Vector2( 69.2712, 22.8743 )
-shape = SubResource( 23 )
+shape = SubResource( 25 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon"]
 visible = false
@@ -518,7 +550,7 @@ playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/LivingRoom/InteractPromptArea"]
 scale = Vector2( 0.383436, 0.775982 )
-shape = SubResource( 23 )
+shape = SubResource( 25 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/LivingRoom/InteractPromptArea"]
 visible = false
@@ -537,7 +569,7 @@ playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Coffee"]
 position = Vector2( -3.12475, 11.749 )
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Kitchen/Coffee"]
 visible = false
@@ -555,7 +587,7 @@ texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Fridge"]
 position = Vector2( -1.88745, 12.454 )
-shape = SubResource( 25 )
+shape = SubResource( 27 )
 
 [node name="Microwave" parent="LevelBackground/Interactions/Kitchen" instance=ExtResource( 175 )]
 position = Vector2( 281.583, 75.9244 )
@@ -568,7 +600,7 @@ texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Microwave"]
 position = Vector2( 2.65381, 19.7982 )
-shape = SubResource( 26 )
+shape = SubResource( 28 )
 
 [node name="KitchenFirstTime" type="Area2D" parent="LevelBackground/Interactions/Kitchen"]
 position = Vector2( -9.73755, 147.583 )
@@ -578,8 +610,8 @@ visible = false
 texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/KitchenFirstTime"]
-position = Vector2( 8.47412, 15.8919 )
-shape = SubResource( 27 )
+position = Vector2( 6.58667, 15.8919 )
+shape = SubResource( 29 )
 
 [node name="Office" type="Node2D" parent="LevelBackground/Interactions"]
 
@@ -596,7 +628,23 @@ texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Office/Computer"]
 position = Vector2( 1506.55, 227.483 )
-shape = SubResource( 28 )
+shape = SubResource( 30 )
+
+[node name="Basement" type="Node2D" parent="LevelBackground/Interactions"]
+
+[node name="BasementAttack" type="Area2D" parent="LevelBackground/Interactions/Basement"]
+position = Vector2( 250.127, 391.708 )
+
+[node name="BasementAttackCollision" type="CollisionShape2D" parent="LevelBackground/Interactions/Basement/BasementAttack"]
+position = Vector2( 208.775, 145.563 )
+shape = SubResource( 31 )
+
+[node name="BossEncounter" type="Area2D" parent="LevelBackground/Interactions/Basement"]
+position = Vector2( 26.4882, -3.05176e-05 )
+
+[node name="BossEncounterCollision" type="CollisionShape2D" parent="LevelBackground/Interactions/Basement/BossEncounter"]
+position = Vector2( 995.17, 534.2 )
+shape = SubResource( 32 )
 
 [node name="Teleports" type="Node" parent="LevelBackground"]
 
@@ -720,6 +768,17 @@ position = Vector2( -243.21, 261.416 )
 [node name="ToBetaTeleportPosition" parent="LevelBackground/Teleports/Foyer_Garage_2WT/EndpointBeta" index="1"]
 position = Vector2( -9.19067, 24.379 )
 
+[node name="SpecialZones" type="Node" parent="LevelBackground"]
+
+[node name="BossMobZone" type="Area2D" parent="LevelBackground/SpecialZones"]
+position = Vector2( 15.5762, 292.321 )
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/SpecialZones/BossMobZone"]
+position = Vector2( 663.603, 250.502 )
+shape = SubResource( 33 )
+
 [node name="YSort" type="YSort" parent="."]
 pause_mode = 1
 
@@ -730,30 +789,29 @@ position = Vector2( 710.871, 232.969 )
 
 [node name="KitchenRat" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 2839.86, 250.16 )
-automatic = false
 enemy = "SlimeFR"
+automatic = false
 
 [node name="BasementL1" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 200.939, 516.372 )
 rect = Rect2( 0, 0, 20, 80 )
-automatic = false
-only_off_screen = true
-duration_between_spawn = 8
-count = 3
+duration_between_spawn = 3
+count = 4
 enemy = "SlimeFR"
+automatic = false
 
 [node name="BasementR1" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 717.26, 523.551 )
 rect = Rect2( 0, 0, 50, 70 )
-automatic = false
-only_off_screen = true
-count = 3
+duration_between_spawn = 3
+count = 4
 enemy = "SlimeFR"
+automatic = false
 
 [node name="RatKingSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 1117.09, 541.514 )
-automatic = false
 enemy = "RatKing"
+automatic = false
 
 [node name="Props" type="YSort" parent="YSort"]
 
@@ -1225,7 +1283,7 @@ position = Vector2( 327.799, 200.013 )
 position = Vector2( 447.647, 159.534 )
 
 [node name="Spot6" parent="YSort/Props/Basement" instance=ExtResource( 110 )]
-position = Vector2( 520.271, 223.03 )
+position = Vector2( 520.978, 223.03 )
 
 [node name="Spot7" parent="YSort/Props/Basement" instance=ExtResource( 109 )]
 position = Vector2( 613.134, 157.55 )
@@ -1398,41 +1456,6 @@ position = Vector2( 91.9744, 128.276 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="GUI"]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Profile" type="TextureRect" parent="GUI/Control"]
-margin_left = 15.0
-margin_top = 16.0
-margin_right = 90.0
-margin_bottom = 91.0
-texture = ExtResource( 21 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cash" type="TextureRect" parent="GUI/Control"]
-margin_left = 96.7937
-margin_top = 49.9046
-margin_right = 238.794
-margin_bottom = 75.9046
-texture = ExtResource( 24 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="healthBar" parent="GUI/Control" instance=ExtResource( 23 )]
-margin_left = 103.0
-margin_top = 32.0
-margin_right = 306.0
-margin_bottom = 53.0
-
 [node name="TextBox" parent="GUI" instance=ExtResource( 1 )]
 pause_mode = 2
 visible = false
@@ -1445,9 +1468,76 @@ margin_right = 512.0
 
 [node name="PauseScreenContainer" parent="GUI" instance=ExtResource( 26 )]
 margin_left = -11.3578
-margin_top = -4.88671
+margin_top = -5.26128
 margin_right = -11.358
-margin_bottom = -4.88672
+margin_bottom = -5.26129
+
+[node name="PlayerGui" type="Control" parent="GUI"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Profile" type="TextureRect" parent="GUI/PlayerGui"]
+margin_left = 15.0
+margin_top = 16.0
+margin_right = 90.0
+margin_bottom = 91.0
+mouse_filter = 2
+texture = ExtResource( 21 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cash" type="TextureRect" parent="GUI/PlayerGui"]
+margin_left = 91.0
+margin_top = 50.0
+margin_right = 115.0
+margin_bottom = 75.0
+mouse_filter = 2
+texture = ExtResource( 24 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="healthBar" parent="GUI/PlayerGui" instance=ExtResource( 23 )]
+margin_left = 103.0
+margin_top = 32.0
+margin_right = 306.0
+margin_bottom = 53.0
+mouse_filter = 2
+
+[node name="Coins" type="Label" parent="GUI/PlayerGui"]
+margin_left = 130.041
+margin_top = 52.8196
+margin_right = 232.041
+margin_bottom = 62.8196
+rect_scale = Vector2( 1.6, 1.6 )
+size_flags_horizontal = 0
+custom_fonts/font = SubResource( 34 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "00"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/PlayerGui"]
+margin_left = 116.108
+margin_top = 58.6466
+margin_right = 136.108
+margin_bottom = 88.6466
+rect_scale = Vector2( 1.6, 1.6 )
+size_flags_horizontal = 0
+custom_fonts/font = SubResource( 34 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "x"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_Toilet_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
@@ -1459,17 +1549,22 @@ margin_bottom = -4.88672
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Kitchen/Microwave" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="body_entered" from="LevelBackground/Interactions/Kitchen/KitchenFirstTime" to="." method="_on_KitchenFirstTime_body_entered"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Office/Computer" to="." method="_on_InteractPromptArea_interactable_text_signal"]
+[connection signal="body_entered" from="LevelBackground/Interactions/Basement/BasementAttack" to="." method="_on_BasementAttack_body_entered"]
+[connection signal="body_entered" from="LevelBackground/Interactions/Basement/BossEncounter" to="." method="_on_BossEncounter_body_entered"]
 [connection signal="AllEnemiesDefeated" from="YSort/Actors/KitchenRat" to="." method="_on_KitchenRat_AllEnemiesDefeated"]
+[connection signal="AllEnemiesDefeated" from="YSort/Actors/BasementL1" to="." method="_on_BasementL1_AllEnemiesDefeated"]
+[connection signal="AllEnemiesDefeated" from="YSort/Actors/BasementR1" to="." method="_on_BasementR1_AllEnemiesDefeated"]
+[connection signal="AllEnemiesDefeated" from="YSort/Actors/RatKingSpawner" to="." method="_on_RatKingSpawner_AllEnemiesDefeated"]
 [connection signal="closed" from="GUI/TextBox" to="." method="_on_TextBox_closed"]
 
+[editable path="LevelBackground/Boundaries/StreamingRoom/Basement_Delimeter"]
 [editable path="LevelBackground/CameraPositions/Bathroom_Delimiter"]
 [editable path="LevelBackground/CameraPositions/Bedroom_Delimiter"]
+[editable path="LevelBackground/CameraPositions/Garage_Delimiter"]
 [editable path="LevelBackground/CameraPositions/StreamingRoom_Delimiter"]
 [editable path="LevelBackground/CameraPositions/LivingRoom_Delimiter"]
 [editable path="LevelBackground/CameraPositions/Kitchen_Delimiter"]
 [editable path="LevelBackground/CameraPositions/Foyer_Delimiter"]
-[editable path="LevelBackground/CameraPositions/Garage_Delimiter"]
-[editable path="LevelBackground/CameraPositions/Basement_Delimeter"]
 [editable path="LevelBackground/Teleports/Bathroom_Bedroom_2WT"]
 [editable path="LevelBackground/Teleports/Bedroom_Streaming_2WT"]
 [editable path="LevelBackground/Teleports/Streaming_LivingRoom_2WT"]

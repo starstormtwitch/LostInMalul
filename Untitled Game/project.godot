@@ -49,11 +49,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/GGS/src/utils.gd"
 }, {
-"base": "AudioStreamPlayer",
-"class": "HitAudioPlayer",
-"language": "GDScript",
-"path": "res://src/Helpers/Audio/HitAudioPlayer.gd"
-}, {
 "base": "Area2D",
 "class": "InteractPromptArea",
 "language": "GDScript",
@@ -94,6 +89,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Helpers/SmokeParticles.gd"
 }, {
+"base": "Control",
+"class": "SoundPlayer",
+"language": "GDScript",
+"path": "res://src/Helpers/Audio/SoundPlayer.gd"
+}, {
 "base": "Node2D",
 "class": "TeleportNode2D",
 "language": "GDScript",
@@ -118,7 +118,6 @@ _global_script_class_icons={
 "CustomParticles": "",
 "Enemy": "",
 "GGSUtils": "",
-"HitAudioPlayer": "",
 "InteractPromptArea": "",
 "JSONBeautifier": "",
 "JumpHelper": "",
@@ -127,6 +126,7 @@ _global_script_class_icons={
 "Settings": "",
 "SettingsMenu": "",
 "SmokeParticles": "",
+"SoundPlayer": "",
 "TeleportNode2D": "",
 "TextBox": "",
 "TwoWayTeleportNode2D": ""
@@ -134,13 +134,14 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Test Project Yaki"
+config/name="Lost in Malul"
 run/main_scene="res://src/Levels/House.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 LevelGlobals="*res://src/Logic/LevelGlobals.gd"
+TransitionsManager="*res://src/Logic/TransitionsManager.gd"
 EventsList="*res://src/Helpers/EventsList.gd"
 ggsManager="*res://addons/GGS/src/ggs_manager.gd"
 MusicManager="*res://src/Helpers/Audio/MusicManager.tscn"
