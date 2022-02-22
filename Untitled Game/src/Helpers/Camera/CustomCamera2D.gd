@@ -48,6 +48,14 @@ var _previous_y = 0.0
 var _last_offset = Vector2(0, 0)
 var _is_shaking = false
 
+#bounding area
+var _leftBound: StaticBody2D = null
+var _rightBound: StaticBody2D = null
+var _upperBound: StaticBody2D = null
+var _bottomBound: StaticBody2D = null
+var _boundWidth: int = 5
+var _defaultBoundLength: int = 10000000
+
 func _init(cameraTarget: Node, current: bool):
 	assert(cameraTarget, "Camera target is not a node.")
 	cameraTarget.get_tree().current_scene.add_child(self)
@@ -59,9 +67,16 @@ func _init(cameraTarget: Node, current: bool):
 	_animationPlayer = CustomCamera2DSimpleTransitionPlayer.new(cameraTarget.get_tree().current_scene)
 	_get_new_camera_shake_values()
 	_connect_to_settings_changed_signal()
-
+	_configureBounds()
+	
 func _ready():
 	self.set_process(true)
+	#self.get_tree().root.connect("size_changed", self, "_on_viewport_size_changed")	
+
+#func _on_viewport_size_changed():
+#	print("Viewport y: " + str(self.get_viewport().size.y))
+#	print("viewport x: " + str(self.get_viewport().size.x))
+	
 
 func _process(delta):
 	if _limit_smooth_active and !_is_shaking:
@@ -79,6 +94,7 @@ func _process(delta):
 			_limit_smooth_active = false
 			self.smoothing_enabled = false
 			setRemoteUpdates(true)
+			_updateBoundLimits()
 			emit_signal("smooth_limit_finished")
 	elif _panTarget != null and !_is_shaking:
 		var panTargetPosition = _panTarget.getPosition()
@@ -221,7 +237,9 @@ func limitCameraToCoordinates(top: int, left: int, bottom: int, right: int, tran
 		setLimits(top, left, bottom, right)
 		_animationPlayer.playFadeOut()
 		yield(_animationPlayer._player, "animation_finished")
-	_limit_smooth_active = transitionType == TransitionTypeEnum.SMOOTH
+		
+	_limit_smooth_active = transitionType == TransitionTypeEnum.SMOOTH	
+	
 	if _verbose:
 		print("CustomCamera2D: New camera limits (Smooth:"+str(_limit_smooth_active)+") Top/Left/Bottom/Right " 
 		+ str(top) + "/" + str(left) + "/" + str(bottom) + "/" + str(right))
@@ -237,6 +255,7 @@ func setLimits(top: int, left: int, bottom: int, right: int) -> void:
 	self.limit_left = left
 	self.limit_bottom = bottom
 	self.limit_right = right
+	_updateBoundLimits()
 
 
 func resetLimits() -> void:
@@ -277,6 +296,60 @@ func connect_to_player_shake_signal(player: Actor):
 	print("Connect player hit enemy singal")
 	assert(player, "Player cannot be null")
 	player.connect("player_hit_enemy", self, "shake")
+
+## Configure collision shapes around the camera.
+func _configureBounds() -> void:
+	_leftBound = _createNewBound()
+	_rightBound = _createNewBound()
+	_upperBound = _createNewBound()
+	_bottomBound = _createNewBound()
+	
+	_leftBound.rotate(PI/2) #90
+	_rightBound.rotate(-PI/2) #-90
+	_upperBound.rotate(PI) #180
+	_bottomBound.rotate(0) #0 
+	#by default one way collision aims "down"
+	#the arrow on a one way collision points the angle that it can be traversed from.
+
+## Set collision shapes around the camera to be positioned at the edges of its limits.
+func _updateBoundLimits() -> void:
+	#Calculate the lenght of the rectangles extents.
+	#Rectangles will be centered and the extents are half of the rectangles x or y length.
+	#Length will depend on the magnitude of the limits in the x or y coordinates for the camera.
+	#Width remains constant, since we are rotating the rectangles.
+	#Note: the length calculations can be "optional" if an "infinite" length is used instead, 
+	# by removing these next lines and using always a high default value.
+	var xlen = (self.limit_right - self.limit_left) / 2
+	var ylen = (self.limit_bottom - self.limit_top) / 2
+	_leftBound.shape_owner_get_shape(0,0).extents = Vector2(ylen, _boundWidth)
+	_rightBound.shape_owner_get_shape(0,0).extents = Vector2(ylen, _boundWidth)
+	_upperBound.shape_owner_get_shape(0,0).extents = Vector2(xlen, _boundWidth)
+	_bottomBound.shape_owner_get_shape(0,0).extents = Vector2(xlen, _boundWidth)
+	var xcenter = (self.limit_left + self.limit_right) / 2
+	var ycenter = (self.limit_top + self.limit_bottom) / 2
+	#Use bound width as an offset of the position to make the bounds be at the exact camera limits.
+	_leftBound.position = Vector2(self.limit_left - _boundWidth, ycenter)
+	_rightBound.position = Vector2(self.limit_right + _boundWidth, ycenter)
+	_upperBound.position = Vector2(xcenter, self.limit_top - _boundWidth)
+	_bottomBound.position = Vector2(xcenter, self.limit_bottom + _boundWidth)
+
+## Base code for rectangle collision shape creation.
+func _createNewBound() -> StaticBody2D:
+	#create body, collision and shape
+	var sb: StaticBody2D = StaticBody2D.new()
+	var coll: CollisionShape2D = CollisionShape2D.new()
+	var rect: RectangleShape2D = RectangleShape2D.new()
+	coll.shape = rect
+	#The rectangle's half extents. The width and height of this shape is twice the half extents.
+	rect.extents = Vector2(_defaultBoundLength, _boundWidth)#shapes are rotated later
+	sb.set_collision_layer_bit(LevelGlobals.GetLayerBit("Boundaries"),true) #set boundary layer
+	sb.set_collision_mask_bit(LevelGlobals.GetLayerBit("Player"),true) #mask to player layer
+	sb.set_collision_mask_bit(LevelGlobals.GetLayerBit("Enemy"),true) #mask to enemy layer
+	coll.one_way_collision = true
+	#coll.one_way_collision_margin = 10
+	sb.add_child(coll)
+	self.get_tree().current_scene.add_child(sb)
+	return sb
 
 #inner classes
 
