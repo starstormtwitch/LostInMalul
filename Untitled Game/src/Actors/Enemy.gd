@@ -97,12 +97,12 @@ func get_next_state(targetDirection: Vector2):
 		return;
 	if(_target != null):
 		var dist_to_target = self.global_position.distance_to(_target.global_position)
-		if  (targetDirection != Vector2.ZERO && targetDirection != Vector2.ZERO  && dist_to_target >= _maxDistanceToStayFromPlayer):
+		if(dist_to_target <= _attack_range && _isReadyToAttack):
+			_state = EnemyState.ATTACK_IN_PLACE
+		elif  (targetDirection != Vector2.ZERO && targetDirection != Vector2.ZERO  && dist_to_target >= _maxDistanceToStayFromPlayer):
 			_state = EnemyState.CHASE
 		elif  (_state == EnemyState.CHASE && targetDirection != Vector2.ZERO && dist_to_target >= _minDistanceToStayFromPlayer):
 			_state = EnemyState.CHASE
-		elif(dist_to_target <= _attack_range):
-			_state = EnemyState.ATTACK_IN_PLACE
 		else:
 			_state = EnemyState.ROAM
 	else:
@@ -232,9 +232,10 @@ func _on_hitFlash_cooldown_timeout():
 	self.modulate =  Color(1,1,1,1) 
 		
 func _finishedAttack(cooldown: int):
-	_attackCooldownTimer.start(cooldown)
-	_isReadyToAttack = false
+	_state = EnemyState.ROAM
 	_isAttacking = false
+	_isReadyToAttack = false
+	_attackCooldownTimer.start(cooldown)
 
 func _connect_hit_signal_to_player():
 	var player = LevelGlobals.GetPlayerActor()

@@ -7,9 +7,6 @@ var _ratSoldier = preload("res://src/Actors/RatSoldier.tscn");
 #staff knockback info
 var KNOCKBACK_COOLDOWN = 5;
 
-#rat king idle phase
-var IdlePhase = true;
-
 #rat spawn
 var _ratSpawnCooldownTimer = Timer.new()
 var _canDoRatSpawn = true;
@@ -41,6 +38,8 @@ func _ready():
 	_minDistanceToStayFromPlayer = 90;
 	_maxDistanceToStayFromPlayer = 1200;
 	_canTakeKnockup = false;
+	_target = null;
+	
 	if($AnimationTree != null):
 		$AnimationTree.active = true
 	_lightningCooldownTimer.connect("timeout",self,"_on_lightning_cooldown_timeout") 
@@ -69,7 +68,6 @@ func _ready():
 		
 #disabling attacking for now
 func _physics_process(_delta: float) -> void:
-	if(!IdlePhase):
 		_maxDistanceToStayFromPlayer = 120;
 		if(!_lightningPhase && _health < 50):
 			_lightningPhase = true;
@@ -118,9 +116,11 @@ func _lightning_spell():
 	spellSpawner.spawnMultipleInArea(_lightningBolt)
 
 func _spawn_rats(amount):
+	assert(_mobSpawnArea != null, "Mob spawn area must be set in parent scene")
+	
 	var ratSpawner = _spawner.instance();
-	ratSpawner.global_position = _target.global_position;
-	ratSpawner.set_rect(Rect2(0,0,200,60));
+	ratSpawner.global_position = _mobSpawnArea.global_position;
+	ratSpawner.set_rect(Rect2(Vector2.ZERO, _mobSpawnArea.shape.extents));
 	ratSpawner.duration_between_spawn = 1
 	ratSpawner.count = amount;
 	get_parent().add_child(ratSpawner);

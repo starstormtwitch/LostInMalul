@@ -95,7 +95,8 @@ func _on_BossEncounter_body_entered(body):
 	if (body == _player):
 		get_node("LevelBackground/Interactions/Basement/BossEncounter/BossEncounterCollision").set_deferred("disabled", true);
 		_textBox.showText("Rat King: So... you think you can take your house back from me? I'm afraid that can't happen... you see, us rats are sick of living in this damp disgusting basement.  We will enjoy this house better than you ever did, and now, I'll make sure you never hurt a rat again.")
-		ratKing[0].IdlePhase = false;
+		ratKing[0]._target = _player;
+		ratKing[0]._mobSpawnArea = get_node("LevelBackground/SpecialZones/BossMobZone/CollisionShape2D");
 
 
 func _on_RatKingSpawner_AllEnemiesDefeated():

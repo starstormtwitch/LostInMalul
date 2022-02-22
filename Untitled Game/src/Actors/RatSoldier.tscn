@@ -323,7 +323,7 @@ position = Vector2( 0, -23.7913 )
 texture = ExtResource( 1 )
 hframes = 11
 vframes = 5
-frame = 44
+frame = 14
 
 [node name="enemy" type="Sprite" parent="."]
 position = Vector2( 0, -8.795 )
@@ -332,7 +332,7 @@ texture = ExtResource( 3 )
 offset = Vector2( 0, -15 )
 hframes = 11
 vframes = 5
-frame = 44
+frame = 14
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/die = SubResource( 1 )
@@ -380,7 +380,8 @@ shape = SubResource( 34 )
 
 [node name="Attack" type="Area2D" parent="."]
 modulate = Color( 0.431373, 1, 0, 1 )
-position = Vector2( 0.353554, -14.8493 )
+position = Vector2( 1.24445, -10.9516 )
+scale = Vector2( 1.04041, 2.23254 )
 collision_layer = 4096
 collision_mask = 0
 

@@ -260,7 +260,7 @@ position = Vector2( 3.32684, -34.9794 )
 texture = ExtResource( 3 )
 hframes = 13
 vframes = 4
-frame = 39
+frame = 51
 
 [node name="enemy" type="Sprite" parent="."]
 position = Vector2( 3.56418, -19.7197 )
@@ -269,7 +269,7 @@ texture = ExtResource( 1 )
 offset = Vector2( 0, -15 )
 hframes = 13
 vframes = 4
-frame = 39
+frame = 51
 
 [node name="HitMarkerParticles" type="Particles2D" parent="."]
 material = SubResource( 1 )
@@ -336,6 +336,7 @@ collision_mask = 0
 visible = false
 position = Vector2( 2.90011, 8.09588 )
 shape = SubResource( 28 )
+disabled = true
 
 [node name="LootDropper" parent="." instance=ExtResource( 6 )]
 position = Vector2( -6.62912, -19.4454 )

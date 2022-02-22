@@ -81,22 +81,6 @@ position = Vector2( 264.692, 274.695 )
 position = Vector2( 488.322, 278.493 )
 scale = Vector2( 0.5, 0.5 )
 
-[node name="Enemy2" parent="objects/actors" instance=ExtResource( 4 )]
-position = Vector2( 622.456, 238.084 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Enemy3" parent="objects/actors" instance=ExtResource( 4 )]
-position = Vector2( 829.55, 281.299 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Enemy4" parent="objects/actors" instance=ExtResource( 4 )]
-position = Vector2( 954.144, 230.227 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Enemy5" parent="objects/actors" instance=ExtResource( 4 )]
-position = Vector2( 1119.71, 274.003 )
-scale = Vector2( 0.5, 0.5 )
-
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="PauseScreenContainer" parent="GUI" instance=ExtResource( 9 )]

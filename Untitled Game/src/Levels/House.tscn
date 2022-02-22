@@ -1,4 +1,4 @@
-[gd_scene load_steps=211 format=2]
+[gd_scene load_steps=212 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/LirikYaki.tscn" type="PackedScene" id=2]
@@ -295,7 +295,10 @@ extents = Vector2( 23.5465, 58.5441 )
 [sub_resource type="RectangleShape2D" id=32]
 extents = Vector2( 10, 64.0051 )
 
-[sub_resource type="DynamicFont" id=33]
+[sub_resource type="RectangleShape2D" id=33]
+extents = Vector2( 447.481, 28.3017 )
+
+[sub_resource type="DynamicFont" id=34]
 size = 8
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -764,6 +767,17 @@ position = Vector2( -243.21, 261.416 )
 
 [node name="ToBetaTeleportPosition" parent="LevelBackground/Teleports/Foyer_Garage_2WT/EndpointBeta" index="1"]
 position = Vector2( -9.19067, 24.379 )
+
+[node name="SpecialZones" type="Node" parent="LevelBackground"]
+
+[node name="BossMobZone" type="Area2D" parent="LevelBackground/SpecialZones"]
+position = Vector2( 15.5762, 292.321 )
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/SpecialZones/BossMobZone"]
+position = Vector2( 663.603, 250.502 )
+shape = SubResource( 33 )
 
 [node name="YSort" type="YSort" parent="."]
 pause_mode = 1
@@ -1504,7 +1518,7 @@ margin_right = 232.041
 margin_bottom = 62.8196
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 33 )
+custom_fonts/font = SubResource( 34 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "00"
 __meta__ = {
@@ -1518,7 +1532,7 @@ margin_right = 136.108
 margin_bottom = 88.6466
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 33 )
+custom_fonts/font = SubResource( 34 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "x"
 __meta__ = {

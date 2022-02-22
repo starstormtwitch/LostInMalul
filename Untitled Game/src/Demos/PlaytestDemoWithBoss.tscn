@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/Helpers/Camera/CustomDelimiter2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Levels/Basement.png" type="Texture" id=2]
@@ -23,6 +23,9 @@ extents = Vector2( 507.743, 10 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 10, 56.6757 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 447.481, 28.3017 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 8
@@ -68,6 +71,16 @@ position = Vector2( 3.74511, 2.97438 )
 
 [node name="BottomRight" parent="LevelBackground/CameraPositions/Basement_Delimeter" index="0"]
 position = Vector2( 1290.36, 298.746 )
+
+[node name="SpecialZones" type="Node" parent="LevelBackground"]
+
+[node name="BossMobZone" type="Area2D" parent="LevelBackground/SpecialZones"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/SpecialZones/BossMobZone"]
+position = Vector2( 663.603, 250.502 )
+shape = SubResource( 6 )
 
 [node name="objects" type="YSort" parent="."]
 pause_mode = 1
