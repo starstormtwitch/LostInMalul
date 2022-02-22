@@ -176,7 +176,8 @@
 [ext_resource path="res://src/Helpers/Interacts/InteractPromptArea.gd" type="Script" id=174]
 [ext_resource path="res://src/Helpers/Interacts/InteractPromptArea.tscn" type="PackedScene" id=175]
 [ext_resource path="res://src/Helpers/Spawning/EnemySpawner.tscn" type="PackedScene" id=176]
-[ext_resource path="res://assets/fonts/Early GameBoy.ttf" type="DynamicFontData" id=177]
+[ext_resource path="res://src/GUI/DashCooldownUI.tscn" type="PackedScene" id=177]
+[ext_resource path="res://assets/fonts/Early GameBoy.ttf" type="DynamicFontData" id=178]
 
 [sub_resource type="SegmentShape2D" id=1]
 a = Vector2( -474.143, 0.37738 )
@@ -1524,6 +1525,28 @@ text = "00"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="DashCooldownUI" parent="GUI/PlayerGui" instance=ExtResource( 177 )]
+margin_left = 979.529
+margin_top = 6.69147
+margin_right = 979.529
+margin_bottom = 6.69146
+
+[node name="TextBox" parent="GUI" instance=ExtResource( 1 )]
+pause_mode = 2
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+margin_left = -512.0
+margin_top = -576.0
+margin_right = 512.0
+
+[node name="PauseScreenContainer" parent="GUI" instance=ExtResource( 26 )]
+margin_left = -11.3578
+margin_top = -5.88671
+margin_right = -11.358
+margin_bottom = -5.88672
 
 [node name="Label" type="Label" parent="GUI/PlayerGui"]
 margin_left = 116.108

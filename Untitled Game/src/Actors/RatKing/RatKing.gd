@@ -36,7 +36,7 @@ func _ready():
 	_attack_range = 700
 	_stun_duration = 0
 	_minDistanceToStayFromPlayer = 90;
-	_maxDistanceToStayFromPlayer = 1200;
+	_maxDistanceToStayFromPlayer = 120;
 	_canTakeKnockup = false;
 	_target = null;
 	

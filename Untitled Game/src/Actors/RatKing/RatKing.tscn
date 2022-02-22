@@ -6,6 +6,7 @@
 [ext_resource path="res://src/Helpers/CustomParticles.gd" type="Script" id=4]
 [ext_resource path="res://assets/SpriteSheets/Effect 3 - Sprite Sheet.png" type="Texture" id=5]
 
+
 [sub_resource type="Animation" id=1]
 resource_name = "attack"
 length = 1.6
@@ -298,7 +299,7 @@ texture = ExtResource( 3 )
 offset = Vector2( 0, -15 )
 hframes = 16
 vframes = 4
-frame = 32
+frame = 52
 
 [node name="Shadow" type="Sprite" parent="."]
 position = Vector2( 2.375, -27.7913 )

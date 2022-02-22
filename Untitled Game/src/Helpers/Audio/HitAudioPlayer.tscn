@@ -1,6 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/audio/HitAudio/Retro Impact Punch 07.wav" type="AudioStream" id=2]
+[ext_resource path="res://src/Helpers/Audio/HitAudioPlayer.gd" type="Script" id=1]
+[ext_resource path="res://assets/audio/HitAudio/punch_sfx.wav" type="AudioStream" id=2]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends AudioStreamPlayer

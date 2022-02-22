@@ -1,11 +1,12 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://assets/SpriteSheets/rat soldier/rat_soldier_shadow_sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/RatSoldier.gd" type="Script" id=2]
 [ext_resource path="res://assets/SpriteSheets/rat soldier/rat_soldier-Sheet.png" type="Texture" id=3]
 [ext_resource path="res://src/Helpers/CustomParticles.gd" type="Script" id=4]
 [ext_resource path="res://assets/SpriteSheets/hit markers/Effect 3 - Sprite Sheet.png" type="Texture" id=5]
-[ext_resource path="res://assets/SpriteSheets/hit markers/hits2-Sheet.png" type="Texture" id=6]
+[ext_resource path="res://src/Helpers/Spawning/LootSpawner.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/SpriteSheets/hit markers/hits2-Sheet.png" type="Texture" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "die"
@@ -280,7 +281,7 @@ states/walk/position = Vector2( 385.259, -38 )
 transitions = [ "idle", "hurt", SubResource( 11 ), "hurt", "idle", SubResource( 12 ), "hurt", "die", SubResource( 13 ), "die", "hurt", SubResource( 14 ), "idle", "die", SubResource( 15 ), "die", "idle", SubResource( 16 ), "hurt", "jump_attack", SubResource( 17 ), "jump_attack", "idle", SubResource( 18 ), "idle", "jump_attack", SubResource( 19 ), "jump_attack", "die", SubResource( 20 ), "jump_attack", "hurt", SubResource( 21 ), "die", "jump_attack", SubResource( 22 ), "idle", "walk", SubResource( 23 ), "walk", "idle", SubResource( 24 ), "walk", "die", SubResource( 25 ), "walk", "hurt", SubResource( 26 ), "walk", "jump_attack", SubResource( 27 ), "hurt", "walk", SubResource( 28 ), "jump_attack", "walk", SubResource( 29 ) ]
 start_node = "idle"
 end_node = "die"
-graph_offset = Vector2( -252.741, 24 )
+graph_offset = Vector2( -252.741, 41.2513 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=31]
 
@@ -338,7 +339,7 @@ position = Vector2( 0, -23.7913 )
 texture = ExtResource( 1 )
 hframes = 11
 vframes = 5
-frame = 11
+frame = 44
 
 [node name="enemy" type="Sprite" parent="."]
 position = Vector2( 0, -8.795 )
@@ -347,7 +348,7 @@ texture = ExtResource( 3 )
 offset = Vector2( 0, -15 )
 hframes = 11
 vframes = 5
-frame = 11
+frame = 44
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/die = SubResource( 1 )
@@ -417,12 +418,18 @@ script = ExtResource( 4 )
 
 [node name="KickHitMarkerParticles" type="Particles2D" parent="."]
 material = SubResource( 38 )
-position = Vector2( -6.625, -22.875 )
+position = Vector2( -8.86992, -18.5255 )
 emitting = false
 amount = 1
 one_shot = true
 process_material = SubResource( 39 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
+
+[node name="LootSpawner" parent="." instance=ExtResource( 6 )]
+position = Vector2( -9.6676, -19.0703 )
+MinCoins = 0
+MaxCoins = 0
+PowerupChance = 35
 
 [connection signal="area_entered" from="FlockBox" to="." method="_on_FlockBox_area_entered"]
 [connection signal="area_exited" from="FlockBox" to="." method="_on_FlockBox_area_exited"]

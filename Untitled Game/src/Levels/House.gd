@@ -10,6 +10,7 @@ var _sendKitchenCrash: bool = false
 var _leftBasementDefeated: bool = false
 var _rightBasementDefeated: bool = false
 var ratKing
+
 onready var _textBox: TextBox = $GUI/TextBox
 
 # Called when the node enters the scene tree for the first time.
@@ -34,6 +35,11 @@ func _on_Player_health_changed(_oldHealth, newHealth, maxHealth):
 
 func _on_InteractPromptArea_interactable_text_signal(text):
 	_textBox.showText(text)
+
+func _on_BasementEnc1_Delimiter_PlayerEnteredAreaDelimiter(delimiter):
+	_textBox.showText("That's a lot of rats, I have a bad feeling about this.")
+	get_node("YSort/Actors/BasementL1").spawnEnemy()
+	get_node("YSort/Actors/BasementR1").spawnEnemy()
 
 func _on_KitchenFirstTime_body_entered(body):
 	if body == _player && _firstTimeEnteredKitchen == false:

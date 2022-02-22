@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/GUI/cashIcon.png" type="Texture" id=7]
 [ext_resource path="res://src/Helpers/GUI/HealthBar.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/Helpers/GUI/Pause/PauseScreenContainer.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/GUI/DashCooldownUI.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/fonts/Early GameBoy.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://src/Helpers/GUI/BossHealthBar.tscn" type="PackedScene" id=11]
 
@@ -92,6 +93,12 @@ mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="DashCooldownUI" parent="GUI/GameUI" instance=ExtResource( 10 )]
+margin_left = 978.43
+margin_top = 4.67721
+margin_right = 978.43
+margin_bottom = 4.6772
 
 [node name="bossHealthBar" parent="GUI/PlayerGui" instance=ExtResource( 11 )]
 margin_left = 48.8811

@@ -6,7 +6,11 @@ const _SPEED = 32
 const _TIME = 1
 var _direction = 1
 
+var _isExploding = false
+
 var _timer: Timer = Timer.new()
+
+onready var animationTree: AnimationTree = $AnimationTree
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,8 +21,9 @@ func _ready():
 
 
 func _physics_process(delta):
-	var velocity = Vector2(_SPEED * _direction, 0)
-	move_and_slide(velocity)
+	if !_isExploding:
+		var velocity = Vector2(_SPEED * _direction, 0)
+		move_and_slide(velocity)
 
 
 func set_direction(direction: Vector2):
@@ -31,12 +36,17 @@ func set_direction(direction: Vector2):
 
 
 func _dissapear():
-	$AnimationTree.get("parameters/playback").travel("end")
+	animationTree.get("parameters/playback").travel("end")
+
+
+func _explode():
+	_isExploding = true
+	animationTree.get("parameters/playback").travel("explosion")
 
 
 func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
 		var directionVector = Vector2(_direction, 0)
 		area.get_parent().take_damage(1, directionVector, 50000)
-		_dissapear()
-		#area.get_parent().show_hit_marker(_isLastAttackAKick)
+		_timer.stop()
+		_explode()

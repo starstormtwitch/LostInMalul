@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://assets/SpriteSheets/ratking/Kaboom_Effect.png" type="Texture" id=1]
+[ext_resource path="res://assets/SpriteSheets/Kaboom_EffectWithWarningv1.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/RatKing/LightningSpell.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "attack"
-length = 1.4
-loop = true
+length = 2.3
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:frame")
 tracks/0/interp = 1
@@ -14,10 +14,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 ]
+"values": [ 0, 1, 2, 1, 0, 1, 2, 1, 0, 1, 2, 1, 0, 2, 1, 0, 1, 2, 1, 0, 1, 2, 1, 0, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Attack/AttackBox:disabled")
@@ -26,7 +26,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 1.25, 2.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -38,7 +38,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 1.39 ),
+"times": PoolRealArray( 2.25 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -58,24 +58,24 @@ graph_offset = Vector2( -141.741, -56.2655 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=4]
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 35.144, 14.332 )
+extents = Vector2( 16.5251, 0.386919 )
 
 [node name="LightningSpell" type="KinematicBody2D" groups=[
 "enemy",
 ]]
-position = Vector2( -2.81732, -8.34173 )
+position = Vector2( -0.0793135, -22.8685 )
 z_as_relative = false
 collision_layer = 1024
 collision_mask = 5
 script = ExtResource( 2 )
 
 [node name="sprite" type="Sprite" parent="."]
-position = Vector2( 3.34825, 29.4531 )
+position = Vector2( 0.981841, 39.1127 )
 z_as_relative = false
 texture = ExtResource( 1 )
 offset = Vector2( 0, -15 )
-hframes = 14
-frame = 9
+hframes = 17
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attack = SubResource( 1 )
@@ -88,12 +88,14 @@ parameters/playback = SubResource( 4 )
 
 [node name="Attack" type="Area2D" parent="."]
 modulate = Color( 0.431373, 1, 0, 1 )
-position = Vector2( 0.353554, -14.8493 )
+position = Vector2( -3.05848, -16.3704 )
+scale = Vector2( -1.83732, -23.7145 )
 collision_layer = 4096
 collision_mask = 0
 
 [node name="AttackBox" type="CollisionShape2D" parent="Attack"]
-position = Vector2( 3.52476, 11.1675 )
+position = Vector2( -2.66287, -1.27162 )
 shape = SubResource( 5 )
+disabled = true
 
 [connection signal="area_entered" from="Attack" to="." method="_on_Attack_area_entered"]

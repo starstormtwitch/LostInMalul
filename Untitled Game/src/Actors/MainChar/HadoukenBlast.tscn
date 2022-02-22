@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/SpriteSheets/main_char/hadouken_blast_sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/MainChar/HadoukenBlast.gd" type="Script" id=2]
+[ext_resource path="res://assets/audio/HitAudio/explosion_sound.wav" type="AudioStream" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "end"
@@ -45,6 +46,60 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="Animation" id=9]
+resource_name = "explosion"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7, 8, 9, 10, 11 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.79 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AudioStreamPlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
 [sub_resource type="Animation" id=2]
 resource_name = "start"
 length = 0.3
@@ -64,18 +119,25 @@ tracks/0/keys = {
 [sub_resource type="AnimationNodeAnimation" id=3]
 animation = "end"
 
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "explosion"
+
 [sub_resource type="AnimationNodeAnimation" id=4]
 animation = "start"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=5]
 switch_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+
 [sub_resource type="AnimationNodeStateMachine" id=6]
 states/end/node = SubResource( 3 )
 states/end/position = Vector2( 574, 76 )
+states/explosion/node = SubResource( 10 )
+states/explosion/position = Vector2( 431, 168 )
 states/start/node = SubResource( 4 )
 states/start/position = Vector2( 218, 76 )
-transitions = [ "start", "end", SubResource( 5 ) ]
+transitions = [ "start", "end", SubResource( 5 ), "start", "explosion", SubResource( 11 ) ]
 start_node = "start"
 end_node = "end"
 
@@ -90,11 +152,11 @@ script = ExtResource( 2 )
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -3.53554, -5.48008 )
 texture = ExtResource( 1 )
-hframes = 3
-frame = 2
+hframes = 12
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/end = SubResource( 1 )
+anims/explosion = SubResource( 9 )
 anims/start = SubResource( 2 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -110,5 +172,9 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( 3.35876, -0.707108 )
 shape = SubResource( 8 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.947
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_attack_area_entered"]
