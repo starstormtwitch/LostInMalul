@@ -666,8 +666,8 @@ texture = ExtResource( 2 )
 position = Vector2( -0.893405, -23.5687 )
 texture = ExtResource( 6 )
 hframes = 10
-vframes = 10
-frame = 40
+vframes = 9
+frame = 85
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 visible = false
@@ -746,6 +746,7 @@ collision_mask = 0
 modulate = Color( 0.6, 0.298039, 1, 1 )
 position = Vector2( 12.5648, 7.92492 )
 shape = SubResource( 97 )
+disabled = true
 
 [node name="HadoukenSpawn" type="Position2D" parent="."]
 position = Vector2( 17.1474, -22.0971 )
