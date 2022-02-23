@@ -1,4 +1,4 @@
-[gd_scene load_steps=212 format=2]
+[gd_scene load_steps=213 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
@@ -177,6 +177,7 @@
 [ext_resource path="res://src/Helpers/Interacts/InteractPromptArea.tscn" type="PackedScene" id=175]
 [ext_resource path="res://src/Helpers/Spawning/EnemySpawner.tscn" type="PackedScene" id=176]
 [ext_resource path="res://src/GUI/DashCooldownUI.tscn" type="PackedScene" id=177]
+[ext_resource path="res://assets/fonts/Early GameBoy.ttf" type="DynamicFontData" id=178]
 
 [sub_resource type="SegmentShape2D" id=1]
 a = Vector2( -474.143, 0.37738 )
@@ -303,6 +304,7 @@ size = 8
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
+font_data = ExtResource( 178 )
 
 [node name="House" type="Node2D"]
 pause_mode = 2
@@ -1507,6 +1509,12 @@ margin_right = 306.0
 margin_bottom = 53.0
 mouse_filter = 2
 
+[node name="DashCooldownUI" parent="GUI/PlayerGui" instance=ExtResource( 177 )]
+margin_left = 979.529
+margin_top = 6.69147
+margin_right = 979.529
+margin_bottom = 6.69146
+
 [node name="Coins" type="Label" parent="GUI/PlayerGui"]
 margin_left = 130.041
 margin_top = 52.8196
@@ -1516,22 +1524,16 @@ rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
 custom_fonts/font = SubResource( 34 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "00"
+text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DashCooldownUI" parent="GUI/PlayerGui" instance=ExtResource( 177 )]
-margin_left = 979.529
-margin_top = 6.69147
-margin_right = 979.529
-margin_bottom = 6.69146
-
 [node name="Label" type="Label" parent="GUI/PlayerGui"]
-margin_left = 98.6269
-margin_top = 79.3061
-margin_right = 118.627
-margin_bottom = 109.306
+margin_left = 116.108
+margin_top = 58.6466
+margin_right = 136.108
+margin_bottom = 88.6466
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
 custom_fonts/font = SubResource( 34 )

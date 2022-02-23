@@ -192,7 +192,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		#_velocity = move_and_slide(_velocity)
 		#print("hit, reset attack")
 		disable_hurt_box_if_exists()
-		_finishedAttack(1)
+		#_finishedAttack(1)
 		_isStunned = true
 		_stunTimer.start(_stun_duration)
 		

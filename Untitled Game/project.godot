@@ -159,7 +159,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Lost in Malul"
-run/main_scene="res://src/Levels/House.tscn"
+run/main_scene="res://src/Demos/PlaytestDemoWithBoss.tscn"
 config/icon="res://icon.png"
 
 [autoload]
