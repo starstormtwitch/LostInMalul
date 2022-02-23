@@ -1,13 +1,14 @@
-[gd_scene load_steps=106 format=2]
+[gd_scene load_steps=109 format=2]
 
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.gd" type="Script" id=1]
 [ext_resource path="res://assets/SpriteSheets/main_char/mc_shadow.png" type="Texture" id=2]
 [ext_resource path="res://assets/audio/main_char_death_sfx.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/audio/HitAudio/Retro Impact Punch Hurt 01.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/SpriteSheets/main_char/lirik_sprite_with_supers-Sheet.png" type="Texture" id=6]
-[ext_resource path="res://assets/audio/footsteps_sfx.wav" type="AudioStream" id=7]
-[ext_resource path="res://assets/audio/HitAudio/miss_sfx.wav" type="AudioStream" id=8]
-[ext_resource path="res://assets/audio/HitAudio/shoryken_sfx.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/SpriteSheets/main_char/lirik_sprite_with_supers-Sheet.png" type="Texture" id=5]
+[ext_resource path="res://assets/audio/footsteps_sfx.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/audio/HitAudio/miss_sfx.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/audio/HitAudio/kick_sfx.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/HitAudio/shoryken_sfx.wav" type="AudioStream" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.71682, 10.7663 )
@@ -667,7 +668,7 @@ position = Vector2( -0.893405, -23.5687 )
 texture = ExtResource( 6 )
 hframes = 10
 vframes = 10
-frame = 40
+frame = 85
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 visible = false
@@ -682,6 +683,13 @@ stream = ExtResource( 3 )
 [node name="FootStepAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 volume_db = -12.735
+
+[node name="PunchAudioPlayer" parent="." instance=ExtResource( 5 )]
+
+[node name="KickAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -8.155
+script = ExtResource( 10 )
 
 [node name="WooshAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
@@ -746,6 +754,7 @@ collision_mask = 0
 modulate = Color( 0.6, 0.298039, 1, 1 )
 position = Vector2( 12.5648, 7.92492 )
 shape = SubResource( 97 )
+disabled = true
 
 [node name="HadoukenSpawn" type="Position2D" parent="."]
 position = Vector2( 17.1474, -22.0971 )

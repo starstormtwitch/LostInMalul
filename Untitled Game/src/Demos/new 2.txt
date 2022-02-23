@@ -81,6 +81,7 @@ position = Vector2( 264.692, 274.695 )
 position = Vector2( 508.703, 207.579 )
 rect = Rect2( 0, 0, 600, 80 )
 duration_between_spawn = 5
+count = 100
 enemy = "SlimeFR"
 
 [node name="GUI" type="CanvasLayer" parent="."]

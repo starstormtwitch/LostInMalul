@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/SpriteSheets/rcCropped.png" type="Texture" id=1
+[ext_resource path="res://assets/SpriteSheets/rcCropped.png" type="Texture" id=1]
 [ext_resource path="res://assets/SpriteSheets/main_char/mc_shadow.png" type="Texture" id=2]
 [ext_resource path="res://src/Pickups/Damage.gd" type="Script" id=3]
 

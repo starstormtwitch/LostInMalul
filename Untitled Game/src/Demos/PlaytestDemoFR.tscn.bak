@@ -3,13 +3,14 @@
 [ext_resource path="res://src/Helpers/Camera/CustomDelimiter2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Levels/Basement.png" type="Texture" id=2]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/GUI/cashIcon.png" type="Texture" id=4]
+[ext_resource path="res://src/Actors/SlimeFR.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Demos/PlaytestDemo.gd" type="Script" id=5]
 [ext_resource path="res://assets/GUI/profile.png" type="Texture" id=6]
-[ext_resource path="res://assets/fonts/Early GameBoy.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://assets/GUI/cashIcon.png" type="Texture" id=7]
 [ext_resource path="res://src/Helpers/GUI/HealthBar.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/Helpers/GUI/Pause/PauseScreenContainer.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/Helpers/Spawning/EnemySpawner.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/GUI/DashCooldownUI.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/fonts/Early GameBoy.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://src/Helpers/GUI/BossHealthBar.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -29,7 +30,7 @@ size = 8
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
-font_data = ExtResource( 7 )
+font_data = ExtResource( 10 )
 
 [node name="Sandbox" type="Node2D"]
 pause_mode = 2
@@ -54,7 +55,7 @@ position = Vector2( 181.696, 244.935 )
 shape = SubResource( 2 )
 
 [node name="top" type="CollisionShape2D" parent="LevelBackground/Boundaries/BasementLevel"]
-position = Vector2( 679.561, 193.113 )
+position = Vector2( 679.186, 193.113 )
 shape = SubResource( 3 )
 
 [node name="right" type="CollisionShape2D" parent="LevelBackground/Boundaries/BasementLevel"]
@@ -77,19 +78,13 @@ pause_mode = 1
 [node name="LirikYaki" parent="objects/actors" instance=ExtResource( 3 )]
 position = Vector2( 264.692, 274.695 )
 
-[node name="Spawner" parent="objects/actors" instance=ExtResource( 10 )]
-position = Vector2( 508.703, 207.579 )
-rect = Rect2( 0, 0, 600, 80 )
-duration_between_spawn = 5
-enemy = "SlimeFR"
+[node name="Enemy" parent="objects/actors" instance=ExtResource( 4 )]
+position = Vector2( 488.322, 278.493 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="PauseScreenContainer" parent="GUI" instance=ExtResource( 9 )]
-margin_left = -24.3028
-margin_top = 10.0649
-margin_right = -24.3028
-margin_bottom = 10.0649
 
 [node name="PlayerGui" type="Control" parent="GUI"]
 margin_right = 40.0
@@ -98,6 +93,12 @@ mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="DashCooldownUI" parent="GUI/GameUI" instance=ExtResource( 10 )]
+margin_left = 978.43
+margin_top = 4.67721
+margin_right = 978.43
+margin_bottom = 4.6772
 
 [node name="bossHealthBar" parent="GUI/PlayerGui" instance=ExtResource( 11 )]
 margin_left = 48.8811
@@ -123,7 +124,7 @@ margin_top = 50.0
 margin_right = 116.0
 margin_bottom = 71.0
 mouse_filter = 2
-texture = ExtResource( 4 )
+texture = ExtResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false

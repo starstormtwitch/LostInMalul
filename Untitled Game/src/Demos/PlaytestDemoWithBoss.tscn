@@ -24,10 +24,10 @@ extents = Vector2( 507.743, 10 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 10, 56.6757 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 447.481, 28.3017 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=6]
 size = 8
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -80,7 +80,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/SpecialZones/BossMobZone"]
 position = Vector2( 663.603, 250.502 )
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 
 [node name="objects" type="YSort" parent="."]
 pause_mode = 1
@@ -152,7 +152,7 @@ margin_right = 232.041
 margin_bottom = 62.8196
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "0"
 __meta__ = {
@@ -166,7 +166,7 @@ margin_right = 136.108
 margin_bottom = 88.6466
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "x"
 __meta__ = {

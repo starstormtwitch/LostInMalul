@@ -33,7 +33,7 @@ func _findPlayerEntity() -> void:
 func _createLayerDictionary() -> void:
 	for i in range(1, 32, 1):
 		var layer = ProjectSettings.get_setting("layer_names/2d_physics/layer_" + str(i))
-		if !layer.empty():
+		if layer != null && !layer.empty():
 			_layerDict[layer] = {
 				_layerBitParamName : i,
 				_layerValueParamName : pow(2, i-1)

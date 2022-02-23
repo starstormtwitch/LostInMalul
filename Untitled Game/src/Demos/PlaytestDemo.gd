@@ -28,8 +28,9 @@ func _ready():
 	_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)
 	_player.connect("coin_changed", self, "_on_Player_coin_changed")
 	var boss = get_node("objects/actors/Enemy")
-	boss._target = _player;
-	boss._mobSpawnArea = get_node("LevelBackground/SpecialZones/BossMobZone/CollisionShape2D");
+	if(boss != null):
+		boss._target = _player;
+		boss._mobSpawnArea = get_node("LevelBackground/SpecialZones/BossMobZone/CollisionShape2D");
 	$GUI/PlayerGui/Coins.text = String(_player.Coins);
 	
 func _on_Player_coin_changed():

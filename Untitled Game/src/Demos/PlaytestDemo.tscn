@@ -13,7 +13,6 @@
 [ext_resource path="res://assets/fonts/Early GameBoy.ttf" type="DynamicFontData" id=11]
 [ext_resource path="res://src/Helpers/GUI/BossHealthBar.tscn" type="PackedScene" id=12]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 644.725, 4.32855 )
 

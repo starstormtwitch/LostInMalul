@@ -794,7 +794,6 @@ automatic = false
 [node name="BasementL1" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 200.939, 516.372 )
 rect = Rect2( 0, 0, 20, 80 )
-only_off_screen = true
 duration_between_spawn = 3
 count = 4
 enemy = "SlimeFR"
@@ -803,7 +802,6 @@ automatic = false
 [node name="BasementR1" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 717.26, 523.551 )
 rect = Rect2( 0, 0, 50, 70 )
-only_off_screen = true
 duration_between_spawn = 3
 count = 4
 enemy = "SlimeFR"
@@ -811,7 +809,6 @@ automatic = false
 
 [node name="RatKingSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 1117.09, 541.514 )
-only_off_screen = true
 enemy = "RatKing"
 automatic = false
 
@@ -1468,6 +1465,12 @@ margin_left = -512.0
 margin_top = -576.0
 margin_right = 512.0
 
+[node name="PauseScreenContainer" parent="GUI" instance=ExtResource( 26 )]
+margin_left = -11.3578
+margin_top = -5.26128
+margin_right = -11.358
+margin_bottom = -5.26129
+
 [node name="PlayerGui" type="Control" parent="GUI"]
 margin_right = 40.0
 margin_bottom = 40.0
@@ -1528,10 +1531,10 @@ margin_right = 979.529
 margin_bottom = 6.69146
 
 [node name="Label" type="Label" parent="GUI/PlayerGui"]
-margin_left = 98.6269
-margin_top = 79.3061
-margin_right = 118.627
-margin_bottom = 109.306
+margin_left = 116.108
+margin_top = 58.6466
+margin_right = 136.108
+margin_bottom = 88.6466
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
 custom_fonts/font = SubResource( 34 )

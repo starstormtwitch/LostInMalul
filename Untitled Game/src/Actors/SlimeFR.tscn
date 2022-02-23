@@ -287,7 +287,7 @@ position = Vector2( 3.32684, -34.9794 )
 texture = ExtResource( 3 )
 hframes = 13
 vframes = 4
-frame = 39
+frame = 40
 
 [node name="enemy" type="Sprite" parent="."]
 position = Vector2( 3.56418, -19.7197 )
@@ -296,7 +296,7 @@ texture = ExtResource( 1 )
 offset = Vector2( 0, -15 )
 hframes = 13
 vframes = 4
-frame = 39
+frame = 40
 
 [node name="PunchHitMarkerParticles" type="Particles2D" parent="."]
 material = SubResource( 1 )
@@ -377,7 +377,6 @@ shape = SubResource( 30 )
 [node name="LootDropper" parent="." instance=ExtResource( 6 )]
 position = Vector2( -6.62912, -19.4454 )
 scale = Vector2( 0.990515, 1 )
-MinCoins = 0
 MaxCoins = 2
 
 [connection signal="area_entered" from="FlockBox" to="." method="_on_FlockBox_area_entered"]

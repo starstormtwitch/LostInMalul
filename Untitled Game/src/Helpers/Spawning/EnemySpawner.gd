@@ -4,9 +4,10 @@ extends "res://src/Helpers/Spawning/Spawner.gd"
 const enemyDict = {
 	"Slime" : preload("res://src/Actors/Slime.tscn"),
 	"SlimeFR" : preload("res://src/Actors/SlimeFR.tscn"),
+	"RatSoldier" : preload("res://src/Actors/RatSoldier.tscn"),
 	"RatKing" : preload("res://src/Actors/RatKing/RatKing.tscn")
 }  
-export(String, "Slime", "SlimeFR", "RatKing") var enemy = "Slime"
+export(String, "Slime", "SlimeFR", "RatSoldier", "RatKing") var enemy = "Slime"
 
 export(int) var level = 1
 export(bool) var automatic = true

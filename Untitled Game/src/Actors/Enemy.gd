@@ -192,12 +192,11 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		#_velocity = move_and_slide(_velocity)
 		#print("hit, reset attack")
 		disable_hurt_box_if_exists()
-		#_finishedAttack(1)
+		_finishedAttack(1)
 		_isStunned = true
 		_stunTimer.start(_stun_duration)
 		
 		#mark damage
-		emit_signal("enemy_hit")
 		self.modulate =  Color(10,10,10,10) 
 		_hitFlashTimer.start(.2)
 		if($AnimationTree != null):
@@ -235,5 +234,7 @@ func _on_hitFlash_cooldown_timeout():
 	self.modulate =  Color(1,1,1,1) 
 		
 func _finishedAttack(cooldown: int):
-	_attackCooldownTimer.start(cooldown)
+	_state = EnemyState.ROAM
 	_isAttacking = false
+	_isReadyToAttack = false
+	_attackCooldownTimer.start(cooldown)

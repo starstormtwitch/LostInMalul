@@ -1,11 +1,10 @@
 [gd_scene load_steps=40 format=2]
 
-[ext_resource path="res://assets/SpriteSheets/rat_soldier_shadow_sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/SpriteSheets/rat soldier/rat_soldier_shadow_sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/RatKing/RatKing.gd" type="Script" id=2]
-[ext_resource path="res://assets/SpriteSheets/rat_king_spritesheet.png" type="Texture" id=3]
+[ext_resource path="res://assets/SpriteSheets/ratking/rat_king_spritesheet.png" type="Texture" id=3]
 [ext_resource path="res://src/Helpers/CustomParticles.gd" type="Script" id=4]
-[ext_resource path="res://assets/SpriteSheets/Effect 3 - Sprite Sheet.png" type="Texture" id=5]
-
+[ext_resource path="res://assets/SpriteSheets/ratking/Kaboom_Effect.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "attack"
@@ -299,7 +298,7 @@ texture = ExtResource( 3 )
 offset = Vector2( 0, -15 )
 hframes = 16
 vframes = 4
-frame = 52
+frame = 33
 
 [node name="Shadow" type="Sprite" parent="."]
 position = Vector2( 2.375, -27.7913 )
