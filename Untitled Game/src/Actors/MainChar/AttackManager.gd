@@ -4,7 +4,7 @@ class_name AttackManager
 
 var kickSound = preload("res://assets/audio/HitAudio/kick_sfx.wav")
 var punchSound = preload("res://assets/audio/HitAudio/punch_sfx.wav")
-var hitSound = preload("res://assets/audio/HitAudio/Quick Hit Swoosh.wav")
+var missSound = preload("res://assets/audio/HitAudio/Quick Hit Swoosh.wav")
 
 const _START_A_COMBO = 3
 const _START_B_COMBO = 3
@@ -51,12 +51,12 @@ func doSideSwipeAttack(scene : Node):
 			_animationTree.get("parameters/playback").travel("Shoryuken")
 			combo_reset()
 		elif _comboAPoints == 3:
-			SoundPlayer.playSound(scene, punchSound, 5)
+			SoundPlayer.playSound(scene, missSound, 5)
 			_animationTree.get("parameters/playback").travel("SideSwipe1")
 			_comboAPoints = _comboAPoints - 1
 			_comboBPoints = 3
 		elif _comboAPoints == 2:
-			SoundPlayer.playSound(scene, punchSound, 5)
+			SoundPlayer.playSound(scene, missSound, 5)
 			_animationTree.get("parameters/playback").travel("SideSwipe2")
 			_comboAPoints = _comboAPoints - 1
 			_comboBPoints = 3
@@ -70,19 +70,19 @@ func doSideSwipeKick(scene : Node):
 			_animationTree.get("parameters/playback").travel("Hadouken")
 			combo_reset()
 		elif _comboBPoints == 3:
-			SoundPlayer.playSound(scene, kickSound, 5)
+			SoundPlayer.playSound(scene, missSound, 5)
 			_animationTree.get("parameters/playback").travel("SideSwipeKick")
 			_comboBPoints = _comboBPoints - 1
 			_comboAPoints = 3
 		elif _comboBPoints == 2:
-			SoundPlayer.playSound(scene, kickSound, 5)
+			SoundPlayer.playSound(scene, missSound, 5)
 			_animationTree.get("parameters/playback").travel("SideSwipeRightKick2")
 			_comboBPoints = _comboBPoints - 1
 			_comboAPoints = 3
 
 
 func playHitSounds(scene : Node):
-	SoundPlayer.playSound(scene, hitSound, 5)
+	SoundPlayer.playSound(scene, punchSound, 5)
 
 func combo_reset() -> void:
 	#print("combo reset")

@@ -7,7 +7,7 @@ signal player_dodge
 class_name LirikYaki
 
 const attack_sound = preload("res://assets/audio/HitAudio/Retro Impact Punch Hurt 01.wav")
-const hit_sound = preload("res://assets/audio/HitAudio/Quick Hit Swoosh.wav")
+const miss_sound = preload("res://assets/audio/HitAudio/Quick Hit Swoosh.wav")
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
 const smoke_scene = preload("res://src/Actors/MainChar/SmokeParticles.tscn")
 const hadouken_scene = preload("res://src/Actors/MainChar/HadoukenBlast.tscn")
