@@ -2,9 +2,9 @@
 
 [ext_resource path="res://src/Demos/TransitionsDemo.gd" type="Script" id=1]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/Props/bathroom/Bathtub.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Props/Bathtub.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/Levels/House/House_level.png" type="Texture" id=4]
-[ext_resource path="res://src/Props/bathroom/Cactus.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Props/Cactus.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Props/Plant1.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Props/Plant2.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Props/House/BathroomDoorframe.tscn" type="PackedScene" id=8]
@@ -24,7 +24,6 @@
 [ext_resource path="res://assets/GUI/cash.png" type="Texture" id=22]
 [ext_resource path="res://src/Helpers/GUI/HealthBar.tscn" type="PackedScene" id=23]
 [ext_resource path="res://assets/SpriteSheets/sussyFR_spriteframes.tres" type="SpriteFrames" id=24]
-
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 51.2464, 8.42657 )
@@ -108,31 +107,31 @@ __meta__ = {
 [node name="Bathroom_Delimiter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
 position = Vector2( 6.972, 50 )
 
-[node name="BottomRight" parent="LevelBackground/CameraPositions/Bathroom_Delimiter" index="1"]
+[node name="BottomRight" parent="LevelBackground/CameraPositions/Bathroom_Delimiter" index="0"]
 position = Vector2( 467.842, 250 )
 
 [node name="Bedroom_Delimiter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
 position = Vector2( 426.998, 50 )
 
-[node name="BottomRight" parent="LevelBackground/CameraPositions/Bedroom_Delimiter" index="1"]
+[node name="BottomRight" parent="LevelBackground/CameraPositions/Bedroom_Delimiter" index="0"]
 position = Vector2( 522.259, 250 )
 
 [node name="StreamingRoom_Delimiter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
 position = Vector2( 896.573, 50 )
 
-[node name="BottomRight" parent="LevelBackground/CameraPositions/StreamingRoom_Delimiter" index="1"]
+[node name="BottomRight" parent="LevelBackground/CameraPositions/StreamingRoom_Delimiter" index="0"]
 position = Vector2( 526.638, 250 )
 
 [node name="LivingRoom_Delimiter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
 position = Vector2( 1366.5, 50 )
 
-[node name="BottomRight" parent="LevelBackground/CameraPositions/LivingRoom_Delimiter" index="1"]
+[node name="BottomRight" parent="LevelBackground/CameraPositions/LivingRoom_Delimiter" index="0"]
 position = Vector2( 527.409, 250 )
 
 [node name="Kitchen_Delimiter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
 position = Vector2( 1836.67, 50 )
 
-[node name="BottomRight" parent="LevelBackground/CameraPositions/Kitchen_Delimiter" index="1"]
+[node name="BottomRight" parent="LevelBackground/CameraPositions/Kitchen_Delimiter" index="0"]
 position = Vector2( 618.83, 250 )
 
 [node name="AreaTransitions" type="Node" parent="LevelBackground"]
@@ -293,11 +292,8 @@ shape = SubResource( 17 )
 
 [node name="Actors" type="YSort" parent="YSort"]
 
-[node name="LirikYaki" parent="YSort/Actors" groups=[
-"Player",
-] instance=ExtResource( 2 )]
+[node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 2 )]
 position = Vector2( 234.523, 251.754 )
-scale = Vector2( 1, 1 )
 
 [node name="Props" type="YSort" parent="YSort"]
 
@@ -466,6 +462,7 @@ __meta__ = {
 position = Vector2( 1592.35, 203.362 )
 scale = Vector2( 0.2, 0.2 )
 frames = ExtResource( 19 )
+frame = 4
 playing = true
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
@@ -476,7 +473,7 @@ scale = Vector2( 3.09244, 1.21189 )
 position = Vector2( 1622.33, 203.107 )
 scale = Vector2( -0.2, 0.2 )
 frames = ExtResource( 24 )
-frame = 3
+frame = 1
 playing = true
 
 [connection signal="body_entered" from="LevelBackground/AreaTransitions/Bathroom_To_Bedroom" to="." method="_on_Bathroom_To_Bedroom_body_entered"]

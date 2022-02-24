@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/Helpers/Camera/CustomDelimiter2D.gd" type="Script" id=1]
 [ext_resource path="res://assets/Levels/Basement.png" type="Texture" id=2]
@@ -6,11 +6,12 @@
 [ext_resource path="res://src/Actors/Slime.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Demos/PlaytestDemo.gd" type="Script" id=5]
 [ext_resource path="res://assets/GUI/profile.png" type="Texture" id=6]
-[ext_resource path="res://assets/GUI/cash.png" type="Texture" id=7]
+[ext_resource path="res://assets/GUI/cashIcon.png" type="Texture" id=7]
 [ext_resource path="res://src/Helpers/GUI/HealthBar.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/GUI/green_button_Hover.png" type="Texture" id=9]
 [ext_resource path="res://assets/GUI/green_button.png" type="Texture" id=10]
-
+[ext_resource path="res://assets/fonts/Early GameBoy.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://src/Helpers/GUI/BossHealthBar.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 644.725, 4.32855 )
@@ -31,6 +32,13 @@ colors = PoolColorArray( 0.729412, 0.447059, 0, 1 )
 [sub_resource type="GradientTexture" id=6]
 gradient = SubResource( 5 )
 width = 200
+
+[sub_resource type="DynamicFont" id=7]
+size = 8
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+font_data = ExtResource( 11 )
 
 [node name="Sandbox" type="Node2D"]
 pause_mode = 2
@@ -78,9 +86,7 @@ pause_mode = 1
 
 [node name="actors" type="YSort" parent="objects"]
 
-[node name="LirikYaki" parent="objects/actors" groups=[
-"Player",
-] instance=ExtResource( 3 )]
+[node name="LirikYaki" parent="objects/actors" instance=ExtResource( 3 )]
 position = Vector2( 264.692, 274.695 )
 
 [node name="Enemy" parent="objects/actors" instance=ExtResource( 4 )]
@@ -248,7 +254,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GameUI" type="Control" parent="GUI"]
+[node name="PlayerGui" type="Control" parent="GUI"]
 margin_right = 40.0
 margin_bottom = 40.0
 mouse_filter = 2
@@ -256,7 +262,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Profile" type="TextureRect" parent="GUI/GameUI"]
+[node name="bossHealthBar" parent="GUI/PlayerGui" instance=ExtResource( 12 )]
+margin_left = 48.8811
+margin_top = 501.238
+margin_right = 974.881
+margin_bottom = 554.238
+
+[node name="Profile" type="TextureRect" parent="GUI/PlayerGui"]
 margin_left = 15.0
 margin_top = 16.0
 margin_right = 90.0
@@ -268,11 +280,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Cash" type="TextureRect" parent="GUI/GameUI"]
-margin_left = 97.4237
-margin_top = 49.9046
-margin_right = 239.424
-margin_bottom = 75.9046
+[node name="Cash" type="TextureRect" parent="GUI/PlayerGui"]
+margin_left = 97.0
+margin_top = 50.0
+margin_right = 116.0
+margin_bottom = 71.0
 mouse_filter = 2
 texture = ExtResource( 7 )
 expand = true
@@ -280,12 +292,40 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="healthBar" parent="GUI/GameUI" instance=ExtResource( 8 )]
+[node name="healthBar" parent="GUI/PlayerGui" instance=ExtResource( 8 )]
 margin_left = 103.0
-margin_top = 32.0
+margin_top = 31.8949
 margin_right = 306.0
-margin_bottom = 53.0
+margin_bottom = 52.8949
 mouse_filter = 2
+
+[node name="Coins" type="Label" parent="GUI/PlayerGui"]
+margin_left = 130.041
+margin_top = 52.8196
+margin_right = 232.041
+margin_bottom = 62.8196
+rect_scale = Vector2( 1.6, 1.6 )
+size_flags_horizontal = 0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/PlayerGui"]
+margin_left = 116.108
+margin_top = 58.6466
+margin_right = 136.108
+margin_bottom = 88.6466
+rect_scale = Vector2( 1.6, 1.6 )
+size_flags_horizontal = 0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "x"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="pressed" from="GUI/GameMenu/VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="GUI/GameMenu/VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]

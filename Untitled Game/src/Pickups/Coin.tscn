@@ -4,7 +4,6 @@
 [ext_resource path="res://src/Pickups/Coin.gd" type="Script" id=2]
 [ext_resource path="res://assets/SpriteSheets/main_char/mc_shadow.png" type="Texture" id=3]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8.97503, 16.8654 )
 

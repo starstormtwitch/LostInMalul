@@ -142,6 +142,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=4]
 resource_name = "idle"
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("enemy:frame")
 tracks/0/interp = 1
@@ -149,10 +150,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 32 ]
+"values": [ 32, 33 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -297,14 +298,14 @@ texture = ExtResource( 3 )
 offset = Vector2( 0, -15 )
 hframes = 16
 vframes = 4
-frame = 32
+frame = 33
 
 [node name="Shadow" type="Sprite" parent="."]
 position = Vector2( 2.375, -27.7913 )
 texture = ExtResource( 1 )
 hframes = 11
 vframes = 5
-frame = 14
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attack = SubResource( 1 )
@@ -330,7 +331,7 @@ collision_mask = 16
 position = Vector2( -3.31485, 11.8561 )
 shape = SubResource( 29 )
 
-[node name="Collider" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1.68728, -1.84176 )
 shape = SubResource( 30 )
 

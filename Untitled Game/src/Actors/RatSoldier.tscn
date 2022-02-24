@@ -295,7 +295,7 @@ extents = Vector2( 9.27378, 4 )
 radius = 13.2807
 
 [sub_resource type="RectangleShape2D" id=35]
-extents = Vector2( 11.4738, 9.2776 )
+extents = Vector2( 11.4738, 18.1827 )
 
 [sub_resource type="CanvasItemMaterial" id=36]
 particles_animation = true
@@ -429,7 +429,7 @@ texture = ExtResource( 7 )
 position = Vector2( -9.6676, -19.0703 )
 MinCoins = 0
 MaxCoins = 0
-PowerupChance = 35
+PowerupChance = 40
 
 [connection signal="area_entered" from="FlockBox" to="." method="_on_FlockBox_area_entered"]
 [connection signal="area_exited" from="FlockBox" to="." method="_on_FlockBox_area_exited"]

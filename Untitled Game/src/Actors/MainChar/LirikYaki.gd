@@ -7,7 +7,7 @@ signal player_dodge
 class_name LirikYaki
 
 const attack_sound = preload("res://assets/audio/HitAudio/Retro Impact Punch Hurt 01.wav")
-const hit_sound = preload("res://assets/audio/HitAudio/Quick Hit Swoosh.wav")
+const miss_sound = preload("res://assets/audio/HitAudio/Quick Hit Swoosh.wav")
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
 const smoke_scene = preload("res://src/Actors/MainChar/SmokeParticles.tscn")
 const hadouken_scene = preload("res://src/Actors/MainChar/HadoukenBlast.tscn")
@@ -23,6 +23,8 @@ const _LEFT_FACING_SCALE = -1.0
 const _RIGHT_FACING_SCALE = 1.0
 const _FOOTSTEP_PARTICLE_POSITION_OFFSET = -6
 
+
+var Coins = 0
 var _beingHurt: bool = false
 var _canTakeDamage: bool = false
 var _isDodging = false
@@ -31,8 +33,11 @@ var _directionFacing: Vector2 = Vector2.ZERO
 var _dodgeDirection: Vector2 = Vector2.ZERO
 var _trail = []
 var _invincibilityTimer: Timer = Timer.new()
-
-var attackResetTimer: Timer = Timer.new()
+var _defenseUpTimer: Timer = Timer.new()
+var _damageUpTimer: Timer = Timer.new()
+var _attackResetTimer: Timer = Timer.new()
+var _takeDamageModifier = 1.0;
+var _giveDamageModifier = 1.0;
 var _hitDoneTimer: Timer = Timer.new()
 var _hitAnimationTime = 1
 
@@ -40,8 +45,6 @@ onready var _attackManager: AttackManager
 onready var sprite: Sprite = $Sprite
 onready var shadow: Sprite = $Shadow
 onready var rightHitBox: CollisionShape2D = $attack/sideSwipeRight
-onready var punchAudioPlayer: HitAudioPlayer = $PunchAudioPlayer
-onready var kickAudioPlayer: HitAudioPlayer = $KickAudioPlayer
 onready var wooshAudioPlayer: AudioStreamPlayer = $WooshAudioPlayer
 onready var footstepAudioPlayer: AudioStreamPlayer = $FootStepAudioStreamPlayer
 onready var shoryukenAudioPlayer: AudioStreamPlayer = $ShoryukenStreamPlayer
@@ -52,6 +55,7 @@ onready var dashDurationTimer: Timer = $DashDurationTimer
 onready var dashCooldownTimer: Timer = $DashCooldownTimer
 onready var animationTree: AnimationTree = $AnimationTree
 
+signal coin_changed
 
 func _init():
 	add_to_group("Player")
@@ -63,9 +67,18 @@ func _ready() -> void:
 	_invincibilityTimer.one_shot = true
 	add_child(_invincibilityTimer)
 	
-	attackResetTimer.connect("timeout", self, "_on_combo_timeout") 
-	attackResetTimer.one_shot = true
-	add_child(attackResetTimer)
+	_defenseUpTimer.connect("timeout", self, "_on_defenseUp_timeout") 
+	_defenseUpTimer.one_shot = true
+	add_child(_defenseUpTimer)
+	
+	_damageUpTimer.connect("timeout", self, "_on_damageUp_timeout") 
+	_damageUpTimer.one_shot = true
+	add_child(_damageUpTimer)
+	
+	_attackResetTimer.connect("timeout", self, "_on_combo_timeout") 
+	_attackResetTimer.one_shot = true
+	add_child(_attackResetTimer)
+	
 	
 	_hitAnimationTime = $AnimationPlayer.get_animation("HurtRight").length
 	_hitDoneTimer.one_shot = true
@@ -74,8 +87,8 @@ func _ready() -> void:
 	
 	_invincibilityTimer.start(3)
 	
-	_attackManager = AttackManager.new(attackResetTimer, punchAudioPlayer,
-		kickAudioPlayer, shoryukenAudioPlayer, animationTree)
+	_attackManager = AttackManager.new(_attackResetTimer,
+		shoryukenAudioPlayer, animationTree)
 	
 	_maxHealth = 10
 	_health = _maxHealth
@@ -90,9 +103,25 @@ func _physics_process(_delta: float) -> void:
 	._physics_process(_delta)
 	var direction = Vector2.ZERO
 	
+	var charColor = Color(1,1,1,1);
+	if _giveDamageModifier != 1 && _takeDamageModifier != 1:
+		var purple = Color(1.0, 0.0, 1.0)
+		var lightpurple = purple.lightened(0.4)
+		charColor =  lightpurple
+	elif _giveDamageModifier != 1:
+		var red = Color(1.0, 0.0, 0.0)
+		var pink = red.lightened(0.4)
+		charColor =  pink
+	elif _takeDamageModifier != 1:
+		var green = Color(0.0, 1.0, 0.0)
+		var lightgreen = green.lightened(0.4)
+		charColor =  lightgreen
+	self.modulate = charColor;
 	if !_canTakeDamage:
-		self.modulate =  Color(1.5,1.2,1.2,1.3) if Engine.get_frames_drawn() % 5 == 0 else Color(1,1,1,1)
-	
+		#self.modulate =  Color(2,2,2,2) if Engine.get_frames_drawn() % 5 == 0 else Color(1,1,1,1)
+		#self.modulate =  Color(1.3,1.3,1.3,1.3) if Engine.get_frames_drawn() % 5 == 0 else Color(1,1,1,1)
+		self.modulate =  Color(.5,.2,.2,.3) if Engine.get_frames_drawn() % 5 == 0 else charColor
+		
 	if(!_attackManager.isAttacking and !_isDodging):
 		direction = evaluatePlayerInput()
 		_dodgeDirection = direction
@@ -109,6 +138,15 @@ func _on_invincibility_timeout() -> void:
 	self.modulate = Color(1,1,1,1)
 	_canTakeDamage = true
 
+func _on_damageUp_timeout() -> void:
+	self.modulate = Color(1,50,0,0)
+	_giveDamageModifier = 1
+	
+func _on_defenseUp_timeout() -> void:
+	self.modulate = Color(1,0,0,50)
+	_takeDamageModifier = 1
+	
+	
 
 func _on_combo_timeout() -> void:
 	_attackManager.resetCombo()
@@ -137,6 +175,27 @@ func _play_footstep_sound():
 	footstepAudioPlayer.play()
 
 
+
+func collectCoin():
+	Coins = Coins + 1;
+	emit_signal("coin_changed")
+	
+	
+func damageUpCollected():
+	_damageUpTimer.start(15)
+	_giveDamageModifier = 2.0;
+	
+	
+func defenseUpCollected():
+	_defenseUpTimer.start(15)
+	_takeDamageModifier = .5;
+	
+func healthCollected():
+	var newHealth = _health + 1;
+	if(newHealth <= _maxHealth):
+		emit_signal("health_changed", _health, newHealth, _maxHealth)
+		_health = newHealth;
+	
 func add_trail() -> void:
 	if(get_parent() != null):
 		var trail      = trail_scene.instance()
@@ -156,7 +215,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		_hitDoneTimer.start(_hitAnimationTime)
 		animationTree.get("parameters/playback").travel("Hurt")
 		_invincibilityTimer.start(2)
-		.take_damage(damage, direction, force)
+		.take_damage(ceil(damage * _takeDamageModifier), direction, force)
 
 
 #timer callback for when hit animation should be done. Doing this cause 
@@ -210,10 +269,10 @@ func _flip_nodes(direction: Vector2):
 
 func _check_for_events() -> bool:
 	if Input.is_action_just_pressed(_ATTACK1_EVENT) or Input.is_action_pressed(_ATTACK1_EVENT):
-		_attackManager.doSideSwipeAttack()
+		_attackManager.doSideSwipeAttack(get_tree().get_current_scene())
 		return true
 	elif Input.is_action_just_pressed(_ATTACK2_EVENT) or Input.is_action_pressed(_ATTACK2_EVENT):
-		_attackManager.doSideSwipeKick()
+		_attackManager.doSideSwipeKick(get_tree().get_current_scene())
 		return true
 	elif Input.is_action_just_pressed(_DASH_EVENT) or Input.is_action_pressed(_DASH_EVENT):
 		_start_dash()
@@ -240,14 +299,14 @@ func _hurtAnimationFinished() -> void:
 func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
 		print("direction of hit: " + String(_directionFacing.x))
-		area.get_parent().take_damage(1, _directionFacing, _attackManager.damageForce)
+		area.get_parent().take_damage(ceil(1 * _giveDamageModifier), _directionFacing, _attackManager.damageForce)
 		_attackManager.didHitEnemy = true
 		area.get_parent().show_hit_marker(_attackManager.isLastAttackAKick)
 		_on_enemy_hit()
 
 
 func _on_enemy_hit():
-	_attackManager.playHitSounds()
+	_attackManager.playHitSounds(get_tree().get_current_scene())
 	emit_signal("player_hit_enemy")
 
 

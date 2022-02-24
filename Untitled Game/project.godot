@@ -64,11 +64,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Actors/MainChar/HadoukenBlast.gd"
 }, {
-"base": "AudioStreamPlayer",
-"class": "HitAudioPlayer",
-"language": "GDScript",
-"path": "res://src/Helpers/Audio/HitAudioPlayer.gd"
-}, {
 "base": "Area2D",
 "class": "InteractPromptArea",
 "language": "GDScript",
@@ -146,7 +141,6 @@ _global_script_class_icons={
 "GGSUtils": "",
 "Ghost": "",
 "HadoukenBlast": "",
-"HitAudioPlayer": "",
 "InteractPromptArea": "",
 "JSONBeautifier": "",
 "JumpHelper": "",
@@ -164,13 +158,14 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Test Project Yaki"
-run/main_scene="res://src/Levels/House.tscn"
+config/name="Lost in Malul"
+run/main_scene="res://src/Demos/PlaytestDemoWithBoss.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 LevelGlobals="*res://src/Logic/LevelGlobals.gd"
+TransitionsManager="*res://src/Logic/TransitionsManager.gd"
 EventsList="*res://src/Helpers/EventsList.gd"
 ggsManager="*res://addons/GGS/src/ggs_manager.gd"
 MusicManager="*res://src/Helpers/Audio/MusicManager.tscn"
@@ -262,7 +257,7 @@ Menu={
 }
 Dodge={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"unicode":0,"echo":false,"script":null)
  ]
 }
 

@@ -1,15 +1,12 @@
-[gd_scene load_steps=109 format=2]
+[gd_scene load_steps=106 format=2]
 
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.gd" type="Script" id=1]
 [ext_resource path="res://assets/SpriteSheets/main_char/mc_shadow.png" type="Texture" id=2]
 [ext_resource path="res://assets/audio/main_char_death_sfx.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/audio/HitAudio/Retro Impact Punch Hurt 01.wav" type="AudioStream" id=4]
-[ext_resource path="res://src/Helpers/Audio/HitAudioPlayer.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/SpriteSheets/main_char/lirik_sprite_with_supers-Sheet.png" type="Texture" id=6]
 [ext_resource path="res://assets/audio/footsteps_sfx.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/audio/HitAudio/miss_sfx.wav" type="AudioStream" id=8]
-[ext_resource path="res://assets/audio/HitAudio/kick_sfx.wav" type="AudioStream" id=9]
-[ext_resource path="res://src/Helpers/Audio/HitAudioPlayer.gd" type="Script" id=10]
 [ext_resource path="res://assets/audio/HitAudio/shoryken_sfx.wav" type="AudioStream" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -669,7 +666,7 @@ texture = ExtResource( 2 )
 position = Vector2( -0.893405, -23.5687 )
 texture = ExtResource( 6 )
 hframes = 10
-vframes = 10
+vframes = 9
 frame = 85
 
 [node name="Collider" type="CollisionShape2D" parent="."]
@@ -684,13 +681,6 @@ stream = ExtResource( 3 )
 [node name="FootStepAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 volume_db = -12.735
-
-[node name="PunchAudioPlayer" parent="." instance=ExtResource( 5 )]
-
-[node name="KickAudioPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
-volume_db = -8.155
-script = ExtResource( 10 )
 
 [node name="WooshAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
