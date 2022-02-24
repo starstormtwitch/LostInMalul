@@ -11,7 +11,8 @@ const _START_B_COMBO = 3
 const COMBOTIME = 1
 const MAX_DAMAGE_FORCE = 25000
 const MIN_DAMAGE_FORCE = 1000
-const _DEFAULT_ATTACK_VOLUME = 4
+const _DEFAULT_ATTACK_VOLUME = -4
+const _DEFAULT_WOOSH_VOLUME = 4
 
 var isAttacking: bool = false
 var didHitEnemy: bool = false #To check to see if we should play woosh sfx if we missed
@@ -107,7 +108,7 @@ func _resetAllSounds():
 
 
 func playMissSounds(scene: Node):
-	SoundPlayer.playSound(scene, missSound, _DEFAULT_ATTACK_VOLUME)
+	SoundPlayer.playSound(scene, missSound, _DEFAULT_WOOSH_VOLUME)
 	_resetAllSounds()
 
 
