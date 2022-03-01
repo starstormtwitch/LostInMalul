@@ -712,17 +712,18 @@ wait_time = 0.1
 autostart = true
 
 [node name="DashDurationTimer" type="Timer" parent="."]
-wait_time = 0.15
+wait_time = 0.04
 one_shot = true
 
 [node name="DashCooldownTimer" type="Timer" parent="."]
+wait_time = 3.5
 one_shot = true
 
 [node name="GhostIntervalTimer" type="Timer" parent="."]
-wait_time = 0.05
+wait_time = 0.02
 
 [node name="GhostDurationTImer" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.3
 one_shot = true
 
 [node name="PlayerHurtArea" type="Area2D" parent="." groups=[

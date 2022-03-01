@@ -29,7 +29,7 @@ func spawnEnemy():
 
 func _despawned():
 	EnemiesLeft = EnemiesLeft - 1;
-	if(EnemiesLeft == 0):
+	if(EnemiesLeft < 1):
 		emit_signal("AllEnemiesDefeated")
 	
 	

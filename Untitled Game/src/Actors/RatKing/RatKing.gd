@@ -1,6 +1,7 @@
 extends Enemy
 
-var _spawner = preload("res://src/Helpers/Spawning/Spawner.tscn");
+var _enemySpawner = load("res://src/Helpers/Spawning/EnemySpawner.tscn");
+var _spawner = load("res://src/Helpers/Spawning/Spawner.tscn");
 var _lightningBolt = preload("res://src/Actors/RatKing/LightningSpell.tscn");
 var _ratSoldier = preload("res://src/Actors/RatSoldier.tscn");
 
@@ -11,7 +12,7 @@ var KNOCKBACK_COOLDOWN = 5;
 var _ratSpawnCooldownTimer = Timer.new()
 var _canDoRatSpawn = true;
 var _mobSpawnArea;
-var _ratSpawnCooldown = 20;
+var _ratSpawnCooldown = 14;
 
 #lightning attack info
 var _lightningPhase = false;
@@ -69,9 +70,9 @@ func _ready():
 #disabling attacking for now
 func _physics_process(_delta: float) -> void:
 		_maxDistanceToStayFromPlayer = 120;
-		if(!_lightningPhase && _health < 50):
+		if(!_lightningPhase && _health < (_maxHealth / 2)):
 			_lightningPhase = true;
-		if(!_enragePhase && _health < 15):
+		if(!_enragePhase && _health < (_maxHealth / 10)):
 			_enragePhase = true;
 			_lightningDuration = 30;
 			_lightningDurationBetweenStrikes = .10;
@@ -96,9 +97,8 @@ func _physics_process(_delta: float) -> void:
 						elif(_canDoRatSpawn && !_doingLightningAttack):
 							_canDoRatSpawn = false;
 							_isAttacking = true
-							var ratsToSpawn = rand_range(2,5);
+							var ratsToSpawn = ceil(rand_range(2,5));
 							$AnimationTree.get("parameters/playback").travel("attack")
-							_ratSpawnCooldownTimer.start(_ratSpawnCooldown);
 							_spawn_rats(ratsToSpawn);
 						elif(dist_to_target <= 40): #only do slam attacak
 							_isAttacking = true
@@ -117,15 +117,20 @@ func _lightning_spell():
 
 func _spawn_rats(amount):
 	assert(_mobSpawnArea != null, "Mob spawn area must be set in parent scene")
-	
-	var ratSpawner = _spawner.instance();
+	var ratSpawner = _enemySpawner.instance();
+	ratSpawner.automatic = false;
 	ratSpawner.global_position = _mobSpawnArea.global_position;
 	ratSpawner.set_rect(Rect2(Vector2.ZERO, _mobSpawnArea.shape.extents));
 	ratSpawner.duration_between_spawn = 1
 	ratSpawner.count = amount;
+	ratSpawner.enemy = "RatSoldier"
+	ratSpawner.connect("AllEnemiesDefeated", self, "_on_rats_Defeated");
 	get_parent().add_child(ratSpawner);
-	ratSpawner.spawnMultipleInArea(_ratSoldier)
+	ratSpawner.spawnEnemy();
 
+func _on_rats_Defeated():
+	_ratSpawnCooldownTimer.start(_ratSpawnCooldown);
+	
 func _attack_done():
 	_finishedAttack(KNOCKBACK_COOLDOWN)
 
