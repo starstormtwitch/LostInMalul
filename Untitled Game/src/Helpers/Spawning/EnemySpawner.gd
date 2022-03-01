@@ -4,9 +4,10 @@ extends "res://src/Helpers/Spawning/Spawner.gd"
 const enemyDict = {
 	"Slime" : preload("res://src/Actors/Slime.tscn"),
 	"SlimeFR" : preload("res://src/Actors/SlimeFR.tscn"),
+	"RatSoldier" : preload("res://src/Actors/RatSoldier.tscn"),
 	"RatKing" : preload("res://src/Actors/RatKing/RatKing.tscn")
 }  
-export(String, "Slime", "SlimeFR", "RatKing") var enemy = "Slime"
+export(String, "Slime", "SlimeFR", "RatSoldier", "RatKing") var enemy = "Slime"
 
 export(int) var level = 1
 export(bool) var automatic = true
@@ -23,14 +24,12 @@ func spawnEnemy():
 	assert(enemy != null, "Must set enemy in spawner node")
 	var enemyToSpawn = enemyDict[enemy]
 	var enemiesSpawned = spawnMultipleInArea(enemyToSpawn)
-	if(typeof(enemiesSpawned) == TYPE_ARRAY):
-		for enemy in enemiesSpawned:
-			enemy.connect("tree_exited", self, "check_enemies_disposed")
-	pass
+	return enemiesSpawned
 	
 
-func check_enemies_disposed():
+func _despawned():
 	EnemiesLeft = EnemiesLeft - 1;
-	if(EnemiesLeft == 0):
-	 emit_signal("AllEnemiesDefeated")
+	if(EnemiesLeft < 1):
+		emit_signal("AllEnemiesDefeated")
+	
 	

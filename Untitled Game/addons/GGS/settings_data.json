@@ -28,5 +28,15 @@
 			"value": 4
 		},
 		"logic": "res://src/Helpers/Settings/Screen Shake Amplitude.gd"
+	},
+	"3": {
+		"name": "Infinite Health",
+		"default": {
+			"value": false
+		},
+		"current": {
+			"value": true
+		},
+		"logic": "res://src/Helpers/Settings/Infinite Health.gd"
 	}
 }

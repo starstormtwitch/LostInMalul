@@ -190,28 +190,31 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if !isDying:
 		#stun enemy
 		_velocity = getMovement(Vector2.ZERO, 0, .5)
+		#_velocity = move_and_slide(_velocity)
+		#print("hit, reset attack")
 		disable_hurt_box_if_exists()
-		_finishedAttack(1) # reset cooldown
+		#_finishedAttack(1)
 		_isStunned = true
 		_stunTimer.start(_stun_duration)
 		
 		#mark damage
-		emit_signal("enemy_hit")
 		self.modulate =  Color(10,10,10,10) 
 		_hitFlashTimer.start(.2)
 		if($AnimationTree != null):
 			$AnimationTree.get("parameters/playback").travel("hurt")
-		_health-=damage
+		var newHealth = _health - damage;
+		emit_signal("health_changed", _health, newHealth, _maxHealth)
+		_health = newHealth
 		
 		#knockback/knockup
 		if(_canTakeKnockup):
-			setColliderStatusDisabled(true)
 			_inAir = true
 			direction.y -= 4
 			var knockbackVelocity = getMovement(direction, force, _acceleration)
 			_velocity = move_and_slide(knockbackVelocity)
 		else:
 			direction = Vector2.ZERO;
+			
 		
 		#death check
 		if(_health <= 0):
@@ -224,7 +227,6 @@ func disable_hurt_box_if_exists():
 		hitbox.set_deferred("disabled", true);
 	
 func _on_attack_cooldown_timeout():
-	#_isAttacking = false
 	_isReadyToAttack = true
 		
 func _on_stun_cooldown_timeout():
@@ -235,6 +237,7 @@ func _on_hitFlash_cooldown_timeout():
 	self.modulate =  Color(1,1,1,1) 
 		
 func _finishedAttack(cooldown: int):
-	_attackCooldownTimer.start(cooldown)
+	_state = EnemyState.ROAM
 	_isAttacking = false
-	_state = EnemyState.IDLE
+	_isReadyToAttack = false
+	_attackCooldownTimer.start(cooldown)

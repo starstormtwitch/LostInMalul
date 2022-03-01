@@ -34,7 +34,7 @@ func spawnLoot():
 		var spawnOrNotNum = rng.randi_range(0, 100)
 		if(spawnOrNotNum < PowerupChance):
 			_countToSpawn += 1
-			var indexToSpawn = rng.randi_range(-14, powerUpDict.size()-1)
+			var indexToSpawn = rng.randi_range(-6, powerUpDict.size()-1)
 			if(indexToSpawn < 0): indexToSpawn = 0 #0 should be health so we can increase droprate
 			var powerups = powerUpDict.keys()
 			spawnMultipleInArea(powerUpDict[powerups[indexToSpawn]])

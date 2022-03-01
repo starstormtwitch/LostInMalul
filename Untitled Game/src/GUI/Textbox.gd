@@ -32,7 +32,8 @@ func hideText():
 
 func showText(text: String):
 	print("show text")
-	get_tree().paused = true
-	self.visible = true
-	isShowing = true
-	label.text = text
+	if(get_tree() != null):
+		get_tree().paused = true
+		self.visible = true
+		isShowing = true
+		label.text = text

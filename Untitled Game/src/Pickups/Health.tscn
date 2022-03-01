@@ -4,11 +4,10 @@
 [ext_resource path="res://assets/SpriteSheets/main_char/mc_shadow.png" type="Texture" id=2]
 [ext_resource path="res://src/Pickups/Health.gd" type="Script" id=3]
 
-
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2.70515, 2.09355 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -24,7 +23,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "pickedup"
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -47,12 +46,12 @@ script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.129025, -1.46816 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "default"
-anims/default = SubResource( 3 )
-anims/pickedup = SubResource( 4 )
+anims/default = SubResource( 2 )
+anims/pickedup = SubResource( 3 )
 
 [node name="Shadow" type="Sprite" parent="."]
 position = Vector2( 0.449188, -2.45357 )

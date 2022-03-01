@@ -1,6 +1,7 @@
 extends Enemy
 
-var _spawner = preload("res://src/Helpers/Spawning/Spawner.tscn");
+var _enemySpawner = load("res://src/Helpers/Spawning/EnemySpawner.tscn");
+var _spawner = load("res://src/Helpers/Spawning/Spawner.tscn");
 var _lightningBolt = preload("res://src/Actors/RatKing/LightningSpell.tscn");
 var _ratSoldier = preload("res://src/Actors/RatSoldier.tscn");
 
@@ -11,7 +12,7 @@ var KNOCKBACK_COOLDOWN = 5;
 var _ratSpawnCooldownTimer = Timer.new()
 var _canDoRatSpawn = true;
 var _mobSpawnArea;
-var _ratSpawnCooldown = 20;
+var _ratSpawnCooldown = 14;
 
 #lightning attack info
 var _lightningPhase = false;
@@ -29,7 +30,7 @@ var _enragePhase = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_maxHealth = 75
+	_maxHealth = 200
 	_health = _maxHealth
 	_acceleration = .5
 	_speed = 25
@@ -38,6 +39,8 @@ func _ready():
 	_minDistanceToStayFromPlayer = 90;
 	_maxDistanceToStayFromPlayer = 120;
 	_canTakeKnockup = false;
+	_target = null;
+	
 	if($AnimationTree != null):
 		$AnimationTree.active = true
 	_lightningCooldownTimer.connect("timeout",self,"_on_lightning_cooldown_timeout") 
@@ -66,42 +69,42 @@ func _ready():
 		
 #disabling attacking for now
 func _physics_process(_delta: float) -> void:
-	if(!_lightningPhase && _health < 50):
-		_lightningPhase = true;
-	if(!_enragePhase && _health < 15):
-		_enragePhase = true;
-		_lightningDuration = 30;
-		_lightningDurationBetweenStrikes = .10;
-		_lightningCooldown = 10;
-		_canDoLightningAttack = true;
-	if(_doingLightningAttack && _doNextStrike):
-		_doNextStrike = false;
-		_lightning_spell();
-		_lightningBetweenStrike.start(_lightningDurationBetweenStrikes)
-	match _state:
-		EnemyState.ATTACK_IN_PLACE:
-			if !_isAttacking:
-				var dist_to_target = self.global_position.distance_to(_target.global_position)
-				if($AnimationTree != null):
-					if(_lightningPhase && _canDoLightningAttack): #Do lightning spell
-						_lightningWhileTimer.start(_lightningDuration)
-						_doingLightningAttack = true;
-						_canDoLightningAttack = false;
-						_isAttacking = true
-						$AnimationTree.get("parameters/playback").travel("attack")
-						_lightning_spell();
-					elif(_canDoRatSpawn && !_doingLightningAttack):
-						_canDoRatSpawn = false;
-						_isAttacking = true
-						var ratsToSpawn = rand_range(2,5);
-						$AnimationTree.get("parameters/playback").travel("attack")
-						_ratSpawnCooldownTimer.start(_ratSpawnCooldown);
-						_spawn_rats(ratsToSpawn);
-					elif(dist_to_target <= 40): #only do slam attacak
-						_isAttacking = true
-						$AnimationTree.get("parameters/playback").travel("attack")
-					else:
-						_finishedAttack(KNOCKBACK_COOLDOWN)
+		_maxDistanceToStayFromPlayer = 120;
+		if(!_lightningPhase && _health < (_maxHealth / 2)):
+			_lightningPhase = true;
+		if(!_enragePhase && _health < (_maxHealth / 10)):
+			_enragePhase = true;
+			_lightningDuration = 30;
+			_lightningDurationBetweenStrikes = .10;
+			_lightningCooldown = 10;
+			_canDoLightningAttack = true;
+		if(_doingLightningAttack && _doNextStrike):
+			_doNextStrike = false;
+			_lightning_spell();
+			_lightningBetweenStrike.start(_lightningDurationBetweenStrikes)
+		match _state:
+			EnemyState.ATTACK_IN_PLACE:
+				if !_isAttacking:
+					var dist_to_target = self.global_position.distance_to(_target.global_position)
+					if($AnimationTree != null):
+						if(_lightningPhase && _canDoLightningAttack): #Do lightning spell
+							_lightningWhileTimer.start(_lightningDuration)
+							_doingLightningAttack = true;
+							_canDoLightningAttack = false;
+							_isAttacking = true
+							$AnimationTree.get("parameters/playback").travel("attack")
+							_lightning_spell();
+						elif(_canDoRatSpawn && !_doingLightningAttack):
+							_canDoRatSpawn = false;
+							_isAttacking = true
+							var ratsToSpawn = ceil(rand_range(2,5));
+							$AnimationTree.get("parameters/playback").travel("attack")
+							_spawn_rats(ratsToSpawn);
+						elif(dist_to_target <= 40): #only do slam attacak
+							_isAttacking = true
+							$AnimationTree.get("parameters/playback").travel("attack")
+						else:
+							_finishedAttack(KNOCKBACK_COOLDOWN)
 			
 
 func _lightning_spell():
@@ -113,15 +116,21 @@ func _lightning_spell():
 	spellSpawner.spawnMultipleInArea(_lightningBolt)
 
 func _spawn_rats(amount):
-	var ratSpawner = _spawner.instance();
-	ratSpawner.global_position.x = 274;
-	ratSpawner.global_position.y = 216;
-	ratSpawner.set_rect(Rect2(0,0,800,60));
+	assert(_mobSpawnArea != null, "Mob spawn area must be set in parent scene")
+	var ratSpawner = _enemySpawner.instance();
+	ratSpawner.automatic = false;
+	ratSpawner.global_position = _mobSpawnArea.global_position;
+	ratSpawner.set_rect(Rect2(Vector2.ZERO, _mobSpawnArea.shape.extents));
 	ratSpawner.duration_between_spawn = 1
 	ratSpawner.count = amount;
+	ratSpawner.enemy = "RatSoldier"
+	ratSpawner.connect("AllEnemiesDefeated", self, "_on_rats_Defeated");
 	get_parent().add_child(ratSpawner);
-	ratSpawner.spawnMultipleInArea(_ratSoldier)
+	ratSpawner.spawnEnemy();
 
+func _on_rats_Defeated():
+	_ratSpawnCooldownTimer.start(_ratSpawnCooldown);
+	
 func _attack_done():
 	_finishedAttack(KNOCKBACK_COOLDOWN)
 

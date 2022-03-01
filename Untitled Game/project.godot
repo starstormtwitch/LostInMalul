@@ -54,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/GGS/src/utils.gd"
 }, {
+"base": "Object",
+"class": "GameSettings",
+"language": "GDScript",
+"path": "res://src/Helpers/Settings/GameSettings.gd"
+}, {
 "base": "Sprite",
 "class": "Ghost",
 "language": "GDScript",
@@ -63,11 +68,6 @@ _global_script_classes=[ {
 "class": "HadoukenBlast",
 "language": "GDScript",
 "path": "res://src/Actors/MainChar/HadoukenBlast.gd"
-}, {
-"base": "AudioStreamPlayer",
-"class": "HitAudioPlayer",
-"language": "GDScript",
-"path": "res://src/Helpers/Audio/HitAudioPlayer.gd"
 }, {
 "base": "Area2D",
 "class": "InteractPromptArea",
@@ -144,9 +144,9 @@ _global_script_class_icons={
 "CustomParticles": "",
 "Enemy": "",
 "GGSUtils": "",
+"GameSettings": "",
 "Ghost": "",
 "HadoukenBlast": "",
-"HitAudioPlayer": "",
 "InteractPromptArea": "",
 "JSONBeautifier": "",
 "JumpHelper": "",
@@ -164,13 +164,14 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Test Project Yaki"
+config/name="Lost in Malul"
 run/main_scene="res://src/Levels/House.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 LevelGlobals="*res://src/Logic/LevelGlobals.gd"
+TransitionsManager="*res://src/Logic/TransitionsManager.gd"
 EventsList="*res://src/Helpers/EventsList.gd"
 ggsManager="*res://addons/GGS/src/ggs_manager.gd"
 MusicManager="*res://src/Helpers/Audio/MusicManager.tscn"
@@ -183,7 +184,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray(  )
+enabled=PoolStringArray( "res://addons/GGS/plugin.cfg" )
 
 [importer_defaults]
 
@@ -262,7 +263,7 @@ Menu={
 }
 Dodge={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"unicode":0,"echo":false,"script":null)
  ]
 }
 special_attack={
