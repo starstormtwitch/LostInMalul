@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/Helpers/Camera/CustomDelimiter2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Levels/Basement.png" type="Texture" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://src/Helpers/GUI/Pause/PauseMenu.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/Helpers/GUI/BossHealthBar.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/fonts/Early GameBoy.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://assets/GUI/BossHealthBarTheme.tres" type="Theme" id=12]
+[ext_resource path="res://assets/fonts/VPPixel-Simplified.otf" type="DynamicFontData" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 644.725, 4.32855 )
@@ -33,6 +35,10 @@ outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
 font_data = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 13
+font_data = ExtResource( 13 )
 
 [node name="Sandbox" type="Node2D"]
 pause_mode = 2
@@ -172,5 +178,35 @@ text = "x"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="BossGui" type="Control" parent="GUI"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="GUI/BossGui"]
+anchor_left = 0.025
+anchor_right = 0.025
+margin_left = 263.0
+margin_top = 520.0
+margin_right = 759.0
+margin_bottom = 542.0
+theme = ExtResource( 12 )
+value = 100.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/BossGui"]
+margin_left = 387.56
+margin_top = 520.642
+margin_right = 681.56
+margin_bottom = 544.642
+custom_fonts/font = SubResource( 7 )
+text = "Rex Magnus Rattorum, The Rat King"
 
 [editable path="LevelBackground/CameraPositions/Basement_Delimeter"]

@@ -44,7 +44,7 @@ func _on_BasementEnc1_Delimiter_PlayerEnteredAreaDelimiter(delimiter):
 func _on_KitchenFirstTime_body_entered(body):
 	if body == _player && _firstTimeEnteredKitchen == false:
 		_firstTimeEnteredKitchen = true
-		_textBox.showText("What in the world is that... it looks like some sort of rat... but what's wrong with it?!")
+		_textBox.showText("I think I know what that is... but how is it alive?!")
 		get_node("LevelBackground/Teleports/LivingRoom_Kitchen_2WT/EndpointBeta/ToAlphaActivationArea").disabled = true;
 		get_node("LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointAlpha/ToBetaActivationArea").disabled = true;
 		get_node("YSort/Actors/KitchenRat").spawnEnemy()
@@ -95,14 +95,20 @@ func GetReadyForBossEncounter():
 	_textBox.showText("I think that's all of them.")
 	ratKing = get_node("YSort/Actors/RatKingSpawner").spawnEnemy()
 	get_node("LevelBackground/Boundaries/Basement/BossSeperator").disabled = true;
+	ratKing[0].connect("health_changed", self, "_on_Boss_health_changed")
+	$GUI/BossGui/ProgressBar.set_deferred("value",   (ratKing[0]._health / ratKing[0]._maxHealth) * 100);
 	
+func _on_Boss_health_changed(_oldHealth, newHealth, maxHealth):
+	var progressValue = (float(newHealth) / float(maxHealth)) * 100.00
+	$GUI/BossGui/ProgressBar.set_value(progressValue);
 
 func _on_BossEncounter_body_entered(body):
 	if (body == _player):
 		get_node("LevelBackground/Interactions/Basement/BossEncounter/BossEncounterCollision").set_deferred("disabled", true);
-		_textBox.showText("Rat King: So... you think you can take your house back from me? I'm afraid that can't happen... you see, us rats are sick of living in this damp disgusting basement.  We will enjoy this house better than you ever did, and now, I'll make sure you never hurt a rat again.")
+		_textBox.showText("Rat King: So... you think you can take your house back from me? I'm afraid that can't happen... you see, us rats are sick of living in this damp disgusting basement.  We will enjoy this house better than you ever did, and now I'll make sure you never hurt a rat again.")
 		ratKing[0]._target = _player;
-		ratKing[0]._mobSpawnArea = get_node("LevelBackground/SpecialZones/BossMobZone/CollisionShape2D");
+		ratKing[0]._mobSpawnArea = get_node("LevelBackground/SpecialZones/BossMobZone/CollisionShape2D");		
+		$GUI/BossGui.set_deferred("visible", true);
 
 
 func _on_RatKingSpawner_AllEnemiesDefeated():

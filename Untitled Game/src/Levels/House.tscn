@@ -1,4 +1,4 @@
-[gd_scene load_steps=213 format=2]
+[gd_scene load_steps=216 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
@@ -178,6 +178,8 @@
 [ext_resource path="res://src/Helpers/Spawning/EnemySpawner.tscn" type="PackedScene" id=176]
 [ext_resource path="res://src/GUI/DashCooldownUI.tscn" type="PackedScene" id=177]
 [ext_resource path="res://assets/fonts/Early GameBoy.ttf" type="DynamicFontData" id=178]
+[ext_resource path="res://assets/GUI/BossHealthBarTheme.tres" type="Theme" id=179]
+[ext_resource path="res://assets/fonts/VPPixel-Simplified.otf" type="DynamicFontData" id=180]
 
 [sub_resource type="SegmentShape2D" id=1]
 a = Vector2( -474.143, 0.37738 )
@@ -298,6 +300,10 @@ extents = Vector2( 10, 64.0051 )
 
 [sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 447.481, 28.3017 )
+
+[sub_resource type="DynamicFont" id=35]
+size = 13
+font_data = ExtResource( 180 )
 
 [sub_resource type="DynamicFont" id=34]
 size = 8
@@ -1460,15 +1466,35 @@ position = Vector2( 91.9744, 128.276 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
-[node name="TextBox" parent="GUI" instance=ExtResource( 1 )]
-pause_mode = 2
+[node name="BossGui" type="Control" parent="GUI"]
 visible = false
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-margin_left = -512.0
-margin_top = -576.0
-margin_right = 512.0
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="GUI/BossGui"]
+anchor_left = 0.025
+anchor_right = 0.025
+margin_left = 263.0
+margin_top = 520.0
+margin_right = 759.0
+margin_bottom = 542.0
+theme = ExtResource( 179 )
+value = 100.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/BossGui"]
+margin_left = 387.56
+margin_top = 520.642
+margin_right = 681.56
+margin_bottom = 544.642
+custom_fonts/font = SubResource( 35 )
+text = "Rex Magnus Rattorum, The Rat King"
 
 [node name="PlayerGui" type="Control" parent="GUI"]
 margin_right = 40.0
@@ -1543,6 +1569,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="PauseScreenContainer" parent="GUI" instance=ExtResource( 26 )]
+margin_left = -11.3578
+margin_top = -5.88671
+margin_right = -11.358
+margin_bottom = -5.88672
+
 [node name="TextBox" parent="GUI" instance=ExtResource( 1 )]
 pause_mode = 2
 visible = false
@@ -1553,11 +1585,15 @@ margin_left = -512.0
 margin_top = -576.0
 margin_right = 512.0
 
-[node name="PauseScreenContainer" parent="GUI" instance=ExtResource( 26 )]
-margin_left = -11.3578
-margin_top = -5.88671
-margin_right = -11.358
-margin_bottom = -5.88672
+[node name="TextBox" parent="GUI" instance=ExtResource( 1 )]
+pause_mode = 2
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+margin_left = -512.0
+margin_top = -576.0
+margin_right = 512.0
 
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_Toilet_interactable_text_signal"]

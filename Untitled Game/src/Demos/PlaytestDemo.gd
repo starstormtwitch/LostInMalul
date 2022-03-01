@@ -4,6 +4,7 @@ const _MENU_EVENT: String = "Menu"
 const _UI_CANCEL_EVENT: String = "ui_cancel"
 
 var _player : Actor
+var _boss : Actor
 var _menuOpen: bool = false
 onready var cameraManager: CustomCamera2D
 
@@ -27,14 +28,21 @@ func _ready():
 	_player.connect("player_hit_enemy", cameraManager, "shake")
 	_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)
 	_player.connect("coin_changed", self, "_on_Player_coin_changed")
-	var boss = get_node("objects/actors/Enemy")
-	if(boss != null):
-		boss._target = _player;
-		boss._mobSpawnArea = get_node("LevelBackground/SpecialZones/BossMobZone/CollisionShape2D");
+	_boss = get_node("objects/actors/Enemy")
+	if(_boss != null):
+		_boss._target = _player;
+		_boss._mobSpawnArea = get_node("LevelBackground/SpecialZones/BossMobZone/CollisionShape2D");
+		_boss.connect("health_changed", self, "_on_Boss_health_changed")
 	$GUI/PlayerGui/Coins.text = String(_player.Coins);
+	$GUI/BossGui/ProgressBar.value = (_boss._health / _boss._maxHealth) * 100;
+	$GUI/BossGui.visible = true;
 	
 func _on_Player_coin_changed():
 	$GUI/PlayerGui/Coins.text = String(_player.Coins);
+	
+func _on_Boss_health_changed(_oldHealth, newHealth, maxHealth):
+	var progressValue = (float(newHealth) / float(maxHealth)) * 100.00
+	$GUI/BossGui/ProgressBar.set_value(progressValue);
 	
 func _on_Player_health_changed(_oldHealth, newHealth, maxHealth):
 	var healthBar = get_node("GUI/PlayerGui/healthBar")

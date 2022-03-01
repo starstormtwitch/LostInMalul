@@ -201,7 +201,9 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		_hitFlashTimer.start(.2)
 		if($AnimationTree != null):
 			$AnimationTree.get("parameters/playback").travel("hurt")
-		_health-=damage
+		var newHealth = _health - damage;
+		emit_signal("health_changed", _health, newHealth, _maxHealth)
+		_health = newHealth
 		
 		#knockback/knockup
 		if(_canTakeKnockup):
