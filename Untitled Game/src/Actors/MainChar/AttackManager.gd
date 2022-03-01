@@ -60,7 +60,6 @@ func doSideSwipeAttack(scene : Node):
 		_playPunchSFX = true
 		print("Combo A: " + String(_comboAPoints))
 		if _comboAPoints == 1 or _comboBPoints == 1:
-			playHitSounds(scene)
 			_animationTree.get("parameters/playback").travel("Headbutt")
 			combo_reset()
 			damageForce = MAX_DAMAGE_FORCE
@@ -83,6 +82,7 @@ func doSideSwipeKick(scene : Node):
 		print("Combo B: " + String(_comboBPoints))
 		if _comboBPoints == 1 or _comboAPoints == 1:
 			_animationTree.get("parameters/playback").travel("Shoryuken")
+			_shoryukenAudioPlayer.play()
 			combo_reset()
 			damageForce = MIN_DAMAGE_FORCE
 		elif _comboBPoints == 3:
