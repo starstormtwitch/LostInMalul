@@ -4,12 +4,12 @@
 [ext_resource path="res://assets/GUI/green_button_Hover.png" type="Texture" id=2]
 [ext_resource path="res://src/Helpers/GUI/Pause/PauseMenu.gd" type="Script" id=3]
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0 )
 colors = PoolColorArray( 0, 0.643137, 0.729412, 1 )
 
 [sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 3 )
+gradient = SubResource( 1 )
 width = 200
 
 [node name="PauseMenu" type="Control"]

@@ -9,6 +9,10 @@ const SETTINGS_SAVE_PATH: String = "user://settings_data.json"
 # Godot Game Settings (GGS) plugin. Most of the code will work of of the
 # settings_data dictionary in the ggs_manager class that should be autoloaded.
 
+static func load_game_settings() -> GameSettings:
+	var settings = ggsManager.settings_data
+	var infiniteHealth = settings["3"]["current"]["value"]
+	return GameSettings.new(infiniteHealth)
 
 static func load_screen_shake_settings() -> ScreenShakeSettings:
 	var settings = ggsManager.settings_data

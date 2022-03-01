@@ -24,18 +24,22 @@ func _ready():
 	#assert(_camera, "Camera2D Node does not exist")
 	#cameraManager = CustomCamera2D.new(_player, true)
 	#cameraManager.limitCameraToDelimiter(_cam_Delimiter_Basement)
-	_player.connect("health_changed", self, "_on_Player_health_changed")
 	_player.connect("player_hit_enemy", cameraManager, "shake")
-	_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)
 	_player.connect("coin_changed", self, "_on_Player_coin_changed")
 	_boss = get_node("objects/actors/Enemy")
 	if(_boss != null):
 		_boss._target = _player;
 		_boss._mobSpawnArea = get_node("LevelBackground/SpecialZones/BossMobZone/CollisionShape2D");
 		_boss.connect("health_changed", self, "_on_Boss_health_changed")
+		$GUI/BossGui/ProgressBar.value = (_boss._health / _boss._maxHealth) * 100;
+		$GUI/BossGui.visible = true;
 	$GUI/PlayerGui/Coins.text = String(_player.Coins);
-	$GUI/BossGui/ProgressBar.value = (_boss._health / _boss._maxHealth) * 100;
-	$GUI/BossGui.visible = true;
+	if(_infiniteHealth):
+		 _player._maxHealth = 20000
+		 _player._health = 20000
+	else:
+		_player.connect("health_changed", self, "_on_Player_health_changed")
+		_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)
 	
 func _on_Player_coin_changed():
 	$GUI/PlayerGui/Coins.text = String(_player.Coins);

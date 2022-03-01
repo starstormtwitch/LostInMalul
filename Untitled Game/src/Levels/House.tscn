@@ -301,11 +301,11 @@ extents = Vector2( 10, 64.0051 )
 [sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 447.481, 28.3017 )
 
-[sub_resource type="DynamicFont" id=35]
+[sub_resource type="DynamicFont" id=34]
 size = 13
 font_data = ExtResource( 180 )
 
-[sub_resource type="DynamicFont" id=34]
+[sub_resource type="DynamicFont" id=35]
 size = 8
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -1493,7 +1493,7 @@ margin_left = 387.56
 margin_top = 520.642
 margin_right = 681.56
 margin_bottom = 544.642
-custom_fonts/font = SubResource( 35 )
+custom_fonts/font = SubResource( 34 )
 text = "Rex Magnus Rattorum, The Rat King"
 
 [node name="PlayerGui" type="Control" parent="GUI"]
@@ -1548,7 +1548,7 @@ margin_right = 232.041
 margin_bottom = 62.8196
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 34 )
+custom_fonts/font = SubResource( 35 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "0"
 __meta__ = {
@@ -1562,7 +1562,7 @@ margin_right = 136.108
 margin_bottom = 88.6466
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 34 )
+custom_fonts/font = SubResource( 35 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "x"
 __meta__ = {
@@ -1595,8 +1595,8 @@ margin_left = -512.0
 margin_top = -576.0
 margin_right = 512.0
 
-[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_Toilet_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_Toilet_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/Bed" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/LivingRoom/InteractPromptArea" to="." method="_on_InteractPromptArea_interactable_text_signal"]

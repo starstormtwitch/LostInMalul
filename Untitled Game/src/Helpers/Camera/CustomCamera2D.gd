@@ -292,6 +292,7 @@ func _get_new_camera_shake_values():
 	_set_shake_settings(values.duration, values.frequency, values.amplitude)
 	#print("Load settings for camera shake")
 
+
 func connect_to_player_shake_signal(player: Actor):
 	print("Connect player hit enemy singal")
 	assert(player, "Player cannot be null")

@@ -19,10 +19,14 @@ func _ready():
 	var valid = is_instance_valid(_player)
 	if(!valid):
 		print("Player instance invalid")
-	_player.connect("health_changed", self, "_on_Player_health_changed")
-	_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)
 	_player.connect("coin_changed", self, "_on_Player_coin_changed")
 	$GUI/PlayerGui/Coins.text = String(_player.Coins);
+	if(_infiniteHealth):
+		 _player._maxHealth = 20000
+		 _player._health = 20000
+	else:
+		_player.connect("health_changed", self, "_on_Player_health_changed")
+		_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)
 	
 func _on_Player_coin_changed():
 	$GUI/PlayerGui/Coins.text = String(_player.Coins);
