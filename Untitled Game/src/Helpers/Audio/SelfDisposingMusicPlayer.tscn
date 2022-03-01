@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/Helpers/Audio/SelfDisposingMusicPlayer.gd" type="Script" id=1]
 
-[node name="SelfDisposingMusicPlayer" type="AudioStreamPlayer2D"]
+[node name="SelfDisposingMusicPlayer" type="AudioStreamPlayer"]
 script = ExtResource( 1 )
 
 [connection signal="finished" from="." to="." method="_on_SelfDisposingMusicPlayer_finished"]

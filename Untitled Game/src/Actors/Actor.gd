@@ -2,6 +2,9 @@ extends KinematicBody2D
 class_name Actor
 
 # props of all objects in game
+const MAXVELOCITY = 500
+const _BOUNDARY_COLLISON_MASK_BIT = 0
+
 var _velocity: = Vector2.ZERO
 var _acceleration = .2
 var _inAir = false
@@ -9,9 +12,11 @@ var isDying = false
 var _speed = 0
 var _health = 1
 var _maxHealth = 1
-var _gravity = Vector2(0.0, 30.0)
+var _gravity = Vector2(0.0, 2.0)
 var _groundPosition = self.position.y;
-const MAXVELOCITY = 500
+
+#jump mechanic stuff
+var _lastYPostionOnGround = 0
 
 signal health_changed
 signal died
@@ -20,11 +25,34 @@ signal died
 func _ready():
 	pass # Replace with function body.
 
+func _physics_process(delta):
+	if !_inAir:
+		_lastYPostionOnGround = self.position.y
+	else:
+		_handleGravity()
+
+
+func _handleGravity():
+	if self.position.y >= _lastYPostionOnGround:
+		self.position.y = _lastYPostionOnGround
+		_inAir = 0
+	else:
+		_velocity += _gravity
+		var gravityVelocity = _velocity
+		#gravityVelocity.x *= 0.1
+		move_and_slide(gravityVelocity)
+		setColliderStatusDisabled(false)
+
+
+func setColliderStatusDisabled(disable: bool):
+	set_collision_mask_bit(_BOUNDARY_COLLISON_MASK_BIT, disable)
+
+
 func getMovement(direction: Vector2, speed: float, acceleration: float) -> Vector2:
 	var targetVelocity = (direction.normalized() * speed);
 	
 	var verticalAcceleration = acceleration
-	var horizontalAcceleration = acceleration	
+	var horizontalAcceleration = acceleration
 	#make objects significantly more floaty in air
 	if(_inAir):
 		verticalAcceleration = verticalAcceleration * .1
