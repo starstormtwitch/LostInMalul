@@ -84,7 +84,7 @@ func doSideSwipeKick(scene : Node):
 			_animationTree.get("parameters/playback").travel("Shoryuken")
 			_shoryukenAudioPlayer.play()
 			combo_reset()
-			damageForce = MIN_DAMAGE_FORCE
+			damageForce = MAX_DAMAGE_FORCE
 		elif _comboBPoints == 3:
 			_animationTree.get("parameters/playback").travel("SideSwipeKick")
 			_comboBPoints = _comboBPoints - 1
