@@ -14,8 +14,6 @@ const hadouken_scene = preload("res://src/Actors/MainChar/HadoukenBlast.tscn")
 const ghost_scene = preload("res://src/Helpers/Ghost.tscn")
 
 const _JUMP_EVENT = "Jump"
-const _ATTACK1_EVENT = "side_swipe_attack"
-const _ATTACK2_EVENT = "attack_2"
 const _DASH_EVENT = "Dodge"
 const _DODGE_SPEED = 80000
 const _DODGE_ACCELERATION = .5
@@ -268,18 +266,27 @@ func _flip_nodes(direction: Vector2):
 
 
 func _check_for_events() -> bool:
-	if Input.is_action_just_pressed(_ATTACK1_EVENT) or Input.is_action_pressed(_ATTACK1_EVENT):
+	if Input.is_action_just_released(AttackManager.SPECIAL_ATTACK_EVENT):
+		_attackManager.releaseSpecial()
+		return true
+	if checkForEvent(AttackManager.ATTACK1_EVENT):
 		_attackManager.doSideSwipeAttack(get_tree().get_current_scene())
 		return true
-	elif Input.is_action_just_pressed(_ATTACK2_EVENT) or Input.is_action_pressed(_ATTACK2_EVENT):
+	elif checkForEvent(AttackManager.ATTACK2_EVENT):
 		_attackManager.doSideSwipeKick(get_tree().get_current_scene())
 		return true
-	elif Input.is_action_just_pressed(_DASH_EVENT) or Input.is_action_pressed(_DASH_EVENT):
+	elif checkForEvent(_DASH_EVENT):
 		_start_dash()
 		return false
+	elif checkForEvent(AttackManager.SPECIAL_ATTACK_EVENT):
+		_attackManager.startSpecial()
+		return true
 	else:
 		return false
 
+
+func checkForEvent(event_name: String) -> bool:
+	return Input.is_action_just_pressed(event_name) or Input.is_action_pressed(event_name)
 
 func _finishedAttack() -> void:
 	print("attack finished")

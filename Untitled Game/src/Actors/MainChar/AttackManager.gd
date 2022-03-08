@@ -11,6 +11,9 @@ const _START_B_COMBO = 3
 const COMBOTIME = 1
 const MAX_DAMAGE_FORCE = 10000
 const MIN_DAMAGE_FORCE = 1000
+const ATTACK1_EVENT = "side_swipe_attack"
+const ATTACK2_EVENT = "attack_2"
+const SPECIAL_ATTACK_EVENT = "special_attack"
 const _DEFAULT_ATTACK_VOLUME = -4
 const _DEFAULT_WOOSH_VOLUME = 4
 
@@ -57,8 +60,7 @@ func doSideSwipeAttack(scene : Node):
 		_playPunchSFX = true
 		print("Combo A: " + String(_comboAPoints))
 		if _comboAPoints == 1 or _comboBPoints == 1:
-			_shoryukenAudioPlayer.play()
-			_animationTree.get("parameters/playback").travel("Shoryuken")
+			_animationTree.get("parameters/playback").travel("Headbutt")
 			combo_reset()
 			damageForce = MAX_DAMAGE_FORCE
 		elif _comboAPoints == 3:
@@ -79,9 +81,10 @@ func doSideSwipeKick(scene : Node):
 		_playKickSFX = true
 		print("Combo B: " + String(_comboBPoints))
 		if _comboBPoints == 1 or _comboAPoints == 1:
-			_animationTree.get("parameters/playback").travel("Hadouken")
+			_animationTree.get("parameters/playback").travel("Shoryuken")
+			_shoryukenAudioPlayer.play()
 			combo_reset()
-			damageForce = MIN_DAMAGE_FORCE
+			damageForce = MAX_DAMAGE_FORCE
 		elif _comboBPoints == 3:
 			_animationTree.get("parameters/playback").travel("SideSwipeKick")
 			_comboBPoints = _comboBPoints - 1
@@ -92,6 +95,14 @@ func doSideSwipeKick(scene : Node):
 			_comboBPoints = _comboBPoints - 1
 			_comboAPoints = 3
 			damageForce = MIN_DAMAGE_FORCE
+
+
+func startSpecial():
+	_animationTree.get("parameters/playback").travel("Hadouken")
+
+
+func releaseSpecial():
+	_animationTree.get("parameters/playback").travel("Hadouken2")
 
 
 func playHitSounds(scene : Node):
