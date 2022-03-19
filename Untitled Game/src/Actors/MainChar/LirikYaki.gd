@@ -61,27 +61,12 @@ func _init():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_invincibilityTimer.connect("timeout", self, "_on_invincibility_timeout") 
-	_invincibilityTimer.one_shot = true
-	add_child(_invincibilityTimer)
-	
-	_defenseUpTimer.connect("timeout", self, "_on_defenseUp_timeout") 
-	_defenseUpTimer.one_shot = true
-	add_child(_defenseUpTimer)
-	
-	_damageUpTimer.connect("timeout", self, "_on_damageUp_timeout") 
-	_damageUpTimer.one_shot = true
-	add_child(_damageUpTimer)
-	
-	_attackResetTimer.connect("timeout", self, "_on_combo_timeout") 
-	_attackResetTimer.one_shot = true
-	add_child(_attackResetTimer)
-	
-	
+	_setup_timer(_invincibilityTimer, "_on_invincibility_timeout")
+	_setup_timer(_defenseUpTimer, "_on_defenseUp_timeout")
+	_setup_timer(_damageUpTimer, "_on_damageUp_timeout")
+	_setup_timer(_attackResetTimer, "_on_combo_timeout")
 	_hitAnimationTime = $AnimationPlayer.get_animation("HurtRight").length
-	_hitDoneTimer.one_shot = true
-	_hitDoneTimer.connect("timeout", self, "_hit_timer_done") 
-	add_child(_hitDoneTimer)
+	_setup_timer(_hitDoneTimer, "_hit_timer_done")
 	
 	_invincibilityTimer.start(3)
 	
@@ -95,6 +80,12 @@ func _ready() -> void:
 	_directionFacing.x = .1;
 	$TrailTimer.connect("timeout", self, "add_trail")
 	animationTree.active = true
+
+
+func _setup_timer(timer: Timer, callback_name: String):
+	timer.connect("timeout", self, callback_name) 
+	timer.one_shot = true
+	add_child(timer)
 
 
 func _physics_process(_delta: float) -> void:
@@ -136,15 +127,16 @@ func _on_invincibility_timeout() -> void:
 	self.modulate = Color(1,1,1,1)
 	_canTakeDamage = true
 
+
 func _on_damageUp_timeout() -> void:
 	self.modulate = Color(1,50,0,0)
 	_giveDamageModifier = 1
-	
+
+
 func _on_defenseUp_timeout() -> void:
 	self.modulate = Color(1,0,0,50)
 	_takeDamageModifier = 1
-	
-	
+
 
 func _on_combo_timeout() -> void:
 	_attackManager.resetCombo()
@@ -171,7 +163,6 @@ func _generate_smoke_particle():
 
 func _play_footstep_sound():
 	footstepAudioPlayer.play()
-
 
 
 func collectCoin():
