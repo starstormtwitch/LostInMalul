@@ -11,6 +11,8 @@ var _leftBasementDefeated: bool = false
 var _rightBasementDefeated: bool = false
 var ratKing
 
+signal area_lock
+
 onready var _textBox: TextBox = $GUI/TextBox
 
 # Called when the node enters the scene tree for the first time.
@@ -31,6 +33,7 @@ func _ready():
 func _on_Player_coin_changed():
 	$GUI/PlayerGui/Coins.text = String(_player.Coins);
 	
+	
 func _on_Player_health_changed(_oldHealth, newHealth, maxHealth):
 	var healthBar = get_node("GUI/PlayerGui/healthBar")
 	healthBar.Health = newHealth
@@ -39,11 +42,6 @@ func _on_Player_health_changed(_oldHealth, newHealth, maxHealth):
 
 func _on_InteractPromptArea_interactable_text_signal(text):
 	_textBox.showText(text)
-
-func _on_BasementEnc1_Delimiter_PlayerEnteredAreaDelimiter(delimiter):
-	_textBox.showText("That's a lot of rats, I have a bad feeling about this.")
-	get_node("YSort/Actors/BasementL1").spawnEnemy()
-	get_node("YSort/Actors/BasementR1").spawnEnemy()
 
 func _on_KitchenFirstTime_body_entered(body):
 	if body == _player && _firstTimeEnteredKitchen == false:
@@ -80,7 +78,9 @@ func _on_BasementAttack_body_entered(body):
 	if (body == _player):
 		get_node("LevelBackground/Interactions/Basement/BasementAttack/BasementAttackCollision").set_deferred("disabled", true);
 		_textBox.showText("That's a lot of rats, I have a bad feeling about this.")
+		emit_signal("area_lock", true)
 		get_node("LevelBackground/Boundaries/Basement/Lockout").set_deferred("disabled", false);
+		get_node("LevelBackground/CameraPositions/Basement_Fight1").ManualTransition_Enter();
 		get_node("YSort/Actors/BasementL1").spawnEnemy()
 		get_node("YSort/Actors/BasementR1").spawnEnemy()
 
@@ -98,6 +98,8 @@ func _on_BasementR1_AllEnemiesDefeated():
 func GetReadyForBossEncounter():
 	_textBox.showText("I think that's all of them.")
 	ratKing = get_node("YSort/Actors/RatKingSpawner").spawnEnemy()
+	emit_signal("area_lock", false)
+	get_node("LevelBackground/CameraPositions/Basement_Fight1").ManualTransition_Exit();
 	get_node("LevelBackground/Boundaries/Basement/BossSeperator").disabled = true;
 	ratKing[0].connect("health_changed", self, "_on_Boss_health_changed")
 	$GUI/BossGui/ProgressBar.set_deferred("value",   (ratKing[0]._health / ratKing[0]._maxHealth) * 100);
@@ -117,3 +119,4 @@ func _on_BossEncounter_body_entered(body):
 
 func _on_RatKingSpawner_AllEnemiesDefeated():
 	_textBox.showText("End Of Demo, please restart or choose another level.")
+

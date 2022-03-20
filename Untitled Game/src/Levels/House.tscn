@@ -485,10 +485,18 @@ position = Vector2( 1808.2, 50 )
 position = Vector2( 652.955, 250 )
 
 [node name="Kitchen_Delimiter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
-position = Vector2( 2470.08, 50 )
+position = Vector2( 2479.33, 45.7955 )
 
 [node name="BottomRight" parent="LevelBackground/CameraPositions/Kitchen_Delimiter" index="0"]
 position = Vector2( 647.832, 250 )
+
+[node name="Basement_Fight1" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
+position = Vector2( 225.881, 311.679 )
+AutomaticTransition = false
+TransitionToOverlappingDelimiterOnExit = true
+
+[node name="BottomRight" parent="LevelBackground/CameraPositions/Basement_Fight1" index="0"]
+position = Vector2( 490.59, 285.204 )
 
 [node name="Foyer_Delimiter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
 position = Vector2( 3128.25, 50 )
@@ -792,7 +800,7 @@ pause_mode = 1
 [node name="Actors" type="YSort" parent="YSort"]
 
 [node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 2 )]
-position = Vector2( 710.871, 232.969 )
+position = Vector2( 134.055, 586.493 )
 
 [node name="KitchenRat" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 2839.86, 250.16 )
@@ -1570,10 +1578,10 @@ __meta__ = {
 }
 
 [node name="PauseScreenContainer" parent="GUI" instance=ExtResource( 26 )]
-margin_left = -11.3578
-margin_top = -5.88671
-margin_right = -11.358
-margin_bottom = -5.88672
+margin_left = 10.1717
+margin_top = -5.83895
+margin_right = 10.1715
+margin_bottom = -5.83893
 
 [node name="TextBox" parent="GUI" instance=ExtResource( 1 )]
 pause_mode = 2
@@ -1595,8 +1603,8 @@ margin_left = -512.0
 margin_top = -576.0
 margin_right = 512.0
 
-[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_Toilet_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_Toilet_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/Bed" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/LivingRoom/InteractPromptArea" to="." method="_on_InteractPromptArea_interactable_text_signal"]
@@ -1620,6 +1628,7 @@ margin_right = 512.0
 [editable path="LevelBackground/CameraPositions/StreamingRoom_Delimiter"]
 [editable path="LevelBackground/CameraPositions/LivingRoom_Delimiter"]
 [editable path="LevelBackground/CameraPositions/Kitchen_Delimiter"]
+[editable path="LevelBackground/CameraPositions/Basement_Fight1"]
 [editable path="LevelBackground/CameraPositions/Foyer_Delimiter"]
 [editable path="LevelBackground/Teleports/Bathroom_Bedroom_2WT"]
 [editable path="LevelBackground/Teleports/Bedroom_Streaming_2WT"]
