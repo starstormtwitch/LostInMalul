@@ -23,6 +23,7 @@ var _beingHurt: bool = false
 var isLastAttackAKick = false #Used to check which hitmarker to show
 var _directionFacing: Vector2 = Vector2.ZERO
 var damageForce = 0
+var isChargingSpecial = false
 
 #flags to check if we should play certain sounds when attacks land
 var _playPunchSFX = false
@@ -99,10 +100,12 @@ func doSideSwipeKick(scene : Node):
 
 func startSpecial():
 	_animationTree.get("parameters/playback").travel("Hadouken")
+	isChargingSpecial = true
 
 
 func releaseSpecial():
 	_animationTree.get("parameters/playback").travel("Hadouken2")
+	isChargingSpecial = false
 
 
 func playHitSounds(scene : Node):
@@ -121,6 +124,12 @@ func _resetAllSounds():
 func playMissSounds(scene: Node):
 	SoundPlayer.playSound(scene, missSound, _DEFAULT_WOOSH_VOLUME)
 	_resetAllSounds()
+
+
+func gotHit():
+	isChargingSpecial = false
+	isAttacking = false
+	resetCombo()
 
 
 func combo_reset() -> void:

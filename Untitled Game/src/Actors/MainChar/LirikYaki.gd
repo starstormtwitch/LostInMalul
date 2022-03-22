@@ -2,6 +2,8 @@ extends Actor
 
 signal player_hit_enemy
 signal player_dodge
+signal super_charge_change(new_value)
+signal coin_changed
 
 
 class_name LirikYaki
@@ -13,6 +15,7 @@ const smoke_scene = preload("res://src/Actors/MainChar/SmokeParticles.tscn")
 const hadouken_scene = preload("res://src/Actors/MainChar/HadoukenBlast.tscn")
 const ghost_scene = preload("res://src/Helpers/Ghost.tscn")
 
+
 const _JUMP_EVENT = "Jump"
 const _DASH_EVENT = "Dodge"
 const _DODGE_SPEED = 80000
@@ -20,6 +23,9 @@ const _DODGE_ACCELERATION = .5
 const _LEFT_FACING_SCALE = -1.0
 const _RIGHT_FACING_SCALE = 1.0
 const _FOOTSTEP_PARTICLE_POSITION_OFFSET = -6
+const _MAX_SUPER_CHARGES = 3
+const _MIN_SUPER_CHARGES = 0
+const STARTING_SUPER_CHARGES = 1
 
 
 var Coins = 0
@@ -38,6 +44,8 @@ var _takeDamageModifier = 1.0;
 var _giveDamageModifier = 1.0;
 var _hitDoneTimer: Timer = Timer.new()
 var _hitAnimationTime = 1
+var _currentSuperCharges = STARTING_SUPER_CHARGES
+
 
 onready var _attackManager: AttackManager
 onready var sprite: Sprite = $Sprite
@@ -53,7 +61,6 @@ onready var dashDurationTimer: Timer = $DashDurationTimer
 onready var dashCooldownTimer: Timer = $DashCooldownTimer
 onready var animationTree: AnimationTree = $AnimationTree
 
-signal coin_changed
 
 func _init():
 	add_to_group("Player")
@@ -178,13 +185,31 @@ func damageUpCollected():
 func defenseUpCollected():
 	_defenseUpTimer.start(15)
 	_takeDamageModifier = .5;
-	
+
+
 func healthCollected():
 	var newHealth = _health + 1;
 	if(newHealth <= _maxHealth):
 		emit_signal("health_changed", _health, newHealth, _maxHealth)
 		_health = newHealth;
-	
+
+
+func superChargeCollected():
+	_currentSuperCharges = min(_MAX_SUPER_CHARGES, _currentSuperCharges + 1)
+	emit_signal("super_charge_change", _currentSuperCharges)
+
+
+func superChargeReduce():
+	_currentSuperCharges = max(_MIN_SUPER_CHARGES, _currentSuperCharges - 1)
+	emit_signal("super_charge_change", _currentSuperCharges)
+
+
+func checkForSuperCharges():
+	if _currentSuperCharges > 0:
+		superChargeReduce()
+		_attackManager.startSpecial()
+
+
 func add_trail() -> void:
 	if(get_parent() != null):
 		var trail      = trail_scene.instance()
@@ -199,8 +224,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		print("call hurt logic")
 		_canTakeDamage = false
 		_beingHurt = true
-		_attackManager.isAttacking = false
-		_attackManager.resetCombo()
+		_attackManager.gotHit()
 		_hitDoneTimer.start(_hitAnimationTime)
 		animationTree.get("parameters/playback").travel("Hurt")
 		_invincibilityTimer.start(2)
@@ -257,7 +281,7 @@ func _flip_nodes(direction: Vector2):
 
 
 func _check_for_events() -> bool:
-	if Input.is_action_just_released(AttackManager.SPECIAL_ATTACK_EVENT):
+	if Input.is_action_just_released(AttackManager.SPECIAL_ATTACK_EVENT) and _attackManager.isChargingSpecial:
 		_attackManager.releaseSpecial()
 		return true
 	if checkForEvent(AttackManager.ATTACK1_EVENT):
@@ -270,7 +294,7 @@ func _check_for_events() -> bool:
 		_start_dash()
 		return false
 	elif checkForEvent(AttackManager.SPECIAL_ATTACK_EVENT):
-		_attackManager.startSpecial()
+		checkForSuperCharges()
 		return true
 	else:
 		return false

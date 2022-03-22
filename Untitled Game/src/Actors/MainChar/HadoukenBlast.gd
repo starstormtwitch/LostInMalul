@@ -4,6 +4,7 @@ class_name HadoukenBlast
 
 const _SPEED = 32
 const _TIME = 1
+const _DAMAGE = 4
 var _direction = 1
 
 var _isExploding = false
@@ -47,6 +48,6 @@ func _explode():
 func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
 		var directionVector = Vector2(_direction, 0)
-		area.get_parent().take_damage(1, directionVector, AttackManager.MAX_DAMAGE_FORCE)
+		area.get_parent().take_damage(_DAMAGE, directionVector, AttackManager.MAX_DAMAGE_FORCE)
 		_timer.stop()
 		_explode()
