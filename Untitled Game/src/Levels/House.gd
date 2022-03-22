@@ -1,5 +1,7 @@
 extends BaseLevelScript
 
+var basement_Key : PackedScene = preload("res://src/InventoryItems/BasementKey.tscn")
+	
 var _player : Actor
 const _MENU_EVENT: String = "Menu"
 const _UI_CANCEL_EVENT: String = "ui_cancel"
@@ -8,6 +10,7 @@ var _menuOpen: bool = false
 var _firstTimeEnteredKitchen: bool = false
 var _sendKitchenCrash: bool = false
 var _leftBasementDefeated: bool = false
+var _pickedUpBasementKey: bool = false
 var _rightBasementDefeated: bool = false
 var ratKing
 
@@ -18,9 +21,7 @@ onready var _textBox: TextBox = $GUI/TextBox
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_player = LevelGlobals.GetPlayerActor()
-	var valid = is_instance_valid(_player)
-	if(!valid):
-		print("Player instance invalid")
+	assert(is_instance_valid(_player),"Player instance invalid")
 	_player.connect("coin_changed", self, "_on_Player_coin_changed")
 	$GUI/PlayerGui/Coins.text = String(_player.Coins);
 	if(_infiniteHealth):
@@ -70,7 +71,6 @@ func _on_TextBox_closed():
 
 func _on_KitchenRat_AllEnemiesDefeated():
 	_textBox.showText("That was insane, it had to have come from the basement. I should go down there... but I should mentally prepare myself for what could possibly be down there first.")
-	get_node("LevelBackground/Teleports/Kitchen_Basement_2WT/EndpointAlpha/ToBetaActivationArea").disabled = false;
 	get_node("LevelBackground/Teleports/LivingRoom_Kitchen_2WT/EndpointBeta/ToAlphaActivationArea").disabled = false;
 	get_node("LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointAlpha/ToBetaActivationArea").disabled = false;
 
@@ -116,7 +116,26 @@ func _on_BossEncounter_body_entered(body):
 		ratKing[0]._mobSpawnArea = get_node("LevelBackground/SpecialZones/BossMobZone/CollisionShape2D");		
 		$GUI/BossGui.set_deferred("visible", true);
 
-
 func _on_RatKingSpawner_AllEnemiesDefeated():
 	_textBox.showText("End Of Demo, please restart or choose another level.")
 
+func _on_LirikYaki_item_pickup(item : Node2D):
+	$GUI/PlayerGui/Inventory.InventoryItem = item; 
+
+func _on_FoyerEndTable_interactable_text_signal(text):
+	_textBox.showText(text)
+	if(!_pickedUpBasementKey):
+		_pickedUpBasementKey = true
+		_player.add_item_to_inventory(basement_Key.instance())
+		$LevelBackground/Interactions/Foyer/FoyerEndTable.interactableText = "Just a lamp."
+	pass # Replace with function body.
+
+func _on_BasementNeedKey_interactable_text_signal(text):
+	if($GUI/PlayerGui/Inventory.InventoryItem.name == "BasementKey"):
+		_textBox.showText("*Unlocks door with basement key*")
+		$GUI/PlayerGui/Inventory.InventoryItem.queue_free()
+		$GUI/PlayerGui/Inventory.InventoryItem = null; 
+		get_node("LevelBackground/Interactions/Kitchen/BasementNeedKey/CollisionShape").disabled = true;
+		get_node("LevelBackground/Teleports/Kitchen_Basement_2WT/EndpointAlpha/ToBetaActivationArea").disabled = false;
+	else: 
+		_textBox.showText(text)
