@@ -4,6 +4,7 @@ class_name BaseLevelScript
 
 var _cameraManager: CustomCamera2D
 var _infiniteHealth: bool;
+var _enteredAreas: Array
 
 func _ready():
 	_setup()
@@ -29,6 +30,7 @@ func _set_game_settings(infiniteHealth: bool):
 func InitCameraManager() -> void:
 	_cameraManager = CustomCamera2D.new(LevelGlobals.GetPlayerActor(), true)
 	_cameraManager.connect_to_player_shake_signal(LevelGlobals.GetPlayerActor())
+	_cameraManager.connect_to_area_lock_signal(get_tree().get_current_scene())
 
 func GetCameraManager() -> CustomCamera2D:
 	return _cameraManager
@@ -47,10 +49,21 @@ func RegisterDelimiterSignals() -> void:
 		#var dl: CustomDelimiter2D = _dl
 		assert(_dl.has_signal("PlayerEnteredAreaDelimiter"), "Delimiter node has no PlayerEnteredAreaDelimiter signal.")
 		_dl.connect("PlayerEnteredAreaDelimiter", self, "CameraTransitionToDelimiter")
+		assert(_dl.has_signal("PlayerExitedAreaDelimiter"), "Delimiter node has no PlayerExitedAreaDelimiter signal.")
+		_dl.connect("PlayerExitedAreaDelimiter", self, "CameraTransitionToOuterDelimiter")
 	print("Registered delimiters.")
 
+func CameraTransitionToOuterDelimiter(delimiter: CustomDelimiter2D) -> void:	
+	var thisDelimiter = _enteredAreas.pop_back();
+	var overlappingDelimiter = _enteredAreas.pop_back();
+	_enteredAreas.push_back(overlappingDelimiter);
+	assert(overlappingDelimiter != null, "No overlapping area!!!")
+	_cameraManager.limitCameraToDelimiter(overlappingDelimiter) 
+	
+	
 func CameraTransitionToDelimiter(delimiter: CustomDelimiter2D) -> void:	
 	_cameraManager.limitCameraToDelimiter(delimiter) 
+	_enteredAreas.push_back(delimiter);
 
 func TeleportPlayerToPosition(position: Vector2, playFadeTime: float = 0) -> void:
 	get_tree().paused = true

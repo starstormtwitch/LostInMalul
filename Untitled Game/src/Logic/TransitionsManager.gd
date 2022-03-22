@@ -1,6 +1,7 @@
 extends Node
 
 var _cameraManager: CustomCamera2D
+var _enteredAreas: Array
 
 func _ready():
 	setup()
@@ -29,6 +30,8 @@ func RegisterDelimiterSignals() -> void:
 		#var dl: CustomDelimiter2D = _dl
 		assert(_dl.has_signal("PlayerEnteredAreaDelimiter"), "Delimiter node has no PlayerEnteredAreaDelimiter signal.")
 		_dl.connect("PlayerEnteredAreaDelimiter", self, "CameraTransitionToDelimiter")
+		assert(_dl.has_signal("PlayerExitedAreaDelimiter"), "Delimiter node has no PlayerExitedAreaDelimiter signal.")
+		_dl.connect("PlayerExitedAreaDelimiter", self, "CameraTransitionToOuterDelimiter")
 	print("Registered delimiters.")
 
 func GetCameraManager() -> CustomCamera2D:
@@ -36,7 +39,15 @@ func GetCameraManager() -> CustomCamera2D:
 
 func CameraTransitionToDelimiter(delimiter: CustomDelimiter2D) -> void:	
 	_cameraManager.limitCameraToDelimiter(delimiter) 
+	_enteredAreas.push_back(delimiter);
 
+func CameraTransitionToOuterDelimiter(delimiter: CustomDelimiter2D) -> void:	
+	var thisDelimiter = _enteredAreas.pop_back();
+	var overlappingDelimiter = _enteredAreas.back();
+	assert(overlappingDelimiter != null, "No overlapping area!!!")
+	_cameraManager.limitCameraToDelimiter(overlappingDelimiter) 
+	
+	
 func TeleportPlayerToPosition(position: Vector2, playFadeTime: float = 0) -> void:
 	get_tree().paused = true
 	if playFadeTime > 0:

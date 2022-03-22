@@ -4,6 +4,7 @@ signal player_hit_enemy
 signal player_dodge
 signal super_charge_change(new_value)
 signal coin_changed
+signal item_pickup
 
 
 class_name LirikYaki
@@ -218,6 +219,8 @@ func add_trail() -> void:
 		get_parent().add_child(trail)
 		_trail.push_front(trail)
 
+func add_item_to_inventory(item : Node2D):
+	emit_signal("item_pickup", item);
 
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if _canTakeDamage:

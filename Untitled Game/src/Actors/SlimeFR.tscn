@@ -344,7 +344,6 @@ shape = SubResource( 27 )
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( 3.18838, -9.92232 )
 shape = SubResource( 28 )
-disabled = true
 
 [node name="Sight" type="RayCast2D" parent="."]
 position = Vector2( 0.353554, -14.8493 )

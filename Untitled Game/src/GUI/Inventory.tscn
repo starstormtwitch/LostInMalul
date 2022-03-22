@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/GUI/item_slot_empty_background.png" type="Texture" id=1]
+[ext_resource path="res://src/GUI/Inventory.gd" type="Script" id=2]
+
+[node name="Inventory" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 18.0
+margin_bottom = 18.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_right = 18.0
+margin_bottom = 18.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InventorySlot" type="Panel" parent="CenterContainer"]
+margin_left = 9.0
+margin_top = 9.0
+margin_right = 9.0
+margin_bottom = 9.0

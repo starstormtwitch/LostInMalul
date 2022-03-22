@@ -1,6 +1,7 @@
 extends Node
 
 var _player: Actor
+var _scene: Node
 
 var _layerDict: Dictionary = {}
 const _layerBitParamName: String = "bit"
@@ -8,10 +9,14 @@ const _layerValueParamName: String = "value"
 
 func _ready():
 	_findPlayerEntity()
+	_findSceneEntity()
 	_createLayerDictionary()
 
 func SceneHasPlayerActor() -> bool:
 	return _player != null
+	
+func SceneHasTree() -> bool:
+	return _scene != null
 
 func GetPlayerActor() -> Actor:
 	if(_player == null || !is_instance_valid(_player)):
@@ -27,6 +32,13 @@ func _findPlayerEntity() -> void:
 		var players = tree.get_nodes_in_group("Player")
 		if players.size() > 0:
 			_player = players[0]
+	else:
+		printerr("Parent does not exist.")
+		
+func _findSceneEntity() -> void:
+	var parent = get_parent()
+	if parent != null:
+		_scene = parent
 	else:
 		printerr("Parent does not exist.")
 

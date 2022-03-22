@@ -53,7 +53,7 @@ var _leftBound: StaticBody2D = null
 var _rightBound: StaticBody2D = null
 var _upperBound: StaticBody2D = null
 var _bottomBound: StaticBody2D = null
-var _boundWidth: int = 5
+var _boundWidth: int = 40
 var _defaultBoundLength: int = 10000000
 
 func _init(cameraTarget: Node, current: bool):
@@ -297,14 +297,34 @@ func connect_to_player_shake_signal(player: Actor):
 	print("Connect player hit enemy singal")
 	assert(player, "Player cannot be null")
 	player.connect("player_hit_enemy", self, "shake")
+	
+func connect_to_area_lock_signal(scene: Node):
+	print("Connect area lock signal")
+	assert(scene, "Scene cannot be null")
+	scene.connect("area_lock", self, "enableBounds")
 
+## Enable/disable one-way collision boxes around camera
+func enableBounds(enabled: bool):
+	var allLeftChildren = _leftBound.get_children();
+	for children in allLeftChildren:
+		children.set_deferred("disabled", !enabled);
+	var allRightChildren = _rightBound.get_children();
+	for children in allRightChildren:
+		children.set_deferred("disabled", !enabled);
+	var allUpperChildren = _upperBound.get_children();
+	for children in allUpperChildren:
+		children.set_deferred("disabled", !enabled);
+	var allBottomChildren = _bottomBound.get_children();
+	for children in allBottomChildren:
+		children.set_deferred("disabled", !enabled);
+	
 ## Configure collision shapes around the camera.
 func _configureBounds() -> void:
 	_leftBound = _createNewBound()
 	_rightBound = _createNewBound()
 	_upperBound = _createNewBound()
 	_bottomBound = _createNewBound()
-	
+	enableBounds(false);
 	_leftBound.rotate(PI/2) #90
 	_rightBound.rotate(-PI/2) #-90
 	_upperBound.rotate(PI) #180
@@ -347,7 +367,7 @@ func _createNewBound() -> StaticBody2D:
 	sb.set_collision_mask_bit(LevelGlobals.GetLayerBit("Player"),true) #mask to player layer
 	sb.set_collision_mask_bit(LevelGlobals.GetLayerBit("Enemy"),true) #mask to enemy layer
 	coll.one_way_collision = true
-	#coll.one_way_collision_margin = 10
+	coll.one_way_collision_margin = 10
 	sb.add_child(coll)
 	self.get_tree().current_scene.add_child(sb)
 	return sb
