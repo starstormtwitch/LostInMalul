@@ -1,0 +1,51 @@
+[gd_resource type="Theme" load_steps=11 format=2]
+
+[ext_resource path="res://assets/GUI/Theme/Textures/backpanelv1.png" type="Texture" id=1]
+[ext_resource path="res://assets/GUI/Theme/Themes/button_normal.tres" type="StyleBox" id=2]
+[ext_resource path="res://assets/GUI/Theme/Fonts/sirial.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/GUI/Theme/Themes/panel.tres" type="StyleBox" id=4]
+
+[sub_resource type="StyleBoxLine" id=6]
+color = Color( 0, 0.670588, 0.811765, 1 )
+
+[sub_resource type="StyleBoxLine" id=3]
+color = Color( 0, 0.670588, 0.811765, 1 )
+
+[sub_resource type="StyleBoxLine" id=4]
+color = Color( 0.211765, 0.737255, 0.854902, 1 )
+
+[sub_resource type="StyleBoxLine" id=5]
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 348, 430 )
+margin_left = 5.0
+margin_right = 5.0
+margin_top = 5.0
+margin_bottom = 5.0
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxLine" id=7]
+color = Color( 0, 0.670588, 0.811765, 1 )
+vertical = true
+
+[resource]
+default_font = ExtResource( 3 )
+Button/colors/font_color = Color( 0, 0, 0, 1 )
+Button/styles/hover = ExtResource( 2 )
+Button/styles/normal = ExtResource( 2 )
+Button/styles/pressed = ExtResource( 2 )
+HSeparator/styles/separator = SubResource( 6 )
+HSlider/styles/grabber_area = SubResource( 3 )
+HSlider/styles/grabber_area_highlight = SubResource( 4 )
+HSlider/styles/slider = SubResource( 5 )
+Label/colors/font_color_focus = Color( 0, 0, 0, 1 )
+Label/colors/font_color_hover = Color( 0, 0, 0, 1 )
+Label/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+Panel/styles/panel = ExtResource( 4 )
+PanelContainer/styles/panel = SubResource( 2 )
+TabContainer/styles/panel = ExtResource( 4 )
+VSeparator/styles/separator = SubResource( 7 )

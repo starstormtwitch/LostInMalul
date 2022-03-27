@@ -1470,6 +1470,7 @@ position = Vector2( 91.9744, 128.276 )
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1499,10 +1500,7 @@ text = "Rex Magnus Rattorum, The Rat King"
 [node name="PlayerGui" type="Control" parent="GUI"]
 margin_right = 40.0
 margin_bottom = 40.0
-mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+mouse_filter = 1
 
 [node name="Profile" type="TextureRect" parent="GUI/PlayerGui"]
 margin_left = 15.0
@@ -1548,8 +1546,8 @@ margin_right = 232.041
 margin_bottom = 62.8196
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 35 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 35 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1562,8 +1560,8 @@ margin_right = 136.108
 margin_bottom = 88.6466
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 35 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 35 )
 text = "x"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1574,16 +1572,7 @@ margin_left = -11.3578
 margin_top = -5.88671
 margin_right = -11.358
 margin_bottom = -5.88672
-
-[node name="TextBox" parent="GUI" instance=ExtResource( 1 )]
-pause_mode = 2
-visible = false
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-margin_left = -512.0
-margin_top = -576.0
-margin_right = 512.0
+mouse_filter = 1
 
 [node name="TextBox" parent="GUI" instance=ExtResource( 1 )]
 pause_mode = 2

@@ -1,171 +1,250 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://addons/GGS/src/components/number_field/ggsNumberField.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/GUI/green_button.png" type="Texture" id=2]
+[ext_resource path="res://assets/GUI/Theme/Themes/CustomToggleButtonLabel.tres" type="Theme" id=2]
 [ext_resource path="res://src/Helpers/Settings/SettingsMenu.gd" type="Script" id=3]
-[ext_resource path="res://assets/GUI/green_button_Hover.png" type="Texture" id=4]
-[ext_resource path="res://addons/GGS/src/components/boolean/ggsBool.tscn" type="PackedScene" id=5]
-[ext_resource path="res://addons/GGS/src/components/boolean/ggs_bool.gd" type="Script" id=6]
+[ext_resource path="res://assets/GUI/Theme/Themes/MenuTheme.tres" type="Theme" id=6]
 
-[sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0 )
-colors = PoolColorArray( 0, 0.643137, 0.729412, 1 )
-
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
-width = 10
-
-[node name="SettingsMenu" type="Control"]
+[node name="SettingsMenu" type="CenterContainer"]
 pause_mode = 2
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -0.594604
-margin_top = 0.154541
-margin_right = -0.594604
-margin_bottom = 0.154541
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+theme = ExtResource( 6 )
+use_top_left = true
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="TextureRect" type="TextureRect" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -87.8988
-margin_top = -229.429
-margin_right = 112.101
-margin_bottom = -227.429
-rect_scale = Vector2( 1, 230 )
-mouse_filter = 2
-texture = SubResource( 2 )
-stretch_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="PanelContainer" type="PanelContainer" parent="."]
+margin_left = -262.0
+margin_top = -150.0
+margin_right = 262.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 500, 300 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -83.2656
-margin_top = -214.097
-margin_right = 111.734
-margin_bottom = 65.903
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="GridContainer" type="GridContainer" parent="PanelContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 519.0
+margin_bottom = 295.0
 
-[node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 194.0
-margin_bottom = 14.0
-text = "Settings"
-align = 1
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+margin_right = 514.0
+margin_bottom = 254.0
+size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 18.0
-margin_right = 194.0
-margin_bottom = 18.0
-mouse_filter = 2
+[node name="NavigationContainer" type="HBoxContainer" parent="PanelContainer/GridContainer/VBoxContainer"]
+margin_right = 514.0
+margin_bottom = 17.0
+alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 22.0
-margin_right = 194.0
-margin_bottom = 22.0
-mouse_filter = 2
+[node name="QLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer"]
+margin_right = 16.0
+margin_bottom = 17.0
+text = "Q"
+valign = 1
 
-[node name="Label2" type="Label" parent="VBoxContainer"]
-margin_top = 26.0
-margin_right = 194.0
-margin_bottom = 40.0
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer"]
+margin_left = 20.0
+margin_right = 24.0
+margin_bottom = 17.0
+
+[node name="OptionList" type="HBoxContainer" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer"]
+margin_left = 28.0
+margin_right = 488.0
+margin_bottom = 17.0
+alignment = 1
+
+[node name="GameplayLabel" type="Button" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList"]
+margin_right = 117.0
+margin_bottom = 17.0
+theme = ExtResource( 2 )
+toggle_mode = true
+text = "GAMEPLAY"
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList"]
+margin_left = 121.0
+margin_right = 125.0
+margin_bottom = 17.0
+
+[node name="GraphicsLabel" type="Button" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList"]
+margin_left = 129.0
+margin_right = 248.0
+margin_bottom = 17.0
+theme = ExtResource( 2 )
+toggle_mode = true
+text = "GRAPHICS"
+
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList"]
+margin_left = 252.0
+margin_right = 256.0
+margin_bottom = 17.0
+
+[node name="AudioLabel" type="Button" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList"]
+margin_left = 260.0
+margin_right = 334.0
+margin_bottom = 17.0
+theme = ExtResource( 2 )
+toggle_mode = true
+text = "AUDIO"
+
+[node name="VSeparator3" type="VSeparator" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList"]
+margin_left = 338.0
+margin_right = 342.0
+margin_bottom = 17.0
+
+[node name="ControlLabel" type="Button" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList"]
+margin_left = 346.0
+margin_right = 460.0
+margin_bottom = 17.0
+theme = ExtResource( 2 )
+toggle_mode = true
+text = "CONTROLS"
+
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer"]
+margin_left = 492.0
+margin_right = 496.0
+margin_bottom = 17.0
+
+[node name="ELabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer"]
+margin_left = 500.0
+margin_right = 514.0
+margin_bottom = 17.0
+text = "E"
+align = 2
+valign = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/GridContainer/VBoxContainer"]
+margin_top = 21.0
+margin_right = 514.0
+margin_bottom = 25.0
+
+[node name="GameplayGrid" type="GridContainer" parent="PanelContainer/GridContainer/VBoxContainer"]
+margin_top = 29.0
+margin_right = 514.0
+margin_bottom = 254.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+
+[node name="Label" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/GameplayGrid"]
+margin_right = 302.0
+margin_bottom = 17.0
+text = "Screen shake intensity"
+
+[node name="HSlider" type="HSlider" parent="PanelContainer/GridContainer/VBoxContainer/GameplayGrid"]
+margin_left = 306.0
+margin_right = 514.0
+margin_bottom = 16.0
+
+[node name="Label2" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/GameplayGrid"]
+margin_top = 21.0
+margin_right = 302.0
+margin_bottom = 38.0
 size_flags_vertical = 0
 text = "Screen Shake Duration"
 
-[node name="DurationField" parent="VBoxContainer" instance=ExtResource( 1 )]
-margin_top = 44.0
-margin_right = 194.0
-margin_bottom = 68.0
+[node name="DurationField" parent="PanelContainer/GridContainer/VBoxContainer/GameplayGrid" instance=ExtResource( 1 )]
+margin_left = 306.0
+margin_top = 21.0
+margin_right = 514.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
 max_value = 1.0
 step = 0.05
+align = 1
 
-[node name="Label3" type="Label" parent="VBoxContainer"]
-margin_top = 72.0
-margin_right = 194.0
-margin_bottom = 86.0
+[node name="Label3" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/GameplayGrid"]
+margin_top = 52.0
+margin_right = 302.0
+margin_bottom = 69.0
 size_flags_vertical = 0
 text = "Screen Shake Frequency"
 
-[node name="FrequencyField" parent="VBoxContainer" instance=ExtResource( 1 )]
-margin_top = 90.0
-margin_right = 194.0
-margin_bottom = 114.0
+[node name="FrequencyField" parent="PanelContainer/GridContainer/VBoxContainer/GameplayGrid" instance=ExtResource( 1 )]
+margin_left = 306.0
+margin_top = 52.0
+margin_right = 514.0
+margin_bottom = 79.0
+align = 1
 setting_index = 1
 
-[node name="Label4" type="Label" parent="VBoxContainer"]
-margin_top = 118.0
-margin_right = 194.0
-margin_bottom = 132.0
+[node name="Label4" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/GameplayGrid"]
+margin_top = 83.0
+margin_right = 302.0
+margin_bottom = 100.0
 size_flags_vertical = 0
 text = "Screen Shake Amplitude"
 
-[node name="AmplitudeField" parent="VBoxContainer" instance=ExtResource( 1 )]
-margin_top = 136.0
-margin_right = 194.0
-margin_bottom = 160.0
+[node name="AmplitudeField" parent="PanelContainer/GridContainer/VBoxContainer/GameplayGrid" instance=ExtResource( 1 )]
+margin_left = 306.0
+margin_top = 83.0
+margin_right = 514.0
+margin_bottom = 110.0
 max_value = 10.0
 step = 0.1
+align = 1
 setting_index = 2
 
-[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 164.0
-margin_right = 194.0
-margin_bottom = 164.0
-mouse_filter = 2
+[node name="GraphicsGrid" type="GridContainer" parent="PanelContainer/GridContainer/VBoxContainer"]
+visible = false
+margin_top = 29.0
+margin_right = 514.0
+margin_bottom = 46.0
 
-[node name="InfiniteHealth" type="CheckButton" parent="VBoxContainer" instance=ExtResource( 5 )]
-margin_top = 168.0
-margin_right = 194.0
-margin_bottom = 208.0
-shortcut_in_tooltip = false
-text = "Infinite Health"
-script = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-setting_index = 3
+[node name="Label" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid"]
+margin_right = 72.0
+margin_bottom = 17.0
+text = "graph"
 
-[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 212.0
-margin_right = 194.0
-margin_bottom = 212.0
-mouse_filter = 2
+[node name="AudioGrid" type="GridContainer" parent="PanelContainer/GridContainer/VBoxContainer"]
+visible = false
+margin_top = 50.0
+margin_right = 514.0
+margin_bottom = 67.0
 
-[node name="OkButton" type="TextureButton" parent="VBoxContainer"]
-margin_left = 17.0
-margin_top = 216.0
-margin_right = 177.0
-margin_bottom = 246.0
-rect_min_size = Vector2( 160, 30 )
+[node name="Label" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid"]
+margin_right = 68.0
+margin_bottom = 17.0
+text = "audio"
+
+[node name="ControlsGrid" type="GridContainer" parent="PanelContainer/GridContainer/VBoxContainer"]
+visible = false
+margin_top = 71.0
+margin_right = 514.0
+margin_bottom = 88.0
+
+[node name="Label" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/ControlsGrid"]
+margin_right = 102.0
+margin_bottom = 17.0
+text = "controls"
+
+[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+margin_top = 258.0
+margin_right = 514.0
+margin_bottom = 290.0
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/GridContainer/HBoxContainer"]
+margin_right = 514.0
+margin_bottom = 4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/GridContainer/HBoxContainer"]
+margin_top = 8.0
+margin_right = 514.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="OkButton" type="Button" parent="PanelContainer/GridContainer/HBoxContainer/VBoxContainer"]
+margin_left = 208.0
+margin_right = 306.0
+margin_bottom = 24.0
 size_flags_horizontal = 4
-texture_normal = ExtResource( 2 )
-texture_hover = ExtResource( 4 )
-expand = true
+size_flags_vertical = 4
+text = "     OK     "
 
-[node name="Label" type="Label" parent="VBoxContainer/OkButton"]
-anchor_left = 0.193
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_top = -7.0
-margin_right = 58.88
-margin_bottom = 7.0
-text = "Ok
-"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[connection signal="pressed" from="VBoxContainer/OkButton" to="." method="_on_OkButton_pressed"]
+[connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList/GameplayLabel" to="." method="_on_GameplayLabel_toggled"]
+[connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList/GraphicsLabel" to="." method="_on_GraphicsLabel_toggled"]
+[connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList/AudioLabel" to="." method="_on_AudioLabel_toggled"]
+[connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList/ControlLabel" to="." method="_on_ControlLabel_toggled"]
+[connection signal="pressed" from="PanelContainer/GridContainer/HBoxContainer/VBoxContainer/OkButton" to="." method="_on_OkButton_pressed"]
