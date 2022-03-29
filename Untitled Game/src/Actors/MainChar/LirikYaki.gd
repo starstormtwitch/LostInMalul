@@ -12,6 +12,8 @@ const trail_scene = preload("res://src/Helpers/Trail.tscn")
 const smoke_scene = preload("res://src/Actors/MainChar/SmokeParticles.tscn")
 const hadouken_scene = preload("res://src/Actors/MainChar/HadoukenBlast.tscn")
 const ghost_scene = preload("res://src/Helpers/Ghost.tscn")
+const spawner = preload("res://src/Helpers/Spawning/Spawner.tscn")
+const dropped_item = preload("res://src/InventoryItems/DroppedItemBase.tscn")
 
 const _JUMP_EVENT = "Jump"
 const _DASH_EVENT = "Dodge"
@@ -21,7 +23,7 @@ const _LEFT_FACING_SCALE = -1.0
 const _RIGHT_FACING_SCALE = 1.0
 const _FOOTSTEP_PARTICLE_POSITION_OFFSET = -6
 
-
+var InventoryItem : Node2D
 var Coins = 0
 var _beingHurt: bool = false
 var _canTakeDamage: bool = false
@@ -205,6 +207,16 @@ func add_trail() -> void:
 
 func add_item_to_inventory(item : Node2D):
 	emit_signal("item_pickup", item);
+	if(InventoryItem != null):
+		var slotItem = InventoryItem;
+		var itemDropper = spawner.instance();
+		itemDropper.global_position = self.global_position; 
+		get_parent().add_child(itemDropper);
+		var newDroppedItem = dropped_item.instance()
+		newDroppedItem.init(self, slotItem)
+		itemDropper.spawnInstantiatedNode(newDroppedItem, itemDropper.global_position);
+	if(item != null):
+		InventoryItem = item;
 
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if _canTakeDamage:

@@ -3,6 +3,7 @@ extends Node
 var _player: Actor
 var _scene: Node
 
+var _player_data: Dictionary = {}
 var _layerDict: Dictionary = {}
 const _layerBitParamName: String = "bit"
 const _layerValueParamName: String = "value"
@@ -17,6 +18,12 @@ func SceneHasPlayerActor() -> bool:
 	
 func SceneHasTree() -> bool:
 	return _scene != null
+
+func GetPlayerSaveData() -> Dictionary:
+	return _player_data
+	
+func SetPlayerSaveData(player_data : Dictionary):
+	_player_data = player_data;
 
 func GetPlayerActor() -> Actor:
 	if(_player == null || !is_instance_valid(_player)):

@@ -1,6 +1,7 @@
 extends BaseLevelScript
 
 var basement_Key : PackedScene = preload("res://src/InventoryItems/BasementKey.tscn")
+var plunger : PackedScene = preload("res://src/InventoryItems/Plunger.tscn")
 	
 var _player : Actor
 const _MENU_EVENT: String = "Menu"
@@ -11,6 +12,7 @@ var _firstTimeEnteredKitchen: bool = false
 var _sendKitchenCrash: bool = false
 var _leftBasementDefeated: bool = false
 var _pickedUpBasementKey: bool = false
+var _pickedUpPlunger: bool = false
 var _rightBasementDefeated: bool = false
 var ratKing
 
@@ -73,6 +75,7 @@ func _on_KitchenRat_AllEnemiesDefeated():
 	_textBox.showText("That was insane, it had to have come from the basement. I should go down there... but I should mentally prepare myself for what could possibly be down there first.")
 	get_node("LevelBackground/Teleports/LivingRoom_Kitchen_2WT/EndpointBeta/ToAlphaActivationArea").disabled = false;
 	get_node("LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointAlpha/ToBetaActivationArea").disabled = false;
+	save_game();
 
 func _on_BasementAttack_body_entered(body):
 	if (body == _player):
@@ -120,18 +123,17 @@ func _on_RatKingSpawner_AllEnemiesDefeated():
 	_textBox.showText("End Of Demo, please restart or choose another level.")
 
 func _on_LirikYaki_item_pickup(item : Node2D):
-	$GUI/PlayerGui/Inventory.InventoryItem = item; 
+	$GUI/PlayerGui/Inventory.InventoryItem = item;
 
 func _on_FoyerEndTable_interactable_text_signal(text):
 	_textBox.showText(text)
 	if(!_pickedUpBasementKey):
-		_pickedUpBasementKey = true
 		_player.add_item_to_inventory(basement_Key.instance())
 		$LevelBackground/Interactions/Foyer/FoyerEndTable.interactableText = "Just a lamp."
 	pass # Replace with function body.
 
 func _on_BasementNeedKey_interactable_text_signal(text):
-	if($GUI/PlayerGui/Inventory.InventoryItem.name == "BasementKey"):
+	if($GUI/PlayerGui/Inventory.InventoryItem != null && $GUI/PlayerGui/Inventory.InventoryItem.name == "BasementKey"):
 		_textBox.showText("*Unlocks door with basement key*")
 		$GUI/PlayerGui/Inventory.InventoryItem.queue_free()
 		$GUI/PlayerGui/Inventory.InventoryItem = null; 
@@ -139,3 +141,12 @@ func _on_BasementNeedKey_interactable_text_signal(text):
 		get_node("LevelBackground/Teleports/Kitchen_Basement_2WT/EndpointAlpha/ToBetaActivationArea").disabled = false;
 	else: 
 		_textBox.showText(text)
+
+
+func _on_Sink_interactable_text_signal(text):
+	_textBox.showText(text)
+	if(!_pickedUpPlunger):
+		_pickedUpPlunger = true
+		_player.add_item_to_inventory(plunger.instance())
+		$LevelBackground/Interactions/Bathroom/Sink.interactableText = "I never really understood the appeal of a double sink."
+	pass # Replace with function body.

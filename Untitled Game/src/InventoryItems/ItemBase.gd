@@ -2,24 +2,24 @@ extends Node2D
 
 var _player : Actor
 
-func _init(player : Actor, item : Node2D):
+func init(player : Actor, item : Node2D):
 	_player = player;
-	$ItemContainer.add_child(item);
+	$CenterContainer/ItemContainer.add_child(item);
 	$InteractPromptArea.playerNodePath = _player.get_path()
-	pass;
+	return self;
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if(_player == null):
 		_player = LevelGlobals.GetPlayerActor()
 	assert(is_instance_valid(_player),"Player instance invalid")
-	assert($ItemContainer.get_child_count() > 0, "DetachedItemBase has no item!")
+	assert($CenterContainer/ItemContainer.get_child_count() > 0, "DetachedItemBase has no item!")
 		
 func _on_InteractPromptArea_interactable_text_signal(text):
-	var items = $ItemContainer.get_children();
-	assert(items.count() > 0, "DetachedItemBase has no item inside!!!")
+	var items = $CenterContainer/ItemContainer.get_children();
+	assert(items.size() > 0, "DetachedItemBase has no item inside!!!")
 	for item in items:
 		assert(item is Node2D, "child in detached item base is not an item!")
-		_player.AddItemToInventory(item);
-		$ItemContainer.remove_child(item);
+		$CenterContainer/ItemContainer.remove_child(item);
+		_player.add_item_to_inventory(item);
 	queue_free();
