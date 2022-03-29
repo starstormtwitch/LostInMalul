@@ -9,8 +9,6 @@ signal item_pickup
 
 class_name LirikYaki
 
-const attack_sound = preload("res://assets/audio/HitAudio/Retro Impact Punch Hurt 01.wav")
-const miss_sound = preload("res://assets/audio/HitAudio/Quick Hit Swoosh.wav")
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
 const smoke_scene = preload("res://src/Actors/MainChar/SmokeParticles.tscn")
 const hadouken_scene = preload("res://src/Actors/MainChar/HadoukenBlast.tscn")
@@ -46,6 +44,7 @@ var _giveDamageModifier = 1.0;
 var _hitDoneTimer: Timer = Timer.new()
 var _hitAnimationTime = 1
 var _currentSuperCharges = STARTING_SUPER_CHARGES
+var _lastHadoukenDamagePercentage: float = 0.0
 
 
 onready var _attackManager: AttackManager
@@ -61,6 +60,7 @@ onready var ghostDurationTimer: Timer = $GhostDurationTImer
 onready var dashDurationTimer: Timer = $DashDurationTimer
 onready var dashCooldownTimer: Timer = $DashCooldownTimer
 onready var animationTree: AnimationTree = $AnimationTree
+onready var chargeBar: TextureProgress = $ChargeBar
 
 
 func _init():
@@ -79,7 +79,7 @@ func _ready() -> void:
 	_invincibilityTimer.start(3)
 	
 	_attackManager = AttackManager.new(_attackResetTimer,
-		shoryukenAudioPlayer, animationTree)
+		chargeBar, animationTree)
 	
 	_maxHealth = 10
 	_health = _maxHealth
@@ -206,7 +206,7 @@ func superChargeReduce():
 
 
 func checkForSuperCharges():
-	if _currentSuperCharges > 0:
+	if _currentSuperCharges > 0 and !_attackManager.isChargingSpecial:
 		superChargeReduce()
 		_attackManager.startSpecial()
 
@@ -285,7 +285,7 @@ func _flip_nodes(direction: Vector2):
 
 func _check_for_events() -> bool:
 	if Input.is_action_just_released(AttackManager.SPECIAL_ATTACK_EVENT) and _attackManager.isChargingSpecial:
-		_attackManager.releaseSpecial()
+		_summonHadouken()
 		return true
 	if checkForEvent(AttackManager.ATTACK1_EVENT):
 		_attackManager.doSideSwipeAttack(get_tree().get_current_scene())
@@ -303,8 +303,14 @@ func _check_for_events() -> bool:
 		return false
 
 
+func _summonHadouken():
+	_lastHadoukenDamagePercentage = _attackManager.getHadoukenPercentage()
+	_attackManager.releaseSpecial()
+
+
 func checkForEvent(event_name: String) -> bool:
 	return Input.is_action_just_pressed(event_name) or Input.is_action_pressed(event_name)
+
 
 func _finishedAttack() -> void:
 	print("attack finished")
@@ -343,6 +349,7 @@ func sendPlayerDeadSignal():
 # Called in Animation Player from animation Hadouken
 func summon_hadouken_blast():
 	var instance = hadouken_scene.instance()
+	instance.calculateDamage(_lastHadoukenDamagePercentage)
 	instance.set_direction(_directionFacing)
 	instance.global_position = hadoukenSpawn.global_position
 	get_parent().add_child(instance)
@@ -379,3 +386,7 @@ func _on_DashCooldownTimer_timeout():
 
 func _on_GhostDurationTImer_timeout():
 	ghostIntervalTimer.stop()
+
+
+func _on_ChargeIntervalTimer_timeout():
+	_attackManager.increaseChargeBar()

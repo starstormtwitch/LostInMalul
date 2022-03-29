@@ -5,6 +5,7 @@ class_name AttackManager
 var kickSound = preload("res://assets/audio/HitAudio/kick_sfx.wav")
 var punchSound = preload("res://assets/audio/HitAudio/punch_sfx.wav")
 var missSound = preload("res://assets/audio/HitAudio/miss_sfx.wav")
+var shoryukenSound = preload("res://assets/audio/HitAudio/shoryken_sfx.wav")
 
 const _START_A_COMBO = 3
 const _START_B_COMBO = 3
@@ -34,12 +35,12 @@ var _comboBPoints = _START_B_COMBO;
 
 # Injected from player
 var _attackResetTimer: Timer
-var _shoryukenAudioPlayer: AudioStreamPlayer
+var _chargeBar: TextureProgress
 var _animationTree: AnimationTree
 
-func _init(attackResetTimer: Timer, shoryukenAudioPlayer: AudioStreamPlayer, animationTree: AnimationTree):
+func _init(attackResetTimer: Timer, chargeBar: TextureProgress, animationTree: AnimationTree):
 	_attackResetTimer = attackResetTimer
-	_shoryukenAudioPlayer = shoryukenAudioPlayer
+	_chargeBar = chargeBar
 	_animationTree = animationTree
 
 
@@ -83,7 +84,7 @@ func doSideSwipeKick(scene : Node):
 		print("Combo B: " + String(_comboBPoints))
 		if _comboBPoints == 1 or _comboAPoints == 1:
 			_animationTree.get("parameters/playback").travel("Shoryuken")
-			_shoryukenAudioPlayer.play()
+			SoundPlayer.playSound(scene, shoryukenSound, _DEFAULT_ATTACK_VOLUME)
 			combo_reset()
 			damageForce = MAX_DAMAGE_FORCE
 		elif _comboBPoints == 3:
@@ -98,7 +99,12 @@ func doSideSwipeKick(scene : Node):
 			damageForce = MIN_DAMAGE_FORCE
 
 
+func getHadoukenPercentage() -> float:
+	return _chargeBar.value
+
+
 func startSpecial():
+	_chargeBar.visible = true
 	_animationTree.get("parameters/playback").travel("Hadouken")
 	isChargingSpecial = true
 
@@ -106,6 +112,17 @@ func startSpecial():
 func releaseSpecial():
 	_animationTree.get("parameters/playback").travel("Hadouken2")
 	isChargingSpecial = false
+	_hideChargeBar()
+
+
+func _hideChargeBar():
+	_chargeBar.value = 0
+	_chargeBar.visible = false
+
+
+func increaseChargeBar():
+	if isChargingSpecial:
+		_chargeBar.value += 1
 
 
 func playHitSounds(scene : Node):
