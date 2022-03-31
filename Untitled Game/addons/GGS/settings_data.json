@@ -5,7 +5,7 @@
 			"value": 0.1
 		},
 		"current": {
-			"value": 0.1
+			"value": 52
 		},
 		"logic": "res://src/Helpers/Settings/Screen Shake Duration.gd"
 	},
@@ -38,5 +38,65 @@
 			"value": false
 		},
 		"logic": "res://src/Helpers/Settings/Infinite Health.gd"
+	},
+	"4": {
+		"name": "Screen shake intensity",
+		"default": {
+			"value": 100
+		},
+		"current": {
+			"value": 100
+		},
+		"logic": "res://src/Helpers/Settings/Screen shake intensity.gd"
+	},
+	"5": {
+		"name": "AudioMusicVolume",
+		"default": {
+			"value": 50
+		},
+		"current": {
+			"value": 0.5
+		},
+		"logic": "res://src/Helpers/Settings/AudioMusicVolume.gd"
+	},
+	"6": {
+		"name": "AudioEffectsVolume",
+		"default": {
+			"value": 50
+		},
+		"current": {
+			"value": 25
+		},
+		"logic": "res://src/Helpers/Settings/AudioEffectsVolume.gd"
+	},
+	"7": {
+		"name": "DisplayVsync",
+		"default": {
+			"value": true
+		},
+		"current": {
+			"value": true
+		},
+		"logic": "res://src/Helpers/Settings/DisplayVsync.gd"
+	},
+	"8": {
+		"name": "DisplayWindowType",
+		"default": {
+			"value": 0
+		},
+		"current": {
+			"value": 0
+		},
+		"logic": "res://src/Helpers/Settings/DisplayWindowType.gd"
+	},
+	"9": {
+		"name": "DisplayResolution",
+		"default": {
+			"value": "1920x1080"
+		},
+		"current": {
+			"value": "1920x1080"
+		},
+		"logic": "res://src/Helpers/Settings/DisplayResolution.gd"
 	}
 }

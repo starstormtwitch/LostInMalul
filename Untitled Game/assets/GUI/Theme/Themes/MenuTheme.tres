@@ -15,6 +15,7 @@ color = Color( 0, 0.670588, 0.811765, 1 )
 color = Color( 0.211765, 0.737255, 0.854902, 1 )
 
 [sub_resource type="StyleBoxLine" id=5]
+color = Color( 0.47451, 0.47451, 0.47451, 1 )
 
 [sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 1 )
@@ -38,6 +39,7 @@ Button/colors/font_color = Color( 0, 0, 0, 1 )
 Button/styles/hover = ExtResource( 2 )
 Button/styles/normal = ExtResource( 2 )
 Button/styles/pressed = ExtResource( 2 )
+GridContainer/constants/vseparation = 8
 HSeparator/styles/separator = SubResource( 6 )
 HSlider/styles/grabber_area = SubResource( 3 )
 HSlider/styles/grabber_area_highlight = SubResource( 4 )

@@ -4,5 +4,4 @@ func _ready():
 	pass # Replace with function body.
 
 func main(value: Dictionary) -> void:
-	var duration = value["value"]
-	#print("duration is: " + String(duration))
+   pass
