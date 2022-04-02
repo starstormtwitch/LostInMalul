@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://addons/GGS/src/components/number_field/ggsNumberField.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/GUI/Theme/Themes/CustomToggleButtonLabel.tres" type="Theme" id=2]
-[ext_resource path="res://src/Helpers/Settings/SettingsMenu.gd" type="Script" id=3]
-[ext_resource path="res://addons/GGS/src/components/slider/ggs_slider.gd" type="Script" id=4]
-[ext_resource path="res://addons/GGS/src/components/slider/ggsSlider.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/GUI/Theme/Themes/MenuTheme.tres" type="Theme" id=6]
+[ext_resource path="res://addons/GGS/src/components/option_list/ggsOptionList.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Helpers/GUI/Settings/SettingsMenu.gd" type="Script" id=2]
+[ext_resource path="res://addons/GGS/src/components/boolean/ggsBool.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/GGS/src/components/number_field/ggsNumberField.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/GUI/Theme/Themes/MenuTheme.tres" type="Theme" id=5]
+[ext_resource path="res://assets/GUI/Theme/Themes/CustomToggleButtonLabel.tres" type="Theme" id=6]
+[ext_resource path="res://src/Helpers/GUI/Theme/CustomSlider.tscn" type="PackedScene" id=7]
 
 [node name="SettingsMenu" type="CenterContainer"]
 pause_mode = 2
@@ -13,9 +14,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-theme = ExtResource( 6 )
+theme = ExtResource( 5 )
 use_top_left = true
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 margin_left = -257.0
@@ -60,7 +61,7 @@ alignment = 1
 [node name="GraphicsLabel" type="Button" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList"]
 margin_right = 100.0
 margin_bottom = 17.0
-theme = ExtResource( 2 )
+theme = ExtResource( 6 )
 toggle_mode = true
 text = "DISPLAY"
 
@@ -73,7 +74,7 @@ margin_bottom = 17.0
 margin_left = 112.0
 margin_right = 186.0
 margin_bottom = 17.0
-theme = ExtResource( 2 )
+theme = ExtResource( 6 )
 toggle_mode = true
 text = "AUDIO"
 
@@ -86,7 +87,7 @@ margin_bottom = 17.0
 margin_left = 198.0
 margin_right = 312.0
 margin_bottom = 17.0
-theme = ExtResource( 2 )
+theme = ExtResource( 6 )
 toggle_mode = true
 text = "CONTROLS"
 
@@ -99,7 +100,7 @@ margin_bottom = 17.0
 margin_left = 324.0
 margin_right = 450.0
 margin_bottom = 17.0
-theme = ExtResource( 2 )
+theme = ExtResource( 6 )
 toggle_mode = true
 text = "ADVANCED"
 
@@ -125,163 +126,181 @@ margin_bottom = 25.0
 visible = false
 margin_top = 29.0
 margin_right = 504.0
-margin_bottom = 173.0
+margin_bottom = 205.0
 columns = 2
 
 [node name="GraphicsLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid"]
-margin_right = 280.0
+margin_right = 250.0
 margin_bottom = 17.0
+rect_min_size = Vector2( 250, 0 )
 text = "GRAPHICS"
 
 [node name="EmptyLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid"]
-margin_left = 284.0
+margin_left = 254.0
 margin_right = 504.0
 margin_bottom = 17.0
 
 [node name="ResolutionLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid"]
-margin_top = 25.0
-margin_right = 280.0
-margin_bottom = 42.0
+margin_top = 28.0
+margin_right = 250.0
+margin_bottom = 45.0
 text = "Resolution"
-
-[node name="ResolutionSelector" type="ItemList" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid"]
-margin_left = 284.0
-margin_top = 25.0
-margin_right = 504.0
-margin_bottom = 42.0
-
-[node name="VsyncLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid"]
-margin_top = 53.0
-margin_right = 280.0
-margin_bottom = 70.0
-text = "Vsync"
-
-[node name="VsyncCheckbox" type="CheckBox" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid"]
-margin_left = 376.0
-margin_top = 50.0
-margin_right = 412.0
-margin_bottom = 74.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
 align = 1
 
+[node name="ResolutionList" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid" instance=ExtResource( 1 )]
+margin_left = 254.0
+margin_top = 25.0
+margin_right = 504.0
+margin_bottom = 49.0
+setting_index = 9
+
+[node name="WindowModeLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid"]
+margin_top = 60.0
+margin_right = 250.0
+margin_bottom = 77.0
+text = "Window mode"
+align = 1
+
+[node name="WindowModeList" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid" instance=ExtResource( 1 )]
+margin_left = 254.0
+margin_top = 57.0
+margin_right = 504.0
+margin_bottom = 81.0
+text = "FullScreen"
+items = [ "FullScreen", null, false, 0, null, "Windowed", null, false, 1, null ]
+selected = 0
+setting_index = 8
+
+[node name="VsyncLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid"]
+margin_top = 89.0
+margin_right = 250.0
+margin_bottom = 106.0
+text = "Vsync"
+align = 1
+
+[node name="VsyncCheckbox" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid" instance=ExtResource( 3 )]
+margin_left = 372.0
+margin_top = 89.0
+margin_right = 385.0
+margin_bottom = 106.0
+size_flags_horizontal = 4
+align = 1
+setting_index = 7
+
 [node name="CameraSectionLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid"]
-margin_top = 82.0
-margin_right = 280.0
-margin_bottom = 119.0
+margin_top = 114.0
+margin_right = 250.0
+margin_bottom = 151.0
 text = "
 CAMERA"
 
 [node name="EmptyLabel2" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid"]
-margin_left = 284.0
-margin_top = 92.0
+margin_left = 254.0
+margin_top = 124.0
 margin_right = 504.0
-margin_bottom = 109.0
+margin_bottom = 141.0
 
 [node name="ShakeLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid"]
-margin_top = 127.0
-margin_right = 280.0
-margin_bottom = 144.0
-text = "Screen shake intensity"
+margin_top = 159.0
+margin_right = 250.0
+margin_bottom = 176.0
+text = "Screen Shake"
+align = 1
 
-[node name="ShakeSliderGrid" type="GridContainer" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid"]
-margin_left = 284.0
-margin_top = 127.0
+[node name="ShakeSlider" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid" instance=ExtResource( 7 )]
+margin_left = 254.0
+margin_top = 159.0
 margin_right = 504.0
-margin_bottom = 144.0
+margin_bottom = 176.0
 size_flags_horizontal = 3
-columns = 2
 
-[node name="ScreenShakeIntensity" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid/ShakeSliderGrid" instance=ExtResource( 5 )]
-margin_right = 160.0
-size_flags_horizontal = 3
-max_value = 100.0
-step = 1.0
+[node name="ggsSlider" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid/ShakeSlider" index="0"]
+margin_right = 190.0
 
-[node name="ScreenShakeValueLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid/ShakeSliderGrid"]
-margin_left = 164.0
-margin_right = 220.0
+[node name="Label" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid/ShakeSlider" index="1"]
+margin_left = 194.0
+margin_top = 0.0
+margin_right = 250.0
 margin_bottom = 17.0
-rect_min_size = Vector2( 55, 0 )
-size_flags_horizontal = 8
-size_flags_vertical = 2
-text = "100%"
-align = 2
 
 [node name="AudioGrid" type="GridContainer" parent="PanelContainer/GridContainer/VBoxContainer"]
 margin_top = 29.0
 margin_right = 504.0
-margin_bottom = 71.0
+margin_bottom = 96.0
 columns = 2
 
-[node name="SoundEffectsVolumeLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid"]
+[node name="MasterVolumeLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid"]
 margin_right = 250.0
 margin_bottom = 17.0
+text = "Master"
+
+[node name="MasterVolumeSlider" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid" instance=ExtResource( 7 )]
+margin_left = 254.0
+margin_right = 504.0
+margin_bottom = 17.0
+
+[node name="ggsSlider" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid/MasterVolumeSlider" index="0"]
+margin_right = 190.0
+setting_index = 10
+
+[node name="Label" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid/MasterVolumeSlider" index="1"]
+margin_left = 194.0
+margin_top = 0.0
+margin_right = 250.0
+margin_bottom = 17.0
+
+[node name="SfxVolumeLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid"]
+margin_top = 25.0
+margin_right = 250.0
+margin_bottom = 42.0
 rect_min_size = Vector2( 250, 0 )
 text = "Sound effects"
 
-[node name="SoundEffectGrid" type="GridContainer" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid"]
+[node name="SfxVolumeSlider" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid" instance=ExtResource( 7 )]
 margin_left = 254.0
+margin_top = 25.0
 margin_right = 504.0
-margin_bottom = 17.0
+margin_bottom = 42.0
 size_flags_horizontal = 3
-columns = 2
 
-[node name="SoundEffectsVolume" type="HSlider" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid/SoundEffectGrid" instance=ExtResource( 5 )]
+[node name="ggsSlider" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid/SfxVolumeSlider" index="0"]
 margin_right = 190.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 100, 0 )
-size_flags_horizontal = 3
-min_value = 1.0
-value = 1.0
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-setting_index = 5
+setting_index = 6
 
-[node name="SoundEffectsVolumeValueLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid/SoundEffectGrid"]
+[node name="Label" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid/SfxVolumeSlider" index="1"]
 margin_left = 194.0
+margin_top = 0.0
 margin_right = 250.0
 margin_bottom = 17.0
-rect_min_size = Vector2( 55, 0 )
-text = "100%"
 
 [node name="MusicVolumeLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid"]
-margin_top = 25.0
+margin_top = 50.0
 margin_right = 250.0
-margin_bottom = 42.0
+margin_bottom = 67.0
 rect_min_size = Vector2( 250, 0 )
 text = "Music"
 
-[node name="MusicVolumeGrid" type="GridContainer" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid"]
+[node name="MusicVolumeSlider" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid" instance=ExtResource( 7 )]
 margin_left = 254.0
-margin_top = 25.0
+margin_top = 50.0
 margin_right = 504.0
-margin_bottom = 42.0
-size_flags_horizontal = 3
-columns = 2
+margin_bottom = 67.0
 
-[node name="MusicVolume" type="HSlider" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid/MusicVolumeGrid"]
+[node name="ggsSlider" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid/MusicVolumeSlider" index="0"]
 margin_right = 190.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 100, 0 )
-size_flags_horizontal = 3
-script = ExtResource( 4 )
-setting_index = 6
+setting_index = 5
 
-[node name="MusicVolumeValueLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid/MusicVolumeGrid"]
+[node name="Label" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid/MusicVolumeSlider" index="1"]
 margin_left = 194.0
+margin_top = 0.0
 margin_right = 250.0
 margin_bottom = 17.0
-rect_min_size = Vector2( 55, 0 )
-text = "100%"
 
 [node name="ControlsGrid" type="GridContainer" parent="PanelContainer/GridContainer/VBoxContainer"]
 visible = false
 margin_top = 29.0
 margin_right = 504.0
-margin_bottom = 254.0
+margin_bottom = 250.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -292,9 +311,9 @@ text = "Test"
 
 [node name="AdvancedGrid" type="GridContainer" parent="PanelContainer/GridContainer/VBoxContainer"]
 visible = false
-margin_top = 92.0
-margin_right = 523.0
-margin_bottom = 254.0
+margin_top = 29.0
+margin_right = 504.0
+margin_bottom = 250.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
@@ -305,9 +324,9 @@ margin_bottom = 17.0
 size_flags_vertical = 0
 text = "Screen Shake Duration"
 
-[node name="DurationField" parent="PanelContainer/GridContainer/VBoxContainer/AdvancedGrid" instance=ExtResource( 1 )]
+[node name="DurationField" parent="PanelContainer/GridContainer/VBoxContainer/AdvancedGrid" instance=ExtResource( 4 )]
 margin_left = 306.0
-margin_right = 523.0
+margin_right = 504.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 max_value = 1.0
@@ -315,32 +334,32 @@ step = 0.05
 align = 1
 
 [node name="Label3" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/AdvancedGrid"]
-margin_top = 31.0
+margin_top = 35.0
 margin_right = 302.0
-margin_bottom = 48.0
+margin_bottom = 52.0
 size_flags_vertical = 0
 text = "Screen Shake Frequency"
 
-[node name="FrequencyField" parent="PanelContainer/GridContainer/VBoxContainer/AdvancedGrid" instance=ExtResource( 1 )]
+[node name="FrequencyField" parent="PanelContainer/GridContainer/VBoxContainer/AdvancedGrid" instance=ExtResource( 4 )]
 margin_left = 306.0
-margin_top = 31.0
-margin_right = 523.0
-margin_bottom = 58.0
+margin_top = 35.0
+margin_right = 504.0
+margin_bottom = 62.0
 align = 1
 setting_index = 1
 
 [node name="Label4" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/AdvancedGrid"]
-margin_top = 62.0
+margin_top = 70.0
 margin_right = 302.0
-margin_bottom = 79.0
+margin_bottom = 87.0
 size_flags_vertical = 0
 text = "Screen Shake Amplitude"
 
-[node name="AmplitudeField" parent="PanelContainer/GridContainer/VBoxContainer/AdvancedGrid" instance=ExtResource( 1 )]
+[node name="AmplitudeField" parent="PanelContainer/GridContainer/VBoxContainer/AdvancedGrid" instance=ExtResource( 4 )]
 margin_left = 306.0
-margin_top = 62.0
-margin_right = 523.0
-margin_bottom = 89.0
+margin_top = 70.0
+margin_right = 504.0
+margin_bottom = 97.0
 max_value = 10.0
 step = 0.1
 align = 1
@@ -374,8 +393,9 @@ text = "     OK     "
 [connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList/AudioLabel" to="." method="_on_AudioLabel_toggled"]
 [connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList/ControlLabel" to="." method="_on_ControlLabel_toggled"]
 [connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList/AdvancedLabel" to="." method="_on_AdvancedLabel_toggled"]
-[connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid/VsyncCheckbox" to="." method="_on_VsyncCheckbox_toggled"]
-[connection signal="value_changed" from="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid/ShakeSliderGrid/ScreenShakeIntensity" to="." method="_on_ScreenShakeIntensity_value_changed"]
-[connection signal="value_changed" from="PanelContainer/GridContainer/VBoxContainer/AudioGrid/SoundEffectGrid/SoundEffectsVolume" to="." method="_on_SoundEffectsVolume_value_changed"]
-[connection signal="value_changed" from="PanelContainer/GridContainer/VBoxContainer/AudioGrid/MusicVolumeGrid/MusicVolume" to="." method="_on_MusicVolume_value_changed"]
 [connection signal="pressed" from="PanelContainer/GridContainer/HBoxContainer/VBoxContainer/OkButton" to="." method="_on_OkButton_pressed"]
+
+[editable path="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid/ShakeSlider"]
+[editable path="PanelContainer/GridContainer/VBoxContainer/AudioGrid/MasterVolumeSlider"]
+[editable path="PanelContainer/GridContainer/VBoxContainer/AudioGrid/SfxVolumeSlider"]
+[editable path="PanelContainer/GridContainer/VBoxContainer/AudioGrid/MusicVolumeSlider"]

@@ -14,10 +14,6 @@ onready var audioButton: Button = $PanelContainer/GridContainer/VBoxContainer/Na
 onready var controlsButton: Button = $PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList/ControlLabel
 onready var advancedButton: Button = $PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList/AdvancedLabel
 
-onready var screenShakeValueLabel: Label = $PanelContainer/GridContainer/VBoxContainer/GraphicsGrid/ShakeSliderGrid/ScreenShakeValueLabel
-onready var soundEffectsVolumeValueLabel: Label = $PanelContainer/GridContainer/VBoxContainer/AudioGrid/SoundEffectGrid/SoundEffectsVolumeValueLabel
-onready var musicVolumeValueLabel: Label = $PanelContainer/GridContainer/VBoxContainer/AudioGrid/MusicVolumeGrid/MusicVolumeValueLabel
-
 enum ShowMenuEnum {GRAPHICS = 0, AUDIO = 1, CONTROLS = 2, ADVANCED = 3}
 onready var maxMenuOptionValue: int = ShowMenuEnum.size() - 1
 var currentMenu: int = 0
@@ -69,24 +65,6 @@ func _on_ControlLabel_toggled(button_pressed):
 func _on_AdvancedLabel_toggled(button_pressed):
 	if button_pressed:
 		_switchMenu(ShowMenuEnum.ADVANCED)
-
-func _on_ScreenShakeIntensity_value_changed(value):
-	print(value)
-	if screenShakeValueLabel == null:
-		yield(self, "ready")
-	screenShakeValueLabel.text = str(round(value))+'%'
-
-func _on_SoundEffectsVolume_value_changed(value):
-	print(value)
-	if soundEffectsVolumeValueLabel == null:
-		yield(self, "ready")
-	soundEffectsVolumeValueLabel.text = str(round(value))+'%'
-
-func _on_MusicVolume_value_changed(value):
-	print(value)
-	if musicVolumeValueLabel == null:
-		yield(self, "ready")
-	musicVolumeValueLabel.text = str(round(value))+'%'
 
 func _on_VsyncCheckbox_toggled(button_pressed):
 	print("vsync: " + str(button_pressed))

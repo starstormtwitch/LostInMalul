@@ -1,12 +1,42 @@
-[gd_resource type="Theme" load_steps=11 format=2]
+[gd_resource type="Theme" load_steps=30 format=2]
 
 [ext_resource path="res://assets/GUI/Theme/Textures/backpanelv1.png" type="Texture" id=1]
 [ext_resource path="res://assets/GUI/Theme/Themes/button_normal.tres" type="StyleBox" id=2]
 [ext_resource path="res://assets/GUI/Theme/Fonts/sirial.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/GUI/Theme/Themes/panel.tres" type="StyleBox" id=4]
+[ext_resource path="res://assets/GUI/Theme/Themes/checkbox_unchecked.tres" type="Texture" id=5]
+[ext_resource path="res://assets/GUI/Theme/Themes/checkbox_checked.tres" type="Texture" id=6]
+[ext_resource path="res://assets/GUI/Theme/Themes/hseparator.tres" type="StyleBox" id=7]
 
-[sub_resource type="StyleBoxLine" id=6]
-color = Color( 0, 0.670588, 0.811765, 1 )
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[sub_resource type="StyleBoxEmpty" id=14]
+
+[sub_resource type="StyleBoxEmpty" id=15]
+
+[sub_resource type="StyleBoxEmpty" id=16]
+
+[sub_resource type="StyleBoxEmpty" id=17]
+
+[sub_resource type="StyleBoxEmpty" id=18]
+
+[sub_resource type="StreamTexture" id=19]
+load_path = "res://.import/checkbox unchecked.png-200151a715595a770f55f2cf347a00ff.stex"
+
+[sub_resource type="StreamTexture" id=20]
+load_path = "res://.import/checkbox checked.png-8a5e1fb0cb6dda375575abc6a304af04.stex"
+
+[sub_resource type="StyleBoxEmpty" id=21]
+
+[sub_resource type="StyleBoxEmpty" id=22]
+
+[sub_resource type="StyleBoxEmpty" id=23]
+
+[sub_resource type="StyleBoxEmpty" id=24]
+
+[sub_resource type="StyleBoxEmpty" id=25]
+
+[sub_resource type="StyleBoxEmpty" id=26]
 
 [sub_resource type="StyleBoxLine" id=3]
 color = Color( 0, 0.670588, 0.811765, 1 )
@@ -29,6 +59,12 @@ expand_margin_right = 5.0
 expand_margin_top = 5.0
 expand_margin_bottom = 5.0
 
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
 [sub_resource type="StyleBoxLine" id=7]
 color = Color( 0, 0.670588, 0.811765, 1 )
 vertical = true
@@ -36,18 +72,50 @@ vertical = true
 [resource]
 default_font = ExtResource( 3 )
 Button/colors/font_color = Color( 0, 0, 0, 1 )
+Button/colors/font_color_focus = Color( 0, 0, 0, 1 )
 Button/styles/hover = ExtResource( 2 )
 Button/styles/normal = ExtResource( 2 )
 Button/styles/pressed = ExtResource( 2 )
+CheckBox/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+CheckBox/icons/checked = ExtResource( 6 )
+CheckBox/icons/unchecked = ExtResource( 5 )
+CheckBox/styles/disabled = SubResource( 13 )
+CheckBox/styles/focus = SubResource( 14 )
+CheckBox/styles/hover = SubResource( 15 )
+CheckBox/styles/hover_pressed = SubResource( 16 )
+CheckBox/styles/normal = SubResource( 17 )
+CheckBox/styles/pressed = SubResource( 18 )
+CheckButton/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+CheckButton/icons/off = SubResource( 19 )
+CheckButton/icons/on = SubResource( 20 )
+CheckButton/styles/disabled = SubResource( 21 )
+CheckButton/styles/focus = SubResource( 22 )
+CheckButton/styles/hover = SubResource( 23 )
+CheckButton/styles/hover_pressed = SubResource( 24 )
+CheckButton/styles/normal = SubResource( 25 )
+CheckButton/styles/pressed = SubResource( 26 )
 GridContainer/constants/vseparation = 8
-HSeparator/styles/separator = SubResource( 6 )
+HSeparator/styles/separator = ExtResource( 7 )
 HSlider/styles/grabber_area = SubResource( 3 )
 HSlider/styles/grabber_area_highlight = SubResource( 4 )
 HSlider/styles/slider = SubResource( 5 )
 Label/colors/font_color_focus = Color( 0, 0, 0, 1 )
 Label/colors/font_color_hover = Color( 0, 0, 0, 1 )
 Label/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+MenuButton/colors/font_color = Color( 1, 1, 1, 1 )
+MenuButton/styles/hover = ExtResource( 2 )
+MenuButton/styles/normal = ExtResource( 2 )
+MenuButton/styles/pressed = ExtResource( 2 )
 Panel/styles/panel = ExtResource( 4 )
 PanelContainer/styles/panel = SubResource( 2 )
+PopupMenu/icons/checked = ExtResource( 6 )
+PopupMenu/icons/unchecked = ExtResource( 5 )
+PopupMenu/styles/panel = ExtResource( 4 )
+PopupMenu/styles/separator = ExtResource( 7 )
+TabContainer/colors/font_color_bg = Color( 1, 1, 1, 1 )
+TabContainer/colors/font_color_fg = Color( 0.211765, 0.737255, 0.854902, 1 )
 TabContainer/styles/panel = ExtResource( 4 )
+TabContainer/styles/tab_bg = SubResource( 8 )
+TabContainer/styles/tab_disabled = SubResource( 9 )
+TabContainer/styles/tab_fg = SubResource( 10 )
 VSeparator/styles/separator = SubResource( 7 )

@@ -5,7 +5,7 @@
 			"value": 0.1
 		},
 		"current": {
-			"value": 52
+			"value": 41
 		},
 		"logic": "res://src/Helpers/Settings/Screen Shake Duration.gd"
 	},
@@ -40,63 +40,73 @@
 		"logic": "res://src/Helpers/Settings/Infinite Health.gd"
 	},
 	"4": {
-		"name": "Screen shake intensity",
+		"name": "Display_ScreenShakeIntensity",
 		"default": {
 			"value": 100
 		},
 		"current": {
 			"value": 100
 		},
-		"logic": "res://src/Helpers/Settings/Screen shake intensity.gd"
+		"logic": "res://src/Helpers/Settings/Display_ScreenShakeIntensity.gd"
 	},
 	"5": {
-		"name": "AudioMusicVolume",
+		"name": "Audio_MusicVolume",
 		"default": {
 			"value": 50
 		},
 		"current": {
-			"value": 0.5
+			"value": 0
 		},
-		"logic": "res://src/Helpers/Settings/AudioMusicVolume.gd"
+		"logic": "res://src/Helpers/Settings/Audio_MusicVolume.gd"
 	},
 	"6": {
-		"name": "AudioEffectsVolume",
+		"name": "Audio_EffectsVolume",
 		"default": {
 			"value": 50
 		},
 		"current": {
-			"value": 25
+			"value": 46
 		},
-		"logic": "res://src/Helpers/Settings/AudioEffectsVolume.gd"
+		"logic": "res://src/Helpers/Settings/Audio_EffectsVolume.gd"
 	},
 	"7": {
-		"name": "DisplayVsync",
+		"name": "Display_Vsync",
 		"default": {
 			"value": true
 		},
 		"current": {
 			"value": true
 		},
-		"logic": "res://src/Helpers/Settings/DisplayVsync.gd"
+		"logic": "res://src/Helpers/Settings/Display_Vsync.gd"
 	},
 	"8": {
-		"name": "DisplayWindowType",
+		"name": "Display_WindowType",
 		"default": {
 			"value": 0
 		},
 		"current": {
-			"value": 0
+			"value": 1
 		},
-		"logic": "res://src/Helpers/Settings/DisplayWindowType.gd"
+		"logic": "res://src/Helpers/Settings/Display_WindowType.gd"
 	},
 	"9": {
-		"name": "DisplayResolution",
+		"name": "Display_Resolution",
 		"default": {
-			"value": "1920x1080"
+			"value": 0
 		},
 		"current": {
-			"value": "1920x1080"
+			"value": 0
 		},
-		"logic": "res://src/Helpers/Settings/DisplayResolution.gd"
+		"logic": "res://src/Helpers/Settings/Display_Resolution.gd"
+	},
+	"10": {
+		"name": "Audio_MasterVolume",
+		"default": {
+			"value": 50
+		},
+		"current": {
+			"value": 66
+		},
+		"logic": "res://src/Helpers/Settings/Audio_MasterVolume.gd"
 	}
 }
