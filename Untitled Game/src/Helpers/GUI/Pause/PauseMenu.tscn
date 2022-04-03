@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://addons/GGS/src/components/boolean/ggsBool.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/GGS/src/components/number_field/ggsNumberField.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Helpers/GUI/Pause/PauseMenu.gd" type="Script" id=3]
 [ext_resource path="res://assets/GUI/Theme/Themes/MenuTheme.tres" type="Theme" id=4]
 
@@ -109,16 +110,16 @@ text = "Exit"
 visible = false
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 457.0
-margin_bottom = 124.0
+margin_right = 452.0
+margin_bottom = 201.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/DebugMenuContainer"]
-margin_right = 452.0
-margin_bottom = 119.0
+margin_right = 447.0
+margin_bottom = 196.0
 
 [node name="VBoxContainerA" type="VBoxContainer" parent="PanelContainer/DebugMenuContainer/HBoxContainer"]
 margin_right = 275.0
-margin_bottom = 119.0
+margin_bottom = 196.0
 
 [node name="Label" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA"]
 margin_right = 275.0
@@ -126,50 +127,131 @@ margin_bottom = 17.0
 text = "Debug options"
 align = 1
 
-[node name="InfiniteHealth" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA" instance=ExtResource( 1 )]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA"]
 margin_top = 21.0
 margin_right = 275.0
-margin_bottom = 60.0
-text = "Infinite Health"
+margin_bottom = 25.0
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA"]
+margin_top = 29.0
+margin_right = 275.0
+margin_bottom = 196.0
+columns = 2
+
+[node name="Label" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer"]
+margin_right = 185.0
+margin_bottom = 17.0
+text = "Infinite health"
+
+[node name="InfiniteHealthCheckbox" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer" instance=ExtResource( 1 )]
+margin_left = 225.0
+margin_right = 238.0
+margin_bottom = 17.0
+size_flags_horizontal = 6
+align = 1
 setting_index = 3
+
+[node name="Label2" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer"]
+margin_top = 25.0
+margin_right = 185.0
+margin_bottom = 62.0
+text = "
+Screen shake:"
+
+[node name="Label3" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer"]
+margin_left = 189.0
+margin_top = 35.0
+margin_right = 275.0
+margin_bottom = 52.0
+
+[node name="Label4" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer"]
+margin_top = 75.0
+margin_right = 185.0
+margin_bottom = 92.0
+text = "Duration"
+
+[node name="DurationField" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer" instance=ExtResource( 2 )]
+margin_left = 189.0
+margin_top = 70.0
+margin_right = 275.0
+margin_bottom = 97.0
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.05
+align = 1
+
+[node name="Label5" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer"]
+margin_top = 110.0
+margin_right = 185.0
+margin_bottom = 127.0
+text = "Frequency"
+
+[node name="FrequencyField" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer" instance=ExtResource( 2 )]
+margin_left = 189.0
+margin_top = 105.0
+margin_right = 275.0
+margin_bottom = 132.0
+align = 1
+setting_index = 1
+
+[node name="Label6" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer"]
+margin_top = 145.0
+margin_right = 185.0
+margin_bottom = 162.0
+text = "Amplitude"
+
+[node name="AmplitudeField" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer" instance=ExtResource( 2 )]
+margin_left = 189.0
+margin_top = 140.0
+margin_right = 275.0
+margin_bottom = 167.0
+max_value = 10.0
+step = 0.1
+align = 1
+setting_index = 2
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/DebugMenuContainer/HBoxContainer"]
 margin_left = 279.0
 margin_right = 283.0
-margin_bottom = 119.0
+margin_bottom = 196.0
 
 [node name="VBoxContainerB" type="VBoxContainer" parent="PanelContainer/DebugMenuContainer/HBoxContainer"]
 margin_left = 287.0
-margin_right = 452.0
-margin_bottom = 119.0
+margin_right = 447.0
+margin_bottom = 196.0
 
 [node name="Label" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerB"]
-margin_right = 165.0
+margin_right = 160.0
 margin_bottom = 17.0
 text = "Load level"
 align = 1
 
-[node name="LoadSlimeLevelButton" type="Button" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerB"]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerB"]
 margin_top = 21.0
-margin_right = 165.0
-margin_bottom = 51.0
+margin_right = 160.0
+margin_bottom = 25.0
+
+[node name="LoadSlimeLevelButton" type="Button" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerB"]
+margin_top = 29.0
+margin_right = 160.0
+margin_bottom = 59.0
 rect_min_size = Vector2( 160, 30 )
-text = "Slime Level"
+text = "Slime"
 
 [node name="LoadRatLevelButton" type="Button" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerB"]
-margin_top = 55.0
-margin_right = 165.0
-margin_bottom = 85.0
+margin_top = 63.0
+margin_right = 160.0
+margin_bottom = 93.0
 rect_min_size = Vector2( 160, 30 )
-text = "Rat Level"
+text = "Rat"
 
 [node name="LoadHouseLevelButton" type="Button" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerB"]
-margin_top = 89.0
-margin_right = 165.0
-margin_bottom = 119.0
+margin_top = 97.0
+margin_right = 160.0
+margin_bottom = 127.0
 rect_min_size = Vector2( 160, 30 )
 size_flags_horizontal = 4
-text = "House Level"
+text = "House"
 
 [connection signal="hide" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_hide"]
 [connection signal="pressed" from="PanelContainer/PauseMenuContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]

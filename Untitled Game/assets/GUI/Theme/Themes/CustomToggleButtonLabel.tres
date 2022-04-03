@@ -14,7 +14,7 @@
 
 [resource]
 Button/colors/font_color = Color( 1, 1, 1, 1 )
-Button/colors/font_color_focus = Color( 0.211765, 0.737255, 0.854902, 1 )
+Button/colors/font_color_focus = Color( 1, 1, 1, 1 )
 Button/colors/font_color_hover = Color( 0.211765, 0.737255, 0.854902, 1 )
 Button/colors/font_color_pressed = Color( 0.211765, 0.737255, 0.854902, 1 )
 Button/fonts/font = ExtResource( 1 )

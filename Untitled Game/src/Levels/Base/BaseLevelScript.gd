@@ -28,7 +28,10 @@ func _set_game_settings(infiniteHealth: bool):
 
 func InitCameraManager() -> void:
 	_cameraManager = CustomCamera2D.new(LevelGlobals.GetPlayerActor(), true)
-	_cameraManager.connect_to_player_shake_signal(LevelGlobals.GetPlayerActor())
+#	_cameraManager.connect_to_player_shake_signal(LevelGlobals.GetPlayerActor())
+	var player = LevelGlobals.GetPlayerActor()
+	assert(player.has_signal("player_hit_enemy"), "Player hit enemy signal not found.")
+	player.connect("player_hit_enemy", self, "shake")
 
 func GetCameraManager() -> CustomCamera2D:
 	return _cameraManager

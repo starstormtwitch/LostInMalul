@@ -9,10 +9,10 @@ onready var audioContainer: GridContainer = $PanelContainer/GridContainer/VBoxCo
 onready var controlsContainer: GridContainer = $PanelContainer/GridContainer/VBoxContainer/ControlsGrid
 onready var advancedContainer: GridContainer = $PanelContainer/GridContainer/VBoxContainer/AdvancedGrid
 
-onready var graphicsButton: Button = $PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList/GraphicsLabel
-onready var audioButton: Button = $PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList/AudioLabel
-onready var controlsButton: Button = $PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList/ControlLabel
-onready var advancedButton: Button = $PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList/AdvancedLabel
+onready var graphicsButton: Button = $PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/GraphicsLabel
+onready var audioButton: Button = $PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/AudioLabel
+onready var controlsButton: Button = $PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/ControlLabel
+onready var advancedButton: Button = $PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/AdvancedLabel
 
 enum ShowMenuEnum {GRAPHICS = 0, AUDIO = 1, CONTROLS = 2, ADVANCED = 3}
 onready var maxMenuOptionValue: int = ShowMenuEnum.size() - 1
@@ -30,11 +30,11 @@ func _input(ev):
 
 
 func _switchMenu(showMenuValue: int):
-	_updateButtonPressed(showMenuValue)
 	graphicsContainer.visible = showMenuValue == ShowMenuEnum.GRAPHICS
 	audioContainer.visible = showMenuValue == ShowMenuEnum.AUDIO
 	controlsContainer.visible = showMenuValue == ShowMenuEnum.CONTROLS
 	advancedContainer.visible = showMenuValue == ShowMenuEnum.ADVANCED
+	_updateButtonPressed(showMenuValue)
 	currentMenu = showMenuValue
 
 func _updateButtonPressed(showMenuValue: int):
@@ -51,6 +51,7 @@ func show_settings():
 	self.visible = true
 
 func _on_GraphicsLabel_toggled(button_pressed):
+	pass
 	if button_pressed:
 		_switchMenu(ShowMenuEnum.GRAPHICS)
 

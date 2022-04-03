@@ -1,33 +1,33 @@
 {
 	"0": {
-		"name": "Screen Shake Duration",
+		"name": "ScreenShake_Duration",
 		"default": {
 			"value": 0.1
 		},
 		"current": {
 			"value": 41
 		},
-		"logic": "res://src/Helpers/Settings/Screen Shake Duration.gd"
+		"logic": "res://src/Helpers/Settings/ScreenShake_Duration.gd"
 	},
 	"1": {
-		"name": "Screen Shake Frequency",
+		"name": "ScreenShake_Frequency",
 		"default": {
 			"value": 15
 		},
 		"current": {
 			"value": 15
 		},
-		"logic": "res://src/Helpers/Settings/Screen Shake Frequency.gd"
+		"logic": "res://src/Helpers/Settings/ScreenShake_Frequency.gd"
 	},
 	"2": {
-		"name": "Screen Shake Amplitude",
+		"name": "ScreenShake_Amplitude",
 		"default": {
 			"value": 4
 		},
 		"current": {
 			"value": 4
 		},
-		"logic": "res://src/Helpers/Settings/Screen Shake Amplitude.gd"
+		"logic": "res://src/Helpers/Settings/ScreenShake_Amplitude.gd"
 	},
 	"3": {
 		"name": "Infinite Health",

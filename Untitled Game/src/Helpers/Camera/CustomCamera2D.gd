@@ -104,10 +104,10 @@ func _process(delta):
 		if _panTarget._clearTimer == null && distanceToTarget < 25: #magic number that works well enough for now
 			yield(_panTarget.startPanTimer(), "timeout")
 			clearPan()
-	handleShake(delta)
+	_handleShake(delta)
 
 
-func handleShake(delta):
+func _handleShake(delta):
 	if _timer == 0:
 		return
 	# Only shake on certain frames.
@@ -152,6 +152,9 @@ func shake():
 	set_offset(get_offset() - _last_offset)
 	_last_offset = Vector2(0, 0)
 
+func shakeWith(duration: float, frequency: float, amplitude: float):
+	pass
+
 
 func panToTarget(target: Node, time: float = _DEFAULT_PAN_TIME, speed: float = _DEFAULT_PAN_SPEED, zoom: Vector2 = _DEFAULT_PAN_ZOOM, zoomSpeed: float = _DEFAULT_PAN_ZOOM_SPEED) -> void:
 	if _verbose:
@@ -159,7 +162,6 @@ func panToTarget(target: Node, time: float = _DEFAULT_PAN_TIME, speed: float = _
 	setRemoteUpdates(false)
 	_panTarget = CustomCamera2DPanTarget.new(target, time, speed, zoom, zoomSpeed)
 	emit_signal("pan_started")
-
 
 func clearPan() -> void:
 	if _panTarget != null:
@@ -169,7 +171,6 @@ func clearPan() -> void:
 		setRemoteUpdates(true)
 		self.zoom = _DEFAULT_CAMERA_ZOOM
 		emit_signal("pan_finished")
-
 
 func temporarylyFocusOn(target: Node, time: float, zoom: Vector2) -> void:
 	if _verbose:
@@ -246,7 +247,7 @@ func limitCameraToCoordinates(top: int, left: int, bottom: int, right: int, tran
 
 func compareCameraLimitIsEqual(top: int, left: int, bottom: int, right: int) -> bool:
 	return self.limit_top == top && self.limit_left == left && self.limit_bottom == bottom && self.limit_right == right
-	
+
 func compareCameraLimitIsEqualToDelimiter(delimiter: CustomDelimiter2D) -> bool:
 	return compareCameraLimitIsEqual(delimiter.getTop(), delimiter.getLeft(), delimiter.getBottom(), delimiter.getRight())
 
@@ -284,7 +285,6 @@ func _connect_to_settings_changed_signal():
 			printerr("No node in Settings group in parent tree. Needed to connect to signals. CustomCamera2D.gd::250") 
 	else:
 		printerr("No parent found. Needed to connect to signals. CustomCamera2D.gd::252")
-		
 
 # Callback for settings updated signal in PauseScreenContainer node
 func _get_new_camera_shake_values():
@@ -292,11 +292,6 @@ func _get_new_camera_shake_values():
 	_set_shake_settings(values.duration, values.frequency, values.amplitude)
 	#print("Load settings for camera shake")
 
-
-func connect_to_player_shake_signal(player: Actor):
-	print("Connect player hit enemy singal")
-	assert(player, "Player cannot be null")
-	player.connect("player_hit_enemy", self, "shake")
 
 ## Configure collision shapes around the camera.
 func _configureBounds() -> void:

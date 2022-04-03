@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://addons/GGS/src/components/option_list/ggsOptionList.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Helpers/GUI/Settings/SettingsMenu.gd" type="Script" id=2]
 [ext_resource path="res://addons/GGS/src/components/boolean/ggsBool.tscn" type="PackedScene" id=3]
-[ext_resource path="res://addons/GGS/src/components/number_field/ggsNumberField.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/GUI/Theme/Themes/MenuTheme.tres" type="Theme" id=5]
 [ext_resource path="res://assets/GUI/Theme/Themes/CustomToggleButtonLabel.tres" type="Theme" id=6]
 [ext_resource path="res://src/Helpers/GUI/Theme/CustomSlider.tscn" type="PackedScene" id=7]
@@ -52,25 +51,25 @@ margin_left = 20.0
 margin_right = 24.0
 margin_bottom = 17.0
 
-[node name="OptionList" type="HBoxContainer" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer"]
+[node name="MenuNavigationList" type="HBoxContainer" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer"]
 margin_left = 28.0
 margin_right = 478.0
 margin_bottom = 17.0
 alignment = 1
 
-[node name="GraphicsLabel" type="Button" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList"]
+[node name="GraphicsLabel" type="Button" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList"]
 margin_right = 100.0
 margin_bottom = 17.0
 theme = ExtResource( 6 )
 toggle_mode = true
 text = "DISPLAY"
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList"]
 margin_left = 104.0
 margin_right = 108.0
 margin_bottom = 17.0
 
-[node name="AudioLabel" type="Button" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList"]
+[node name="AudioLabel" type="Button" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList"]
 margin_left = 112.0
 margin_right = 186.0
 margin_bottom = 17.0
@@ -78,12 +77,12 @@ theme = ExtResource( 6 )
 toggle_mode = true
 text = "AUDIO"
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList"]
 margin_left = 190.0
 margin_right = 194.0
 margin_bottom = 17.0
 
-[node name="ControlLabel" type="Button" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList"]
+[node name="ControlLabel" type="Button" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList"]
 margin_left = 198.0
 margin_right = 312.0
 margin_bottom = 17.0
@@ -91,12 +90,12 @@ theme = ExtResource( 6 )
 toggle_mode = true
 text = "CONTROLS"
 
-[node name="VSeparator3" type="VSeparator" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList"]
+[node name="VSeparator3" type="VSeparator" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList"]
 margin_left = 316.0
 margin_right = 320.0
 margin_bottom = 17.0
 
-[node name="AdvancedLabel" type="Button" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList"]
+[node name="AdvancedLabel" type="Button" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList"]
 margin_left = 324.0
 margin_right = 450.0
 margin_bottom = 17.0
@@ -224,6 +223,7 @@ margin_right = 250.0
 margin_bottom = 17.0
 
 [node name="AudioGrid" type="GridContainer" parent="PanelContainer/GridContainer/VBoxContainer"]
+visible = false
 margin_top = 29.0
 margin_right = 504.0
 margin_bottom = 96.0
@@ -318,53 +318,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
 
-[node name="Label2" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/AdvancedGrid"]
-margin_right = 302.0
-margin_bottom = 17.0
-size_flags_vertical = 0
-text = "Screen Shake Duration"
-
-[node name="DurationField" parent="PanelContainer/GridContainer/VBoxContainer/AdvancedGrid" instance=ExtResource( 4 )]
-margin_left = 306.0
-margin_right = 504.0
-margin_bottom = 27.0
-size_flags_horizontal = 3
-max_value = 1.0
-step = 0.05
-align = 1
-
-[node name="Label3" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/AdvancedGrid"]
-margin_top = 35.0
-margin_right = 302.0
-margin_bottom = 52.0
-size_flags_vertical = 0
-text = "Screen Shake Frequency"
-
-[node name="FrequencyField" parent="PanelContainer/GridContainer/VBoxContainer/AdvancedGrid" instance=ExtResource( 4 )]
-margin_left = 306.0
-margin_top = 35.0
-margin_right = 504.0
-margin_bottom = 62.0
-align = 1
-setting_index = 1
-
-[node name="Label4" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/AdvancedGrid"]
-margin_top = 70.0
-margin_right = 302.0
-margin_bottom = 87.0
-size_flags_vertical = 0
-text = "Screen Shake Amplitude"
-
-[node name="AmplitudeField" parent="PanelContainer/GridContainer/VBoxContainer/AdvancedGrid" instance=ExtResource( 4 )]
-margin_left = 306.0
-margin_top = 70.0
-margin_right = 504.0
-margin_bottom = 97.0
-max_value = 10.0
-step = 0.1
-align = 1
-setting_index = 2
-
 [node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/GridContainer"]
 margin_top = 258.0
 margin_right = 504.0
@@ -389,10 +342,10 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "     OK     "
 
-[connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList/GraphicsLabel" to="." method="_on_GraphicsLabel_toggled"]
-[connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList/AudioLabel" to="." method="_on_AudioLabel_toggled"]
-[connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList/ControlLabel" to="." method="_on_ControlLabel_toggled"]
-[connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/OptionList/AdvancedLabel" to="." method="_on_AdvancedLabel_toggled"]
+[connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/GraphicsLabel" to="." method="_on_GraphicsLabel_toggled"]
+[connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/AudioLabel" to="." method="_on_AudioLabel_toggled"]
+[connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/ControlLabel" to="." method="_on_ControlLabel_toggled"]
+[connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/AdvancedLabel" to="." method="_on_AdvancedLabel_toggled"]
 [connection signal="pressed" from="PanelContainer/GridContainer/HBoxContainer/VBoxContainer/OkButton" to="." method="_on_OkButton_pressed"]
 
 [editable path="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid/ShakeSlider"]

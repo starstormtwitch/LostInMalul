@@ -13,6 +13,7 @@ static func CalculateNormalizedAudioVolume(percentage: float) -> float:
 
 static func ChangeAudioBusVolumePercentage(busName: String, percentage: float) -> void:
 	var busIdx = AudioServer.get_bus_index(busName)
+	assert(busIdx >= 0, "Audio bus " + busName + " not found.")
 	if percentage > 0:
 		var dbValue = CalculateNormalizedAudioVolume(percentage)
 		AudioServer.set_bus_volume_db(busIdx, dbValue)

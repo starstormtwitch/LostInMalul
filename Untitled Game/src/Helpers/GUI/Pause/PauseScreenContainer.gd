@@ -18,6 +18,7 @@ enum ShowMenuEnum {NONE = -1, PAUSE = 0, SETTINGS = 1}
 
 func _ready():
 	_switchMenu(ShowMenuEnum.NONE)
+	self.visible = true
 
 func signalConnectionSetup():
 	pass
