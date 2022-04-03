@@ -1,0 +1,219 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/Helpers/GUI/Theme/CustomSelector.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Helpers/GUI/Settings/Settings_AdvancedGridContainer.gd" type="Script" id=2]
+[ext_resource path="res://assets/GUI/Theme/Themes/MenuTheme.tres" type="Theme" id=3]
+
+[sub_resource type="ImageTexture" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[sub_resource type="StyleBoxEmpty" id=14]
+
+[node name="AdvancedGridContainer" type="ScrollContainer"]
+margin_right = 550.0
+margin_bottom = 500.0
+size_flags_vertical = 3
+theme = ExtResource( 3 )
+script = ExtResource( 2 )
+
+[node name="AdvancedGrid" type="GridContainer" parent="."]
+margin_right = 550.0
+margin_bottom = 500.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+
+[node name="Label6" type="Label" parent="AdvancedGrid"]
+margin_right = 233.0
+margin_bottom = 17.0
+text = "Enable Raytracing"
+
+[node name="RTCheckBox" type="CheckBox" parent="AdvancedGrid"]
+margin_left = 385.0
+margin_right = 401.0
+margin_bottom = 17.0
+size_flags_horizontal = 4
+align = 1
+
+[node name="Label" type="Label" parent="AdvancedGrid"]
+margin_top = 25.0
+margin_right = 233.0
+margin_bottom = 42.0
+text = "Raytraced shadows"
+
+[node name="RTShadowsCheckBox" type="CheckBox" parent="AdvancedGrid"]
+margin_left = 385.0
+margin_top = 25.0
+margin_right = 401.0
+margin_bottom = 42.0
+size_flags_horizontal = 4
+
+[node name="Label2" type="Label" parent="AdvancedGrid"]
+margin_top = 50.0
+margin_right = 233.0
+margin_bottom = 67.0
+text = "Shadowtraced rays"
+
+[node name="CheckBox" type="CheckBox" parent="AdvancedGrid"]
+margin_left = 385.0
+margin_top = 50.0
+margin_right = 401.0
+margin_bottom = 67.0
+size_flags_horizontal = 4
+
+[node name="Label3" type="Label" parent="AdvancedGrid"]
+margin_top = 75.0
+margin_right = 233.0
+margin_bottom = 92.0
+text = "Antialiasing"
+
+[node name="CustomSelector" parent="AdvancedGrid" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 237.0
+margin_top = 75.0
+margin_right = 550.0
+margin_bottom = 92.0
+size_flags_horizontal = 3
+custom_icons/arrow = SubResource( 9 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/disabled = SubResource( 13 )
+custom_styles/normal = SubResource( 14 )
+text = "None"
+items = [ "None", null, false, 0, null, "FXAA", null, false, 1, null, "TAA", null, false, 2, null, "MSAA", null, false, 3, null, "SMAA", null, false, 4, null, "WASDAA", null, false, 5, null, "THXSWQAA", null, false, 6, null, "RTXDLSSAA", null, false, 7, null, "FAKEAA", null, false, 8, null ]
+
+[node name="Label4" type="Label" parent="AdvancedGrid"]
+margin_top = 100.0
+margin_right = 233.0
+margin_bottom = 117.0
+text = "Dedotated Wam"
+
+[node name="CustomSelector2" parent="AdvancedGrid" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 237.0
+margin_top = 100.0
+margin_right = 550.0
+margin_bottom = 117.0
+custom_icons/arrow = SubResource( 9 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/disabled = SubResource( 13 )
+custom_styles/normal = SubResource( 14 )
+text = "1GB"
+items = [ "1GB", null, false, 0, null, "2GB", null, false, 1, null, "4GB", null, false, 2, null, "8GB", null, false, 3, null, "16GB", null, false, 4, null, "32GB", null, false, 5, null, "(download as needed)", null, false, 6, null ]
+
+[node name="Label5" type="Label" parent="AdvancedGrid"]
+margin_top = 125.0
+margin_right = 233.0
+margin_bottom = 142.0
+rect_pivot_offset = Vector2( -627.421, 174.89 )
+text = "AA"
+
+[node name="Label7" type="Label" parent="AdvancedGrid"]
+margin_left = 237.0
+margin_top = 125.0
+margin_right = 550.0
+margin_bottom = 142.0
+rect_pivot_offset = Vector2( -627.421, 174.89 )
+text = "AA"
+
+[node name="Label8" type="Label" parent="AdvancedGrid"]
+margin_top = 150.0
+margin_right = 233.0
+margin_bottom = 167.0
+rect_pivot_offset = Vector2( -627.421, 174.89 )
+text = "AA"
+
+[node name="Label9" type="Label" parent="AdvancedGrid"]
+margin_left = 237.0
+margin_top = 150.0
+margin_right = 550.0
+margin_bottom = 167.0
+rect_pivot_offset = Vector2( -627.421, 174.89 )
+text = "AA"
+
+[node name="Label10" type="Label" parent="AdvancedGrid"]
+margin_top = 175.0
+margin_right = 233.0
+margin_bottom = 192.0
+rect_pivot_offset = Vector2( -627.421, 174.89 )
+text = "AA"
+
+[node name="Label11" type="Label" parent="AdvancedGrid"]
+margin_left = 237.0
+margin_top = 175.0
+margin_right = 550.0
+margin_bottom = 192.0
+rect_pivot_offset = Vector2( -627.421, 174.89 )
+text = "AA"
+
+[node name="Label12" type="Label" parent="AdvancedGrid"]
+margin_top = 200.0
+margin_right = 233.0
+margin_bottom = 217.0
+rect_pivot_offset = Vector2( -627.421, 174.89 )
+text = "AA"
+
+[node name="Label13" type="Label" parent="AdvancedGrid"]
+margin_left = 237.0
+margin_top = 200.0
+margin_right = 550.0
+margin_bottom = 217.0
+rect_pivot_offset = Vector2( -627.421, 174.89 )
+text = "AA"
+
+[node name="Label14" type="Label" parent="AdvancedGrid"]
+margin_top = 225.0
+margin_right = 233.0
+margin_bottom = 242.0
+rect_pivot_offset = Vector2( -627.421, 174.89 )
+text = "AA"
+
+[node name="Label15" type="Label" parent="AdvancedGrid"]
+margin_left = 237.0
+margin_top = 225.0
+margin_right = 550.0
+margin_bottom = 242.0
+rect_pivot_offset = Vector2( -627.421, 174.89 )
+text = "AA"
+
+[node name="Label16" type="Label" parent="AdvancedGrid"]
+margin_top = 250.0
+margin_right = 233.0
+margin_bottom = 267.0
+rect_pivot_offset = Vector2( -627.421, 174.89 )
+text = "AA"
+
+[node name="Label17" type="Label" parent="AdvancedGrid"]
+margin_left = 237.0
+margin_top = 250.0
+margin_right = 550.0
+margin_bottom = 267.0
+rect_pivot_offset = Vector2( -627.421, 174.89 )
+text = "AA"
+
+[node name="Label18" type="Label" parent="AdvancedGrid"]
+margin_top = 275.0
+margin_right = 233.0
+margin_bottom = 292.0
+rect_pivot_offset = Vector2( -627.421, 174.89 )
+text = "AA"
+
+[node name="Label19" type="Label" parent="AdvancedGrid"]
+margin_left = 237.0
+margin_top = 275.0
+margin_right = 550.0
+margin_bottom = 292.0
+rect_pivot_offset = Vector2( -627.421, 174.89 )
+text = "AA"

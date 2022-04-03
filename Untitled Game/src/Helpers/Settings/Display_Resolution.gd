@@ -5,3 +5,4 @@ func _ready():
 
 func main(value: Dictionary) -> void:
 	pass
+		

@@ -35,7 +35,7 @@ var _limit_smooth_right: float
 var _limit_smooth_active: bool = false
 var _limit_smooth_target_position: Vector2
 
-var _verbose = true
+var _verbose = OS.is_debug_build()
 
 #variables for shaking
 var _duration = 0.1

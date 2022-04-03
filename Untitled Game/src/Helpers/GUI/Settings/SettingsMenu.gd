@@ -7,7 +7,7 @@ signal settings_changed
 onready var graphicsContainer: GridContainer = $PanelContainer/GridContainer/VBoxContainer/GraphicsGrid
 onready var audioContainer: GridContainer = $PanelContainer/GridContainer/VBoxContainer/AudioGrid
 onready var controlsContainer: GridContainer = $PanelContainer/GridContainer/VBoxContainer/ControlsGrid
-onready var advancedContainer: GridContainer = $PanelContainer/GridContainer/VBoxContainer/AdvancedGrid
+onready var advancedContainer: ScrollContainer = $PanelContainer/GridContainer/VBoxContainer/AdvancedGridContainer
 
 onready var graphicsButton: Button = $PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/GraphicsLabel
 onready var audioButton: Button = $PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/AudioLabel
@@ -66,6 +66,3 @@ func _on_ControlLabel_toggled(button_pressed):
 func _on_AdvancedLabel_toggled(button_pressed):
 	if button_pressed:
 		_switchMenu(ShowMenuEnum.ADVANCED)
-
-func _on_VsyncCheckbox_toggled(button_pressed):
-	print("vsync: " + str(button_pressed))

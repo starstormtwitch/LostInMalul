@@ -13,8 +13,7 @@ enum ShowMenuEnum {NONE = -1, PAUSE = 0, EXIT = 1, DEBUG = 2}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_switchMenu(ShowMenuEnum.PAUSE)
-	if OS.is_debug_build():
-		$PanelContainer/PauseMenuContainer/DebugButton.show()
+	$PanelContainer/PauseMenuContainer/DebugButton.visible = OS.is_debug_build()
 
 func _switchMenu(showMenu: int):
 	pauseMenuContainer.visible = showMenu == ShowMenuEnum.PAUSE

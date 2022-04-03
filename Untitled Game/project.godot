@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Helpers/CustomParticles.gd"
 }, {
+"base": "OptionButton",
+"class": "CustomSelector",
+"language": "GDScript",
+"path": "res://src/Helpers/GUI/Theme/CustomSelector.gd"
+}, {
 "base": "GridContainer",
 "class": "CustomSlider",
 "language": "GDScript",
@@ -163,6 +168,7 @@ _global_script_class_icons={
 "CustomCamera2D": "",
 "CustomDelimiter2D": "",
 "CustomParticles": "",
+"CustomSelector": "",
 "CustomSlider": "",
 "Enemy": "",
 "GGSUtils": "",
