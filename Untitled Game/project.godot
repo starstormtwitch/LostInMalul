@@ -199,7 +199,6 @@ default_bus_layout="res://src/Helpers/Audio/default_bus_layout.tres"
 [autoload]
 
 LevelGlobals="*res://src/Logic/LevelGlobals.gd"
-TransitionsManager="*res://src/Logic/TransitionsManager.gd"
 EventsList="*res://src/Helpers/EventsList.gd"
 ggsManager="*res://addons/GGS/src/ggs_manager.gd"
 MusicManager="*res://src/Helpers/Audio/MusicManager.tscn"

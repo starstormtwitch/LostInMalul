@@ -39,8 +39,11 @@ var _verbose = true
 
 #variables for shaking
 var _duration = 0.1
+var _defaultShakeDuration = Settings.GetScreenShakeDuration() #loaded once, ignores posterior modifications
 var _period_in_ms = 15
+var _defaultShakeFrecuency = Settings.GetScreenShakeFrecuency()
 var _amplitude = 4
+var _defaultShakeAmplitude = Settings.GetScreenShakeAmplitude()
 var _timer = 0.0
 var _last_shook_timer = 0
 var _previous_x = 0.0
@@ -65,8 +68,6 @@ func _init(cameraTarget: Node, current: bool):
 	self.zoom = _DEFAULT_CAMERA_ZOOM
 	self.current = current
 	_animationPlayer = CustomCamera2DSimpleTransitionPlayer.new(cameraTarget.get_tree().current_scene)
-	_get_new_camera_shake_values()
-	_connect_to_settings_changed_signal()
 	_configureBounds()
 	
 func _ready():
@@ -139,9 +140,15 @@ func _handleShake(delta):
 
 
 # Kick off a new screenshake effect.
-func shake():
+func shake(duration: float = 0, frequency: float = 0, amplitude: float = 0):
 	# Initialize variables.
-	#print("start shake")
+	_duration = duration if duration != 0 else _getDefaultShakeDuration()
+	_period_in_ms = 1.0 / frequency if frequency != 0 else 1.0 / _getDefaultShakeFrecuency()
+	_amplitude = amplitude if amplitude != 0 else _getDefaultShakeAmplitude()
+#	print("start shake")
+#	print("shake duration: " + str(_duration))
+#	print("shake period_in_ms: " + str(_period_in_ms))
+#	print("shake amplitude: " + str(_amplitude))
 	_timer = _duration
 	_is_shaking = true
 	_previous_x = rand_range(-.3, .3)
@@ -152,9 +159,14 @@ func shake():
 	set_offset(get_offset() - _last_offset)
 	_last_offset = Vector2(0, 0)
 
-func shakeWith(duration: float, frequency: float, amplitude: float):
-	pass
+func _getDefaultShakeDuration():
+	return Settings.GetScreenShakeDuration() if OS.is_debug_build() else _defaultShakeDuration
 
+func _getDefaultShakeFrecuency():
+	return Settings.GetScreenShakeFrecuency() if OS.is_debug_build() else _defaultShakeFrecuency
+
+func _getDefaultShakeAmplitude():
+	return Settings.GetScreenShakeAmplitude() if OS.is_debug_build() else _defaultShakeAmplitude
 
 func panToTarget(target: Node, time: float = _DEFAULT_PAN_TIME, speed: float = _DEFAULT_PAN_SPEED, zoom: Vector2 = _DEFAULT_PAN_ZOOM, zoomSpeed: float = _DEFAULT_PAN_ZOOM_SPEED) -> void:
 	if _verbose:
@@ -264,34 +276,6 @@ func resetLimits() -> void:
 		print("CustomCamera2D: Reset camera limits.")
 	limitCameraToCoordinates(_DEFAULT_CAMERA_LIMIT_TOP_LEFT, _DEFAULT_CAMERA_LIMIT_TOP_LEFT,\
 		 _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT, _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT)
-
-
-func _set_shake_settings(duration: float, frequency: float, amplitude: float):
-	_duration = duration
-	_period_in_ms = 1.0 / frequency
-	_amplitude = amplitude
-
-
-func _connect_to_settings_changed_signal():
-	var parent = get_parent()
-	if(parent != null):
-		var tree = parent.get_tree()
-		var settings = tree.get_nodes_in_group("Settings")
-		if(settings.size() > 0):
-			var _settings = settings[0]
-			print("Connecting settings signal to Camera2D")
-			_settings.connect("settings_changed", self, "_get_new_camera_shake_values")
-		else:
-			printerr("No node in Settings group in parent tree. Needed to connect to signals. CustomCamera2D.gd::250") 
-	else:
-		printerr("No parent found. Needed to connect to signals. CustomCamera2D.gd::252")
-
-# Callback for settings updated signal in PauseScreenContainer node
-func _get_new_camera_shake_values():
-	var values = Settings.load_screen_shake_settings()
-	_set_shake_settings(values.duration, values.frequency, values.amplitude)
-	#print("Load settings for camera shake")
-
 
 ## Configure collision shapes around the camera.
 func _configureBounds() -> void:

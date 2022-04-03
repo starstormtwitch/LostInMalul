@@ -5,7 +5,7 @@
 			"value": 0.1
 		},
 		"current": {
-			"value": 41
+			"value": 0.1
 		},
 		"logic": "res://src/Helpers/Settings/ScreenShake_Duration.gd"
 	},

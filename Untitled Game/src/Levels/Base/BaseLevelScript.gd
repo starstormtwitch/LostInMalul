@@ -31,7 +31,7 @@ func InitCameraManager() -> void:
 #	_cameraManager.connect_to_player_shake_signal(LevelGlobals.GetPlayerActor())
 	var player = LevelGlobals.GetPlayerActor()
 	assert(player.has_signal("player_hit_enemy"), "Player hit enemy signal not found.")
-	player.connect("player_hit_enemy", self, "shake")
+	player.connect("player_hit_enemy", _cameraManager, "shake")
 
 func GetCameraManager() -> CustomCamera2D:
 	return _cameraManager
