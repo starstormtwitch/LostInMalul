@@ -14,6 +14,9 @@ var _isExploding = false
 var _timer: Timer = Timer.new()
 
 onready var animationTree: AnimationTree = $AnimationTree
+onready var explosionBoxCollision: CollisionShape2D = $ExplosionBox/CollisionShape2D
+onready var queueFreeTimer: Timer = $QueueFreeTimer
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -53,7 +56,16 @@ func calculateDamage(percent: float):
 
 func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
+		explosionBoxCollision.set_deferred("disabled", false)
+		queueFreeTimer.start()
+
+
+func _on_QueueFreeTimer_timeout():
+	queue_free()
+
+
+func _on_ExplosionBox_area_entered(area):
+	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
 		var directionVector = Vector2(_direction, 0)
 		area.get_parent().take_damage(_damage, directionVector, AttackManager.MAX_DAMAGE_FORCE)
 		area.get_parent().showExplosion()
-		queue_free()
