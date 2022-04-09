@@ -301,7 +301,7 @@ texture = ExtResource( 3 )
 offset = Vector2( 0, -15 )
 hframes = 16
 vframes = 4
-frame = 33
+frame = 32
 
 [node name="Shadow" type="Sprite" parent="."]
 position = Vector2( 2.375, -27.7913 )
@@ -376,6 +376,9 @@ one_shot = true
 process_material = SubResource( 34 )
 texture = ExtResource( 5 )
 script = ExtResource( 4 )
+
+[node name="explosionPosition" type="Position2D" parent="."]
+position = Vector2( 0.505836, -25.4023 )
 
 [connection signal="area_entered" from="FlockBox" to="." method="_on_FlockBox_area_entered"]
 [connection signal="area_exited" from="FlockBox" to="." method="_on_FlockBox_area_exited"]

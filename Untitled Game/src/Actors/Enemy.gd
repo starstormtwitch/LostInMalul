@@ -1,6 +1,7 @@
 extends Actor
 class_name Enemy
 
+var _explosion_scene = preload("res://src/Effects/Explosion.tscn")
 
 #Enemy properties
 var _seperation_distance = 20
@@ -240,3 +241,11 @@ func _finishedAttack(cooldown: int):
 	_isAttacking = false
 	_isReadyToAttack = false
 	_attackCooldownTimer.start(cooldown)
+
+func showExplosion():
+	if $explosionPosition != null:
+		var explosionPosition: Position2D = $explosionPosition
+		var instance = _explosion_scene.instance()
+		instance.global_position = explosionPosition.global_position
+		get_parent().add_child(instance)
+		instance.z_index = 1

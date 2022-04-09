@@ -55,5 +55,5 @@ func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
 		var directionVector = Vector2(_direction, 0)
 		area.get_parent().take_damage(_damage, directionVector, AttackManager.MAX_DAMAGE_FORCE)
-		_timer.stop()
-		_explode()
+		area.get_parent().showExplosion()
+		queue_free()
