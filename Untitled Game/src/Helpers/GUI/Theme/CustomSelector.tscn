@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://assets/GUI/Theme/Themes/CustomToggleButtonLabel.tres" type="Theme" id=1]
+[ext_resource path="res://assets/GUI/Theme/Themes/caret_right_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/Helpers/GUI/Theme/CustomSelector.gd" type="Script" id=2]
 [ext_resource path="res://assets/GUI/Theme/Textures/bgSelector.png" type="Texture" id=3]
+[ext_resource path="res://assets/GUI/Theme/Themes/caret_left_theme.tres" type="Theme" id=4]
 
 [sub_resource type="ImageTexture" id=9]
 
@@ -59,34 +60,39 @@ size_flags_vertical = 3
 columns = 3
 
 [node name="Previous" type="Button" parent="GridContainer"]
-margin_top = 1.0
-margin_right = 12.0
+margin_top = 2.0
+margin_right = 16.0
 margin_bottom = 18.0
+rect_min_size = Vector2( 16, 16 )
+focus_mode = 0
 size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = ExtResource( 1 )
-text = "<"
+size_flags_vertical = 6
+theme = ExtResource( 4 )
+enabled_focus_mode = 0
 align = 0
 
 [node name="Item" type="Label" parent="GridContainer"]
-margin_left = 16.0
-margin_right = 184.0
+margin_left = 20.0
+margin_right = 180.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = SubResource( 8 )
 text = "SELECTED ITEM"
 align = 1
+clip_text = true
 
 [node name="Next" type="Button" parent="GridContainer"]
-margin_left = 188.0
-margin_top = 1.0
+margin_left = 184.0
+margin_top = 2.0
 margin_right = 200.0
 margin_bottom = 18.0
+rect_min_size = Vector2( 16, 16 )
+focus_mode = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 1 )
-text = ">"
+enabled_focus_mode = 0
 align = 2
 
 [connection signal="pressed" from="GridContainer/Previous" to="." method="_on_Previous_pressed"]

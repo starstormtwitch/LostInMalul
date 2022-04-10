@@ -14,7 +14,7 @@ const hadouken_scene = preload("res://src/Actors/MainChar/HadoukenBlast.tscn")
 const ghost_scene = preload("res://src/Helpers/Ghost.tscn")
 
 const _JUMP_EVENT = "Jump"
-const _DASH_EVENT = "Dodge"
+const _DASH_EVENT = "dodge"
 const _DODGE_SPEED = 80000
 const _DODGE_ACCELERATION = .5
 const _LEFT_FACING_SCALE = -1.0

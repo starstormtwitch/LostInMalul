@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/checkbox unchecked.png-200151a715595a770f55f2cf347a00ff.stex"
+path="res://.import/caret_left_normal.png-72ab56d1ec1debf39de91ea5a57627ff.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/GUI/Theme/Textures/checkbox unchecked.png"
-dest_files=[ "res://.import/checkbox unchecked.png-200151a715595a770f55f2cf347a00ff.stex" ]
+source_file="res://assets/GUI/Theme/Textures/caret_left_normal.png"
+dest_files=[ "res://.import/caret_left_normal.png-72ab56d1ec1debf39de91ea5a57627ff.stex" ]
 
 [params]
 

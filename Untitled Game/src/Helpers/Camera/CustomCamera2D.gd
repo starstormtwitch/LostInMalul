@@ -38,16 +38,16 @@ var _limit_smooth_target_position: Vector2
 var _verbose = OS.is_debug_build()
 
 #variables for shaking
-var _duration = 0.1
-var _defaultShakeDuration = Settings.GetScreenShakeDuration() #loaded once, ignores posterior modifications
-var _period_in_ms = 15
-var _defaultShakeFrecuency = Settings.GetScreenShakeFrecuency()
-var _amplitude = 4
-var _defaultShakeAmplitude = Settings.GetScreenShakeAmplitude()
-var _timer = 0.0
-var _last_shook_timer = 0
-var _previous_x = 0.0
-var _previous_y = 0.0
+var _duration: float = 0.1
+var _defaultShakeDuration: float = Settings.GetScreenShakeDuration() #loaded once, ignores posterior modifications
+var _period_in_ms: float = 15
+var _defaultShakeFrecuency: float = Settings.GetScreenShakeFrecuency()
+var _amplitude: float = 4
+var _defaultShakeAmplitude: float = Settings.GetScreenShakeAmplitude()
+var _timer: float = 0.0
+var _last_shook_timer: float = 0
+var _previous_x: float = 0.0
+var _previous_y: float = 0.0
 var _last_offset = Vector2(0, 0)
 var _is_shaking = false
 
@@ -73,6 +73,9 @@ func _init(cameraTarget: Node, current: bool):
 func _ready():
 	self.set_process(true)
 	#self.get_tree().root.connect("size_changed", self, "_on_viewport_size_changed")	
+
+func kek():
+	print("kek")
 
 #func _on_viewport_size_changed():
 #	print("Viewport y: " + str(self.get_viewport().size.y))
@@ -109,7 +112,7 @@ func _process(delta):
 
 
 func _handleShake(delta):
-	if _timer == 0:
+	if _timer == 0 || Settings.GetScreenShakeIntensity() == 0:
 		return
 	# Only shake on certain frames.
 	_last_shook_timer = _last_shook_timer + delta
@@ -142,9 +145,10 @@ func _handleShake(delta):
 # Kick off a new screenshake effect.
 func shake(duration: float = 0, frequency: float = 0, amplitude: float = 0):
 	# Initialize variables.
-	_duration = duration if duration != 0 else _getDefaultShakeDuration()
-	_period_in_ms = 1.0 / frequency if frequency != 0 else 1.0 / _getDefaultShakeFrecuency()
-	_amplitude = amplitude if amplitude != 0 else _getDefaultShakeAmplitude()
+	var intensity = (Settings.GetScreenShakeIntensity() / 100)
+	_duration = (duration if duration != 0 else _getDefaultShakeDuration()) * intensity
+	_period_in_ms = (1.0 / frequency if frequency != 0 else 1.0 / _getDefaultShakeFrecuency()) * intensity
+	_amplitude = (amplitude if amplitude != 0 else _getDefaultShakeAmplitude()) * intensity
 #	print("start shake")
 #	print("shake duration: " + str(_duration))
 #	print("shake period_in_ms: " + str(_period_in_ms))

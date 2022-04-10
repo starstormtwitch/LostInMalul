@@ -4,10 +4,10 @@ class_name SettingsMenu
 
 signal settings_changed
 
-onready var graphicsContainer: GridContainer = $PanelContainer/GridContainer/VBoxContainer/GraphicsGrid
-onready var audioContainer: GridContainer = $PanelContainer/GridContainer/VBoxContainer/AudioGrid
-onready var controlsContainer: GridContainer = $PanelContainer/GridContainer/VBoxContainer/ControlsGrid
-onready var advancedContainer: ScrollContainer = $PanelContainer/GridContainer/VBoxContainer/AdvancedGridContainer
+onready var graphicsContainer: Container = $PanelContainer/GridContainer/VBoxContainer/GraphicsGrid
+onready var audioContainer: Container = $PanelContainer/GridContainer/VBoxContainer/AudioGrid
+onready var controlsContainer: Container = $PanelContainer/GridContainer/VBoxContainer/ControlMappingGridContainer
+onready var advancedContainer: Container = $PanelContainer/GridContainer/VBoxContainer/AdvancedGridContainer
 
 onready var graphicsButton: Button = $PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/GraphicsLabel
 onready var audioButton: Button = $PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/AudioLabel
@@ -17,12 +17,14 @@ onready var advancedButton: Button = $PanelContainer/GridContainer/VBoxContainer
 enum ShowMenuEnum {GRAPHICS = 0, AUDIO = 1, CONTROLS = 2, ADVANCED = 3}
 onready var maxMenuOptionValue: int = ShowMenuEnum.size() - 1
 var currentMenu: int = 0
+var allowKeyboardNavigation: bool = true
 
 func _ready():
 	_switchMenu(ShowMenuEnum.GRAPHICS)
+#	$PanelContainer/ButtonInUseDialog.get_close_button().visible = false
 
 func _input(ev):
-	if ev is InputEventKey:
+	if allowKeyboardNavigation && ev is InputEventKey:
 		if ev.is_pressed() && ev.scancode == KEY_Q && currentMenu > 0:
 			_switchMenu(currentMenu - 1)
 		elif ev.is_pressed() && ev.scancode == KEY_E && currentMenu < maxMenuOptionValue:
@@ -66,3 +68,13 @@ func _on_ControlLabel_toggled(button_pressed):
 func _on_AdvancedLabel_toggled(button_pressed):
 	if button_pressed:
 		_switchMenu(ShowMenuEnum.ADVANCED)
+
+
+func _on_ControlMappingGridContainer_remap_open():
+	allowKeyboardNavigation = false
+
+func _on_ControlMappingGridContainer_remap_closed():
+	allowKeyboardNavigation = true
+
+func _on_ControlMappingGridContainer_remap_keyInUse():
+	$ButtonInUseDialog.show()

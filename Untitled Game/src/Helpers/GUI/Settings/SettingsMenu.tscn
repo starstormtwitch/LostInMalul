@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://addons/GGS/src/components/option_list/ggsOptionList.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Helpers/GUI/Settings/SettingsMenu.gd" type="Script" id=2]
@@ -6,7 +6,8 @@
 [ext_resource path="res://src/Helpers/GUI/Settings/Settings_AdvancedGridContainer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/GUI/Theme/Themes/MenuTheme.tres" type="Theme" id=5]
 [ext_resource path="res://assets/GUI/Theme/Themes/CustomToggleButtonLabel.tres" type="Theme" id=6]
-[ext_resource path="res://src/Helpers/GUI/Theme/CustomSlider.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Helpers/GUI/Theme/CustomSlider_ggs.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Helpers/GUI/Settings/Settings_ControlMappingContainer.tscn" type="PackedScene" id=8]
 
 [node name="SettingsMenu" type="CenterContainer"]
 pause_mode = 2
@@ -48,27 +49,30 @@ size_flags_horizontal = 3
 alignment = 1
 
 [node name="QLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer"]
-margin_right = 16.0
+margin_right = 33.0
 margin_bottom = 17.0
-size_flags_vertical = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
 text = "Q"
 valign = 1
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer"]
-margin_left = 20.0
-margin_right = 24.0
+margin_left = 37.0
+margin_right = 41.0
 margin_bottom = 17.0
+size_flags_horizontal = 0
+size_flags_vertical = 3
 
 [node name="MenuNavigationList" type="HBoxContainer" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer"]
-margin_left = 28.0
-margin_right = 514.0
+margin_left = 45.0
+margin_right = 495.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
 [node name="GraphicsLabel" type="Button" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList"]
-margin_right = 105.0
+margin_right = 100.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -77,13 +81,14 @@ toggle_mode = true
 text = "DISPLAY"
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList"]
-margin_left = 109.0
-margin_right = 113.0
+margin_left = 104.0
+margin_right = 108.0
 margin_bottom = 17.0
+size_flags_horizontal = 3
 
 [node name="AudioLabel" type="Button" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList"]
-margin_left = 117.0
-margin_right = 222.0
+margin_left = 112.0
+margin_right = 186.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -92,13 +97,14 @@ toggle_mode = true
 text = "AUDIO"
 
 [node name="VSeparator2" type="VSeparator" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList"]
-margin_left = 226.0
-margin_right = 230.0
+margin_left = 190.0
+margin_right = 194.0
 margin_bottom = 17.0
+size_flags_horizontal = 3
 
 [node name="ControlLabel" type="Button" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList"]
-margin_left = 234.0
-margin_right = 348.0
+margin_left = 198.0
+margin_right = 312.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -107,13 +113,14 @@ toggle_mode = true
 text = "CONTROLS"
 
 [node name="VSeparator3" type="VSeparator" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList"]
-margin_left = 352.0
-margin_right = 356.0
+margin_left = 316.0
+margin_right = 320.0
 margin_bottom = 17.0
+size_flags_horizontal = 3
 
 [node name="AdvancedLabel" type="Button" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList"]
-margin_left = 360.0
-margin_right = 486.0
+margin_left = 324.0
+margin_right = 450.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -122,15 +129,18 @@ toggle_mode = true
 text = "ADVANCED"
 
 [node name="VSeparator2" type="VSeparator" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer"]
-margin_left = 518.0
-margin_right = 522.0
+margin_left = 499.0
+margin_right = 503.0
 margin_bottom = 17.0
+size_flags_horizontal = 0
+size_flags_vertical = 3
 
 [node name="ELabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/NavigationContainer"]
-margin_left = 526.0
+margin_left = 507.0
 margin_right = 540.0
 margin_bottom = 17.0
-size_flags_vertical = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
 text = "E"
 align = 2
 valign = 1
@@ -157,6 +167,7 @@ text = "GRAPHICS"
 margin_left = 254.0
 margin_right = 540.0
 margin_bottom = 17.0
+size_flags_horizontal = 3
 
 [node name="ResolutionLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid"]
 visible = false
@@ -202,9 +213,9 @@ text = "Vsync"
 align = 1
 
 [node name="VsyncCheckbox" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid" instance=ExtResource( 3 )]
-margin_left = 390.0
+margin_left = 389.0
 margin_top = 57.0
-margin_right = 403.0
+margin_right = 405.0
 margin_bottom = 74.0
 size_flags_horizontal = 4
 align = 1
@@ -231,6 +242,8 @@ text = "Screen Shake"
 align = 1
 
 [node name="ShakeSlider" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 254.0
 margin_top = 127.0
 margin_right = 540.0
@@ -238,13 +251,12 @@ margin_bottom = 144.0
 size_flags_horizontal = 3
 
 [node name="ggsSlider" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid/ShakeSlider" index="0"]
-margin_right = 226.0
+margin_right = 222.0
+setting_index = 4
 
 [node name="Label" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid/ShakeSlider" index="1"]
-margin_left = 230.0
-margin_top = 0.0
+margin_left = 226.0
 margin_right = 286.0
-margin_bottom = 17.0
 
 [node name="AudioGrid" type="GridContainer" parent="PanelContainer/GridContainer/VBoxContainer"]
 visible = false
@@ -259,9 +271,12 @@ margin_bottom = 17.0
 text = "Master"
 
 [node name="MasterVolumeSlider" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 254.0
 margin_right = 540.0
 margin_bottom = 17.0
+size_flags_horizontal = 3
 
 [node name="ggsSlider" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid/MasterVolumeSlider" index="0"]
 margin_right = 226.0
@@ -269,9 +284,7 @@ setting_index = 10
 
 [node name="Label" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid/MasterVolumeSlider" index="1"]
 margin_left = 230.0
-margin_top = 0.0
 margin_right = 286.0
-margin_bottom = 17.0
 
 [node name="SfxVolumeLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid"]
 margin_top = 25.0
@@ -281,6 +294,8 @@ rect_min_size = Vector2( 250, 0 )
 text = "Sound effects"
 
 [node name="SfxVolumeSlider" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 254.0
 margin_top = 25.0
 margin_right = 540.0
@@ -293,9 +308,7 @@ setting_index = 6
 
 [node name="Label" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid/SfxVolumeSlider" index="1"]
 margin_left = 230.0
-margin_top = 0.0
 margin_right = 286.0
-margin_bottom = 17.0
 
 [node name="MusicVolumeLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid"]
 margin_top = 50.0
@@ -305,10 +318,13 @@ rect_min_size = Vector2( 250, 0 )
 text = "Music"
 
 [node name="MusicVolumeSlider" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 254.0
 margin_top = 50.0
 margin_right = 540.0
 margin_bottom = 67.0
+size_flags_horizontal = 3
 
 [node name="ggsSlider" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid/MusicVolumeSlider" index="0"]
 margin_right = 226.0
@@ -316,26 +332,18 @@ setting_index = 5
 
 [node name="Label" parent="PanelContainer/GridContainer/VBoxContainer/AudioGrid/MusicVolumeSlider" index="1"]
 margin_left = 230.0
-margin_top = 0.0
 margin_right = 286.0
-margin_bottom = 17.0
 
-[node name="ControlsGrid" type="GridContainer" parent="PanelContainer/GridContainer/VBoxContainer"]
-visible = false
+[node name="ControlMappingGridContainer" parent="PanelContainer/GridContainer/VBoxContainer" instance=ExtResource( 8 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_top = 29.0
 margin_right = 540.0
 margin_bottom = 250.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/ControlsGrid"]
-margin_right = 52.0
-margin_bottom = 17.0
-text = "Test"
 
 [node name="AdvancedGridContainer" parent="PanelContainer/GridContainer/VBoxContainer" instance=ExtResource( 4 )]
 visible = false
-margin_top = 177.0
+margin_top = 33.0
 margin_right = 540.0
 margin_bottom = 250.0
 
@@ -364,10 +372,29 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "     OK     "
 
+[node name="ButtonInUseDialog" type="AcceptDialog" parent="."]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -137.0
+margin_top = -33.0
+margin_right = 136.0
+margin_bottom = 32.0
+window_title = ""
+dialog_text = "Button already in use"
+__meta__ = {
+"_editor_description_": "Button already in use."
+}
+
 [connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/GraphicsLabel" to="." method="_on_GraphicsLabel_toggled"]
 [connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/AudioLabel" to="." method="_on_AudioLabel_toggled"]
 [connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/ControlLabel" to="." method="_on_ControlLabel_toggled"]
 [connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/AdvancedLabel" to="." method="_on_AdvancedLabel_toggled"]
+[connection signal="remap_closed" from="PanelContainer/GridContainer/VBoxContainer/ControlMappingGridContainer" to="." method="_on_ControlMappingGridContainer_remap_closed"]
+[connection signal="remap_keyInUse" from="PanelContainer/GridContainer/VBoxContainer/ControlMappingGridContainer" to="." method="_on_ControlMappingGridContainer_remap_keyInUse"]
+[connection signal="remap_open" from="PanelContainer/GridContainer/VBoxContainer/ControlMappingGridContainer" to="." method="_on_ControlMappingGridContainer_remap_open"]
 [connection signal="pressed" from="PanelContainer/GridContainer/HBoxContainer/VBoxContainer/OkButton" to="." method="_on_OkButton_pressed"]
 
 [editable path="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid/ShakeSlider"]

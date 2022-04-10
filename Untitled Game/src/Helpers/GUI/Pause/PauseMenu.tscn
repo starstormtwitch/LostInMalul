@@ -18,39 +18,42 @@ script = ExtResource( 3 )
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-margin_left = -85.0
-margin_top = -86.0
-margin_right = 85.0
-margin_bottom = 85.0
+margin_left = -5.0
+margin_top = -5.0
+margin_right = 5.0
+margin_bottom = 5.0
 
 [node name="PauseMenuContainer" type="VBoxContainer" parent="PanelContainer"]
+visible = false
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 165.0
-margin_bottom = 166.0
+margin_right = 452.0
+margin_bottom = 201.0
 
 [node name="Label" type="Label" parent="PanelContainer/PauseMenuContainer"]
-margin_right = 160.0
+margin_right = 447.0
 margin_bottom = 17.0
 text = "Pause"
 align = 1
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/PauseMenuContainer"]
 margin_top = 21.0
-margin_right = 160.0
+margin_right = 447.0
 margin_bottom = 25.0
 
 [node name="ResumeButton" type="Button" parent="PanelContainer/PauseMenuContainer"]
+margin_left = 143.0
 margin_top = 29.0
-margin_right = 160.0
+margin_right = 303.0
 margin_bottom = 59.0
 rect_min_size = Vector2( 160, 30 )
 size_flags_horizontal = 4
 text = "Resume"
 
 [node name="RestartButton" type="Button" parent="PanelContainer/PauseMenuContainer"]
+margin_left = 143.0
 margin_top = 63.0
-margin_right = 160.0
+margin_right = 303.0
 margin_bottom = 93.0
 rect_min_size = Vector2( 160, 30 )
 mouse_default_cursor_shape = 2
@@ -58,16 +61,18 @@ size_flags_horizontal = 4
 text = "Restart"
 
 [node name="SettingsButton" type="Button" parent="PanelContainer/PauseMenuContainer"]
+margin_left = 143.0
 margin_top = 97.0
-margin_right = 160.0
+margin_right = 303.0
 margin_bottom = 127.0
 rect_min_size = Vector2( 160, 30 )
 size_flags_horizontal = 4
 text = "Settings"
 
 [node name="ExitButton" type="Button" parent="PanelContainer/PauseMenuContainer"]
+margin_left = 143.0
 margin_top = 131.0
-margin_right = 160.0
+margin_right = 303.0
 margin_bottom = 161.0
 rect_min_size = Vector2( 160, 30 )
 mouse_default_cursor_shape = 2
@@ -144,8 +149,8 @@ margin_bottom = 17.0
 text = "Infinite health"
 
 [node name="InfiniteHealthCheckbox" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer" instance=ExtResource( 1 )]
-margin_left = 225.0
-margin_right = 238.0
+margin_left = 232.0
+margin_right = 232.0
 margin_bottom = 17.0
 size_flags_horizontal = 6
 align = 1

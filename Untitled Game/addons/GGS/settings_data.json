@@ -5,7 +5,7 @@
 			"value": 0.1
 		},
 		"current": {
-			"value": 30
+			"value": 0.4
 		},
 		"logic": "res://src/Helpers/Settings/ScreenShake_Duration.gd"
 	},
@@ -45,7 +45,7 @@
 			"value": 100
 		},
 		"current": {
-			"value": 100
+			"value": 51
 		},
 		"logic": "res://src/Helpers/Settings/Display_ScreenShakeIntensity.gd"
 	},
@@ -65,7 +65,7 @@
 			"value": 50
 		},
 		"current": {
-			"value": 42
+			"value": 44
 		},
 		"logic": "res://src/Helpers/Settings/Audio_EffectsVolume.gd"
 	},
@@ -105,8 +105,37 @@
 			"value": 50
 		},
 		"current": {
-			"value": 61
+			"value": 65
 		},
 		"logic": "res://src/Helpers/Settings/Audio_MasterVolume.gd"
+	},
+	"11": {
+		"name": "InputMapping",
+		"default": {
+			"value": ""
+		},
+		"current": {
+			"value": {
+				"move_up": {
+					"keyboard": "W"
+				},
+				"move_down": {
+					"keyboard": "S"
+				},
+				"move_left": {
+					"keyboard": "A"
+				},
+				"move_right": {
+					"keyboard": "D"
+				},
+				"dodge": {
+					"keyboard": "Shift"
+				},
+				"special_attack": {
+					"keyboard": "C"
+				}
+			}
+		},
+		"logic": "res://src/Helpers/Settings/InputMapping.gd"
 	}
 }

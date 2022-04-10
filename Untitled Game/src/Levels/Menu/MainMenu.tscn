@@ -75,18 +75,18 @@ margin_bottom = 111.0
 text = "Exit"
 
 [node name="Sussy" type="AnimatedSprite" parent="."]
-position = Vector2( -121.351, 35.5743 )
-scale = Vector2( 0.3, 0.3 )
+position = Vector2( -294.592, 24.2605 )
+scale = Vector2( 2.5, 2.5 )
 frames = ExtResource( 3 )
-frame = 5
+frame = 1
 speed_scale = 0.5
 playing = true
 
 [node name="SussyFR" type="AnimatedSprite" parent="."]
-position = Vector2( 13.1543, 141.529 )
-scale = Vector2( -0.3, 0.3 )
+position = Vector2( 322.514, 18.8457 )
+scale = Vector2( -2.5, 2.5 )
 frames = ExtResource( 4 )
-frame = 3
+frame = 5
 speed_scale = 0.5
 playing = true
 
