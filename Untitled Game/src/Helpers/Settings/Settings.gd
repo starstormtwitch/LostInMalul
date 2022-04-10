@@ -34,39 +34,3 @@ static func GetScreenShakeAmplitude() -> float:
 
 static func GetScreenShakeIntensity() -> float:
 	return ggsManager.settings_data["4"]["current"]["value"]
-
-static func GetCustomMapping(action, inputType) -> InputEventKey:
-	var data: Dictionary = GetCustomMappingData()
-	if !data.has(action) || !data[action].has(inputType):
-		return null
-	var key = data[action][inputType]
-	var inputEvent = InputEventKey.new()
-	inputEvent.set_scancode(OS.find_scancode_from_string(key))
-	return inputEvent
-
-static func SaveCustomMapping(action, event, inputType):
-	var data: Dictionary = GetCustomMappingData()
-	if !data.has(action):
-		data[action] = {}
-	data[action][inputType] = OS.get_scancode_string(event.scancode)
-	SaveCustomMappingData(data)
-
-static func GetCustomMappingData() -> Dictionary:
-	var data = ggsManager.settings_data["11"]["current"]["value"]
-	if data == null:
-		data = {}
-	return data
-
-static func SaveCustomMappingData(data) -> void:
-	ggsManager.settings_data["11"]["current"]["value"] = data
-	ggsManager.save_settings_data()
-
-static func LoadCustomMappings() -> void:
-	var data: Dictionary = GetCustomMappingData()
-	print(data)
-	for actionName in data.keys():
-		InputMap.action_erase_events(actionName)
-		for inputType in data[actionName]:
-			var inputEvent = InputEventKey.new()
-			inputEvent.set_scancode(OS.find_scancode_from_string(data[actionName][inputType]))
-			InputMap.action_add_event(actionName, inputEvent)

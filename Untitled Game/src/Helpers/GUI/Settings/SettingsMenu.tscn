@@ -335,6 +335,7 @@ margin_left = 230.0
 margin_right = 286.0
 
 [node name="ControlMappingGridContainer" parent="PanelContainer/GridContainer/VBoxContainer" instance=ExtResource( 8 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 29.0
@@ -373,11 +374,6 @@ size_flags_vertical = 4
 text = "     OK     "
 
 [node name="ButtonInUseDialog" type="AcceptDialog" parent="."]
-visible = true
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 margin_left = -137.0
 margin_top = -33.0
 margin_right = 136.0
@@ -388,6 +384,13 @@ __meta__ = {
 "_editor_description_": "Button already in use."
 }
 
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+margin_left = -130.0
+margin_top = -35.0
+margin_right = 130.0
+margin_bottom = 35.0
+dialog_text = "Reset controls?"
+
 [connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/GraphicsLabel" to="." method="_on_GraphicsLabel_toggled"]
 [connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/AudioLabel" to="." method="_on_AudioLabel_toggled"]
 [connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/ControlLabel" to="." method="_on_ControlLabel_toggled"]
@@ -395,7 +398,9 @@ __meta__ = {
 [connection signal="remap_closed" from="PanelContainer/GridContainer/VBoxContainer/ControlMappingGridContainer" to="." method="_on_ControlMappingGridContainer_remap_closed"]
 [connection signal="remap_keyInUse" from="PanelContainer/GridContainer/VBoxContainer/ControlMappingGridContainer" to="." method="_on_ControlMappingGridContainer_remap_keyInUse"]
 [connection signal="remap_open" from="PanelContainer/GridContainer/VBoxContainer/ControlMappingGridContainer" to="." method="_on_ControlMappingGridContainer_remap_open"]
+[connection signal="remap_resetRequest" from="PanelContainer/GridContainer/VBoxContainer/ControlMappingGridContainer" to="." method="_on_ControlMappingGridContainer_remap_resetRequest"]
 [connection signal="pressed" from="PanelContainer/GridContainer/HBoxContainer/VBoxContainer/OkButton" to="." method="_on_OkButton_pressed"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_ConfirmationDialog_confirmed"]
 
 [editable path="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid/ShakeSlider"]
 [editable path="PanelContainer/GridContainer/VBoxContainer/AudioGrid/MasterVolumeSlider"]

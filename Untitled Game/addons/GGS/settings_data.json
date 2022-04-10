@@ -115,26 +115,7 @@
 			"value": ""
 		},
 		"current": {
-			"value": {
-				"move_up": {
-					"keyboard": "W"
-				},
-				"move_down": {
-					"keyboard": "S"
-				},
-				"move_left": {
-					"keyboard": "A"
-				},
-				"move_right": {
-					"keyboard": "D"
-				},
-				"dodge": {
-					"keyboard": "Shift"
-				},
-				"special_attack": {
-					"keyboard": "C"
-				}
-			}
+			"value": null
 		},
 		"logic": "res://src/Helpers/Settings/InputMapping.gd"
 	}

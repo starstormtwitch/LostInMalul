@@ -9,7 +9,7 @@ const _layerValueParamName: String = "value"
 func _ready():
 	_findPlayerEntity()
 	_createLayerDictionary()
-	Settings.LoadCustomMappings()
+	InputFunctions.LoadCustomMappings()
 
 func SceneHasPlayerActor() -> bool:
 	return _player != null

@@ -6,13 +6,16 @@ signal settings_changed
 
 onready var graphicsContainer: Container = $PanelContainer/GridContainer/VBoxContainer/GraphicsGrid
 onready var audioContainer: Container = $PanelContainer/GridContainer/VBoxContainer/AudioGrid
-onready var controlsContainer: Container = $PanelContainer/GridContainer/VBoxContainer/ControlMappingGridContainer
+onready var controlMappingContainer: Container = $PanelContainer/GridContainer/VBoxContainer/ControlMappingGridContainer
 onready var advancedContainer: Container = $PanelContainer/GridContainer/VBoxContainer/AdvancedGridContainer
 
 onready var graphicsButton: Button = $PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/GraphicsLabel
 onready var audioButton: Button = $PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/AudioLabel
 onready var controlsButton: Button = $PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/ControlLabel
 onready var advancedButton: Button = $PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/AdvancedLabel
+
+onready var buttonInUseDialog: AcceptDialog = $ButtonInUseDialog
+onready var confirmMappingResetDialog: ConfirmationDialog = $ConfirmationDialog
 
 enum ShowMenuEnum {GRAPHICS = 0, AUDIO = 1, CONTROLS = 2, ADVANCED = 3}
 onready var maxMenuOptionValue: int = ShowMenuEnum.size() - 1
@@ -21,7 +24,16 @@ var allowKeyboardNavigation: bool = true
 
 func _ready():
 	_switchMenu(ShowMenuEnum.GRAPHICS)
-#	$PanelContainer/ButtonInUseDialog.get_close_button().visible = false
+	buttonInUseDialog.get_close_button().visible = false
+	#editor anchor for dialog resets randomly... set anchors in code
+	buttonInUseDialog.anchor_top = 0.5
+	buttonInUseDialog.anchor_bottom = 0.5
+	buttonInUseDialog.anchor_left = 0.5
+	buttonInUseDialog.anchor_right = 0.5
+	confirmMappingResetDialog.anchor_top = 0.5
+	confirmMappingResetDialog.anchor_bottom = 0.5
+	confirmMappingResetDialog.anchor_left = 0.5
+	confirmMappingResetDialog.anchor_right = 0.5	
 
 func _input(ev):
 	if allowKeyboardNavigation && ev is InputEventKey:
@@ -34,7 +46,7 @@ func _input(ev):
 func _switchMenu(showMenuValue: int):
 	graphicsContainer.visible = showMenuValue == ShowMenuEnum.GRAPHICS
 	audioContainer.visible = showMenuValue == ShowMenuEnum.AUDIO
-	controlsContainer.visible = showMenuValue == ShowMenuEnum.CONTROLS
+	controlMappingContainer.visible = showMenuValue == ShowMenuEnum.CONTROLS
 	advancedContainer.visible = showMenuValue == ShowMenuEnum.ADVANCED
 	_updateButtonPressed(showMenuValue)
 	currentMenu = showMenuValue
@@ -77,4 +89,11 @@ func _on_ControlMappingGridContainer_remap_closed():
 	allowKeyboardNavigation = true
 
 func _on_ControlMappingGridContainer_remap_keyInUse():
-	$ButtonInUseDialog.show()
+	buttonInUseDialog.show()
+
+func _on_ControlMappingGridContainer_remap_resetRequest():
+	confirmMappingResetDialog.show()
+
+func _on_ConfirmationDialog_confirmed():
+	InputFunctions.ResetInputMapping()
+	controlMappingContainer.RefreshControls()
