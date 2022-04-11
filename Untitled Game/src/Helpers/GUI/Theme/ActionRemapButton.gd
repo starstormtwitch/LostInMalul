@@ -13,7 +13,6 @@ func _ready():
 	assert(InputMap.has_action(action))
 	display_current_key()
 	add_to_group("RemapButton")
-	print(InputMap.get_action_list(action))
 
 func _toggled(button_pressed):
 	if isEditing:
@@ -56,4 +55,6 @@ func remap_action_to(event):
 func display_current_key():
 #	var inputMap: InputEvent = InputMap.get_action_list(action)[0]
 	var inputMap = InputFunctions.GetCustomMapping(action, input_type)
+	if inputMap == null:
+		inputMap = InputFunctions.GetDefaultMapping(action, input_type)
 	text = "%s" % InputFunctions.GetInputEventAsText(inputMap)

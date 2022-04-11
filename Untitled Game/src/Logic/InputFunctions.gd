@@ -13,6 +13,17 @@ static func GetCustomMapping(action: String, inputType: String) -> InputEvent:
 		return NewInputEventFrom(action, inputType, str(data[action][inputType]))
 	return null
 
+static func GetDefaultMapping(action: String, inputType: String) -> InputEvent:
+	var events = InputMap.get_action_list(action)
+	var customMap = GetCustomMapping(action, inputType)
+	for e in events:
+		if ((e != customMap) &&
+			((inputType == _inputTypeName_Keyboard && e is InputEventKey)
+			|| (inputType == _inputTypeName_Mouse && e is InputEventMouseButton)
+			|| (inputType == _inputTypeName_Joypad && e is InputEventJoypadButton))):
+				return e
+	return null
+
 static func CreateCustomMapping(action: String, event: InputEvent):
 	var data: Dictionary = GetCustomMappingData()
 	if !data.has(action):
