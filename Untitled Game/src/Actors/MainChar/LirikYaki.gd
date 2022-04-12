@@ -23,6 +23,8 @@ const _LEFT_FACING_SCALE = -1.0
 const _RIGHT_FACING_SCALE = 1.0
 const _FOOTSTEP_PARTICLE_POSITION_OFFSET = -6
 
+var _checkPoint = ""
+var _level = ""
 var InventoryItem : Node2D
 var Coins = 0
 var _beingHurt: bool = false
@@ -61,6 +63,12 @@ signal item_pickup
 func _init():
 	add_to_group("Player")
 
+func load_character_save(player_data):
+	Coins = player_data["coins"];
+	_health = player_data["health"];
+	InventoryItem = player_data["inventoryItem"];
+	_checkPoint = player_data["checkpoint"];
+	_level = player_data["level"];
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

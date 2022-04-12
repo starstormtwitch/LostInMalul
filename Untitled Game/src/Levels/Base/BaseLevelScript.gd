@@ -33,8 +33,22 @@ func save_game():
 	saveFile.close();
 	
 func CreatePlayerSave(player : Actor) -> Dictionary:
-	var playerSaveData = {"Test" : "Test"};
+	var playerSaveData = {
+		"coins" : player.Coins,
+		"health" : player._health,
+		"inventoryItem" : player.InventoryItem,
+		"checkpoint" : player._checkPoint,
+		"level" : player._level
+		};
+	
 	return playerSaveData;
+
+func SetCheckpoint(level, checkpointKey):
+	var playerData = LevelGlobals.GetPlayerActor()	
+	assert(playerData != null, "Player is null!")
+	playerData._level = level;
+	playerData._checkPoint = checkpointKey;
+	save_game();
 
 func load_game():
 	var saveFile = File.new()
@@ -47,6 +61,20 @@ func load_game():
 		print(player_data)
 		LevelGlobals.SetPlayerSaveData(player_data)
 	return player_data;
+	
+func load_checkpoint():
+	get_tree().paused = true;
+	var playerData = LevelGlobals.GetPlayerActor()	
+	assert(playerData != null, "Player is null!")
+	var gameScene = LevelGlobals.GetLevelScene(playerData._level);
+	assert(gameScene != null, "Unknown level!");
+	get_tree().change_scene(gameScene);
+	get_tree().paused = true;
+	var currentLevel = get_tree().current_scene;
+	assert(currentLevel.has_method("SetLevelCheckpointVariables"), "script is missing mandatory load method")
+	currentLevel.SetLevelCheckpointVariables(playerData._checkPoint)
+	get_tree().paused = false;
+	
 		
 func _get_game_settings():
 	var values = Settings.load_game_settings()

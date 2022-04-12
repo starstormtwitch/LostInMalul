@@ -7,6 +7,9 @@ var _player_data: Dictionary = {}
 var _layerDict: Dictionary = {}
 const _layerBitParamName: String = "bit"
 const _layerValueParamName: String = "value"
+const _levelDictionary = {
+	"House" : preload("res://src/Levels/House.tscn"),
+}  
 
 func _ready():
 	_findPlayerEntity()
@@ -24,6 +27,10 @@ func GetPlayerSaveData() -> Dictionary:
 	
 func SetPlayerSaveData(player_data : Dictionary):
 	_player_data = player_data;
+
+func GetLevelScene(level : String) -> PackedScene:
+	assert(_levelDictionary.has(level), "Level scene does not exist in level globals")
+	return _levelDictionary[level];
 
 func GetPlayerActor() -> Actor:
 	if(_player == null || !is_instance_valid(_player)):
