@@ -6,8 +6,8 @@ signal remap_keyInUse
 signal remap_resetRequest
 
 func _ready():
-	var remapers = self.get_parent().get_tree().get_nodes_in_group("RemapButton")
-	for _rm in remapers:
+	for r in _getActionRemapButtons():
+		var _rm: ActionRemapButton = r
 		assert(_rm.has_signal("remap_open"), "RemapButton has no remap_open signal.")
 		assert(_rm.has_signal("remap_closed"), "RemapButton has no remap_close signal.")
 		assert(_rm.has_signal("remap_keyInUse"), "RemapButton has no remap_keyInUse signal.")
@@ -29,6 +29,9 @@ func _on_ResetButton_pressed():
 	emit_signal("remap_resetRequest")
 
 func RefreshControls():
-	var remapers = self.get_parent().get_tree().get_nodes_in_group("RemapButton")
-	for _rm in remapers:
+	for r in _getActionRemapButtons():
+		var _rm: ActionRemapButton = r
 		_rm.display_current_key()
+
+func _getActionRemapButtons() -> Array:
+	return self.get_parent().get_tree().get_nodes_in_group("RemapButton")

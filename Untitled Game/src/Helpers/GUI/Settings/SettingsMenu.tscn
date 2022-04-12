@@ -385,10 +385,11 @@ __meta__ = {
 }
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
-margin_left = -130.0
+margin_left = -103.0
 margin_top = -35.0
-margin_right = 130.0
+margin_right = 102.0
 margin_bottom = 35.0
+window_title = ""
 dialog_text = "Reset controls?"
 
 [connection signal="toggled" from="PanelContainer/GridContainer/VBoxContainer/NavigationContainer/MenuNavigationList/GraphicsLabel" to="." method="_on_GraphicsLabel_toggled"]

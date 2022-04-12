@@ -17,24 +17,28 @@ static func GetDefaultMapping(action: String, inputType: String) -> InputEvent:
 	var events = InputMap.get_action_list(action)
 	var customMap = GetCustomMapping(action, inputType)
 	for e in events:
-		if ((e != customMap) &&
+		if (e != customMap &&
 			((inputType == _inputTypeName_Keyboard && e is InputEventKey)
 			|| (inputType == _inputTypeName_Mouse && e is InputEventMouseButton)
-			|| (inputType == _inputTypeName_Joypad && e is InputEventJoypadButton))):
+			|| (inputType == _inputTypeName_Joypad && (e is InputEventJoypadButton || e is InputEventJoypadMotion)))):
 				return e
 	return null
 
-static func CreateCustomMapping(action: String, event: InputEvent):
+static func CreateCustomMapping(action: String, event: InputEvent) -> bool:
+	var created = false
 	var data: Dictionary = GetCustomMappingData()
 	if !data.has(action):
 		data[action] = {}
 	if event is InputEventKey:
 		data[action][_inputTypeName_Keyboard] = OS.get_scancode_string(event.scancode)
+		created = true
 	elif event is InputEventMouseButton:
 		data[action][_inputTypeName_Mouse] = event.button_index
+		created = true
 	elif event is InputEventJoypadButton || event is InputEventJoypadMotion:
 		push_error("Not implemented.")
 	SaveCustomMappingData(data)
+	return created
 
 static func CheckCanUseCustomMapping(event: InputEvent) -> bool:
 	var data: Dictionary = GetCustomMappingData()

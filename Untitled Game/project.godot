@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Button",
+"class": "ActionRemapButton",
+"language": "GDScript",
+"path": "res://src/Helpers/GUI/Theme/ActionRemapButton.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Actor",
 "language": "GDScript",
@@ -170,6 +175,7 @@ _global_script_classes=[ {
 "path": "res://src/Helpers/Utilities/TwoWayTeleportNode2D.gd"
 } ]
 _global_script_class_icons={
+"ActionRemapButton": "",
 "Actor": "",
 "AttackManager": "",
 "AudioFunctions": "",

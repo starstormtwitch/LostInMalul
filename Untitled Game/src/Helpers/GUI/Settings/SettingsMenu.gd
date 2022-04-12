@@ -25,6 +25,7 @@ var allowKeyboardNavigation: bool = true
 func _ready():
 	_switchMenu(ShowMenuEnum.GRAPHICS)
 	buttonInUseDialog.get_close_button().visible = false
+	confirmMappingResetDialog.get_close_button().visible = false
 	#editor anchor for dialog resets randomly... set anchors in code
 	buttonInUseDialog.anchor_top = 0.5
 	buttonInUseDialog.anchor_bottom = 0.5
@@ -80,7 +81,6 @@ func _on_ControlLabel_toggled(button_pressed):
 func _on_AdvancedLabel_toggled(button_pressed):
 	if button_pressed:
 		_switchMenu(ShowMenuEnum.ADVANCED)
-
 
 func _on_ControlMappingGridContainer_remap_open():
 	allowKeyboardNavigation = false
