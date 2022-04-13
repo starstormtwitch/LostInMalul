@@ -66,7 +66,6 @@ func show_settings():
 	self.visible = true
 
 func _on_GraphicsLabel_toggled(button_pressed):
-	pass
 	if button_pressed:
 		_switchMenu(ShowMenuEnum.GRAPHICS)
 

@@ -16,6 +16,7 @@ use_top_left = true
 script = ExtResource( 3 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+rect = Rect2( 0, 0, 0, 0 )
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 margin_left = -5.0
@@ -258,7 +259,7 @@ rect_min_size = Vector2( 160, 30 )
 size_flags_horizontal = 4
 text = "House"
 
-[connection signal="hide" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_hide"]
+[connection signal="draw" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_draw"]
 [connection signal="pressed" from="PanelContainer/PauseMenuContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
 [connection signal="pressed" from="PanelContainer/PauseMenuContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="PanelContainer/PauseMenuContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]

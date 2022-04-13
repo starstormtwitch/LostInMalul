@@ -7,6 +7,7 @@ signal show_settings
 onready var pauseMenuContainer: VBoxContainer = $PanelContainer/PauseMenuContainer
 onready var exitMenuContainer: VBoxContainer = $PanelContainer/ExitMenuContainer
 onready var debugMenuContainer: VBoxContainer = $PanelContainer/DebugMenuContainer
+onready var container: PanelContainer = $PanelContainer
 
 enum ShowMenuEnum {NONE = -1, PAUSE = 0, EXIT = 1, DEBUG = 2}
 
@@ -19,6 +20,9 @@ func _switchMenu(showMenu: int):
 	pauseMenuContainer.visible = showMenu == ShowMenuEnum.PAUSE
 	exitMenuContainer.visible = showMenu == ShowMenuEnum.EXIT
 	debugMenuContainer.visible = showMenu == ShowMenuEnum.DEBUG
+#	container.visible = !(showMenu == ShowMenuEnum.NONE)
+	self.visible = !(showMenu == ShowMenuEnum.NONE)
+
 
 func _on_RestartButton_pressed():
 	MusicManager.playNormalBattleMusic()
@@ -46,18 +50,18 @@ func _on_LoadHouseLevelButton_pressed():
 	get_tree().paused = false
 	get_tree().change_scene("res://src/Levels/House.tscn")
 
-func _on_ResumeButton_pressed():
+func _on_ResumeButton_pressed():	
 	_resume()
 
 func _resume():
-	MusicManager.playNormalBattleMusic()
+	MusicManager.playNormalBattleMusic()	
 	get_tree().paused = false
-	self.visible = false
+	_switchMenu(ShowMenuEnum.NONE)
 
 func _on_DebugButton_pressed():
 	_switchMenu(ShowMenuEnum.DEBUG)
 
-func _on_VisibilityNotifier2D_hide():
+func _on_VisibilityNotifier2D_draw():
 	_switchMenu(ShowMenuEnum.PAUSE)
 
 func _on_ExitMenuResumeButton_pressed():
@@ -70,3 +74,4 @@ func _on_ExitMenuSaveButton_pressed():
 
 func _on_ExitMenuExitButton_pressed():
 	get_tree().quit()
+

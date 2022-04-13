@@ -29,9 +29,9 @@ func _switchMenu(showMenu: int):
 
 # node to handle player input, and call the proper response
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(_MENU_EVENT) and !_menuOpen:
+	if event.is_action_pressed(_MENU_EVENT) and !_isMenuOpen():
 		_pauseAndShowMenu()
-	elif event.is_action_pressed(_MENU_EVENT) and _menuOpen:
+	elif event.is_action_pressed(_MENU_EVENT) and _isMenuOpen():
 		_unpauseAndHideMenu()
 
 func _pauseAndShowMenu() -> void:
@@ -52,4 +52,6 @@ func _on_show_settings():
 func _on_settings_changed():
 	emit_signal("settings_changed")
 	_switchMenu(ShowMenuEnum.PAUSE)
-	
+
+func _isMenuOpen() -> bool:
+	return pause_menu.visible || settings_menu.visible
