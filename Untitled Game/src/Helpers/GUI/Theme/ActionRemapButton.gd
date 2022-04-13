@@ -43,7 +43,6 @@ func _isEventControlType(event: InputEvent) -> bool:
 
 func remap_action_to(event):
 	if !_checkIsAlreadyInUse(event) && InputFunctions.CheckCanUseCustomMapping(event):
-		print("remap custom")
 		InputMap.action_erase_events(action)
 		InputMap.action_add_event(action, event)
 		InputFunctions.CreateCustomMapping(action, event)
@@ -57,7 +56,6 @@ func _checkIsAlreadyInUse(event: InputEvent):
 	var eventString = InputFunctions.GetInputEventValueAsString(event)
 	for r in _getActionRemapButtons():
 		var _rm: ActionRemapButton = r
-		print(_rm.localInputEvent)
 		if eventString == InputFunctions.GetInputEventValueAsString(_rm.localInputEvent):
 			return true
 	return false

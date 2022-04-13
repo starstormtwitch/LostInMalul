@@ -90,24 +90,24 @@ static func GetInputEventAsText(event: InputEvent) -> String:
 	return event.as_text()
 
 static func MouseButtonIndexToText(index: int) -> String:
-	if index == BUTTON_LEFT || index == BUTTON_MASK_LEFT:
+	if index == BUTTON_LEFT:
 		return "LMB" #"Left Mouse Button"
-	if index == BUTTON_RIGHT || index == BUTTON_MASK_RIGHT:
+	if index == BUTTON_RIGHT:
 		return "RMB" #"Right Mouse Button"
-	if index == BUTTON_MIDDLE || index == BUTTON_MASK_MIDDLE:
+	if index == BUTTON_MIDDLE:
 		return "MMB" #"Middle Mouse Button"
-	if index == BUTTON_XBUTTON1 || index == BUTTON_MASK_XBUTTON1:
+	if index == BUTTON_XBUTTON1:
 		return "Thumb 1" #"Extra Mouse Button 1"
-	if index == BUTTON_XBUTTON2 || index == BUTTON_MASK_XBUTTON2:
+	if index == BUTTON_XBUTTON2:
 		return "Thumb 2" #"Extra Mouse Button 2"
 	if index == BUTTON_WHEEL_UP:
-		return "Wheel Up" #"Mouse Wheel Up"
+		return "MW Up" #"Mouse Wheel Up"
 	if index == BUTTON_WHEEL_DOWN:
-		return "Wheel Down" #"Mouse Wheel Down"
+		return "MW Down" #"Mouse Wheel Down"
 	if index == BUTTON_WHEEL_LEFT:
-		return "Wheel Left" #"Mouse Wheel Left"
+		return "MW Left" #"Mouse Wheel Left"
 	if index == BUTTON_WHEEL_RIGHT:
-		return "Wheel Right" #"Mouse Wheel Right"
+		return "MW Right" #"Mouse Wheel Right"
 	return ""
 
 static func ResetInputMapping() -> void:
