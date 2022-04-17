@@ -56,7 +56,7 @@ var _leftBound: StaticBody2D = null
 var _rightBound: StaticBody2D = null
 var _upperBound: StaticBody2D = null
 var _bottomBound: StaticBody2D = null
-var _boundWidth: int = 5
+var _boundWidth: int = 40
 var _defaultBoundLength: int = 10000000
 
 func _init(cameraTarget: Node, current: bool):
@@ -69,10 +69,10 @@ func _init(cameraTarget: Node, current: bool):
 	self.current = current
 	_animationPlayer = CustomCamera2DSimpleTransitionPlayer.new(cameraTarget.get_tree().current_scene)
 	_configureBounds()
-	
+
 func _ready():
 	self.set_process(true)
-	#self.get_tree().root.connect("size_changed", self, "_on_viewport_size_changed")	
+	#self.get_tree().root.connect("size_changed", self, "_on_viewport_size_changed")
 
 func kek():
 	print("kek")
@@ -80,7 +80,7 @@ func kek():
 #func _on_viewport_size_changed():
 #	print("Viewport y: " + str(self.get_viewport().size.y))
 #	print("viewport x: " + str(self.get_viewport().size.x))
-	
+
 
 func _process(delta):
 	if _limit_smooth_active and !_is_shaking:
@@ -243,7 +243,7 @@ func limitCameraToCoordinates(top: int, left: int, bottom: int, right: int, tran
 			_limit_smooth_target_position.y = top + yDist
 		if self.limit_bottom > _limit_smooth_bottom:
 			_limit_smooth_target_position.y = bottom - yDist
-		if self.limit_left < _limit_smooth_left: 
+		if self.limit_left < _limit_smooth_left:
 			_limit_smooth_target_position.x = left + xDist
 		if self.limit_right > _limit_smooth_right:
 			_limit_smooth_target_position.x = right - xDist
@@ -254,11 +254,11 @@ func limitCameraToCoordinates(top: int, left: int, bottom: int, right: int, tran
 		setLimits(top, left, bottom, right)
 		_animationPlayer.playFadeOut()
 		yield(_animationPlayer._player, "animation_finished")
-		
-	_limit_smooth_active = transitionType == TransitionTypeEnum.SMOOTH	
-	
+
+	_limit_smooth_active = transitionType == TransitionTypeEnum.SMOOTH
+
 	if _verbose:
-		print("CustomCamera2D: New camera limits (Smooth:"+str(_limit_smooth_active)+") Top/Left/Bottom/Right " 
+		print("CustomCamera2D: New camera limits (Smooth:"+str(_limit_smooth_active)+") Top/Left/Bottom/Right "
 		+ str(top) + "/" + str(left) + "/" + str(bottom) + "/" + str(right))
 
 func compareCameraLimitIsEqual(top: int, left: int, bottom: int, right: int) -> bool:
@@ -280,6 +280,26 @@ func resetLimits() -> void:
 		print("CustomCamera2D: Reset camera limits.")
 	limitCameraToCoordinates(_DEFAULT_CAMERA_LIMIT_TOP_LEFT, _DEFAULT_CAMERA_LIMIT_TOP_LEFT,\
 		 _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT, _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT)
+	
+func connect_to_area_lock_signal(scene: Node):
+	print("Connect area lock signal")
+	assert(scene, "Scene cannot be null")
+	scene.connect("area_lock", self, "enableBounds")
+
+## Enable/disable one-way collision boxes around camera
+func enableBounds(enabled: bool):
+	var allLeftChildren = _leftBound.get_children();
+	for children in allLeftChildren:
+		children.set_deferred("disabled", !enabled);
+	var allRightChildren = _rightBound.get_children();
+	for children in allRightChildren:
+		children.set_deferred("disabled", !enabled);
+	var allUpperChildren = _upperBound.get_children();
+	for children in allUpperChildren:
+		children.set_deferred("disabled", !enabled);
+	var allBottomChildren = _bottomBound.get_children();
+	for children in allBottomChildren:
+		children.set_deferred("disabled", !enabled);
 
 ## Configure collision shapes around the camera.
 func _configureBounds() -> void:
@@ -287,11 +307,11 @@ func _configureBounds() -> void:
 	_rightBound = _createNewBound()
 	_upperBound = _createNewBound()
 	_bottomBound = _createNewBound()
-	
+	enableBounds(false);
 	_leftBound.rotate(PI/2) #90
 	_rightBound.rotate(-PI/2) #-90
 	_upperBound.rotate(PI) #180
-	_bottomBound.rotate(0) #0 
+	_bottomBound.rotate(0) #0
 	#by default one way collision aims "down"
 	#the arrow on a one way collision points the angle that it can be traversed from.
 
@@ -301,7 +321,7 @@ func _updateBoundLimits() -> void:
 	#Rectangles will be centered and the extents are half of the rectangles x or y length.
 	#Length will depend on the magnitude of the limits in the x or y coordinates for the camera.
 	#Width remains constant, since we are rotating the rectangles.
-	#Note: the length calculations can be "optional" if an "infinite" length is used instead, 
+	#Note: the length calculations can be "optional" if an "infinite" length is used instead,
 	# by removing these next lines and using always a high default value.
 	var xlen = (self.limit_right - self.limit_left) / 2
 	var ylen = (self.limit_bottom - self.limit_top) / 2
@@ -330,7 +350,7 @@ func _createNewBound() -> StaticBody2D:
 	sb.set_collision_mask_bit(LevelGlobals.GetLayerBit("Player"),true) #mask to player layer
 	sb.set_collision_mask_bit(LevelGlobals.GetLayerBit("Enemy"),true) #mask to enemy layer
 	coll.one_way_collision = true
-	#coll.one_way_collision_margin = 10
+	coll.one_way_collision_margin = 10
 	sb.add_child(coll)
 	self.get_tree().current_scene.add_child(sb)
 	return sb
@@ -350,12 +370,12 @@ class CustomCamera2DSimpleTransitionPlayer:
 	var _colorRect: ColorRect
 	var _player: AnimationPlayer
 	var _scene: Node
-	
+
 	func _init(scene: Node):
 		_scene = scene
 		_setupAnimationPlayer()
 		_setupSimpleFade()
-	
+
 	func _setupAnimationPlayer() -> void:
 		_canvas = CanvasLayer.new()
 		_player = AnimationPlayer.new()
@@ -363,35 +383,35 @@ class CustomCamera2DSimpleTransitionPlayer:
 		_scene.add_child(_player)
 		_colorRect = ColorRect.new()
 		_colorRect.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		_colorRect.color = Color(0,0,0,0)		
+		_colorRect.color = Color(0,0,0,0)
 		_colorRect.set_size(Vector2(_scene.get_viewport().size.x * 2, _scene.get_viewport().size.y * 2))
 		_canvas.add_child(_colorRect)
-	
+
 	func _setupSimpleFade() -> void:
 		_Animation_Fade_Animation = Animation.new()
 		_Animation_Fade_Animation.length = _Animation_Fade_DefaultLength
 		_Animation_Fade_TrackIndex = _Animation_Fade_Animation.add_track(Animation.TYPE_VALUE)
-		var animationTargetPath = _canvas.name + "/" + _colorRect.name + ":color"	
+		var animationTargetPath = _canvas.name + "/" + _colorRect.name + ":color"
 		_Animation_Fade_Animation.track_set_path(_Animation_Fade_TrackIndex, animationTargetPath)
 		_Animation_Fade_Animation.track_insert_key(_Animation_Fade_TrackIndex, 0, Color(0,0,0,0)) #key idx 1
 		_Animation_Fade_Animation.track_insert_key(_Animation_Fade_TrackIndex, _Animation_Fade_DefaultLength, Color(0,0,0,1)) #key idx 2
 		_Animation_Fade_Animation.track_set_interpolation_type(_Animation_Fade_TrackIndex, Animation.INTERPOLATION_LINEAR)
 		_player.add_animation(_Animation_Fade_Name, _Animation_Fade_Animation)
-	
+
 	func playFade(fadeLength: float = _Animation_Fade_DefaultLength, fadeIdleTime: float = _Animation_Fade_DefaultIdleTime) -> void:
 		if fadeIdleTime == null || fadeIdleTime == 0:
 			fadeIdleTime = _Animation_Fade_DefaultIdleTime
 		playFadeIn(fadeLength)
 		yield(_scene.get_tree().create_timer(fadeIdleTime), "timeout")
 		playFadeOut(fadeLength)
-	
+
 	func playFadeIn(fadeLength: float = _Animation_Fade_DefaultLength) -> void:
 		if fadeLength == null || fadeLength == 0:
 			fadeLength = _Animation_Fade_DefaultLength
 		if _player.current_animation == _Animation_Fade_Name:
 			yield(_player,  "animation_finished")
 		_player.play(_Animation_Fade_Name, -1, 1 / fadeLength, false)
-		
+
 	func playFadeOut(fadeLength: float = _Animation_Fade_DefaultLength) -> void:
 		if fadeLength == null || fadeLength == 0:
 			fadeLength = _Animation_Fade_DefaultLength
@@ -400,24 +420,24 @@ class CustomCamera2DSimpleTransitionPlayer:
 		_player.play(_Animation_Fade_Name, -1, -(1 / fadeLength), true)
 
 #pan class
-class CustomCamera2DPanTarget:	
+class CustomCamera2DPanTarget:
 	var _target: Node = null
 	var _time: float
 	var _speed: float
 	var _zoom: Vector2
 	var _zoomSpeed: float
 	var _clearTimer: SceneTreeTimer = null
-	
+
 	func _init(target: Node, time: float, speed: float, zoom: Vector2, zoomSpeed: float):
 		_target = target
 		_time = time
 		_speed = speed
 		_zoom = zoom
 		_zoomSpeed = zoomSpeed
-	
+
 	func getPosition() -> Vector2:
 		return _target.get_global_position()
-	
+
 	func startPanTimer() -> SceneTreeTimer:
 		_clearTimer = _target.get_tree().create_timer(_time)
 		return _clearTimer
