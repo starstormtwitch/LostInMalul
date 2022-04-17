@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/Helpers/GUI/Settings/SettingsMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Levels/Menu/MainMenu.gd" type="Script" id=2]
 [ext_resource path="res://assets/SpriteSheets/sussy_spriteframes.tres" type="SpriteFrames" id=3]
 [ext_resource path="res://assets/SpriteSheets/sussyFR_spriteframes.tres" type="SpriteFrames" id=4]
 [ext_resource path="res://assets/GUI/Theme/Themes/MenuTheme.tres" type="Theme" id=5]
+
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/main_menu_title.png-301e56f9d5e0230c9a729a185475e312.stex"
 
 [node name="MainMenu" type="Node2D"]
 position = Vector2( 500, 250 )
@@ -74,19 +77,38 @@ margin_right = 190.0
 margin_bottom = 111.0
 text = "Exit"
 
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -164.634
+margin_top = -228.258
+margin_right = 813.366
+margin_bottom = 444.742
+rect_scale = Vector2( 0.375017, 0.289533 )
+texture = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = 222.911
+margin_top = -232.93
+margin_right = 511.911
+margin_bottom = -218.93
+text = "(get the artists to deign a tittle screen kekw)"
+
 [node name="Sussy" type="AnimatedSprite" parent="."]
 position = Vector2( -294.592, 24.2605 )
-scale = Vector2( 2.5, 2.5 )
+scale = Vector2( 1.5, 1.5 )
 frames = ExtResource( 3 )
-frame = 3
+frame = 1
 speed_scale = 0.5
 playing = true
 
 [node name="SussyFR" type="AnimatedSprite" parent="."]
 position = Vector2( 322.514, 18.8457 )
-scale = Vector2( -2.5, 2.5 )
+scale = Vector2( -1.5, 1.5 )
 frames = ExtResource( 4 )
-frame = 1
+frame = 2
 speed_scale = 0.5
 playing = true
 
