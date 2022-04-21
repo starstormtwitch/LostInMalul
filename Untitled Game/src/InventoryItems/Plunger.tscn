@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/items/plunger.png" type="Texture" id=1]
 
-[node name="BasementKey" type="Node2D"]
+[node name="Plunger" type="Node2D"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = -8.92913
