@@ -76,5 +76,13 @@ func TeleportPlayerToPosition(position: Vector2, playFadeTime: float = 0) -> voi
 		_cameraManager._animationPlayer.playFadeOut(playFadeTime)
 	get_tree().paused = false
 	
+func StartupPlayerInPosition(position: Vector2, playFadeTime: float = 0) -> void:
+	LevelGlobals.GetPlayerActor().position = position
+	if playFadeTime > 0:
+		_cameraManager._animationPlayer.playFadeOut(playFadeTime)
+	get_tree().paused = false
+	
 func _on_Player_died():
+	_cameraManager._animationPlayer.playFadeIn(5)
+	yield(_cameraManager._animationPlayer._player, "animation_finished")
 	LevelGlobals.load_checkpoint()

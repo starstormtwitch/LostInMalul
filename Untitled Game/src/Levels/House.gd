@@ -42,7 +42,7 @@ func SetLevelCheckpointVariables(checkpoint):
 			get_node("LevelBackground/Interactions/Bedroom/StreamRoomTooSoon/CollisionShape").set_deferred("disabled", true);
 			get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
 			get_node("LevelBackground/Interactions/Bathroom/Toilet/CollisionShape").set_deferred("disabled", true);
-			TeleportPlayerToPosition(Vector2(1000, 275), 5)
+			StartupPlayerInPosition(Vector2(1000, 275), 5)
 		"Boss":
 			get_node("LevelBackground/Interactions/Bedroom/StreamRoomTooSoon/CollisionShape").set_deferred("disabled", true);
 			get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
@@ -51,7 +51,7 @@ func SetLevelCheckpointVariables(checkpoint):
 			_pickedUpBasementKey = true
 			get_node("LevelBackground/Teleports/LivingRoom_Kitchen_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
 			get_node("LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
-			TeleportPlayerToPosition(Vector2(175, 575), 5)
+			StartupPlayerInPosition(Vector2(175, 575), 5)
 		_:
 			assert(false, "No matching checkpoint.")
 	
