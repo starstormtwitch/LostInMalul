@@ -891,8 +891,9 @@ shape = SubResource( 38 )
 [node name="Checkpoints" type="Node" parent="LevelBackground"]
 
 [node name="Checkpoint" parent="LevelBackground/Checkpoints" instance=ExtResource( 181 )]
-position = Vector2( 168.33, 355.766 )
-CheckpointName = "HouseBoss"
+position = Vector2( 2603.81, 57.6612 )
+LevelName = "House"
+CheckpointName = "FirstEnemy"
 
 [node name="YSort" type="YSort" parent="."]
 pause_mode = 1

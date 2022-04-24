@@ -5,75 +5,20 @@ class_name BaseLevelScript
 var _cameraManager: CustomCamera2D
 var _infiniteHealth: bool;
 var _enteredAreas: Array
-var save_path = "user://save.dat"
 
 func _ready():
 	_setup()
 
 func _setup():
-	if LevelGlobals.SceneHasPlayerActor():
-		print(self.name + ': setup start.')
-		InitCameraManager()
-		RegisterTeleporterSignals()
-		RegisterDelimiterSignals()
-		print(self.name + ': setup end.')
-	else:
-		print(self.name + ': player actor not available.')
+#	MEGA IMPORTANT, PLAYER ALWAYS NEEDS TO BE REFRESHED IN EACH SCENE
+	var player = LevelGlobals.GetPlayerActor()
+	assert(is_instance_valid(player),"Player instance invalid")
+	print(self.name + ': setup start.')
+	player.connect("died", self, "_on_Player_died")
+	InitCameraManager()
+	RegisterTeleporterSignals()
+	RegisterDelimiterSignals()
 	_get_game_settings()
-	
-	
-func save_game():
-	var player_data = CreatePlayerSave(LevelGlobals.GetPlayerActor());
-	LevelGlobals.SetPlayerSaveData(player_data)
-	var saveFile = File.new();
-	var error = saveFile.open_encrypted_with_pass(save_path, File.WRITE, "33KJLDSF0AFKJ23LJA;DSFL3;OIDFJAODLASNCMCNVC320498203948WKLJFCJ230498ODISFASDF9A87DS0987AS6C09A6FA6G9D7S98G6A9DFSHG98DA98H06A87FDGADFV5ADSF98DSA87F65ADS98GA87G6A6A0D87F7SA0DC6A0S6A0DS786F")
-	assert(error == OK, "ERROR: Failed to save game!!!")
-	print(player_data)
-	saveFile.store_var(player_data);
-	saveFile.close();
-	
-func CreatePlayerSave(player : Actor) -> Dictionary:
-	var playerSaveData = {
-		"coins" : player.Coins,
-		"health" : player._health,
-		"inventoryItem" : player.InventoryItem,
-		"checkpoint" : player._checkPoint,
-		"level" : player._level
-		};
-	
-	return playerSaveData;
-
-func SetCheckpoint(level, checkpointKey):
-	var playerData = LevelGlobals.GetPlayerActor()	
-	assert(playerData != null, "Player is null!")
-	playerData._level = level;
-	playerData._checkPoint = checkpointKey;
-	save_game();
-
-func load_game():
-	var saveFile = File.new()
-	var player_data
-	if saveFile.file_exists(save_path):
-		var error = saveFile.open_encryp(save_path, File.READ, "33KJLDSF0AFKJ23LJA;DSFL3;OIDFJAODLASNCMCNVC320498203948WKLJFCJ230498ODISFASDF9A87DS0987AS6C09A6FA6G9D7S98G6A9DFSHG98DA98H06A87FDGADFV5ADSF98DSA87F65ADS98GA87G6A6A0D87F7SA0DC6A0S6A0DS786F")
-		assert(error == OK, "ERROR: Failed to load game!!!")
-		player_data = saveFile.get_var()
-		saveFile.close()
-		print(player_data)
-		LevelGlobals.SetPlayerSaveData(player_data)
-	return player_data;
-	
-func load_checkpoint():
-	get_tree().paused = true;
-	var playerData = LevelGlobals.GetPlayerActor()	
-	assert(playerData != null, "Player is null!")
-	var gameScene = LevelGlobals.GetLevelScene(playerData._level);
-	assert(gameScene != null, "Unknown level!");
-	get_tree().change_scene(gameScene);
-	get_tree().paused = true;
-	var currentLevel = get_tree().current_scene;
-	assert(currentLevel.has_method("SetLevelCheckpointVariables"), "script is missing mandatory load method")
-	currentLevel.SetLevelCheckpointVariables(playerData._checkPoint)
-	get_tree().paused = false;
 	
 		
 func _get_game_settings():
@@ -130,3 +75,6 @@ func TeleportPlayerToPosition(position: Vector2, playFadeTime: float = 0) -> voi
 	if playFadeTime > 0:
 		_cameraManager._animationPlayer.playFadeOut(playFadeTime)
 	get_tree().paused = false
+	
+func _on_Player_died():
+	LevelGlobals.load_checkpoint()

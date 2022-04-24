@@ -21,9 +21,9 @@ __meta__ = {
 }
 
 [node name="ItemContainer" type="Panel" parent="CenterContainer"]
-margin_left = 10.0
+margin_left = 9.0
 margin_top = 10.0
-margin_right = 10.0
+margin_right = 9.0
 margin_bottom = 10.0
 
 [node name="InteractPromptArea" parent="." instance=ExtResource( 3 )]

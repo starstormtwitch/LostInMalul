@@ -23,8 +23,8 @@ const _LEFT_FACING_SCALE = -1.0
 const _RIGHT_FACING_SCALE = 1.0
 const _FOOTSTEP_PARTICLE_POSITION_OFFSET = -6
 
-var _checkPoint = ""
-var _level = ""
+var _checkPoint = "Start"
+var _level = "House"
 var InventoryItem : Node2D
 var Coins = 0
 var _beingHurt: bool = false
@@ -62,13 +62,14 @@ signal item_pickup
 
 func _init():
 	add_to_group("Player")
+	load_character_save(LevelGlobals.GetPlayerSaveData())
 
 func load_character_save(player_data):
-	Coins = player_data["coins"];
-	_health = player_data["health"];
-	InventoryItem = player_data["inventoryItem"];
-	_checkPoint = player_data["checkpoint"];
-	_level = player_data["level"];
+	if(player_data != null && !player_data.empty()):
+		Coins = player_data["coins"];
+		_health = player_data["health"];
+		_checkPoint = player_data["checkpoint"];
+		_level = player_data["level"];
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -99,7 +100,7 @@ func _ready() -> void:
 	_attackManager = AttackManager.new(_attackResetTimer,
 		shoryukenAudioPlayer, animationTree)
 	
-	_maxHealth = 10
+	_maxHealth = 1
 	_health = _maxHealth
 	_acceleration = .1
 	_speed = 150
