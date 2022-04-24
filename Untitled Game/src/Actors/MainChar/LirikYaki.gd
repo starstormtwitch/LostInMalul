@@ -40,7 +40,7 @@ var _hitDoneTimer: Timer = Timer.new()
 var _hitAnimationTime = 1
 
 onready var _attackManager: AttackManager
-onready var sprite: Sprite = $Sprite
+onready var sprite: Sprite = $KinematicSprite/Sprite
 onready var shadow: Sprite = $Shadow
 onready var rightHitBox: CollisionShape2D = $attack/sideSwipeRight
 onready var wooshAudioPlayer: AudioStreamPlayer = $WooshAudioPlayer
