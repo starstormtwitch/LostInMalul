@@ -2,16 +2,18 @@ extends Actor
 
 signal player_hit_enemy
 signal player_dodge
+signal super_charge_change(new_value)
+signal coin_changed
+signal item_pickup
 
 
 class_name LirikYaki
 
-const attack_sound = preload("res://assets/audio/HitAudio/Retro Impact Punch Hurt 01.wav")
-const miss_sound = preload("res://assets/audio/HitAudio/Quick Hit Swoosh.wav")
 const trail_scene = preload("res://src/Helpers/Trail.tscn")
 const smoke_scene = preload("res://src/Actors/MainChar/SmokeParticles.tscn")
 const hadouken_scene = preload("res://src/Actors/MainChar/HadoukenBlast.tscn")
 const ghost_scene = preload("res://src/Helpers/Ghost.tscn")
+
 
 const _JUMP_EVENT = "Jump"
 const _DASH_EVENT = "Dodge"
@@ -20,6 +22,9 @@ const _DODGE_ACCELERATION = .5
 const _LEFT_FACING_SCALE = -1.0
 const _RIGHT_FACING_SCALE = 1.0
 const _FOOTSTEP_PARTICLE_POSITION_OFFSET = -6
+const _MAX_SUPER_CHARGES = 3
+const _MIN_SUPER_CHARGES = 0
+const STARTING_SUPER_CHARGES = 1
 
 
 var Coins = 0
@@ -38,6 +43,9 @@ var _takeDamageModifier = 1.0;
 var _giveDamageModifier = 1.0;
 var _hitDoneTimer: Timer = Timer.new()
 var _hitAnimationTime = 1
+var _currentSuperCharges = STARTING_SUPER_CHARGES
+var _lastHadoukenDamagePercentage: float = 0.0
+
 
 onready var _attackManager: AttackManager
 onready var sprite: Sprite = $Sprite
@@ -52,9 +60,8 @@ onready var ghostDurationTimer: Timer = $GhostDurationTImer
 onready var dashDurationTimer: Timer = $DashDurationTimer
 onready var dashCooldownTimer: Timer = $DashCooldownTimer
 onready var animationTree: AnimationTree = $AnimationTree
+onready var chargeBar: TextureProgress = $ChargeBar
 
-signal coin_changed
-signal item_pickup
 
 func _init():
 	add_to_group("Player")
@@ -62,32 +69,17 @@ func _init():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_invincibilityTimer.connect("timeout", self, "_on_invincibility_timeout") 
-	_invincibilityTimer.one_shot = true
-	add_child(_invincibilityTimer)
-	
-	_defenseUpTimer.connect("timeout", self, "_on_defenseUp_timeout") 
-	_defenseUpTimer.one_shot = true
-	add_child(_defenseUpTimer)
-	
-	_damageUpTimer.connect("timeout", self, "_on_damageUp_timeout") 
-	_damageUpTimer.one_shot = true
-	add_child(_damageUpTimer)
-	
-	_attackResetTimer.connect("timeout", self, "_on_combo_timeout") 
-	_attackResetTimer.one_shot = true
-	add_child(_attackResetTimer)
-	
-	
+	_setup_timer(_invincibilityTimer, "_on_invincibility_timeout")
+	_setup_timer(_defenseUpTimer, "_on_defenseUp_timeout")
+	_setup_timer(_damageUpTimer, "_on_damageUp_timeout")
+	_setup_timer(_attackResetTimer, "_on_combo_timeout")
 	_hitAnimationTime = $AnimationPlayer.get_animation("HurtRight").length
-	_hitDoneTimer.one_shot = true
-	_hitDoneTimer.connect("timeout", self, "_hit_timer_done") 
-	add_child(_hitDoneTimer)
+	_setup_timer(_hitDoneTimer, "_hit_timer_done")
 	
 	_invincibilityTimer.start(3)
 	
 	_attackManager = AttackManager.new(_attackResetTimer,
-		shoryukenAudioPlayer, animationTree)
+		chargeBar, animationTree)
 	
 	_maxHealth = 10
 	_health = _maxHealth
@@ -96,6 +88,12 @@ func _ready() -> void:
 	_directionFacing.x = .1;
 	$TrailTimer.connect("timeout", self, "add_trail")
 	animationTree.active = true
+
+
+func _setup_timer(timer: Timer, callback_name: String):
+	timer.connect("timeout", self, callback_name) 
+	timer.one_shot = true
+	add_child(timer)
 
 
 func _physics_process(_delta: float) -> void:
@@ -137,15 +135,16 @@ func _on_invincibility_timeout() -> void:
 	self.modulate = Color(1,1,1,1)
 	_canTakeDamage = true
 
+
 func _on_damageUp_timeout() -> void:
 	self.modulate = Color(1,50,0,0)
 	_giveDamageModifier = 1
-	
+
+
 func _on_defenseUp_timeout() -> void:
 	self.modulate = Color(1,0,0,50)
 	_takeDamageModifier = 1
-	
-	
+
 
 func _on_combo_timeout() -> void:
 	_attackManager.resetCombo()
@@ -174,7 +173,6 @@ func _play_footstep_sound():
 	footstepAudioPlayer.play()
 
 
-
 func collectCoin():
 	Coins = Coins + 1;
 	emit_signal("coin_changed")
@@ -188,13 +186,31 @@ func damageUpCollected():
 func defenseUpCollected():
 	_defenseUpTimer.start(15)
 	_takeDamageModifier = .5;
-	
+
+
 func healthCollected():
 	var newHealth = _health + 1;
 	if(newHealth <= _maxHealth):
 		emit_signal("health_changed", _health, newHealth, _maxHealth)
 		_health = newHealth;
-	
+
+
+func superChargeCollected():
+	_currentSuperCharges = min(_MAX_SUPER_CHARGES, _currentSuperCharges + 1)
+	emit_signal("super_charge_change", _currentSuperCharges)
+
+
+func superChargeReduce():
+	_currentSuperCharges = max(_MIN_SUPER_CHARGES, _currentSuperCharges - 1)
+	emit_signal("super_charge_change", _currentSuperCharges)
+
+
+func checkForSuperCharges():
+	if _currentSuperCharges > 0 and !_attackManager.isChargingSpecial:
+		superChargeReduce()
+		_attackManager.startSpecial()
+
+
 func add_trail() -> void:
 	if(get_parent() != null):
 		var trail      = trail_scene.instance()
@@ -211,8 +227,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		print("call hurt logic")
 		_canTakeDamage = false
 		_beingHurt = true
-		_attackManager.isAttacking = false
-		_attackManager.resetCombo()
+		_attackManager.gotHit()
 		_hitDoneTimer.start(_hitAnimationTime)
 		animationTree.get("parameters/playback").travel("Hurt")
 		_invincibilityTimer.start(2)
@@ -269,8 +284,8 @@ func _flip_nodes(direction: Vector2):
 
 
 func _check_for_events() -> bool:
-	if Input.is_action_just_released(AttackManager.SPECIAL_ATTACK_EVENT):
-		_attackManager.releaseSpecial()
+	if Input.is_action_just_released(AttackManager.SPECIAL_ATTACK_EVENT) and _attackManager.isChargingSpecial:
+		_summonHadouken()
 		return true
 	if checkForEvent(AttackManager.ATTACK1_EVENT):
 		_attackManager.doSideSwipeAttack(get_tree().get_current_scene())
@@ -282,14 +297,20 @@ func _check_for_events() -> bool:
 		_start_dash()
 		return false
 	elif checkForEvent(AttackManager.SPECIAL_ATTACK_EVENT):
-		_attackManager.startSpecial()
+		checkForSuperCharges()
 		return true
 	else:
 		return false
 
 
+func _summonHadouken():
+	_lastHadoukenDamagePercentage = _attackManager.getHadoukenPercentage()
+	_attackManager.releaseSpecial()
+
+
 func checkForEvent(event_name: String) -> bool:
 	return Input.is_action_just_pressed(event_name) or Input.is_action_pressed(event_name)
+
 
 func _finishedAttack() -> void:
 	print("attack finished")
@@ -328,6 +349,7 @@ func sendPlayerDeadSignal():
 # Called in Animation Player from animation Hadouken
 func summon_hadouken_blast():
 	var instance = hadouken_scene.instance()
+	instance.calculateDamage(_lastHadoukenDamagePercentage)
 	instance.set_direction(_directionFacing)
 	instance.global_position = hadoukenSpawn.global_position
 	get_parent().add_child(instance)
@@ -364,3 +386,7 @@ func _on_DashCooldownTimer_timeout():
 
 func _on_GhostDurationTImer_timeout():
 	ghostIntervalTimer.stop()
+
+
+func _on_ChargeIntervalTimer_timeout():
+	_attackManager.increaseChargeBar()

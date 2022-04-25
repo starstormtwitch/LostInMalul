@@ -1,4 +1,4 @@
-[gd_scene load_steps=220 format=2]
+[gd_scene load_steps=221 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
@@ -180,6 +180,7 @@
 [ext_resource path="res://assets/fonts/Early GameBoy.ttf" type="DynamicFontData" id=178]
 [ext_resource path="res://assets/GUI/BossHealthBarTheme.tres" type="Theme" id=179]
 [ext_resource path="res://assets/fonts/VPPixel-Simplified.otf" type="DynamicFontData" id=180]
+[ext_resource path="res://src/GUI/SuperBar.tscn" type="PackedScene" id=181]
 
 [sub_resource type="SegmentShape2D" id=1]
 a = Vector2( -474.143, 0.37738 )
@@ -289,34 +290,34 @@ extents = Vector2( 6.35352, 38.6898 )
 [sub_resource type="RectangleShape2D" id=29]
 extents = Vector2( 10, 72.1877 )
 
-[sub_resource type="RectangleShape2D" id=39]
-
 [sub_resource type="RectangleShape2D" id=30]
-extents = Vector2( 69.0192, 20.5003 )
 
 [sub_resource type="RectangleShape2D" id=31]
-extents = Vector2( 23.5465, 58.5441 )
+extents = Vector2( 69.0192, 20.5003 )
 
 [sub_resource type="RectangleShape2D" id=32]
-extents = Vector2( 10, 64.0051 )
-
-[sub_resource type="RectangleShape2D" id=36]
-extents = Vector2( 19.2661, 13.328 )
-
-[sub_resource type="RectangleShape2D" id=37]
-extents = Vector2( 23.6626, 22.3822 )
-
-[sub_resource type="RectangleShape2D" id=38]
-extents = Vector2( 26.623, 10 )
+extents = Vector2( 23.5465, 58.5441 )
 
 [sub_resource type="RectangleShape2D" id=33]
+extents = Vector2( 10, 64.0051 )
+
+[sub_resource type="RectangleShape2D" id=34]
+extents = Vector2( 19.2661, 13.328 )
+
+[sub_resource type="RectangleShape2D" id=35]
+extents = Vector2( 23.6626, 22.3822 )
+
+[sub_resource type="RectangleShape2D" id=36]
+extents = Vector2( 26.623, 10 )
+
+[sub_resource type="RectangleShape2D" id=37]
 extents = Vector2( 447.481, 28.3017 )
 
-[sub_resource type="DynamicFont" id=34]
+[sub_resource type="DynamicFont" id=38]
 size = 13
 font_data = ExtResource( 180 )
 
-[sub_resource type="DynamicFont" id=35]
+[sub_resource type="DynamicFont" id=39]
 size = 8
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -504,7 +505,6 @@ position = Vector2( 647.832, 250 )
 [node name="Basement_Fight1" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
 position = Vector2( 225.881, 311.679 )
 AutomaticTransition = false
-TransitionToOverlappingDelimiterOnExit = true
 
 [node name="BottomRight" parent="LevelBackground/CameraPositions/Basement_Fight1" index="0"]
 position = Vector2( 490.59, 285.204 )
@@ -645,7 +645,7 @@ playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/BasementNeedKey"]
 position = Vector2( 47.0188, 110.907 )
-shape = SubResource( 39 )
+shape = SubResource( 30 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Kitchen/BasementNeedKey"]
 visible = false
@@ -667,7 +667,7 @@ texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Office/Computer"]
 position = Vector2( 1506.55, 227.483 )
-shape = SubResource( 30 )
+shape = SubResource( 31 )
 
 [node name="Basement" type="Node2D" parent="LevelBackground/Interactions"]
 
@@ -676,14 +676,14 @@ position = Vector2( 250.127, 391.708 )
 
 [node name="BasementAttackCollision" type="CollisionShape2D" parent="LevelBackground/Interactions/Basement/BasementAttack"]
 position = Vector2( 208.775, 145.563 )
-shape = SubResource( 31 )
+shape = SubResource( 32 )
 
 [node name="BossEncounter" type="Area2D" parent="LevelBackground/Interactions/Basement"]
 position = Vector2( 26.4882, -3.05176e-05 )
 
 [node name="BossEncounterCollision" type="CollisionShape2D" parent="LevelBackground/Interactions/Basement/BossEncounter"]
 position = Vector2( 995.17, 534.2 )
-shape = SubResource( 32 )
+shape = SubResource( 33 )
 
 [node name="Foyer" type="Node2D" parent="LevelBackground/Interactions"]
 
@@ -694,7 +694,7 @@ playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Foyer/FoyerEndTable"]
 position = Vector2( 3557.77, 201.314 )
-shape = SubResource( 36 )
+shape = SubResource( 34 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Foyer/FoyerEndTable"]
 visible = false
@@ -707,7 +707,7 @@ playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Foyer/FoyerShoeRack"]
 position = Vector2( 3548.83, 212.734 )
-shape = SubResource( 37 )
+shape = SubResource( 35 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Foyer/FoyerShoeRack"]
 visible = false
@@ -720,7 +720,7 @@ playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Foyer/FoyerCabinet"]
 position = Vector2( 3349.21, 193.108 )
-shape = SubResource( 38 )
+shape = SubResource( 36 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Foyer/FoyerCabinet"]
 visible = false
@@ -870,7 +870,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/SpecialZones/BossMobZone"]
 position = Vector2( 663.603, 250.502 )
-shape = SubResource( 33 )
+shape = SubResource( 37 )
 
 [node name="YSort" type="YSort" parent="."]
 pause_mode = 1
@@ -1579,7 +1579,7 @@ margin_left = 387.56
 margin_top = 520.642
 margin_right = 681.56
 margin_bottom = 544.642
-custom_fonts/font = SubResource( 34 )
+custom_fonts/font = SubResource( 38 )
 text = "Rex Magnus Rattorum, The Rat King"
 
 [node name="PlayerGui" type="Control" parent="GUI"]
@@ -1610,10 +1610,10 @@ margin_bottom = 39.2348
 mouse_filter = 2
 
 [node name="DashCooldownUI" parent="GUI/PlayerGui" instance=ExtResource( 177 )]
-margin_left = 943.421
-margin_top = -7.07376
-margin_right = 943.421
-margin_bottom = -7.07377
+margin_left = 975.205
+margin_top = 6.69927
+margin_right = 975.205
+margin_bottom = 6.69926
 
 [node name="Coins" type="Label" parent="GUI/PlayerGui"]
 margin_left = 93.9329
@@ -1622,7 +1622,7 @@ margin_right = 195.933
 margin_bottom = 49.0544
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 35 )
+custom_fonts/font = SubResource( 39 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "0"
 __meta__ = {
@@ -1636,21 +1636,27 @@ margin_right = 99.9999
 margin_bottom = 74.8814
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 35 )
+custom_fonts/font = SubResource( 39 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "x"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="SuperBar" parent="GUI/PlayerGui" instance=ExtResource( 181 )]
+margin_left = 215.591
+margin_top = 21.3615
+margin_right = 319.591
+margin_bottom = 61.3615
+
 [node name="Inventory" parent="GUI/PlayerGui" instance=ExtResource( 21 )]
 position = Vector2( 15.0934, 21.6612 )
 scale = Vector2( 2, 2 )
 
 [node name="PauseScreenContainer" parent="GUI" instance=ExtResource( 26 )]
-margin_left = 10.3944
+margin_left = 9.33495
 margin_top = -6.17266
-margin_right = 10.3943
+margin_right = 9.33484
 margin_bottom = -6.17267
 
 [node name="TextBox" parent="GUI" instance=ExtResource( 1 )]
