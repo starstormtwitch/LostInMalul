@@ -19,17 +19,20 @@ func _setup():
 	else:
 		print(self.name + ': player actor not available.')
 	_get_game_settings()
-	
+
 func _get_game_settings():
 	var values = Settings.load_game_settings()
 	_set_game_settings(values.infiniteHealth)
-	
+
 func _set_game_settings(infiniteHealth: bool):
 	_infiniteHealth = infiniteHealth
 
 func InitCameraManager() -> void:
 	_cameraManager = CustomCamera2D.new(LevelGlobals.GetPlayerActor(), true)
-	_cameraManager.connect_to_player_shake_signal(LevelGlobals.GetPlayerActor())
+#	_cameraManager.connect_to_player_shake_signal(LevelGlobals.GetPlayerActor())
+	var player = LevelGlobals.GetPlayerActor()
+	assert(player.has_signal("player_hit_enemy"), "Player hit enemy signal not found.")
+	player.connect("player_hit_enemy", _cameraManager, "shake")
 	_cameraManager.connect_to_area_lock_signal(get_tree().get_current_scene())
 
 func GetCameraManager() -> CustomCamera2D:
@@ -53,16 +56,16 @@ func RegisterDelimiterSignals() -> void:
 		_dl.connect("PlayerExitedAreaDelimiter", self, "CameraTransitionToOuterDelimiter")
 	print("Registered delimiters.")
 
-func CameraTransitionToOuterDelimiter(delimiter: CustomDelimiter2D) -> void:	
+func CameraTransitionToOuterDelimiter(delimiter: CustomDelimiter2D) -> void:
 	var thisDelimiter = _enteredAreas.pop_back();
 	var overlappingDelimiter = _enteredAreas.pop_back();
 	_enteredAreas.push_back(overlappingDelimiter);
 	assert(overlappingDelimiter != null, "No overlapping area!!!")
-	_cameraManager.limitCameraToDelimiter(overlappingDelimiter) 
-	
-	
-func CameraTransitionToDelimiter(delimiter: CustomDelimiter2D) -> void:	
-	_cameraManager.limitCameraToDelimiter(delimiter) 
+	_cameraManager.limitCameraToDelimiter(overlappingDelimiter)
+
+
+func CameraTransitionToDelimiter(delimiter: CustomDelimiter2D) -> void:
+	_cameraManager.limitCameraToDelimiter(delimiter)
 	_enteredAreas.push_back(delimiter);
 
 func TeleportPlayerToPosition(position: Vector2, playFadeTime: float = 0) -> void:

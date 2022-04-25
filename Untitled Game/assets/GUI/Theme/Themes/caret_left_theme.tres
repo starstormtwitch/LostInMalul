@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=4 format=2]
+
+[ext_resource path="res://assets/GUI/Theme/Themes/caret_left_pressed.tres" type="StyleBox" id=1]
+[ext_resource path="res://assets/GUI/Theme/Themes/caret_left_normal.tres" type="StyleBox" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[resource]
+Button/styles/disabled = SubResource( 1 )
+Button/styles/focus = ExtResource( 1 )
+Button/styles/hover = ExtResource( 1 )
+Button/styles/normal = ExtResource( 2 )
+Button/styles/pressed = ExtResource( 1 )
