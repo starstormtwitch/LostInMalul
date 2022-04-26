@@ -18,30 +18,45 @@ var _groundPosition = self.position.y;
 #jump mechanic stuff
 var _lastYPostionOnGround = 0
 
+var errorLogger = ErrorLogger.new()
+
 signal health_changed
 signal died
 
+onready var kinematicSprite: KinematicBody2D = $KinematicSprite
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	errorLogger.assertNodeNotNull(kinematicSprite, "KinematicSprite", self)
 
 func _physics_process(delta):
 	if !_inAir:
-		_lastYPostionOnGround = self.position.y
+		_lastYPostionOnGround = kinematicSprite.position.y
 	else:
 		_handleGravity()
 
 
 func _handleGravity():
-	if self.position.y >= _lastYPostionOnGround:
-		self.position.y = _lastYPostionOnGround
+	if kinematicSprite.position.y >= _lastYPostionOnGround:
+		kinematicSprite.position.y = _lastYPostionOnGround
 		_inAir = 0
 	else:
 		_velocity += _gravity
 		var gravityVelocity = _velocity
-		#gravityVelocity.x *= 0.1
-		move_and_slide(gravityVelocity)
-		setColliderStatusDisabled(false)
+		moveParent(gravityVelocity)
+		moveKinematicSprite(gravityVelocity)
+
+
+#This is to move sprite only vertically, to make it look like its knockbacked.
+func moveKinematicSprite(gravityVelocity: Vector2) -> Vector2:
+	var yVelocity = Vector2(0, gravityVelocity.y) 
+	return kinematicSprite.move_and_slide(yVelocity)
+
+
+#this is to move whole node only horizonatally. 
+func moveParent(gravityVelocity: Vector2) -> Vector2:
+	var yVelocity = Vector2(gravityVelocity.x, 0) 
+	return self.move_and_slide(yVelocity)
 
 
 func setColliderStatusDisabled(disable: bool):
