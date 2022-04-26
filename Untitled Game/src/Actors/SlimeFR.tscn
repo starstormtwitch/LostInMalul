@@ -64,7 +64,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("enemy:frame")
+tracks/2/path = NodePath("KinematicSprite/Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -91,7 +91,7 @@ tracks/3/keys = {
 [sub_resource type="Animation" id=6]
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath("enemy:frame")
+tracks/0/path = NodePath("KinematicSprite/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -120,7 +120,7 @@ length = 0.6
 loop = true
 step = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("enemy:frame")
+tracks/0/path = NodePath("KinematicSprite/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -165,7 +165,7 @@ tracks/0/keys = {
 } ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("enemy:frame")
+tracks/1/path = NodePath("KinematicSprite/Sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -289,7 +289,9 @@ hframes = 13
 vframes = 4
 frame = 40
 
-[node name="enemy" type="Sprite" parent="."]
+[node name="KinematicSprite" type="KinematicBody2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="KinematicSprite"]
 position = Vector2( 3.56418, -19.7197 )
 z_as_relative = false
 texture = ExtResource( 1 )

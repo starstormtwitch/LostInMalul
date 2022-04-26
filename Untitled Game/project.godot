@@ -74,6 +74,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Actors/Enemy.gd"
 }, {
+"base": "Object",
+"class": "ErrorLogger",
+"language": "GDScript",
+"path": "res://src/Helpers/Utilities/ErrorLogger.gd"
+}, {
 "base": "Node",
 "class": "GGSUtils",
 "language": "GDScript",
@@ -193,6 +198,7 @@ _global_script_class_icons={
 "CustomSlider": "",
 "CustomSlider_ggs": "",
 "Enemy": "",
+"ErrorLogger": "",
 "GGSUtils": "",
 "GameSettings": "",
 "Ghost": "",
@@ -336,6 +342,7 @@ special_attack={
 [layer_names]
 
 2d_physics/layer_1="Boundaries"
+2d_physics/layer_2="TogglableBoundaries"
 2d_physics/layer_3="Player"
 2d_physics/layer_5="PlayerHitbox"
 2d_physics/layer_7="PlayerHurtbox"
