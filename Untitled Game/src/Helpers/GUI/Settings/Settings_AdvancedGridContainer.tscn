@@ -1,0 +1,174 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://src/Helpers/GUI/Theme/CustomSelector.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Helpers/GUI/Settings/Settings_AdvancedGridContainer.gd" type="Script" id=2]
+[ext_resource path="res://assets/GUI/Theme/Themes/MenuTheme.tres" type="Theme" id=3]
+[ext_resource path="res://src/Helpers/GUI/Theme/CustomSlider.tscn" type="PackedScene" id=4]
+
+[sub_resource type="ImageTexture" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[sub_resource type="StyleBoxEmpty" id=14]
+
+[node name="AdvancedGridContainer" type="ScrollContainer"]
+margin_right = 550.0
+margin_bottom = 500.0
+size_flags_vertical = 3
+theme = ExtResource( 3 )
+script = ExtResource( 2 )
+
+[node name="AdvancedGrid" type="GridContainer" parent="."]
+margin_right = 550.0
+margin_bottom = 500.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+
+[node name="DX12_Label" type="Label" parent="AdvancedGrid"]
+margin_right = 250.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 250, 0 )
+rect_pivot_offset = Vector2( -627.421, 174.89 )
+text = "Use DX12"
+
+[node name="DX12_Checkbox" type="CheckBox" parent="AdvancedGrid"]
+margin_left = 394.0
+margin_right = 410.0
+margin_bottom = 17.0
+rect_pivot_offset = Vector2( -627.421, 174.89 )
+size_flags_horizontal = 4
+align = 1
+
+[node name="RT_Label" type="Label" parent="AdvancedGrid"]
+margin_top = 25.0
+margin_right = 250.0
+margin_bottom = 42.0
+text = "Enable Raytracing"
+
+[node name="RT_CheckBox" type="CheckBox" parent="AdvancedGrid"]
+margin_left = 394.0
+margin_top = 25.0
+margin_right = 410.0
+margin_bottom = 42.0
+size_flags_horizontal = 4
+disabled = true
+align = 1
+
+[node name="RTShadows_Label" type="Label" parent="AdvancedGrid"]
+margin_top = 50.0
+margin_right = 250.0
+margin_bottom = 67.0
+text = "Raytraced shadows"
+
+[node name="RTShadows_CheckBox" type="CheckBox" parent="AdvancedGrid"]
+margin_left = 394.0
+margin_top = 50.0
+margin_right = 410.0
+margin_bottom = 67.0
+size_flags_horizontal = 4
+disabled = true
+
+[node name="RTShadowRay_Label" type="Label" parent="AdvancedGrid"]
+margin_top = 75.0
+margin_right = 250.0
+margin_bottom = 92.0
+text = "Shadowtraced rays"
+
+[node name="RTShadowRay_Checkbox" type="CheckBox" parent="AdvancedGrid"]
+margin_left = 394.0
+margin_top = 75.0
+margin_right = 410.0
+margin_bottom = 92.0
+size_flags_horizontal = 4
+disabled = true
+
+[node name="AntiAliasing_Label" type="Label" parent="AdvancedGrid"]
+margin_top = 100.0
+margin_right = 250.0
+margin_bottom = 117.0
+text = "Antialiasing"
+
+[node name="AntiAliasing_Select" parent="AdvancedGrid" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 254.0
+margin_top = 100.0
+margin_right = 550.0
+margin_bottom = 117.0
+size_flags_horizontal = 3
+custom_icons/arrow = SubResource( 9 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/disabled = SubResource( 13 )
+custom_styles/normal = SubResource( 14 )
+text = "None"
+items = [ "None", null, false, 0, null, "FXAA", null, false, 1, null, "TAA", null, false, 2, null, "MSAA", null, false, 3, null, "SMAA", null, false, 4, null, "WASDAA", null, false, 5, null, "THXSWQAA", null, false, 6, null, "RTXDLSSAA", null, false, 7, null, "FAKEAA", null, false, 8, null ]
+
+[node name="DedotatedWAM_Label" type="Label" parent="AdvancedGrid"]
+margin_top = 125.0
+margin_right = 250.0
+margin_bottom = 142.0
+text = "Dedotated Wam"
+
+[node name="DedotatedWAM_Select" parent="AdvancedGrid" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 254.0
+margin_top = 125.0
+margin_right = 550.0
+margin_bottom = 142.0
+custom_icons/arrow = SubResource( 9 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/disabled = SubResource( 13 )
+custom_styles/normal = SubResource( 14 )
+text = "1GB"
+items = [ "1GB", null, false, 0, null, "2GB", null, false, 1, null, "4GB", null, false, 2, null, "8GB", null, false, 3, null, "16GB", null, false, 4, null, "32GB", null, false, 5, null, "download as needed", null, false, 6, null ]
+
+[node name="BlurSharpen_Label" type="Label" parent="AdvancedGrid"]
+margin_top = 150.0
+margin_right = 250.0
+margin_bottom = 167.0
+text = "Blur sharpening"
+
+[node name="BlurSharpen_Checkbox" type="CheckBox" parent="AdvancedGrid"]
+margin_left = 394.0
+margin_top = 150.0
+margin_right = 410.0
+margin_bottom = 167.0
+size_flags_horizontal = 4
+
+[node name="SharpnessBlur_Label" type="Label" parent="AdvancedGrid"]
+margin_top = 175.0
+margin_right = 250.0
+margin_bottom = 192.0
+text = "Sharpness blurring"
+
+[node name="SharpnessBlur_Slider" parent="AdvancedGrid" instance=ExtResource( 4 )]
+margin_left = 254.0
+margin_top = 175.0
+margin_right = 550.0
+margin_bottom = 192.0
+
+[node name="HSlider" parent="AdvancedGrid/SharpnessBlur_Slider" index="0"]
+margin_right = 232.0
+value = 50.0
+
+[node name="Label" parent="AdvancedGrid/SharpnessBlur_Slider" index="1"]
+margin_left = 236.0
+margin_right = 296.0
+
+[connection signal="toggled" from="AdvancedGrid/DX12_Checkbox" to="." method="_on_DX12_Checkbox_toggled"]
+[connection signal="toggled" from="AdvancedGrid/RT_CheckBox" to="." method="_on_RT_CheckBox_toggled"]
+[connection signal="toggled" from="AdvancedGrid/RTShadows_CheckBox" to="." method="_on_RTShadows_CheckBox_toggled"]
+
+[editable path="AdvancedGrid/SharpnessBlur_Slider"]

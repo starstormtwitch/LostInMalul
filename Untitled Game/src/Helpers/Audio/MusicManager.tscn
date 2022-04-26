@@ -11,7 +11,9 @@ script = ExtResource( 3 )
 [node name="MenuMusicStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 volume_db = -7.428
+bus = "Music"
 
 [node name="NormalBattleStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 autoplay = true
+bus = "Music"

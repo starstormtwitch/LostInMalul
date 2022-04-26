@@ -6,7 +6,8 @@ const COIN = preload("res://src/Pickups/Coin.tscn")
 const powerUpDict = {
 	"Health" : preload("res://src/Pickups/Health.tscn"),
 	"Defense" : preload("res://src/Pickups/Defense.tscn"),
-	"Damage" : preload("res://src/Pickups/Damage.tscn")
+	"Damage" : preload("res://src/Pickups/Damage.tscn"), 
+	"SuperOrb": preload("res://src/Pickups/SuperOrb.tscn")
 }  
 
 export(int) var MinCoins = 1
