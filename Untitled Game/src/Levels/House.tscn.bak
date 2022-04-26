@@ -889,7 +889,7 @@ shape = SubResource( 38 )
 
 [node name="Checkpoints" type="Node" parent="LevelBackground"]
 
-[node name="Checkpoint" parent="LevelBackground/Checkpoints" instance=ExtResource( 181 )]
+[node name="Checkpoint" parent="LevelBackground/Checkpoints" instance=ExtResource( 182 )]
 position = Vector2( 2603.81, 57.6612 )
 LevelName = "House"
 CheckpointName = "FirstEnemy"
@@ -1674,7 +1674,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SuperBar" parent="GUI/PlayerGui" instance=ExtResource( 181 )]
+[node name="SuperBar" parent="GUI/PlayerGui" instance=ExtResource( 182 )]
 margin_left = 215.591
 margin_top = 21.3615
 margin_right = 319.591
@@ -1711,10 +1711,7 @@ margin_right = 512.0
 
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_Toilet_interactable_text_signal"]
-<<<<<<< HEAD
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Sink" to="." method="_on_Sink_interactable_text_signal"]
-=======
->>>>>>> main
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/Bed" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/LivingRoom/InteractPromptArea" to="." method="_on_InteractPromptArea_interactable_text_signal"]

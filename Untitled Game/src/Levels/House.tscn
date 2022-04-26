@@ -1,4 +1,4 @@
-[gd_scene load_steps=223 format=2]
+[gd_scene load_steps=220 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
@@ -179,7 +179,6 @@
 [ext_resource path="res://src/GUI/DashCooldownUI.tscn" type="PackedScene" id=177]
 [ext_resource path="res://assets/fonts/Early GameBoy.ttf" type="DynamicFontData" id=178]
 [ext_resource path="res://assets/GUI/BossHealthBarTheme.tres" type="Theme" id=179]
-[ext_resource path="res://assets/fonts/VPPixel-Simplified.otf" type="DynamicFontData" id=180]
 [ext_resource path="res://src/Helpers/Utilities/Checkpoint.tscn" type="PackedScene" id=181]
 [ext_resource path="res://src/GUI/SuperBar.tscn" type="PackedScene" id=182]
 
@@ -271,52 +270,49 @@ extents = Vector2( 10, 106.123 )
 extents = Vector2( 11.8075, 11.755 )
 
 [sub_resource type="RectangleShape2D" id=25]
-extents = Vector2( 47.3309, 10 )
-
-[sub_resource type="RectangleShape2D" id=26]
 extents = Vector2( 9.60168, 10.0379 )
 
-[sub_resource type="RectangleShape2D" id=27]
+[sub_resource type="RectangleShape2D" id=26]
 extents = Vector2( 7.76685, 36.4999 )
 
-[sub_resource type="RectangleShape2D" id=28]
+[sub_resource type="RectangleShape2D" id=27]
 extents = Vector2( 17.2043, 37.1483 )
 
-[sub_resource type="RectangleShape2D" id=29]
+[sub_resource type="RectangleShape2D" id=28]
 extents = Vector2( 6.35352, 38.6898 )
 
-[sub_resource type="RectangleShape2D" id=30]
+[sub_resource type="RectangleShape2D" id=29]
 extents = Vector2( 10, 72.1877 )
 
+[sub_resource type="RectangleShape2D" id=30]
+extents = Vector2( 10, 57.1218 )
+
 [sub_resource type="RectangleShape2D" id=31]
+extents = Vector2( 12.8875, 12.3487 )
 
 [sub_resource type="RectangleShape2D" id=32]
-extents = Vector2( 69.0192, 20.5003 )
-
-[sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 23.5465, 58.5441 )
 
 [sub_resource type="RectangleShape2D" id=34]
-extents = Vector2( 10, 64.0051 )
-
-[sub_resource type="RectangleShape2D" id=35]
 extents = Vector2( 19.2661, 13.328 )
 
-[sub_resource type="RectangleShape2D" id=36]
+[sub_resource type="RectangleShape2D" id=35]
 extents = Vector2( 23.6626, 22.3822 )
 
-[sub_resource type="RectangleShape2D" id=37]
+[sub_resource type="RectangleShape2D" id=36]
 extents = Vector2( 26.623, 10 )
 
-[sub_resource type="RectangleShape2D" id=38]
+[sub_resource type="RectangleShape2D" id=37]
 extents = Vector2( 447.481, 28.3017 )
 
 [sub_resource type="DynamicFont" id=39]
-size = 13
-font_data = ExtResource( 180 )
+size = 8
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+font_data = ExtResource( 178 )
 
 [sub_resource type="DynamicFont" id=40]
-
 size = 8
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -651,7 +647,7 @@ visible = false
 texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/KitchenFirstTime"]
-position = Vector2( 6.58667, 15.8919 )
+position = Vector2( -3.75806, 20.6882 )
 shape = SubResource( 30 )
 
 [node name="BasementNeedKey" parent="LevelBackground/Interactions/Kitchen" instance=ExtResource( 175 )]
@@ -885,7 +881,6 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/SpecialZones/BossMobZone"]
 position = Vector2( 663.603, 250.502 )
-shape = SubResource( 38 )
 
 [node name="Checkpoints" type="Node" parent="LevelBackground"]
 
@@ -1610,22 +1605,11 @@ margin_right = 40.0
 margin_bottom = 40.0
 mouse_filter = 1
 
-[node name="Profile" type="TextureRect" parent="GUI/PlayerGui"]
-margin_left = 15.0
-margin_top = 16.0
-margin_right = 90.0
-margin_bottom = 91.0
-mouse_filter = 2
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Cash" type="TextureRect" parent="GUI/PlayerGui"]
-margin_left = 91.0
-margin_top = 50.0
-margin_right = 115.0
-margin_bottom = 75.0
+margin_left = 51.0934
+margin_top = 48.1271
+margin_right = 75.0934
+margin_bottom = 73.1271
 mouse_filter = 2
 texture = ExtResource( 24 )
 expand = true
@@ -1634,10 +1618,10 @@ __meta__ = {
 }
 
 [node name="healthBar" parent="GUI/PlayerGui" instance=ExtResource( 23 )]
-margin_left = 103.0
-margin_top = 32.0
-margin_right = 306.0
-margin_bottom = 53.0
+margin_left = 63.0934
+margin_top = 30.1271
+margin_right = 266.093
+margin_bottom = 51.1271
 mouse_filter = 2
 
 [node name="DashCooldownUI" parent="GUI/PlayerGui" instance=ExtResource( 177 )]
@@ -1647,10 +1631,10 @@ margin_right = 975.205
 margin_bottom = 6.69926
 
 [node name="Coins" type="Label" parent="GUI/PlayerGui"]
-margin_left = 130.041
-margin_top = 52.8196
-margin_right = 232.041
-margin_bottom = 62.8196
+margin_left = 90.1344
+margin_top = 50.9467
+margin_right = 192.134
+margin_bottom = 60.9467
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
 custom_fonts/font = SubResource( 40 )
@@ -1661,10 +1645,10 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="GUI/PlayerGui"]
-margin_left = 116.108
-margin_top = 58.6466
-margin_right = 136.108
-margin_bottom = 88.6466
+margin_left = 76.2014
+margin_top = 56.7737
+margin_right = 96.2014
+margin_bottom = 86.7737
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
 custom_fonts/font = SubResource( 40 )
@@ -1674,11 +1658,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SuperBar" parent="GUI/PlayerGui" instance=ExtResource( 181 )]
-margin_left = 215.591
-margin_top = 21.3615
-margin_right = 319.591
-margin_bottom = 61.3615
+[node name="SuperBar" parent="GUI/PlayerGui" instance=ExtResource( 182 )]
+margin_left = 15.0934
+margin_top = 72.5
+margin_right = 119.093
+margin_bottom = 112.5
 
 [node name="Inventory" parent="GUI/PlayerGui" instance=ExtResource( 21 )]
 position = Vector2( 15.0934, 21.6612 )
@@ -1709,8 +1693,8 @@ margin_left = -512.0
 margin_top = -576.0
 margin_right = 512.0
 
-[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_Toilet_interactable_text_signal"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Sink" to="." method="_on_Sink_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/Bed" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon" to="." method="_on_InteractPromptArea_interactable_text_signal"]

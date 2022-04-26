@@ -45,7 +45,7 @@
 			"value": 100
 		},
 		"current": {
-			"value": 51
+			"value": 72
 		},
 		"logic": "res://src/Helpers/Settings/Display_ScreenShakeIntensity.gd"
 	},
@@ -85,7 +85,7 @@
 			"value": 0
 		},
 		"current": {
-			"value": 2
+			"value": 0
 		},
 		"logic": "res://src/Helpers/Settings/Display_WindowType.gd"
 	},
