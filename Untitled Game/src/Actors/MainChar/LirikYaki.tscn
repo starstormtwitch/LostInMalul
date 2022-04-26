@@ -816,11 +816,6 @@ stream = ExtResource( 8 )
 volume_db = -5.306
 bus = "SFX"
 
-[node name="ShoryukenStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 11 )
-volume_db = -6.256
-bus = "SFX"
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Die = SubResource( 2 )
 anims/Hadouken = SubResource( 3 )
@@ -863,10 +858,7 @@ one_shot = true
 wait_time = 0.02
 autostart = true
 
-[node name="PlayerHurtArea" type="Area2D" parent="." groups=[
-"hurtbox",
-]]
-
+[node name="PlayerHurtArea" type="Area2D" parent="." groups=["hurtbox"]]
 position = Vector2( -2.65, -23.75 )
 collision_layer = 64
 collision_mask = 4096

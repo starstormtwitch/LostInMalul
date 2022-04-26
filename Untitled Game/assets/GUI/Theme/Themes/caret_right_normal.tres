@@ -1,8 +1,8 @@
 [gd_resource type="StyleBoxTexture" load_steps=2 format=2]
 
-[sub_resource type="StreamTexture" id=2]
+[sub_resource type="StreamTexture" id=1]
 load_path = "res://.import/caret_right_normal.png-0dcddfb73ce3aaae7ee69844bcae1243.stex"
 
 [resource]
-texture = SubResource( 2 )
+texture = SubResource( 1 )
 region_rect = Rect2( 0, 0, 16, 16 )
