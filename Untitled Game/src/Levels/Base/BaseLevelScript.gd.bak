@@ -19,8 +19,12 @@ func _setup():
 	RegisterTeleporterSignals()
 	RegisterDelimiterSignals()
 	_get_game_settings()
+<<<<<<< HEAD
 	
 		
+=======
+
+>>>>>>> main
 func _get_game_settings():
 	var values = Settings.load_game_settings()
 	_set_game_settings(values.infiniteHealth)
