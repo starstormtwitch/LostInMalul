@@ -181,13 +181,11 @@
 [ext_resource path="res://assets/fonts/VPPixel-Simplified.otf" type="DynamicFontData" id=180]
 [ext_resource path="res://src/GUI/SuperBar.tscn" type="PackedScene" id=181]
 
-[sub_resource type="SegmentShape2D" id=1]
-a = Vector2( -474.143, 0.37738 )
-b = Vector2( 6849.88, 3.13074 )
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3680.33, 10 )
 
-[sub_resource type="SegmentShape2D" id=2]
-a = Vector2( -719.258, 3.29889 )
-b = Vector2( 2699.4, 2.97202 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 1733.24, 10 )
 
 [sub_resource type="SegmentShape2D" id=3]
 a = Vector2( -5.99417, -73.1816 )
@@ -241,29 +239,25 @@ b = Vector2( -287.535, 82.7866 )
 a = Vector2( 423.631, 195.137 )
 b = Vector2( 308.102, 79.9708 )
 
-[sub_resource type="SegmentShape2D" id=16]
-a = Vector2( -289.054, 81.8366 )
-b = Vector2( 310.076, 82.1077 )
+[sub_resource type="RectangleShape2D" id=40]
+extents = Vector2( 304.586, 10 )
 
-[sub_resource type="SegmentShape2D" id=17]
-a = Vector2( -398.034, 199.417 )
-b = Vector2( 427.967, 198.604 )
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 416.632, 10 )
 
 [sub_resource type="SegmentShape2D" id=18]
 a = Vector2( -220.139, 169.62 )
 b = Vector2( -255.975, 205.758 )
 
-[sub_resource type="SegmentShape2D" id=19]
-a = Vector2( -79.9308, 92.0679 )
-b = Vector2( 899.808, 91.8126 )
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 508.823, 10 )
 
 [sub_resource type="SegmentShape2D" id=20]
 a = Vector2( 900.856, 91.7268 )
 b = Vector2( 1014.24, 206.202 )
 
-[sub_resource type="SegmentShape2D" id=21]
-a = Vector2( -256.938, 208.497 )
-b = Vector2( 1016.59, 208.444 )
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 635.219, 10 )
 
 [sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 6.46179, 120.456 )
@@ -316,6 +310,13 @@ extents = Vector2( 447.481, 28.3017 )
 size = 13
 font_data = ExtResource( 180 )
 
+[sub_resource type="DynamicFont" id=39]
+size = 8
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+font_data = ExtResource( 178 )
+
 [node name="House" type="Node2D"]
 pause_mode = 2
 script = ExtResource( 19 )
@@ -344,11 +345,11 @@ position = Vector2( 240.006, 305.733 )
 scale = Vector2( 0.497642, 0.497642 )
 
 [node name="bottom_segment" type="CollisionShape2D" parent="LevelBackground/Boundaries/Universal"]
-position = Vector2( 7.10455, -9.74359 )
+position = Vector2( 3189.41, -2.58612 )
 shape = SubResource( 1 )
 
 [node name="top_segment" type="CollisionShape2D" parent="LevelBackground/Boundaries/Universal"]
-position = Vector2( 1181.1, -248.206 )
+position = Vector2( 3165.36, -259.12 )
 scale = Vector2( 2.00948, 2.00948 )
 shape = SubResource( 2 )
 
@@ -427,9 +428,11 @@ shape = SubResource( 14 )
 shape = SubResource( 15 )
 
 [node name="Top" type="CollisionShape2D" parent="LevelBackground/Boundaries/Garage"]
-shape = SubResource( 16 )
+position = Vector2( 10.0647, 74.1624 )
+shape = SubResource( 40 )
 
 [node name="Bottom" type="CollisionShape2D" parent="LevelBackground/Boundaries/Garage"]
+position = Vector2( 10.7029, 208.111 )
 shape = SubResource( 17 )
 
 [node name="Basement" type="StaticBody2D" parent="LevelBackground/Boundaries"]
@@ -439,12 +442,14 @@ position = Vector2( 265.644, 389.773 )
 shape = SubResource( 18 )
 
 [node name="Top" type="CollisionShape2D" parent="LevelBackground/Boundaries/Basement"]
+position = Vector2( 399.701, 85.0571 )
 shape = SubResource( 19 )
 
 [node name="Right" type="CollisionShape2D" parent="LevelBackground/Boundaries/Basement"]
 shape = SubResource( 20 )
 
 [node name="Bottom" type="CollisionShape2D" parent="LevelBackground/Boundaries/Basement"]
+position = Vector2( 380.468, 216.782 )
 shape = SubResource( 21 )
 
 [node name="BossSeperator" type="CollisionShape2D" parent="LevelBackground/Boundaries/Basement"]
@@ -1623,6 +1628,7 @@ margin_right = 232.041
 margin_bottom = 62.8196
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
+custom_fonts/font = SubResource( 39 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "0"
 __meta__ = {
@@ -1636,6 +1642,7 @@ margin_right = 136.108
 margin_bottom = 88.6466
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
+custom_fonts/font = SubResource( 39 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "x"
 __meta__ = {
