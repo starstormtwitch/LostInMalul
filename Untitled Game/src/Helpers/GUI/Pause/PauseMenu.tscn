@@ -1,273 +1,297 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://addons/GGS/src/components/boolean/ggsBool.tscn" type="PackedScene" id=1]
-[ext_resource path="res://addons/GGS/src/components/number_field/ggsNumberField.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/GUI/green_button.png" type="Texture" id=1]
+[ext_resource path="res://assets/GUI/green_button_Hover.png" type="Texture" id=2]
 [ext_resource path="res://src/Helpers/GUI/Pause/PauseMenu.gd" type="Script" id=3]
-[ext_resource path="res://assets/GUI/Theme/Themes/MenuTheme.tres" type="Theme" id=4]
 
-[node name="PauseMenu" type="CenterContainer"]
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0, 0.643137, 0.729412, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 200
+
+[node name="PauseMenu" type="Control"]
 pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.594604
+margin_top = -1.18921
+margin_right = -0.594604
+margin_bottom = -1.18921
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-theme = ExtResource( 4 )
-use_top_left = true
-script = ExtResource( 3 )
+margin_left = -100.0
+margin_top = -100.0
+margin_right = 101.0
+margin_bottom = 150.0
+rect_scale = Vector2( 1, 300 )
+mouse_filter = 2
+texture = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-rect = Rect2( 0, 0, 0, 0 )
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -98.0946
+margin_top = -92.6581
+margin_right = 96.9054
+margin_bottom = 157.342
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-margin_left = -5.0
-margin_top = -5.0
-margin_right = 5.0
-margin_bottom = 5.0
-
-[node name="PauseMenuContainer" type="VBoxContainer" parent="PanelContainer"]
-visible = false
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 452.0
-margin_bottom = 201.0
-
-[node name="Label" type="Label" parent="PanelContainer/PauseMenuContainer"]
-margin_right = 447.0
-margin_bottom = 17.0
-text = "Pause"
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 195.0
+margin_bottom = 14.0
+text = "Menu"
 align = 1
 
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/PauseMenuContainer"]
-margin_top = 21.0
-margin_right = 447.0
-margin_bottom = 25.0
-
-[node name="ResumeButton" type="Button" parent="PanelContainer/PauseMenuContainer"]
-margin_left = 143.0
-margin_top = 29.0
-margin_right = 303.0
-margin_bottom = 59.0
-rect_min_size = Vector2( 160, 30 )
-size_flags_horizontal = 4
-text = "Resume"
-
-[node name="RestartButton" type="Button" parent="PanelContainer/PauseMenuContainer"]
-margin_left = 143.0
-margin_top = 63.0
-margin_right = 303.0
-margin_bottom = 93.0
+[node name="RestartButton" type="TextureButton" parent="VBoxContainer"]
+margin_left = 17.0
+margin_top = 18.0
+margin_right = 177.0
+margin_bottom = 48.0
 rect_min_size = Vector2( 160, 30 )
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 4
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="VBoxContainer/RestartButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -18.8775
+margin_top = -7.0
+margin_right = 26.1225
+margin_bottom = 7.0
 text = "Restart"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="SettingsButton" type="Button" parent="PanelContainer/PauseMenuContainer"]
-margin_left = 143.0
-margin_top = 97.0
-margin_right = 303.0
-margin_bottom = 127.0
-rect_min_size = Vector2( 160, 30 )
-size_flags_horizontal = 4
-text = "Settings"
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 52.0
+margin_right = 195.0
+margin_bottom = 52.0
+mouse_filter = 2
 
-[node name="ExitButton" type="Button" parent="PanelContainer/PauseMenuContainer"]
-margin_left = 143.0
-margin_top = 131.0
-margin_right = 303.0
-margin_bottom = 161.0
+[node name="ExitButton" type="TextureButton" parent="VBoxContainer"]
+margin_left = 17.0
+margin_top = 56.0
+margin_right = 177.0
+margin_bottom = 86.0
 rect_min_size = Vector2( 160, 30 )
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 4
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="VBoxContainer/ExitButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -19.4388
+margin_top = -7.0
+margin_right = 20.5612
+margin_bottom = 7.0
 text = "Exit"
-
-[node name="DebugButton" type="Button" parent="PanelContainer/PauseMenuContainer"]
-visible = false
-margin_top = 259.0
-margin_right = 160.0
-margin_bottom = 283.0
-text = "*DEBUG*"
-
-[node name="ExitMenuContainer" type="VBoxContainer" parent="PanelContainer"]
-visible = false
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 155.0
-margin_bottom = 57.0
-
-[node name="ExitMenuResumeButton" type="Button" parent="PanelContainer/ExitMenuContainer"]
-margin_right = 150.0
-margin_bottom = 24.0
-text = "Resume"
-
-[node name="ExitMenuSaveButton" type="Button" parent="PanelContainer/ExitMenuContainer"]
-margin_top = 28.0
-margin_right = 150.0
-margin_bottom = 52.0
-text = "Save & Exit"
-
-[node name="ExitMenuExitButton" type="Button" parent="PanelContainer/ExitMenuContainer"]
-visible = false
-margin_top = 56.0
-margin_right = 150.0
-margin_bottom = 80.0
-text = "Exit"
-
-[node name="DebugMenuContainer" type="VBoxContainer" parent="PanelContainer"]
-visible = false
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 452.0
-margin_bottom = 201.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/DebugMenuContainer"]
-margin_right = 447.0
-margin_bottom = 196.0
-
-[node name="VBoxContainerA" type="VBoxContainer" parent="PanelContainer/DebugMenuContainer/HBoxContainer"]
-margin_right = 275.0
-margin_bottom = 196.0
-
-[node name="Label" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA"]
-margin_right = 275.0
-margin_bottom = 17.0
-text = "Debug options"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA"]
-margin_top = 21.0
-margin_right = 275.0
-margin_bottom = 25.0
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 90.0
+margin_right = 195.0
+margin_bottom = 90.0
+mouse_filter = 2
 
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA"]
-margin_top = 29.0
-margin_right = 275.0
-margin_bottom = 196.0
-columns = 2
-
-[node name="Label" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer"]
-margin_right = 185.0
-margin_bottom = 17.0
-text = "Infinite health"
-
-[node name="InfiniteHealthCheckbox" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer" instance=ExtResource( 1 )]
-margin_left = 232.0
-margin_right = 232.0
-margin_bottom = 17.0
-size_flags_horizontal = 6
-align = 1
-setting_index = 3
-
-[node name="Label2" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer"]
-margin_top = 25.0
-margin_right = 185.0
-margin_bottom = 62.0
-text = "
-Screen shake:"
-
-[node name="Label3" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer"]
-margin_left = 189.0
-margin_top = 35.0
-margin_right = 275.0
-margin_bottom = 52.0
-
-[node name="Label4" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer"]
-margin_top = 75.0
-margin_right = 185.0
-margin_bottom = 92.0
-text = "Duration"
-
-[node name="DurationField" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer" instance=ExtResource( 2 )]
-margin_left = 189.0
-margin_top = 70.0
-margin_right = 275.0
-margin_bottom = 97.0
-size_flags_horizontal = 3
-max_value = 1.0
-step = 0.05
-align = 1
-
-[node name="Label5" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer"]
-margin_top = 110.0
-margin_right = 185.0
-margin_bottom = 127.0
-text = "Frequency"
-
-[node name="FrequencyField" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer" instance=ExtResource( 2 )]
-margin_left = 189.0
-margin_top = 105.0
-margin_right = 275.0
-margin_bottom = 132.0
-align = 1
-setting_index = 1
-
-[node name="Label6" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer"]
-margin_top = 145.0
-margin_right = 185.0
-margin_bottom = 162.0
-text = "Amplitude"
-
-[node name="AmplitudeField" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer" instance=ExtResource( 2 )]
-margin_left = 189.0
-margin_top = 140.0
-margin_right = 275.0
-margin_bottom = 167.0
-max_value = 10.0
-step = 0.1
-align = 1
-setting_index = 2
-
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/DebugMenuContainer/HBoxContainer"]
-margin_left = 279.0
-margin_right = 283.0
-margin_bottom = 196.0
-
-[node name="VBoxContainerB" type="VBoxContainer" parent="PanelContainer/DebugMenuContainer/HBoxContainer"]
-margin_left = 287.0
-margin_right = 447.0
-margin_bottom = 196.0
-
-[node name="Label" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerB"]
-margin_right = 160.0
-margin_bottom = 17.0
-text = "Load level"
-align = 1
-
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerB"]
-margin_top = 21.0
-margin_right = 160.0
-margin_bottom = 25.0
-
-[node name="LoadSlimeLevelButton" type="Button" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerB"]
-margin_top = 29.0
-margin_right = 160.0
-margin_bottom = 59.0
-rect_min_size = Vector2( 160, 30 )
-text = "Slime"
-
-[node name="LoadRatLevelButton" type="Button" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerB"]
-margin_top = 63.0
-margin_right = 160.0
-margin_bottom = 93.0
-rect_min_size = Vector2( 160, 30 )
-text = "Rat"
-
-[node name="LoadHouseLevelButton" type="Button" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerB"]
-margin_top = 97.0
-margin_right = 160.0
-margin_bottom = 127.0
+[node name="GoBackButton" type="TextureButton" parent="VBoxContainer"]
+margin_left = 17.0
+margin_top = 94.0
+margin_right = 177.0
+margin_bottom = 124.0
 rect_min_size = Vector2( 160, 30 )
 size_flags_horizontal = 4
-text = "House"
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 2 )
+expand = true
 
-[connection signal="draw" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_draw"]
-[connection signal="pressed" from="PanelContainer/PauseMenuContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
-[connection signal="pressed" from="PanelContainer/PauseMenuContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="PanelContainer/PauseMenuContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
-[connection signal="pressed" from="PanelContainer/PauseMenuContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
-[connection signal="pressed" from="PanelContainer/PauseMenuContainer/DebugButton" to="." method="_on_DebugButton_pressed"]
-[connection signal="pressed" from="PanelContainer/ExitMenuContainer/ExitMenuResumeButton" to="." method="_on_ExitMenuResumeButton_pressed"]
-[connection signal="pressed" from="PanelContainer/ExitMenuContainer/ExitMenuSaveButton" to="." method="_on_ExitMenuSaveButton_pressed"]
-[connection signal="pressed" from="PanelContainer/ExitMenuContainer/ExitMenuExitButton" to="." method="_on_ExitMenuExitButton_pressed"]
-[connection signal="pressed" from="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerB/LoadSlimeLevelButton" to="." method="_on_LoadSlimeLevelButton_pressed"]
-[connection signal="pressed" from="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerB/LoadRatLevelButton" to="." method="_on_LoadRatLevelButton_pressed"]
-[connection signal="pressed" from="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerB/LoadHouseLevelButton" to="." method="_on_LoadHouseLevelButton_pressed"]
+[node name="Label" type="Label" parent="VBoxContainer/GoBackButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -19.4388
+margin_top = -7.0
+margin_right = 20.5612
+margin_bottom = 7.0
+text = "Resume"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 128.0
+margin_right = 195.0
+margin_bottom = 128.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadSlimeLevelButton" type="TextureButton" parent="VBoxContainer"]
+margin_left = 17.0
+margin_top = 132.0
+margin_right = 177.0
+margin_bottom = 162.0
+rect_min_size = Vector2( 160, 30 )
+size_flags_horizontal = 4
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="VBoxContainer/LoadSlimeLevelButton"]
+anchor_left = 0.193
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_top = -7.0
+margin_right = 20.5612
+margin_bottom = 7.0
+text = "Load Slime Level"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 166.0
+margin_right = 195.0
+margin_bottom = 166.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadRatLevelButton" type="TextureButton" parent="VBoxContainer"]
+margin_left = 17.0
+margin_top = 170.0
+margin_right = 177.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 160, 30 )
+size_flags_horizontal = 4
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="VBoxContainer/LoadRatLevelButton"]
+anchor_left = 0.193
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_top = -7.0
+margin_right = 20.5612
+margin_bottom = 7.0
+text = "Load Rat Level"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer5" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 204.0
+margin_right = 195.0
+margin_bottom = 204.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadHouseLevelButton" type="TextureButton" parent="VBoxContainer"]
+margin_left = 17.0
+margin_top = 208.0
+margin_right = 177.0
+margin_bottom = 238.0
+rect_min_size = Vector2( 160, 30 )
+size_flags_horizontal = 4
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="VBoxContainer/LoadHouseLevelButton"]
+anchor_left = 0.193
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_top = -7.0
+margin_right = 20.5612
+margin_bottom = 7.0
+text = "Load House Level"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer6" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 242.0
+margin_right = 195.0
+margin_bottom = 242.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsButton" type="TextureButton" parent="VBoxContainer"]
+margin_left = 17.0
+margin_top = 246.0
+margin_right = 177.0
+margin_bottom = 276.0
+rect_min_size = Vector2( 160, 30 )
+size_flags_horizontal = 4
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="VBoxContainer/SettingsButton"]
+anchor_left = 0.193
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_top = -7.0
+margin_right = 20.5612
+margin_bottom = 7.0
+text = "Settings"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/GoBackButton" to="." method="_on_GoBackButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoadSlimeLevelButton" to="." method="_on_LoadSlimeLevelButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoadRatLevelButton" to="." method="_on_LoadRatLevelButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoadHouseLevelButton" to="." method="_on_LoadHouseLevelButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]

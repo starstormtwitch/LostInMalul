@@ -35,19 +35,16 @@ var _limit_smooth_right: float
 var _limit_smooth_active: bool = false
 var _limit_smooth_target_position: Vector2
 
-var _verbose = OS.is_debug_build()
+var _verbose = true
 
 #variables for shaking
-var _duration: float = 0.1
-var _defaultShakeDuration: float = Settings.GetScreenShakeDuration() #loaded once, ignores posterior modifications
-var _period_in_ms: float = 15
-var _defaultShakeFrecuency: float = Settings.GetScreenShakeFrecuency()
-var _amplitude: float = 4
-var _defaultShakeAmplitude: float = Settings.GetScreenShakeAmplitude()
-var _timer: float = 0.0
-var _last_shook_timer: float = 0
-var _previous_x: float = 0.0
-var _previous_y: float = 0.0
+var _duration = 0.1
+var _period_in_ms = 15
+var _amplitude = 4
+var _timer = 0.0
+var _last_shook_timer = 0
+var _previous_x = 0.0
+var _previous_y = 0.0
 var _last_offset = Vector2(0, 0)
 var _is_shaking = false
 
@@ -68,19 +65,18 @@ func _init(cameraTarget: Node, current: bool):
 	self.zoom = _DEFAULT_CAMERA_ZOOM
 	self.current = current
 	_animationPlayer = CustomCamera2DSimpleTransitionPlayer.new(cameraTarget.get_tree().current_scene)
+	_get_new_camera_shake_values()
+	_connect_to_settings_changed_signal()
 	_configureBounds()
-
+	
 func _ready():
 	self.set_process(true)
-	#self.get_tree().root.connect("size_changed", self, "_on_viewport_size_changed")
-
-func kek():
-	print("kek")
+	#self.get_tree().root.connect("size_changed", self, "_on_viewport_size_changed")	
 
 #func _on_viewport_size_changed():
 #	print("Viewport y: " + str(self.get_viewport().size.y))
 #	print("viewport x: " + str(self.get_viewport().size.x))
-
+	
 
 func _process(delta):
 	if _limit_smooth_active and !_is_shaking:
@@ -108,11 +104,11 @@ func _process(delta):
 		if _panTarget._clearTimer == null && distanceToTarget < 25: #magic number that works well enough for now
 			yield(_panTarget.startPanTimer(), "timeout")
 			clearPan()
-	_handleShake(delta)
+	handleShake(delta)
 
 
-func _handleShake(delta):
-	if _timer == 0 || Settings.GetScreenShakeIntensity() == 0:
+func handleShake(delta):
+	if _timer == 0:
 		return
 	# Only shake on certain frames.
 	_last_shook_timer = _last_shook_timer + delta
@@ -143,16 +139,9 @@ func _handleShake(delta):
 
 
 # Kick off a new screenshake effect.
-func shake(duration: float = 0, frequency: float = 0, amplitude: float = 0):
+func shake():
 	# Initialize variables.
-	var intensity = (Settings.GetScreenShakeIntensity() / 100)
-	_duration = (duration if duration != 0 else _getDefaultShakeDuration()) * intensity
-	_period_in_ms = (1.0 / frequency if frequency != 0 else 1.0 / _getDefaultShakeFrecuency()) * intensity
-	_amplitude = (amplitude if amplitude != 0 else _getDefaultShakeAmplitude()) * intensity
-#	print("start shake")
-#	print("shake duration: " + str(_duration))
-#	print("shake period_in_ms: " + str(_period_in_ms))
-#	print("shake amplitude: " + str(_amplitude))
+	#print("start shake")
 	_timer = _duration
 	_is_shaking = true
 	_previous_x = rand_range(-.3, .3)
@@ -163,14 +152,6 @@ func shake(duration: float = 0, frequency: float = 0, amplitude: float = 0):
 	set_offset(get_offset() - _last_offset)
 	_last_offset = Vector2(0, 0)
 
-func _getDefaultShakeDuration():
-	return Settings.GetScreenShakeDuration() if OS.is_debug_build() else _defaultShakeDuration
-
-func _getDefaultShakeFrecuency():
-	return Settings.GetScreenShakeFrecuency() if OS.is_debug_build() else _defaultShakeFrecuency
-
-func _getDefaultShakeAmplitude():
-	return Settings.GetScreenShakeAmplitude() if OS.is_debug_build() else _defaultShakeAmplitude
 
 func panToTarget(target: Node, time: float = _DEFAULT_PAN_TIME, speed: float = _DEFAULT_PAN_SPEED, zoom: Vector2 = _DEFAULT_PAN_ZOOM, zoomSpeed: float = _DEFAULT_PAN_ZOOM_SPEED) -> void:
 	if _verbose:
@@ -178,6 +159,7 @@ func panToTarget(target: Node, time: float = _DEFAULT_PAN_TIME, speed: float = _
 	setRemoteUpdates(false)
 	_panTarget = CustomCamera2DPanTarget.new(target, time, speed, zoom, zoomSpeed)
 	emit_signal("pan_started")
+
 
 func clearPan() -> void:
 	if _panTarget != null:
@@ -187,6 +169,7 @@ func clearPan() -> void:
 		setRemoteUpdates(true)
 		self.zoom = _DEFAULT_CAMERA_ZOOM
 		emit_signal("pan_finished")
+
 
 func temporarylyFocusOn(target: Node, time: float, zoom: Vector2) -> void:
 	if _verbose:
@@ -243,7 +226,7 @@ func limitCameraToCoordinates(top: int, left: int, bottom: int, right: int, tran
 			_limit_smooth_target_position.y = top + yDist
 		if self.limit_bottom > _limit_smooth_bottom:
 			_limit_smooth_target_position.y = bottom - yDist
-		if self.limit_left < _limit_smooth_left:
+		if self.limit_left < _limit_smooth_left: 
 			_limit_smooth_target_position.x = left + xDist
 		if self.limit_right > _limit_smooth_right:
 			_limit_smooth_target_position.x = right - xDist
@@ -254,16 +237,16 @@ func limitCameraToCoordinates(top: int, left: int, bottom: int, right: int, tran
 		setLimits(top, left, bottom, right)
 		_animationPlayer.playFadeOut()
 		yield(_animationPlayer._player, "animation_finished")
-
-	_limit_smooth_active = transitionType == TransitionTypeEnum.SMOOTH
-
+		
+	_limit_smooth_active = transitionType == TransitionTypeEnum.SMOOTH	
+	
 	if _verbose:
-		print("CustomCamera2D: New camera limits (Smooth:"+str(_limit_smooth_active)+") Top/Left/Bottom/Right "
+		print("CustomCamera2D: New camera limits (Smooth:"+str(_limit_smooth_active)+") Top/Left/Bottom/Right " 
 		+ str(top) + "/" + str(left) + "/" + str(bottom) + "/" + str(right))
 
 func compareCameraLimitIsEqual(top: int, left: int, bottom: int, right: int) -> bool:
 	return self.limit_top == top && self.limit_left == left && self.limit_bottom == bottom && self.limit_right == right
-
+	
 func compareCameraLimitIsEqualToDelimiter(delimiter: CustomDelimiter2D) -> bool:
 	return compareCameraLimitIsEqual(delimiter.getTop(), delimiter.getLeft(), delimiter.getBottom(), delimiter.getRight())
 
@@ -280,6 +263,40 @@ func resetLimits() -> void:
 		print("CustomCamera2D: Reset camera limits.")
 	limitCameraToCoordinates(_DEFAULT_CAMERA_LIMIT_TOP_LEFT, _DEFAULT_CAMERA_LIMIT_TOP_LEFT,\
 		 _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT, _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT)
+
+
+func _set_shake_settings(duration: float, frequency: float, amplitude: float):
+	_duration = duration
+	_period_in_ms = 1.0 / frequency
+	_amplitude = amplitude
+
+
+func _connect_to_settings_changed_signal():
+	var parent = get_parent()
+	if(parent != null):
+		var tree = parent.get_tree()
+		var settings = tree.get_nodes_in_group("Settings")
+		if(settings.size() > 0):
+			var _settings = settings[0]
+			print("Connecting settings signal to Camera2D")
+			_settings.connect("settings_changed", self, "_get_new_camera_shake_values")
+		else:
+			printerr("No node in Settings group in parent tree. Needed to connect to signals. CustomCamera2D.gd::250") 
+	else:
+		printerr("No parent found. Needed to connect to signals. CustomCamera2D.gd::252")
+		
+
+# Callback for settings updated signal in PauseScreenContainer node
+func _get_new_camera_shake_values():
+	var values = Settings.load_screen_shake_settings()
+	_set_shake_settings(values.duration, values.frequency, values.amplitude)
+	#print("Load settings for camera shake")
+
+
+func connect_to_player_shake_signal(player: Actor):
+	print("Connect player hit enemy singal")
+	assert(player, "Player cannot be null")
+	player.connect("player_hit_enemy", self, "shake")
 	
 func connect_to_area_lock_signal(scene: Node):
 	print("Connect area lock signal")
@@ -300,7 +317,7 @@ func enableBounds(enabled: bool):
 	var allBottomChildren = _bottomBound.get_children();
 	for children in allBottomChildren:
 		children.set_deferred("disabled", !enabled);
-
+	
 ## Configure collision shapes around the camera.
 func _configureBounds() -> void:
 	_leftBound = _createNewBound()
@@ -311,7 +328,7 @@ func _configureBounds() -> void:
 	_leftBound.rotate(PI/2) #90
 	_rightBound.rotate(-PI/2) #-90
 	_upperBound.rotate(PI) #180
-	_bottomBound.rotate(0) #0
+	_bottomBound.rotate(0) #0 
 	#by default one way collision aims "down"
 	#the arrow on a one way collision points the angle that it can be traversed from.
 
@@ -321,7 +338,7 @@ func _updateBoundLimits() -> void:
 	#Rectangles will be centered and the extents are half of the rectangles x or y length.
 	#Length will depend on the magnitude of the limits in the x or y coordinates for the camera.
 	#Width remains constant, since we are rotating the rectangles.
-	#Note: the length calculations can be "optional" if an "infinite" length is used instead,
+	#Note: the length calculations can be "optional" if an "infinite" length is used instead, 
 	# by removing these next lines and using always a high default value.
 	var xlen = (self.limit_right - self.limit_left) / 2
 	var ylen = (self.limit_bottom - self.limit_top) / 2
@@ -370,12 +387,12 @@ class CustomCamera2DSimpleTransitionPlayer:
 	var _colorRect: ColorRect
 	var _player: AnimationPlayer
 	var _scene: Node
-
+	
 	func _init(scene: Node):
 		_scene = scene
 		_setupAnimationPlayer()
 		_setupSimpleFade()
-
+	
 	func _setupAnimationPlayer() -> void:
 		_canvas = CanvasLayer.new()
 		_player = AnimationPlayer.new()
@@ -383,35 +400,35 @@ class CustomCamera2DSimpleTransitionPlayer:
 		_scene.add_child(_player)
 		_colorRect = ColorRect.new()
 		_colorRect.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		_colorRect.color = Color(0,0,0,0)
+		_colorRect.color = Color(0,0,0,0)		
 		_colorRect.set_size(Vector2(_scene.get_viewport().size.x * 2, _scene.get_viewport().size.y * 2))
 		_canvas.add_child(_colorRect)
-
+	
 	func _setupSimpleFade() -> void:
 		_Animation_Fade_Animation = Animation.new()
 		_Animation_Fade_Animation.length = _Animation_Fade_DefaultLength
 		_Animation_Fade_TrackIndex = _Animation_Fade_Animation.add_track(Animation.TYPE_VALUE)
-		var animationTargetPath = _canvas.name + "/" + _colorRect.name + ":color"
+		var animationTargetPath = _canvas.name + "/" + _colorRect.name + ":color"	
 		_Animation_Fade_Animation.track_set_path(_Animation_Fade_TrackIndex, animationTargetPath)
 		_Animation_Fade_Animation.track_insert_key(_Animation_Fade_TrackIndex, 0, Color(0,0,0,0)) #key idx 1
 		_Animation_Fade_Animation.track_insert_key(_Animation_Fade_TrackIndex, _Animation_Fade_DefaultLength, Color(0,0,0,1)) #key idx 2
 		_Animation_Fade_Animation.track_set_interpolation_type(_Animation_Fade_TrackIndex, Animation.INTERPOLATION_LINEAR)
 		_player.add_animation(_Animation_Fade_Name, _Animation_Fade_Animation)
-
+	
 	func playFade(fadeLength: float = _Animation_Fade_DefaultLength, fadeIdleTime: float = _Animation_Fade_DefaultIdleTime) -> void:
 		if fadeIdleTime == null || fadeIdleTime == 0:
 			fadeIdleTime = _Animation_Fade_DefaultIdleTime
 		playFadeIn(fadeLength)
 		yield(_scene.get_tree().create_timer(fadeIdleTime), "timeout")
 		playFadeOut(fadeLength)
-
+	
 	func playFadeIn(fadeLength: float = _Animation_Fade_DefaultLength) -> void:
 		if fadeLength == null || fadeLength == 0:
 			fadeLength = _Animation_Fade_DefaultLength
 		if _player.current_animation == _Animation_Fade_Name:
 			yield(_player,  "animation_finished")
 		_player.play(_Animation_Fade_Name, -1, 1 / fadeLength, false)
-
+		
 	func playFadeOut(fadeLength: float = _Animation_Fade_DefaultLength) -> void:
 		if fadeLength == null || fadeLength == 0:
 			fadeLength = _Animation_Fade_DefaultLength
@@ -420,24 +437,24 @@ class CustomCamera2DSimpleTransitionPlayer:
 		_player.play(_Animation_Fade_Name, -1, -(1 / fadeLength), true)
 
 #pan class
-class CustomCamera2DPanTarget:
+class CustomCamera2DPanTarget:	
 	var _target: Node = null
 	var _time: float
 	var _speed: float
 	var _zoom: Vector2
 	var _zoomSpeed: float
 	var _clearTimer: SceneTreeTimer = null
-
+	
 	func _init(target: Node, time: float, speed: float, zoom: Vector2, zoomSpeed: float):
 		_target = target
 		_time = time
 		_speed = speed
 		_zoom = zoom
 		_zoomSpeed = zoomSpeed
-
+	
 	func getPosition() -> Vector2:
 		return _target.get_global_position()
-
+	
 	func startPanTimer() -> SceneTreeTimer:
 		_clearTimer = _target.get_tree().create_timer(_time)
 		return _clearTimer
