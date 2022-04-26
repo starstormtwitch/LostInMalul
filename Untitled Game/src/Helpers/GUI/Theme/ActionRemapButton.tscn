@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/Helpers/GUI/Theme/ActionRemapButton.gd" type="Script" id=1]
+
+[node name="ActionRemapButton" type="Button"]
+margin_right = 50.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 20, 0 )
+toggle_mode = true
+script = ExtResource( 1 )
