@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Button",
+"class": "ActionRemapButton",
+"language": "GDScript",
+"path": "res://src/Helpers/GUI/Theme/ActionRemapButton.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Actor",
 "language": "GDScript",
@@ -18,6 +23,11 @@ _global_script_classes=[ {
 "class": "AttackManager",
 "language": "GDScript",
 "path": "res://src/Actors/MainChar/AttackManager.gd"
+}, {
+"base": "Node",
+"class": "AudioFunctions",
+"language": "GDScript",
+"path": "res://src/Logic/AudioFunctions.gd"
 }, {
 "base": "LineEdit",
 "class": "BaseInput",
@@ -44,10 +54,30 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Helpers/CustomParticles.gd"
 }, {
+"base": "OptionButton",
+"class": "CustomSelector",
+"language": "GDScript",
+"path": "res://src/Helpers/GUI/Theme/CustomSelector.gd"
+}, {
+"base": "GridContainer",
+"class": "CustomSlider",
+"language": "GDScript",
+"path": "res://src/Helpers/GUI/Theme/CustomSlider.gd"
+}, {
+"base": "GridContainer",
+"class": "CustomSlider_ggs",
+"language": "GDScript",
+"path": "res://src/Helpers/GUI/Theme/CustomSlider_ggs.gd"
+}, {
 "base": "Actor",
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://src/Actors/Enemy.gd"
+}, {
+"base": "Object",
+"class": "ErrorLogger",
+"language": "GDScript",
+"path": "res://src/Helpers/Utilities/ErrorLogger.gd"
 }, {
 "base": "Node",
 "class": "GGSUtils",
@@ -69,6 +99,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Actors/MainChar/HadoukenBlast.gd"
 }, {
+"base": "Node",
+"class": "InputFunctions",
+"language": "GDScript",
+"path": "res://src/Logic/InputFunctions.gd"
+}, {
 "base": "Area2D",
 "class": "InteractPromptArea",
 "language": "GDScript",
@@ -89,7 +124,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Actors/MainChar/LirikYaki.gd"
 }, {
-"base": "Control",
+"base": "Node2D",
+"class": "MainMenu",
+"language": "GDScript",
+"path": "res://src/Levels/Menu/MainMenu.gd"
+}, {
+"base": "Node",
 "class": "PauseMenu",
 "language": "GDScript",
 "path": "res://src/Helpers/GUI/Pause/PauseMenu.gd"
@@ -99,6 +139,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Helpers/Settings/ScreenShakeSettings.gd"
 }, {
+"base": "AudioStreamPlayer",
+"class": "SelfDisposingAudioPlayer",
+"language": "GDScript",
+"path": "res://src/Helpers/Audio/SelfDisposingAudioPlayer.gd"
+}, {
 "base": "Control",
 "class": "Settings",
 "language": "GDScript",
@@ -107,7 +152,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "SettingsMenu",
 "language": "GDScript",
-"path": "res://src/Helpers/Settings/SettingsMenu.gd"
+"path": "res://src/Helpers/GUI/Settings/SettingsMenu.gd"
 }, {
 "base": "CustomParticles",
 "class": "SmokeParticles",
@@ -118,6 +163,11 @@ _global_script_classes=[ {
 "class": "SoundPlayer",
 "language": "GDScript",
 "path": "res://src/Helpers/Audio/SoundPlayer.gd"
+}, {
+"base": "HBoxContainer",
+"class": "SuperBar",
+"language": "GDScript",
+"path": "res://src/GUI/SuperBar.gd"
 }, {
 "base": "Node2D",
 "class": "TeleportNode2D",
@@ -135,28 +185,38 @@ _global_script_classes=[ {
 "path": "res://src/Helpers/Utilities/TwoWayTeleportNode2D.gd"
 } ]
 _global_script_class_icons={
+"ActionRemapButton": "",
 "Actor": "",
 "AttackManager": "",
+"AudioFunctions": "",
 "BaseInput": "",
 "BaseLevelScript": "",
 "CustomCamera2D": "",
 "CustomDelimiter2D": "",
 "CustomParticles": "",
+"CustomSelector": "",
+"CustomSlider": "",
+"CustomSlider_ggs": "",
 "Enemy": "",
+"ErrorLogger": "",
 "GGSUtils": "",
 "GameSettings": "",
 "Ghost": "",
 "HadoukenBlast": "",
+"InputFunctions": "",
 "InteractPromptArea": "",
 "JSONBeautifier": "",
 "JumpHelper": "",
 "LirikYaki": "",
+"MainMenu": "",
 "PauseMenu": "",
 "ScreenShakeSettings": "",
+"SelfDisposingAudioPlayer": "",
 "Settings": "",
 "SettingsMenu": "",
 "SmokeParticles": "",
 "SoundPlayer": "",
+"SuperBar": "",
 "TeleportNode2D": "",
 "TextBox": "",
 "TwoWayTeleportNode2D": ""
@@ -169,10 +229,13 @@ run/main_scene="res://src/Levels/House.tscn"
 config/use_custom_user_dir=true
 config/icon="res://icon.png"
 
+[audio]
+
+default_bus_layout="res://src/Helpers/Audio/default_bus_layout.tres"
+
 [autoload]
 
 LevelGlobals="*res://src/Logic/LevelGlobals.gd"
-TransitionsManager="*res://src/Logic/TransitionsManager.gd"
 EventsList="*res://src/Helpers/EventsList.gd"
 ggsManager="*res://addons/GGS/src/ggs_manager.gd"
 MusicManager="*res://src/Helpers/Audio/MusicManager.tscn"
@@ -186,6 +249,10 @@ window/stretch/aspect="keep"
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/GGS/plugin.cfg" )
+
+[global]
+
+controller=false
 
 [importer_defaults]
 
@@ -262,7 +329,7 @@ Menu={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"unicode":0,"echo":false,"script":null)
  ]
 }
-Dodge={
+dodge={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"unicode":0,"echo":false,"script":null)
  ]
@@ -276,6 +343,7 @@ special_attack={
 [layer_names]
 
 2d_physics/layer_1="Boundaries"
+2d_physics/layer_2="TogglableBoundaries"
 2d_physics/layer_3="Player"
 2d_physics/layer_5="PlayerHitbox"
 2d_physics/layer_7="PlayerHurtbox"

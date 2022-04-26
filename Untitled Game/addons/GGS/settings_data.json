@@ -1,33 +1,33 @@
 {
 	"0": {
-		"name": "Screen Shake Duration",
+		"name": "ScreenShake_Duration",
 		"default": {
 			"value": 0.1
 		},
 		"current": {
-			"value": 0.1
+			"value": 0.4
 		},
-		"logic": "res://src/Helpers/Settings/Screen Shake Duration.gd"
+		"logic": "res://src/Helpers/Settings/ScreenShake_Duration.gd"
 	},
 	"1": {
-		"name": "Screen Shake Frequency",
+		"name": "ScreenShake_Frequency",
 		"default": {
 			"value": 15
 		},
 		"current": {
 			"value": 15
 		},
-		"logic": "res://src/Helpers/Settings/Screen Shake Frequency.gd"
+		"logic": "res://src/Helpers/Settings/ScreenShake_Frequency.gd"
 	},
 	"2": {
-		"name": "Screen Shake Amplitude",
+		"name": "ScreenShake_Amplitude",
 		"default": {
 			"value": 4
 		},
 		"current": {
 			"value": 4
 		},
-		"logic": "res://src/Helpers/Settings/Screen Shake Amplitude.gd"
+		"logic": "res://src/Helpers/Settings/ScreenShake_Amplitude.gd"
 	},
 	"3": {
 		"name": "Infinite Health",
@@ -38,5 +38,85 @@
 			"value": false
 		},
 		"logic": "res://src/Helpers/Settings/Infinite Health.gd"
+	},
+	"4": {
+		"name": "Display_ScreenShakeIntensity",
+		"default": {
+			"value": 100
+		},
+		"current": {
+			"value": 51
+		},
+		"logic": "res://src/Helpers/Settings/Display_ScreenShakeIntensity.gd"
+	},
+	"5": {
+		"name": "Audio_MusicVolume",
+		"default": {
+			"value": 50
+		},
+		"current": {
+			"value": 23
+		},
+		"logic": "res://src/Helpers/Settings/Audio_MusicVolume.gd"
+	},
+	"6": {
+		"name": "Audio_EffectsVolume",
+		"default": {
+			"value": 50
+		},
+		"current": {
+			"value": 44
+		},
+		"logic": "res://src/Helpers/Settings/Audio_EffectsVolume.gd"
+	},
+	"7": {
+		"name": "Display_Vsync",
+		"default": {
+			"value": true
+		},
+		"current": {
+			"value": true
+		},
+		"logic": "res://src/Helpers/Settings/Display_Vsync.gd"
+	},
+	"8": {
+		"name": "Display_WindowType",
+		"default": {
+			"value": 0
+		},
+		"current": {
+			"value": 2
+		},
+		"logic": "res://src/Helpers/Settings/Display_WindowType.gd"
+	},
+	"9": {
+		"name": "Display_Resolution",
+		"default": {
+			"value": 0
+		},
+		"current": {
+			"value": 1
+		},
+		"logic": "res://src/Helpers/Settings/Display_Resolution.gd"
+	},
+	"10": {
+		"name": "Audio_MasterVolume",
+		"default": {
+			"value": 50
+		},
+		"current": {
+			"value": 65
+		},
+		"logic": "res://src/Helpers/Settings/Audio_MasterVolume.gd"
+	},
+	"11": {
+		"name": "InputMapping",
+		"default": {
+			"value": ""
+		},
+		"current": {
+			"value": null
+		},
+		"logic": "res://src/Helpers/Settings/InputMapping.gd"
 	}
 }

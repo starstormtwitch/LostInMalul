@@ -14,7 +14,8 @@ const _levelDictionary = {
 
 func _ready():
 	_createLayerDictionary()
-	
+	InputFunctions.LoadCustomMappings()
+
 func SceneHasPlayerActor() -> bool:
 	return _player != null
 	

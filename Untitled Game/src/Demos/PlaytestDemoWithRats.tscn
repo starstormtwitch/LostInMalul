@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/Helpers/Camera/CustomDelimiter2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Levels/Basement.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/Helpers/GUI/Pause/PauseScreenContainer.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/Helpers/Spawning/EnemySpawner.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Helpers/GUI/BossHealthBar.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/GUI/SuperBar.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 644.725, 4.32855 )
@@ -31,7 +32,7 @@ outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
 font_data = ExtResource( 7 )
 
-[node name="Sandbox" type="Node2D"]
+[node name="Sandbox2" type="Node2D"]
 pause_mode = 2
 script = ExtResource( 5 )
 
@@ -163,5 +164,11 @@ text = "x"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SuperBar" parent="GUI/PlayerGui" instance=ExtResource( 12 )]
+margin_left = 316.24
+margin_top = 27.7183
+margin_right = 420.24
+margin_bottom = 67.7183
 
 [editable path="LevelBackground/CameraPositions/Basement_Delimeter"]

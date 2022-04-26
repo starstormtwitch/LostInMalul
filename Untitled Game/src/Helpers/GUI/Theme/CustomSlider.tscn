@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/Helpers/GUI/Theme/CustomSlider.gd" type="Script" id=1]
+[ext_resource path="res://assets/GUI/Theme/Themes/MenuTheme.tres" type="Theme" id=2]
+
+[node name="CustomSlider" type="GridContainer"]
+margin_left = 2.0
+margin_right = 159.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+theme = ExtResource( 2 )
+columns = 2
+script = ExtResource( 1 )
+
+[node name="HSlider" type="HSlider" parent="."]
+margin_right = 100.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="."]
+margin_left = 104.0
+margin_right = 164.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 60, 0 )
+text = "100%"
+align = 2
+
+[connection signal="value_changed" from="HSlider" to="." method="_on_HSlider_value_changed"]
