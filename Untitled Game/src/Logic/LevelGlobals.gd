@@ -11,7 +11,6 @@ func _ready():
 	_findPlayerEntity()
 	_findSceneEntity()
 	_createLayerDictionary()
-	InputFunctions.LoadCustomMappings()
 
 func SceneHasPlayerActor() -> bool:
 	return _player != null

@@ -11,47 +11,42 @@ const _MENU_EVENT: String = "Menu"
 
 var _menuOpen = false
 
-onready var pause_menu: PauseMenu = $PauseMenu
 onready var settings_menu: SettingsMenu = $SettingsMenu
-
-enum ShowMenuEnum {NONE = -1, PAUSE = 0, SETTINGS = 1}
+onready var pause_menu: PauseMenu = $PauseMenu
 
 func _ready():
-	_switchMenu(ShowMenuEnum.NONE)
-	self.visible = true
+	pass
 
 func signalConnectionSetup():
 	pass
-	
-func _switchMenu(showMenu: int):
-	pause_menu.visible = showMenu == ShowMenuEnum.PAUSE
-	settings_menu.visible = showMenu == ShowMenuEnum.SETTINGS
 
 # node to handle player input, and call the proper response
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(_MENU_EVENT) and !_isMenuOpen():
-		_pauseAndShowMenu()
-	elif event.is_action_pressed(_MENU_EVENT) and _isMenuOpen():
+	if event.is_action_pressed(_MENU_EVENT) and !_menuOpen:
+		pauseAndShowMenu()
+	elif event.is_action_pressed(_MENU_EVENT) and _menuOpen:
 		_unpauseAndHideMenu()
 
-func _pauseAndShowMenu() -> void:
+func pauseAndShowMenu() -> void:
 	MusicManager.playMenuMusic()
 	_menuOpen = true
 	get_tree().paused = true
-	_switchMenu(ShowMenuEnum.PAUSE)
+	pause_menu.visible = true
 
 func _unpauseAndHideMenu():
 	MusicManager.playNormalBattleMusic()
 	_menuOpen = false
 	get_tree().paused = false
-	_switchMenu(ShowMenuEnum.NONE)
+	pause_menu.visible = false
+
 
 func _on_show_settings():
-	_switchMenu(ShowMenuEnum.SETTINGS)
+	pause_menu.visible = false
+	settings_menu.visible = true
+
 
 func _on_settings_changed():
 	emit_signal("settings_changed")
-	_switchMenu(ShowMenuEnum.PAUSE)
-
-func _isMenuOpen() -> bool:
-	return pause_menu.visible || settings_menu.visible
+	settings_menu.visible = false
+	pause_menu.visible = true
+	

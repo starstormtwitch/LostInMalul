@@ -12,5 +12,5 @@ func _ready():
 
 
 func main(value: Dictionary) -> void:
-	var infiniteHealth = value["value"]
-	#print("amplitude is: " + String(amplitude))
+	var duration = value["value"]
+	#print("duration is: " + String(duration))

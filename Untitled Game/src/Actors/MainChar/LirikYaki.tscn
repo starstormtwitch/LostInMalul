@@ -779,7 +779,9 @@ extents = Vector2( 14.0577, 5.53115 )
 [sub_resource type="RectangleShape2D" id=122]
 extents = Vector2( 10.2453, 11.7708 )
 
-[node name="LirikYaki" type="KinematicBody2D" groups=["Player"]]
+[node name="LirikYaki" type="KinematicBody2D" groups=[
+"Player",
+]]
 collision_layer = 4
 collision_mask = 1025
 collision/safe_margin = 0.001
@@ -804,22 +806,14 @@ shape = SubResource( 1 )
 
 [node name="DeathAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-bus = "SFX"
 
 [node name="FootStepAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 volume_db = -12.735
-bus = "SFX"
 
 [node name="WooshAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 volume_db = -5.306
-bus = "SFX"
-
-[node name="ShoryukenStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 11 )
-volume_db = -6.256
-bus = "SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Die = SubResource( 2 )
@@ -866,7 +860,6 @@ autostart = true
 [node name="PlayerHurtArea" type="Area2D" parent="." groups=[
 "hurtbox",
 ]]
-
 position = Vector2( -2.65, -23.75 )
 collision_layer = 64
 collision_mask = 4096

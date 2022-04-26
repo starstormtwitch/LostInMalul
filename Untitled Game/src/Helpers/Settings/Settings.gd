@@ -22,15 +22,3 @@ static func load_screen_shake_settings() -> ScreenShakeSettings:
 	
 	#print("values found are: " + String(duration) + " " + String(frequency) + " " + String(amplitude))
 	return ScreenShakeSettings.new(duration, frequency, amplitude)
-
-static func GetScreenShakeDuration() -> float:
-	return ggsManager.settings_data["0"]["current"]["value"]
-
-static func GetScreenShakeFrecuency() -> float:
-	return ggsManager.settings_data["1"]["current"]["value"]
-
-static func GetScreenShakeAmplitude() -> float:
-	return ggsManager.settings_data["2"]["current"]["value"]
-
-static func GetScreenShakeIntensity() -> float:
-	return ggsManager.settings_data["4"]["current"]["value"]
