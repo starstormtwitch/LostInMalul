@@ -779,7 +779,9 @@ extents = Vector2( 14.0577, 5.53115 )
 [sub_resource type="RectangleShape2D" id=122]
 extents = Vector2( 10.2453, 11.7708 )
 
-[node name="LirikYaki" type="KinematicBody2D" groups=["Player"]]
+[node name="LirikYaki" type="KinematicBody2D" groups=[
+"Player",
+]]
 collision_layer = 4
 collision_mask = 1025
 collision/safe_margin = 0.001
@@ -858,7 +860,9 @@ one_shot = true
 wait_time = 0.02
 autostart = true
 
-[node name="PlayerHurtArea" type="Area2D" parent="." groups=["hurtbox"]]
+[node name="PlayerHurtArea" type="Area2D" parent="." groups=[
+"hurtbox",
+]]
 position = Vector2( -2.65, -23.75 )
 collision_layer = 64
 collision_mask = 4096
