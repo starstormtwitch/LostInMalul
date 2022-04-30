@@ -35,13 +35,11 @@ func GetLevelScene(level : String) -> PackedScene:
 	return _levelDictionary[level];
 
 func save_game():
-	var player_data = CreatePlayerSave(LevelGlobals.GetPlayerActor());
-	LevelGlobals.SetPlayerSaveData(player_data)
 	var saveFile = File.new();
 	var error = saveFile.open_encrypted_with_pass(save_path, File.WRITE, "33KJLDSF0AFKJ23LJA;DSFL3;OIDFJAODLASNCMCNVC320498203948WKLJFCJ230498ODISFASDF9A87DS0987AS6C09A6FA6G9D7S98G6A9DFSHG98DA98H06A87FDGADFV5ADSF98DSA87F65ADS98GA87G6A6A0D87F7SA0DC6A0S6A0DS786F")
 	assert(error == OK, "ERROR: Failed to save game!!!")
-	print(player_data)
-	saveFile.store_var(player_data);
+	print(_player_data)
+	saveFile.store_var(_player_data);
 	saveFile.close();
 	
 func CreatePlayerSave(player : Actor) -> Dictionary:
