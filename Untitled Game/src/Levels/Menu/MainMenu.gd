@@ -22,10 +22,11 @@ func _ready():
 #	$VBoxContainer/TextureRect.modulate = Color(0.0, 100.0, 0.0, 1.0);
 
 func _on_NewGameButton_pressed():
-	get_tree().change_scene("res://src/Levels/House.tscn")
+	#todo: ADD ARE YOU SURE YOU WISH TO START NEW GAME IF SAVE DATA FOUND.
+	LevelGlobals.new_game();
 
 func _on_LoadGameButton_pressed():
-	pass # Replace with function body.
+	LevelGlobals.load_game();
 
 func _on_OptionsButton_pressed():
 	menuContainer.hide()

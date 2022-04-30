@@ -14,6 +14,9 @@ anchor_bottom = 0.5
 theme = ExtResource( 4 )
 use_top_left = true
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 rect = Rect2( 0, 0, 0, 0 )

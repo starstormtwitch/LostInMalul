@@ -4,7 +4,9 @@
 [ext_resource path="res://src/Helpers/GUI/Pause/PauseMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Helpers/GUI/Settings/SettingsMenu.tscn" type="PackedScene" id=3]
 
-[node name="PauseScreenContainer" type="Control" groups=["Settings"]]
+[node name="PauseScreenContainer" type="Control" groups=[
+"Settings",
+]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

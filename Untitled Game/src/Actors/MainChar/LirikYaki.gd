@@ -29,7 +29,7 @@ const _MIN_SUPER_CHARGES = 0
 const STARTING_SUPER_CHARGES = 1
 
 var _checkPoint = "Start"
-var _level = "House"
+var _level = LevelGlobals.start_level
 var InventoryItem : Node2D
 var Coins = 0
 var _beingHurt: bool = false

@@ -3,12 +3,14 @@ extends Node
 var _player: Actor
 var _scene: Node
 
-var _player_data: Dictionary = {}
 var _layerDict: Dictionary = {}
-var save_path = "user://save.dat"
+var _player_data: Dictionary = {}
+const save_path = "user://save.dat"
+const start_level = "House"
 const _layerBitParamName: String = "bit"
 const _layerValueParamName: String = "value"
 const _levelDictionary = {
+	"MainMenu" : preload("res://src/Levels/Menu/MainMenu.tscn"),
 	"House" : preload("res://src/Levels/House.tscn"),
 }  
 
@@ -59,22 +61,30 @@ func SetCheckpoint(level, checkpointKey):
 	playerData._checkPoint = checkpointKey;
 	save_game();
 
+func new_game():
+	var gameScene = LevelGlobals.GetLevelScene(start_level);
+	assert(gameScene != null, "Unknown level!");
+	get_tree().change_scene_to(gameScene);
+	get_tree().paused = true;
+	var currentLevel = get_tree().get_current_scene();
+	get_tree().paused = false;
+	
 func load_game():
 	var saveFile = File.new()
 	var player_data
 	if saveFile.file_exists(save_path):
-		var error = saveFile.open_encryp(save_path, File.READ, "33KJLDSF0AFKJ23LJA;DSFL3;OIDFJAODLASNCMCNVC320498203948WKLJFCJ230498ODISFASDF9A87DS0987AS6C09A6FA6G9D7S98G6A9DFSHG98DA98H06A87FDGADFV5ADSF98DSA87F65ADS98GA87G6A6A0D87F7SA0DC6A0S6A0DS786F")
+		var error = saveFile.open_encrypted_with_pass(save_path, File.READ, "33KJLDSF0AFKJ23LJA;DSFL3;OIDFJAODLASNCMCNVC320498203948WKLJFCJ230498ODISFASDF9A87DS0987AS6C09A6FA6G9D7S98G6A9DFSHG98DA98H06A87FDGADFV5ADSF98DSA87F65ADS98GA87G6A6A0D87F7SA0DC6A0S6A0DS786F")
 		assert(error == OK, "ERROR: Failed to load game!!!")
 		player_data = saveFile.get_var()
 		saveFile.close()
 		print(player_data)
 		LevelGlobals.SetPlayerSaveData(player_data)
-	return player_data;
+	load_checkpoint();
 	
 func load_checkpoint():
-	var playerData = LevelGlobals.GetPlayerActor()	
-	assert(playerData != null, "Player is null!")
-	var gameScene = LevelGlobals.GetLevelScene(playerData._level);
+	var playerData = LevelGlobals.GetPlayerSaveData()	
+	assert(playerData != null, "Player save data is null!")
+	var gameScene = LevelGlobals.GetLevelScene(playerData.level);
 	assert(gameScene != null, "Unknown level!");
 	get_tree().change_scene_to(gameScene);
 	get_tree().paused = true;

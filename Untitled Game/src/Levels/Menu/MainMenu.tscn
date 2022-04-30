@@ -24,6 +24,9 @@ anchor_bottom = 0.5
 size_flags_horizontal = 3
 size_flags_vertical = 3
 use_top_left = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="SettingsMenu" parent="CanvasLayer/CenterContainer" instance=ExtResource( 1 )]
 visible = false
@@ -86,6 +89,9 @@ margin_right = 813.366
 margin_bottom = 444.742
 rect_scale = Vector2( 0.375017, 0.289533 )
 texture = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 1.0
@@ -100,7 +106,7 @@ text = "(get the artists to deign a tittle screen kekw)"
 position = Vector2( -294.592, 24.2605 )
 scale = Vector2( 1.5, 1.5 )
 frames = ExtResource( 3 )
-frame = 3
+frame = 2
 speed_scale = 0.5
 playing = true
 
@@ -108,7 +114,7 @@ playing = true
 position = Vector2( 322.514, 18.8457 )
 scale = Vector2( -1.5, 1.5 )
 frames = ExtResource( 4 )
-frame = 4
+frame = 3
 speed_scale = 0.5
 playing = true
 

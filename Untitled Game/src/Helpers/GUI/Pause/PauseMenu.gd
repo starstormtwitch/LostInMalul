@@ -69,8 +69,11 @@ func _on_ExitMenuResumeButton_pressed():
 	_resume()
 
 func _on_ExitMenuSaveButton_pressed():
-	#save game
-	get_tree().quit()
+	LevelGlobals.save_game()
+	var gameScene = LevelGlobals.GetLevelScene("MainMenu");
+	assert(gameScene != null, "Unknown level!");
+	get_tree().change_scene_to(gameScene);
+	_resume()
 
 func _on_ExitMenuExitButton_pressed():
 	get_tree().quit()
