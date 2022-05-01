@@ -1,6 +1,7 @@
 extends BaseLevelScript
 
 var basement_Key : PackedScene = preload("res://src/InventoryItems/BasementKey.tscn")
+var plunger : PackedScene = preload("res://src/InventoryItems/Plunger.tscn")
 	
 var _player : Actor
 const _MENU_EVENT: String = "Menu"
@@ -11,6 +12,7 @@ var _firstTimeEnteredKitchen: bool = false
 var _sendKitchenCrash: bool = false
 var _leftBasementDefeated: bool = false
 var _pickedUpBasementKey: bool = false
+var _pickedUpPlunger: bool = false
 var _rightBasementDefeated: bool = false
 var ratKing
 
@@ -30,6 +32,28 @@ func _ready():
 	else:
 		_player.connect("health_changed", self, "_on_Player_health_changed")
 		_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)
+	SetLevelCheckpointVariables(_player._checkPoint)
+	
+func SetLevelCheckpointVariables(checkpoint):
+	match(checkpoint):
+		"Start":
+			pass;
+		"FirstEnemy":
+			get_node("LevelBackground/Interactions/Bedroom/StreamRoomTooSoon/CollisionShape").set_deferred("disabled", true);
+			get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
+			get_node("LevelBackground/Interactions/Bathroom/Toilet/CollisionShape").set_deferred("disabled", true);
+			StartupPlayerInPosition(Vector2(1000, 275), 5)
+		"Boss":
+			get_node("LevelBackground/Interactions/Bedroom/StreamRoomTooSoon/CollisionShape").set_deferred("disabled", true);
+			get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
+			get_node("LevelBackground/Interactions/Bathroom/Toilet/CollisionShape").set_deferred("disabled", true);
+			_firstTimeEnteredKitchen = true
+			_pickedUpBasementKey = true
+			get_node("LevelBackground/Teleports/LivingRoom_Kitchen_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
+			get_node("LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
+			StartupPlayerInPosition(Vector2(175, 575), 5)
+		_:
+			assert(false, "No matching checkpoint.")
 	
 func _on_Player_coin_changed():
 	$GUI/PlayerGui/Coins.text = String(_player.Coins);
@@ -73,6 +97,7 @@ func _on_KitchenRat_AllEnemiesDefeated():
 	_textBox.showText("That was insane, it had to have come from the basement. I should go down there... but I should mentally prepare myself for what could possibly be down there first.")
 	get_node("LevelBackground/Teleports/LivingRoom_Kitchen_2WT/EndpointBeta/ToAlphaActivationArea").disabled = false;
 	get_node("LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointAlpha/ToBetaActivationArea").disabled = false;
+	LevelGlobals.save_game();
 
 func _on_BasementAttack_body_entered(body):
 	if (body == _player):
@@ -120,18 +145,17 @@ func _on_RatKingSpawner_AllEnemiesDefeated():
 	_textBox.showText("End Of Demo, please restart or choose another level.")
 
 func _on_LirikYaki_item_pickup(item : Node2D):
-	$GUI/PlayerGui/Inventory.InventoryItem = item; 
+	$GUI/PlayerGui/Inventory.InventoryItem = item;
 
 func _on_FoyerEndTable_interactable_text_signal(text):
 	_textBox.showText(text)
 	if(!_pickedUpBasementKey):
-		_pickedUpBasementKey = true
 		_player.add_item_to_inventory(basement_Key.instance())
 		$LevelBackground/Interactions/Foyer/FoyerEndTable.interactableText = "Just a lamp."
 	pass # Replace with function body.
 
 func _on_BasementNeedKey_interactable_text_signal(text):
-	if($GUI/PlayerGui/Inventory.InventoryItem.name == "BasementKey"):
+	if($GUI/PlayerGui/Inventory.InventoryItem != null && $GUI/PlayerGui/Inventory.InventoryItem.name == "BasementKey"):
 		_textBox.showText("*Unlocks door with basement key*")
 		$GUI/PlayerGui/Inventory.InventoryItem.queue_free()
 		$GUI/PlayerGui/Inventory.InventoryItem = null; 
@@ -139,3 +163,12 @@ func _on_BasementNeedKey_interactable_text_signal(text):
 		get_node("LevelBackground/Teleports/Kitchen_Basement_2WT/EndpointAlpha/ToBetaActivationArea").disabled = false;
 	else: 
 		_textBox.showText(text)
+
+
+func _on_Sink_interactable_text_signal(text):
+	_textBox.showText(text)
+	if(!_pickedUpPlunger):
+		_pickedUpPlunger = true
+		_player.add_item_to_inventory(plunger.instance())
+		$LevelBackground/Interactions/Bathroom/Sink.interactableText = "I never really understood the appeal of a double sink."
+	pass # Replace with function body.

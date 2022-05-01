@@ -1,6 +1,6 @@
 [gd_scene load_steps=47 format=2]
 
-[ext_resource path="res://assets/SpriteSheets/rat soldier/rat_soldier_shadow_sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/SpriteSheets/main_char/mc_shadow.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/RatSoldier.gd" type="Script" id=2]
 [ext_resource path="res://assets/SpriteSheets/rat soldier/rat_soldier-Sheet.png" type="Texture" id=3]
 [ext_resource path="res://src/Helpers/CustomParticles.gd" type="Script" id=4]
@@ -38,7 +38,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("enemy:frame")
+tracks/2/path = NodePath("KinematicSprite/Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -66,7 +66,7 @@ tracks/3/keys = {
 resource_name = "hurt"
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath("enemy:frame")
+tracks/0/path = NodePath("KinematicSprite/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -96,7 +96,7 @@ length = 0.6
 loop = true
 step = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("enemy:frame")
+tracks/0/path = NodePath("KinematicSprite/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -125,7 +125,7 @@ resource_name = "jump_attack"
 length = 0.5
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("enemy:frame")
+tracks/0/path = NodePath("KinematicSprite/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -180,7 +180,7 @@ resource_name = "walk"
 length = 0.6
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("enemy:frame")
+tracks/0/path = NodePath("KinematicSprite/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -335,13 +335,13 @@ collision_mask = 5
 script = ExtResource( 2 )
 
 [node name="Shadow" type="Sprite" parent="."]
-position = Vector2( 0, -23.7913 )
+position = Vector2( 5.05412, -0.230137 )
+scale = Vector2( 0.585947, 0.636373 )
 texture = ExtResource( 1 )
-hframes = 11
-vframes = 5
-frame = 44
 
-[node name="enemy" type="Sprite" parent="."]
+[node name="KinematicSprite" type="KinematicBody2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="KinematicSprite"]
 position = Vector2( 0, -8.795 )
 z_as_relative = false
 texture = ExtResource( 3 )
@@ -365,6 +365,7 @@ parameters/playback = SubResource( 31 )
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
 ]]
+visible = false
 position = Vector2( 1.85355, -19.0993 )
 collision_layer = 16384
 collision_mask = 16
@@ -374,6 +375,7 @@ position = Vector2( -0.936443, 4.8695 )
 shape = SubResource( 32 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 4.66372, -4.08509 )
 shape = SubResource( 33 )
 
@@ -386,6 +388,7 @@ collide_with_bodies = false
 [node name="FlockBox" type="Area2D" parent="." groups=[
 "enemy",
 ]]
+visible = false
 position = Vector2( 0.103554, -14.8493 )
 collision_layer = 262144
 collision_mask = 262144
@@ -395,6 +398,7 @@ position = Vector2( 0.686863, 0.873051 )
 shape = SubResource( 34 )
 
 [node name="Attack" type="Area2D" parent="."]
+visible = false
 modulate = Color( 0.431373, 1, 0, 1 )
 position = Vector2( 0.353554, -14.8493 )
 collision_layer = 4096
@@ -426,6 +430,7 @@ process_material = SubResource( 39 )
 texture = ExtResource( 7 )
 
 [node name="LootSpawner" parent="." instance=ExtResource( 6 )]
+visible = false
 position = Vector2( -9.6676, -19.0703 )
 MinCoins = 0
 MaxCoins = 0

@@ -15,6 +15,24 @@ var packed_scene;
 func _ready():
 	_countToSpawn = count;
 
+func spawnInstantiatedNode(node : Node2D, position : Vector2):
+	#node ignores it's parents transformations, only transforms to globalwa space
+	#must find the highest ysort
+	var parent = get_parent()
+	while(parent != null && not parent is YSort):
+		parent = parent.get_parent()
+	assert(parent != null && parent is YSort, "No parent YSORT in scene")
+	
+	#add instance to spawner, defer call in case parent is still being setup
+	if(_countToSpawn > 0):
+		_countToSpawn=_countToSpawn-1;
+		node.connect("tree_exited", self, "_despawned")
+		parent.call_deferred("add_child", node);
+		node.global_position = position; 
+		emit_signal("spawned", node);
+		return node;
+
+
 func spawn(scene_spawn : PackedScene, position : Vector2):
 	#node ignores it's parents transformations, only transforms to globalwa space
 	#must find the highest ysort
@@ -48,6 +66,7 @@ func spawnMultiple(scene_spawn : PackedScene):
 	return spawnlings; 
 
 func spawnMultipleInArea(scene_spawn : PackedScene):
+	assert(scene_spawn != null, "scene is null!")
 	var spawnlings = []
 	var t = Timer.new()
 	add_child(t)

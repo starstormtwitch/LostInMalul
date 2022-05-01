@@ -1,0 +1,8 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=2]
+
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/caret_right_pressed.png-480c72dd507c350f376a39694c8d2e0f.stex"
+
+[resource]
+texture = SubResource( 1 )
+region_rect = Rect2( 0, 0, 16, 16 )

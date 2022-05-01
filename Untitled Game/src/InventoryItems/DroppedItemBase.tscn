@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/InventoryItems/ItemBase.gd" type="Script" id=1]
 [ext_resource path="res://assets/actions/tile_0395.png" type="Texture" id=2]
 [ext_resource path="res://src/Helpers/Interacts/InteractPromptArea.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/SpriteSheets/main_char/mc_shadow.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13.7224, 14.0084 )
@@ -10,24 +11,35 @@ extents = Vector2( 13.7224, 14.0084 )
 [node name="DroppedItemBase" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="ItemContainer" type="CenterContainer" parent="."]
-margin_left = -9.92125
-margin_top = -14.1933
-margin_right = 10.0787
-margin_bottom = 5.80672
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_left = -10.2067
+margin_top = -19.9983
+margin_right = 9.79327
+margin_bottom = 0.00171661
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="InteractPromptArea" parent="." instance=ExtResource( 3 )]
-position = Vector2( -10.9564, -17.5115 )
+[node name="ItemContainer" type="Panel" parent="CenterContainer"]
+margin_left = 9.0
+margin_top = 10.0
+margin_right = 9.0
+margin_bottom = 10.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractPromptArea"]
+[node name="InteractPromptArea" parent="." instance=ExtResource( 3 )]
+position = Vector2( -10.845, -22.5228 )
+
+[node name="CollisionShape" type="CollisionShape2D" parent="InteractPromptArea"]
 position = Vector2( 10.7798, 12.7433 )
 shape = SubResource( 1 )
 
 [node name="FPrompt" type="Sprite" parent="InteractPromptArea"]
 position = Vector2( 11.5754, -14.3324 )
 texture = ExtResource( 2 )
+
+[node name="Shadow" type="Sprite" parent="."]
+position = Vector2( -0.0532196, -1.07107 )
+scale = Vector2( 0.375917, 0.418729 )
+texture = ExtResource( 4 )
 
 [connection signal="interactable_text_signal" from="InteractPromptArea" to="." method="_on_InteractPromptArea_interactable_text_signal"]

@@ -7,6 +7,5 @@ func setInventoryItem(value):
 	var inventorySlot = get_node("CenterContainer/InventorySlot");
 	for item in inventorySlot.get_children():
 		inventorySlot.remove_child(item);
-		item.queue_free()
 	if(value != null):
 		inventorySlot.add_child(value);

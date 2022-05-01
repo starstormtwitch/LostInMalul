@@ -179,16 +179,14 @@
 [ext_resource path="res://src/GUI/DashCooldownUI.tscn" type="PackedScene" id=177]
 [ext_resource path="res://assets/fonts/Early GameBoy.ttf" type="DynamicFontData" id=178]
 [ext_resource path="res://assets/GUI/BossHealthBarTheme.tres" type="Theme" id=179]
-[ext_resource path="res://assets/fonts/VPPixel-Simplified.otf" type="DynamicFontData" id=180]
-[ext_resource path="res://src/GUI/SuperBar.tscn" type="PackedScene" id=181]
+[ext_resource path="res://src/Helpers/Utilities/Checkpoint.tscn" type="PackedScene" id=181]
+[ext_resource path="res://src/GUI/SuperBar.tscn" type="PackedScene" id=182]
 
-[sub_resource type="SegmentShape2D" id=1]
-a = Vector2( -474.143, 0.37738 )
-b = Vector2( 6849.88, 3.13074 )
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3680.33, 10 )
 
-[sub_resource type="SegmentShape2D" id=2]
-a = Vector2( -719.258, 3.29889 )
-b = Vector2( 2699.4, 2.97202 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 1733.24, 10 )
 
 [sub_resource type="SegmentShape2D" id=3]
 a = Vector2( -5.99417, -73.1816 )
@@ -242,29 +240,25 @@ b = Vector2( -287.535, 82.7866 )
 a = Vector2( 423.631, 195.137 )
 b = Vector2( 308.102, 79.9708 )
 
-[sub_resource type="SegmentShape2D" id=16]
-a = Vector2( -289.054, 81.8366 )
-b = Vector2( 310.076, 82.1077 )
+[sub_resource type="RectangleShape2D" id=16]
+extents = Vector2( 304.586, 10 )
 
-[sub_resource type="SegmentShape2D" id=17]
-a = Vector2( -398.034, 199.417 )
-b = Vector2( 427.967, 198.604 )
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 416.632, 10 )
 
 [sub_resource type="SegmentShape2D" id=18]
 a = Vector2( -220.139, 169.62 )
 b = Vector2( -255.975, 205.758 )
 
-[sub_resource type="SegmentShape2D" id=19]
-a = Vector2( -79.9308, 92.0679 )
-b = Vector2( 899.808, 91.8126 )
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 508.823, 10 )
 
 [sub_resource type="SegmentShape2D" id=20]
 a = Vector2( 900.856, 91.7268 )
 b = Vector2( 1014.24, 206.202 )
 
-[sub_resource type="SegmentShape2D" id=21]
-a = Vector2( -256.938, 208.497 )
-b = Vector2( 1016.59, 208.444 )
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 635.219, 10 )
 
 [sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 6.46179, 120.456 )
@@ -279,45 +273,49 @@ extents = Vector2( 11.8075, 11.755 )
 extents = Vector2( 9.60168, 10.0379 )
 
 [sub_resource type="RectangleShape2D" id=26]
-extents = Vector2( 7.76685, 36.4999 )
+extents = Vector2( 7.76685, 15.9323 )
 
 [sub_resource type="RectangleShape2D" id=27]
 extents = Vector2( 17.2043, 37.1483 )
 
 [sub_resource type="RectangleShape2D" id=28]
-extents = Vector2( 6.35352, 38.6898 )
+extents = Vector2( 22.6563, 31.9913 )
 
 [sub_resource type="RectangleShape2D" id=29]
-extents = Vector2( 10, 72.1877 )
+extents = Vector2( 10, 19.0431 )
 
 [sub_resource type="RectangleShape2D" id=30]
+extents = Vector2( 10, 57.1218 )
 
 [sub_resource type="RectangleShape2D" id=31]
-extents = Vector2( 69.0192, 20.5003 )
+extents = Vector2( 14.2271, 8.20912 )
 
 [sub_resource type="RectangleShape2D" id=32]
 extents = Vector2( 23.5465, 58.5441 )
 
 [sub_resource type="RectangleShape2D" id=33]
-extents = Vector2( 10, 64.0051 )
+extents = Vector2( 19.2661, 65.8966 )
 
 [sub_resource type="RectangleShape2D" id=34]
-extents = Vector2( 19.2661, 13.328 )
+extents = Vector2( 15.3081, 16.1044 )
 
 [sub_resource type="RectangleShape2D" id=35]
-extents = Vector2( 23.6626, 22.3822 )
+extents = Vector2( 16.8516, 15.5451 )
+
+[sub_resource type="RectangleShape2D" id=39]
+extents = Vector2( 22.1809, 10 )
 
 [sub_resource type="RectangleShape2D" id=36]
-extents = Vector2( 26.623, 10 )
-
-[sub_resource type="RectangleShape2D" id=37]
 extents = Vector2( 447.481, 28.3017 )
 
-[sub_resource type="DynamicFont" id=38]
-size = 13
-font_data = ExtResource( 180 )
+[sub_resource type="DynamicFont" id=37]
+size = 8
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+font_data = ExtResource( 178 )
 
-[sub_resource type="DynamicFont" id=39]
+[sub_resource type="DynamicFont" id=38]
 size = 8
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -352,11 +350,11 @@ position = Vector2( 240.006, 305.733 )
 scale = Vector2( 0.497642, 0.497642 )
 
 [node name="bottom_segment" type="CollisionShape2D" parent="LevelBackground/Boundaries/Universal"]
-position = Vector2( 7.10455, -9.74359 )
+position = Vector2( 3189.41, -2.58612 )
 shape = SubResource( 1 )
 
 [node name="top_segment" type="CollisionShape2D" parent="LevelBackground/Boundaries/Universal"]
-position = Vector2( 1181.1, -248.206 )
+position = Vector2( 3165.36, -259.12 )
 scale = Vector2( 2.00948, 2.00948 )
 shape = SubResource( 2 )
 
@@ -435,9 +433,11 @@ shape = SubResource( 14 )
 shape = SubResource( 15 )
 
 [node name="Top" type="CollisionShape2D" parent="LevelBackground/Boundaries/Garage"]
+position = Vector2( 10.0647, 74.1624 )
 shape = SubResource( 16 )
 
 [node name="Bottom" type="CollisionShape2D" parent="LevelBackground/Boundaries/Garage"]
+position = Vector2( 10.7029, 208.111 )
 shape = SubResource( 17 )
 
 [node name="Basement" type="StaticBody2D" parent="LevelBackground/Boundaries"]
@@ -447,12 +447,14 @@ position = Vector2( 265.644, 389.773 )
 shape = SubResource( 18 )
 
 [node name="Top" type="CollisionShape2D" parent="LevelBackground/Boundaries/Basement"]
+position = Vector2( 399.701, 85.0571 )
 shape = SubResource( 19 )
 
 [node name="Right" type="CollisionShape2D" parent="LevelBackground/Boundaries/Basement"]
 shape = SubResource( 20 )
 
 [node name="Bottom" type="CollisionShape2D" parent="LevelBackground/Boundaries/Basement"]
+position = Vector2( 380.468, 216.782 )
 shape = SubResource( 21 )
 
 [node name="BossSeperator" type="CollisionShape2D" parent="LevelBackground/Boundaries/Basement"]
@@ -497,7 +499,7 @@ position = Vector2( 1808.2, 50 )
 position = Vector2( 652.955, 250 )
 
 [node name="Kitchen_Delimiter" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
-position = Vector2( 2479.33, 45.7955 )
+position = Vector2( 2470.08, 50 )
 
 [node name="BottomRight" parent="LevelBackground/CameraPositions/Kitchen_Delimiter" index="0"]
 position = Vector2( 647.832, 250 )
@@ -526,12 +528,25 @@ playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Bathroom/Toilet"]
 visible = false
-position = Vector2( -24.7589, -25.0599 )
+position = Vector2( -16.5, -9.25 )
 texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bathroom/Toilet"]
 position = Vector2( -3.5, -6 )
 shape = SubResource( 24 )
+
+[node name="Sink" parent="LevelBackground/Interactions/Bathroom" instance=ExtResource( 175 )]
+interactableText = "You found the plunger under the sink!"
+playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bathroom/Sink"]
+position = Vector2( 316.585, 192.097 )
+shape = SubResource( 25 )
+
+[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Bathroom/Sink"]
+visible = false
+position = Vector2( 315.778, 165.3 )
+texture = ExtResource( 25 )
 
 [node name="Bedroom" type="Node2D" parent="LevelBackground/Interactions"]
 position = Vector2( 604, 72.5 )
@@ -543,7 +558,7 @@ interactableText = "Another good night's rest.  Time to start the day."
 playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bedroom/Bed"]
-shape = SubResource( 25 )
+shape = SubResource( 26 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Bedroom/Bed"]
 visible = false
@@ -558,11 +573,10 @@ playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon"]
 position = Vector2( 69.2712, 22.8743 )
-shape = SubResource( 25 )
+shape = SubResource( 26 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon"]
-visible = false
-position = Vector2( 8.18664, 1.602 )
+position = Vector2( 68.576, -21.9119 )
 texture = ExtResource( 25 )
 
 [node name="LivingRoom" type="Node2D" parent="LevelBackground/Interactions"]
@@ -576,7 +590,7 @@ playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/LivingRoom/InteractPromptArea"]
 scale = Vector2( 0.383436, 0.775982 )
-shape = SubResource( 25 )
+shape = SubResource( 26 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/LivingRoom/InteractPromptArea"]
 visible = false
@@ -595,7 +609,7 @@ playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Coffee"]
 position = Vector2( -3.12475, 11.749 )
-shape = SubResource( 26 )
+shape = SubResource( 27 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Kitchen/Coffee"]
 visible = false
@@ -612,8 +626,8 @@ visible = false
 texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Fridge"]
-position = Vector2( -1.88745, 12.454 )
-shape = SubResource( 27 )
+position = Vector2( 1.19209e-06, 11.8686 )
+shape = SubResource( 28 )
 
 [node name="Microwave" parent="LevelBackground/Interactions/Kitchen" instance=ExtResource( 175 )]
 position = Vector2( 281.583, 75.9244 )
@@ -625,8 +639,8 @@ visible = false
 texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Microwave"]
-position = Vector2( 2.65381, 19.7982 )
-shape = SubResource( 28 )
+position = Vector2( 1.43051e-06, 36.5558 )
+shape = SubResource( 29 )
 
 [node name="KitchenFirstTime" type="Area2D" parent="LevelBackground/Interactions/Kitchen"]
 position = Vector2( -9.73755, 147.583 )
@@ -636,8 +650,8 @@ visible = false
 texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/KitchenFirstTime"]
-position = Vector2( 6.58667, 15.8919 )
-shape = SubResource( 29 )
+position = Vector2( -3.75806, 20.6882 )
+shape = SubResource( 30 )
 
 [node name="BasementNeedKey" parent="LevelBackground/Interactions/Kitchen" instance=ExtResource( 175 )]
 interactableText = "I am going to need to search and bring the basement key first."
@@ -645,7 +659,7 @@ playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/BasementNeedKey"]
 position = Vector2( 47.0188, 110.907 )
-shape = SubResource( 30 )
+shape = SubResource( 31 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Kitchen/BasementNeedKey"]
 visible = false
@@ -693,7 +707,7 @@ interactableText = "Aha, here's my basement key. Now to just get to the basement
 playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Foyer/FoyerEndTable"]
-position = Vector2( 3557.77, 201.314 )
+position = Vector2( 3557.92, 201.047 )
 shape = SubResource( 34 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Foyer/FoyerEndTable"]
@@ -706,7 +720,7 @@ interactableText = "I know I should take my shoes off at the door, but I rarely 
 playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Foyer/FoyerShoeRack"]
-position = Vector2( 3548.83, 212.734 )
+position = Vector2( 3545.93, 220.981 )
 shape = SubResource( 35 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Foyer/FoyerShoeRack"]
@@ -719,8 +733,8 @@ interactableText = "Drawers are full of junk."
 playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Foyer/FoyerCabinet"]
-position = Vector2( 3349.21, 193.108 )
-shape = SubResource( 36 )
+position = Vector2( 3349.36, 190.03 )
+shape = SubResource( 39 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Foyer/FoyerCabinet"]
 visible = false
@@ -868,9 +882,16 @@ position = Vector2( 15.5762, 292.321 )
 collision_layer = 0
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/SpecialZones/BossMobZone"]
-position = Vector2( 663.603, 250.502 )
-shape = SubResource( 37 )
+[node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/SpecialZones/BossMobZone"]
+position = Vector2( 669.398, 265.792 )
+shape = SubResource( 36 )
+
+[node name="Checkpoints" type="Node" parent="LevelBackground"]
+
+[node name="Checkpoint" parent="LevelBackground/Checkpoints" instance=ExtResource( 181 )]
+position = Vector2( 2518.99, 66.9467 )
+LevelName = "House"
+CheckpointName = "FirstEnemy"
 
 [node name="YSort" type="YSort" parent="."]
 pause_mode = 1
@@ -878,7 +899,7 @@ pause_mode = 1
 [node name="Actors" type="YSort" parent="YSort"]
 
 [node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 2 )]
-position = Vector2( 621.122, 248.379 )
+position = Vector2( 710.871, 232.969 )
 
 [node name="KitchenRat" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 2839.86, 250.16 )
@@ -1063,7 +1084,7 @@ position = Vector2( 1159.75, 0 )
 position = Vector2( 579.231, 212.928 )
 
 [node name="RightDoor" parent="YSort/Props/StreamingRoom" instance=ExtResource( 10 )]
-position = Vector2( 601.297, 228.453 )
+position = Vector2( 601.297, 228.676 )
 
 [node name="LeftDoor" parent="YSort/Props/StreamingRoom" instance=ExtResource( 10 )]
 position = Vector2( 16.3921, 237.54 )
@@ -1449,7 +1470,7 @@ position = Vector2( 297.17, 215.203 )
 position = Vector2( 417.47, 203.511 )
 
 [node name="ShoeCabinet" parent="YSort/Props/Foyer" instance=ExtResource( 143 )]
-position = Vector2( 383.585, 211.271 )
+position = Vector2( 383.024, 210.687 )
 
 [node name="Yarn1" parent="YSort/Props/Foyer" instance=ExtResource( 123 )]
 position = Vector2( 101.5, 266.5 )
@@ -1556,6 +1577,7 @@ position = Vector2( 91.9744, 128.276 )
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1579,22 +1601,19 @@ margin_left = 387.56
 margin_top = 520.642
 margin_right = 681.56
 margin_bottom = 544.642
-custom_fonts/font = SubResource( 38 )
+custom_fonts/font = SubResource( 37 )
 text = "Rex Magnus Rattorum, The Rat King"
 
 [node name="PlayerGui" type="Control" parent="GUI"]
 margin_right = 40.0
 margin_bottom = 40.0
-mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+mouse_filter = 1
 
 [node name="Cash" type="TextureRect" parent="GUI/PlayerGui"]
-margin_left = 54.8919
-margin_top = 36.2348
-margin_right = 78.8919
-margin_bottom = 61.2348
+margin_left = 51.0934
+margin_top = 48.1271
+margin_right = 75.0934
+margin_bottom = 73.1271
 mouse_filter = 2
 texture = ExtResource( 24 )
 expand = true
@@ -1603,10 +1622,10 @@ __meta__ = {
 }
 
 [node name="healthBar" parent="GUI/PlayerGui" instance=ExtResource( 23 )]
-margin_left = 66.8919
-margin_top = 18.2348
-margin_right = 269.892
-margin_bottom = 39.2348
+margin_left = 63.0934
+margin_top = 30.1271
+margin_right = 266.093
+margin_bottom = 51.1271
 mouse_filter = 2
 
 [node name="DashCooldownUI" parent="GUI/PlayerGui" instance=ExtResource( 177 )]
@@ -1616,13 +1635,13 @@ margin_right = 975.205
 margin_bottom = 6.69926
 
 [node name="Coins" type="Label" parent="GUI/PlayerGui"]
-margin_left = 93.9329
-margin_top = 39.0544
-margin_right = 195.933
-margin_bottom = 49.0544
+margin_left = 90.1344
+margin_top = 50.9467
+margin_right = 192.134
+margin_bottom = 60.9467
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 39 )
+custom_fonts/font = SubResource( 38 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "0"
 __meta__ = {
@@ -1630,24 +1649,24 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="GUI/PlayerGui"]
-margin_left = 79.9999
-margin_top = 44.8814
-margin_right = 99.9999
-margin_bottom = 74.8814
+margin_left = 76.2014
+margin_top = 56.7737
+margin_right = 96.2014
+margin_bottom = 86.7737
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 39 )
+custom_fonts/font = SubResource( 38 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "x"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SuperBar" parent="GUI/PlayerGui" instance=ExtResource( 181 )]
-margin_left = 215.591
-margin_top = 21.3615
-margin_right = 319.591
-margin_bottom = 61.3615
+[node name="SuperBar" parent="GUI/PlayerGui" instance=ExtResource( 182 )]
+margin_left = 15.0934
+margin_top = 72.5
+margin_right = 119.093
+margin_bottom = 112.5
 
 [node name="Inventory" parent="GUI/PlayerGui" instance=ExtResource( 21 )]
 position = Vector2( 15.0934, 21.6612 )
@@ -1662,12 +1681,11 @@ margin_bottom = -6.17267
 [node name="TextBox" parent="GUI" instance=ExtResource( 1 )]
 pause_mode = 2
 visible = false
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-margin_left = -512.0
-margin_top = -576.0
-margin_right = 512.0
+margin_left = -11.3578
+margin_top = -5.88671
+margin_right = -11.358
+margin_bottom = -5.88672
+mouse_filter = 1
 
 [node name="TextBox" parent="GUI" instance=ExtResource( 1 )]
 pause_mode = 2
@@ -1681,6 +1699,7 @@ margin_right = 512.0
 
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_Toilet_interactable_text_signal"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Sink" to="." method="_on_Sink_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/Bed" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/LivingRoom/InteractPromptArea" to="." method="_on_InteractPromptArea_interactable_text_signal"]

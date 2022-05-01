@@ -78,7 +78,7 @@ func _physics_process(_delta: float) -> void:
 
 func _flipBoxesIfNecessary(velocity_x: float):
 	var rightHitBox: CollisionShape2D = get_node("Attack/AttackBox")
-	var sprite: Sprite = get_node("enemy")
+	var sprite: Sprite = get_node("KinematicSprite/Sprite")
 	var shadow: Sprite = get_node("Shadow")
 	if velocity_x > 0:
 		rightHitBox.position.x = abs(rightHitBox.position.x)
@@ -207,11 +207,12 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		
 		#knockback/knockup
 		if(_canTakeKnockup):
-			setColliderStatusDisabled(true)
 			_inAir = true
 			direction.y -= 4
 			var knockbackVelocity = getMovement(direction, force, _acceleration)
-			_velocity = move_and_slide(knockbackVelocity)
+			var y = moveKinematicSprite(knockbackVelocity)
+			var x = moveParent(knockbackVelocity)
+			_velocity = Vector2(x.x, y.y)
 		else:
 			direction = Vector2.ZERO;
 			

@@ -13,10 +13,12 @@ const trail_scene = preload("res://src/Helpers/Trail.tscn")
 const smoke_scene = preload("res://src/Actors/MainChar/SmokeParticles.tscn")
 const hadouken_scene = preload("res://src/Actors/MainChar/HadoukenBlast.tscn")
 const ghost_scene = preload("res://src/Helpers/Ghost.tscn")
+const spawner = preload("res://src/Helpers/Spawning/Spawner.tscn")
+const dropped_item = preload("res://src/InventoryItems/DroppedItemBase.tscn")
 
 
 const _JUMP_EVENT = "Jump"
-const _DASH_EVENT = "Dodge"
+const _DASH_EVENT = "dodge"
 const _DODGE_SPEED = 80000
 const _DODGE_ACCELERATION = .5
 const _LEFT_FACING_SCALE = -1.0
@@ -26,7 +28,9 @@ const _MAX_SUPER_CHARGES = 3
 const _MIN_SUPER_CHARGES = 0
 const STARTING_SUPER_CHARGES = 1
 
-
+var _checkPoint = "Start"
+var _level = LevelGlobals.start_level
+var InventoryItem : Node2D
 var Coins = 0
 var _beingHurt: bool = false
 var _canTakeDamage: bool = false
@@ -48,7 +52,7 @@ var _lastHadoukenDamagePercentage: float = 0.0
 
 
 onready var _attackManager: AttackManager
-onready var sprite: Sprite = $Sprite
+onready var sprite: Sprite = $KinematicSprite/Sprite
 onready var shadow: Sprite = $Shadow
 onready var rightHitBox: CollisionShape2D = $attack/sideSwipeRight
 onready var wooshAudioPlayer: AudioStreamPlayer = $WooshAudioPlayer
@@ -65,7 +69,17 @@ onready var chargeBar: TextureProgress = $ChargeBar
 
 func _init():
 	add_to_group("Player")
+	load_character_save(LevelGlobals.GetPlayerSaveData())
 
+func load_character_save(player_data):
+	if(player_data != null && !player_data.empty()):
+		Coins = player_data["coins"];
+		if(player_data.has("health")):
+			_health = player_data["health"]
+		else:
+			_health = _maxHealth;
+		_checkPoint = player_data["checkpoint"];
+		_level = player_data["level"];
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -221,6 +235,16 @@ func add_trail() -> void:
 
 func add_item_to_inventory(item : Node2D):
 	emit_signal("item_pickup", item);
+	if(InventoryItem != null):
+		var slotItem = InventoryItem;
+		var itemDropper = spawner.instance();
+		itemDropper.global_position = self.global_position; 
+		get_parent().add_child(itemDropper);
+		var newDroppedItem = dropped_item.instance()
+		newDroppedItem.init(self, slotItem)
+		itemDropper.spawnInstantiatedNode(newDroppedItem, itemDropper.global_position);
+	if(item != null):
+		InventoryItem = item;
 
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if _canTakeDamage:
