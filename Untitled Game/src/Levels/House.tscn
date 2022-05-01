@@ -1,4 +1,4 @@
-[gd_scene load_steps=234 format=2]
+[gd_scene load_steps=235 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
@@ -194,6 +194,7 @@
 [ext_resource path="res://src/Props/LivingRoom/CouchSmallLivingRoom.tscn" type="PackedScene" id=192]
 [ext_resource path="res://src/Props/LivingRoom/SmallRugLivingRoom.tscn" type="PackedScene" id=193]
 [ext_resource path="res://src/Props/LivingRoom/LeftShelfLiviingRoom.tscn" type="PackedScene" id=194]
+[ext_resource path="res://src/Props/Kitchen/ShelfKitchen.tscn" type="PackedScene" id=195]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3680.33, 10 )
@@ -1256,6 +1257,9 @@ position = Vector2( 351.103, 122.607 )
 [node name="Kitchen" type="YSort" parent="YSort/Props"]
 position = Vector2( 2474.16, 0 )
 
+[node name="ShelfKitchen" parent="YSort/Props/Kitchen" instance=ExtResource( 195 )]
+position = Vector2( 76.0647, 238.948 )
+
 [node name="Node2D" parent="YSort/Props/Kitchen" instance=ExtResource( 14 )]
 position = Vector2( 28.8264, 234.965 )
 
@@ -1297,7 +1301,7 @@ position = Vector2( 313.422, 196.463 )
 position = Vector2( 447.705, 219.965 )
 
 [node name="DiningTable" parent="YSort/Props/Kitchen" instance=ExtResource( 69 )]
-position = Vector2( 218.654, 237.698 )
+position = Vector2( 203.292, 237.698 )
 
 [node name="LightSwitch" parent="YSort/Props/Kitchen" instance=ExtResource( 73 )]
 position = Vector2( 587.745, 223.361 )
