@@ -309,7 +309,6 @@ extents = Vector2( 22.1809, 10 )
 extents = Vector2( 447.481, 28.3017 )
 
 [sub_resource type="DynamicFont" id=37]
-size = 8
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
@@ -888,8 +887,13 @@ shape = SubResource( 36 )
 
 [node name="Checkpoints" type="Node" parent="LevelBackground"]
 
+[node name="Checkpoint2" parent="LevelBackground/Checkpoints" instance=ExtResource( 181 )]
+position = Vector2( 133.678, 361.827 )
+LevelName = "House"
+CheckpointName = "Boss"
+
 [node name="Checkpoint" parent="LevelBackground/Checkpoints" instance=ExtResource( 181 )]
-position = Vector2( 2518.99, 66.9467 )
+position = Vector2( 2539.78, 66.9467 )
 LevelName = "House"
 CheckpointName = "FirstEnemy"
 
@@ -899,7 +903,7 @@ pause_mode = 1
 [node name="Actors" type="YSort" parent="YSort"]
 
 [node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 2 )]
-position = Vector2( 710.871, 232.969 )
+position = Vector2( 2345.27, 272.827 )
 
 [node name="KitchenRat" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 2839.86, 250.16 )
@@ -1597,12 +1601,16 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="GUI/BossGui"]
-margin_left = 387.56
-margin_top = 520.642
-margin_right = 681.56
-margin_bottom = 544.642
+margin_left = 268.112
+margin_top = 520.0
+margin_right = 756.112
+margin_bottom = 544.0
 custom_fonts/font = SubResource( 37 )
 text = "Rex Magnus Rattorum, The Rat King"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PlayerGui" type="Control" parent="GUI"]
 margin_right = 40.0

@@ -51,17 +51,16 @@ func CreatePlayerSave(player : Actor) -> Dictionary:
 	var playerSaveData = {
 		"coins" : player.Coins,
 		"health" : player._health,
-		"checkpoint" : player._checkPoint,
-		"level" : player._level
+		"checkpoint" : start_point,
+		"level" : start_level
 		};
 	
 	return playerSaveData;
 
 func SetCheckpoint(level, checkpointKey):
-	var playerData = LevelGlobals.GetPlayerActor()	
-	assert(playerData != null, "Player is null!")
-	playerData._level = level;
-	playerData._checkPoint = checkpointKey;
+	assert(_player_data != null, "Player data is null!")
+	_player_data.level = level;
+	_player_data.checkpoint = checkpointKey;
 	save_game();
 
 func new_game():
