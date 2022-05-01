@@ -1,4 +1,4 @@
-[gd_scene load_steps=231 format=2]
+[gd_scene load_steps=234 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
@@ -191,6 +191,9 @@
 [ext_resource path="res://src/Props/StreamingRoom/left_drawer_foyer.tscn" type="PackedScene" id=189]
 [ext_resource path="res://src/Props/StreamingRoom/GameCase.tscn" type="PackedScene" id=190]
 [ext_resource path="res://src/Props/StreamingRoom/CouchStreamingRoom.tscn" type="PackedScene" id=191]
+[ext_resource path="res://src/Props/LivingRoom/CouchSmallLivingRoom.tscn" type="PackedScene" id=192]
+[ext_resource path="res://src/Props/LivingRoom/SmallRugLivingRoom.tscn" type="PackedScene" id=193]
+[ext_resource path="res://src/Props/LivingRoom/LeftShelfLiviingRoom.tscn" type="PackedScene" id=194]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3680.33, 10 )
@@ -298,7 +301,7 @@ extents = Vector2( 10, 19.0431 )
 extents = Vector2( 10, 57.1218 )
 
 [sub_resource type="RectangleShape2D" id=31]
-extents = Vector2( 14.2271, 8.20912 )
+extents = Vector2( 71.645, 23.5995 )
 
 [sub_resource type="RectangleShape2D" id=32]
 extents = Vector2( 23.5465, 58.5441 )
@@ -586,14 +589,15 @@ position = Vector2( 69.2712, 22.8743 )
 shape = SubResource( 26 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon"]
-position = Vector2( 68.576, -21.9119 )
+visible = false
+position = Vector2( 603.076, -13.0342 )
 texture = ExtResource( 25 )
 
 [node name="LivingRoom" type="Node2D" parent="LevelBackground/Interactions"]
 position = Vector2( 1929.02, 75.1823 )
 
 [node name="InteractPromptArea" parent="LevelBackground/Interactions/LivingRoom" instance=ExtResource( 175 )]
-position = Vector2( 352.417, 112.35 )
+position = Vector2( 164.106, 123.506 )
 scale = Vector2( 1, 1.0042 )
 interactableText = "Had to buy cat trees to stop Nabi from scratching the furniture."
 playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
@@ -679,7 +683,8 @@ texture = ExtResource( 25 )
 [node name="Office" type="Node2D" parent="LevelBackground/Interactions"]
 
 [node name="Computer" type="Area2D" parent="LevelBackground/Interactions/Office"]
-position = Vector2( 115.728, 7.5087 )
+position = Vector2( 119.399, 4.50531 )
+scale = Vector2( 0.998591, 0.997906 )
 script = ExtResource( 174 )
 interactableText = "I should figure out what's going on before I stream."
 playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
@@ -690,7 +695,7 @@ position = Vector2( 1506.55, 227.483 )
 texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Office/Computer"]
-position = Vector2( 1506.55, 227.483 )
+position = Vector2( 1496.63, 226.537 )
 shape = SubResource( 31 )
 
 [node name="Basement" type="Node2D" parent="LevelBackground/Interactions"]
@@ -1105,6 +1110,9 @@ position = Vector2( 579.231, 212.928 )
 [node name="CouchStreamingRoom" parent="YSort/Props/StreamingRoom" instance=ExtResource( 191 )]
 position = Vector2( 141.279, 252 )
 
+[node name="CouchSmallLivingRoom" parent="YSort/Props/StreamingRoom/CouchStreamingRoom" instance=ExtResource( 192 )]
+position = Vector2( 664.107, -50.9319 )
+
 [node name="RightDoor" parent="YSort/Props/StreamingRoom" instance=ExtResource( 10 )]
 position = Vector2( 601.297, 228.676 )
 
@@ -1166,45 +1174,63 @@ position = Vector2( 180.548, 125.063 )
 [node name="Livingroom" type="YSort" parent="YSort/Props"]
 position = Vector2( 1818.63, 0 )
 
+[node name="SmallRugLivingRoom" parent="YSort/Props/Livingroom" instance=ExtResource( 193 )]
+position = Vector2( 123.477, 226.883 )
+
+[node name="Plant3" parent="YSort/Props/Livingroom" instance=ExtResource( 186 )]
+position = Vector2( 617.838, 296.224 )
+
+[node name="Plant4" parent="YSort/Props/Livingroom" instance=ExtResource( 186 )]
+position = Vector2( 11.5817, 294.442 )
+
 [node name="Mouse1" parent="YSort/Props/Livingroom" instance=ExtResource( 126 )]
-position = Vector2( 444.551, 198.309 )
+position = Vector2( 451.158, 194.298 )
+
+[node name="Mouse5" parent="YSort/Props/Livingroom" instance=ExtResource( 126 )]
+position = Vector2( 215.957, 209.66 )
 
 [node name="Mouse2" parent="YSort/Props/Livingroom" instance=ExtResource( 125 )]
 position = Vector2( 461.412, 205.733 )
 
+[node name="Mouse4" parent="YSort/Props/Livingroom" instance=ExtResource( 125 )]
+position = Vector2( 234.157, 215.003 )
+
 [node name="Mouse3" parent="YSort/Props/Livingroom" instance=ExtResource( 127 )]
-position = Vector2( 207.517, 219.706 )
+position = Vector2( 278.766, 210.701 )
 
 [node name="Yarn1" parent="YSort/Props/Livingroom" instance=ExtResource( 123 )]
-position = Vector2( 490.154, 199.358 )
+position = Vector2( 502.649, 214.206 )
 
 [node name="Yarn2" parent="YSort/Props/Livingroom" instance=ExtResource( 124 )]
-position = Vector2( 163.544, 208.403 )
+position = Vector2( 247.256, 207.214 )
 
 [node name="door1" parent="YSort/Props/Livingroom" instance=ExtResource( 10 )]
 position = Vector2( 603.604, 234.875 )
 
+[node name="LeftShelfLivingRoom" parent="YSort/Props/Livingroom" instance=ExtResource( 194 )]
+position = Vector2( 59.7819, 244.478 )
+
 [node name="CatTree" parent="YSort/Props/Livingroom" instance=ExtResource( 121 )]
-position = Vector2( 461.732, 196.483 )
+position = Vector2( 269.836, 200.908 )
 
 [node name="CatBed" parent="YSort/Props/Livingroom" instance=ExtResource( 120 )]
-position = Vector2( 175.401, 196.805 )
+position = Vector2( 221.957, 201.048 )
 
 [node name="Lamp" parent="YSort/Props/Livingroom" instance=ExtResource( 122 )]
-position = Vector2( 477.437, 254.5 )
+position = Vector2( 392.017, 256.86 )
 
 [node name="door2" parent="YSort/Props/Livingroom" instance=ExtResource( 10 )]
 position = Vector2( 14.6997, 240.99 )
 scale = Vector2( -1, 1 )
 
 [node name="Table" parent="YSort/Props/Livingroom" instance=ExtResource( 119 )]
-position = Vector2( 339.408, 253.683 )
+position = Vector2( 185.556, 199.41 )
 
 [node name="LongLamp" parent="YSort/Props/Livingroom" instance=ExtResource( 118 )]
-position = Vector2( 315.28, 254.597 )
+position = Vector2( 111.28, 196.968 )
 
 [node name="Rug" parent="YSort/Props/Livingroom" instance=ExtResource( 117 )]
-position = Vector2( 370, 197 )
+position = Vector2( 431.352, 192.045 )
 
 [node name="Window1" parent="YSort/Props/Livingroom" instance=ExtResource( 112 )]
 position = Vector2( 283.532, 150.108 )
@@ -1219,10 +1245,10 @@ position = Vector2( 500.273, 183.9 )
 position = Vector2( 350.391, 190.03 )
 
 [node name="Sofa1" parent="YSort/Props/Livingroom" instance=ExtResource( 115 )]
-position = Vector2( 415.392, 258.133 )
+position = Vector2( 465.653, 260.021 )
 
 [node name="Sofa2" parent="YSort/Props/Livingroom" instance=ExtResource( 116 )]
-position = Vector2( 295.929, 229.813 )
+position = Vector2( 365.776, 228.869 )
 
 [node name="Clock" parent="YSort/Props/Livingroom" instance=ExtResource( 111 )]
 position = Vector2( 351.103, 122.607 )
