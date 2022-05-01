@@ -445,6 +445,9 @@ MinCoins = 0
 MaxCoins = 0
 PowerupChance = 40
 
+[node name="explosionPosition" type="Position2D" parent="."]
+position = Vector2( -4.17138, -14.2661 )
+
 [connection signal="area_entered" from="FlockBox" to="." method="_on_FlockBox_area_entered"]
 [connection signal="area_exited" from="FlockBox" to="." method="_on_FlockBox_area_exited"]
 [connection signal="area_entered" from="Attack" to="." method="_on_Attack_area_entered"]

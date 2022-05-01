@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/SpriteSheets/main_char/hadouken_blast_sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/MainChar/HadoukenBlast.gd" type="Script" id=2]
@@ -145,6 +145,9 @@ end_node = "end"
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 8.08021, 7.09838 )
 
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 14.0564, 13.6277 )
+
 [node name="HadoukenBlast" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
@@ -166,6 +169,7 @@ active = true
 parameters/playback = SubResource( 10 )
 
 [node name="HitBox" type="Area2D" parent="."]
+position = Vector2( 1.05945, 0 )
 collision_layer = 16
 collision_mask = 0
 
@@ -173,8 +177,24 @@ collision_mask = 0
 position = Vector2( 3.35876, -0.707108 )
 shape = SubResource( 11 )
 
+[node name="ExplosionBox" type="Area2D" parent="."]
+position = Vector2( 1.05945, 0 )
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionBox"]
+position = Vector2( 2.67733, -0.472469 )
+shape = SubResource( 12 )
+disabled = true
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 volume_db = -10.947
 
+[node name="QueueFreeTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_attack_area_entered"]
+[connection signal="area_entered" from="ExplosionBox" to="." method="_on_ExplosionBox_area_entered"]
+[connection signal="timeout" from="QueueFreeTimer" to="." method="_on_QueueFreeTimer_timeout"]
