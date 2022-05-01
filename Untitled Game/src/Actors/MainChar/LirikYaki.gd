@@ -28,8 +28,6 @@ const _MAX_SUPER_CHARGES = 3
 const _MIN_SUPER_CHARGES = 0
 const STARTING_SUPER_CHARGES = 1
 
-var _checkPoint = "Start"
-var _level = LevelGlobals.start_level
 var InventoryItem : Node2D
 var Coins = 0
 var _beingHurt: bool = false
@@ -78,8 +76,6 @@ func load_character_save(player_data):
 			_health = player_data["health"]
 		else:
 			_health = _maxHealth;
-		_checkPoint = player_data["checkpoint"];
-		_level = player_data["level"];
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -254,7 +250,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		_attackManager.gotHit()
 		_hitDoneTimer.start(_hitAnimationTime)
 		animationTree.get("parameters/playback").travel("Hurt")
-		_invincibilityTimer.start(2)
+		_invincibilityTimer.start(3)
 		.take_damage(ceil(damage * _takeDamageModifier), direction, force)
 
 

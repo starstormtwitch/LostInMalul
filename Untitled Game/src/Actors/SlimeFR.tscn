@@ -36,7 +36,7 @@ scale = 0.3
 anim_speed = 2.0
 
 [sub_resource type="Animation" id=5]
-length = 1.1
+length = 6.0
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -44,7 +44,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 1.08 ),
+"times": PoolRealArray( 5.8 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -86,6 +86,18 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Collider:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -154,7 +166,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.6, 1.79 ),
+"times": PoolRealArray( 0.6, 1.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -287,7 +299,7 @@ position = Vector2( 3.32684, -34.9794 )
 texture = ExtResource( 3 )
 hframes = 13
 vframes = 4
-frame = 40
+frame = 26
 
 [node name="KinematicSprite" type="KinematicBody2D" parent="."]
 
@@ -298,7 +310,7 @@ texture = ExtResource( 1 )
 offset = Vector2( 0, -15 )
 hframes = 13
 vframes = 4
-frame = 40
+frame = 26
 
 [node name="PunchHitMarkerParticles" type="Particles2D" parent="."]
 material = SubResource( 1 )
@@ -346,6 +358,7 @@ shape = SubResource( 27 )
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( 3.18838, -9.92232 )
 shape = SubResource( 28 )
+disabled = true
 
 [node name="Sight" type="RayCast2D" parent="."]
 position = Vector2( 0.353554, -14.8493 )

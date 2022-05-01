@@ -32,10 +32,11 @@ func _ready():
 	else:
 		_player.connect("health_changed", self, "_on_Player_health_changed")
 		_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)
-	SetLevelCheckpointVariables(_player._checkPoint)
+	SetLevelCheckpointVariables(LevelGlobals.GetPlayerSaveData())
 	
-func SetLevelCheckpointVariables(checkpoint):
-	match(checkpoint):
+func SetLevelCheckpointVariables(saveData):
+	assert(saveData.has("checkpoint"))
+	match(saveData["checkpoint"]):
 		"Start":
 			pass;
 		"FirstEnemy":
@@ -97,7 +98,6 @@ func _on_KitchenRat_AllEnemiesDefeated():
 	_textBox.showText("That was insane, it had to have come from the basement. I should go down there... but I should mentally prepare myself for what could possibly be down there first.")
 	get_node("LevelBackground/Teleports/LivingRoom_Kitchen_2WT/EndpointBeta/ToAlphaActivationArea").disabled = false;
 	get_node("LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointAlpha/ToBetaActivationArea").disabled = false;
-	LevelGlobals.save_game();
 
 func _on_BasementAttack_body_entered(body):
 	if (body == _player):
@@ -138,7 +138,7 @@ func _on_BossEncounter_body_entered(body):
 		get_node("LevelBackground/Interactions/Basement/BossEncounter/BossEncounterCollision").set_deferred("disabled", true);
 		_textBox.showText("Rat King: So... you think you can take your house back from me? I'm afraid that can't happen... you see, us rats are sick of living in this damp disgusting basement.  We will enjoy this house better than you ever did, and now I'll make sure you never hurt a rat again.")
 		ratKing[0]._target = _player;
-		ratKing[0]._mobSpawnArea = get_node("LevelBackground/SpecialZones/BossMobZone/CollisionShape2D");		
+		ratKing[0]._mobSpawnArea = get_node("LevelBackground/SpecialZones/BossMobZone/CollisionShape");		
 		$GUI/BossGui.set_deferred("visible", true);
 
 func _on_RatKingSpawner_AllEnemiesDefeated():

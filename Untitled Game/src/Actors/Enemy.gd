@@ -8,6 +8,8 @@ var _attack_range = 20
 var _initial_attack_cooldown = .5 #in seconds
 var _stun_duration = 50 #in seconds
 var _canTakeKnockup = true;
+var _canBeStunned = true;
+var _flocks = true;
 #Enemy state
 var _isReadyToAttack = false
 var _isAttacking = false
@@ -62,15 +64,15 @@ func _physics_process(_delta: float) -> void:
 		if(!_isAttacking):
 			if(_state == EnemyState.CHASE):
 				direction = targetDirection;
-						
-			direction = _flock_direction(direction)
 		if (_state == EnemyState.CHASE):
 			_play_walk_animation_if_available(targetDirection.x)
 		if(_state == EnemyState.ROAM or _state == EnemyState.IDLE):
 			_play_idle_animation_if_available(targetDirection.x)
 		_directionFacing = targetDirection.x
 		_flipBoxesIfNecessary(targetDirection.x)
-			
+		
+		if(_flocks):
+			direction = _flock_direction(direction)
 		_velocity = getMovement(direction, _speed, _acceleration)
 		_velocity = move_and_slide(_velocity)
 
@@ -126,7 +128,7 @@ func _flock_direction(direction: Vector2):
 				
 			if distanceFromFlockMate < _seperation_distance:
 				separation -= (flockmate.position - self.position).normalized() * (_seperation_distance / distanceFromFlockMate * _speed)
-	return (direction + separation * .5)
+	return (direction + (separation.normalized() * .5))
 	
 func try_chase() -> Vector2:
 	var direction = Vector2.ZERO
@@ -191,15 +193,17 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		#stun enemy
 		_velocity = getMovement(Vector2.ZERO, 0, .5)
 		disable_hurt_box_if_exists()
-		_finishedAttack(1)
-		_isStunned = true
-		_stunTimer.start(_stun_duration)
+		
+		if(_canBeStunned):
+			_isStunned = true
+			_stunTimer.start(_stun_duration)
+			if($AnimationTree != null):
+				_finishedAttack(.5)
+				$AnimationTree.get("parameters/playback").travel("hurt")
 		
 		#mark damage
 		self.modulate =  Color(10,10,10,10) 
 		_hitFlashTimer.start(.2)
-		if($AnimationTree != null):
-			$AnimationTree.get("parameters/playback").travel("hurt")
 		var newHealth = _health - damage;
 		emit_signal("health_changed", _health, newHealth, _maxHealth)
 		_health = newHealth
