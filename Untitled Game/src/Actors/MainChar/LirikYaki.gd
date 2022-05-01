@@ -74,7 +74,10 @@ func _init():
 func load_character_save(player_data):
 	if(player_data != null && !player_data.empty()):
 		Coins = player_data["coins"];
-		_health = player_data["health"];
+		if(player_data.has("health")):
+			_health = player_data["health"]
+		else:
+			_health = _maxHealth;
 		_checkPoint = player_data["checkpoint"];
 		_level = player_data["level"];
 
@@ -92,7 +95,7 @@ func _ready() -> void:
 	_attackManager = AttackManager.new(_attackResetTimer,
 		chargeBar, animationTree)
 	
-	_maxHealth = 1
+	_maxHealth = 10
 	_health = _maxHealth
 	_acceleration = .1
 	_speed = 150

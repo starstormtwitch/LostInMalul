@@ -4,9 +4,14 @@ var _player: Actor
 var _scene: Node
 
 var _layerDict: Dictionary = {}
-var _player_data: Dictionary = {}
+var _player_data: Dictionary = {
+		"checkpoint" : start_point,
+		"level" : start_level,
+		"coins" : 0
+		}
 const save_path = "user://save.dat"
 const start_level = "House"
+const start_point = "Start"
 const _layerBitParamName: String = "bit"
 const _layerValueParamName: String = "value"
 const _levelDictionary = {
@@ -77,7 +82,9 @@ func load_game():
 		saveFile.close()
 		print(player_data)
 		LevelGlobals.SetPlayerSaveData(player_data)
-	load_checkpoint();
+		load_checkpoint();
+	else:
+		new_game();
 	
 func load_checkpoint():
 	var playerData = LevelGlobals.GetPlayerSaveData()	

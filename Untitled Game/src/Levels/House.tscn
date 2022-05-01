@@ -1,4 +1,4 @@
-[gd_scene load_steps=220 format=2]
+[gd_scene load_steps=221 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
@@ -273,34 +273,37 @@ extents = Vector2( 11.8075, 11.755 )
 extents = Vector2( 9.60168, 10.0379 )
 
 [sub_resource type="RectangleShape2D" id=26]
-extents = Vector2( 7.76685, 36.4999 )
+extents = Vector2( 7.76685, 15.9323 )
 
 [sub_resource type="RectangleShape2D" id=27]
 extents = Vector2( 17.2043, 37.1483 )
 
 [sub_resource type="RectangleShape2D" id=28]
-extents = Vector2( 6.35352, 38.6898 )
+extents = Vector2( 22.6563, 31.9913 )
 
 [sub_resource type="RectangleShape2D" id=29]
-extents = Vector2( 10, 72.1877 )
+extents = Vector2( 10, 19.0431 )
 
 [sub_resource type="RectangleShape2D" id=30]
 extents = Vector2( 10, 57.1218 )
 
 [sub_resource type="RectangleShape2D" id=31]
-extents = Vector2( 12.8875, 12.3487 )
+extents = Vector2( 14.2271, 8.20912 )
 
 [sub_resource type="RectangleShape2D" id=32]
 extents = Vector2( 23.5465, 58.5441 )
 
 [sub_resource type="RectangleShape2D" id=33]
-extents = Vector2( 19.2661, 13.328 )
+extents = Vector2( 19.2661, 65.8966 )
 
 [sub_resource type="RectangleShape2D" id=34]
-extents = Vector2( 23.6626, 22.3822 )
+extents = Vector2( 15.3081, 16.1044 )
 
 [sub_resource type="RectangleShape2D" id=35]
-extents = Vector2( 26.623, 10 )
+extents = Vector2( 16.8516, 15.5451 )
+
+[sub_resource type="RectangleShape2D" id=39]
+extents = Vector2( 22.1809, 10 )
 
 [sub_resource type="RectangleShape2D" id=36]
 extents = Vector2( 447.481, 28.3017 )
@@ -623,7 +626,7 @@ visible = false
 texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Fridge"]
-position = Vector2( -1.88745, 12.454 )
+position = Vector2( 1.19209e-06, 11.8686 )
 shape = SubResource( 28 )
 
 [node name="Microwave" parent="LevelBackground/Interactions/Kitchen" instance=ExtResource( 175 )]
@@ -636,7 +639,7 @@ visible = false
 texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Microwave"]
-position = Vector2( 2.65381, 19.7982 )
+position = Vector2( 1.43051e-06, 36.5558 )
 shape = SubResource( 29 )
 
 [node name="KitchenFirstTime" type="Area2D" parent="LevelBackground/Interactions/Kitchen"]
@@ -704,7 +707,7 @@ interactableText = "Aha, here's my basement key. Now to just get to the basement
 playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Foyer/FoyerEndTable"]
-position = Vector2( 3557.77, 201.314 )
+position = Vector2( 3557.92, 201.047 )
 shape = SubResource( 34 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Foyer/FoyerEndTable"]
@@ -717,7 +720,7 @@ interactableText = "I know I should take my shoes off at the door, but I rarely 
 playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Foyer/FoyerShoeRack"]
-position = Vector2( 3548.83, 212.734 )
+position = Vector2( 3545.93, 220.981 )
 shape = SubResource( 35 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Foyer/FoyerShoeRack"]
@@ -730,8 +733,8 @@ interactableText = "Drawers are full of junk."
 playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Foyer/FoyerCabinet"]
-position = Vector2( 684.974, 546.095 )
-shape = SubResource( 36 )
+position = Vector2( 3349.36, 190.03 )
+shape = SubResource( 39 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Foyer/FoyerCabinet"]
 visible = false
@@ -879,13 +882,14 @@ position = Vector2( 15.5762, 292.321 )
 collision_layer = 0
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/SpecialZones/BossMobZone"]
-position = Vector2( 663.603, 250.502 )
+[node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/SpecialZones/BossMobZone"]
+position = Vector2( 669.398, 265.792 )
+shape = SubResource( 36 )
 
 [node name="Checkpoints" type="Node" parent="LevelBackground"]
 
 [node name="Checkpoint" parent="LevelBackground/Checkpoints" instance=ExtResource( 181 )]
-position = Vector2( 2603.81, 57.6612 )
+position = Vector2( 2518.99, 66.9467 )
 LevelName = "House"
 CheckpointName = "FirstEnemy"
 
@@ -1466,7 +1470,7 @@ position = Vector2( 297.17, 215.203 )
 position = Vector2( 417.47, 203.511 )
 
 [node name="ShoeCabinet" parent="YSort/Props/Foyer" instance=ExtResource( 143 )]
-position = Vector2( 409.524, 237.679 )
+position = Vector2( 383.024, 210.687 )
 
 [node name="Yarn1" parent="YSort/Props/Foyer" instance=ExtResource( 123 )]
 position = Vector2( 101.5, 266.5 )
