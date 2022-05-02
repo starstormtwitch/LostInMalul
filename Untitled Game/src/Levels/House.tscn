@@ -660,10 +660,6 @@ shape = SubResource( 29 )
 [node name="KitchenFirstTime" type="Area2D" parent="LevelBackground/Interactions/Kitchen"]
 position = Vector2( -9.73755, 147.583 )
 
-[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Kitchen/KitchenFirstTime"]
-visible = false
-texture = ExtResource( 25 )
-
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/KitchenFirstTime"]
 position = Vector2( -3.75806, 20.6882 )
 shape = SubResource( 30 )
@@ -920,7 +916,7 @@ pause_mode = 1
 [node name="Actors" type="YSort" parent="YSort"]
 
 [node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 2 )]
-position = Vector2( 2345.27, 272.827 )
+position = Vector2( 761.686, 225.994 )
 
 [node name="KitchenRat" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 2839.86, 250.16 )
@@ -1163,7 +1159,7 @@ position = Vector2( 555.637, 198.254 )
 position = Vector2( 406.641, 181.817 )
 
 [node name="LeftDrawerFoyer" parent="YSort/Props/StreamingRoom" instance=ExtResource( 189 )]
-position = Vector2( 77.5107, 207.138 )
+position = Vector2( 96.5651, 181.341 )
 
 [node name="left_shelf_foyer" parent="YSort/Props/StreamingRoom" instance=ExtResource( 188 )]
 position = Vector2( 72.2069, 177.023 )
@@ -1263,7 +1259,7 @@ position = Vector2( 351.103, 122.607 )
 position = Vector2( 2474.16, 0 )
 
 [node name="ShelfKitchen" parent="YSort/Props/Kitchen" instance=ExtResource( 195 )]
-position = Vector2( 76.0647, 238.948 )
+position = Vector2( 90.1025, 209.487 )
 
 [node name="Node2D" parent="YSort/Props/Kitchen" instance=ExtResource( 14 )]
 position = Vector2( 28.8264, 234.965 )

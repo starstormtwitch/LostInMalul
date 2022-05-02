@@ -129,7 +129,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Levels/Menu/MainMenu.gd"
 }, {
-"base": "Control",
+"base": "Node",
 "class": "PauseMenu",
 "language": "GDScript",
 "path": "res://src/Helpers/GUI/Pause/PauseMenu.gd"

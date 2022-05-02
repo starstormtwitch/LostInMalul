@@ -106,7 +106,7 @@ text = "(get the artists to deign a tittle screen kekw)"
 position = Vector2( -294.592, 24.2605 )
 scale = Vector2( 1.5, 1.5 )
 frames = ExtResource( 3 )
-frame = 3
+frame = 5
 speed_scale = 0.5
 playing = true
 
@@ -114,7 +114,6 @@ playing = true
 position = Vector2( 322.514, 18.8457 )
 scale = Vector2( -1.5, 1.5 )
 frames = ExtResource( 4 )
-frame = 4
 speed_scale = 0.5
 playing = true
 
