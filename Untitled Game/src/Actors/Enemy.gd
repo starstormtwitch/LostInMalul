@@ -50,16 +50,8 @@ func _ready():
 func _physics_process(_delta: float) -> void:
 	._physics_process(_delta)
 	var direction = Vector2.ZERO
-	
-	#try disable collisions if in air.
-	if(_inAir):
-		if(self.has_node("CollisionBox")):
-			get_node("CollisionBox").disabled = true
-	else:
-		if(self.has_node("CollisionBox")):
-			get_node("CollisionBox").disabled = false
-	
-	if(!_isStunned && !_inAir):
+		
+	if(!_isStunned && !_inAir && !isDying):
 		var targetDirection = try_chase()
 		get_next_state(targetDirection)
 		if(!_isAttacking):
@@ -76,6 +68,10 @@ func _physics_process(_delta: float) -> void:
 			direction = _flock_direction(direction)
 		_velocity = getMovement(direction, _speed, _acceleration)
 		_velocity = move_and_slide(_velocity)
+	elif(_inAir):
+		_velocity += _gravity
+		moveParent(_velocity)
+		moveKinematicSprite(_velocity)
 
 
 func _flipBoxesIfNecessary(velocity_x: float):
@@ -212,15 +208,14 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		#knockback/knockup
 		if(_canTakeKnockup):
 			_inAir = true
-			direction.y -= 4
-			var knockbackVelocity = getMovement(direction, force, _acceleration)
+			direction.y -= 6
+			var knockbackVelocity = getMovement(direction, force, .5)
 			var y = moveKinematicSprite(knockbackVelocity)
 			var x = moveParent(knockbackVelocity)
 			_velocity = Vector2(x.x, y.y)
 		else:
 			direction = Vector2.ZERO;
 			
-		
 		#death check
 		if(_health <= 0):
 			die()

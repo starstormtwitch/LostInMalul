@@ -302,19 +302,19 @@ extents = Vector2( 15.3081, 16.1044 )
 [sub_resource type="RectangleShape2D" id=35]
 extents = Vector2( 16.8516, 15.5451 )
 
-[sub_resource type="RectangleShape2D" id=39]
+[sub_resource type="RectangleShape2D" id=36]
 extents = Vector2( 22.1809, 10 )
 
-[sub_resource type="RectangleShape2D" id=36]
+[sub_resource type="RectangleShape2D" id=37]
 extents = Vector2( 447.481, 28.3017 )
 
-[sub_resource type="DynamicFont" id=37]
+[sub_resource type="DynamicFont" id=38]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
 font_data = ExtResource( 178 )
 
-[sub_resource type="DynamicFont" id=38]
+[sub_resource type="DynamicFont" id=39]
 size = 8
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -733,7 +733,7 @@ playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Foyer/FoyerCabinet"]
 position = Vector2( 3349.36, 190.03 )
-shape = SubResource( 39 )
+shape = SubResource( 36 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Foyer/FoyerCabinet"]
 visible = false
@@ -883,7 +883,7 @@ collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/SpecialZones/BossMobZone"]
 position = Vector2( 669.398, 265.792 )
-shape = SubResource( 36 )
+shape = SubResource( 37 )
 
 [node name="Checkpoints" type="Node" parent="LevelBackground"]
 
@@ -911,11 +911,11 @@ enemy = "SlimeFR"
 automatic = false
 
 [node name="BasementL1" parent="YSort/Actors" instance=ExtResource( 176 )]
-position = Vector2( 200.939, 516.372 )
+position = Vector2( 201.469, 515.416 )
 rect = Rect2( 0, 0, 20, 80 )
 only_off_screen = true
-duration_between_spawn = 3
-count = 4
+duration_between_spawn = 6
+count = 10
 enemy = "SlimeFR"
 automatic = false
 
@@ -923,8 +923,8 @@ automatic = false
 position = Vector2( 717.26, 523.551 )
 rect = Rect2( 0, 0, 50, 70 )
 only_off_screen = true
-duration_between_spawn = 3
-count = 4
+duration_between_spawn = 6
+count = 10
 enemy = "SlimeFR"
 automatic = false
 
@@ -1605,7 +1605,7 @@ margin_left = 268.112
 margin_top = 520.0
 margin_right = 756.112
 margin_bottom = 544.0
-custom_fonts/font = SubResource( 37 )
+custom_fonts/font = SubResource( 38 )
 text = "Rex Magnus Rattorum, The Rat King"
 uppercase = true
 __meta__ = {
@@ -1649,7 +1649,7 @@ margin_right = 192.134
 margin_bottom = 60.9467
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 38 )
+custom_fonts/font = SubResource( 39 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "0"
 __meta__ = {
@@ -1663,7 +1663,7 @@ margin_right = 96.2014
 margin_bottom = 86.7737
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 38 )
+custom_fonts/font = SubResource( 39 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "x"
 __meta__ = {

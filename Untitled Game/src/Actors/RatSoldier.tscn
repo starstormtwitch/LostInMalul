@@ -61,18 +61,6 @@ tracks/3/keys = {
 "update": 1,
 "values": [ 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54 ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("Collider:disabled")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
 
 [sub_resource type="Animation" id=2]
 resource_name = "hurt"
@@ -388,7 +376,6 @@ shape = SubResource( 32 )
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( 4.66372, -4.08509 )
 shape = SubResource( 33 )
-disabled = true
 
 [node name="Sight" type="RayCast2D" parent="."]
 position = Vector2( 0.353554, -14.8493 )

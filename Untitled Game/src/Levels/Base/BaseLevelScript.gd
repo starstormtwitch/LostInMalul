@@ -62,7 +62,7 @@ func CameraTransitionToOuterDelimiter(delimiter: CustomDelimiter2D) -> void:
 	var overlappingDelimiter = _enteredAreas.pop_back();
 	_enteredAreas.push_back(overlappingDelimiter);
 	assert(overlappingDelimiter != null, "No overlapping area!!!")
-	_cameraManager.limitCameraToDelimiter(overlappingDelimiter)
+	_cameraManager.limitCameraToDelimiter(overlappingDelimiter, _cameraManager.TransitionTypeEnum.SMOOTH)
 
 
 func CameraTransitionToDelimiter(delimiter: CustomDelimiter2D) -> void:

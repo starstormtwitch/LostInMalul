@@ -335,7 +335,7 @@ collision_mask = 16
 position = Vector2( -3.31485, 11.8561 )
 shape = SubResource( 29 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collider" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 1.68728, -1.84176 )
 shape = SubResource( 30 )
