@@ -10,7 +10,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "die"
-length = 1.1
+length = 6.0
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -18,7 +18,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 1.08 ),
+"times": PoolRealArray( 5.8 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -365,7 +365,6 @@ parameters/playback = SubResource( 31 )
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
 ]]
-visible = false
 position = Vector2( 1.85355, -19.0993 )
 collision_layer = 16384
 collision_mask = 16
@@ -375,7 +374,6 @@ position = Vector2( -0.936443, 4.8695 )
 shape = SubResource( 32 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 4.66372, -4.08509 )
 shape = SubResource( 33 )
 
@@ -388,8 +386,7 @@ collide_with_bodies = false
 [node name="FlockBox" type="Area2D" parent="." groups=[
 "enemy",
 ]]
-visible = false
-position = Vector2( 0.103554, -14.8493 )
+position = Vector2( 1.34099, -4.24269 )
 collision_layer = 262144
 collision_mask = 262144
 
@@ -398,7 +395,6 @@ position = Vector2( 0.686863, 0.873051 )
 shape = SubResource( 34 )
 
 [node name="Attack" type="Area2D" parent="."]
-visible = false
 modulate = Color( 0.431373, 1, 0, 1 )
 position = Vector2( 0.353554, -14.8493 )
 collision_layer = 4096
@@ -435,6 +431,9 @@ position = Vector2( -9.6676, -19.0703 )
 MinCoins = 0
 MaxCoins = 0
 PowerupChance = 40
+
+[node name="explosionPosition" type="Position2D" parent="."]
+position = Vector2( -4.17138, -14.2661 )
 
 [connection signal="area_entered" from="FlockBox" to="." method="_on_FlockBox_area_entered"]
 [connection signal="area_exited" from="FlockBox" to="." method="_on_FlockBox_area_exited"]

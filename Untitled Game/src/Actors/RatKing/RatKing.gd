@@ -39,6 +39,8 @@ func _ready():
 	_minDistanceToStayFromPlayer = 90;
 	_maxDistanceToStayFromPlayer = 120;
 	_canTakeKnockup = false;
+	_canBeStunned = false;
+	_flocks = false;
 	_target = null;
 	
 	if($AnimationTree != null):
@@ -155,3 +157,12 @@ func _on_ratspawn_cooldown_timeout():
 func _on_lightning_between_timeout():
 	_doNextStrike = true;
 	
+	
+
+func _on_FlockBox_area_entered(area):
+	if(area.get_parent().is_in_group("enemy")):
+		add_to_flock(area.get_parent())
+
+func _on_FlockBox_area_exited(area):
+	if(area.get_parent().is_in_group("enemy")):
+		remove_from_flock(area.get_parent())

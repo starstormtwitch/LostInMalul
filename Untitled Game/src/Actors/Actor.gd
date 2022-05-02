@@ -30,16 +30,17 @@ func _ready():
 	errorLogger.assertNodeNotNull(kinematicSprite, "KinematicSprite", self)
 
 func _physics_process(delta):
+	if(_inAir && _velocity.y > 0 && kinematicSprite.global_position.y >= _groundPosition):
+		_inAir = false;
+		self.global_position.y = _groundPosition;
+		kinematicSprite.global_position.y = _groundPosition;
 	if !_inAir:
-		_lastYPostionOnGround = kinematicSprite.position.y
-	else:
-		_handleGravity()
+		_groundPosition = self.global_position.y
 
 
 func _handleGravity():
 	if kinematicSprite.position.y >= _lastYPostionOnGround:
 		kinematicSprite.position.y = _lastYPostionOnGround
-		_inAir = 0
 	else:
 		_velocity += _gravity
 		var gravityVelocity = _velocity
@@ -85,16 +86,6 @@ func getMovement(direction: Vector2, speed: float, acceleration: float) -> Vecto
 	resultingVelocity.x = lerp(_velocity.x, targetVelocity.x, horizontalAcceleration)
 	resultingVelocity.y = lerp(_velocity.y, targetVelocity.y, verticalAcceleration)
 		
-	#apply gravity while object is in the air
-	if(_inAir):
-		if(resultingVelocity.y > 0 && self.position.y >= _groundPosition):
-			_inAir = false;
-			self.position.y = _groundPosition
-		else:
-			resultingVelocity += _gravity
-	else:
-		_groundPosition = self.position.y
-		
 	#give the movement some frictionas
 	if(resultingVelocity.x > 0):
 		resultingVelocity.x = floor(resultingVelocity.x / 5) * 5
@@ -108,27 +99,30 @@ func getMovement(direction: Vector2, speed: float, acceleration: float) -> Vecto
 	return resultingVelocity
 	
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
-	if($AnimationTree != null):
-		$AnimationTree.get("parameters/playback").travel("Hurt")
-	var newHealth = _health-damage
-	emit_signal("health_changed", _health, newHealth, _maxHealth)
-	_health=newHealth
-	#knockback
-	var knockbackVelocity = getMovement(direction, force, _acceleration)
-	_velocity = move_and_slide(knockbackVelocity)
-	if(_health <= 0):
-		die()
+	if !isDying:
+		if($AnimationTree != null):
+			$AnimationTree.get("parameters/playback").travel("Hurt")
+		var newHealth = _health-damage
+		emit_signal("health_changed", _health, newHealth, _maxHealth)
+		_health=newHealth
+		#knockback
+		var knockbackVelocity = getMovement(direction, force, _acceleration)
+		_velocity = move_and_slide(knockbackVelocity)
+		if(_health <= 0):
+			die()
 		
 func die() -> void:
-	_disableHurtbox()
+	isDying = true
+	_disableNodes(self)
 	if($AnimationTree != null):
 		$AnimationTree.get("parameters/playback").travel("die")
-	set_physics_process(false)
 	emit_signal("died")
 	
 func dispose() -> void:
 	queue_free()
 
-func _disableHurtbox():
-	print("trying to disable hurtbox")
-	isDying = true
+func _disableNodes(parentNode : Node):
+	if "disabled" in parentNode:
+		parentNode.set_deferred("disabled", true);
+	for node in parentNode.get_children():
+		_disableNodes(node);

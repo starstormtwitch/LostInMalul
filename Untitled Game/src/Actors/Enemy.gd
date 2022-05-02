@@ -1,6 +1,7 @@
 extends Actor
 class_name Enemy
 
+var _explosion_scene = preload("res://src/Effects/Explosion.tscn")
 
 #Enemy properties
 var _seperation_distance = 20
@@ -8,6 +9,8 @@ var _attack_range = 20
 var _initial_attack_cooldown = .5 #in seconds
 var _stun_duration = 50 #in seconds
 var _canTakeKnockup = true;
+var _canBeStunned = true;
+var _flocks = true;
 #Enemy state
 var _isReadyToAttack = false
 var _isAttacking = false
@@ -47,32 +50,28 @@ func _ready():
 func _physics_process(_delta: float) -> void:
 	._physics_process(_delta)
 	var direction = Vector2.ZERO
-	
-	#try disable collisions if in air.
-	if(_inAir):
-		if(self.has_node("CollisionBox")):
-			get_node("CollisionBox").disabled = true
-	else:
-		if(self.has_node("CollisionBox")):
-			get_node("CollisionBox").disabled = false
-	
-	if(!_isStunned && !_inAir):
+		
+	if(!_isStunned && !_inAir && !isDying):
 		var targetDirection = try_chase()
 		get_next_state(targetDirection)
 		if(!_isAttacking):
 			if(_state == EnemyState.CHASE):
 				direction = targetDirection;
-						
-			direction = _flock_direction(direction)
 		if (_state == EnemyState.CHASE):
 			_play_walk_animation_if_available(targetDirection.x)
 		if(_state == EnemyState.ROAM or _state == EnemyState.IDLE):
 			_play_idle_animation_if_available(targetDirection.x)
 		_directionFacing = targetDirection.x
 		_flipBoxesIfNecessary(targetDirection.x)
-			
+		
+		if(_flocks):
+			direction = _flock_direction(direction)
 		_velocity = getMovement(direction, _speed, _acceleration)
 		_velocity = move_and_slide(_velocity)
+	elif(_inAir):
+		_velocity += _gravity
+		moveParent(_velocity)
+		moveKinematicSprite(_velocity)
 
 
 func _flipBoxesIfNecessary(velocity_x: float):
@@ -126,7 +125,7 @@ func _flock_direction(direction: Vector2):
 				
 			if distanceFromFlockMate < _seperation_distance:
 				separation -= (flockmate.position - self.position).normalized() * (_seperation_distance / distanceFromFlockMate * _speed)
-	return (direction + separation * .5)
+	return (direction + (separation.normalized() * .5))
 	
 func try_chase() -> Vector2:
 	var direction = Vector2.ZERO
@@ -191,15 +190,17 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		#stun enemy
 		_velocity = getMovement(Vector2.ZERO, 0, .5)
 		disable_hurt_box_if_exists()
-		_finishedAttack(1)
-		_isStunned = true
-		_stunTimer.start(_stun_duration)
+		
+		if(_canBeStunned):
+			_isStunned = true
+			_stunTimer.start(_stun_duration)
+			if($AnimationTree != null):
+				_finishedAttack(.5)
+				$AnimationTree.get("parameters/playback").travel("hurt")
 		
 		#mark damage
 		self.modulate =  Color(10,10,10,10) 
 		_hitFlashTimer.start(.2)
-		if($AnimationTree != null):
-			$AnimationTree.get("parameters/playback").travel("hurt")
 		var newHealth = _health - damage;
 		emit_signal("health_changed", _health, newHealth, _maxHealth)
 		_health = newHealth
@@ -207,15 +208,14 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		#knockback/knockup
 		if(_canTakeKnockup):
 			_inAir = true
-			direction.y -= 4
-			var knockbackVelocity = getMovement(direction, force, _acceleration)
+			direction.y -= 6
+			var knockbackVelocity = getMovement(direction, force, .5)
 			var y = moveKinematicSprite(knockbackVelocity)
 			var x = moveParent(knockbackVelocity)
 			_velocity = Vector2(x.x, y.y)
 		else:
 			direction = Vector2.ZERO;
 			
-		
 		#death check
 		if(_health <= 0):
 			die()
@@ -241,3 +241,11 @@ func _finishedAttack(cooldown: int):
 	_isAttacking = false
 	_isReadyToAttack = false
 	_attackCooldownTimer.start(cooldown)
+
+func showExplosion():
+	if $explosionPosition != null:
+		var explosionPosition: Position2D = $explosionPosition
+		var instance = _explosion_scene.instance()
+		instance.global_position = explosionPosition.global_position
+		get_parent().add_child(instance)
+		instance.z_index = 1

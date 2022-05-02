@@ -36,7 +36,7 @@ scale = 0.3
 anim_speed = 2.0
 
 [sub_resource type="Animation" id=5]
-length = 1.1
+length = 6.0
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -44,7 +44,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 1.08 ),
+"times": PoolRealArray( 5.8 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -154,7 +154,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.6, 1.79 ),
+"times": PoolRealArray( 0.6, 1.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -287,7 +287,7 @@ position = Vector2( 3.32684, -34.9794 )
 texture = ExtResource( 3 )
 hframes = 13
 vframes = 4
-frame = 40
+frame = 26
 
 [node name="KinematicSprite" type="KinematicBody2D" parent="."]
 
@@ -298,7 +298,7 @@ texture = ExtResource( 1 )
 offset = Vector2( 0, -15 )
 hframes = 13
 vframes = 4
-frame = 40
+frame = 26
 
 [node name="PunchHitMarkerParticles" type="Particles2D" parent="."]
 material = SubResource( 1 )
@@ -381,6 +381,9 @@ disabled = true
 position = Vector2( -6.62912, -19.4454 )
 scale = Vector2( 0.990515, 1 )
 MaxCoins = 2
+
+[node name="explosionPosition" type="Position2D" parent="."]
+position = Vector2( 4.03946, -13.3391 )
 
 [connection signal="area_entered" from="FlockBox" to="." method="_on_FlockBox_area_entered"]
 [connection signal="area_exited" from="FlockBox" to="." method="_on_FlockBox_area_exited"]

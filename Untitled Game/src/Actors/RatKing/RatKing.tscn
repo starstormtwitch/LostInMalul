@@ -335,7 +335,7 @@ collision_mask = 16
 position = Vector2( -3.31485, 11.8561 )
 shape = SubResource( 29 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collider" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 1.68728, -1.84176 )
 shape = SubResource( 30 )
@@ -349,8 +349,8 @@ collide_with_bodies = false
 [node name="FlockBox" type="Area2D" parent="." groups=[
 "enemy",
 ]]
-visible = false
-position = Vector2( 2.47855, -18.8493 )
+position = Vector2( 0.547604, -46.2288 )
+scale = Vector2( 2.53448, 2.29318 )
 collision_layer = 262144
 collision_mask = 262144
 
