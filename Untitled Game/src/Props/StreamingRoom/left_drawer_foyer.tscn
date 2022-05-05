@@ -6,12 +6,13 @@
 extents = Vector2( 8.97417, 10 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 18.4953, 10 )
+extents = Vector2( 18.4022, 10 )
 
 [sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10.4153, 14.6888 )
 
 [node name="LeftDrawerFoyer" type="StaticBody2D"]
-position = Vector2( 9.51073, -25.362 )
+position = Vector2( 28.1717, -51.5995 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -18.6878, 26.1962 )
@@ -27,5 +28,5 @@ rotation = -0.785398
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
-position = Vector2( -29.0099, 29.5636 )
+position = Vector2( -7.0225, 11.1605 )
 shape = SubResource( 3 )

@@ -4,7 +4,6 @@
 [ext_resource path="res://assets/Props/Kitchen/dining_table_right.png" type="Texture" id=2]
 
 [node name="DiningTable" type="YSort"]
-scale = Vector2( -1, 1 )
 
 [node name="LeftSide" type="Node2D" parent="."]
 position = Vector2( 0, -10 )

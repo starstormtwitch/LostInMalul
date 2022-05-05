@@ -1080,7 +1080,7 @@ position = Vector2( 673.75, 227 )
 position = Vector2( 1082.07, 211.062 )
 
 [node name="table" parent="YSort/Props/Bedroom" instance=ExtResource( 53 )]
-position = Vector2( 752.623, 267.288 )
+position = Vector2( 752.062, 281.88 )
 
 [node name="cat_tree_toys" parent="YSort/Props/Bedroom" instance=ExtResource( 50 )]
 position = Vector2( 1001.91, 180.292 )
@@ -1109,11 +1109,11 @@ position = Vector2( 114.478, 191.058 )
 [node name="LightSwitch" parent="YSort/Props/StreamingRoom" instance=ExtResource( 73 )]
 position = Vector2( 579.231, 212.928 )
 
+[node name="CouchSmallLivingRoom" parent="YSort/Props/StreamingRoom" instance=ExtResource( 192 )]
+position = Vector2( 805.386, 201.068 )
+
 [node name="CouchStreamingRoom" parent="YSort/Props/StreamingRoom" instance=ExtResource( 191 )]
 position = Vector2( 141.279, 252 )
-
-[node name="CouchSmallLivingRoom" parent="YSort/Props/StreamingRoom/CouchStreamingRoom" instance=ExtResource( 192 )]
-position = Vector2( 664.107, -50.9319 )
 
 [node name="RightDoor" parent="YSort/Props/StreamingRoom" instance=ExtResource( 10 )]
 position = Vector2( 601.297, 228.676 )
@@ -1177,7 +1177,7 @@ position = Vector2( 180.548, 125.063 )
 position = Vector2( 1818.63, 0 )
 
 [node name="SmallRugLivingRoom" parent="YSort/Props/Livingroom" instance=ExtResource( 193 )]
-position = Vector2( 123.477, 226.883 )
+position = Vector2( 132.406, 206.011 )
 
 [node name="Plant3" parent="YSort/Props/Livingroom" instance=ExtResource( 186 )]
 position = Vector2( 617.838, 296.224 )
@@ -1210,7 +1210,7 @@ position = Vector2( 247.256, 207.214 )
 position = Vector2( 603.604, 234.875 )
 
 [node name="LeftShelfLivingRoom" parent="YSort/Props/Livingroom" instance=ExtResource( 194 )]
-position = Vector2( 59.7819, 244.478 )
+position = Vector2( 95.2831, 210.481 )
 
 [node name="CatTree" parent="YSort/Props/Livingroom" instance=ExtResource( 121 )]
 position = Vector2( 269.836, 200.908 )
@@ -1559,7 +1559,7 @@ position = Vector2( 121, 288 )
 position = Vector2( 384.384, 223.881 )
 
 [node name="FoyerLeftDrawer" parent="YSort/Props/Foyer" instance=ExtResource( 183 )]
-position = Vector2( -14.6678, 166.457 )
+position = Vector2( 70.8923, 206.762 )
 
 [node name="FoyerLeftMirror" parent="YSort/Props/Foyer/FoyerLeftDrawer" instance=ExtResource( 185 )]
 position = Vector2( -11.61, -41.1847 )
@@ -1781,8 +1781,8 @@ margin_left = -512.0
 margin_top = -576.0
 margin_right = 512.0
 
-[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_Toilet_interactable_text_signal"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Sink" to="." method="_on_Sink_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/Bed" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon" to="." method="_on_InteractPromptArea_interactable_text_signal"]
