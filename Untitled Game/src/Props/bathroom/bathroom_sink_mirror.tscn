@@ -1,6 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/bathroom/Bathroom_sink.png" type="Texture" id=1]
+[ext_resource path="res://assets/Props/bathroom/Bathroom_sink.png" type="Texture" id=1]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 45.2679, 13.4297 )
