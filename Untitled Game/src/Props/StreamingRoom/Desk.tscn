@@ -1,36 +1,55 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/Props/StreamingRoom/new_desk.png" type="Texture" id=1]
 [ext_resource path="res://assets/Props/StreamingRoom/CablesBehindDesk.png" type="Texture" id=2]
+[ext_resource path="res://assets/Props/StreamingRoom/new_pc.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 41.1665, 13.0228 )
+extents = Vector2( 43.9505, 13.0228 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 16.8666, 13.0172 )
+extents = Vector2( 16.1984, 7.5604 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 7.03568, 13.1059 )
+extents = Vector2( 3.41331, 7.59371 )
 
-[node name="Desk" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 19.762, 1.99232 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Desk" type="YSort"]
+
+[node name="Right" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Right"]
 position = Vector2( 0.315506, -36.0728 )
 texture = ExtResource( 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 20.1337, -14.8057 )
-shape = SubResource( 1 )
-
-[node name="DeskCableSprite" type="Sprite" parent="."]
+[node name="DeskCableSprite" type="Sprite" parent="Right"]
 position = Vector2( -35.8397, -27.5126 )
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2( -36.5268, -14.5885 )
+[node name="Left" type="Node2D" parent="."]
+position = Vector2( -50.8057, -12.0211 )
+
+[node name="PC" type="Sprite" parent="Left"]
+position = Vector2( 7.62511, -8.04866 )
+texture = ExtResource( 3 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 13.8974, -14.9171 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -36.0814, -13.1408 )
 shape = SubResource( 2 )
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
-position = Vector2( -53.0084, -14.2544 )
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -54.9016, -13.3635 )
 rotation = -0.785398
 shape = SubResource( 3 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -37.195, -19.377 )
+shape = SubResource( 4 )

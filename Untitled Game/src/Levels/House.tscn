@@ -1120,7 +1120,7 @@ position = Vector2( 579.231, 212.928 )
 position = Vector2( 805.386, 201.068 )
 
 [node name="CouchStreamingRoom" parent="YSort/Props/StreamingRoom" instance=ExtResource( 191 )]
-position = Vector2( 141.279, 252 )
+position = Vector2( 140.088, 236.523 )
 
 [node name="RightDoor" parent="YSort/Props/StreamingRoom" instance=ExtResource( 10 )]
 position = Vector2( 601.297, 228.676 )
