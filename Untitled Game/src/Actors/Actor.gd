@@ -46,14 +46,11 @@ func moveKinematicSprite(gravityVelocity: Vector2) -> Vector2:
 
 #this is to move whole node only horizonatally. 
 func moveParent(gravityVelocity: Vector2) -> Vector2:
-	var xVelocity = Vector2(gravityVelocity.x, 0) 
-	var finalVelocity = self.move_and_slide(xVelocity)
-	#if we hit a wall, flip the velocity on x direction so they bounce of wall
-	if finalVelocity.x == 0 and self.is_on_wall():
+	if _inAir and self.is_on_wall():
 		_velocity.x *= -1
-		xVelocity = Vector2(_velocity.x, 0) 
-		finalVelocity = self.move_and_slide(xVelocity)
-	return finalVelocity
+		gravityVelocity.x *= -1
+	var xVelocity = Vector2(gravityVelocity.x, 0)
+	return self.move_and_slide(xVelocity)
 
 
 func setColliderStatusDisabled(disable: bool):
