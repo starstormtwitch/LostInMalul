@@ -38,16 +38,6 @@ func _physics_process(delta):
 		_groundPosition = self.global_position.y
 
 
-func _handleGravity():
-	if kinematicSprite.position.y >= _lastYPostionOnGround:
-		kinematicSprite.position.y = _lastYPostionOnGround
-	else:
-		_velocity += _gravity
-		var gravityVelocity = _velocity
-		moveParent(gravityVelocity)
-		moveKinematicSprite(gravityVelocity)
-
-
 #This is to move sprite only vertically, to make it look like its knockbacked.
 func moveKinematicSprite(gravityVelocity: Vector2) -> Vector2:
 	var yVelocity = Vector2(0, gravityVelocity.y) 
