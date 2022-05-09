@@ -1,4 +1,4 @@
-[gd_scene load_steps=235 format=2]
+[gd_scene load_steps=239 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
@@ -15,7 +15,7 @@
 [ext_resource path="res://src/Props/bedroom/bedroom_cat_frames.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/Props/bedroom/bedroom_entrance.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/Props/bedroom/bedroom_exit.tscn" type="PackedScene" id=15]
-[ext_resource path="res://src/Props/bedroom/bedroom_bed.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/Props/bedroom/Bed.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/Props/bedroom/bedroom_bumbbels.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/Props/bedroom/bedroom_nightstand_left.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/Levels/House.gd" type="Script" id=19]
@@ -195,6 +195,10 @@
 [ext_resource path="res://src/Props/LivingRoom/SmallRugLivingRoom.tscn" type="PackedScene" id=193]
 [ext_resource path="res://src/Props/LivingRoom/LeftShelfLiviingRoom.tscn" type="PackedScene" id=194]
 [ext_resource path="res://src/Props/Kitchen/ShelfKitchen.tscn" type="PackedScene" id=195]
+[ext_resource path="res://src/Props/Garage/TrashPaper1.tscn" type="PackedScene" id=196]
+[ext_resource path="res://src/Props/Garage/TrashPaper3.tscn" type="PackedScene" id=197]
+[ext_resource path="res://src/Props/Garage/TrashPaper2.tscn" type="PackedScene" id=198]
+[ext_resource path="res://src/Props/bedroom/bedroom_socks_2.tscn" type="PackedScene" id=199]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3680.33, 10 )
@@ -1031,6 +1035,9 @@ position = Vector2( 444, 232 )
 
 [node name="Bedroom" type="YSort" parent="YSort/Props"]
 
+[node name="Bed" parent="YSort/Props/Bedroom" instance=ExtResource( 16 )]
+position = Vector2( 828.524, 189.921 )
+
 [node name="cat_frames" parent="YSort/Props/Bedroom" instance=ExtResource( 13 )]
 position = Vector2( 930.553, 147.541 )
 
@@ -1052,11 +1059,8 @@ position = Vector2( 1100.95, 229.716 )
 [node name="nightstand_right" parent="YSort/Props/Bedroom" instance=ExtResource( 47 )]
 position = Vector2( 870.149, 169.119 )
 
-[node name="bed" parent="YSort/Props/Bedroom" instance=ExtResource( 16 )]
-position = Vector2( 827.592, 190.492 )
-
-[node name="nightstand_left" parent="YSort/Props/Bedroom/bed" instance=ExtResource( 18 )]
-position = Vector2( -65.906, -20.2402 )
+[node name="nightstand_left" parent="YSort/Props/Bedroom" instance=ExtResource( 18 )]
+position = Vector2( 761.686, 170.252 )
 
 [node name="nubi" parent="YSort/Props/Bedroom" instance=ExtResource( 48 )]
 position = Vector2( 720.757, 144.307 )
@@ -1068,7 +1072,7 @@ position = Vector2( 508.972, 278.538 )
 position = Vector2( 1108.73, 278.25 )
 
 [node name="rug" parent="YSort/Props/Bedroom" instance=ExtResource( 57 )]
-position = Vector2( 857.474, 230.244 )
+position = Vector2( 858.035, 230.244 )
 
 [node name="socket" parent="YSort/Props/Bedroom" instance=ExtResource( 56 )]
 position = Vector2( 852.285, 173.846 )
@@ -1076,11 +1080,14 @@ position = Vector2( 852.285, 173.846 )
 [node name="socks" parent="YSort/Props/Bedroom" instance=ExtResource( 51 )]
 position = Vector2( 673.75, 227 )
 
+[node name="socks_2" parent="YSort/Props/Bedroom" instance=ExtResource( 199 )]
+position = Vector2( 715.911, 216.144 )
+
 [node name="switch" parent="YSort/Props/Bedroom" instance=ExtResource( 49 )]
 position = Vector2( 1082.07, 211.062 )
 
 [node name="table" parent="YSort/Props/Bedroom" instance=ExtResource( 53 )]
-position = Vector2( 752.623, 267.288 )
+position = Vector2( 752.062, 281.88 )
 
 [node name="cat_tree_toys" parent="YSort/Props/Bedroom" instance=ExtResource( 50 )]
 position = Vector2( 1001.91, 180.292 )
@@ -1109,11 +1116,11 @@ position = Vector2( 114.478, 191.058 )
 [node name="LightSwitch" parent="YSort/Props/StreamingRoom" instance=ExtResource( 73 )]
 position = Vector2( 579.231, 212.928 )
 
-[node name="CouchStreamingRoom" parent="YSort/Props/StreamingRoom" instance=ExtResource( 191 )]
-position = Vector2( 141.279, 252 )
+[node name="CouchSmallLivingRoom" parent="YSort/Props/StreamingRoom" instance=ExtResource( 192 )]
+position = Vector2( 805.386, 201.068 )
 
-[node name="CouchSmallLivingRoom" parent="YSort/Props/StreamingRoom/CouchStreamingRoom" instance=ExtResource( 192 )]
-position = Vector2( 664.107, -50.9319 )
+[node name="CouchStreamingRoom" parent="YSort/Props/StreamingRoom" instance=ExtResource( 191 )]
+position = Vector2( 140.088, 236.523 )
 
 [node name="RightDoor" parent="YSort/Props/StreamingRoom" instance=ExtResource( 10 )]
 position = Vector2( 601.297, 228.676 )
@@ -1177,7 +1184,7 @@ position = Vector2( 180.548, 125.063 )
 position = Vector2( 1818.63, 0 )
 
 [node name="SmallRugLivingRoom" parent="YSort/Props/Livingroom" instance=ExtResource( 193 )]
-position = Vector2( 123.477, 226.883 )
+position = Vector2( 132.406, 206.011 )
 
 [node name="Plant3" parent="YSort/Props/Livingroom" instance=ExtResource( 186 )]
 position = Vector2( 617.838, 296.224 )
@@ -1210,7 +1217,7 @@ position = Vector2( 247.256, 207.214 )
 position = Vector2( 603.604, 234.875 )
 
 [node name="LeftShelfLivingRoom" parent="YSort/Props/Livingroom" instance=ExtResource( 194 )]
-position = Vector2( 59.7819, 244.478 )
+position = Vector2( 95.2831, 210.481 )
 
 [node name="CatTree" parent="YSort/Props/Livingroom" instance=ExtResource( 121 )]
 position = Vector2( 269.836, 200.908 )
@@ -1559,7 +1566,7 @@ position = Vector2( 121, 288 )
 position = Vector2( 384.384, 223.881 )
 
 [node name="FoyerLeftDrawer" parent="YSort/Props/Foyer" instance=ExtResource( 183 )]
-position = Vector2( -14.6678, 166.457 )
+position = Vector2( 70.8923, 206.762 )
 
 [node name="FoyerLeftMirror" parent="YSort/Props/Foyer/FoyerLeftDrawer" instance=ExtResource( 185 )]
 position = Vector2( -11.61, -41.1847 )
@@ -1575,6 +1582,15 @@ position = Vector2( -20.4907, 233.861 )
 
 [node name="Trash" parent="YSort/Props/Garage" instance=ExtResource( 169 )]
 position = Vector2( -85.7715, 234.61 )
+
+[node name="TrashPaper1" parent="YSort/Props/Garage" instance=ExtResource( 196 )]
+position = Vector2( -77.0762, 228.447 )
+
+[node name="TrashPaper2" parent="YSort/Props/Garage" instance=ExtResource( 198 )]
+position = Vector2( -69.5913, 230.663 )
+
+[node name="TrashPaper3" parent="YSort/Props/Garage" instance=ExtResource( 197 )]
+position = Vector2( -79.3999, 234.438 )
 
 [node name="Gas" parent="YSort/Props/Garage" instance=ExtResource( 166 )]
 position = Vector2( -76.7212, 205.061 )

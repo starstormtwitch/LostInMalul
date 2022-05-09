@@ -1,6 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/bathroom/bathroom_flower_pot_white.png" type="Texture" id=1]
+[ext_resource path="res://assets/Props/bathroom/bathroom_flower_pot_white.png" type="Texture" id=1]
+
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.1565

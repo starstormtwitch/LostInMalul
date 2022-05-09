@@ -8,7 +8,7 @@
 extents = Vector2( 12.2073, 17.6974 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 9.89654, 8.48658 )
+extents = Vector2( 20.7619, 8.48658 )
 
 [node name="TopBoxNextToStairs" type="StaticBody2D"]
 
@@ -26,7 +26,7 @@ position = Vector2( -15.4442, -18.9411 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2( 5.48805, -8.66994 )
+position = Vector2( 4.48805, -8.66994 )
 shape = SubResource( 2 )
 
 [node name="SittingMouse" parent="." instance=ExtResource( 2 )]

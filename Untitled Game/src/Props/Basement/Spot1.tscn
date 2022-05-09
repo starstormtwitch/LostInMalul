@@ -5,5 +5,5 @@
 [node name="Spot1" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -0.0176778, -2.19378 )
+position = Vector2( -0.0176778, 1.89413 )
 texture = ExtResource( 1 )
