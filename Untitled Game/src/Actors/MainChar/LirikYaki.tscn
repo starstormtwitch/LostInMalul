@@ -862,14 +862,14 @@ one_shot = true
 wait_time = 0.02
 autostart = true
 
-[node name="PlayerHurtArea" type="Area2D" parent="." groups=[
+[node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
 ]]
 position = Vector2( -2.65, -23.75 )
 collision_layer = 64
 collision_mask = 4096
 
-[node name="HurtBox" type="CollisionShape2D" parent="PlayerHurtArea"]
+[node name="HurtBoxArea" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2( 0.170054, 19.5725 )
 shape = SubResource( 121 )
 

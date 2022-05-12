@@ -4,6 +4,7 @@ class_name Actor
 # props of all objects in game
 const MAXVELOCITY = 500
 const _BOUNDARY_COLLISON_MASK_BIT = 0
+const HURTBOX_POSITION_OFFSET = 20
 
 var _velocity: = Vector2.ZERO
 var _acceleration = .2
@@ -17,6 +18,7 @@ var _groundPosition = self.position.y;
 
 #jump mechanic stuff
 var _lastYPostionOnGround = 0
+var _originalHurtBoxPosition: Vector2 = Vector2.ZERO
 
 var errorLogger = ErrorLogger.new()
 
@@ -24,28 +26,29 @@ signal health_changed
 signal died
 
 onready var kinematicSprite: KinematicBody2D = $KinematicSprite
+onready var hurtbox: Area2D = $HurtBox
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	errorLogger.assertNodeNotNull(kinematicSprite, "KinematicSprite", self)
+	errorLogger.assertNodeNotNull(hurtbox, "HurtBox", self)
+	_originalHurtBoxPosition = hurtbox.position
+
 
 func _physics_process(delta):
 	if(_inAir && _velocity.y > 0 && kinematicSprite.global_position.y >= _groundPosition):
-		_inAir = false;
-		self.global_position.y = _groundPosition;
-		kinematicSprite.global_position.y = _groundPosition;
+		_landOnGround()
 	if !_inAir:
 		_groundPosition = self.global_position.y
-
-
-func _handleGravity():
-	if kinematicSprite.position.y >= _lastYPostionOnGround:
-		kinematicSprite.position.y = _lastYPostionOnGround
 	else:
-		_velocity += _gravity
-		var gravityVelocity = _velocity
-		moveParent(gravityVelocity)
-		moveKinematicSprite(gravityVelocity)
+		hurtbox.global_position.y = kinematicSprite.global_position.y - HURTBOX_POSITION_OFFSET;
+
+
+func _landOnGround():
+	_inAir = false;
+	self.global_position.y = _groundPosition;
+	kinematicSprite.global_position.y = _groundPosition;
+	hurtbox.position = _originalHurtBoxPosition;
 
 
 #This is to move sprite only vertically, to make it look like its knockbacked.
@@ -56,8 +59,11 @@ func moveKinematicSprite(gravityVelocity: Vector2) -> Vector2:
 
 #this is to move whole node only horizonatally. 
 func moveParent(gravityVelocity: Vector2) -> Vector2:
-	var yVelocity = Vector2(gravityVelocity.x, 0) 
-	return self.move_and_slide(yVelocity)
+	if _inAir and self.is_on_wall():
+		_velocity.x *= -1
+		gravityVelocity.x *= -1
+	var xVelocity = Vector2(gravityVelocity.x, 0)
+	return self.move_and_slide(xVelocity)
 
 
 func setColliderStatusDisabled(disable: bool):
