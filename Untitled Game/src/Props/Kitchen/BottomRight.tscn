@@ -4,7 +4,7 @@
 [ext_resource path="res://src/Props/Kitchen/Plant.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 84.6701, 10.0138 )
+extents = Vector2( 84.6701, 10.7208 )
 
 [node name="Node2D" type="StaticBody2D"]
 
@@ -15,5 +15,5 @@ position = Vector2( 24.3494, 0.501973 )
 position = Vector2( -63.4191, -16.5563 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 11.5025, -10.447 )
+position = Vector2( 11.3257, -8.32567 )
 shape = SubResource( 1 )
