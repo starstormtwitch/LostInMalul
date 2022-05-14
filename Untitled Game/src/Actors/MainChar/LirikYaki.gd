@@ -19,7 +19,7 @@ const dropped_item = preload("res://src/InventoryItems/DroppedItemBase.tscn")
 
 const _JUMP_EVENT = "Jump"
 const _DASH_EVENT = "dodge"
-const _DODGE_SPEED = 5000
+const _DODGE_SPEED = 20000
 const _DODGE_ACCELERATION = .5
 const _LEFT_FACING_SCALE = -1.0
 const _RIGHT_FACING_SCALE = 1.0
