@@ -1,4 +1,4 @@
-[gd_scene load_steps=239 format=2]
+[gd_scene load_steps=243 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
@@ -199,6 +199,9 @@
 [ext_resource path="res://src/Props/Garage/TrashPaper3.tscn" type="PackedScene" id=197]
 [ext_resource path="res://src/Props/Garage/TrashPaper2.tscn" type="PackedScene" id=198]
 [ext_resource path="res://src/Props/bedroom/bedroom_socks_2.tscn" type="PackedScene" id=199]
+[ext_resource path="res://src/Helpers/Utilities/CRTShader.shader" type="Shader" id=200]
+[ext_resource path="res://assets/other/white.png" type="Texture" id=201]
+[ext_resource path="res://assets/other/new_crt.png" type="Texture" id=202]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3680.33, 10 )
@@ -339,6 +342,19 @@ outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
 font_data = ExtResource( 178 )
+
+[sub_resource type="ShaderMaterial" id=40]
+shader = ExtResource( 200 )
+shader_param/screen_width = 1024.0
+shader_param/screen_height = 600.0
+shader_param/BarrelPower = 1.1
+shader_param/color_bleeding = 2.0
+shader_param/bleeding_range_x = 2.0
+shader_param/bleeding_range_y = 2.0
+shader_param/lines_distance = 3.0
+shader_param/scan_size = 2.0
+shader_param/scanline_alpha = 0.9
+shader_param/lines_velocity = 40.0
 
 [node name="House" type="Node2D"]
 pause_mode = 2
@@ -1708,6 +1724,9 @@ __meta__ = {
 margin_right = 40.0
 margin_bottom = 40.0
 mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Cash" type="TextureRect" parent="GUI/PlayerGui"]
 margin_left = 51.0934
@@ -1796,6 +1815,35 @@ anchor_right = 0.5
 margin_left = -512.0
 margin_top = -576.0
 margin_right = 512.0
+
+[node name="CrtContainter" type="Control" parent="GUI"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CRTEffect" type="TextureRect" parent="GUI/CrtContainter"]
+material = SubResource( 40 )
+margin_right = 1024.0
+margin_bottom = 576.0
+texture = ExtResource( 201 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CRTFrame" type="TextureRect" parent="GUI/CrtContainter"]
+margin_left = -171.0
+margin_right = 853.0
+margin_bottom = 576.0
+grow_horizontal = 2
+rect_scale = Vector2( 1.335, 1 )
+texture = ExtResource( 202 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_Toilet_interactable_text_signal"]
