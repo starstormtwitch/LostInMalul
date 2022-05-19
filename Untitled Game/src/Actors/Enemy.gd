@@ -184,6 +184,10 @@ func get_target_direction() -> Vector2:
 		
 	return direction
 	
+func stun(duration: float):
+	_isStunned = true
+	_stunTimer.start(duration)
+	
 
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if !isDying:

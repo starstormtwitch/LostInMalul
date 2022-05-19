@@ -5,6 +5,7 @@ signal player_dodge
 signal super_charge_change(new_value)
 signal coin_changed
 signal item_pickup
+signal item_delete
 
 
 class_name LirikYaki
@@ -241,6 +242,13 @@ func add_item_to_inventory(item : Node2D):
 		itemDropper.spawnInstantiatedNode(newDroppedItem, itemDropper.global_position);
 	if(item != null):
 		InventoryItem = item;
+		
+func delete_item_from_inventory():
+	emit_signal("item_delete");
+	if(InventoryItem != null):
+		InventoryItem.queue_free()
+		InventoryItem = null; 
+	
 
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if _canTakeDamage:

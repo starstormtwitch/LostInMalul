@@ -1,12 +1,15 @@
 extends BaseLevelScript
 
 var basement_Key : PackedScene = preload("res://src/InventoryItems/BasementKey.tscn")
+var garage_Key : PackedScene = preload("res://src/InventoryItems/GarageKey.tscn")
 var plunger : PackedScene = preload("res://src/InventoryItems/Plunger.tscn")
 var screwdriver : PackedScene = preload("res://src/InventoryItems/Screwdriver.tscn")
 var socks : PackedScene = preload("res://src/InventoryItems/ComfySocks.tscn")
 var trophy : PackedScene = preload("res://src/InventoryItems/Trophy.tscn")
 var pillow : PackedScene = preload("res://src/InventoryItems/Pillow.tscn")
 var candle : PackedScene = preload("res://src/InventoryItems/Candle.tscn")
+const dropped_item = preload("res://src/InventoryItems/DroppedItemBase.tscn")
+const spawner = preload("res://src/Helpers/Spawning/Spawner.tscn")
 
 var _player : Actor
 const _MENU_EVENT: String = "Menu"
@@ -16,11 +19,17 @@ var _menuOpen: bool = false
 var _firstTimeEnteredKitchen: bool = false
 var _sendKitchenCrash: bool = false
 var _leftBasementDefeated: bool = false
+var _Garage2Defeated: bool = false
+var _Garage3Defeated: bool = false
+var _Garage4Defeated: bool = false
+var _Garage5Defeated: bool = false
 var _pickedUpBasementKey: bool = false
 var _toiletClogged: bool = true
 var _pickedUpPlunger: bool = false
 var _pickedUpTrophy: bool = false
 var _pickedUpSocks: bool = false
+var _pickedUpPillow: bool = false
+var _pickedUpCandle: bool = false
 var _pickedUpScrewdriver: bool = false
 var _rightBasementDefeated: bool = false
 var ratKing
@@ -50,20 +59,18 @@ func SetLevelCheckpointVariables(saveData):
 			pass;
 		"FirstEnemy":
 			_toiletClogged = false;
+			_pickedUpPlunger = true;
+			_firstTimeEnteredKitchen = true;
 			get_node("LevelBackground/Interactions/Bedroom/StreamRoomTooSoon/CollisionShape").set_deferred("disabled", true);
 			get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
 			get_node("LevelBackground/Interactions/Bathroom/Toilet/CollisionShape").set_deferred("disabled", true);
-			StartupPlayerInPosition(Vector2(2325, 275), 5)
+			get_node("YSort/Actors/GrannySpawner").spawnEnemy()
+			get_node("LevelBackground/Teleports/Streaming_LivingRoom_2WT/EndpointAlpha/ToBetaActivationArea").disabled = false;
+			get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointBeta/ToAlphaActivationArea").disabled = false;
+			StartupPlayerInPosition(Vector2(1700, 275), 5)
 		"Boss":
-			_toiletClogged = false;
-			get_node("LevelBackground/Interactions/Bedroom/StreamRoomTooSoon/CollisionShape").set_deferred("disabled", true);
-			get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
-			get_node("LevelBackground/Interactions/Bathroom/Toilet/CollisionShape").set_deferred("disabled", true);
-			_firstTimeEnteredKitchen = true
-			_pickedUpBasementKey = true
-			get_node("LevelBackground/Teleports/LivingRoom_Kitchen_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
-			get_node("LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
 			StartupPlayerInPosition(Vector2(175, 575), 5)
+			get_node("LevelBackground/Teleports/Kitchen_Basement_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", true);
 		_:
 			assert(false, "No matching checkpoint.")
 	
@@ -83,8 +90,8 @@ func _on_KitchenFirstTime_body_entered(body):
 	if body == _player && _firstTimeEnteredKitchen == false:
 		_firstTimeEnteredKitchen = true
 		_textBox.showText("I think I know what that is... but how is it alive?! \n Left click to attack")
-		get_node("LevelBackground/Teleports/LivingRoom_Kitchen_2WT/EndpointBeta/ToAlphaActivationArea").disabled = true;
-		get_node("LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointAlpha/ToBetaActivationArea").disabled = true;
+		get_node("LevelBackground/Teleports/Streaming_LivingRoom_2WT/EndpointAlpha/ToBetaActivationArea").disabled = true;
+		get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointBeta/ToAlphaActivationArea").disabled = true;
 		get_node("YSort/Actors/FirstRat").spawnEnemy()
 	pass # Replace with function body.
 
@@ -92,8 +99,7 @@ func _on_Toilet_interactable_text_signal(text):
 	if($GUI/PlayerGui/Inventory.InventoryItem != null && $GUI/PlayerGui/Inventory.InventoryItem.name == "Plunger"):
 		_sendKitchenCrash = true;
 		_textBox.showText("*Unclogs toilet with plunger and takes morning poop*")
-		$GUI/PlayerGui/Inventory.InventoryItem.queue_free()
-		$GUI/PlayerGui/Inventory.InventoryItem = null; 
+		_player.delete_item_from_inventory()
 		_toiletClogged = false;
 		get_node("LevelBackground/Interactions/Bedroom/StreamRoomTooSoon/CollisionShape").disabled = true;
 		get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").disabled = false;
@@ -109,9 +115,9 @@ func _on_TextBox_closed():
 
 func _on_FirstRat_AllEnemiesDefeated():
 	_textBox.showText("That was insane, it had to have come from the basement... and is that grandma's laugh I just heard?")
-	ratKing = get_node("YSort/Actors/GrannySpawner").spawnEnemy()
-	get_node("LevelBackground/Teleports/LivingRoom_Kitchen_2WT/EndpointBeta/ToAlphaActivationArea").disabled = false;
-	get_node("LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointAlpha/ToBetaActivationArea").disabled = false;
+	get_node("YSort/Actors/GrannySpawner").spawnEnemy()
+	get_node("LevelBackground/Teleports/Streaming_LivingRoom_2WT/EndpointAlpha/ToBetaActivationArea").disabled = false;
+	get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointBeta/ToAlphaActivationArea").disabled = false;
 
 func _on_BasementAttack_body_entered(body):
 	if (body == _player):
@@ -161,18 +167,21 @@ func _on_RatKingSpawner_AllEnemiesDefeated():
 func _on_LirikYaki_item_pickup(item : Node2D):
 	$GUI/PlayerGui/Inventory.InventoryItem = item;
 
+func _on_LirikYaki_item_delete():
+	$GUI/PlayerGui/Inventory.InventoryItem.queue_free()
+	$GUI/PlayerGui/Inventory.InventoryItem = null; 
+
 func _on_FoyerEndTable_interactable_text_signal(text):
 	_textBox.showText(text)
 	if(!_pickedUpBasementKey):
-		_player.add_item_to_inventory(basement_Key.instance())
+		_player.add_item_to_inventory(garage_Key.instance())
 		$LevelBackground/Interactions/Foyer/FoyerEndTable.interactableText = "Just a lamp."
 	pass # Replace with function body.
 
 func _on_BasementNeedKey_interactable_text_signal(text):
 	if($GUI/PlayerGui/Inventory.InventoryItem != null && $GUI/PlayerGui/Inventory.InventoryItem.name == "BasementKey"):
 		_textBox.showText("*Unlocks door with basement key*")
-		$GUI/PlayerGui/Inventory.InventoryItem.queue_free()
-		$GUI/PlayerGui/Inventory.InventoryItem = null; 
+		_player.delete_item_from_inventory()
 		get_node("LevelBackground/Interactions/Kitchen/BasementNeedKey/CollisionShape").disabled = true;
 		get_node("LevelBackground/Teleports/Kitchen_Basement_2WT/EndpointAlpha/ToBetaActivationArea").disabled = false;
 	else: 
@@ -219,20 +228,12 @@ func _on_Drawer_interactable_text_signal(text):
 	if($GUI/PlayerGui/Inventory.InventoryItem != null && $GUI/PlayerGui/Inventory.InventoryItem.name == "Screwdriver"):
 		_sendKitchenCrash = true;
 		_textBox.showText("*Wedges the screwdriver in the drawer and pops it open*"+ text)
-		$GUI/PlayerGui/Inventory.InventoryItem.queue_free()
-		$GUI/PlayerGui/Inventory.InventoryItem = null; 
+		_player.delete_item_from_inventory()
 		_pickedUpPillow = true
 		_player.add_item_to_inventory(pillow.instance())
-		$LevelBackground/Interactions/Kitchen/Drawer.disabled = true;
+		get_node("LevelBackground/Interactions/Kitchen/Drawer/CollisionShape").set_deferred("disabled", true);
 	else: 
 		_textBox.showText("The drawer is stuck closed, maybe a screwdriver would help... but where did I put one...")
-
-	_textBox.showText(text)
-	if(!_pickedUpPillow):
-		_pickedUpPillow = true
-		_player.add_item_to_inventory(pillow.instance())
-		$LevelBackground/Interactions/Office/OfficeCabinet.disabled = true;
-	pass # Replace with function body.
 
 
 func _on_TVStand_interactable_text_signal(text):
@@ -240,13 +241,83 @@ func _on_TVStand_interactable_text_signal(text):
 	if(!_pickedUpCandle):
 		_pickedUpCandle = true
 		_player.add_item_to_inventory(candle.instance())
-		$LevelBackground/Interactions/LivingRoom/TVStand.disabled = true;
+		get_node("LevelBackground/Interactions/LivingRoom/TVStand/CollisionShape").set_deferred("disabled", true);
 	pass # Replace with function body.
 
 
 func _on_GarageAttack_body_entered(body):
 	if (body == _player):
+		get_node("LevelBackground/Teleports/Foyer_Garage_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", true);
 		get_node("LevelBackground/Interactions/Garage/GarageAttack/GarageAttackCollision").set_deferred("disabled", true);
 		emit_signal("area_lock", true)
 		get_node("LevelBackground/CameraPositions/Garage_Fight").ManualTransition_Enter();
-		get_node("YSort/Actors/BasementL1").spawnEnemy()
+		get_node("YSort/Actors/Garage1").spawnEnemy()
+
+func _on_GrannySpawner_AllEnemiesDefeated():
+	_textBox.showText("Grandma has faded away, and you have a feeling she left something behind somewhere in the house...")
+	var slotItem = basement_Key.instance();
+	var itemDropper = spawner.instance();
+	itemDropper.global_position = get_node("YSort/Actors/GrannySpawner").global_position; 
+	get_parent().add_child(itemDropper);
+	var newDroppedItem = dropped_item.instance()
+	newDroppedItem.init(self, slotItem)
+	itemDropper.spawnInstantiatedNode(newDroppedItem, itemDropper.global_position);
+
+
+func _on_GarageNeedKey_interactable_text_signal(text):
+	if($GUI/PlayerGui/Inventory.InventoryItem != null && $GUI/PlayerGui/Inventory.InventoryItem.name == "GarageKey"):
+		_textBox.showText("*Unlocks door with garage key*")
+		$GUI/PlayerGui/Inventory.InventoryItem.queue_free()
+		$GUI/PlayerGui/Inventory.InventoryItem = null; 
+		get_node("LevelBackground/Interactions/Foyer/GarageNeedKey/CollisionShape").disabled = true;
+		get_node("LevelBackground/Teleports/Foyer_Garage_2WT/EndpointAlpha/ToBetaActivationArea").disabled = false;
+	else: 
+		_textBox.showText(text)
+
+
+func _on_Garage1_AllEnemiesDefeated():
+	get_node("YSort/Actors/BasementL2").spawnEnemy()
+	get_node("YSort/Actors/BasementL3").spawnEnemy()
+
+func _on_Garage2_AllEnemiesDefeated():
+	_Garage2Defeated = true;
+	if(_Garage3Defeated):
+		SpawnRound3Garage();
+
+func _on_Garage3_AllEnemiesDefeated():
+	_Garage4Defeated = true;
+	if(_Garage2Defeated):
+		SpawnRound3Garage();
+		
+func SpawnRound3Garage():
+	get_node("YSort/Actors/BasementL4").spawnEnemy()
+	get_node("YSort/Actors/BasementL5").spawnEnemy()
+
+func _on_Garage4_AllEnemiesDefeated():
+	_Garage4Defeated = true;
+	if(_Garage5Defeated):
+		AllDefeatedGarage();
+
+func _on_Garage5_AllEnemiesDefeated():
+	_Garage5Defeated = true;
+	if(_Garage4Defeated):
+		AllDefeatedGarage();
+	
+func AllDefeatedGarage():
+	get_node("YSort/Actors/BathroomSpawner").spawnEnemy()
+	get_node("YSort/Actors/BedroomSpawner").spawnEnemy()
+	get_node("YSort/Actors/OfficeSpawner").spawnEnemy()
+	get_node("YSort/Actors/LivingRoomSpawner").spawnEnemy()
+	get_node("YSort/Actors/KitchenSpawner").spawnEnemy()
+	get_node("YSort/Actors/FoyerSpawner").spawnEnemy()
+	get_node("YSort/Actors/GarageSpawner").spawnEnemy()
+	get_node("LevelBackground/Teleports/Foyer_Garage_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
+	emit_signal("area_lock", false)
+	get_node("LevelBackground/CameraPositions/Garage_Fight").ManualTransition_Exit();
+
+
+
+
+func _on_FoyerEnemies_AllEnemiesDefeated():
+	get_node("LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
+	get_node("LevelBackground/Interactions/Foyer/GarageNeedKey/CollisionShape").set_deferred("disabled", false);

@@ -309,7 +309,7 @@ extents = Vector2( 10, 19.0431 )
 extents = Vector2( 10, 57.1218 )
 
 [sub_resource type="RectangleShape2D" id=31]
-extents = Vector2( 71.645, 23.5995 )
+extents = Vector2( 18.1377, 11.4912 )
 
 [sub_resource type="RectangleShape2D" id=41]
 extents = Vector2( 21.5433, 10 )
@@ -726,7 +726,7 @@ shape = SubResource( 31 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Kitchen/BasementNeedKey"]
 visible = false
-position = Vector2( 47.489, 82.876 )
+position = Vector2( 47.1824, 72.7977 )
 texture = ExtResource( 25 )
 
 [node name="Drawer" parent="LevelBackground/Interactions/Kitchen" instance=ExtResource( 175 )]
@@ -797,7 +797,7 @@ shape = SubResource( 33 )
 
 [node name="FoyerEndTable" parent="LevelBackground/Interactions/Foyer" instance=ExtResource( 175 )]
 position = Vector2( -71.5336, -6.2363 )
-interactableText = "Aha, here's my basement key. Now to just get to the basement."
+interactableText = "Aha, here's my garage key. Now to just get to the garage."
 playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Foyer/FoyerEndTable"]
@@ -835,9 +835,26 @@ visible = false
 position = Vector2( 3351.5, 162.115 )
 texture = ExtResource( 25 )
 
+[node name="GarageNeedKey" parent="LevelBackground/Interactions/Foyer" instance=ExtResource( 175 )]
+position = Vector2( 648.684, -4.75555 )
+interactableText = "I am going to need to search and bring the garage key first."
+playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Foyer/GarageNeedKey"]
+position = Vector2( 2638.5, 187.895 )
+shape = SubResource( 31 )
+disabled = true
+
+[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Foyer/GarageNeedKey"]
+visible = false
+position = Vector2( 2639.01, 154.864 )
+texture = ExtResource( 25 )
+
 [node name="Garage" type="Node2D" parent="LevelBackground/Interactions"]
 
 [node name="WorkBench" parent="LevelBackground/Interactions/Garage" instance=ExtResource( 175 )]
+interactableText = "Found my trusty screwdriver"
+playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Garage/WorkBench"]
 position = Vector2( 3404.67, 490.095 )
@@ -968,6 +985,9 @@ position = Vector2( -38.2385, -7.78979 )
 [node name="EndpointBeta" parent="LevelBackground/Teleports/Kitchen_Foyer_2WT" index="1"]
 position = Vector2( 43.2727, 8.6192 )
 
+[node name="ToAlphaActivationArea" parent="LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointBeta" index="0"]
+disabled = true
+
 [node name="ToBetaTeleportPosition" parent="LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointBeta" index="1"]
 position = Vector2( 27.5566, 4.5 )
 
@@ -977,11 +997,17 @@ position = Vector2( 3287.69, 221.324 )
 [node name="EndpointAlpha" parent="LevelBackground/Teleports/Foyer_Garage_2WT" index="0"]
 position = Vector2( -0.502686, -35.5321 )
 
+[node name="ToBetaActivationArea" parent="LevelBackground/Teleports/Foyer_Garage_2WT/EndpointAlpha" index="0"]
+disabled = true
+
 [node name="ToAlphaTeleportPosition" parent="LevelBackground/Teleports/Foyer_Garage_2WT/EndpointAlpha" index="1"]
 position = Vector2( -18.3813, 31.5224 )
 
 [node name="EndpointBeta" parent="LevelBackground/Teleports/Foyer_Garage_2WT" index="1"]
 position = Vector2( -243.21, 261.416 )
+
+[node name="ToAlphaActivationArea" parent="LevelBackground/Teleports/Foyer_Garage_2WT/EndpointBeta" index="0"]
+position = Vector2( 0, -0.276001 )
 
 [node name="ToBetaTeleportPosition" parent="LevelBackground/Teleports/Foyer_Garage_2WT/EndpointBeta" index="1"]
 position = Vector2( -9.19067, 24.379 )
@@ -1008,7 +1034,7 @@ LevelName = "House"
 CheckpointName = "Boss"
 
 [node name="Checkpoint" parent="LevelBackground/Checkpoints" instance=ExtResource( 181 )]
-position = Vector2( 1236.32, 56.7737 )
+position = Vector2( 1851.89, 54.6264 )
 LevelName = "House"
 CheckpointName = "FirstEnemy"
 
@@ -1051,17 +1077,17 @@ automatic = false
 
 [node name="FoyerEnemies" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 3291.02, 205.969 )
+scale = Vector2( 0.98145, 1 )
 rect = Rect2( 0, 0, 200, 80 )
 duration_between_spawn = 1
-count = 8
+count = 4
 enemy = "SlimeFR"
-automatic = false
 
 [node name="Garage1" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 3386.98, 506.247 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
-count = 8
+count = 4
 enemy = "SlimeFR"
 automatic = false
 
@@ -1069,7 +1095,7 @@ automatic = false
 position = Vector2( 3403, 507.095 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
-count = 4
+count = 2
 enemy = "RatSoldier"
 automatic = false
 
@@ -1077,7 +1103,7 @@ automatic = false
 position = Vector2( 3420.32, 507.095 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
-count = 4
+count = 2
 enemy = "SlimeFR"
 automatic = false
 
@@ -1087,6 +1113,62 @@ rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
 count = 6
 enemy = "RatSoldier"
+automatic = false
+
+[node name="BathroomSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
+position = Vector2( 138.33, 213.343 )
+rect = Rect2( 0, 0, 200, 40 )
+duration_between_spawn = 30
+count = 30
+enemy = "SlimeFR"
+automatic = false
+
+[node name="BedroomSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
+position = Vector2( 804.047, 227.454 )
+rect = Rect2( 0, 0, 200, 40 )
+duration_between_spawn = 30
+count = 30
+enemy = "SlimeFR"
+automatic = false
+
+[node name="OfficeSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
+position = Vector2( 1333.39, 249.618 )
+rect = Rect2( 0, 0, 200, 40 )
+duration_between_spawn = 30
+count = 30
+enemy = "SlimeFR"
+automatic = false
+
+[node name="LivingRoomSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
+position = Vector2( 1945.52, 234.419 )
+rect = Rect2( 0, 0, 200, 40 )
+duration_between_spawn = 30
+count = 30
+enemy = "SlimeFR"
+automatic = false
+
+[node name="KitchenSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
+position = Vector2( 2769.82, 242.001 )
+rect = Rect2( 0, 0, 100, 40 )
+duration_between_spawn = 30
+count = 30
+enemy = "SlimeFR"
+automatic = false
+
+[node name="FoyerSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
+position = Vector2( 3338.42, 222.867 )
+rect = Rect2( 0, 0, 100, 40 )
+duration_between_spawn = 30
+count = 30
+enemy = "SlimeFR"
+automatic = false
+
+[node name="GarageSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
+position = Vector2( 3157.02, 527.801 )
+rect = Rect2( 0, 0, 100, 40 )
+duration_between_spawn = 30
+count = 30
+enemy = "SlimeFR"
 automatic = false
 
 [node name="Garage5" parent="YSort/Actors" instance=ExtResource( 176 )]
@@ -1860,6 +1942,9 @@ __meta__ = {
 margin_right = 40.0
 margin_bottom = 40.0
 mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Cash" type="TextureRect" parent="GUI/PlayerGui"]
 margin_left = 51.0934
@@ -1970,12 +2055,21 @@ margin_right = 512.0
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Foyer/FoyerEndTable" to="." method="_on_FoyerEndTable_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Foyer/FoyerShoeRack" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Foyer/FoyerCabinet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Foyer/GarageNeedKey" to="." method="_on_GarageNeedKey_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Garage/WorkBench" to="." method="_on_WorkBench_interactable_text_signal"]
 [connection signal="body_entered" from="LevelBackground/Interactions/Garage/GarageAttack" to="." method="_on_GarageAttack_body_entered"]
+[connection signal="item_delete" from="YSort/Actors/LirikYaki" to="." method="_on_LirikYaki_item_delete"]
 [connection signal="item_pickup" from="YSort/Actors/LirikYaki" to="." method="_on_LirikYaki_item_pickup"]
 [connection signal="AllEnemiesDefeated" from="YSort/Actors/FirstRat" to="." method="_on_FirstRat_AllEnemiesDefeated"]
 [connection signal="AllEnemiesDefeated" from="YSort/Actors/BasementL1" to="." method="_on_BasementL1_AllEnemiesDefeated"]
 [connection signal="AllEnemiesDefeated" from="YSort/Actors/BasementR1" to="." method="_on_BasementR1_AllEnemiesDefeated"]
+[connection signal="AllEnemiesDefeated" from="YSort/Actors/GrannySpawner" to="." method="_on_GrannySpawner_AllEnemiesDefeated"]
+[connection signal="AllEnemiesDefeated" from="YSort/Actors/FoyerEnemies" to="." method="_on_FoyerEnemies_AllEnemiesDefeated"]
+[connection signal="AllEnemiesDefeated" from="YSort/Actors/Garage1" to="." method="_on_Garage1_AllEnemiesDefeated"]
+[connection signal="AllEnemiesDefeated" from="YSort/Actors/Garage2" to="." method="_on_Garage2_AllEnemiesDefeated"]
+[connection signal="AllEnemiesDefeated" from="YSort/Actors/Garage3" to="." method="_on_Garage3_AllEnemiesDefeated"]
+[connection signal="AllEnemiesDefeated" from="YSort/Actors/Garage4" to="." method="_on_Garage4_AllEnemiesDefeated"]
+[connection signal="AllEnemiesDefeated" from="YSort/Actors/Garage5" to="." method="_on_Garage5_AllEnemiesDefeated"]
 [connection signal="AllEnemiesDefeated" from="YSort/Actors/RatKingSpawner" to="." method="_on_RatKingSpawner_AllEnemiesDefeated"]
 [connection signal="closed" from="GUI/TextBox" to="." method="_on_TextBox_closed"]
 

@@ -1,17 +1,22 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/SpriteSheets/granny.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/Granny.gd" type="Script" id=2]
+[ext_resource path="res://assets/actions/tile_0395.png" type="Texture" id=3]
+[ext_resource path="res://src/Helpers/Interacts/InteractPromptArea.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Helpers/Spawning/LootSpawner.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 13.2807
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 11.0003, 19.929 )
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 9.13568, 19.3788 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 10, 3.7961 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 14.7251, 27.8733 )
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemy",
@@ -52,12 +57,12 @@ shape = SubResource( 1 )
 modulate = Color( 0.431373, 1, 0, 1 )
 position = Vector2( -2.58759, -12.2141 )
 collision_layer = 4096
-collision_mask = 0
+collision_mask = 64
 
 [node name="AttackBox" type="CollisionShape2D" parent="Attack"]
-position = Vector2( -5.17335, -7.74058 )
-shape = SubResource( 2 )
-disabled = true
+position = Vector2( 3.69075, -5.16333 )
+scale = Vector2( 1.17998, 1.06107 )
+shape = SubResource( 5 )
 
 [node name="LootSpawner" parent="." instance=ExtResource( 6 )]
 visible = false
@@ -70,6 +75,21 @@ PowerupChance = 40
 position = Vector2( 1.68369, -2.38523 )
 shape = SubResource( 3 )
 
+[node name="InteractPromptArea" parent="." instance=ExtResource( 4 )]
+position = Vector2( -10.845, -22.5228 )
+interactableText = "You have nothing to give to grandma to make her comfy. "
+playerNodePath = NodePath("../Collider")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="InteractPromptArea"]
+position = Vector2( 11.9972, 1.506 )
+shape = SubResource( 4 )
+
+[node name="FPrompt" type="Sprite" parent="InteractPromptArea"]
+visible = false
+position = Vector2( 12.7928, -1.50315 )
+texture = ExtResource( 3 )
+
 [connection signal="area_entered" from="FlockBox" to="." method="_on_FlockBox_area_entered"]
 [connection signal="area_exited" from="FlockBox" to="." method="_on_FlockBox_area_exited"]
 [connection signal="area_entered" from="Attack" to="." method="_on_Attack_area_entered"]
+[connection signal="interactable_text_signal" from="InteractPromptArea" to="." method="_on_InteractPromptArea_interactable_text_signal"]
