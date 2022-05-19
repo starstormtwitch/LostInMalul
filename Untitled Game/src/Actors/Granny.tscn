@@ -16,7 +16,7 @@ extents = Vector2( 9.13568, 19.3788 )
 extents = Vector2( 10, 3.7961 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 14.7251, 27.8733 )
+extents = Vector2( 24.6202, 40.7245 )
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemy",

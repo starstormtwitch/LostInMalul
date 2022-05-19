@@ -40,7 +40,7 @@ func _attack_done():
 
 func _on_Attack_area_entered(area):
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
-		area.get_parent().take_damage(5, _velocity.normalized(), 200000)
+		area.get_parent().take_damage(5, _velocity.normalized(), 50000)
 
 func _on_InteractPromptArea_interactable_text_signal(text):
 	if(_player.InventoryItem != null && _player.InventoryItem.name == "ComfySocks"):
