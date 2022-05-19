@@ -258,10 +258,11 @@ func _on_GrannySpawner_AllEnemiesDefeated():
 	var slotItem = basement_Key.instance();
 	var itemDropper = spawner.instance();
 	itemDropper.global_position = get_node("YSort/Actors/GrannySpawner").global_position; 
-	get_parent().add_child(itemDropper);
-	var newDroppedItem = dropped_item.instance()
-	newDroppedItem.init(self, slotItem)
-	itemDropper.spawnInstantiatedNode(newDroppedItem, itemDropper.global_position);
+	if(get_parent() != null):
+		get_parent().add_child(itemDropper);
+		var newDroppedItem = dropped_item.instance()
+		newDroppedItem.init(self, slotItem)
+		itemDropper.spawnInstantiatedNode(newDroppedItem, itemDropper.global_position);
 
 
 func _on_GarageNeedKey_interactable_text_signal(text):

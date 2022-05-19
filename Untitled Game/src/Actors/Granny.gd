@@ -40,7 +40,7 @@ func _attack_done():
 
 func _on_Attack_area_entered(area):
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
-		area.get_parent().take_damage(5, _velocity.normalized(), 5000)
+		area.get_parent().take_damage(5, _velocity.normalized(), 200000)
 
 func _on_InteractPromptArea_interactable_text_signal(text):
 	if(_player.InventoryItem != null && _player.InventoryItem.name == "ComfySocks"):
@@ -74,7 +74,3 @@ func _on_InteractPromptArea_interactable_text_signal(text):
 func _on_itemTimer_cooldown_timeout():
 	_isStunned = false
 	self.modulate =  Color(0,0,0,0) 
-		
-func _on_Attack_body_entered(body):
-	if body.is_in_group("hurtbox") && body.get_parent() != null && body.get_parent().has_method("take_damage"):
-		body.get_parent().take_damage(5, _velocity.normalized(), 1000)
