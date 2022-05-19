@@ -92,4 +92,5 @@ texture = ExtResource( 3 )
 [connection signal="area_entered" from="FlockBox" to="." method="_on_FlockBox_area_entered"]
 [connection signal="area_exited" from="FlockBox" to="." method="_on_FlockBox_area_exited"]
 [connection signal="area_entered" from="Attack" to="." method="_on_Attack_area_entered"]
+[connection signal="body_entered" from="Attack" to="." method="_on_Attack_body_entered"]
 [connection signal="interactable_text_signal" from="InteractPromptArea" to="." method="_on_InteractPromptArea_interactable_text_signal"]
