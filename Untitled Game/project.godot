@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Levels/Base/BaseLevelScript.gd"
 }, {
+"base": "Control",
+"class": "CRTLayer",
+"language": "GDScript",
+"path": "res://src/Helpers/Utilities/Crt/CRTLayer.gd"
+}, {
 "base": "Camera2D",
 "class": "CustomCamera2D",
 "language": "GDScript",
@@ -191,6 +196,7 @@ _global_script_class_icons={
 "AudioFunctions": "",
 "BaseInput": "",
 "BaseLevelScript": "",
+"CRTLayer": "",
 "CustomCamera2D": "",
 "CustomDelimiter2D": "",
 "CustomParticles": "",
