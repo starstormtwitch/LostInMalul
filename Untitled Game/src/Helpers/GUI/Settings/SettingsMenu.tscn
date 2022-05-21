@@ -231,9 +231,9 @@ align = 1
 [node name="CRTCheckbox" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid" instance=ExtResource( 3 )]
 margin_left = 389.0
 margin_top = 57.0
-margin_right = 418.0
-margin_bottom = 97.0
-size_flags_vertical = 4
+margin_right = 405.0
+margin_bottom = 74.0
+size_flags_horizontal = 4
 align = 1
 setting_index = 12
 
