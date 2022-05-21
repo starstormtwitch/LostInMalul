@@ -45,7 +45,7 @@
 			"value": 100
 		},
 		"current": {
-			"value": 72
+			"value": 75
 		},
 		"logic": "res://src/Helpers/Settings/Display_ScreenShakeIntensity.gd"
 	},
@@ -118,5 +118,15 @@
 			"value": null
 		},
 		"logic": "res://src/Helpers/Settings/InputMapping.gd"
+	},
+	"12": {
+		"name": "CRT_Effect",
+		"default": {
+			"value": true
+		},
+		"current": {
+			"value": true
+		},
+		"logic": "res://src/Helpers/Settings/CRT_Effect.gd"
 	}
 }

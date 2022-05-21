@@ -34,3 +34,6 @@ static func GetScreenShakeAmplitude() -> float:
 
 static func GetScreenShakeIntensity() -> float:
 	return ggsManager.settings_data["4"]["current"]["value"]
+
+static func getCRTEnableValue() -> bool:
+	return ggsManager.settings_data["12"]["current"]["value"]
