@@ -195,7 +195,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 1.8 ),
+"times": PoolRealArray( 0.7, 1.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -287,7 +287,7 @@ position = Vector2( 3.32684, -34.9794 )
 texture = ExtResource( 3 )
 hframes = 13
 vframes = 4
-frame = 26
+frame = 39
 
 [node name="KinematicSprite" type="KinematicBody2D" parent="."]
 
@@ -298,7 +298,7 @@ texture = ExtResource( 1 )
 offset = Vector2( 0, -15 )
 hframes = 13
 vframes = 4
-frame = 26
+frame = 39
 
 [node name="PunchHitMarkerParticles" type="Particles2D" parent="."]
 material = SubResource( 1 )
@@ -374,7 +374,6 @@ collision_mask = 0
 [node name="AttackBox" type="CollisionShape2D" parent="Attack"]
 position = Vector2( 2.66387, 7.07219 )
 shape = SubResource( 30 )
-disabled = true
 
 [node name="LootDropper" parent="." instance=ExtResource( 6 )]
 position = Vector2( -6.62912, -19.4454 )

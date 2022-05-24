@@ -123,7 +123,6 @@ func die() -> void:
 	if($AnimationTree != null):
 		$AnimationTree.get("parameters/playback").travel("die")
 	emit_signal("died")
-	self.set_physics_process(false)
 	
 func dispose() -> void:
 	queue_free()

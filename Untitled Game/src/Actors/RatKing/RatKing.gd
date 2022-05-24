@@ -71,6 +71,7 @@ func _ready():
 		
 #disabling attacking for now
 func _physics_process(_delta: float) -> void:
+	if(!isDying):
 		_maxDistanceToStayFromPlayer = 120;
 		if(!_lightningPhase && _health < (_maxHealth / 2)):
 			_lightningPhase = true;
@@ -158,10 +159,14 @@ func _on_lightning_between_timeout():
 	_doNextStrike = true;
 
 func die() -> void:
-	var enemies = get_parent().is_in_group("enemy");
-	for enemy in enemies:
-		enemy.die()
 	.die()
+	var children = get_parent().get_children();
+	for child in children:
+		if(child.is_in_group("enemy")):
+			if("isDying" in child && !child.isDying):
+				child.die()
+		elif(child.is_in_group("EnemySpawner")):
+			child.queue_free()
 	
 
 func _on_FlockBox_area_entered(area):

@@ -35,7 +35,7 @@
 			"value": false
 		},
 		"current": {
-			"value": false
+			"value": true
 		},
 		"logic": "res://src/Helpers/Settings/Infinite Health.gd"
 	},
@@ -55,7 +55,7 @@
 			"value": 50
 		},
 		"current": {
-			"value": 0
+			"value": 46
 		},
 		"logic": "res://src/Helpers/Settings/Audio_MusicVolume.gd"
 	},
@@ -125,10 +125,10 @@
 			"value": false
 		},
 		"current": {
-			"value": false
+			"value": true
 		},
 		"logic": "res://src/Helpers/Settings/Infinite Damage.gd"
-  },
+	},
 	"13": {
 		"name": "CRT_Effect",
 		"default": {

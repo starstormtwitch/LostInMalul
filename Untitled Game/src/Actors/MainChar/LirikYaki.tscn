@@ -11,7 +11,7 @@
 [ext_resource path="res://assets/GUI/chargeBar/BarV8_ProgressBar.png" type="Texture" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 3.71682, 10.7663 )
+extents = Vector2( 3.71682, 8.11071 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Die"
@@ -774,7 +774,7 @@ graph_offset = Vector2( 194.241, -1.05561 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=120]
 
 [sub_resource type="RectangleShape2D" id=121]
-extents = Vector2( 12.4781, 4.90716 )
+extents = Vector2( 11.7115, 6.11188 )
 
 [sub_resource type="RectangleShape2D" id=122]
 extents = Vector2( 10.2453, 11.7708 )
@@ -869,8 +869,8 @@ position = Vector2( -2.65, -23.75 )
 collision_layer = 64
 collision_mask = 4096
 
-[node name="HurtBox" type="CollisionShape2D" parent="PlayerHurtArea"]
-position = Vector2( -0.0781035, 20.4948 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2( -0.724312, 19.2232 )
 shape = SubResource( 121 )
 
 [node name="attack" type="Area2D" parent="."]
