@@ -160,6 +160,19 @@ size_flags_horizontal = 6
 align = 1
 setting_index = 3
 
+[node name="Label7" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer"]
+margin_right = 185.0
+margin_bottom = 17.0
+text = "Infinite damage"
+
+[node name="InfiniteDamageCheckbox2" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer" instance=ExtResource( 1 )]
+margin_left = 232.0
+margin_right = 232.0
+margin_bottom = 17.0
+size_flags_horizontal = 6
+align = 1
+setting_index = 12
+
 [node name="Label2" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer"]
 margin_top = 25.0
 margin_right = 185.0

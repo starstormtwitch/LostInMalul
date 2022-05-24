@@ -308,7 +308,7 @@ texture = ExtResource( 3 )
 offset = Vector2( 0, -15 )
 hframes = 16
 vframes = 4
-frame = 32
+frame = 33
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attack = SubResource( 1 )

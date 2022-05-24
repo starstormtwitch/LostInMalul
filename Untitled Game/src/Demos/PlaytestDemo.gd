@@ -34,6 +34,9 @@ func _ready():
 		$GUI/BossGui/ProgressBar.value = (_boss._health / _boss._maxHealth) * 100;
 		$GUI/BossGui.visible = true;
 	$GUI/PlayerGui/Coins.text = String(_player.Coins);
+	
+	if(_infiniteDamage):
+		_player.damage = 20000
 	if(_infiniteHealth):
 		 _player._maxHealth = 20000
 		 _player._health = 20000

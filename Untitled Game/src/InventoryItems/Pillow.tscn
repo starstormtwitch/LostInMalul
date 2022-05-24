@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/items/Weeb_Pillow_.png" type="Texture" id=1]
+
+[node name="Pillow" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = -8.69316
+margin_top = -8.73426
+margin_right = 9.30684
+margin_bottom = 9.26574
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}

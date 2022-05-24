@@ -73,11 +73,11 @@ func _physics_process(_delta: float) -> void:
 		moveParent(_velocity)
 		moveKinematicSprite(_velocity)
 
-
 func _flipBoxesIfNecessary(velocity_x: float):
 	var rightHitBox: CollisionShape2D = get_node("Attack/AttackBox")
 	var sprite: Sprite = get_node("KinematicSprite/Sprite")
-	var shadow: Sprite = get_node("Shadow")
+	
+	var shadow: Sprite = get_node_or_null("Shadow")
 	if velocity_x > 0:
 		rightHitBox.position.x = abs(rightHitBox.position.x)
 		sprite.flip_h = true
@@ -144,14 +144,14 @@ func try_chase() -> Vector2:
 	return direction
 
 func _play_walk_animation_if_available(velocity_x: float):
-	if $AnimationTree != null and $AnimationPlayer != null and velocity_x != 0:
+	if  get_node_or_null("AnimationTree") != null and $AnimationPlayer != null and velocity_x != 0:
 		var animationPlayer: AnimationPlayer = $AnimationPlayer
 		if animationPlayer.has_animation("walk"):
 			$AnimationTree.get("parameters/playback").travel("walk")
 
 
 func _play_idle_animation_if_available(velocity_x: float):
-	if $AnimationTree != null and $AnimationPlayer != null:
+	if get_node_or_null("AnimationTree") != null and $AnimationPlayer != null:
 		var animationPlayer: AnimationPlayer = $AnimationPlayer
 		if animationPlayer.has_animation("idle"):
 			$AnimationTree.get("parameters/playback").travel("idle")
@@ -183,6 +183,10 @@ func get_target_direction() -> Vector2:
 		direction = look.cast_to.normalized()
 		
 	return direction
+	
+func stun(duration: float):
+	_isStunned = true
+	_stunTimer.start(duration)
 	
 
 func take_damage(damage: int, direction: Vector2, force: float) -> void:

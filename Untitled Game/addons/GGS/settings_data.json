@@ -42,10 +42,10 @@
 	"4": {
 		"name": "Display_ScreenShakeIntensity",
 		"default": {
-			"value": 100
+			"value": 73
 		},
 		"current": {
-			"value": 72
+			"value": 73
 		},
 		"logic": "res://src/Helpers/Settings/Display_ScreenShakeIntensity.gd"
 	},
@@ -118,5 +118,15 @@
 			"value": null
 		},
 		"logic": "res://src/Helpers/Settings/InputMapping.gd"
+	},
+	"12": {
+		"name": "Infinite Damage",
+		"default": {
+			"value": false
+		},
+		"current": {
+			"value": false
+		},
+		"logic": "res://src/Helpers/Settings/Infinite Damage.gd"
 	}
 }
