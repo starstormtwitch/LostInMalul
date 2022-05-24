@@ -862,7 +862,7 @@ one_shot = true
 wait_time = 0.02
 autostart = true
 
-[node name="PlayerHurtArea" type="Area2D" parent="." groups=[
+[node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
 ]]
 position = Vector2( -2.65, -23.75 )
