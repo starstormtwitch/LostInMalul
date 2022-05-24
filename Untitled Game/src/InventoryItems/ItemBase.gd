@@ -13,7 +13,6 @@ func _ready():
 	if(_player == null):
 		_player = LevelGlobals.GetPlayerActor()
 	assert(is_instance_valid(_player),"Player instance invalid")
-	assert($CenterContainer/ItemContainer.get_child_count() > 0, "DetachedItemBase has no item!")
 		
 func _on_InteractPromptArea_interactable_text_signal(text):
 	var items = $CenterContainer/ItemContainer.get_children();

@@ -5,9 +5,10 @@ const enemyDict = {
 	"Slime" : preload("res://src/Actors/Slime.tscn"),
 	"SlimeFR" : preload("res://src/Actors/SlimeFR.tscn"),
 	"RatSoldier" : preload("res://src/Actors/RatSoldier.tscn"),
-	"RatKing" : preload("res://src/Actors/RatKing/RatKing.tscn")
+	"RatKing" : preload("res://src/Actors/RatKing/RatKing.tscn"),
+	"Granny" : preload("res://src/Actors/Granny.tscn")
 }  
-export(String, "Slime", "SlimeFR", "RatSoldier", "RatKing") var enemy = "Slime"
+export(String, "Slime", "SlimeFR", "RatSoldier", "RatKing", "Granny") var enemy = "Slime"
 
 export(int) var level = 1
 export(bool) var automatic = true

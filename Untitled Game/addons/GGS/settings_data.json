@@ -42,7 +42,7 @@
 	"4": {
 		"name": "Display_ScreenShakeIntensity",
 		"default": {
-			"value": 100
+			"value": 73
 		},
 		"current": {
 			"value": 75
@@ -120,6 +120,16 @@
 		"logic": "res://src/Helpers/Settings/InputMapping.gd"
 	},
 	"12": {
+		"name": "Infinite Damage",
+		"default": {
+			"value": false
+		},
+		"current": {
+			"value": false
+		},
+		"logic": "res://src/Helpers/Settings/Infinite Damage.gd"
+  },
+	"13": {
 		"name": "CRT_Effect",
 		"default": {
 			"value": true

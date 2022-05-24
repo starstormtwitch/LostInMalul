@@ -12,7 +12,8 @@ const SETTINGS_SAVE_PATH: String = "user://settings_data.json"
 static func load_game_settings() -> GameSettings:
 	var settings = ggsManager.settings_data
 	var infiniteHealth = settings["3"]["current"]["value"]
-	return GameSettings.new(infiniteHealth)
+	var infiniteDamage = settings["12"]["current"]["value"]
+	return GameSettings.new(infiniteHealth, infiniteDamage)
 
 static func load_screen_shake_settings() -> ScreenShakeSettings:
 	var settings = ggsManager.settings_data
