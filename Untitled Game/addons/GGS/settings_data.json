@@ -45,7 +45,7 @@
 			"value": 73
 		},
 		"current": {
-			"value": 73
+			"value": 75
 		},
 		"logic": "res://src/Helpers/Settings/Display_ScreenShakeIntensity.gd"
 	},
@@ -128,5 +128,15 @@
 			"value": false
 		},
 		"logic": "res://src/Helpers/Settings/Infinite Damage.gd"
+  },
+	"13": {
+		"name": "CRT_Effect",
+		"default": {
+			"value": true
+		},
+		"current": {
+			"value": true
+		},
+		"logic": "res://src/Helpers/Settings/CRT_Effect.gd"
 	}
 }

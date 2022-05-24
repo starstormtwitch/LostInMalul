@@ -224,6 +224,22 @@ size_flags_horizontal = 4
 align = 1
 setting_index = 7
 
+[node name="CRTLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid"]
+margin_top = 57.0
+margin_right = 250.0
+margin_bottom = 74.0
+text = "CRT Effect"
+align = 1
+
+[node name="CRTCheckbox" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid" instance=ExtResource( 3 )]
+margin_left = 389.0
+margin_top = 57.0
+margin_right = 405.0
+margin_bottom = 74.0
+size_flags_horizontal = 4
+align = 1
+setting_index = 12
+
 [node name="CameraSectionLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid"]
 margin_top = 82.0
 margin_right = 250.0

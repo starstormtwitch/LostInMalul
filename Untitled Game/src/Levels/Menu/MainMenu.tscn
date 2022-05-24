@@ -113,7 +113,6 @@ playing = true
 position = Vector2( 322.514, 18.8457 )
 scale = Vector2( -1.5, 1.5 )
 frames = ExtResource( 4 )
-frame = 1
 speed_scale = 0.5
 playing = true
 

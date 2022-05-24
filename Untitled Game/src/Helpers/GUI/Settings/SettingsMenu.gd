@@ -17,6 +17,8 @@ onready var advancedButton: Button = $PanelContainer/GridContainer/VBoxContainer
 onready var buttonInUseDialog: AcceptDialog = $ButtonInUseDialog
 onready var confirmMappingResetDialog: ConfirmationDialog = $ConfirmationDialog
 
+onready var crtCheckbox: CheckButton = $PanelContainer/GridContainer/VBoxContainer/GraphicsGrid/CRTCheckbox
+
 enum ShowMenuEnum {GRAPHICS = 0, AUDIO = 1, CONTROLS = 2, ADVANCED = 3}
 onready var maxMenuOptionValue: int = ShowMenuEnum.size() - 1
 var currentMenu: int = 0
@@ -34,7 +36,8 @@ func _ready():
 	confirmMappingResetDialog.anchor_top = 0.5
 	confirmMappingResetDialog.anchor_bottom = 0.5
 	confirmMappingResetDialog.anchor_left = 0.5
-	confirmMappingResetDialog.anchor_right = 0.5	
+	confirmMappingResetDialog.anchor_right = 0.5
+
 
 func _input(ev):
 	if allowKeyboardNavigation && ev is InputEventKey:

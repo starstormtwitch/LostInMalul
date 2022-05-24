@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/Helpers/Camera/CustomDelimiter2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Levels/Basement.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://src/Helpers/Spawning/EnemySpawner.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Helpers/GUI/BossHealthBar.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/GUI/SuperBar.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/Helpers/Utilities/Crt/CRTLayer.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 644.725, 4.32855 )
@@ -85,6 +86,8 @@ duration_between_spawn = 5
 enemy = "RatSoldier"
 
 [node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="CRTLayer" parent="GUI" instance=ExtResource( 13 )]
 
 [node name="PauseScreenContainer" parent="GUI" instance=ExtResource( 9 )]
 margin_left = -23.6729
