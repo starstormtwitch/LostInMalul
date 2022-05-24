@@ -439,7 +439,7 @@ shape = SubResource( 10 )
 shape = SubResource( 11 )
 
 [node name="Basement_Delimeter" parent="LevelBackground/Boundaries/StreamingRoom" instance=ExtResource( 20 )]
-position = Vector2( -1255.14, 228.986 )
+position = Vector2( -1255.54, 235.732 )
 
 [node name="BottomRight" parent="LevelBackground/Boundaries/StreamingRoom/Basement_Delimeter" index="0"]
 position = Vector2( 1282.55, 293 )
@@ -1200,7 +1200,7 @@ automatic = false
 [node name="Bathroom" type="YSort" parent="YSort/Props"]
 
 [node name="plant_pot_blue" parent="YSort/Props/Bathroom" instance=ExtResource( 46 )]
-position = Vector2( 306.404, 271.943 )
+position = Vector2( 302.939, 291.157 )
 
 [node name="bin" parent="YSort/Props/Bathroom" instance=ExtResource( 30 )]
 position = Vector2( 379.571, 209.675 )
@@ -1269,10 +1269,10 @@ position = Vector2( 145.678, 100.488 )
 position = Vector2( 241.123, 117.38 )
 
 [node name="bathrub" parent="YSort/Props/Bathroom" instance=ExtResource( 44 )]
-position = Vector2( 237.47, 275.105 )
+position = Vector2( 236.21, 280.775 )
 
 [node name="cactus" parent="YSort/Props/Bathroom" instance=ExtResource( 45 )]
-position = Vector2( 170.058, 271.194 )
+position = Vector2( 170.215, 290.171 )
 
 [node name="Node2D" parent="YSort/Props/Bathroom" instance=ExtResource( 10 )]
 position = Vector2( 444, 232 )
@@ -1331,7 +1331,7 @@ position = Vector2( 715.911, 216.144 )
 position = Vector2( 1082.07, 211.062 )
 
 [node name="table" parent="YSort/Props/Bedroom" instance=ExtResource( 53 )]
-position = Vector2( 752.062, 281.88 )
+position = Vector2( 752.416, 282.941 )
 
 [node name="cat_tree_toys" parent="YSort/Props/Bedroom" instance=ExtResource( 50 )]
 position = Vector2( 1001.91, 180.292 )
@@ -1771,7 +1771,7 @@ position = Vector2( 137.489, 187.992 )
 position = Vector2( 271.5, 148 )
 
 [node name="Plant" parent="YSort/Props/Foyer" instance=ExtResource( 145 )]
-position = Vector2( 468.537, 299.097 )
+position = Vector2( 468.36, 299.804 )
 
 [node name="Couch" parent="YSort/Props/Foyer" instance=ExtResource( 146 )]
 position = Vector2( 270.809, 196.124 )

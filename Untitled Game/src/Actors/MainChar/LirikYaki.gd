@@ -20,7 +20,7 @@ const dropped_item = preload("res://src/InventoryItems/DroppedItemBase.tscn")
 
 const _JUMP_EVENT = "Jump"
 const _DASH_EVENT = "dodge"
-const _DODGE_SPEED = 80000
+const _DODGE_SPEED = 20000
 const _DODGE_ACCELERATION = .5
 const _LEFT_FACING_SCALE = -1.0
 const _RIGHT_FACING_SCALE = 1.0
@@ -112,6 +112,21 @@ func _physics_process(_delta: float) -> void:
 	._physics_process(_delta)
 	var direction = Vector2.ZERO
 	
+	_assign_player_color()
+	
+	if(!_attackManager.isAttacking and !_isDodging):
+		direction = evaluatePlayerInput()
+		_dodgeDirection = direction
+		
+	if _isDodging:
+		_velocity = getMovement(_dodgeDirection, _DODGE_SPEED, _DODGE_ACCELERATION)
+		_velocity = move_and_slide(_velocity)
+	elif !_beingHurt:
+		_velocity = getMovement(direction, _speed, _acceleration)
+		_velocity = move_and_slide(_velocity)
+
+
+func _assign_player_color():
 	var charColor = Color(1,1,1,1);
 	if _giveDamageModifier != 1 && _takeDamageModifier != 1:
 		var purple = Color(1.0, 0.0, 1.0)
@@ -127,21 +142,14 @@ func _physics_process(_delta: float) -> void:
 		charColor =  lightgreen
 	self.modulate = charColor;
 	if !_canTakeDamage:
-		#self.modulate =  Color(2,2,2,2) if Engine.get_frames_drawn() % 5 == 0 else Color(1,1,1,1)
-		#self.modulate =  Color(1.3,1.3,1.3,1.3) if Engine.get_frames_drawn() % 5 == 0 else Color(1,1,1,1)
 		self.modulate =  Color(.5,.2,.2,.3) if Engine.get_frames_drawn() % 5 == 0 else charColor
-		
-	if(!_attackManager.isAttacking and !_isDodging):
-		direction = evaluatePlayerInput()
-		_dodgeDirection = direction
-		
-	if _isDodging:
-		_velocity = getMovement(_dodgeDirection, _DODGE_SPEED, _DODGE_ACCELERATION)
-		_velocity = move_and_slide(_velocity)
-	elif !_beingHurt:
-		_velocity = getMovement(direction, _speed, _acceleration)
-		_velocity = move_and_slide(_velocity)
 
+
+func _check_if_cancel_dodge():
+	# means we collided with something
+	if is_on_ceiling() or is_on_floor() or is_on_wall():
+		print("cancel dodge")
+		_cancel_dash()
 
 func _on_invincibility_timeout() -> void:
 	self.modulate = Color(1,1,1,1)
@@ -393,6 +401,14 @@ func _start_dash():
 		ghostDurationTimer.start()
 		dashCooldownTimer.start()
 		dashDurationTimer.start()
+
+
+func _cancel_dash():
+	_isDodging = false
+	ghostIntervalTimer.stop()
+	ghostDurationTimer.stop()
+	dashDurationTimer.stop()
+	_velocity = Vector2.ZERO
 
 
 func getDodgeCooldownTime() -> float:
