@@ -141,7 +141,7 @@ func _on_Attack_area_entered(area):
 		var directionOfKnockback = Vector2.ZERO;
 		directionOfKnockback.x = _directionFacing;
 		directionOfKnockback.y = rand_range(-1,1);
-		area.get_parent().take_damage(1, directionOfKnockback, 100000)
+		area.get_parent().take_damage(2, directionOfKnockback, 100000)
 		
 		
 func _on_lightning_while_timeout():
@@ -156,7 +156,12 @@ func _on_ratspawn_cooldown_timeout():
 	
 func _on_lightning_between_timeout():
 	_doNextStrike = true;
-	
+
+func die() -> void:
+	var enemies = get_parent().is_in_group("enemy");
+	for enemy in enemies:
+		enemy.die()
+	.die()
 	
 
 func _on_FlockBox_area_entered(area):

@@ -44,6 +44,7 @@ var _damageUpTimer: Timer = Timer.new()
 var _attackResetTimer: Timer = Timer.new()
 var _takeDamageModifier = 1.0;
 var _giveDamageModifier = 1.0;
+var _damage = 1;
 var _hitDoneTimer: Timer = Timer.new()
 var _hitAnimationTime = 1
 var _currentSuperCharges = STARTING_SUPER_CHARGES
@@ -232,7 +233,7 @@ func add_trail() -> void:
 
 func add_item_to_inventory(item : Node2D):
 	emit_signal("item_pickup", item);
-	if(InventoryItem != null):
+	if(is_instance_valid(InventoryItem)):
 		var slotItem = InventoryItem;
 		var itemDropper = spawner.instance();
 		itemDropper.global_position = self.global_position; 
@@ -245,7 +246,7 @@ func add_item_to_inventory(item : Node2D):
 		
 func delete_item_from_inventory():
 	emit_signal("item_delete");
-	if(InventoryItem != null):
+	if(is_instance_valid(InventoryItem)):
 		InventoryItem.queue_free()
 		InventoryItem = null; 
 	
@@ -358,7 +359,7 @@ func _hurtAnimationFinished() -> void:
 func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
 		print("direction of hit: " + String(_directionFacing.x))
-		area.get_parent().take_damage(ceil(1 * _giveDamageModifier), _directionFacing, _attackManager.damageForce)
+		area.get_parent().take_damage(ceil(_damage * _giveDamageModifier), _directionFacing, _attackManager.damageForce)
 		_attackManager.didHitEnemy = true
 		area.get_parent().show_hit_marker(_attackManager.isLastAttackAKick)
 		_on_enemy_hit()

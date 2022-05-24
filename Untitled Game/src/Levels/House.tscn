@@ -548,8 +548,11 @@ AutomaticTransition = false
 position = Vector2( 554.974, 248.995 )
 
 [node name="Basement_Fight1" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
-position = Vector2( 225.881, 311.679 )
+position = Vector2( 226.155, 316.827 )
 AutomaticTransition = false
+
+[node name="BottomRight" parent="LevelBackground/CameraPositions/Basement_Fight1" index="0"]
+position = Vector2( 488.18, 274.565 )
 
 [node name="Interactions" type="Node" parent="LevelBackground"]
 
@@ -1070,7 +1073,7 @@ enemy = "SlimeFR"
 automatic = false
 
 [node name="GrannySpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
-position = Vector2( 2249.98, 195.928 )
+position = Vector2( 2065.89, 230.244 )
 only_off_screen = true
 enemy = "Granny"
 automatic = false
@@ -1118,6 +1121,7 @@ automatic = false
 [node name="BathroomSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 138.33, 213.343 )
 rect = Rect2( 0, 0, 200, 40 )
+only_off_screen = true
 duration_between_spawn = 30
 count = 30
 enemy = "SlimeFR"
@@ -1126,6 +1130,7 @@ automatic = false
 [node name="BedroomSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 804.047, 227.454 )
 rect = Rect2( 0, 0, 200, 40 )
+only_off_screen = true
 duration_between_spawn = 30
 count = 30
 enemy = "SlimeFR"
@@ -1134,14 +1139,16 @@ automatic = false
 [node name="OfficeSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 1333.39, 249.618 )
 rect = Rect2( 0, 0, 200, 40 )
+only_off_screen = true
 duration_between_spawn = 30
 count = 30
 enemy = "SlimeFR"
 automatic = false
 
 [node name="LivingRoomSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
-position = Vector2( 1945.52, 234.419 )
+position = Vector2( 1945.52, 233.375 )
 rect = Rect2( 0, 0, 200, 40 )
+only_off_screen = true
 duration_between_spawn = 30
 count = 30
 enemy = "SlimeFR"
@@ -1150,6 +1157,7 @@ automatic = false
 [node name="KitchenSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 2769.82, 242.001 )
 rect = Rect2( 0, 0, 100, 40 )
+only_off_screen = true
 duration_between_spawn = 30
 count = 30
 enemy = "SlimeFR"
@@ -1158,6 +1166,7 @@ automatic = false
 [node name="FoyerSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 3338.42, 222.867 )
 rect = Rect2( 0, 0, 100, 40 )
+only_off_screen = true
 duration_between_spawn = 30
 count = 30
 enemy = "SlimeFR"
@@ -1166,6 +1175,7 @@ automatic = false
 [node name="GarageSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 3157.02, 527.801 )
 rect = Rect2( 0, 0, 100, 40 )
+only_off_screen = true
 duration_between_spawn = 30
 count = 30
 enemy = "SlimeFR"
@@ -2082,6 +2092,7 @@ margin_right = 512.0
 [editable path="LevelBackground/CameraPositions/Kitchen_Delimiter"]
 [editable path="LevelBackground/CameraPositions/Foyer_Delimiter"]
 [editable path="LevelBackground/CameraPositions/Garage_Fight"]
+[editable path="LevelBackground/CameraPositions/Basement_Fight1"]
 [editable path="LevelBackground/Teleports/Bathroom_Bedroom_2WT"]
 [editable path="LevelBackground/Teleports/Bedroom_Streaming_2WT"]
 [editable path="LevelBackground/Teleports/Streaming_LivingRoom_2WT"]

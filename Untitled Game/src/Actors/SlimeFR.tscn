@@ -36,7 +36,7 @@ scale = 0.3
 anim_speed = 2.0
 
 [sub_resource type="Animation" id=5]
-length = 6.0
+length = 3.0
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -44,7 +44,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 5.8 ),
+"times": PoolRealArray( 2.8 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -271,12 +271,12 @@ extents = Vector2( 12.25, 6.66518 )
 radius = 27.0104
 
 [sub_resource type="RectangleShape2D" id=30]
-extents = Vector2( 21.3305, 6.49812 )
+extents = Vector2( 8.87926, 5.5252 )
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemy",
 ]]
-position = Vector2( -7.12134, -2.08167 )
+position = Vector2( -7.12134, -2.25845 )
 z_as_relative = false
 collision_layer = 1024
 collision_mask = 5
@@ -372,8 +372,7 @@ collision_layer = 4096
 collision_mask = 0
 
 [node name="AttackBox" type="CollisionShape2D" parent="Attack"]
-visible = false
-position = Vector2( 2.90011, 8.09588 )
+position = Vector2( 2.66387, 7.07219 )
 shape = SubResource( 30 )
 disabled = true
 

@@ -10,13 +10,13 @@
 radius = 13.2807
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 9.13568, 19.3788 )
+extents = Vector2( 7.53983, 10.4824 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 10, 3.7961 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 24.6202, 40.7245 )
+extents = Vector2( 33.4013, 31.5142 )
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemy",
@@ -60,7 +60,7 @@ collision_layer = 4096
 collision_mask = 64
 
 [node name="AttackBox" type="CollisionShape2D" parent="Attack"]
-position = Vector2( 3.69075, -5.16333 )
+position = Vector2( -2.68425, 1.71167 )
 scale = Vector2( 1.17998, 1.06107 )
 shape = SubResource( 5 )
 
@@ -81,7 +81,7 @@ interactableText = "You have nothing to give to grandma to make her comfy. "
 playerNodePath = NodePath("../Collider")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="InteractPromptArea"]
-position = Vector2( 11.9972, 1.506 )
+position = Vector2( 11.7463, 11.1979 )
 shape = SubResource( 4 )
 
 [node name="FPrompt" type="Sprite" parent="InteractPromptArea"]

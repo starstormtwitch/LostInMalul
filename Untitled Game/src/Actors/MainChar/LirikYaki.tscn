@@ -774,7 +774,7 @@ graph_offset = Vector2( 194.241, -1.05561 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=120]
 
 [sub_resource type="RectangleShape2D" id=121]
-extents = Vector2( 14.0577, 5.53115 )
+extents = Vector2( 12.4781, 4.90716 )
 
 [sub_resource type="RectangleShape2D" id=122]
 extents = Vector2( 10.2453, 11.7708 )
@@ -870,7 +870,7 @@ collision_layer = 64
 collision_mask = 4096
 
 [node name="HurtBox" type="CollisionShape2D" parent="PlayerHurtArea"]
-position = Vector2( 0.170054, 19.5725 )
+position = Vector2( -0.0781035, 20.4948 )
 shape = SubResource( 121 )
 
 [node name="attack" type="Area2D" parent="."]

@@ -18,6 +18,9 @@ anchor_bottom = 0.5
 theme = ExtResource( 5 )
 use_top_left = true
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 margin_left = -288.0

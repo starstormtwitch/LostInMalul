@@ -44,6 +44,8 @@ func _ready():
 	assert(is_instance_valid(_player),"Player instance invalid")
 	_player.connect("coin_changed", self, "_on_Player_coin_changed")
 	$GUI/PlayerGui/Coins.text = String(_player.Coins);
+	if(_infiniteDamage):
+		_player._damage = 2000
 	if(_infiniteHealth):
 		 _player._maxHealth = 20000
 		 _player._health = 20000
@@ -61,6 +63,7 @@ func SetLevelCheckpointVariables(saveData):
 			_toiletClogged = false;
 			_pickedUpPlunger = true;
 			_firstTimeEnteredKitchen = true;
+			_sendKitchenCrash = false;
 			get_node("LevelBackground/Interactions/Bedroom/StreamRoomTooSoon/CollisionShape").set_deferred("disabled", true);
 			get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
 			get_node("LevelBackground/Interactions/Bathroom/Toilet/CollisionShape").set_deferred("disabled", true);
@@ -174,6 +177,7 @@ func _on_LirikYaki_item_delete():
 func _on_FoyerEndTable_interactable_text_signal(text):
 	_textBox.showText(text)
 	if(!_pickedUpBasementKey):
+		_pickedUpBasementKey = true;
 		_player.add_item_to_inventory(garage_Key.instance())
 		$LevelBackground/Interactions/Foyer/FoyerEndTable.interactableText = "Just a lamp."
 	pass # Replace with function body.
@@ -202,7 +206,7 @@ func _on_WorkBench_interactable_text_signal(text):
 	if(!_pickedUpScrewdriver):
 		_pickedUpScrewdriver = true
 		_player.add_item_to_inventory(screwdriver.instance())
-		$LevelBackground/Interactions/Garage/Workbench.interactableText = "I have all these tools, and no idea how to use them."
+		$LevelBackground/Interactions/Garage/WorkBench.interactableText = "I have all these tools, and no idea how to use them."
 	pass # Replace with function body.
 
 
@@ -226,7 +230,6 @@ func _on_OfficeCabinet_interactable_text_signal(text):
 
 func _on_Drawer_interactable_text_signal(text):
 	if($GUI/PlayerGui/Inventory.InventoryItem != null && $GUI/PlayerGui/Inventory.InventoryItem.name == "Screwdriver"):
-		_sendKitchenCrash = true;
 		_textBox.showText("*Wedges the screwdriver in the drawer and pops it open*"+ text)
 		_player.delete_item_from_inventory()
 		_pickedUpPillow = true
@@ -254,15 +257,8 @@ func _on_GarageAttack_body_entered(body):
 		get_node("YSort/Actors/Garage1").spawnEnemy()
 
 func _on_GrannySpawner_AllEnemiesDefeated():
-	_textBox.showText("Grandma has faded away, and you have a feeling she left something behind somewhere in the house...")
-	var slotItem = basement_Key.instance();
-	var itemDropper = spawner.instance();
-	itemDropper.global_position = get_node("YSort/Actors/GrannySpawner").global_position; 
-	if(get_parent() != null):
-		get_parent().add_child(itemDropper);
-		var newDroppedItem = dropped_item.instance()
-		newDroppedItem.init(self, slotItem)
-		itemDropper.spawnInstantiatedNode(newDroppedItem, itemDropper.global_position);
+	_textBox.showText("Grandma has faded away comfy, and she left you a little something.")
+	_player.add_item_to_inventory(basement_Key.instance())
 
 
 func _on_GarageNeedKey_interactable_text_signal(text):
@@ -277,8 +273,8 @@ func _on_GarageNeedKey_interactable_text_signal(text):
 
 
 func _on_Garage1_AllEnemiesDefeated():
-	get_node("YSort/Actors/BasementL2").spawnEnemy()
-	get_node("YSort/Actors/BasementL3").spawnEnemy()
+	get_node("YSort/Actors/Garage2").spawnEnemy()
+	get_node("YSort/Actors/Garage3").spawnEnemy()
 
 func _on_Garage2_AllEnemiesDefeated():
 	_Garage2Defeated = true;
@@ -291,8 +287,8 @@ func _on_Garage3_AllEnemiesDefeated():
 		SpawnRound3Garage();
 		
 func SpawnRound3Garage():
-	get_node("YSort/Actors/BasementL4").spawnEnemy()
-	get_node("YSort/Actors/BasementL5").spawnEnemy()
+	get_node("YSort/Actors/Garage4").spawnEnemy()
+	get_node("YSort/Actors/Garage5").spawnEnemy()
 
 func _on_Garage4_AllEnemiesDefeated():
 	_Garage4Defeated = true;
