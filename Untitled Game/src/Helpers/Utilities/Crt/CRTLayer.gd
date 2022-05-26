@@ -17,7 +17,7 @@ func _hideCRT():
 
 
 func _showCRT():
-	crtFrame.visible = true
+	crtFrame.visible = false
 	crtEffect.visible = true
 
 
