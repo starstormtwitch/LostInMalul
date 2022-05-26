@@ -146,6 +146,7 @@ func playMissSounds(scene: Node):
 func gotHit():
 	isChargingSpecial = false
 	isAttacking = false
+	_hideChargeBar()
 	resetCombo()
 
 
