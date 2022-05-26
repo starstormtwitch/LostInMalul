@@ -238,7 +238,7 @@ margin_right = 405.0
 margin_bottom = 74.0
 size_flags_horizontal = 4
 align = 1
-setting_index = 12
+setting_index = 13
 
 [node name="CameraSectionLabel" type="Label" parent="PanelContainer/GridContainer/VBoxContainer/GraphicsGrid"]
 margin_top = 82.0
