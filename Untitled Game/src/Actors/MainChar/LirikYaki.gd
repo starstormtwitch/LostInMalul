@@ -87,6 +87,7 @@ func _ready() -> void:
 	_setup_timer(_attackResetTimer, "_on_combo_timeout")
 	_hitAnimationTime = $AnimationPlayer.get_animation("HurtRight").length
 	_setup_timer(_hitDoneTimer, "_hit_timer_done")
+	rightHitBox.disabled = true
 	
 	_invincibilityTimer.start(3)
 	
