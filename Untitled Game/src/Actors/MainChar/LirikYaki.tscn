@@ -134,7 +134,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.08, 0.16, 0.24 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 36, 37, 38, 39 ]
@@ -256,7 +256,8 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=9]
-length = 0.24
+length = 0.1875
+step = 0.0625
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -264,7 +265,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.16, 0.23 ),
+"times": PoolRealArray( 0.125, 0.18 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -281,7 +282,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.08, 0.16 ),
+"times": PoolRealArray( 0, 0.0625, 0.125 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 30, 31, 32 ]
@@ -300,7 +301,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=10]
-length = 0.24
+length = 0.2
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -308,7 +309,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.16, 0.23 ),
+"times": PoolRealArray( 0.125, 0.18 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -325,7 +326,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.08, 0.16 ),
+"times": PoolRealArray( 0, 0.0625, 0.125 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 33, 34, 35 ]
@@ -344,7 +345,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=11]
-length = 0.32
+length = 0.25
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -352,7 +353,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.24, 0.31 ),
+"times": PoolRealArray( 0.1875, 0.24 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -369,7 +370,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.08, 0.16, 0.24 ),
+"times": PoolRealArray( 0, 0.0625, 0.125, 0.1875 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 40, 41, 42, 43 ]
@@ -388,7 +389,8 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=12]
-length = 0.32
+length = 0.25
+step = 0.01
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -396,7 +398,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.24, 0.31 ),
+"times": PoolRealArray( 0.1875, 0.24 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -413,7 +415,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.08, 0.16, 0.24 ),
+"times": PoolRealArray( 0, 0.0625, 0.125, 0.1875 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 44, 45, 46, 47 ]
@@ -432,8 +434,9 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=13]
-length = 0.8
+length = 0.5
 loop = true
+step = 0.0625
 tracks/0/type = "value"
 tracks/0/path = NodePath("KinematicSprite/Sprite:frame")
 tracks/0/interp = 1
@@ -441,7 +444,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"times": PoolRealArray( 0, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.4375 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 10, 11, 12, 13, 14, 15, 16, 17 ]
@@ -798,7 +801,7 @@ position = Vector2( -0.893405, -23.5687 )
 texture = ExtResource( 6 )
 hframes = 10
 vframes = 9
-frame = 33
+frame = 44
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -2.67837, -2.47936 )
@@ -882,7 +885,6 @@ collision_mask = 0
 modulate = Color( 0.6, 0.298039, 1, 1 )
 position = Vector2( 12.5648, 7.92492 )
 shape = SubResource( 122 )
-disabled = true
 
 [node name="HadoukenSpawn" type="Position2D" parent="."]
 position = Vector2( 17.1474, -22.0971 )
