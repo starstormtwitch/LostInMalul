@@ -282,7 +282,7 @@ func _on_Garage2_AllEnemiesDefeated():
 		SpawnRound3Garage();
 
 func _on_Garage3_AllEnemiesDefeated():
-	_Garage4Defeated = true;
+	_Garage3Defeated = true;
 	if(_Garage2Defeated):
 		SpawnRound3Garage();
 		
