@@ -72,15 +72,6 @@ func _init(cameraTarget: Node, current: bool):
 
 func _ready():
 	self.set_process(true)
-	#self.get_tree().root.connect("size_changed", self, "_on_viewport_size_changed")
-
-func kek():
-	print("kek")
-
-#func _on_viewport_size_changed():
-#	print("Viewport y: " + str(self.get_viewport().size.y))
-#	print("viewport x: " + str(self.get_viewport().size.x))
-
 
 func _process(delta):
 	if _limit_smooth_active and !_is_shaking:

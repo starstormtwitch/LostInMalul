@@ -9,7 +9,9 @@
 [ext_resource path="res://src/Helpers/GUI/Theme/CustomSlider_ggs.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Helpers/GUI/Settings/Settings_ControlMappingContainer.tscn" type="PackedScene" id=8]
 
-[node name="SettingsMenu" type="CenterContainer"]
+[node name="SettingsMenu" type="CenterContainer" groups=[
+"Settings",
+]]
 pause_mode = 2
 anchor_left = 0.5
 anchor_top = 0.5
