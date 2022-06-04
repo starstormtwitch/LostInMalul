@@ -75,7 +75,7 @@ z_as_relative = false
 texture = ExtResource( 1 )
 offset = Vector2( 0, -15 )
 hframes = 17
-frame = 2
+frame = 13
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attack = SubResource( 1 )

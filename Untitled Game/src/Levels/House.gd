@@ -72,7 +72,8 @@ func SetLevelCheckpointVariables(saveData):
 			get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointBeta/ToAlphaActivationArea").disabled = false;
 			StartupPlayerInPosition(Vector2(1700, 275), 5)
 		"Boss":
-			StartupPlayerInPosition(Vector2(175, 575), 5)
+			get_node("LevelBackground/Boundaries/Basement/Lockout").set_deferred("disabled", false);
+			StartupPlayerInPosition(Vector2(200, 575), 5)
 			get_node("LevelBackground/Teleports/Kitchen_Basement_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", true);
 		_:
 			assert(false, "No matching checkpoint.")

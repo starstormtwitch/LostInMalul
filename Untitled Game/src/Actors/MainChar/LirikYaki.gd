@@ -324,7 +324,10 @@ func _check_for_events() -> bool:
 	if Input.is_action_just_released(AttackManager.SPECIAL_ATTACK_EVENT) and _attackManager.isChargingSpecial:
 		_summonHadouken()
 		return true
-	if checkForEvent(AttackManager.ATTACK1_EVENT):
+	elif checkForEvent(AttackManager.SPECIAL_ATTACK_EVENT):
+		checkForSuperCharges()
+		return true
+	elif checkForEvent(AttackManager.ATTACK1_EVENT):
 		_attackManager.doSideSwipeAttack(get_tree().get_current_scene())
 		return true
 	elif checkForEvent(AttackManager.ATTACK2_EVENT):
@@ -333,9 +336,6 @@ func _check_for_events() -> bool:
 	elif checkForEvent(_DASH_EVENT):
 		_start_dash()
 		return false
-	elif checkForEvent(AttackManager.SPECIAL_ATTACK_EVENT):
-		checkForSuperCharges()
-		return true
 	else:
 		return false
 
@@ -418,7 +418,7 @@ func getDodgeCooldownTime() -> float:
 func _on_ghostIntervalTimer_timeout():
 	var this_ghost: Ghost = ghost_scene.instance()
 	get_parent().add_child(this_ghost)
-	this_ghost.set_paramaters_for_ghost(sprite, sprite.global_position)
+	this_ghost.set_paramaters_for_ghost(sprite, self.global_position)
 
 
 func _on_DashDurationTimer_timeout():

@@ -34,7 +34,7 @@ func _physics_process(_delta: float) -> void:
 	if(dist_to_target < distanceToStartFadeIn) && dist_to_target > distanceFullyVisible:
 		self.modulate.a = (distanceToStartFadeIn - dist_to_target) / (distanceToStartFadeIn - distanceFullyVisible)
 	elif(dist_to_target <= distanceFullyVisible):
-		self.modulate.a = 1;
+		self.modulate.a = .8;
 	else:
 		self.modulate.a = 0
 	
@@ -45,7 +45,7 @@ func _attack_done():
 	_finishedAttack(2)
 
 func _on_Attack_area_entered(area):
-	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
+	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage") && _isStunned == false:
 		area.get_parent().take_damage(5, _velocity.normalized(), 50000)
 
 func _on_InteractPromptArea_interactable_text_signal(text):
@@ -89,5 +89,5 @@ func _on_InteractPromptArea_interactable_text_signal(text):
 		
 func _on_itemTimer_cooldown_timeout():
 	_isStunned = false
-	self.modulate =  Color(1,1,1,1) 
+	self.modulate =  Color(1,1,1,.8) 
 	$Attack.set_deferred("disabled", false);

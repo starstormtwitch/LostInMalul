@@ -308,7 +308,7 @@ texture = ExtResource( 3 )
 offset = Vector2( 0, -15 )
 hframes = 16
 vframes = 4
-frame = 33
+frame = 32
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attack = SubResource( 1 )
@@ -326,7 +326,6 @@ parameters/playback = SubResource( 28 )
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
 ]]
-visible = false
 position = Vector2( 4.22855, -23.0993 )
 collision_layer = 16384
 collision_mask = 16
