@@ -28,6 +28,10 @@ const _FOOTSTEP_PARTICLE_POSITION_OFFSET = -6
 const _MAX_SUPER_CHARGES = 3
 const _MIN_SUPER_CHARGES = 0
 const STARTING_SUPER_CHARGES = 1
+const NORMAL_HEALTH_VALUE = 10
+const NORMAL_DAMAGE_VALUE = 1
+const INFINITE_HEALTH_VALUE = 20000
+const INFINITE_DAMAGE_VALUE = 2000
 
 var InventoryItem : Node2D
 var Coins = 0
@@ -42,14 +46,18 @@ var _invincibilityTimer: Timer = Timer.new()
 var _defenseUpTimer: Timer = Timer.new()
 var _damageUpTimer: Timer = Timer.new()
 var _attackResetTimer: Timer = Timer.new()
-var _takeDamageModifier = 1.0;
-var _giveDamageModifier = 1.0;
-var _damage = 1;
+var _takeDamageModifier = 1.0
+var _giveDamageModifier = 1.0
+var _damage = NORMAL_DAMAGE_VALUE
 var _hitDoneTimer: Timer = Timer.new()
 var _hitAnimationTime = 1
 var _currentSuperCharges = STARTING_SUPER_CHARGES
 var _lastHadoukenDamagePercentage: float = 0.0
+var _setting: Settings = Settings.new()
 
+# debug settings
+var isInfiniteHealth = false
+var isInfiniteDamage = false
 
 onready var _attackManager: AttackManager
 onready var sprite: Sprite = $KinematicSprite/Sprite
@@ -88,13 +96,15 @@ func _ready() -> void:
 	_hitAnimationTime = $AnimationPlayer.get_animation("HurtRight").length
 	_setup_timer(_hitDoneTimer, "_hit_timer_done")
 	rightHitBox.disabled = true
+	_setting.connectNodeToDebugSettingsChangedSignal(self, "_getDebugSettings")
+	_getDebugSettings()
 	
 	_invincibilityTimer.start(3)
 	
 	_attackManager = AttackManager.new(_attackResetTimer,
 		chargeBar, animationTree)
 	
-	_maxHealth = 10
+	_maxHealth = NORMAL_HEALTH_VALUE
 	_health = _maxHealth
 	_acceleration = .1
 	_speed = 150
@@ -269,7 +279,10 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		_hitDoneTimer.start(_hitAnimationTime)
 		animationTree.get("parameters/playback").travel("Hurt")
 		_invincibilityTimer.start(3)
-		.take_damage(ceil(damage * _takeDamageModifier), direction, force)
+		var finalDamage = ceil(damage * _takeDamageModifier)
+		if isInfiniteHealth:
+			finalDamage = 0
+		.take_damage(finalDamage, direction, force)
 
 
 #timer callback for when hit animation should be done. Doing this cause 
@@ -368,7 +381,10 @@ func _hurtAnimationFinished() -> void:
 func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
 		print("direction of hit: " + String(_directionFacing.x))
-		area.get_parent().take_damage(ceil(_damage * _giveDamageModifier), _directionFacing, _attackManager.damageForce)
+		var finalDam = ceil(_damage * _giveDamageModifier)
+		if isInfiniteDamage:
+			finalDam = INFINITE_DAMAGE_VALUE
+		area.get_parent().take_damage(finalDam, _directionFacing, _attackManager.damageForce)
 		_attackManager.didHitEnemy = true
 		area.get_parent().show_hit_marker(_attackManager.isLastAttackAKick)
 		_on_enemy_hit()
@@ -436,3 +452,9 @@ func _on_GhostDurationTImer_timeout():
 
 func _on_ChargeIntervalTimer_timeout():
 	_attackManager.increaseChargeBar()
+
+
+func _getDebugSettings():
+	var gameSettings = Settings.load_game_settings()
+	isInfiniteDamage = gameSettings.infiniteDamage
+	isInfiniteHealth = gameSettings.infiniteHealth

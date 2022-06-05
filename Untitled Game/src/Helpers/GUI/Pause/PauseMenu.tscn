@@ -5,7 +5,9 @@
 [ext_resource path="res://src/Helpers/GUI/Pause/PauseMenu.gd" type="Script" id=3]
 [ext_resource path="res://assets/GUI/Theme/Themes/MenuTheme.tres" type="Theme" id=4]
 
-[node name="PauseMenu" type="CenterContainer"]
+[node name="PauseMenu" type="CenterContainer" groups=[
+"DebugSettings",
+]]
 pause_mode = 2
 anchor_left = 0.5
 anchor_top = 0.5
@@ -143,8 +145,8 @@ margin_bottom = 25.0
 
 [node name="GridContainer" type="GridContainer" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA"]
 margin_top = 29.0
-margin_right = 275.0
-margin_bottom = 196.0
+margin_right = 287.0
+margin_bottom = 221.0
 columns = 2
 
 [node name="Label" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer"]
@@ -232,6 +234,20 @@ step = 0.1
 align = 1
 setting_index = 2
 
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA"]
+margin_top = 21.0
+margin_right = 275.0
+margin_bottom = 25.0
+
+[node name="OkButton" type="Button" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA"]
+margin_left = 234.0
+margin_top = 29.0
+margin_right = 332.0
+margin_bottom = 53.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "     OK     "
+
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/DebugMenuContainer/HBoxContainer"]
 margin_left = 279.0
 margin_right = 283.0
@@ -284,6 +300,7 @@ text = "House"
 [connection signal="pressed" from="PanelContainer/ExitMenuContainer/ExitMenuResumeButton" to="." method="_on_ExitMenuResumeButton_pressed"]
 [connection signal="pressed" from="PanelContainer/ExitMenuContainer/ExitMenuSaveButton" to="." method="_on_ExitMenuSaveButton_pressed"]
 [connection signal="pressed" from="PanelContainer/ExitMenuContainer/ExitMenuExitButton" to="." method="_on_ExitMenuExitButton_pressed"]
+[connection signal="pressed" from="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/OkButton" to="." method="_on_OkButton_pressed"]
 [connection signal="pressed" from="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerB/LoadSlimeLevelButton" to="." method="_on_LoadSlimeLevelButton_pressed"]
 [connection signal="pressed" from="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerB/LoadRatLevelButton" to="." method="_on_LoadRatLevelButton_pressed"]
 [connection signal="pressed" from="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerB/LoadHouseLevelButton" to="." method="_on_LoadHouseLevelButton_pressed"]

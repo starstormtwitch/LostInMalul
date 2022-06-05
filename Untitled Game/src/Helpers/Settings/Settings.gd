@@ -25,8 +25,21 @@ func connectNodeToSettingsChangedSignal(node: Node, functionName: String):
 	
 	assert(settings.size() > 0, "No node in Settings group in parent tree. Needed to connect to signals.")
 	var _settings = settings[0]
-	print("Connecting settings signal to camera2d")
+	print("Connecting settings signal to " + node.get_name())
 	_settings.connect("settings_changed", node, functionName)
+
+
+func connectNodeToDebugSettingsChangedSignal(node: Node, functionName: String):
+	var parent = node.get_parent()
+	assert(parent, "No parent found. Needed to connect to signals.")
+	
+	var tree = parent.get_tree()
+	var settings = tree.get_nodes_in_group("DebugSettings")
+	
+	assert(settings.size() > 0, "No node in DebugSettings group in parent tree. Needed to connect to signals.")
+	var _settings = settings[0]
+	print("Connecting debug settings signal to" + node.get_name())
+	_settings.connect("debug_settings_changed", node, functionName)
 
 
 static func load_game_settings() -> GameSettings:

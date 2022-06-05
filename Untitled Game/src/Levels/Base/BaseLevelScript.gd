@@ -3,9 +3,8 @@ extends Node
 class_name BaseLevelScript
 
 var _cameraManager: CustomCamera2D
-var _infiniteHealth: bool;
-var _infiniteDamage: bool;
 var _enteredAreas: Array
+var settings
 
 func _ready():
 	_setup()
@@ -19,16 +18,6 @@ func _setup():
 	InitCameraManager()
 	RegisterTeleporterSignals()
 	RegisterDelimiterSignals()
-	_get_game_settings()
-	
-		
-func _get_game_settings():
-	var values = Settings.load_game_settings()
-	_set_game_settings(values.infiniteHealth, values.infiniteDamage)
-
-func _set_game_settings(infiniteHealth: bool, infiniteDamage: bool):
-	_infiniteHealth = infiniteHealth
-	_infiniteDamage = infiniteDamage
 
 func InitCameraManager() -> void:
 	_cameraManager = CustomCamera2D.new(LevelGlobals.GetPlayerActor(), true)
