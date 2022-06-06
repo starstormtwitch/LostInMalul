@@ -3,6 +3,7 @@ extends Control
 class_name TextBox
 
 onready var label = $MarginContainer/MarginContainer/Label
+onready var animationPlayer = $AnimationPlayer
 
 var isShowing = false
 
@@ -37,3 +38,4 @@ func showText(text: String):
 		self.visible = true
 		isShowing = true
 		label.text = text
+		animationPlayer.play("typewriter_effect")
