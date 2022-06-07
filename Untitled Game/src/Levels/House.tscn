@@ -310,16 +310,16 @@ extents = Vector2( 10, 57.1218 )
 extents = Vector2( 71.645, 23.5995 )
 
 [sub_resource type="RectangleShape2D" id=32]
-extents = Vector2( 23.5465, 58.5441 )
+extents = Vector2( 23.5465, 27.1247 )
 
 [sub_resource type="RectangleShape2D" id=33]
-extents = Vector2( 19.2661, 65.8966 )
+extents = Vector2( 19.2661, 19.2734 )
 
 [sub_resource type="RectangleShape2D" id=34]
 extents = Vector2( 15.3081, 62.7607 )
 
 [sub_resource type="RectangleShape2D" id=35]
-extents = Vector2( 16.8516, 15.5451 )
+extents = Vector2( 16.8516, 61.7289 )
 
 [sub_resource type="RectangleShape2D" id=36]
 extents = Vector2( 22.1809, 10 )
