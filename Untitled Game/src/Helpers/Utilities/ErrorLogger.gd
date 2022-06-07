@@ -11,3 +11,9 @@ func _ready():
 func assertNodeNotNull(node: Node, nameOfNode: String, parentNode: Node):
 	var errorMessage = "Make sure " + nameOfNode + " exists in " + parentNode.get_name()
 	assert(node, errorMessage)
+
+
+func assertNodeNotNullNonCrashing(node: Node, nameOfNode: String, parentNode: Node):
+	var errorMessage = "Make sure " + nameOfNode + " exists in " + parentNode.get_name()
+	if !node:
+		printerr(errorMessage)

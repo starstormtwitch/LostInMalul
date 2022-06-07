@@ -59,6 +59,7 @@ func CreatePlayerSave(player : Actor) -> Dictionary:
 
 func SetCheckpoint(level, checkpointKey):
 	assert(_player_data != null, "Player data is null!")
+	_player_data = CreatePlayerSave(_player)
 	_player_data.level = level;
 	_player_data.checkpoint = checkpointKey;
 	save_game();
