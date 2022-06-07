@@ -57,10 +57,6 @@ func _ready():
 	_lightningWhileTimer.one_shot = true
 	add_child(_lightningWhileTimer)
 	
-	_lightningWhileTimer.connect("timeout",self,"_on_lightning_while_timeout") 
-	_lightningWhileTimer.one_shot = true
-	add_child(_lightningWhileTimer)
-	
 	_lightningBetweenStrike.connect("timeout",self,"_on_lightning_between_timeout") 
 	_lightningBetweenStrike.one_shot = true
 	add_child(_lightningBetweenStrike)

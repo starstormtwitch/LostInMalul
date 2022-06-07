@@ -68,6 +68,15 @@ PowerupChance = 40
 position = Vector2( 1.68369, -2.38523 )
 shape = SubResource( 3 )
 
+[node name="KinematicSprite" type="KinematicBody2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="KinematicSprite"]
+position = Vector2( 1.58637, -18.9149 )
+scale = Vector2( 0.3, 0.3 )
+z_as_relative = false
+texture = ExtResource( 1 )
+offset = Vector2( 0, -15 )
+
 [node name="InteractPromptArea" parent="." instance=ExtResource( 4 )]
 position = Vector2( -10.845, -22.5228 )
 interactableText = "You have nothing to give to grandma to make her comfy. "
@@ -95,17 +104,6 @@ position = Vector2( -3.31485, 11.8561 )
 shape = SubResource( 5 )
 disabled = true
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-
-[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
-position = Vector2( 1.58637, -18.9149 )
-scale = Vector2( 0.3, 0.3 )
-z_as_relative = false
-texture = ExtResource( 1 )
-offset = Vector2( 0, -15 )
-
-[connection signal="area_entered" from="FlockBox" to="." method="_on_FlockBox_area_entered"]
-[connection signal="area_exited" from="FlockBox" to="." method="_on_FlockBox_area_exited"]
 [connection signal="area_entered" from="Attack" to="." method="_on_Attack_area_entered"]
 [connection signal="body_entered" from="Attack" to="." method="_on_Attack_body_entered"]
 [connection signal="interactable_text_signal" from="InteractPromptArea" to="." method="_on_InteractPromptArea_interactable_text_signal"]

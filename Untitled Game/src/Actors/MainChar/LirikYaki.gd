@@ -16,6 +16,9 @@ const hadouken_scene = preload("res://src/Actors/MainChar/HadoukenBlast.tscn")
 const ghost_scene = preload("res://src/Helpers/Ghost.tscn")
 const spawner = preload("res://src/Helpers/Spawning/Spawner.tscn")
 const dropped_item = preload("res://src/InventoryItems/DroppedItemBase.tscn")
+const footstep = preload("res://assets/audio/footsteps_sfx.wav")
+const woosh = preload("res://assets/audio/HitAudio/miss_sfx.wav")
+const deathSound = preload("res://assets/audio/main_char_death_sfx.wav")
 
 
 const _JUMP_EVENT = "Jump"
@@ -55,9 +58,6 @@ onready var _attackManager: AttackManager
 onready var sprite: Sprite = $KinematicSprite/Sprite
 onready var shadow: Sprite = $Shadow
 onready var rightHitBox: CollisionShape2D = $attack/sideSwipeRight
-onready var wooshAudioPlayer: AudioStreamPlayer = $WooshAudioPlayer
-onready var footstepAudioPlayer: AudioStreamPlayer = $FootStepAudioStreamPlayer
-onready var shoryukenAudioPlayer: AudioStreamPlayer = $ShoryukenStreamPlayer
 onready var hadoukenSpawn: Position2D = $HadoukenSpawn
 onready var ghostIntervalTimer: Timer = $GhostIntervalTimer
 onready var ghostDurationTimer: Timer = $GhostDurationTImer
@@ -173,7 +173,7 @@ func _on_combo_timeout() -> void:
 # call function when foot hits floor. Play sounds and smoke particle
 func footstepCallback():
 	_generate_smoke_particle()
-	_play_footstep_sound()
+	SoundPlayer.playSound(get_tree().get_current_scene(), footstep, -15)
 
 
 #Animation callback to generate smoke particle when feet touch the ground
@@ -187,10 +187,6 @@ func _generate_smoke_particle():
 		smoke.flipSide(false)
 	elif _directionFacing.x < 0:
 		smoke.flipSide(true)
-
-
-func _play_footstep_sound():
-	footstepAudioPlayer.play()
 
 
 func collectCoin():
@@ -356,7 +352,7 @@ func _finishedAttack() -> void:
 
 func checkIfWePlayWooshSFX():
 	if !_attackManager.didHitEnemy:
-		wooshAudioPlayer.play()
+		SoundPlayer.playSound(get_tree().get_current_scene(), woosh, -4)
 
 
 # callback function for when hurt animation is done
@@ -376,6 +372,9 @@ func _on_attack_area_entered(area: Area2D) -> void:
 func _on_enemy_hit():
 	_attackManager.playHitSounds(get_tree().get_current_scene())
 	emit_signal("player_hit_enemy")
+
+func playDeathRattle():
+	SoundPlayer.playSound(get_tree().get_current_scene(), deathSound, -4)
 
 
 func sendPlayerDeadSignal():

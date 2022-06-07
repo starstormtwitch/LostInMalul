@@ -89,5 +89,5 @@ func _on_InteractPromptArea_interactable_text_signal(text):
 		
 func _on_itemTimer_cooldown_timeout():
 	_isStunned = false
-	self.modulate =  Color(1,1,1,.8) 
+	self.modulate =  Color(1,1,1,1) 
 	$Attack.set_deferred("disabled", false);

@@ -1,10 +1,11 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://assets/SpriteSheets/main_char/mc_shadow.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/RatKing/RatKing.gd" type="Script" id=2]
 [ext_resource path="res://assets/SpriteSheets/ratking/rat_king_spritesheet.png" type="Texture" id=3]
 [ext_resource path="res://src/Helpers/CustomParticles.gd" type="Script" id=4]
 [ext_resource path="res://assets/SpriteSheets/hit markers/Effect 3 - Sprite Sheet.png" type="Texture" id=5]
+[ext_resource path="res://assets/SpriteSheets/hit markers/hits2-Sheet.png" type="Texture" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "attack"
@@ -283,7 +284,22 @@ flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
+scale = 0.4
 anim_speed = 1.0
+
+[sub_resource type="CanvasItemMaterial" id=35]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticlesMaterial" id=36]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.3
+anim_speed = 2.0
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemy",
@@ -369,9 +385,9 @@ position = Vector2( -1.54915, 14.6626 )
 shape = SubResource( 32 )
 disabled = true
 
-[node name="HitMarkerParticles" type="Particles2D" parent="."]
+[node name="PunchHitMarkerParticles" type="Particles2D" parent="."]
 material = SubResource( 33 )
-position = Vector2( -1.64196, -40.401 )
+position = Vector2( 0.400072, -26.2737 )
 emitting = false
 amount = 1
 lifetime = 0.5
@@ -379,6 +395,15 @@ one_shot = true
 process_material = SubResource( 34 )
 texture = ExtResource( 5 )
 script = ExtResource( 4 )
+
+[node name="KickHitMarkerParticles" type="Particles2D" parent="."]
+material = SubResource( 35 )
+position = Vector2( 0.643737, -19.7147 )
+emitting = false
+amount = 1
+one_shot = true
+process_material = SubResource( 36 )
+texture = ExtResource( 6 )
 
 [connection signal="area_entered" from="FlockBox" to="." method="_on_FlockBox_area_entered"]
 [connection signal="area_exited" from="FlockBox" to="." method="_on_FlockBox_area_exited"]
