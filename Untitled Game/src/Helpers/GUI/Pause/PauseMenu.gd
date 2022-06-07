@@ -3,6 +3,7 @@ extends Node
 class_name PauseMenu
 
 signal show_settings
+signal debug_settings_changed
 
 onready var pauseMenuContainer: VBoxContainer = $PanelContainer/PauseMenuContainer
 onready var exitMenuContainer: VBoxContainer = $PanelContainer/ExitMenuContainer
@@ -78,3 +79,7 @@ func _on_ExitMenuSaveButton_pressed():
 func _on_ExitMenuExitButton_pressed():
 	get_tree().quit()
 
+
+func _on_OkButton_pressed():
+	emit_signal("debug_settings_changed")
+	_resume()

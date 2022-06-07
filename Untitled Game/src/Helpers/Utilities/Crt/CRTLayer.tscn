@@ -39,6 +39,7 @@ __meta__ = {
 }
 
 [node name="CRTFrame" type="TextureRect" parent="."]
+visible = false
 margin_left = -171.0
 margin_right = 860.0
 margin_bottom = 576.0

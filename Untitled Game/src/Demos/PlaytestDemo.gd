@@ -35,15 +35,10 @@ func _ready():
 		$GUI/BossGui.visible = true;
 	$GUI/PlayerGui/Coins.text = String(_player.Coins);
 	
-	if(_infiniteDamage):
-		_player.damage = 20000
-	if(_infiniteHealth):
-		 _player._maxHealth = 20000
-		 _player._health = 20000
-	else:
-		_player.connect("health_changed", self, "_on_Player_health_changed")
-		_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)
-	
+	_player.connect("health_changed", self, "_on_Player_health_changed")
+	_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)
+
+
 func _on_Player_coin_changed():
 	$GUI/PlayerGui/Coins.text = String(_player.Coins);
 	

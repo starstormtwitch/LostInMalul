@@ -153,6 +153,7 @@ func _resetAllSounds():
 func gotHit():
 	isChargingSpecial = false
 	isAttacking = false
+	_hideChargeBar()
 	resetCombo()
 
 

@@ -44,14 +44,8 @@ func _ready():
 	assert(is_instance_valid(_player),"Player instance invalid")
 	_player.connect("coin_changed", self, "_on_Player_coin_changed")
 	$GUI/PlayerGui/Coins.text = String(_player.Coins);
-	if(_infiniteDamage):
-		_player._damage = 2000
-	if(_infiniteHealth):
-		 _player._maxHealth = 20000
-		 _player._health = 20000
-	else:
-		_player.connect("health_changed", self, "_on_Player_health_changed")
-		_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)
+	_player.connect("health_changed", self, "_on_Player_health_changed")
+	_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)
 	SetLevelCheckpointVariables(LevelGlobals.GetPlayerSaveData())
 	
 func SetLevelCheckpointVariables(saveData):
@@ -283,7 +277,7 @@ func _on_Garage2_AllEnemiesDefeated():
 		SpawnRound3Garage();
 
 func _on_Garage3_AllEnemiesDefeated():
-	_Garage4Defeated = true;
+	_Garage3Defeated = true;
 	if(_Garage2Defeated):
 		SpawnRound3Garage();
 		
