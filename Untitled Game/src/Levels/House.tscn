@@ -1,4 +1,4 @@
-[gd_scene load_steps=242 format=2]
+[gd_scene load_steps=243 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
@@ -304,7 +304,7 @@ extents = Vector2( 22.6563, 31.9913 )
 extents = Vector2( 10, 19.0431 )
 
 [sub_resource type="RectangleShape2D" id=30]
-extents = Vector2( 10, 57.1218 )
+extents = Vector2( 10, 23.0021 )
 
 [sub_resource type="RectangleShape2D" id=31]
 extents = Vector2( 20.698, 60.8375 )
@@ -325,7 +325,9 @@ extents = Vector2( 16.8516, 61.7289 )
 extents = Vector2( 22.1809, 10 )
 
 [sub_resource type="RectangleShape2D" id=37]
-extents = Vector2( 447.481, 28.3017 )
+extents = Vector2( 23.2275, 19.9813 )
+
+[sub_resource type="RectangleShape2D" id=42]
 
 [sub_resource type="RectangleShape2D" id=38]
 extents = Vector2( 11.5413, 61.6581 )
@@ -855,6 +857,7 @@ playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Garage/WorkBench"]
 position = Vector2( 3404.67, 490.095 )
+shape = SubResource( 42 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Garage/WorkBench"]
 visible = false
@@ -1841,7 +1844,7 @@ position = Vector2( 46.4314, 94.0535 )
 position = Vector2( 14.8306, 134.412 )
 
 [node name="ToolWorkshop" parent="YSort/Props/Garage" instance=ExtResource( 159 )]
-position = Vector2( 450.356, 137.402 )
+position = Vector2( 450.36, 137.358 )
 
 [node name="BoxesNextToDoor" parent="YSort/Props/Garage" instance=ExtResource( 163 )]
 position = Vector2( 44.4995, 138.674 )
@@ -1862,7 +1865,7 @@ position = Vector2( 167.189, 91.1028 )
 position = Vector2( 443.662, 84.0597 )
 
 [node name="SmallTools" parent="YSort/Props/Garage" instance=ExtResource( 157 )]
-position = Vector2( 396.718, 137.162 )
+position = Vector2( 396.72, 137.154 )
 
 [node name="Tires" parent="YSort/Props/Garage" instance=ExtResource( 156 )]
 position = Vector2( 193.218, 137.154 )
