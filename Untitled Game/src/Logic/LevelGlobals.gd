@@ -47,6 +47,15 @@ func save_game():
 	saveFile.store_var(_player_data);
 	saveFile.close();
 	
+func NewPlayerSave() -> Dictionary:
+	var playerSaveData = {
+		"coins" : 0,
+		"checkpoint" : start_point,
+		"level" : start_level
+		};
+	
+	return playerSaveData;
+	
 func CreatePlayerSave(player : Actor) -> Dictionary:
 	var playerSaveData = {
 		"coins" : player.Coins,
@@ -65,6 +74,7 @@ func SetCheckpoint(level, checkpointKey):
 	save_game();
 
 func new_game():
+	_player_data = NewPlayerSave();
 	var gameScene = LevelGlobals.GetLevelScene(start_level);
 	assert(gameScene != null, "Unknown level!");
 	get_tree().change_scene_to(gameScene);

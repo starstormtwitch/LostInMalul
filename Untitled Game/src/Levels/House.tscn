@@ -307,7 +307,7 @@ extents = Vector2( 10, 19.0431 )
 extents = Vector2( 10, 57.1218 )
 
 [sub_resource type="RectangleShape2D" id=31]
-extents = Vector2( 71.645, 23.5995 )
+extents = Vector2( 20.698, 60.8375 )
 
 [sub_resource type="RectangleShape2D" id=32]
 extents = Vector2( 23.5465, 27.1247 )
@@ -711,7 +711,7 @@ shape = SubResource( 30 )
 position = Vector2( -9.73755, 147.583 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/KitchenFirstTime"]
-position = Vector2( -1314.03, 18.2484 )
+position = Vector2( -1322.68, 16.0442 )
 shape = SubResource( 31 )
 
 [node name="BasementNeedKey" parent="LevelBackground/Interactions/Kitchen" instance=ExtResource( 175 )]

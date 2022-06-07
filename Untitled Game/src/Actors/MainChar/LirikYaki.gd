@@ -89,6 +89,7 @@ func load_character_save(player_data):
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	emit_signal("coin_changed")
 	_setup_timer(_invincibilityTimer, "_on_invincibility_timeout")
 	_setup_timer(_defenseUpTimer, "_on_defenseUp_timeout")
 	_setup_timer(_damageUpTimer, "_on_damageUp_timeout")
