@@ -31,8 +31,9 @@ onready var hurtbox: Area2D = $HurtBox
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	errorLogger.assertNodeNotNull(kinematicSprite, "KinematicSprite", self)
-	errorLogger.assertNodeNotNull(hurtbox, "HurtBox", self)
-	_originalHurtBoxPosition = hurtbox.position
+	errorLogger.assertNodeNotNullNonCrashing(hurtbox, "HurtBox", self)
+	if hurtbox != null:
+		_originalHurtBoxPosition = hurtbox.position
 
 
 func _physics_process(delta):

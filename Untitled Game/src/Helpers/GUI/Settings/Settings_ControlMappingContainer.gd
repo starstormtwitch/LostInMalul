@@ -12,7 +12,7 @@ func _ready():
 		assert(_rm.has_signal("remap_closed"), "RemapButton has no remap_close signal.")
 		assert(_rm.has_signal("remap_keyInUse"), "RemapButton has no remap_keyInUse signal.")
 		_rm.connect("remap_open", self, "_remap_open")
-		_rm.connect("remap_close", self, "_remap_closed")
+		_rm.connect("remap_closed", self, "_remap_closed")
 		_rm.connect("remap_keyInUse", self, "_remap_keyInUse")
 	print("Registered remapers.")
 
