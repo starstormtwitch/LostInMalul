@@ -316,7 +316,7 @@ extents = Vector2( 23.5465, 58.5441 )
 extents = Vector2( 19.2661, 65.8966 )
 
 [sub_resource type="RectangleShape2D" id=34]
-extents = Vector2( 15.3081, 16.1044 )
+extents = Vector2( 15.3081, 62.7607 )
 
 [sub_resource type="RectangleShape2D" id=35]
 extents = Vector2( 16.8516, 15.5451 )
@@ -781,7 +781,7 @@ shape = SubResource( 33 )
 position = Vector2( 250.127, 391.708 )
 
 [node name="BasementAttackCollision" type="CollisionShape2D" parent="LevelBackground/Interactions/Basement/BasementAttack"]
-position = Vector2( 208.775, 145.563 )
+position = Vector2( 199.066, 152.292 )
 shape = SubResource( 34 )
 
 [node name="BossEncounter" type="Area2D" parent="LevelBackground/Interactions/Basement"]
@@ -2037,9 +2037,10 @@ margin_top = -576.0
 margin_right = 512.0
 
 [node name="CRTLayer" parent="GUI" instance=ExtResource( 200 )]
+visible = false
 
-[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_Toilet_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_Toilet_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Sink" to="." method="_on_Sink_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/Bed" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon" to="." method="_on_InteractPromptArea_interactable_text_signal"]

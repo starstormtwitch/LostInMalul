@@ -135,7 +135,7 @@
 			"value": true
 		},
 		"current": {
-			"value": true
+			"value": false
 		},
 		"logic": "res://src/Helpers/Settings/CRT_Effect.gd"
 	}
