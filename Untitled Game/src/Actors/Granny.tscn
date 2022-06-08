@@ -71,6 +71,7 @@ shape = SubResource( 3 )
 [node name="KinematicSprite" type="KinematicBody2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="KinematicSprite"]
+light_mask = 2
 position = Vector2( 1.58637, -18.9149 )
 scale = Vector2( 0.3, 0.3 )
 z_as_relative = false
