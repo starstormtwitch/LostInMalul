@@ -241,11 +241,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.35 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.35, 0.41 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "checkIfWePlayWooshSFX"
+}, {
+"args": [  ],
+"method": "_finishedAttack"
 } ]
 }
 tracks/1/type = "value"
@@ -753,11 +756,12 @@ graph_offset = Vector2( -134.846, 178.997 )
 extents = Vector2( 5.7005, 3.48579 )
 
 [sub_resource type="RectangleShape2D" id=122]
-extents = Vector2( 10.2453, 11.7708 )
+extents = Vector2( 6.37621, 4.78023 )
 
 [node name="LirikYaki" type="KinematicBody2D" groups=[
 "Player",
 ]]
+position = Vector2( 1.17985, 0 )
 collision_layer = 4
 collision_mask = 1025
 collision/safe_margin = 0.001
@@ -769,13 +773,14 @@ scale = Vector2( 0.464857, 0.646047 )
 texture = ExtResource( 2 )
 
 [node name="KinematicSprite" type="KinematicBody2D" parent="."]
+position = Vector2( -8.96681, 1.41581 )
 
 [node name="Sprite" type="Sprite" parent="KinematicSprite"]
 position = Vector2( 5.1238, -10.3545 )
 texture = ExtResource( 3 )
 hframes = 12
 vframes = 2
-frame = 23
+frame = 14
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -2.56038, -2.12541 )
@@ -843,11 +848,13 @@ collision_mask = 0
 
 [node name="sideSwipeRight" type="CollisionShape2D" parent="attack"]
 modulate = Color( 0.6, 0.298039, 1, 1 )
-position = Vector2( 12.5648, 7.92492 )
+position = Vector2( 11.031, 12.7623 )
+scale = Vector2( -1.21357, 1.25343 )
 shape = SubResource( 122 )
+disabled = true
 
 [node name="HadoukenSpawn" type="Position2D" parent="."]
-position = Vector2( 17.1474, -22.0971 )
+position = Vector2( 7.70866, -9.35479 )
 
 [node name="ChargeBar" type="TextureProgress" parent="."]
 visible = false

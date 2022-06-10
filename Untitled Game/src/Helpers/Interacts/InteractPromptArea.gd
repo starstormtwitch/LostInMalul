@@ -5,17 +5,16 @@ class_name InteractPromptArea
 signal interactable_text_signal(text)
 
 export (String) var interactableText: String = ""
-export (NodePath) var playerNodePath
 
 onready var _collisionShape: CollisionShape2D = get_node("CollisionShape")
 onready var _f_prompt: Sprite = get_node("FPrompt")
-onready var _player: Node = get_node(playerNodePath)
+var _player: Node
 
 func _ready():
 	var path = self.get_path()
+	_player = LevelGlobals.GetPlayerActor()
 	assert(_collisionShape, "Add child node of type CollisionShape2D with name CollisionShape in: " + path)
 	assert(_f_prompt, "Add child node of type Sprite with name FPrompt in: " + path)
-	assert(_player, "Make sure the player has been added by giving the playerNodePath in the editor in: " + path)
 	self.connect("body_entered", self, "_showPrompt")
 	self.connect("body_exited", self, "_hidePrompt")
 
