@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://assets/Props/Foyer/foyer_left_mirror.png" type="Texture" id=1]
-
-[node name="FoyerLeftMirror" type="Sprite"]
-position = Vector2( -0.10511, -23.1247 )
-texture = ExtResource( 1 )

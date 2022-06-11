@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/Props/House Level/Kitchen/dining_table_right.png" type="Texture" id=1]
+[ext_resource path="res://assets/Props/House Level/Kitchen/dining_table_left.png" type="Texture" id=2]
+
+[node name="DiningTable" type="YSort"]
+
+[node name="LeftSide" type="Node2D" parent="."]
+position = Vector2( 0, -10 )
+
+[node name="Sprite" type="Sprite" parent="LeftSide"]
+position = Vector2( 0, 9.851 )
+texture = ExtResource( 2 )
+
+[node name="RightSide" type="Node2D" parent="."]
+position = Vector2( 65, 38 )
+
+[node name="Sprite" type="Sprite" parent="RightSide"]
+position = Vector2( 0, -38 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 4.243, 39 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 0.125, 0 )
+polygon = PoolVector2Array( -55.8165, -52.9442, -55.2692, -32.6741, -33.3489, -10.0467, -19.5603, -10.4003, -13.1964, -4.56664, 63.3479, -4.21309, 63.5247, -9.86995, 69.3823, -10.3014, 46.1422, -53.5748, 1.79053, -53.3005 )

@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://assets/Props/StreamingRoom/cables.png" type="Texture" id=1]
-
-[node name="Cables" type="Node2D"]
-
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 10.0147, 41.1982 )
-texture = ExtResource( 1 )

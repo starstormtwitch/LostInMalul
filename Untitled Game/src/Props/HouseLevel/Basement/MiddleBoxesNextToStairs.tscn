@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/Props/HouseLevel/Basement/StandingMouse.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/Props/House Level/Basement/middle_box_next_to_stairs.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 12.2073, 17.6974 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 12.3378, 11.2706 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 12.6351, 16.176 )
+
+[node name="MiddleBoxNextToStairs" type="StaticBody2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -0.148651, -25.463 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -13.3968, -17.2087 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2( 11.0002, -15.757 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2( 0.891907, -37.3114 )
+shape = SubResource( 3 )
+
+[node name="StandingMouse" parent="." instance=ExtResource( 1 )]
+position = Vector2( 11.0002, -21.1084 )
+scale = Vector2( -1, 1 )
