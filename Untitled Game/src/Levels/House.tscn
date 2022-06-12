@@ -1,9 +1,8 @@
-[gd_scene load_steps=243 format=2]
+[gd_scene load_steps=242 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Props/bathroom/bathroom_shelves_right.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/Levels/House/House_level.png" type="Texture" id=4]
 [ext_resource path="res://src/Props/bathroom/bathroom_toilet_paper.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Props/bathroom/bathroom_toilet_paper_stack.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Props/bathroom/bathroom_toilet_brush.tscn" type="PackedScene" id=7]
@@ -327,22 +326,22 @@ extents = Vector2( 22.1809, 10 )
 [sub_resource type="RectangleShape2D" id=37]
 extents = Vector2( 23.2275, 19.9813 )
 
-[sub_resource type="RectangleShape2D" id=42]
-
 [sub_resource type="RectangleShape2D" id=38]
-extents = Vector2( 11.5413, 61.6581 )
 
 [sub_resource type="RectangleShape2D" id=39]
+extents = Vector2( 11.5413, 61.6581 )
+
+[sub_resource type="RectangleShape2D" id=40]
 extents = Vector2( 447.481, 28.3017 )
 
-[sub_resource type="DynamicFont" id=40]
+[sub_resource type="DynamicFont" id=41]
 size = 8
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
 font_data = ExtResource( 178 )
 
-[sub_resource type="DynamicFont" id=41]
+[sub_resource type="DynamicFont" id=42]
 size = 8
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -355,12 +354,6 @@ script = ExtResource( 19 )
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="Sprite" type="Sprite" parent="."]
-pause_mode = 1
-visible = false
-position = Vector2( 1431.57, 299.322 )
-texture = ExtResource( 4 )
 
 [node name="LevelBackground" type="Sprite" parent="."]
 pause_mode = 1
@@ -710,10 +703,10 @@ position = Vector2( 1.43051e-06, 36.5558 )
 shape = SubResource( 30 )
 
 [node name="KitchenFirstTime" type="Area2D" parent="LevelBackground/Interactions/Kitchen"]
-position = Vector2( -9.73755, 147.583 )
+position = Vector2( -1344.11, 160.626 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/KitchenFirstTime"]
-position = Vector2( -1322.68, 16.0442 )
+position = Vector2( 5.70825, -3.8147e-06 )
 shape = SubResource( 31 )
 
 [node name="BasementNeedKey" parent="LevelBackground/Interactions/Kitchen" instance=ExtResource( 175 )]
@@ -857,7 +850,7 @@ playerNodePath = NodePath("../../../../YSort/Actors/LirikYaki")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Garage/WorkBench"]
 position = Vector2( 3404.67, 490.095 )
-shape = SubResource( 42 )
+shape = SubResource( 38 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Garage/WorkBench"]
 visible = false
@@ -869,7 +862,7 @@ position = Vector2( 250.127, 391.708 )
 
 [node name="GarageAttackCollision" type="CollisionShape2D" parent="LevelBackground/Interactions/Garage/GarageAttack"]
 position = Vector2( 2826.2, 146.65 )
-shape = SubResource( 38 )
+shape = SubResource( 39 )
 
 [node name="Teleports" type="Node" parent="LevelBackground"]
 
@@ -1023,7 +1016,7 @@ collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/SpecialZones/BossMobZone"]
 position = Vector2( 669.398, 265.792 )
-shape = SubResource( 39 )
+shape = SubResource( 40 )
 
 [node name="Checkpoints" type="Node" parent="LevelBackground"]
 
@@ -1118,7 +1111,7 @@ position = Vector2( 138.33, 213.343 )
 rect = Rect2( 0, 0, 200, 40 )
 only_off_screen = true
 duration_between_spawn = 30
-count = 30
+count = 10
 enemy = "SlimeFR"
 automatic = false
 
@@ -1127,7 +1120,7 @@ position = Vector2( 804.047, 227.454 )
 rect = Rect2( 0, 0, 200, 40 )
 only_off_screen = true
 duration_between_spawn = 30
-count = 30
+count = 10
 enemy = "SlimeFR"
 automatic = false
 
@@ -1136,7 +1129,7 @@ position = Vector2( 1333.39, 249.618 )
 rect = Rect2( 0, 0, 200, 40 )
 only_off_screen = true
 duration_between_spawn = 30
-count = 30
+count = 10
 enemy = "SlimeFR"
 automatic = false
 
@@ -1145,7 +1138,7 @@ position = Vector2( 1945.52, 233.375 )
 rect = Rect2( 0, 0, 200, 40 )
 only_off_screen = true
 duration_between_spawn = 30
-count = 30
+count = 10
 enemy = "SlimeFR"
 automatic = false
 
@@ -1154,7 +1147,7 @@ position = Vector2( 2769.82, 242.001 )
 rect = Rect2( 0, 0, 100, 40 )
 only_off_screen = true
 duration_between_spawn = 30
-count = 30
+count = 10
 enemy = "SlimeFR"
 automatic = false
 
@@ -1163,7 +1156,7 @@ position = Vector2( 3338.42, 222.867 )
 rect = Rect2( 0, 0, 100, 40 )
 only_off_screen = true
 duration_between_spawn = 30
-count = 30
+count = 10
 enemy = "SlimeFR"
 automatic = false
 
@@ -1172,7 +1165,7 @@ position = Vector2( 3157.02, 527.801 )
 rect = Rect2( 0, 0, 100, 40 )
 only_off_screen = true
 duration_between_spawn = 30
-count = 30
+count = 10
 enemy = "SlimeFR"
 automatic = false
 
@@ -1936,7 +1929,7 @@ margin_left = 268.112
 margin_top = 520.0
 margin_right = 756.112
 margin_bottom = 544.0
-custom_fonts/font = SubResource( 40 )
+custom_fonts/font = SubResource( 41 )
 text = "Rex Magnus Rattorum, The Rat King"
 uppercase = true
 __meta__ = {
@@ -1983,7 +1976,7 @@ margin_right = 192.134
 margin_bottom = 60.9467
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 41 )
+custom_fonts/font = SubResource( 42 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "0"
 __meta__ = {
@@ -1997,7 +1990,7 @@ margin_right = 96.2014
 margin_bottom = 86.7737
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 41 )
+custom_fonts/font = SubResource( 42 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "x"
 __meta__ = {

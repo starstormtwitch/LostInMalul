@@ -7,6 +7,34 @@
 [ext_resource path="res://assets/SpriteSheets/hit markers/Effect 3 - Sprite Sheet.png" type="Texture" id=5]
 [ext_resource path="res://assets/SpriteSheets/hit markers/hits2-Sheet.png" type="Texture" id=6]
 
+[sub_resource type="CanvasItemMaterial" id=33]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 5
+particles_anim_loop = false
+
+[sub_resource type="ParticlesMaterial" id=34]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.4
+anim_speed = 1.0
+
+[sub_resource type="CanvasItemMaterial" id=35]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticlesMaterial" id=36]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.3
+anim_speed = 2.0
+
 [sub_resource type="Animation" id=1]
 resource_name = "attack"
 length = 1.6
@@ -225,34 +253,6 @@ radius = 13.2807
 [sub_resource type="RectangleShape2D" id=32]
 extents = Vector2( 41.7161, 20.4317 )
 
-[sub_resource type="CanvasItemMaterial" id=33]
-particles_animation = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 5
-particles_anim_loop = false
-
-[sub_resource type="ParticlesMaterial" id=34]
-flag_disable_z = true
-gravity = Vector3( 0, 0, 0 )
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 0.4
-anim_speed = 1.0
-
-[sub_resource type="CanvasItemMaterial" id=35]
-particles_animation = true
-particles_anim_h_frames = 7
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="ParticlesMaterial" id=36]
-flag_disable_z = true
-gravity = Vector3( 0, 0, 0 )
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 0.3
-anim_speed = 2.0
-
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemy",
 ]]
@@ -277,6 +277,31 @@ offset = Vector2( 0, -15 )
 hframes = 16
 vframes = 4
 frame = 33
+
+[node name="PunchHitMarkerParticles" type="Particles2D" parent="KinematicSprite"]
+material = SubResource( 33 )
+position = Vector2( 1.09102, -31.26 )
+scale = Vector2( 3, 3 )
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+fixed_fps = 8
+process_material = SubResource( 34 )
+texture = ExtResource( 5 )
+script = ExtResource( 4 )
+
+[node name="KickHitMarkerParticles" type="Particles2D" parent="KinematicSprite"]
+material = SubResource( 35 )
+position = Vector2( -0.581059, -37.7572 )
+scale = Vector2( 3, 3 )
+emitting = false
+amount = 1
+lifetime = 0.7
+one_shot = true
+fixed_fps = 10
+process_material = SubResource( 36 )
+texture = ExtResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attack = SubResource( 1 )
@@ -336,26 +361,6 @@ collision_mask = 0
 position = Vector2( -1.54915, 14.6626 )
 shape = SubResource( 32 )
 disabled = true
-
-[node name="PunchHitMarkerParticles" type="Particles2D" parent="."]
-material = SubResource( 33 )
-position = Vector2( 0.400072, -26.2737 )
-emitting = false
-amount = 1
-lifetime = 0.5
-one_shot = true
-process_material = SubResource( 34 )
-texture = ExtResource( 5 )
-script = ExtResource( 4 )
-
-[node name="KickHitMarkerParticles" type="Particles2D" parent="."]
-material = SubResource( 35 )
-position = Vector2( 0.643737, -19.7147 )
-emitting = false
-amount = 1
-one_shot = true
-process_material = SubResource( 36 )
-texture = ExtResource( 6 )
 
 [connection signal="area_entered" from="FlockBox" to="." method="_on_FlockBox_area_entered"]
 [connection signal="area_exited" from="FlockBox" to="." method="_on_FlockBox_area_exited"]

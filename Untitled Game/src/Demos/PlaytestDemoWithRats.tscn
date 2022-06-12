@@ -82,7 +82,8 @@ position = Vector2( 264.692, 274.695 )
 [node name="Spawner" parent="objects/actors" instance=ExtResource( 10 )]
 position = Vector2( 508.703, 207.579 )
 rect = Rect2( 0, 0, 600, 80 )
-duration_between_spawn = 5
+duration_between_spawn = 1
+count = 8
 enemy = "RatSoldier"
 
 [node name="GUI" type="CanvasLayer" parent="."]

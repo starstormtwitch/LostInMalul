@@ -86,7 +86,7 @@ func doSideSwipeKick(scene : Node):
 		_attack_setup(true)
 		print("Combo B: " + String(_comboBPoints))
 		if _comboBPoints == 1 or _comboAPoints == 1:
-			_playShoryukenSFX = true
+			SoundPlayer.playSound(scene, shoryukenSound, _DEFAULT_ATTACK_VOLUME)
 			_animationTree.get("parameters/playback").travel("Shoryuken")
 			damageForce = MAX_DAMAGE_FORCE
 			combo_reset()
@@ -136,8 +136,6 @@ func playHitSounds(scene : Node):
 		SoundPlayer.playSound(scene, punchSound, _DEFAULT_ATTACK_VOLUME)
 	elif _playKickSFX: 
 		SoundPlayer.playSound(scene, kickSound, _DEFAULT_ATTACK_VOLUME)
-	elif _playShoryukenSFX: 
-		SoundPlayer.playSound(scene, shoryukenSound, _DEFAULT_ATTACK_VOLUME)
 	elif _playHadoukenSFX: 
 		SoundPlayer.playSound(scene, hadouken, _DEFAULT_ATTACK_VOLUME)
 	_resetAllSounds()
