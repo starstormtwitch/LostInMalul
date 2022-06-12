@@ -12,7 +12,6 @@ var _itemTimer = Timer.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_player = LevelGlobals.GetPlayerActor();
-	$InteractPromptArea.playerNodePath = _player.get_path()
 	$InteractPromptArea._player = _player
 	_health = 9999
 	_acceleration = 0.2

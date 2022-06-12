@@ -80,7 +80,6 @@ offset = Vector2( 0, -15 )
 [node name="InteractPromptArea" parent="." instance=ExtResource( 4 )]
 position = Vector2( -10.845, -22.5228 )
 interactableText = "You have nothing to give to grandma to make her comfy. "
-playerNodePath = NodePath("../Collider")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="InteractPromptArea"]
 position = Vector2( 11.7463, 11.1979 )

@@ -346,11 +346,6 @@ func _finishedAttack() -> void:
 	_attackManager.isAttacking = false
 
 
-func checkIfWePlayWooshSFX():
-	if !_attackManager.didHitEnemy:
-		SoundPlayer.playSound(get_tree().get_current_scene(), woosh, -4)
-
-
 # callback function for when hurt animation is done
 func _hurtAnimationFinished() -> void:
 	_beingHurt = false

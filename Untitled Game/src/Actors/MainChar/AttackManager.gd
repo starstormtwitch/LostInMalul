@@ -66,15 +66,18 @@ func doSideSwipeAttack(scene : Node):
 		_playPunchSFX = true
 		print("Combo A: " + String(_comboAPoints))
 		if _comboAPoints == 1 or _comboBPoints == 1:
+			SoundPlayer.playSound(scene, missSound, -4)
 			_animationTree.get("parameters/playback").travel("Headbutt")
 			damageForce = MAX_DAMAGE_FORCE
 			combo_reset()
 		elif _comboAPoints == 3:
+			SoundPlayer.playSound(scene, missSound, -4)
 			_animationTree.get("parameters/playback").travel("SideSwipe1")
 			_comboAPoints = _comboAPoints - 1
 			_comboBPoints = 3
 			damageForce = MIN_DAMAGE_FORCE
 		elif _comboAPoints == 2:
+			SoundPlayer.playSound(scene, missSound, -4)
 			_animationTree.get("parameters/playback").travel("SideSwipe2")
 			_comboAPoints = _comboAPoints - 1
 			_comboBPoints = 3
@@ -92,12 +95,14 @@ func doSideSwipeKick(scene : Node):
 			combo_reset()
 		elif _comboBPoints == 3:
 			_playKickSFX = true
+			SoundPlayer.playSound(scene, missSound, -4)
 			_animationTree.get("parameters/playback").travel("SideSwipeKick")
 			_comboBPoints = _comboBPoints - 1
 			_comboAPoints = 3
 			damageForce = MIN_DAMAGE_FORCE
 		elif _comboBPoints == 2:
 			_playKickSFX = true
+			SoundPlayer.playSound(scene, missSound, -4)
 			_animationTree.get("parameters/playback").travel("SideSwipeRightKick2")
 			_comboBPoints = _comboBPoints - 1
 			_comboAPoints = 3
