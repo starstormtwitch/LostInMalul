@@ -1,12 +1,11 @@
-[gd_scene load_steps=243 format=2]
+[gd_scene load_steps=242 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/Props/HouseLevel/bathroom/bathroom_shelves_right.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/Levels/House/House_level.png" type="Texture" id=4]
-[ext_resource path="res://src/Props/HouseLevel/bathroom/bathroom_toilet_paper.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/Props/HouseLevel/bathroom/bathroom_toilet_paper_stack.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/Props/HouseLevel/bathroom/bathroom_toilet_brush.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Props/bathroom/bathroom_shelves_right.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Props/bathroom/bathroom_toilet_paper.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Props/bathroom/bathroom_toilet_paper_stack.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Props/bathroom/bathroom_toilet_brush.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/Levels/House/HouseBGfin.png" type="Texture" id=8]
 [ext_resource path="res://src/Props/HouseLevel/Door1.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/Props/HouseLevel/bathroom/door.tscn" type="PackedScene" id=10]
@@ -356,12 +355,6 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Sprite" type="Sprite" parent="."]
-pause_mode = 1
-visible = false
-position = Vector2( 1431.57, 299.322 )
-texture = ExtResource( 4 )
-
 [node name="LevelBackground" type="Sprite" parent="."]
 pause_mode = 1
 texture = ExtResource( 8 )
@@ -700,10 +693,10 @@ position = Vector2( 1.43051e-06, 36.5558 )
 shape = SubResource( 30 )
 
 [node name="KitchenFirstTime" type="Area2D" parent="LevelBackground/Interactions/Kitchen"]
-position = Vector2( -9.73755, 147.583 )
+position = Vector2( -1344.11, 160.626 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/KitchenFirstTime"]
-position = Vector2( -1322.68, 16.0442 )
+position = Vector2( 5.70825, -3.8147e-06 )
 shape = SubResource( 31 )
 
 [node name="BasementNeedKey" parent="LevelBackground/Interactions/Kitchen" instance=ExtResource( 175 )]
@@ -1099,7 +1092,7 @@ position = Vector2( 138.33, 213.343 )
 rect = Rect2( 0, 0, 200, 40 )
 only_off_screen = true
 duration_between_spawn = 30
-count = 30
+count = 10
 enemy = "SlimeFR"
 automatic = false
 
@@ -1108,7 +1101,7 @@ position = Vector2( 804.047, 227.454 )
 rect = Rect2( 0, 0, 200, 40 )
 only_off_screen = true
 duration_between_spawn = 30
-count = 30
+count = 10
 enemy = "SlimeFR"
 automatic = false
 
@@ -1117,7 +1110,7 @@ position = Vector2( 1333.39, 249.618 )
 rect = Rect2( 0, 0, 200, 40 )
 only_off_screen = true
 duration_between_spawn = 30
-count = 30
+count = 10
 enemy = "SlimeFR"
 automatic = false
 
@@ -1126,7 +1119,7 @@ position = Vector2( 1945.52, 233.375 )
 rect = Rect2( 0, 0, 200, 40 )
 only_off_screen = true
 duration_between_spawn = 30
-count = 30
+count = 10
 enemy = "SlimeFR"
 automatic = false
 
@@ -1135,7 +1128,7 @@ position = Vector2( 2769.82, 242.001 )
 rect = Rect2( 0, 0, 100, 40 )
 only_off_screen = true
 duration_between_spawn = 30
-count = 30
+count = 10
 enemy = "SlimeFR"
 automatic = false
 
@@ -1144,7 +1137,7 @@ position = Vector2( 3338.42, 222.867 )
 rect = Rect2( 0, 0, 100, 40 )
 only_off_screen = true
 duration_between_spawn = 30
-count = 30
+count = 10
 enemy = "SlimeFR"
 automatic = false
 
@@ -1153,7 +1146,7 @@ position = Vector2( 3157.02, 527.801 )
 rect = Rect2( 0, 0, 100, 40 )
 only_off_screen = true
 duration_between_spawn = 30
-count = 30
+count = 10
 enemy = "SlimeFR"
 automatic = false
 

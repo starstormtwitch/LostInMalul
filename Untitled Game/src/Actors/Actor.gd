@@ -2,7 +2,7 @@ extends KinematicBody2D
 class_name Actor
 
 # props of all objects in game
-const MAXVELOCITY = 500
+const MAXVELOCITY = 1000
 const _BOUNDARY_COLLISON_MASK_BIT = 0
 const HURTBOX_POSITION_OFFSET = 20
 

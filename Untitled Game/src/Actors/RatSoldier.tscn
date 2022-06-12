@@ -8,6 +8,34 @@
 [ext_resource path="res://src/Helpers/Spawning/LootSpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/SpriteSheets/hit markers/hits2-Sheet.png" type="Texture" id=7]
 
+[sub_resource type="CanvasItemMaterial" id=36]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 5
+particles_anim_loop = false
+
+[sub_resource type="ParticlesMaterial" id=37]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.4
+anim_speed = 1.0
+
+[sub_resource type="CanvasItemMaterial" id=38]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticlesMaterial" id=39]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.3
+anim_speed = 2.0
+
 [sub_resource type="Animation" id=1]
 resource_name = "die"
 length = 3.0
@@ -237,34 +265,6 @@ radius = 13.2807
 [sub_resource type="RectangleShape2D" id=35]
 extents = Vector2( 13.3553, 8.96162 )
 
-[sub_resource type="CanvasItemMaterial" id=36]
-particles_animation = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 5
-particles_anim_loop = false
-
-[sub_resource type="ParticlesMaterial" id=37]
-flag_disable_z = true
-gravity = Vector3( 0, 0, 0 )
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 0.4
-anim_speed = 1.0
-
-[sub_resource type="CanvasItemMaterial" id=38]
-particles_animation = true
-particles_anim_h_frames = 7
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="ParticlesMaterial" id=39]
-flag_disable_z = true
-gravity = Vector3( 0, 0, 0 )
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 0.3
-anim_speed = 2.0
-
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemy",
 ]]
@@ -275,6 +275,31 @@ collision_mask = 5
 script = ExtResource( 2 )
 
 [node name="KinematicSprite" type="KinematicBody2D" parent="."]
+
+[node name="PunchHitMarkerParticles" type="Particles2D" parent="KinematicSprite"]
+material = SubResource( 36 )
+position = Vector2( 0.422842, -17.8965 )
+scale = Vector2( 3, 3 )
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+fixed_fps = 8
+process_material = SubResource( 37 )
+texture = ExtResource( 5 )
+script = ExtResource( 4 )
+
+[node name="KickHitMarkerParticles" type="Particles2D" parent="KinematicSprite"]
+material = SubResource( 38 )
+position = Vector2( -1.24923, -24.3937 )
+scale = Vector2( 3, 3 )
+emitting = false
+amount = 1
+lifetime = 0.7
+one_shot = true
+fixed_fps = 10
+process_material = SubResource( 39 )
+texture = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="KinematicSprite"]
 position = Vector2( 0, -8.795 )
@@ -344,26 +369,6 @@ collision_mask = 0
 position = Vector2( -18.5933, 5.63175 )
 shape = SubResource( 35 )
 disabled = true
-
-[node name="PunchHitMarkerParticles" type="Particles2D" parent="."]
-material = SubResource( 36 )
-position = Vector2( -7.88188, -22.2792 )
-emitting = false
-amount = 1
-lifetime = 0.5
-one_shot = true
-process_material = SubResource( 37 )
-texture = ExtResource( 5 )
-script = ExtResource( 4 )
-
-[node name="KickHitMarkerParticles" type="Particles2D" parent="."]
-material = SubResource( 38 )
-position = Vector2( -8.86992, -18.5255 )
-emitting = false
-amount = 1
-one_shot = true
-process_material = SubResource( 39 )
-texture = ExtResource( 7 )
 
 [node name="LootSpawner" parent="." instance=ExtResource( 6 )]
 visible = false
