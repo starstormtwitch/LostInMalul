@@ -112,7 +112,7 @@ func _on_TextBox_closed():
 		_textBox.showText("*crashing noise* I better go check out what happened. Looks like the power shut off, I'll have to fire up my generator before I can turn on my pc...")
 
 func _on_FirstRat_AllEnemiesDefeated():
-	_textBox.showText("That was insane, it had to have come from the basement... and is that grandma's laugh I just heard?")
+	_textBox.showText("That was insane, it had to have come from the basement... and is that grandma's laugh I just heard? I better find some comfy items to give to grandma to make her happy.")
 	get_node("YSort/Actors/GrannySpawner").spawnEnemy()
 	get_node("LevelBackground/Teleports/Streaming_LivingRoom_2WT/EndpointAlpha/ToBetaActivationArea").disabled = false;
 	get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointBeta/ToAlphaActivationArea").disabled = false;
