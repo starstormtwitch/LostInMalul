@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/Props/HouseLevel/Kitchen/BottomCounter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Props/HouseLevel/Kitchen/Plant.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 84.6701, 10.7208 )
+
+[node name="Node2D" type="StaticBody2D"]
+
+[node name="BottomCounter" parent="." instance=ExtResource( 1 )]
+position = Vector2( 24.3494, 0.501973 )
+
+[node name="Plant" parent="." instance=ExtResource( 2 )]
+position = Vector2( -63.4191, -16.5563 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 11.3257, -8.32567 )
+shape = SubResource( 1 )

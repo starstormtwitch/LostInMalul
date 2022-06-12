@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/Props/HouseLevel/Basement/StandingMouse.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Props/HouseLevel/Basement/SittingMouse.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/Props/House Level/Basement/table.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 44.8168, 15.7914 )
+
+[node name="Table" type="StaticBody2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -0.779709, -14.9586 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.816894, -15.9838 )
+shape = SubResource( 1 )
+
+[node name="StandingMouse" parent="." instance=ExtResource( 1 )]
+position = Vector2( 29.2676, -26.7873 )
+
+[node name="SittingMouse" parent="." instance=ExtResource( 2 )]
+position = Vector2( -9.22674, -1.19055 )
+
+[node name="SittingMouse2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 10.2189, -4.36534 )
+scale = Vector2( -1, 1 )

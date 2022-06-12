@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/Props/House Level/Basement/tool_rack.png" type="Texture" id=1]
+
+[node name="ToolRack" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -0.31498, -11.4094 )
+texture = ExtResource( 1 )

@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/Props/House Level/bathroom/bathroom_toilet_rug.png" type="Texture" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, 15 )
+
+[node name="Area2D" type="Area2D" parent="Sprite"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/Area2D"]
+position = Vector2( -0.176773, 15.3795 )
+polygon = PoolVector2Array( 2.32094, 5.2215, 9.57367, -3.08235, 7.99699, -6.23571, -1.56821, -6.23571, -9.55672, 1.96303, -7.66471, 5.2215 )
+disabled = true
+one_way_collision_margin = 0.0
