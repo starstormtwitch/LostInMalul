@@ -124,10 +124,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Helpers/JumpHelper.gd"
 }, {
-"base": "Actor",
+"base": "MainChar",
 "class": "LirikYaki",
 "language": "GDScript",
 "path": "res://src/Actors/MainChar/LirikYaki.gd"
+}, {
+"base": "Actor",
+"class": "MainChar",
+"language": "GDScript",
+"path": "res://src/Actors/MainChar/MainChar.gd"
 }, {
 "base": "Node2D",
 "class": "MainMenu",
@@ -214,6 +219,7 @@ _global_script_class_icons={
 "JSONBeautifier": "",
 "JumpHelper": "",
 "LirikYaki": "",
+"MainChar": "",
 "MainMenu": "",
 "PauseMenu": "",
 "ScreenShakeSettings": "",
