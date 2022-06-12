@@ -94,17 +94,19 @@ func doSideSwipeKick(scene : Node):
 			damageForce = MAX_DAMAGE_FORCE
 			combo_reset()
 		elif _comboBPoints == 3:
+			_comboBPoints = _comboBPoints - 1
 			_playKickSFX = true
+			print("playkick1")
 			SoundPlayer.playSound(scene, missSound, -4)
 			_animationTree.get("parameters/playback").travel("SideSwipeKick")
-			_comboBPoints = _comboBPoints - 1
 			_comboAPoints = 3
 			damageForce = MIN_DAMAGE_FORCE
 		elif _comboBPoints == 2:
+			_comboBPoints = _comboBPoints - 1
 			_playKickSFX = true
+			print("playkick2")
 			SoundPlayer.playSound(scene, missSound, -4)
 			_animationTree.get("parameters/playback").travel("SideSwipeRightKick2")
-			_comboBPoints = _comboBPoints - 1
 			_comboAPoints = 3
 			damageForce = MIN_DAMAGE_FORCE
 

@@ -19,6 +19,7 @@ enum EnemyState {IDLE, CHASE, ATTACK_IN_PLACE, ROAM}
 var _state = EnemyState.CHASE
 var _target = null
 var _flock = []
+var _deathBlinkCountdown = Timer.new()
 var _attackCooldownTimer = Timer.new()
 var _stunTimer = Timer.new()
 var _hitFlashTimer = Timer.new()
@@ -31,6 +32,9 @@ func _ready():
 	_attackCooldownTimer.one_shot = true
 	add_child(_attackCooldownTimer)
 	_attackCooldownTimer.start(_initial_attack_cooldown)
+	
+	_deathBlinkCountdown.one_shot = true
+	add_child(_deathBlinkCountdown)
 	
 	_stunTimer.connect("timeout",self,"_on_stun_cooldown_timeout") 
 	_stunTimer.one_shot = true
@@ -50,7 +54,13 @@ func _ready():
 func _physics_process(_delta: float) -> void:
 	._physics_process(_delta)
 	var direction = Vector2.ZERO
-		
+	
+	if isDying:
+		if deathVisible(_deathBlinkCountdown.time_left):
+			self.visible = true
+		else:
+			self.visible = false
+			
 	if(!_isStunned && !_inAir && !isDying):
 		var targetDirection = try_chase()
 		get_next_state(targetDirection)
@@ -188,6 +198,12 @@ func stun(duration: float):
 	_isStunned = true
 	_stunTimer.start(duration)
 	
+func deathVisible(countdownTimer) -> bool:
+	var visibleTime = 3;
+	if countdownTimer > visibleTime:
+		return true
+	else:
+		return sin(pow(1000 - countdownTimer - visibleTime, 2) * 1/100) + .5 >= 0
 
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if !isDying:
@@ -222,6 +238,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 			
 		#death check
 		if(_health <= 0):
+			_deathBlinkCountdown.start(5)
 			die()
 
 func disable_hurt_box_if_exists():

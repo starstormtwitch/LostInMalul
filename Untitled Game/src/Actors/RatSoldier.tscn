@@ -8,13 +8,13 @@
 [ext_resource path="res://src/Helpers/Spawning/LootSpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/SpriteSheets/hit markers/hits2-Sheet.png" type="Texture" id=7]
 
-[sub_resource type="CanvasItemMaterial" id=36]
+[sub_resource type="CanvasItemMaterial" id=1]
 particles_animation = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 5
 particles_anim_loop = false
 
-[sub_resource type="ParticlesMaterial" id=37]
+[sub_resource type="ParticlesMaterial" id=2]
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
 orbit_velocity = 0.0
@@ -22,13 +22,13 @@ orbit_velocity_random = 0.0
 scale = 0.4
 anim_speed = 1.0
 
-[sub_resource type="CanvasItemMaterial" id=38]
+[sub_resource type="CanvasItemMaterial" id=3]
 particles_animation = true
 particles_anim_h_frames = 7
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="ParticlesMaterial" id=39]
+[sub_resource type="ParticlesMaterial" id=4]
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
 orbit_velocity = 0.0
@@ -36,8 +36,7 @@ orbit_velocity_random = 0.0
 scale = 0.3
 anim_speed = 2.0
 
-[sub_resource type="Animation" id=1]
-resource_name = "die"
+[sub_resource type="Animation" id=5]
 length = 3.0
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -78,8 +77,7 @@ tracks/2/keys = {
 "values": [ 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "hurt"
+[sub_resource type="Animation" id=6]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("KinematicSprite/Sprite:frame")
@@ -94,8 +92,7 @@ tracks/0/keys = {
 "values": [ 33 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "idle"
+[sub_resource type="Animation" id=7]
 length = 0.6
 loop = true
 step = 0.2
@@ -112,8 +109,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "jump_attack"
+[sub_resource type="Animation" id=8]
 length = 0.5
 loop = true
 tracks/0/type = "value"
@@ -155,8 +151,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "walk"
+[sub_resource type="Animation" id=9]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -172,42 +167,31 @@ tracks/0/keys = {
 "values": [ 22, 23, 24, 25, 26, 27 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "die"
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "hurt"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "idle"
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=13]
 animation = "jump_attack"
 
-[sub_resource type="AnimationNodeAnimation" id=10]
+[sub_resource type="AnimationNodeAnimation" id=14]
 animation = "walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=12]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=14]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=15]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=16]
 switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=17]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=18]
 switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=19]
 
@@ -218,51 +202,62 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=22]
 switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=23]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=24]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=25]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=26]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=27]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=28]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=29]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id=30]
-states/die/node = SubResource( 6 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id=34]
+states/die/node = SubResource( 10 )
 states/die/position = Vector2( 567, 50 )
-states/hurt/node = SubResource( 7 )
+states/hurt/node = SubResource( 11 )
 states/hurt/position = Vector2( 280, 168 )
-states/idle/node = SubResource( 8 )
+states/idle/node = SubResource( 12 )
 states/idle/position = Vector2( 265, 50 )
-states/jump_attack/node = SubResource( 9 )
+states/jump_attack/node = SubResource( 13 )
 states/jump_attack/position = Vector2( 581, 168 )
-states/walk/node = SubResource( 10 )
+states/walk/node = SubResource( 14 )
 states/walk/position = Vector2( 385.259, -38 )
-transitions = [ "idle", "hurt", SubResource( 11 ), "hurt", "idle", SubResource( 12 ), "hurt", "die", SubResource( 13 ), "die", "hurt", SubResource( 14 ), "idle", "die", SubResource( 15 ), "die", "idle", SubResource( 16 ), "hurt", "jump_attack", SubResource( 17 ), "jump_attack", "idle", SubResource( 18 ), "idle", "jump_attack", SubResource( 19 ), "jump_attack", "die", SubResource( 20 ), "jump_attack", "hurt", SubResource( 21 ), "die", "jump_attack", SubResource( 22 ), "idle", "walk", SubResource( 23 ), "walk", "idle", SubResource( 24 ), "walk", "die", SubResource( 25 ), "walk", "hurt", SubResource( 26 ), "walk", "jump_attack", SubResource( 27 ), "hurt", "walk", SubResource( 28 ), "jump_attack", "walk", SubResource( 29 ) ]
+transitions = [ "idle", "hurt", SubResource( 15 ), "hurt", "idle", SubResource( 16 ), "hurt", "die", SubResource( 17 ), "die", "hurt", SubResource( 18 ), "idle", "die", SubResource( 19 ), "die", "idle", SubResource( 20 ), "hurt", "jump_attack", SubResource( 21 ), "jump_attack", "idle", SubResource( 22 ), "idle", "jump_attack", SubResource( 23 ), "jump_attack", "die", SubResource( 24 ), "jump_attack", "hurt", SubResource( 25 ), "die", "jump_attack", SubResource( 26 ), "idle", "walk", SubResource( 27 ), "walk", "idle", SubResource( 28 ), "walk", "die", SubResource( 29 ), "walk", "hurt", SubResource( 30 ), "walk", "jump_attack", SubResource( 31 ), "hurt", "walk", SubResource( 32 ), "jump_attack", "walk", SubResource( 33 ) ]
 start_node = "idle"
 end_node = "die"
 graph_offset = Vector2( -252.741, 41.2513 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=31]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=35]
 
-[sub_resource type="RectangleShape2D" id=32]
+[sub_resource type="RectangleShape2D" id=36]
 extents = Vector2( 13.5128, 14.2018 )
 
-[sub_resource type="RectangleShape2D" id=33]
+[sub_resource type="RectangleShape2D" id=37]
 extents = Vector2( 9.27378, 4 )
 
-[sub_resource type="CircleShape2D" id=34]
+[sub_resource type="CircleShape2D" id=38]
 radius = 13.2807
 
-[sub_resource type="RectangleShape2D" id=35]
+[sub_resource type="RectangleShape2D" id=39]
 extents = Vector2( 13.3553, 8.96162 )
 
 [node name="Enemy" type="KinematicBody2D" groups=[
@@ -277,7 +272,7 @@ script = ExtResource( 2 )
 [node name="KinematicSprite" type="KinematicBody2D" parent="."]
 
 [node name="PunchHitMarkerParticles" type="Particles2D" parent="KinematicSprite"]
-material = SubResource( 36 )
+material = SubResource( 1 )
 position = Vector2( 0.422842, -17.8965 )
 scale = Vector2( 3, 3 )
 emitting = false
@@ -285,12 +280,12 @@ amount = 1
 lifetime = 0.5
 one_shot = true
 fixed_fps = 8
-process_material = SubResource( 37 )
+process_material = SubResource( 2 )
 texture = ExtResource( 5 )
 script = ExtResource( 4 )
 
 [node name="KickHitMarkerParticles" type="Particles2D" parent="KinematicSprite"]
-material = SubResource( 38 )
+material = SubResource( 3 )
 position = Vector2( -1.24923, -24.3937 )
 scale = Vector2( 3, 3 )
 emitting = false
@@ -298,7 +293,7 @@ amount = 1
 lifetime = 0.7
 one_shot = true
 fixed_fps = 10
-process_material = SubResource( 39 )
+process_material = SubResource( 4 )
 texture = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="KinematicSprite"]
@@ -316,16 +311,16 @@ scale = Vector2( 0.585947, 0.636373 )
 texture = ExtResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/die = SubResource( 1 )
-anims/hurt = SubResource( 2 )
-anims/idle = SubResource( 3 )
-anims/jump_attack = SubResource( 4 )
-anims/walk = SubResource( 5 )
+anims/die = SubResource( 5 )
+anims/hurt = SubResource( 6 )
+anims/idle = SubResource( 7 )
+anims/jump_attack = SubResource( 8 )
+anims/walk = SubResource( 9 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 30 )
+tree_root = SubResource( 34 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 31 )
+parameters/playback = SubResource( 35 )
 
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
@@ -336,11 +331,11 @@ collision_mask = 16
 
 [node name="HurtBoxArea" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2( -0.936443, 4.8695 )
-shape = SubResource( 32 )
+shape = SubResource( 36 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( 4.66372, -4.08509 )
-shape = SubResource( 33 )
+shape = SubResource( 37 )
 
 [node name="Sight" type="RayCast2D" parent="."]
 position = Vector2( 0.353554, -14.8493 )
@@ -357,7 +352,7 @@ collision_mask = 262144
 
 [node name="FlockBoxArea" type="CollisionShape2D" parent="FlockBox"]
 position = Vector2( 0.686863, 0.873051 )
-shape = SubResource( 34 )
+shape = SubResource( 38 )
 
 [node name="Attack" type="Area2D" parent="."]
 modulate = Color( 0.431373, 1, 0, 1 )
@@ -367,7 +362,7 @@ collision_mask = 0
 
 [node name="AttackBox" type="CollisionShape2D" parent="Attack"]
 position = Vector2( -18.5933, 5.63175 )
-shape = SubResource( 35 )
+shape = SubResource( 39 )
 disabled = true
 
 [node name="LootSpawner" parent="." instance=ExtResource( 6 )]
