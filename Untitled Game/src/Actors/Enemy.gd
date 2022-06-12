@@ -158,10 +158,10 @@ func _play_idle_animation_if_available(velocity_x: float):
 
 
 func show_hit_marker(isKick: bool):
-	if ($PunchHitMarkerParticles != null or $KickHitMarkerParticles != null) and _health > 0:
-		var hitMarkerParticles: Particles2D = $PunchHitMarkerParticles
+	if ($KinematicSprite/PunchHitMarkerParticles != null or $KinematicSprite/KickHitMarkerParticles != null) and _health > 0:
+		var hitMarkerParticles: Particles2D = $KinematicSprite/PunchHitMarkerParticles
 		if isKick:
-			hitMarkerParticles = $KickHitMarkerParticles
+			hitMarkerParticles = $KinematicSprite/KickHitMarkerParticles
 		if _directionFacing > 0:
 			hitMarkerParticles.position.x = abs(hitMarkerParticles.position.x)
 		elif _directionFacing < 0:

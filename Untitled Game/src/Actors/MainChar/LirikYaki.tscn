@@ -809,7 +809,7 @@ wait_time = 0.1
 autostart = true
 
 [node name="DashDurationTimer" type="Timer" parent="."]
-wait_time = 0.04
+wait_time = 0.01
 one_shot = true
 
 [node name="DashCooldownTimer" type="Timer" parent="."]

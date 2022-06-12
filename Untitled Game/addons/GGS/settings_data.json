@@ -5,7 +5,7 @@
 			"value": 0.1
 		},
 		"current": {
-			"value": 0.4
+			"value": 0.2
 		},
 		"logic": "res://src/Helpers/Settings/ScreenShake_Duration.gd"
 	},
@@ -15,7 +15,7 @@
 			"value": 15
 		},
 		"current": {
-			"value": 15
+			"value": 20
 		},
 		"logic": "res://src/Helpers/Settings/ScreenShake_Frequency.gd"
 	},
@@ -25,7 +25,7 @@
 			"value": 4
 		},
 		"current": {
-			"value": 4
+			"value": 6
 		},
 		"logic": "res://src/Helpers/Settings/ScreenShake_Amplitude.gd"
 	},
@@ -45,7 +45,7 @@
 			"value": 73
 		},
 		"current": {
-			"value": 75
+			"value": 100
 		},
 		"logic": "res://src/Helpers/Settings/Display_ScreenShakeIntensity.gd"
 	},
@@ -85,7 +85,7 @@
 			"value": 0
 		},
 		"current": {
-			"value": 2
+			"value": 0
 		},
 		"logic": "res://src/Helpers/Settings/Display_WindowType.gd"
 	},
@@ -125,7 +125,7 @@
 			"value": false
 		},
 		"current": {
-			"value": true
+			"value": false
 		},
 		"logic": "res://src/Helpers/Settings/Infinite Damage.gd"
 	},

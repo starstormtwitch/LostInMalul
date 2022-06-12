@@ -23,8 +23,8 @@ const deathSound = preload("res://assets/audio/main_char_death_sfx.wav")
 
 const _JUMP_EVENT = "Jump"
 const _DASH_EVENT = "dodge"
-const _DODGE_SPEED = 20000
-const _DODGE_ACCELERATION = .5
+const _DODGE_SPEED = 2000
+const _DODGE_ACCELERATION = .9
 const _LEFT_FACING_SCALE = -1.0
 const _RIGHT_FACING_SCALE = 1.0
 const _FOOTSTEP_PARTICLE_POSITION_OFFSET = -6
@@ -378,18 +378,18 @@ func _hurtAnimationFinished() -> void:
 func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
 		print("direction of hit: " + String(_directionFacing.x))
+		_attackManager.didHitEnemy = true
+		area.get_parent().show_hit_marker(_attackManager.isLastAttackAKick)
+		_on_enemy_hit()
 		var finalDam = ceil(_damage * _giveDamageModifier)
 		if isInfiniteDamage:
 			finalDam = INFINITE_DAMAGE_VALUE
 		area.get_parent().take_damage(finalDam, _directionFacing, _attackManager.damageForce)
-		_attackManager.didHitEnemy = true
-		area.get_parent().show_hit_marker(_attackManager.isLastAttackAKick)
-		_on_enemy_hit()
 
 
 func _on_enemy_hit():
-	_attackManager.playHitSounds(get_tree().get_current_scene())
 	emit_signal("player_hit_enemy")
+	_attackManager.playHitSounds(get_tree().get_current_scene())
 
 func playDeathRattle():
 	SoundPlayer.playSound(get_tree().get_current_scene(), deathSound, -4)
