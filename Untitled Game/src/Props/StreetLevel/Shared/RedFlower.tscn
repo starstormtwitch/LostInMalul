@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://assets/Props/street/1stHouse/Flower.png" type="Texture" id=1]
+[ext_resource path="res://assets/Props/street/Shared/red_flower.png" type="Texture" id=1]
 
-[node name="Flower" type="Node2D"]
+[node name="RedFlower" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -2.23517e-06, -4.0181 )

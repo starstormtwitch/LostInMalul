@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Flower.png-b3334d05ef65c8783666cffdacd02d39.stex"
+path="res://.import/BrownFence.png-0c93baa654e14b5926896257cfbfba69.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Props/street/1stHouse/Flower.png"
-dest_files=[ "res://.import/Flower.png-b3334d05ef65c8783666cffdacd02d39.stex" ]
+source_file="res://assets/Props/street/RatGraffitiHouse/BrownFence.png"
+dest_files=[ "res://.import/BrownFence.png-0c93baa654e14b5926896257cfbfba69.stex" ]
 
 [params]
 
