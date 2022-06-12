@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Levels/Streets/Level_Start.png" type="Texture" id=2]
@@ -15,6 +15,9 @@
 [ext_resource path="res://src/Props/StreetLevel/Shared/WhiteMailbox.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/Props/StreetLevel/RatGraffitiHouse/BrownFence.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/Props/StreetLevel/Shared/RedFlower.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/Props/StreetLevel/BlueHouse/LeftWhiteFence.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/Props/StreetLevel/BlueHouse/RightWhiteFence.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/Props/StreetLevel/Shared/BlueFlower.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/Helpers/Camera/CustomDelimiter2D.tscn" type="PackedScene" id=20]
 [ext_resource path="res://src/GUI/Inventory.tscn" type="PackedScene" id=21]
 [ext_resource path="res://src/Helpers/GUI/HealthBar.tscn" type="PackedScene" id=23]
@@ -78,8 +81,8 @@ extents = Vector2( 33.4598, 10 )
 extents = Vector2( 8.42667, 10 )
 
 [sub_resource type="SegmentShape2D" id=16]
-a = Vector2( -0.238098, -33.111 )
-b = Vector2( -0.794922, 27.8042 )
+a = Vector2( 1.66437, -33.5508 )
+b = Vector2( 1.83124, 26.517 )
 
 [sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 13.5503, 10 )
@@ -96,6 +99,10 @@ extents = Vector2( 29.6569, 3.85847 )
 [sub_resource type="SegmentShape2D" id=21]
 a = Vector2( 26.8477, 1.38559 )
 b = Vector2( -7.98795, 1.38559 )
+
+[sub_resource type="SegmentShape2D" id=26]
+a = Vector2( 110.796, -16.3299 )
+b = Vector2( 110.963, 26.3849 )
 
 [sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 11.689, 10 )
@@ -212,7 +219,7 @@ shape = SubResource( 15 )
 position = Vector2( 311.481, 76.7211 )
 
 [node name="LeftFence" type="CollisionShape2D" parent="LevelBackground/Boundaries/BlueHouse"]
-position = Vector2( -13.6976, 0.334084 )
+position = Vector2( -12.5057, 0.201645 )
 shape = SubResource( 16 )
 
 [node name="Bench" type="CollisionShape2D" parent="LevelBackground/Boundaries/BlueHouse"]
@@ -234,6 +241,9 @@ shape = SubResource( 20 )
 [node name="FrontOfHouse" type="CollisionShape2D" parent="LevelBackground/Boundaries/BlueHouse"]
 position = Vector2( 36.5212, -22.4746 )
 shape = SubResource( 21 )
+
+[node name="RIghtSideFence" type="CollisionShape2D" parent="LevelBackground/Boundaries/BlueHouse"]
+shape = SubResource( 26 )
 
 [node name="PogolisStore" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 663.565, 81.5804 )
@@ -309,13 +319,28 @@ position = Vector2( 32.2808, 16.3623 )
 position = Vector2( 2.05014, 27.3086 )
 
 [node name="Flower" parent="YSort/1stHouse" instance=ExtResource( 6 )]
-position = Vector2( -3.19172, 3.2182 )
+position = Vector2( -2.48939, 3.2182 )
 
 [node name="LeftFence" parent="YSort/1stHouse" instance=ExtResource( 4 )]
 position = Vector2( -44.9967, 27.1714 )
 
 [node name="BlueHouse" type="YSort" parent="YSort"]
 position = Vector2( 345.438, 87.8326 )
+
+[node name="BlueFlower" parent="YSort/BlueHouse" instance=ExtResource( 18 )]
+position = Vector2( 34.2188, -0.780167 )
+
+[node name="YellowFlower" parent="YSort/BlueHouse" instance=ExtResource( 6 )]
+position = Vector2( 59.2147, 1.18297 )
+
+[node name="BlueMailbox" parent="YSort/BlueHouse" instance=ExtResource( 11 )]
+position = Vector2( 19.5235, 15.3305 )
+
+[node name="RightWhiteFence" parent="YSort/BlueHouse" instance=ExtResource( 17 )]
+position = Vector2( 50.5532, 17.2271 )
+
+[node name="LeftWhiteFence" parent="YSort/BlueHouse" instance=ExtResource( 16 )]
+position = Vector2( -28.4512, 17.2239 )
 
 [node name="RedFlower" parent="YSort/BlueHouse" instance=ExtResource( 15 )]
 position = Vector2( -30.7759, -5.80659 )
