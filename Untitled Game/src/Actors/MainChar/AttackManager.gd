@@ -11,8 +11,8 @@ const hadouken = preload("res://assets/audio/HitAudio/explosion_sound.wav")
 const _START_A_COMBO = 3
 const _START_B_COMBO = 3
 const COMBOTIME = 1
-const MAX_DAMAGE_FORCE = 10000
-const MIN_DAMAGE_FORCE = 1000
+const MAX_DAMAGE_FORCE = 4000
+const MIN_DAMAGE_FORCE = 700
 const ATTACK1_EVENT = "side_swipe_attack"
 const ATTACK2_EVENT = "attack_2"
 const SPECIAL_ATTACK_EVENT = "special_attack"
@@ -66,19 +66,19 @@ func doSideSwipeAttack(scene : Node):
 		_playPunchSFX = true
 		print("Combo A: " + String(_comboAPoints))
 		if _comboAPoints == 1 or _comboBPoints == 1:
-			SoundPlayer.playSound(scene, missSound, -4)
 			_animationTree.get("parameters/playback").travel("Headbutt")
+			SoundPlayer.playSound(scene, missSound, -4)
 			damageForce = MAX_DAMAGE_FORCE
 			combo_reset()
 		elif _comboAPoints == 3:
-			SoundPlayer.playSound(scene, missSound, -4)
 			_animationTree.get("parameters/playback").travel("SideSwipe1")
+			SoundPlayer.playSound(scene, missSound, -4)
 			_comboAPoints = _comboAPoints - 1
 			_comboBPoints = 3
 			damageForce = MIN_DAMAGE_FORCE
 		elif _comboAPoints == 2:
-			SoundPlayer.playSound(scene, missSound, -4)
 			_animationTree.get("parameters/playback").travel("SideSwipe2")
+			SoundPlayer.playSound(scene, missSound, -4)
 			_comboAPoints = _comboAPoints - 1
 			_comboBPoints = 3
 			damageForce = MIN_DAMAGE_FORCE
@@ -89,24 +89,24 @@ func doSideSwipeKick(scene : Node):
 		_attack_setup(true)
 		print("Combo B: " + String(_comboBPoints))
 		if _comboBPoints == 1 or _comboAPoints == 1:
-			SoundPlayer.playSound(scene, shoryukenSound, _DEFAULT_ATTACK_VOLUME)
 			_animationTree.get("parameters/playback").travel("Shoryuken")
+			SoundPlayer.playSound(scene, shoryukenSound, _DEFAULT_ATTACK_VOLUME)
 			damageForce = MAX_DAMAGE_FORCE
 			combo_reset()
 		elif _comboBPoints == 3:
 			_comboBPoints = _comboBPoints - 1
 			_playKickSFX = true
 			print("playkick1")
-			SoundPlayer.playSound(scene, missSound, -4)
 			_animationTree.get("parameters/playback").travel("SideSwipeKick")
+			SoundPlayer.playSound(scene, missSound, -4)
 			_comboAPoints = 3
 			damageForce = MIN_DAMAGE_FORCE
 		elif _comboBPoints == 2:
 			_comboBPoints = _comboBPoints - 1
 			_playKickSFX = true
 			print("playkick2")
-			SoundPlayer.playSound(scene, missSound, -4)
 			_animationTree.get("parameters/playback").travel("SideSwipeRightKick2")
+			SoundPlayer.playSound(scene, missSound, -4)
 			_comboAPoints = 3
 			damageForce = MIN_DAMAGE_FORCE
 

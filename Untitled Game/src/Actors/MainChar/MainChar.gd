@@ -124,7 +124,7 @@ func _physics_process(_delta: float) -> void:
 	_assign_player_color()
 	
 	if(!_attackManager.isAttacking and !_isDodging):
-		direction = evaluatePlayerInput()
+		direction = evaluatePlayerInput(_delta)
 		_dodgeDirection = direction
 		
 	if _isDodging:
@@ -291,7 +291,7 @@ func setHurtAnimationPlaying():
 	pass
 
 
-func evaluatePlayerInput() -> Vector2:
+func evaluatePlayerInput(delta) -> Vector2:
 	#get direction for inputs
 	var direction = Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
@@ -304,7 +304,7 @@ func evaluatePlayerInput() -> Vector2:
 	
 	if _beingHurt:
 		return Vector2.ZERO
-	if _check_for_events():
+	if _check_for_events(delta):
 		return Vector2.ZERO
 		
 	#set animation for direction and return for movement
@@ -328,7 +328,7 @@ func _flip_nodes(direction: Vector2):
 		shadow.flip_h = false
 
 
-func _check_for_events() -> bool:
+func _check_for_events(delta) -> bool:
 	return true # Implement in child classes. 
 
 
@@ -337,9 +337,14 @@ func _summonHadouken():
 	_attackManager.releaseSpecial()
 
 
-func checkForEvent(event_name: String) -> bool:
-	return Input.is_action_just_pressed(event_name) or Input.is_action_pressed(event_name)
-
+var timeToaddInput : float
+func checkForEvent(event_name: String, delta) -> bool:
+	if timeToaddInput >1 && (Input.is_action_just_pressed(event_name) or Input.is_action_pressed(event_name)):
+		timeToaddInput = 0
+		return true
+	elif timeToaddInput < 1:
+		timeToaddInput += delta
+	return false
 
 func _finishedAttack() -> void:
 	print("attack finished")
