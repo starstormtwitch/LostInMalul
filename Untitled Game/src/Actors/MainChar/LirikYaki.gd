@@ -8,7 +8,7 @@ func _ready() -> void:
 		chargeBar, _animationHandler)
 
 func _check_for_events(delta) -> bool:
-	if Input.is_action_just_released(AttackManager.SPECIAL_ATTACK_EVENT) and _attackManager.isChargingSpecial:
+	if Input.is_action_just_released(AttackManager.SPECIAL_ATTACK_EVENT) and _attackManager.IsChargingSpecial:
 		_summonHadouken()
 		return true
 	elif checkForEvent(AttackManager.SPECIAL_ATTACK_EVENT, delta):

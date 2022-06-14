@@ -40,6 +40,7 @@ onready var _textBox: TextBox = $GUI/TextBox
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	_cameraManager.zoom = Vector2(.3,.3)
 	_player = LevelGlobals.GetPlayerActor()
 	assert(is_instance_valid(_player),"Player instance invalid")
 	_player.connect("coin_changed", self, "_on_Player_coin_changed")
@@ -140,12 +141,6 @@ func _on_BasementR1_AllEnemiesDefeated():
 		
 func GetReadyForBossEncounter():
 	_textBox.showText("I think that's all of them.")
-	ratKing = get_node("YSort/Actors/RatKingSpawner").spawnEnemy()
-	emit_signal("area_lock", false)
-	get_node("LevelBackground/CameraPositions/Basement_Fight1").ManualTransition_Exit();
-	get_node("LevelBackground/Boundaries/Basement/BossSeperator").disabled = true;
-	ratKing[0].connect("health_changed", self, "_on_Boss_health_changed")
-	$GUI/BossGui/ProgressBar.set_deferred("value",   (ratKing[0]._health / ratKing[0]._maxHealth) * 100);
 	
 func _on_Boss_health_changed(_oldHealth, newHealth, maxHealth):
 	var progressValue = (float(newHealth) / float(maxHealth)) * 100.00
@@ -154,13 +149,8 @@ func _on_Boss_health_changed(_oldHealth, newHealth, maxHealth):
 func _on_BossEncounter_body_entered(body):
 	if (body == _player):
 		get_node("LevelBackground/Interactions/Basement/BossEncounter/BossEncounterCollision").set_deferred("disabled", true);
-		_textBox.showText("Rat King: So... you think you can take your house back from me? I'm afraid that can't happen... you see, us rats are sick of living in this damp disgusting basement.  We will enjoy this house better than you ever did, and now I'll make sure you never hurt a rat again.")
-		ratKing[0]._target = _player;
-		ratKing[0]._mobSpawnArea = get_node("LevelBackground/SpecialZones/BossMobZone/CollisionShape");		
+		_textBox.showText("Rat King: So... you think you can take your house back from me? I'm afraid that can't happen... you see, us rats are sick of living in this damp disgusting basement.  We will enjoy this house better than you ever did, and now I'll make sure you never hurt a rat again.")	
 		$GUI/BossGui.set_deferred("visible", true);
-
-func _on_RatKingSpawner_AllEnemiesDefeated():
-	_textBox.showText("End Of Demo, please restart or choose another level.")
 
 func _on_LirikYaki_item_pickup(item : Node2D):
 	$GUI/PlayerGui/Inventory.InventoryItem = item;

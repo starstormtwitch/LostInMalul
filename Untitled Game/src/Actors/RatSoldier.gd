@@ -19,6 +19,7 @@ func _ready():
 	_animationHandler = NodeStateMachineAnimationHandler.new($AnimationTree)
 	if($AnimationTree != null):
 		$AnimationTree.active = true
+	$AnimationTree.get("parameters/playback").travel("spawn")
 		
 #disabling attacking for now
 func _physics_process(_delta: float) -> void:

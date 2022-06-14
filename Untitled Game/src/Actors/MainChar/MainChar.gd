@@ -23,8 +23,8 @@ const deathSound = preload("res://assets/audio/main_char_death_sfx.wav")
 
 const _JUMP_EVENT = "Jump"
 const _DASH_EVENT = "dodge"
-const _DODGE_SPEED = 20000
-const _DODGE_ACCELERATION = .5
+const _DODGE_SPEED = 900
+const _DODGE_ACCELERATION = 1
 const _LEFT_FACING_SCALE = -1.0
 const _RIGHT_FACING_SCALE = 1.0
 const _FOOTSTEP_PARTICLE_POSITION_OFFSET = -6
@@ -232,7 +232,7 @@ func superChargeReduce():
 
 
 func checkForSuperCharges():
-	if _currentSuperCharges > 0 and !_attackManager.isChargingSpecial:
+	if _currentSuperCharges > 0 and !_attackManager.IsChargingSpecial:
 		superChargeReduce()
 		_attackManager.startSpecial()
 
@@ -308,8 +308,12 @@ func evaluatePlayerInput(delta) -> Vector2:
 	if _check_for_events(delta):
 		return Vector2.ZERO
 		
+	if _attackManager.IsChargingSpecial:
+		animationTree.get("parameters/playback").travel("Hadouken")
+		return Vector2.ZERO
+		
 	#set animation for direction and return for movement
-	if !_attackManager.isChargingSpecial:
+	if !_attackManager.IsChargingSpecial:
 		if direction == Vector2.ZERO:
 			_animationHandler.idle()
 		else:
@@ -339,13 +343,9 @@ func _summonHadouken():
 	_attackManager.releaseSpecial()
 
 
-var timeToaddInput : float
 func checkForEvent(event_name: String, delta) -> bool:
-	if timeToaddInput >= 0 && (Input.is_action_just_pressed(event_name) or Input.is_action_pressed(event_name)):
-		timeToaddInput = 0
+	if Input.is_action_just_pressed(event_name) or Input.is_action_pressed(event_name):
 		return true
-	elif timeToaddInput < 1:
-		timeToaddInput += delta
 	return false
 
 func _finishedAttack() -> void:

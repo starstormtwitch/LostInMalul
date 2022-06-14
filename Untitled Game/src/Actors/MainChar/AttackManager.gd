@@ -25,7 +25,7 @@ var _beingHurt: bool = false
 var isLastAttackAKick = false #Used to check which hitmarker to show
 var _directionFacing: Vector2 = Vector2.ZERO
 var damageForce = 0
-var isChargingSpecial = false
+export var IsChargingSpecial = false
 
 #flags to check if we should play certain sounds when attacks land
 var _playPunchSFX = false
@@ -118,13 +118,13 @@ func getHadoukenPercentage() -> float:
 func startSpecial():
 	_chargeBar.visible = true
 	_animationHandler.chargeHadouken()
-	isChargingSpecial = true
+	IsChargingSpecial = true
 
 
 func releaseSpecial():
 	isAttacking = true
 	_animationHandler.releaseHadouken()
-	isChargingSpecial = false
+	IsChargingSpecial = false
 	_playHadoukenSFX = true
 	_hideChargeBar()
 
@@ -135,7 +135,7 @@ func _hideChargeBar():
 
 
 func increaseChargeBar():
-	if isChargingSpecial:
+	if IsChargingSpecial:
 		_chargeBar.value += 1
 
 
@@ -157,7 +157,7 @@ func _resetAllSounds():
 
 
 func gotHit():
-	isChargingSpecial = false
+	IsChargingSpecial = false
 	isAttacking = false
 	_hideChargeBar()
 	resetCombo()

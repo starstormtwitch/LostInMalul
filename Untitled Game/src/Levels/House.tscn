@@ -3,6 +3,7 @@
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Props/HouseLevel/bathroom/bathroom_shelves_right.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Levels/House.gd" type="Script" id=4]
 [ext_resource path="res://src/Props/HouseLevel/bathroom/bathroom_toilet_paper.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Props/HouseLevel/bathroom/bathroom_toilet_paper_stack.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Props/HouseLevel/bathroom/bathroom_toilet_brush.tscn" type="PackedScene" id=7]
@@ -17,7 +18,6 @@
 [ext_resource path="res://src/Props/HouseLevel/bedroom/Bed.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/Props/HouseLevel/bedroom/bedroom_bumbbels.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/Props/HouseLevel/bedroom/bedroom_nightstand_left.tscn" type="PackedScene" id=18]
-[ext_resource path="res://src/Levels/House.gd" type="Script" id=19]
 [ext_resource path="res://src/Helpers/Camera/CustomDelimiter2D.tscn" type="PackedScene" id=20]
 [ext_resource path="res://src/GUI/Inventory.tscn" type="PackedScene" id=21]
 [ext_resource path="res://src/Helpers/Utilities/TwoWayTeleportNode2D.tscn" type="PackedScene" id=22]
@@ -350,7 +350,7 @@ font_data = ExtResource( 178 )
 
 [node name="House" type="Node2D"]
 pause_mode = 2
-script = ExtResource( 19 )
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -1028,7 +1028,7 @@ automatic = false
 position = Vector2( 187.556, 504.257 )
 scale = Vector2( 1.67996, 1 )
 rect = Rect2( 0, 0, 20, 80 )
-duration_between_spawn = 7
+duration_between_spawn = 5
 count = 10
 enemy = "SlimeFR"
 automatic = false
@@ -1036,7 +1036,7 @@ automatic = false
 [node name="BasementR1" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 717.26, 523.551 )
 rect = Rect2( 0, 0, 50, 70 )
-duration_between_spawn = 7
+duration_between_spawn = 5
 count = 10
 enemy = "SlimeFR"
 automatic = false
@@ -1159,8 +1159,7 @@ enemy = "SlimeFR"
 automatic = false
 
 [node name="RatKingSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
-position = Vector2( 1117.09, 541.514 )
-only_off_screen = true
+position = Vector2( 1117.95, 544 )
 enemy = "RatKing"
 automatic = false
 
@@ -2053,6 +2052,7 @@ visible = false
 [connection signal="AllEnemiesDefeated" from="YSort/Actors/Garage4" to="." method="_on_Garage4_AllEnemiesDefeated"]
 [connection signal="AllEnemiesDefeated" from="YSort/Actors/Garage5" to="." method="_on_Garage5_AllEnemiesDefeated"]
 [connection signal="AllEnemiesDefeated" from="YSort/Actors/RatKingSpawner" to="." method="_on_RatKingSpawner_AllEnemiesDefeated"]
+[connection signal="spawned" from="YSort/Actors/RatKingSpawner" to="." method="_on_RatKingSpawner_spawned"]
 [connection signal="closed" from="GUI/TextBox2" to="." method="_on_TextBox_closed"]
 
 [editable path="LevelBackground/Boundaries/StreamingRoom/Basement_Delimeter"]
