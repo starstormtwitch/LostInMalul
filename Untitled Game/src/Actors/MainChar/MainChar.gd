@@ -231,7 +231,7 @@ func superChargeReduce():
 
 
 func checkForSuperCharges():
-	if _currentSuperCharges > 0 and !_attackManager.isChargingSpecial:
+	if _currentSuperCharges > 0 and !_attackManager.IsChargingSpecial:
 		superChargeReduce()
 		_attackManager.startSpecial()
 
@@ -305,6 +305,10 @@ func evaluatePlayerInput(delta) -> Vector2:
 	if _beingHurt:
 		return Vector2.ZERO
 	if _check_for_events(delta):
+		return Vector2.ZERO
+		
+	if _attackManager.IsChargingSpecial:
+		animationTree.get("parameters/playback").travel("Hadouken")
 		return Vector2.ZERO
 		
 	#set animation for direction and return for movement
