@@ -57,6 +57,7 @@ var _hitAnimationTime = 1
 var _currentSuperCharges = STARTING_SUPER_CHARGES
 var _lastHadoukenDamagePercentage: float = 0.0
 var _setting: Settings = Settings.new()
+var _animationHandler: BlendTreeAnimationHandler
 
 # debug settings
 var isInfiniteHealth = false
@@ -99,6 +100,7 @@ func _ready() -> void:
 	rightHitBox.disabled = true
 	_setting.connectNodeToDebugSettingsChangedSignal(self, "_getDebugSettings")
 	_getDebugSettings()
+	_animationHandler = BlendTreeAnimationHandler.new(animationTree)
 	
 	_invincibilityTimer.start(3)
 	
@@ -271,7 +273,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		_beingHurt = true
 		_attackManager.gotHit()
 		_hitDoneTimer.start(_hitAnimationTime)
-		animationTree.get("parameters/playback").travel("Hurt")
+		_animationHandler.hurt()
 		_invincibilityTimer.start(3)
 		var finalDamage = ceil(damage * _takeDamageModifier)
 		if isInfiniteHealth:
@@ -308,10 +310,11 @@ func evaluatePlayerInput(delta) -> Vector2:
 		return Vector2.ZERO
 		
 	#set animation for direction and return for movement
-	if direction == Vector2.ZERO:
-		animationTree.get("parameters/playback").travel("Idle")
-	else:
-		animationTree.get("parameters/playback").travel("Walk")
+	if !_attackManager.isChargingSpecial:
+		if direction == Vector2.ZERO:
+			_animationHandler.idle()
+		else:
+			_animationHandler.walk()
 	return direction
 
 

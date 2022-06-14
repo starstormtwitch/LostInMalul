@@ -40,12 +40,12 @@ var _comboBPoints = _START_B_COMBO;
 # Injected from player
 var _attackResetTimer: Timer
 var _chargeBar: TextureProgress
-var _animationTree: AnimationTree
+var _animationHandler: BlendTreeAnimationHandler
 
-func _init(attackResetTimer: Timer, chargeBar: TextureProgress, animationTree: AnimationTree):
+func _init(attackResetTimer: Timer, chargeBar: TextureProgress, animationHandler: BlendTreeAnimationHandler):
 	_attackResetTimer = attackResetTimer
 	_chargeBar = chargeBar
-	_animationTree = animationTree
+	_animationHandler = animationHandler
 
 
 func resetCombo():
@@ -66,18 +66,18 @@ func doSideSwipeAttack(scene : Node):
 		_playPunchSFX = true
 		print("Combo A: " + String(_comboAPoints))
 		if _comboAPoints == 1 or _comboBPoints == 1:
-			_animationTree.get("parameters/playback").travel("Headbutt")
+			_animationHandler.headbutt()
 			SoundPlayer.playSound(scene, missSound, -4)
 			damageForce = MAX_DAMAGE_FORCE
 			combo_reset()
 		elif _comboAPoints == 3:
-			_animationTree.get("parameters/playback").travel("SideSwipe1")
+			_animationHandler.punch1()
 			SoundPlayer.playSound(scene, missSound, -4)
 			_comboAPoints = _comboAPoints - 1
 			_comboBPoints = 3
 			damageForce = MIN_DAMAGE_FORCE
 		elif _comboAPoints == 2:
-			_animationTree.get("parameters/playback").travel("SideSwipe2")
+			_animationHandler.punch2()
 			SoundPlayer.playSound(scene, missSound, -4)
 			_comboAPoints = _comboAPoints - 1
 			_comboBPoints = 3
@@ -89,7 +89,7 @@ func doSideSwipeKick(scene : Node):
 		_attack_setup(true)
 		print("Combo B: " + String(_comboBPoints))
 		if _comboBPoints == 1 or _comboAPoints == 1:
-			_animationTree.get("parameters/playback").travel("Shoryuken")
+			_animationHandler.shoryuken()
 			SoundPlayer.playSound(scene, shoryukenSound, _DEFAULT_ATTACK_VOLUME)
 			damageForce = MAX_DAMAGE_FORCE
 			combo_reset()
@@ -97,7 +97,7 @@ func doSideSwipeKick(scene : Node):
 			_comboBPoints = _comboBPoints - 1
 			_playKickSFX = true
 			print("playkick1")
-			_animationTree.get("parameters/playback").travel("SideSwipeKick")
+			_animationHandler.kick1()
 			SoundPlayer.playSound(scene, missSound, -4)
 			_comboAPoints = 3
 			damageForce = MIN_DAMAGE_FORCE
@@ -105,7 +105,7 @@ func doSideSwipeKick(scene : Node):
 			_comboBPoints = _comboBPoints - 1
 			_playKickSFX = true
 			print("playkick2")
-			_animationTree.get("parameters/playback").travel("SideSwipeRightKick2")
+			_animationHandler.kick2()
 			SoundPlayer.playSound(scene, missSound, -4)
 			_comboAPoints = 3
 			damageForce = MIN_DAMAGE_FORCE
@@ -117,12 +117,13 @@ func getHadoukenPercentage() -> float:
 
 func startSpecial():
 	_chargeBar.visible = true
-	_animationTree.get("parameters/playback").travel("Hadouken")
+	_animationHandler.chargeHadouken()
 	isChargingSpecial = true
 
 
 func releaseSpecial():
-	_animationTree.get("parameters/playback").travel("Hadouken2")
+	isAttacking = true
+	_animationHandler.releaseHadouken()
 	isChargingSpecial = false
 	_playHadoukenSFX = true
 	_hideChargeBar()
