@@ -57,7 +57,6 @@ var _hitAnimationTime = 1
 var _currentSuperCharges = STARTING_SUPER_CHARGES
 var _lastHadoukenDamagePercentage: float = 0.0
 var _setting: Settings = Settings.new()
-var _animationHandler: BlendTreeAnimationHandler
 
 # debug settings
 var isInfiniteHealth = false
@@ -342,7 +341,7 @@ func _summonHadouken():
 
 var timeToaddInput : float
 func checkForEvent(event_name: String, delta) -> bool:
-	if timeToaddInput >1 && (Input.is_action_just_pressed(event_name) or Input.is_action_pressed(event_name)):
+	if timeToaddInput >= 0 && (Input.is_action_just_pressed(event_name) or Input.is_action_pressed(event_name)):
 		timeToaddInput = 0
 		return true
 	elif timeToaddInput < 1:

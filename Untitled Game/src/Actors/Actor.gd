@@ -21,6 +21,7 @@ var _lastYPostionOnGround = 0
 var _originalHurtBoxPosition: Vector2 = Vector2.ZERO
 
 var errorLogger = ErrorLogger.new()
+var _animationHandler: AnimationHandler # Implemented in inherited classes. 
 
 signal health_changed
 signal died
@@ -107,8 +108,7 @@ func getMovement(direction: Vector2, speed: float, acceleration: float) -> Vecto
 	
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if !isDying:
-		if($AnimationTree != null):
-			$AnimationTree.get("parameters/playback").travel("Hurt")
+		_animationHandler.hurt()
 		var newHealth = _health-damage
 		emit_signal("health_changed", _health, newHealth, _maxHealth)
 		_health=newHealth
@@ -121,8 +121,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 func die() -> void:
 	isDying = true
 	_disableNodes(self)
-	if($AnimationTree != null):
-		$AnimationTree.get("parameters/playback").travel("die")
+	_animationHandler.die()
 	emit_signal("died")
 	
 func dispose() -> void:
