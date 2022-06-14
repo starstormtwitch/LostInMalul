@@ -26,7 +26,7 @@ func spawnInstantiatedNode(node : Node2D, position : Vector2):
 	#add instance to spawner, defer call in case parent is still being setup
 	if(_countToSpawn > 0):
 		_countToSpawn=_countToSpawn-1;
-		node.connect("tree_exited", self, "_despawned")
+		node.connect("tree_exiting", self, "_despawned")
 		parent.call_deferred("add_child", node);
 		node.global_position = position; 
 		emit_signal("spawned", node);
@@ -47,8 +47,8 @@ func spawn(scene_spawn : PackedScene, position : Vector2):
 		if(_countToSpawn > 0):
 			_countToSpawn=_countToSpawn-1;
 			var spawnling = scene_spawn.instance();
-			spawnling.connect("tree_exited", self, "_despawned")
 			parent.call_deferred("add_child", spawnling);
+			spawnling.connect("tree_exiting", self, "_despawned")
 			spawnling.global_position = position; 
 			emit_signal("spawned", spawnling);
 			return spawnling;

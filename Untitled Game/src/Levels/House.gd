@@ -140,12 +140,10 @@ func _on_BasementR1_AllEnemiesDefeated():
 		
 func GetReadyForBossEncounter():
 	_textBox.showText("I think that's all of them.")
-	ratKing = get_node("YSort/Actors/RatKingSpawner").spawnEnemy()
+	get_node("YSort/Actors/RatKingSpawner").call_deferred("spawnEnemy")
 	emit_signal("area_lock", false)
 	get_node("LevelBackground/CameraPositions/Basement_Fight1").ManualTransition_Exit();
 	get_node("LevelBackground/Boundaries/Basement/BossSeperator").disabled = true;
-	ratKing[0].connect("health_changed", self, "_on_Boss_health_changed")
-	$GUI/BossGui/ProgressBar.set_deferred("value",   (ratKing[0]._health / ratKing[0]._maxHealth) * 100);
 	
 func _on_Boss_health_changed(_oldHealth, newHealth, maxHealth):
 	var progressValue = (float(newHealth) / float(maxHealth)) * 100.00
@@ -155,15 +153,17 @@ func _on_BossEncounter_body_entered(body):
 	if (body == _player):
 		get_node("LevelBackground/Interactions/Basement/BossEncounter/BossEncounterCollision").set_deferred("disabled", true);
 		_textBox.showText("Rat King: So... you think you can take your house back from me? I'm afraid that can't happen... you see, us rats are sick of living in this damp disgusting basement.  We will enjoy this house better than you ever did, and now I'll make sure you never hurt a rat again.")
-		ratKing[0]._target = _player;
-		ratKing[0]._mobSpawnArea = get_node("LevelBackground/SpecialZones/BossMobZone/CollisionShape");		
+		ratKing._target = _player;
+		ratKing._mobSpawnArea = get_node("LevelBackground/SpecialZones/BossMobZone/CollisionShape");		
 		$GUI/BossGui.set_deferred("visible", true);
-
-func _on_RatKingSpawner_AllEnemiesDefeated():
-	_textBox.showText("End Of Demo, please restart or choose another level.")
 
 func _on_LirikYaki_item_pickup(item : Node2D):
 	$GUI/PlayerGui/Inventory.InventoryItem = item;
+	
+func _on_RatKingSpawner_AllEnemiesDefeated():
+	LevelGlobals.SetCheckpoint("Streets", "Start");
+	LevelGlobals.save_game();
+	LevelGlobals.load_checkpoint();
 
 func _on_LirikYaki_item_delete():
 	$GUI/PlayerGui/Inventory.InventoryItem.queue_free()
@@ -313,3 +313,11 @@ func AllDefeatedGarage():
 func _on_FoyerEnemies_AllEnemiesDefeated():
 	get_node("LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
 	get_node("LevelBackground/Interactions/Foyer/GarageNeedKey/CollisionShape").set_deferred("disabled", false);
+
+
+func _on_RatKingSpawner_spawned(spawn):
+	ratKing = spawn
+	spawn.connect("health_changed", self, "_on_Boss_health_changed")
+	$GUI/BossGui/ProgressBar.set_deferred("value",   (spawn._health / spawn._maxHealth) * 100);
+
+

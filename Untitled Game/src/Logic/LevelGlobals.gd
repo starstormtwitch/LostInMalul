@@ -17,6 +17,7 @@ const _layerValueParamName: String = "value"
 const _levelDictionary = {
 	"MainMenu" : preload("res://src/Levels/Menu/MainMenu.tscn"),
 	"House" : preload("res://src/Levels/House.tscn"),
+	"Streets" : preload("res://src/Levels/Streets.tscn"),
 }  
 
 func _ready():
@@ -96,7 +97,7 @@ func load_game():
 	else:
 		new_game();
 	
-func load_checkpoint():
+func load_checkpoint():    
 	var playerData = LevelGlobals.GetPlayerSaveData()	
 	assert(playerData != null, "Player save data is null!")
 	var gameScene = LevelGlobals.GetLevelScene(playerData.level);

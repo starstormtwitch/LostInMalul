@@ -23,8 +23,8 @@ const deathSound = preload("res://assets/audio/main_char_death_sfx.wav")
 
 const _JUMP_EVENT = "Jump"
 const _DASH_EVENT = "dodge"
-const _DODGE_SPEED = 20000
-const _DODGE_ACCELERATION = .5
+const _DODGE_SPEED = 900
+const _DODGE_ACCELERATION = 1
 const _LEFT_FACING_SCALE = -1.0
 const _RIGHT_FACING_SCALE = 1.0
 const _FOOTSTEP_PARTICLE_POSITION_OFFSET = -6
@@ -341,13 +341,9 @@ func _summonHadouken():
 	_attackManager.releaseSpecial()
 
 
-var timeToaddInput : float
 func checkForEvent(event_name: String, delta) -> bool:
-	if timeToaddInput >1 && (Input.is_action_just_pressed(event_name) or Input.is_action_pressed(event_name)):
-		timeToaddInput = 0
+	if Input.is_action_just_pressed(event_name) or Input.is_action_pressed(event_name):
 		return true
-	elif timeToaddInput < 1:
-		timeToaddInput += delta
 	return false
 
 func _finishedAttack() -> void:

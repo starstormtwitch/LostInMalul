@@ -161,8 +161,8 @@ func die() -> void:
 		if(child.is_in_group("enemy")):
 			if("isDying" in child && !child.isDying):
 				child.die()
-		elif(child.is_in_group("EnemySpawner")):
-			child.queue_free()
+#		elif(child.is_in_group("EnemySpawner")):
+#			child.queue_free()
 	
 
 func _on_FlockBox_area_entered(area):
