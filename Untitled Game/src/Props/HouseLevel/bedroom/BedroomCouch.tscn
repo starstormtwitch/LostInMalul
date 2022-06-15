@@ -11,14 +11,14 @@ extents = Vector2( 7.33907, 6.2957 )
 [node name="BedroomCouch" type="StaticBody2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0.794601, -19.0703 )
+position = Vector2( -4.63515, -7.01891 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -4.96063, -9.12756 )
+position = Vector2( -10.3904, 2.92383 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2( 8.13543, -9.52441 )
+position = Vector2( 2.70568, 2.52698 )
 rotation = -0.846485
 shape = SubResource( 2 )

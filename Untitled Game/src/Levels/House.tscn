@@ -404,7 +404,7 @@ shape = SubResource( 5 )
 position = Vector2( 2586.28, 247.613 )
 
 [node name="LeftWall" type="CollisionShape2D" parent="LevelBackground/Boundaries/Kitchen"]
-position = Vector2( -43.8254, -18.3543 )
+position = Vector2( -46.26, -17.9797 )
 shape = SubResource( 6 )
 
 [node name="RIghtWall" type="CollisionShape2D" parent="LevelBackground/Boundaries/Kitchen"]
@@ -1248,7 +1248,7 @@ position = Vector2( 444, 232 )
 [node name="Bedroom" type="YSort" parent="YSort/Props"]
 
 [node name="Bed" parent="YSort/Props/Bedroom" instance=ExtResource( 16 )]
-position = Vector2( 828.524, 189.921 )
+position = Vector2( 828.524, 189.754 )
 
 [node name="cat_frames" parent="YSort/Props/Bedroom" instance=ExtResource( 13 )]
 position = Vector2( 930.553, 147.541 )
@@ -1257,7 +1257,7 @@ position = Vector2( 930.553, 147.541 )
 position = Vector2( 724.011, 189.985 )
 
 [node name="drawers" parent="YSort/Props/Bedroom" instance=ExtResource( 11 )]
-position = Vector2( 1053.42, 205.559 )
+position = Vector2( 1031.59, 218.809 )
 
 [node name="dumbbells" parent="YSort/Props/Bedroom" instance=ExtResource( 17 )]
 position = Vector2( 814.405, 290.403 )
@@ -1314,7 +1314,7 @@ position = Vector2( 655.307, 158.591 )
 position = Vector2( 813.903, 124.759 )
 
 [node name="BedroomCouch" parent="YSort/Props/Bedroom" instance=ExtResource( 180 )]
-position = Vector2( 577.074, 232.481 )
+position = Vector2( 580.344, 219.994 )
 
 [node name="StreamingRoom" type="YSort" parent="YSort/Props"]
 position = Vector2( 1159.75, 0 )
@@ -1354,7 +1354,7 @@ position = Vector2( 327.322, 143.224 )
 position = Vector2( 288.146, 123.744 )
 
 [node name="BigCabinet" parent="YSort/Props/StreamingRoom" instance=ExtResource( 128 )]
-position = Vector2( 432.108, 194.849 )
+position = Vector2( 429.182, 183.647 )
 
 [node name="FRPainting" parent="YSort/Props/StreamingRoom" instance=ExtResource( 129 )]
 position = Vector2( 243.74, 141.451 )
@@ -1366,10 +1366,10 @@ position = Vector2( 121.558, 141.866 )
 position = Vector2( 452.514, 250.53 )
 
 [node name="Controller1" parent="YSort/Props/StreamingRoom" instance=ExtResource( 135 )]
-position = Vector2( 163.165, 205.782 )
+position = Vector2( 162.323, 194.557 )
 
 [node name="Controller2" parent="YSort/Props/StreamingRoom" instance=ExtResource( 136 )]
-position = Vector2( 180.767, 210.034 )
+position = Vector2( 183.854, 197.968 )
 
 [node name="Shelves" parent="YSort/Props/StreamingRoom" instance=ExtResource( 137 )]
 position = Vector2( 555.637, 198.254 )
@@ -1478,7 +1478,7 @@ position = Vector2( 351.103, 122.607 )
 position = Vector2( 2474.16, 0 )
 
 [node name="ShelfKitchen" parent="YSort/Props/Kitchen" instance=ExtResource( 195 )]
-position = Vector2( 90.1025, 209.487 )
+position = Vector2( 78.0483, 226.381 )
 
 [node name="Node2D" parent="YSort/Props/Kitchen" instance=ExtResource( 14 )]
 position = Vector2( 28.8264, 234.965 )

@@ -16,7 +16,7 @@ texture = ExtResource( 1 )
 position = Vector2( 47.2785, 31.9163 )
 
 [node name="RightFragment" type="Sprite" parent="Node2D2"]
-position = Vector2( -13.7855, -32.4708 )
+position = Vector2( -14.2954, -32.4708 )
 texture = ExtResource( 2 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
