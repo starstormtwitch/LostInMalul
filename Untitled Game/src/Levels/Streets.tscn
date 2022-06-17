@@ -618,11 +618,9 @@ position = Vector2( 0, 167.584 )
 
 [node name="TrafficSystem" type="Node2D" parent="."]
 script = ExtResource( 34 )
-g_copies_of_each = 1
-g_min_y = 125
-g_max_y = 230
-g_max_spawn_wait_ms = 1500
-g_object_velocity = 2.5
+g_min_y = 150
+g_max_y = 220
+g_object_velocity = 4.0
 g_path = "res://src/Props/StreetLevel/Vehicles/"
 g_starting_x = 800
 
