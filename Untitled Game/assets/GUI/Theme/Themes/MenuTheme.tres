@@ -1,6 +1,5 @@
-[gd_resource type="Theme" load_steps=28 format=2]
+[gd_resource type="Theme" load_steps=27 format=2]
 
-[ext_resource path="res://assets/GUI/Theme/Textures/backpanelv1.png" type="Texture" id=1]
 [ext_resource path="res://assets/GUI/Theme/Themes/button_normal.tres" type="StyleBox" id=2]
 [ext_resource path="res://assets/GUI/Theme/Fonts/sirial.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/GUI/Theme/Themes/panel.tres" type="StyleBox" id=4]
@@ -42,7 +41,6 @@ color = Color( 0.211765, 0.737255, 0.854902, 1 )
 color = Color( 0.47451, 0.47451, 0.47451, 1 )
 
 [sub_resource type="StyleBoxTexture" id=16]
-texture = ExtResource( 1 )
 region_rect = Rect2( 0, 0, 348, 430 )
 margin_left = 5.0
 margin_right = 5.0

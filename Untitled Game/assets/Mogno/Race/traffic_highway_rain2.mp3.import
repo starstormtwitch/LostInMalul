@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/traffic_highway_rain2.mp3-2fd912905e7c299d1f9ea49cff77531c.mp3str"
+
+[deps]
+
+source_file="res://assets/Mogno/Race/traffic_highway_rain2.mp3"
+dest_files=[ "res://.import/traffic_highway_rain2.mp3-2fd912905e7c299d1f9ea49cff77531c.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -7,7 +7,6 @@
 [ext_resource path="res://assets/GUI/Theme/Themes/MenuTheme.tres" type="Theme" id=5]
 
 [sub_resource type="StreamTexture" id=1]
-load_path = "res://.import/main_menu_title.png-301e56f9d5e0230c9a729a185475e312.stex"
 
 [node name="MainMenu" type="Node2D"]
 position = Vector2( 500, 250 )
@@ -106,7 +105,6 @@ text = "(get the artists to deign a tittle screen kekw)"
 position = Vector2( -294.592, 24.2605 )
 scale = Vector2( 1.5, 1.5 )
 frames = ExtResource( 3 )
-frame = 4
 speed_scale = 0.5
 playing = true
 
@@ -114,7 +112,7 @@ playing = true
 position = Vector2( 322.514, 18.8457 )
 scale = Vector2( -1.5, 1.5 )
 frames = ExtResource( 4 )
-frame = 5
+frame = 1
 speed_scale = 0.5
 playing = true
 

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Stadium Ambience 5.mp3-55c979cc512968597da19dd5bbab5d77.mp3str"
+
+[deps]
+
+source_file="res://assets/Mogno/FAFA/Stadium Ambience 5.mp3"
+dest_files=[ "res://.import/Stadium Ambience 5.mp3-55c979cc512968597da19dd5bbab5d77.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

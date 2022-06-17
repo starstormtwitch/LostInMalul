@@ -46,7 +46,7 @@ func _on_InteractPromptArea_interactable_text_signal(text):
 func _on_TextBox_closed():
 	pass
 
-func spawnCar():
+# func spawnCar():
 	
 
 func _on_LirikYaki_item_pickup(item : Node2D):

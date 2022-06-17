@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/engine-loop-1-normalized.wav-d7127083c07f639db3ba456cce9694b2.sample"
+
+[deps]
+
+source_file="res://assets/Mogno/Race/engine-loop-1-normalized.wav"
+dest_files=[ "res://.import/engine-loop-1-normalized.wav-d7127083c07f639db3ba456cce9694b2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

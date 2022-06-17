@@ -262,7 +262,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/GGS/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [global]
 
