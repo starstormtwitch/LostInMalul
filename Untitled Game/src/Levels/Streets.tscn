@@ -160,7 +160,7 @@ position = Vector2( 384.765, 233.155 )
 shape = SubResource( 1 )
 
 [node name="Left" type="CollisionShape2D" parent="LevelBackground/Boundaries/OutsideBoundaries"]
-position = Vector2( -10.3627, 114.293 )
+position = Vector2( -10.3627, 114.647 )
 shape = SubResource( 2 )
 
 [node name="Right" type="CollisionShape2D" parent="LevelBackground/Boundaries/OutsideBoundaries"]
@@ -530,6 +530,9 @@ margin_right = 512.0
 
 [node name="CRTLayer" parent="GUI" instance=ExtResource( 200 )]
 visible = false
+
+[node name="CarSpawn" type="Position2D" parent="."]
+position = Vector2( 0, 167.584 )
 
 [connection signal="closed" from="GUI/TextBox2" to="." method="_on_TextBox_closed"]
 
