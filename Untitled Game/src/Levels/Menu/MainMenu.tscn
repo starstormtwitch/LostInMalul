@@ -5,8 +5,7 @@
 [ext_resource path="res://assets/SpriteSheets/sussy_spriteframes.tres" type="SpriteFrames" id=3]
 [ext_resource path="res://assets/SpriteSheets/sussyFR_spriteframes.tres" type="SpriteFrames" id=4]
 [ext_resource path="res://assets/GUI/Theme/Themes/MenuTheme.tres" type="Theme" id=5]
-
-[sub_resource type="StreamTexture" id=1]
+[ext_resource path="res://assets/other/main_menu_title.png" type="Texture" id=6]
 
 [node name="MainMenu" type="Node2D"]
 position = Vector2( 500, 250 )
@@ -87,7 +86,7 @@ margin_top = -228.258
 margin_right = 813.366
 margin_bottom = 444.742
 rect_scale = Vector2( 0.375017, 0.289533 )
-texture = SubResource( 1 )
+texture = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -105,7 +104,7 @@ text = "(get the artists to deign a tittle screen kekw)"
 position = Vector2( -294.592, 24.2605 )
 scale = Vector2( 1.5, 1.5 )
 frames = ExtResource( 3 )
-frame = 4
+frame = 3
 speed_scale = 0.5
 playing = true
 
@@ -113,7 +112,7 @@ playing = true
 position = Vector2( 322.514, 18.8457 )
 scale = Vector2( -1.5, 1.5 )
 frames = ExtResource( 4 )
-frame = 5
+frame = 4
 speed_scale = 0.5
 playing = true
 
