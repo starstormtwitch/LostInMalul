@@ -26,16 +26,14 @@ func _ready():
 		parent.connect("died", self, "on_death_loot")
 
 func spawnLoot():
-	var rng = RandomNumberGenerator.new()
-	rng.randomize()
 	if(MaxCoins > 0):
-		_countToSpawn += rng.randi_range(MinCoins, MaxCoins)
+		_countToSpawn += LevelGlobals.rng.randi_range(MinCoins, MaxCoins)
 		spawnMultipleInArea(COIN)
 	if(DropsPowerup == true):
-		var spawnOrNotNum = rng.randi_range(0, 100)
+		var spawnOrNotNum = LevelGlobals.rng.randi_range(0, 100)
 		if(spawnOrNotNum < PowerupChance):
 			_countToSpawn += 1
-			var indexToSpawn = rng.randi_range(-6, powerUpDict.size()-1)
+			var indexToSpawn = LevelGlobals.rng.randi_range(-6, powerUpDict.size()-1)
 			if(indexToSpawn < 0): indexToSpawn = 0 #0 should be health so we can increase droprate
 			var powerups = powerUpDict.keys()
 			spawnMultipleInArea(powerUpDict[powerups[indexToSpawn]])

@@ -9,6 +9,9 @@ export var g_max_spawn_wait_ms: int = 2000
 export var g_object_velocity: float = 5
 export var g_path: String = ""
 export var g_starting_x: int = 1700
+export var g_left_bounded: bool = true
+export var g_pool_location_x: int = -100
+export var g_pool_location_y: int = -100
 
 ### Object pool globals
 var g_last_spawn_time_ms: int = 0
@@ -17,16 +20,13 @@ var g_object_pool: Array = []
 var g_object_pool_available: Array = []
 var g_rand_spawn_wait_ms: int = 0
 
-### Constants
-const LEFT_BOUND: int = -50
-
 func _ready():
 	var paths: Array = _get_full_paths(g_path)
 	for path in paths:
 		var resource = load(path) 
 		for _i in g_copies_of_each:
 			var object: Node2D = resource.instance()
-			object.global_position = _get_random_global_position(object)
+			object.global_position = Vector2(g_pool_location_x, g_pool_location_y)
 			g_object_pool.append(object)
 			g_object_pool_available.append(object)
 			get_parent().call_deferred('add_child_below_node', self, object)
@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
 
 func _add_to_available_objects() -> void:
 	for object in g_object_pool:
-		if object.is_inside_tree() and object.global_position.x < LEFT_BOUND:
+		if object.is_inside_tree() and (object.global_position != Vector2(g_pool_location_x, g_pool_location_y)) and ((g_left_bounded and object.global_position.x > g_starting_x) or (!g_left_bounded and object.global_position.x < g_starting_x)):
 			object.global_position = _get_random_global_position(object)
 			object.reset()
 			g_object_pool_available.append(object)

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/traffic4.mp3-60a54ffd4f393c040cf4c27c19dd1ba8.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/traffic4.mp3"
+dest_files=[ "res://.import/traffic4.mp3-60a54ffd4f393c040cf4c27c19dd1ba8.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
