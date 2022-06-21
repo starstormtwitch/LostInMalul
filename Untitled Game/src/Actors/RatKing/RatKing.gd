@@ -43,6 +43,8 @@ func _ready():
 	_flocks = false;
 	_target = null;
 	
+	
+	_animationHandler = NodeStateMachineAnimationHandler.new($AnimationTree)
 	if($AnimationTree != null):
 		$AnimationTree.active = true
 	_lightningCooldownTimer.connect("timeout",self,"_on_lightning_cooldown_timeout") 
