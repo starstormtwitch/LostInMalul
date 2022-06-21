@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Area2D
 
 # Initially at 0, characters are made to move by the ObjectPool.
 var g_velocity: float = 0
@@ -11,15 +11,21 @@ const traffic4 = preload("res://assets/audio/traffic4.mp3")
 func _process(_delta: float) -> void:
 	position.x += g_velocity
 	if(g_velocity > 1):
-		$Sprite.flip_h = true
-		$CollisionShape2D.scale.x = -1
+		$Sprite.scale.x = -1
+		$CollisionShape2D.position.x = -abs($CollisionShape2D.position.x)
 	else:
-		$Sprite.flip_h = false
-		$CollisionShape2D.scale.x = 1
+		$Sprite.scale.x = 1
+		$CollisionShape2D.position.x = abs($CollisionShape2D.position.x)
 
 # @note: for ObjectPool.
 func get_height() -> float:
 	return $Sprite.texture.get_size().y * scale.y * $Sprite.scale.y
+	
+
+func _on_Box_area_entered(area):
+	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
+		area.get_parent().take_damage(1, Vector2(0, LevelGlobals.rng.randf_range(-5,5)), 5000)
+
 	
 # @note: for ObjectPool.
 func reset() -> void:
@@ -39,3 +45,4 @@ func start(velocity: float) -> void:
 		4:
 			SoundPlayer.playSound(get_tree().get_current_scene(), traffic4, 1)
 	#$AnimationPlayer.play('Walk')
+

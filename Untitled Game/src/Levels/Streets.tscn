@@ -420,11 +420,11 @@ position = Vector2( 55.1622, 77.7827 )
 [node name="BlueMailbox" parent="YSort/1stHouse" instance=ExtResource( 11 )]
 position = Vector2( -11.1702, 26.3851 )
 
+[node name="BlueTruck" parent="YSort/1stHouse" instance=ExtResource( 19 )]
+position = Vector2( 339.312, 119.089 )
+
 [node name="FireHydrant" parent="YSort/1stHouse" instance=ExtResource( 10 )]
 position = Vector2( -43.6554, 46.1588 )
-
-[node name="BlueTruck" parent="YSort/1stHouse/FireHydrant" instance=ExtResource( 19 )]
-position = Vector2( 382.967, 66.4033 )
 
 [node name="ThingNextToCat" parent="YSort/1stHouse" instance=ExtResource( 9 )]
 position = Vector2( 19.8303, 19.2579 )

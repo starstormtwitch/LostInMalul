@@ -46,8 +46,8 @@ func _process(delta: float) -> void:
 
 func _add_to_available_objects() -> void:
 	for object in g_object_pool:
-		if object.is_inside_tree() and (object.global_position != Vector2(g_pool_location_x, g_pool_location_y)) and ((g_left_bounded and object.global_position.x > g_starting_x) or (!g_left_bounded and object.global_position.x < g_starting_x)):
-			object.global_position = _get_random_global_position(object)
+		if object.is_inside_tree() and (object.global_position != Vector2(g_pool_location_x, g_pool_location_y)) and ((g_left_bounded and object.global_position.x > (g_starting_x + 10)) or (!g_left_bounded and object.global_position.x < (g_starting_x - 10))):
+			object.global_position = Vector2(g_pool_location_x, g_pool_location_y)
 			object.reset()
 			g_object_pool_available.append(object)
 			
