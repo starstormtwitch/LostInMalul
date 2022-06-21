@@ -11,4 +11,4 @@ texture = ExtResource( 1 )
 [node name="StaticBody2D" type="StaticBody2D" parent="Sprite"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/StaticBody2D"]
-polygon = PoolVector2Array( -23.125, 31.5, 36.625, 31.25, 36.5632, 5.73639, 29.4463, -1.56785, -29.5496, -1.19328, -29.7368, 3.67622, -22.8072, 9.10759 )
+polygon = PoolVector2Array( -23.125, 31.5, 36.625, 31.25, 36.5632, 5.73639, 29.4463, -1.56785, -31.25, -0.865337, -31.4169, 9.14596 )
