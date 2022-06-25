@@ -19,10 +19,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 60, 61, 62, 63, 64, 65, 66, 67, 68, 69 ]
+"values": [ 45, 46, 47, 48, 49, 50, 51, 52, 53 ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -180,14 +180,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
 "update": 1,
-"values": [ 0 ]
+"values": [  ]
 }
 
 [sub_resource type="Animation" id=8]
-length = 0.48
+length = 1.2
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("KinematicSprite/Sprite:frame")
@@ -196,10 +196,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56, 0.64, 0.72, 0.8, 0.88, 0.96, 1.04, 1.12 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 80, 81, 82, 83, 84, 85 ]
+"values": [ 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("attack/sideSwipeRight:disabled")
@@ -208,7 +208,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.09, 0.4 ),
+"times": PoolRealArray( 0.48, 1.12 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -220,7 +220,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.4, 0.47 ),
+"times": PoolRealArray( 1.12, 1.19 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -748,7 +748,7 @@ states/die/node = SubResource( 25 )
 states/die/position = Vector2( 37.3395, 127.82 )
 transitions = [ "Idle", "SideSwipe1", SubResource( 26 ), "SideSwipe1", "Idle", SubResource( 27 ), "SideSwipe1", "SideSwipe2", SubResource( 28 ), "SideSwipe2", "SideSwipe1", SubResource( 29 ), "SideSwipe1", "SideSwipeKick", SubResource( 30 ), "SideSwipeKick", "SideSwipe1", SubResource( 31 ), "Idle", "Hurt", SubResource( 32 ), "Hurt", "Idle", SubResource( 33 ), "Idle", "Walk", SubResource( 34 ), "Walk", "Idle", SubResource( 35 ), "Walk", "Hurt", SubResource( 36 ), "Hurt", "Walk", SubResource( 37 ), "SideSwipeKick", "Hurt", SubResource( 38 ), "SideSwipe2", "Hurt", SubResource( 39 ), "SideSwipe1", "Hurt", SubResource( 40 ), "Hurt", "SideSwipe1", SubResource( 41 ), "Hurt", "SideSwipe2", SubResource( 42 ), "Hurt", "SideSwipeKick", SubResource( 43 ), "SideSwipeKick", "Idle", SubResource( 44 ), "SideSwipe2", "Idle", SubResource( 45 ), "Idle", "SideSwipeKick", SubResource( 46 ), "SideSwipeKick", "Walk", SubResource( 47 ), "SideSwipe2", "Walk", SubResource( 48 ), "SideSwipe1", "Walk", SubResource( 49 ), "Walk", "SideSwipe1", SubResource( 50 ), "Walk", "SideSwipe2", SubResource( 51 ), "Walk", "SideSwipeKick", SubResource( 52 ), "Idle", "die", SubResource( 53 ), "Walk", "die", SubResource( 54 ), "SideSwipe1", "die", SubResource( 55 ), "SideSwipe2", "die", SubResource( 56 ), "SideSwipeKick", "die", SubResource( 57 ), "Hurt", "die", SubResource( 58 ), "Idle", "SideSwipe2", SubResource( 59 ), "SideSwipeKick", "SideSwipeRightKick2", SubResource( 60 ), "SideSwipeRightKick2", "SideSwipeKick", SubResource( 61 ), "SideSwipeRightKick2", "die", SubResource( 62 ), "SideSwipeRightKick2", "Hurt", SubResource( 63 ), "Hurt", "SideSwipeRightKick2", SubResource( 64 ), "SideSwipeRightKick2", "Walk", SubResource( 65 ), "SideSwipeRightKick2", "Idle", SubResource( 66 ), "SideSwipeRightKick2", "SideSwipe1", SubResource( 67 ), "SideSwipe1", "SideSwipeRightKick2", SubResource( 68 ), "Idle", "SideSwipeRightKick2", SubResource( 69 ), "Walk", "SideSwipeRightKick2", SubResource( 70 ), "SideSwipeRightKick2", "SideSwipe2", SubResource( 71 ), "SideSwipe2", "SideSwipeRightKick2", SubResource( 72 ), "SideSwipe2", "SideSwipeKick", SubResource( 73 ), "SideSwipeKick", "SideSwipe2", SubResource( 74 ), "SideSwipe2", "Hadouken", SubResource( 75 ), "Hadouken", "SideSwipe2", SubResource( 76 ), "Hadouken", "SideSwipe1", SubResource( 77 ), "Hadouken", "SideSwipeKick", SubResource( 78 ), "Hadouken", "Idle", SubResource( 79 ), "Hadouken", "Walk", SubResource( 80 ), "Hadouken", "Hurt", SubResource( 81 ), "Shoryuken", "Hurt", SubResource( 82 ), "Shoryuken", "SideSwipeKick", SubResource( 83 ), "Shoryuken", "SideSwipeRightKick2", SubResource( 84 ), "Shoryuken", "SideSwipe1", SubResource( 85 ), "Shoryuken", "Idle", SubResource( 86 ), "Shoryuken", "Walk", SubResource( 87 ), "Shoryuken", "die", SubResource( 88 ), "Hadouken", "die", SubResource( 89 ), "SideSwipeRightKick2", "Shoryuken", SubResource( 90 ), "Idle", "Hadouken", SubResource( 91 ), "Idle", "Shoryuken", SubResource( 92 ), "Walk", "Hadouken", SubResource( 93 ), "SideSwipe1", "Hadouken", SubResource( 94 ), "SideSwipeKick", "Shoryuken", SubResource( 95 ), "SideSwipeRightKick2", "Hadouken", SubResource( 96 ), "SideSwipe2", "Shoryuken", SubResource( 97 ), "Hadouken", "Hadouken2", SubResource( 98 ), "Hadouken2", "SideSwipeKick", SubResource( 99 ), "Hadouken2", "SideSwipe1", SubResource( 100 ), "Hadouken2", "Idle", SubResource( 101 ), "Hadouken2", "die", SubResource( 102 ), "Hadouken2", "Hurt", SubResource( 103 ), "SideSwipeKick", "Hadouken", SubResource( 104 ), "Shoryuken", "Hadouken", SubResource( 105 ), "SideSwipe2", "Headbutt", SubResource( 106 ), "Idle", "Headbutt", SubResource( 107 ), "Walk", "Headbutt", SubResource( 108 ), "Hurt", "Headbutt", SubResource( 109 ), "Headbutt", "Hurt", SubResource( 110 ), "Headbutt", "Idle", SubResource( 111 ), "Headbutt", "Walk", SubResource( 112 ), "Headbutt", "die", SubResource( 113 ), "Headbutt", "SideSwipeKick", SubResource( 114 ), "Headbutt", "SideSwipe1", SubResource( 115 ), "Headbutt", "Hadouken", SubResource( 116 ), "Hadouken2", "Headbutt", SubResource( 117 ), "Hadouken", "Headbutt", SubResource( 118 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -134.846, 178.997 )
+graph_offset = Vector2( 47.0361, 178.997 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=120]
 
@@ -776,11 +776,11 @@ texture = ExtResource( 2 )
 position = Vector2( -8.96681, 1.41581 )
 
 [node name="Sprite" type="Sprite" parent="KinematicSprite"]
-position = Vector2( 5.1238, -10.3545 )
+position = Vector2( 6.22748, -11.4582 )
 texture = ExtResource( 3 )
-hframes = 12
-vframes = 2
-frame = 14
+hframes = 15
+vframes = 5
+frame = 60
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -2.56038, -2.12541 )
@@ -805,6 +805,7 @@ anims/WalkRight = SubResource( 13 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 119 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/playback = SubResource( 120 )
 
 [node name="TrailTimer" type="Timer" parent="."]
