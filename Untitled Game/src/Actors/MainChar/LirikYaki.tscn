@@ -220,11 +220,11 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.4, 0.43 ),
+"times": PoolRealArray( 0.09, 0.43 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "checkIfWePlayWooshSFX"
+"method": "playShoryukenSFX"
 }, {
 "args": [  ],
 "method": "_finishedAttack"
@@ -530,7 +530,7 @@ input_1/auto_advance = false
 animation = "WalkRight"
 
 [sub_resource type="AnimationNodeBlendTree" id=32]
-graph_offset = Vector2( -916, 793.25 )
+graph_offset = Vector2( -1102.52, -152.25 )
 nodes/Attack/node = SubResource( 14 )
 nodes/Attack/position = Vector2( -220, 340 )
 nodes/Combo1/node = SubResource( 15 )
@@ -567,7 +567,7 @@ nodes/Special/node = SubResource( 30 )
 nodes/Special/position = Vector2( -360, 620 )
 nodes/Walk/node = SubResource( 31 )
 nodes/Walk/position = Vector2( -400, -80 )
-node_connections = [ "output", 0, "Main", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Combo1", 2, "HeadButt", "Attack", 0, "Combo1", "Attack", 1, "Combo2", "Attack", 2, "Special", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack", "Special", 0, "HadoukenCharge", "Special", 1, "HadoukenRelease", "Movement", 0, "Idle", "Movement", 1, "Walk", "Combo2", 0, "Kick1", "Combo2", 1, "Kick2", "Combo2", 2, "Shoryuken" ]
+node_connections = [ "output", 0, "Main", "Combo2", 0, "Kick1", "Combo2", 1, "Kick2", "Combo2", 2, "Shoryuken", "Attack", 0, "Combo1", "Attack", 1, "Combo2", "Attack", 2, "Special", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Combo1", 2, "HeadButt", "Special", 0, "HadoukenCharge", "Special", 1, "HadoukenRelease", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack", "Movement", 0, "Idle", "Movement", 1, "Walk" ]
 
 [sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 11.7115, 6.11188 )
@@ -594,7 +594,7 @@ position = Vector2( -0.893405, -23.5687 )
 texture = ExtResource( 6 )
 hframes = 10
 vframes = 9
-frame = 44
+frame = 80
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -2.67837, -2.47936 )

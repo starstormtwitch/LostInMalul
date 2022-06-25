@@ -220,11 +220,11 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 1.12, 1.19 ),
+"times": PoolRealArray( 0.48, 1.19 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "checkIfWePlayWooshSFX"
+"method": "playShoryukenSFX"
 }, {
 "args": [  ],
 "method": "_finishedAttack"
@@ -443,7 +443,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="AnimationNodeTransition" id=123]
+[sub_resource type="AnimationNodeTransition" id=14]
 input_count = 3
 input_0/name = "Combo1"
 input_0/auto_advance = false
@@ -452,7 +452,7 @@ input_1/auto_advance = false
 input_2/name = "Special"
 input_2/auto_advance = false
 
-[sub_resource type="AnimationNodeTransition" id=124]
+[sub_resource type="AnimationNodeTransition" id=15]
 input_count = 3
 input_0/name = "Punch1"
 input_0/auto_advance = false
@@ -461,7 +461,7 @@ input_1/auto_advance = false
 input_2/name = "Punch3"
 input_2/auto_advance = false
 
-[sub_resource type="AnimationNodeTransition" id=125]
+[sub_resource type="AnimationNodeTransition" id=16]
 input_count = 3
 input_0/name = "Kick1"
 input_0/auto_advance = false
@@ -470,31 +470,31 @@ input_1/auto_advance = false
 input_2/name = "Kick3"
 input_2/auto_advance = false
 
-[sub_resource type="AnimationNodeAnimation" id=126]
+[sub_resource type="AnimationNodeAnimation" id=17]
 animation = "Die"
 
-[sub_resource type="AnimationNodeAnimation" id=127]
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "Hadouken"
 
-[sub_resource type="AnimationNodeAnimation" id=128]
+[sub_resource type="AnimationNodeAnimation" id=19]
 animation = "Hadouken2"
 
-[sub_resource type="AnimationNodeAnimation" id=129]
+[sub_resource type="AnimationNodeAnimation" id=20]
 animation = "Headbutt"
 
-[sub_resource type="AnimationNodeAnimation" id=130]
+[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "HurtRight"
 
-[sub_resource type="AnimationNodeAnimation" id=131]
+[sub_resource type="AnimationNodeAnimation" id=22]
 animation = "IdleRight"
 
-[sub_resource type="AnimationNodeAnimation" id=132]
+[sub_resource type="AnimationNodeAnimation" id=23]
 animation = "SideSwipeRightKick"
 
-[sub_resource type="AnimationNodeAnimation" id=133]
+[sub_resource type="AnimationNodeAnimation" id=24]
 animation = "SideSwipeRightKick2"
 
-[sub_resource type="AnimationNodeTransition" id=134]
+[sub_resource type="AnimationNodeTransition" id=25]
 input_count = 4
 input_0/name = "Movement"
 input_0/auto_advance = false
@@ -505,76 +505,76 @@ input_2/auto_advance = false
 input_3/name = "Attack"
 input_3/auto_advance = false
 
-[sub_resource type="AnimationNodeTransition" id=135]
+[sub_resource type="AnimationNodeTransition" id=26]
 input_count = 2
 input_0/name = "Idle"
 input_0/auto_advance = false
 input_1/name = "Walk"
 input_1/auto_advance = false
 
-[sub_resource type="AnimationNodeAnimation" id=136]
+[sub_resource type="AnimationNodeAnimation" id=27]
 animation = "SideSwipeRight"
 
-[sub_resource type="AnimationNodeAnimation" id=137]
+[sub_resource type="AnimationNodeAnimation" id=28]
 animation = "SideSwipeRight2"
 
-[sub_resource type="AnimationNodeAnimation" id=138]
+[sub_resource type="AnimationNodeAnimation" id=29]
 animation = "Shoryuken"
 
-[sub_resource type="AnimationNodeTransition" id=139]
+[sub_resource type="AnimationNodeTransition" id=30]
 input_count = 2
 input_0/name = "HadoukenCharge"
 input_0/auto_advance = false
 input_1/name = "HadoukenRelease"
 input_1/auto_advance = false
 
-[sub_resource type="AnimationNodeAnimation" id=140]
+[sub_resource type="AnimationNodeAnimation" id=31]
 animation = "WalkRight"
 
-[sub_resource type="AnimationNodeBlendTree" id=141]
+[sub_resource type="AnimationNodeBlendTree" id=32]
 graph_offset = Vector2( -1102.52, -217.75 )
-nodes/Attack/node = SubResource( 123 )
+nodes/Attack/node = SubResource( 14 )
 nodes/Attack/position = Vector2( -220, 340 )
-nodes/Combo1/node = SubResource( 124 )
+nodes/Combo1/node = SubResource( 15 )
 nodes/Combo1/position = Vector2( -540, 220 )
-nodes/Combo2/node = SubResource( 125 )
+nodes/Combo2/node = SubResource( 16 )
 nodes/Combo2/position = Vector2( -540, 420 )
-nodes/Die/node = SubResource( 126 )
+nodes/Die/node = SubResource( 17 )
 nodes/Die/position = Vector2( -320, 180 )
-nodes/HadoukenCharge/node = SubResource( 127 )
+nodes/HadoukenCharge/node = SubResource( 18 )
 nodes/HadoukenCharge/position = Vector2( -560, 840 )
-nodes/HadoukenRelease/node = SubResource( 128 )
+nodes/HadoukenRelease/node = SubResource( 19 )
 nodes/HadoukenRelease/position = Vector2( -300, 860 )
-nodes/HeadButt/node = SubResource( 129 )
+nodes/HeadButt/node = SubResource( 20 )
 nodes/HeadButt/position = Vector2( -860, 300 )
-nodes/Hurt/node = SubResource( 130 )
+nodes/Hurt/node = SubResource( 21 )
 nodes/Hurt/position = Vector2( -320, 60 )
-nodes/Idle/node = SubResource( 131 )
+nodes/Idle/node = SubResource( 22 )
 nodes/Idle/position = Vector2( -260, -200 )
-nodes/Kick1/node = SubResource( 132 )
+nodes/Kick1/node = SubResource( 23 )
 nodes/Kick1/position = Vector2( -860, 460 )
-nodes/Kick2/node = SubResource( 133 )
+nodes/Kick2/node = SubResource( 24 )
 nodes/Kick2/position = Vector2( -860, 600 )
-nodes/Main/node = SubResource( 134 )
+nodes/Main/node = SubResource( 25 )
 nodes/Main/position = Vector2( 60, 140 )
-nodes/Movement/node = SubResource( 135 )
+nodes/Movement/node = SubResource( 26 )
 nodes/Movement/position = Vector2( -100, -60 )
-nodes/Punch1/node = SubResource( 136 )
+nodes/Punch1/node = SubResource( 27 )
 nodes/Punch1/position = Vector2( -760, 40 )
-nodes/Punch2/node = SubResource( 137 )
+nodes/Punch2/node = SubResource( 28 )
 nodes/Punch2/position = Vector2( -880, 180 )
-nodes/Shoryuken/node = SubResource( 138 )
+nodes/Shoryuken/node = SubResource( 29 )
 nodes/Shoryuken/position = Vector2( -780, 760 )
-nodes/Special/node = SubResource( 139 )
+nodes/Special/node = SubResource( 30 )
 nodes/Special/position = Vector2( -360, 620 )
-nodes/Walk/node = SubResource( 140 )
+nodes/Walk/node = SubResource( 31 )
 nodes/Walk/position = Vector2( -400, -80 )
-node_connections = [ "output", 0, "Main", "Attack", 0, "Combo1", "Attack", 1, "Combo2", "Attack", 2, "Special", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Combo1", 2, "HeadButt", "Movement", 0, "Idle", "Movement", 1, "Walk", "Combo2", 0, "Kick1", "Combo2", 1, "Kick2", "Combo2", 2, "Shoryuken", "Special", 0, "HadoukenCharge", "Special", 1, "HadoukenRelease" ]
+node_connections = [ "output", 0, "Main", "Combo2", 0, "Kick1", "Combo2", 1, "Kick2", "Combo2", 2, "Shoryuken", "Attack", 0, "Combo1", "Attack", 1, "Combo2", "Attack", 2, "Special", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Combo1", 2, "HeadButt", "Special", 0, "HadoukenCharge", "Special", 1, "HadoukenRelease", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack", "Movement", 0, "Idle", "Movement", 1, "Walk" ]
 
-[sub_resource type="RectangleShape2D" id=121]
+[sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 5.7005, 3.48579 )
 
-[sub_resource type="RectangleShape2D" id=122]
+[sub_resource type="RectangleShape2D" id=34]
 extents = Vector2( 6.37621, 4.78023 )
 
 [node name="LirikYaki" type="KinematicBody2D" groups=[
@@ -599,7 +599,7 @@ position = Vector2( 6.22748, -11.4582 )
 texture = ExtResource( 3 )
 hframes = 15
 vframes = 5
-frame = 47
+frame = 60
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -2.56038, -2.12541 )
@@ -622,7 +622,7 @@ anims/SideSwipeRightKick2 = SubResource( 12 )
 anims/WalkRight = SubResource( 13 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 141 )
+tree_root = SubResource( 32 )
 anim_player = NodePath("../AnimationPlayer")
 parameters/Attack/current = 0
 parameters/Combo1/current = 0
@@ -663,7 +663,7 @@ collision_mask = 4096
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2( 0.101578, 20.757 )
-shape = SubResource( 121 )
+shape = SubResource( 33 )
 
 [node name="attack" type="Area2D" parent="."]
 position = Vector2( -0.730887, -23.75 )
@@ -674,7 +674,7 @@ collision_mask = 0
 modulate = Color( 0.6, 0.298039, 1, 1 )
 position = Vector2( 11.031, 12.7623 )
 scale = Vector2( -1.21357, 1.25343 )
-shape = SubResource( 122 )
+shape = SubResource( 34 )
 
 [node name="HadoukenSpawn" type="Position2D" parent="."]
 position = Vector2( 7.70866, -9.35479 )
