@@ -10,8 +10,6 @@ const _UI_CANCEL_EVENT: String = "ui_cancel"
 
 var _menuOpen: bool = false
 
-signal area_lock
-
 onready var _textBox: TextBox = $GUI/TextBox
 
 # Called when the node enters the scene tree for the first time.

@@ -6,6 +6,12 @@ var _cameraManager: CustomCamera2D
 var _enteredAreas: Array
 var settings
 
+var areaLocked = false;
+var currentSpawnersInLockOut: Array
+var currentDelimiterForLockOut: CustomDelimiter2D
+signal area_lock
+signal lockout_finished
+
 func _ready():
 	_setup()
 
@@ -29,6 +35,30 @@ func InitCameraManager() -> void:
 
 func GetCameraManager() -> CustomCamera2D:
 	return _cameraManager
+
+func LockOutFightStart(delimiterNode: CustomDelimiter2D, enemySpawners):
+	if !areaLocked:
+		areaLocked = true;
+		emit_signal("area_lock", true)
+		delimiterNode.ManualTransition_Enter();
+		currentSpawnersInLockOut = enemySpawners;
+		currentDelimiterForLockOut = delimiterNode;
+		NextEnemySpawner();
+		
+func NextEnemySpawner():
+	if areaLocked:
+		var spawner = currentSpawnersInLockOut.pop_front()
+		if is_instance_valid(spawner):
+			spawner.spawn_enemies()
+			spawner.connect("AllEnemiesDefeated", self, "NextEnemySpawner")
+		else:
+			LockOutFightFinish(currentDelimiterForLockOut);
+		
+func LockOutFightFinish(delimiterNode: CustomDelimiter2D):
+	areaLocked = false;
+	emit_signal("area_lock", false)
+	delimiterNode.ManualTransition_Exit();
+	emit_signal("lockout_finished", currentDelimiterForLockOut)
 
 func RegisterTeleporterSignals() -> void:
 	var teleporters = self.get_parent().get_tree().get_nodes_in_group("TeleportNode")

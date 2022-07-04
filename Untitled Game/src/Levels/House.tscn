@@ -1127,7 +1127,7 @@ enemy = "SlimeFR"
 automatic = false
 
 [node name="Garage2" parent="YSort/Actors" instance=ExtResource( 176 )]
-position = Vector2( 3403, 507.095 )
+position = Vector2( 3402.42, 507.095 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
 count = 2

@@ -34,8 +34,6 @@ var _pickedUpScrewdriver: bool = false
 var _rightBasementDefeated: bool = false
 var ratKing
 
-signal area_lock
-
 onready var _textBox: TextBox = $GUI/TextBox
 
 # Called when the node enters the scene tree for the first time.
