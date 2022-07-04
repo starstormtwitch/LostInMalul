@@ -535,7 +535,70 @@ position = Vector2( 2813.58, 348.827 )
 AutomaticTransition = false
 
 [node name="BottomRight" parent="LevelBackground/CameraPositions/Garage_Fight" index="0"]
-position = Vector2( 554.974, 248.995 )
+position = Vector2( 401.722, 248.173 )
+
+[node name="Garage_Fight2" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
+position = Vector2( 3242.91, 348.827 )
+AutomaticTransition = false
+
+[node name="BottomRight" parent="LevelBackground/CameraPositions/Garage_Fight2" index="0"]
+position = Vector2( 401.722, 248.173 )
+
+[node name="Bedroom_Fight1" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
+position = Vector2( 486.335, 19.3803 )
+AutomaticTransition = false
+
+[node name="BottomRight" parent="LevelBackground/CameraPositions/Bedroom_Fight1" index="0"]
+position = Vector2( 407.218, 279.829 )
+
+[node name="Bedroom_Fight2" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
+position = Vector2( 729.215, 19.3074 )
+AutomaticTransition = false
+
+[node name="BottomRight" parent="LevelBackground/CameraPositions/Bedroom_Fight2" index="0"]
+position = Vector2( 407.218, 279.829 )
+
+[node name="Office_Fight1" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
+position = Vector2( 1153.63, 21.6612 )
+AutomaticTransition = false
+
+[node name="BottomRight" parent="LevelBackground/CameraPositions/Office_Fight1" index="0"]
+position = Vector2( 407.218, 279.829 )
+
+[node name="Office_Fight2" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
+position = Vector2( 1392.67, 21.6612 )
+AutomaticTransition = false
+
+[node name="BottomRight" parent="LevelBackground/CameraPositions/Office_Fight2" index="0"]
+position = Vector2( 407.218, 279.829 )
+
+[node name="LivingRoom_Fight1" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
+position = Vector2( 1815.22, 21.6612 )
+AutomaticTransition = false
+
+[node name="BottomRight" parent="LevelBackground/CameraPositions/LivingRoom_Fight1" index="0"]
+position = Vector2( 407.218, 279.829 )
+
+[node name="LivingRoom_Fight2" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
+position = Vector2( 2052.79, 21.6612 )
+AutomaticTransition = false
+
+[node name="BottomRight" parent="LevelBackground/CameraPositions/LivingRoom_Fight2" index="0"]
+position = Vector2( 407.218, 279.829 )
+
+[node name="Kitchen_fight1" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
+position = Vector2( 2474.16, 21.6612 )
+AutomaticTransition = false
+
+[node name="BottomRight" parent="LevelBackground/CameraPositions/Kitchen_fight1" index="0"]
+position = Vector2( 407.218, 279.829 )
+
+[node name="Kitchen_fight2" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
+position = Vector2( 2714.54, 19.3074 )
+AutomaticTransition = false
+
+[node name="BottomRight" parent="LevelBackground/CameraPositions/Kitchen_fight2" index="0"]
+position = Vector2( 407.218, 279.829 )
 
 [node name="Basement_Fight1" parent="LevelBackground/CameraPositions" instance=ExtResource( 20 )]
 position = Vector2( 233.335, 316.827 )
@@ -2064,6 +2127,15 @@ visible = false
 [editable path="LevelBackground/CameraPositions/Kitchen_Delimiter"]
 [editable path="LevelBackground/CameraPositions/Foyer_Delimiter"]
 [editable path="LevelBackground/CameraPositions/Garage_Fight"]
+[editable path="LevelBackground/CameraPositions/Garage_Fight2"]
+[editable path="LevelBackground/CameraPositions/Bedroom_Fight1"]
+[editable path="LevelBackground/CameraPositions/Bedroom_Fight2"]
+[editable path="LevelBackground/CameraPositions/Office_Fight1"]
+[editable path="LevelBackground/CameraPositions/Office_Fight2"]
+[editable path="LevelBackground/CameraPositions/LivingRoom_Fight1"]
+[editable path="LevelBackground/CameraPositions/LivingRoom_Fight2"]
+[editable path="LevelBackground/CameraPositions/Kitchen_fight1"]
+[editable path="LevelBackground/CameraPositions/Kitchen_fight2"]
 [editable path="LevelBackground/CameraPositions/Basement_Fight1"]
 [editable path="LevelBackground/Teleports/Bathroom_Bedroom_2WT"]
 [editable path="LevelBackground/Teleports/Bedroom_Streaming_2WT"]
