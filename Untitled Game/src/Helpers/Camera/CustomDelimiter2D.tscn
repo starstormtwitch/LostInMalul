@@ -6,4 +6,4 @@
 script = ExtResource( 1 )
 
 [node name="BottomRight" type="Position2D" parent="."]
-position = Vector2( 16, 9 )
+position = Vector2( 480, 350 )

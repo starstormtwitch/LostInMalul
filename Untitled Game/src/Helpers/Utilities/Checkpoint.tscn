@@ -6,7 +6,7 @@
 extents = Vector2( 10, 120 )
 
 [node name="Checkpoint" type="Area2D"]
-modulate = Color( 1, 1, 0, 1 )
+modulate = Color( 0.172549, 1, 0, 1 )
 script = ExtResource( 1 )
 
 [node name="CheckpointArea" type="CollisionShape2D" parent="."]

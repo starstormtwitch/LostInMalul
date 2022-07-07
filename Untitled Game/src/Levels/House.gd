@@ -50,12 +50,16 @@ func SetLevelCheckpointVariables(saveData):
 	assert(saveData.has("checkpoint"))
 	match(saveData["checkpoint"]):
 		"Start":
+			get_node("YSort/Actors/AreaLockFight").Disable()
+			get_node("YSort/Actors/AreaLockFight2").Disable()
 			pass;
 		"FirstEnemy":
 			_toiletClogged = false;
 			_pickedUpPlunger = true;
 			_firstTimeEnteredKitchen = true;
 			_sendKitchenCrash = false;
+			get_node("YSort/Actors/AreaLockFight").Disable()
+			get_node("YSort/Actors/AreaLockFight2").Disable()
 			get_node("LevelBackground/Interactions/Bedroom/StreamRoomTooSoon/CollisionShape").set_deferred("disabled", true);
 			get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
 			get_node("LevelBackground/Interactions/Bathroom/Toilet/CollisionShape").set_deferred("disabled", true);
@@ -99,6 +103,8 @@ func _on_Toilet_interactable_text_signal(text):
 		_toiletClogged = false;
 		get_node("LevelBackground/Interactions/Bedroom/StreamRoomTooSoon/CollisionShape").disabled = true;
 		get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").disabled = false;
+		get_node("YSort/Actors/AreaLockFight").Enable()
+		get_node("YSort/Actors/AreaLockFight2").Enable()
 	elif(!_toiletClogged):
 		_textBox.showText(text)
 	else: 
@@ -305,17 +311,11 @@ func AllDefeatedGarage():
 	emit_signal("area_lock", false)
 	get_node("LevelBackground/CameraPositions/Garage_Fight").ManualTransition_Exit();
 
-
-
-
 func _on_FoyerEnemies_AllEnemiesDefeated():
 	get_node("LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
 	get_node("LevelBackground/Interactions/Foyer/GarageNeedKey/CollisionShape").set_deferred("disabled", false);
-
 
 func _on_RatKingSpawner_spawned(spawn):
 	ratKing = spawn
 	spawn.connect("health_changed", self, "_on_Boss_health_changed")
 	$GUI/BossGui/ProgressBar.set_deferred("value",   (spawn._health / spawn._maxHealth) * 100);
-
-

@@ -26,7 +26,7 @@ position = Vector2( 42.165, -7.243 )
 position = Vector2( 61, 34 )
 
 [node name="Sprite" type="Sprite" parent="RightSide"]
-position = Vector2( 3.50864, -34 )
+position = Vector2( 2.88992, -34 )
 texture = ExtResource( 2 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
