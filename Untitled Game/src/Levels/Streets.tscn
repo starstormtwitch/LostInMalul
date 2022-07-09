@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Levels/Streets/Level_Start.png" type="Texture" id=2]
@@ -34,6 +34,7 @@
 [ext_resource path="res://src/Props/StreetLevel/Road/LeftBox.tscn" type="PackedScene" id=32]
 [ext_resource path="res://src/Props/StreetLevel/Road/RightBoxes.tscn" type="PackedScene" id=33]
 [ext_resource path="res://src/Helpers/ObjectPool.gd" type="Script" id=34]
+[ext_resource path="res://src/GUI/WarningSign.tscn" type="PackedScene" id=35]
 [ext_resource path="res://assets/SpriteSheets/falling_leaf_particle2.png" type="Texture" id=36]
 [ext_resource path="res://src/GUI/DashCooldownUI.tscn" type="PackedScene" id=177]
 [ext_resource path="res://assets/fonts/Early GameBoy.ttf" type="DynamicFontData" id=178]
@@ -375,6 +376,7 @@ position = Vector2( 766.858, 223.327 )
 pause_mode = 1
 
 [node name="TrafficSystemRight" type="Node2D" parent="YSort"]
+visible = false
 script = ExtResource( 34 )
 g_copies_of_each = 1
 g_min_y = 160
@@ -386,6 +388,7 @@ g_path = "res://src/Props/StreetLevel/Vehicles/"
 g_starting_x = 800
 
 [node name="TrafficSystemLeft" type="Node2D" parent="YSort"]
+visible = false
 position = Vector2( 0.707108, -0.707413 )
 script = ExtResource( 34 )
 g_copies_of_each = 1
@@ -635,6 +638,30 @@ margin_right = 512.0
 [node name="CRTLayer" parent="GUI" instance=ExtResource( 200 )]
 visible = false
 
+[node name="Warnings" type="Control" parent="GUI"]
+margin_left = 5.33936
+margin_top = 35.2208
+margin_right = 45.3394
+margin_bottom = 75.2208
+size_flags_vertical = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WarningSignRight" parent="GUI/Warnings" instance=ExtResource( 35 )]
+visible = false
+margin_left = 949.246
+margin_top = 278.684
+margin_right = 981.246
+margin_bottom = 310.684
+
+[node name="WarningSignLeft" parent="GUI/Warnings" instance=ExtResource( 35 )]
+visible = false
+margin_left = 45.041
+margin_top = 278.684
+margin_right = 77.041
+margin_bottom = 310.684
+
 [node name="Leaves" type="Particles2D" parent="."]
 position = Vector2( 512.785, 42.5487 )
 amount = 60
@@ -653,6 +680,8 @@ speed_scale = 0.5
 process_material = SubResource( 28 )
 texture = ExtResource( 36 )
 
+[connection signal="SpawnWarning" from="YSort/TrafficSystemRight" to="." method="_on_TrafficSystemRight_SpawnWarning"]
+[connection signal="SpawnWarning" from="YSort/TrafficSystemLeft" to="." method="_on_TrafficSystemLeft_SpawnWarning"]
 [connection signal="closed" from="GUI/TextBox2" to="." method="_on_TextBox_closed"]
 
 [editable path="LevelBackground/CameraPositions/Street_Delimiter"]
