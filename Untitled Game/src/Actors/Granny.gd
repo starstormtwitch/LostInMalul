@@ -17,6 +17,7 @@ func _ready():
 	_acceleration = 0.2
 	_speed = 50
 	_attack_range = 10
+	_animationHandler = NodeStateMachineAnimationHandler.new($AnimationTree)
 	if(get_node_or_null("AnimationTree") != null):
 		$AnimationTree.active = true
 	

@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://src/Actors/Actor.gd"
 }, {
 "base": "Node",
+"class": "AnimationHandler",
+"language": "GDScript",
+"path": "res://src/Actors/Animations/AnimationHandler.gd"
+}, {
+"base": "Node",
 "class": "AttackManager",
 "language": "GDScript",
 "path": "res://src/Actors/MainChar/AttackManager.gd"
@@ -38,6 +43,11 @@ _global_script_classes=[ {
 "class": "BaseLevelScript",
 "language": "GDScript",
 "path": "res://src/Levels/Base/BaseLevelScript.gd"
+}, {
+"base": "AnimationHandler",
+"class": "BlendTreeAnimationHandler",
+"language": "GDScript",
+"path": "res://src/Actors/Animations/BlendTreeAnimationHandler.gd"
 }, {
 "base": "Control",
 "class": "CRTLayer",
@@ -139,6 +149,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Levels/Menu/MainMenu.gd"
 }, {
+"base": "AnimationHandler",
+"class": "NodeStateMachineAnimationHandler",
+"language": "GDScript",
+"path": "res://src/Actors/Animations/NodeStateMachineAnimationHandler.gd"
+}, {
 "base": "Node",
 "class": "PauseMenu",
 "language": "GDScript",
@@ -197,10 +212,12 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "ActionRemapButton": "",
 "Actor": "",
+"AnimationHandler": "",
 "AttackManager": "",
 "AudioFunctions": "",
 "BaseInput": "",
 "BaseLevelScript": "",
+"BlendTreeAnimationHandler": "",
 "CRTLayer": "",
 "CustomCamera2D": "",
 "CustomDelimiter2D": "",
@@ -221,6 +238,7 @@ _global_script_class_icons={
 "LirikYaki": "",
 "MainChar": "",
 "MainMenu": "",
+"NodeStateMachineAnimationHandler": "",
 "PauseMenu": "",
 "ScreenShakeSettings": "",
 "SelfDisposingAudioPlayer": "",

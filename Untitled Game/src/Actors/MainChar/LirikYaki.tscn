@@ -1,4 +1,4 @@
-[gd_scene load_steps=129 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.gd" type="Script" id=1]
 [ext_resource path="res://assets/SpriteSheets/main_char/mc_shadow.png" type="Texture" id=2]
@@ -356,7 +356,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.23 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -401,7 +401,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.24 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -441,322 +441,138 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=14]
-animation = "Hadouken"
+[sub_resource type="AnimationNodeTransition" id=14]
+input_count = 3
+input_0/name = "Combo1"
+input_0/auto_advance = false
+input_1/name = "Combo2"
+input_1/auto_advance = false
+input_2/name = "Special"
+input_2/auto_advance = false
 
-[sub_resource type="AnimationNodeAnimation" id=15]
-animation = "Hadouken2"
+[sub_resource type="AnimationNodeTransition" id=15]
+input_count = 3
+input_0/name = "Punch1"
+input_0/auto_advance = false
+input_1/name = "Punch2"
+input_1/auto_advance = false
+input_2/name = "Punch3"
+input_2/auto_advance = false
 
-[sub_resource type="AnimationNodeAnimation" id=16]
-animation = "Headbutt"
+[sub_resource type="AnimationNodeTransition" id=16]
+input_count = 3
+input_0/name = "Kick1"
+input_0/auto_advance = false
+input_1/name = "Kick2"
+input_1/auto_advance = false
+input_2/name = "Kick3"
+input_2/auto_advance = false
 
 [sub_resource type="AnimationNodeAnimation" id=17]
-animation = "HurtRight"
-
-[sub_resource type="AnimationNodeAnimation" id=18]
-animation = "IdleRight"
-
-[sub_resource type="AnimationNodeAnimation" id=19]
-animation = "Shoryuken"
-
-[sub_resource type="AnimationNodeAnimation" id=20]
-animation = "SideSwipeRight"
-
-[sub_resource type="AnimationNodeAnimation" id=21]
-animation = "SideSwipeRight2"
-
-[sub_resource type="AnimationNodeAnimation" id=22]
-animation = "SideSwipeRightKick"
-
-[sub_resource type="AnimationNodeAnimation" id=23]
-animation = "SideSwipeRightKick2"
-
-[sub_resource type="AnimationNodeAnimation" id=24]
-animation = "WalkRight"
-
-[sub_resource type="AnimationNodeAnimation" id=25]
 animation = "Die"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=26]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=27]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=28]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=29]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=30]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=31]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=32]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=33]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=34]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=35]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=36]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=37]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=38]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=39]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=40]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=41]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=42]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=43]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=44]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=45]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=46]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=47]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=48]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=49]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=50]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=51]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=52]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=53]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=54]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=55]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=56]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=57]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=58]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=59]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=60]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=61]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=62]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=63]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=64]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=65]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=66]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=67]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=68]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=69]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=70]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=71]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=72]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=73]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=74]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=75]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=76]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=77]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=78]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=79]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=80]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=81]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=82]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=83]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=84]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=85]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=86]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=87]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=88]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=89]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=90]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=91]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=92]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=93]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=94]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=95]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=96]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=97]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=98]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=99]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=100]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=101]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=102]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=103]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=104]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=105]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=106]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=107]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=108]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=109]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=110]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=111]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=112]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=113]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=114]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=115]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=116]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=117]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=118]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=119]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id=120]
-states/Hadouken/node = SubResource( 14 )
-states/Hadouken/position = Vector2( 1341.24, 235.289 )
-states/Hadouken2/node = SubResource( 15 )
-states/Hadouken2/position = Vector2( 1253.24, 377.388 )
-states/Headbutt/node = SubResource( 16 )
-states/Headbutt/position = Vector2( 940.241, 316.944 )
-states/Hurt/node = SubResource( 17 )
-states/Hurt/position = Vector2( -19.754, 316.944 )
-states/Idle/node = SubResource( 18 )
-states/Idle/position = Vector2( 630.246, 12.3882 )
-states/Shoryuken/node = SubResource( 19 )
-states/Shoryuken/position = Vector2( 612.241, 512.289 )
-states/SideSwipe1/node = SubResource( 20 )
-states/SideSwipe1/position = Vector2( 868.246, 80.3882 )
-states/SideSwipe2/node = SubResource( 21 )
-states/SideSwipe2/position = Vector2( 918.246, 221.388 )
-states/SideSwipeKick/node = SubResource( 22 )
-states/SideSwipeKick/position = Vector2( 730.246, 377.388 )
-states/SideSwipeRightKick2/node = SubResource( 23 )
-states/SideSwipeRightKick2/position = Vector2( 204.241, 521.415 )
-states/Walk/node = SubResource( 24 )
-states/Walk/position = Vector2( 299.246, 66.3882 )
-states/die/node = SubResource( 25 )
-states/die/position = Vector2( 37.3395, 127.82 )
-transitions = [ "Idle", "SideSwipe1", SubResource( 26 ), "SideSwipe1", "Idle", SubResource( 27 ), "SideSwipe1", "SideSwipe2", SubResource( 28 ), "SideSwipe2", "SideSwipe1", SubResource( 29 ), "SideSwipe1", "SideSwipeKick", SubResource( 30 ), "SideSwipeKick", "SideSwipe1", SubResource( 31 ), "Idle", "Hurt", SubResource( 32 ), "Hurt", "Idle", SubResource( 33 ), "Idle", "Walk", SubResource( 34 ), "Walk", "Idle", SubResource( 35 ), "Walk", "Hurt", SubResource( 36 ), "Hurt", "Walk", SubResource( 37 ), "SideSwipeKick", "Hurt", SubResource( 38 ), "SideSwipe2", "Hurt", SubResource( 39 ), "SideSwipe1", "Hurt", SubResource( 40 ), "Hurt", "SideSwipe1", SubResource( 41 ), "Hurt", "SideSwipe2", SubResource( 42 ), "Hurt", "SideSwipeKick", SubResource( 43 ), "SideSwipeKick", "Idle", SubResource( 44 ), "SideSwipe2", "Idle", SubResource( 45 ), "Idle", "SideSwipeKick", SubResource( 46 ), "SideSwipeKick", "Walk", SubResource( 47 ), "SideSwipe2", "Walk", SubResource( 48 ), "SideSwipe1", "Walk", SubResource( 49 ), "Walk", "SideSwipe1", SubResource( 50 ), "Walk", "SideSwipe2", SubResource( 51 ), "Walk", "SideSwipeKick", SubResource( 52 ), "Idle", "die", SubResource( 53 ), "Walk", "die", SubResource( 54 ), "SideSwipe1", "die", SubResource( 55 ), "SideSwipe2", "die", SubResource( 56 ), "SideSwipeKick", "die", SubResource( 57 ), "Hurt", "die", SubResource( 58 ), "Idle", "SideSwipe2", SubResource( 59 ), "SideSwipeKick", "SideSwipeRightKick2", SubResource( 60 ), "SideSwipeRightKick2", "SideSwipeKick", SubResource( 61 ), "SideSwipeRightKick2", "die", SubResource( 62 ), "SideSwipeRightKick2", "Hurt", SubResource( 63 ), "Hurt", "SideSwipeRightKick2", SubResource( 64 ), "SideSwipeRightKick2", "Walk", SubResource( 65 ), "SideSwipeRightKick2", "Idle", SubResource( 66 ), "SideSwipeRightKick2", "SideSwipe1", SubResource( 67 ), "SideSwipe1", "SideSwipeRightKick2", SubResource( 68 ), "Idle", "SideSwipeRightKick2", SubResource( 69 ), "Walk", "SideSwipeRightKick2", SubResource( 70 ), "SideSwipeRightKick2", "SideSwipe2", SubResource( 71 ), "SideSwipe2", "SideSwipeRightKick2", SubResource( 72 ), "SideSwipe2", "SideSwipeKick", SubResource( 73 ), "SideSwipeKick", "SideSwipe2", SubResource( 74 ), "SideSwipe2", "Hadouken", SubResource( 75 ), "Hadouken", "SideSwipe2", SubResource( 76 ), "Hadouken", "SideSwipe1", SubResource( 77 ), "Hadouken", "SideSwipeKick", SubResource( 78 ), "Hadouken", "Idle", SubResource( 79 ), "Hadouken", "Walk", SubResource( 80 ), "Hadouken", "Hurt", SubResource( 81 ), "Shoryuken", "Hurt", SubResource( 82 ), "Shoryuken", "SideSwipeKick", SubResource( 83 ), "Shoryuken", "SideSwipeRightKick2", SubResource( 84 ), "Shoryuken", "SideSwipe1", SubResource( 85 ), "Shoryuken", "Idle", SubResource( 86 ), "Shoryuken", "Walk", SubResource( 87 ), "Shoryuken", "die", SubResource( 88 ), "Hadouken", "die", SubResource( 89 ), "SideSwipeRightKick2", "Shoryuken", SubResource( 90 ), "Idle", "Hadouken", SubResource( 91 ), "Idle", "Shoryuken", SubResource( 92 ), "Walk", "Hadouken", SubResource( 93 ), "SideSwipe1", "Hadouken", SubResource( 94 ), "SideSwipeKick", "Shoryuken", SubResource( 95 ), "SideSwipeRightKick2", "Hadouken", SubResource( 96 ), "SideSwipe2", "Shoryuken", SubResource( 97 ), "Hadouken", "Hadouken2", SubResource( 98 ), "Hadouken2", "SideSwipeKick", SubResource( 99 ), "Hadouken2", "SideSwipe1", SubResource( 100 ), "Hadouken2", "Idle", SubResource( 101 ), "Hadouken2", "die", SubResource( 102 ), "Hadouken2", "Hurt", SubResource( 103 ), "SideSwipeKick", "Hadouken", SubResource( 104 ), "Shoryuken", "Hadouken", SubResource( 105 ), "SideSwipe2", "Headbutt", SubResource( 106 ), "Idle", "Headbutt", SubResource( 107 ), "Walk", "Headbutt", SubResource( 108 ), "Hurt", "Headbutt", SubResource( 109 ), "Headbutt", "Hurt", SubResource( 110 ), "Headbutt", "Idle", SubResource( 111 ), "Headbutt", "Walk", SubResource( 112 ), "Headbutt", "die", SubResource( 113 ), "Headbutt", "SideSwipeKick", SubResource( 114 ), "Headbutt", "SideSwipe1", SubResource( 115 ), "Headbutt", "Hadouken", SubResource( 116 ), "Hadouken2", "Headbutt", SubResource( 117 ), "Hadouken", "Headbutt", SubResource( 118 ), "Hurt", "Shoryuken", SubResource( 119 ) ]
-start_node = "Idle"
-graph_offset = Vector2( 422.865, 209.997 )
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=121]
-
-[sub_resource type="RectangleShape2D" id=122]
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "Hadouken"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "Hadouken2"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "Headbutt"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "HurtRight"
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "IdleRight"
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "SideSwipeRightKick"
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "SideSwipeRightKick2"
+
+[sub_resource type="AnimationNodeTransition" id=25]
+input_count = 4
+input_0/name = "Movement"
+input_0/auto_advance = false
+input_1/name = "Hurt"
+input_1/auto_advance = false
+input_2/name = "Die"
+input_2/auto_advance = false
+input_3/name = "Attack"
+input_3/auto_advance = false
+
+[sub_resource type="AnimationNodeTransition" id=26]
+input_count = 2
+input_0/name = "Idle"
+input_0/auto_advance = false
+input_1/name = "Walk"
+input_1/auto_advance = false
+
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "SideSwipeRight"
+
+[sub_resource type="AnimationNodeAnimation" id=28]
+animation = "SideSwipeRight2"
+
+[sub_resource type="AnimationNodeAnimation" id=29]
+animation = "Shoryuken"
+
+[sub_resource type="AnimationNodeTransition" id=30]
+input_count = 2
+input_0/name = "HadoukenCharge"
+input_0/auto_advance = false
+input_1/name = "HadoukenRelease"
+input_1/auto_advance = false
+
+[sub_resource type="AnimationNodeAnimation" id=31]
+animation = "WalkRight"
+
+[sub_resource type="AnimationNodeBlendTree" id=32]
+graph_offset = Vector2( -916, 793.25 )
+nodes/Attack/node = SubResource( 14 )
+nodes/Attack/position = Vector2( -220, 340 )
+nodes/Combo1/node = SubResource( 15 )
+nodes/Combo1/position = Vector2( -540, 220 )
+nodes/Combo2/node = SubResource( 16 )
+nodes/Combo2/position = Vector2( -540, 420 )
+nodes/Die/node = SubResource( 17 )
+nodes/Die/position = Vector2( -320, 180 )
+nodes/HadoukenCharge/node = SubResource( 18 )
+nodes/HadoukenCharge/position = Vector2( -560, 840 )
+nodes/HadoukenRelease/node = SubResource( 19 )
+nodes/HadoukenRelease/position = Vector2( -300, 860 )
+nodes/HeadButt/node = SubResource( 20 )
+nodes/HeadButt/position = Vector2( -860, 300 )
+nodes/Hurt/node = SubResource( 21 )
+nodes/Hurt/position = Vector2( -320, 60 )
+nodes/Idle/node = SubResource( 22 )
+nodes/Idle/position = Vector2( -260, -200 )
+nodes/Kick1/node = SubResource( 23 )
+nodes/Kick1/position = Vector2( -860, 460 )
+nodes/Kick2/node = SubResource( 24 )
+nodes/Kick2/position = Vector2( -860, 600 )
+nodes/Main/node = SubResource( 25 )
+nodes/Main/position = Vector2( 60, 140 )
+nodes/Movement/node = SubResource( 26 )
+nodes/Movement/position = Vector2( -100, -60 )
+nodes/Punch1/node = SubResource( 27 )
+nodes/Punch1/position = Vector2( -760, 40 )
+nodes/Punch2/node = SubResource( 28 )
+nodes/Punch2/position = Vector2( -880, 180 )
+nodes/Shoryuken/node = SubResource( 29 )
+nodes/Shoryuken/position = Vector2( -780, 760 )
+nodes/Special/node = SubResource( 30 )
+nodes/Special/position = Vector2( -360, 620 )
+nodes/Walk/node = SubResource( 31 )
+nodes/Walk/position = Vector2( -400, -80 )
+node_connections = [ "output", 0, "Main", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Combo1", 2, "HeadButt", "Attack", 0, "Combo1", "Attack", 1, "Combo2", "Attack", 2, "Special", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack", "Special", 0, "HadoukenCharge", "Special", 1, "HadoukenRelease", "Movement", 0, "Idle", "Movement", 1, "Walk", "Combo2", 0, "Kick1", "Combo2", 1, "Kick2", "Combo2", 2, "Shoryuken" ]
+
+[sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 11.7115, 6.11188 )
 
-[sub_resource type="RectangleShape2D" id=123]
+[sub_resource type="RectangleShape2D" id=34]
 extents = Vector2( 10.2453, 11.7708 )
 
 [node name="LirikYaki" type="KinematicBody2D" groups=[
@@ -778,7 +594,7 @@ position = Vector2( -0.893405, -23.5687 )
 texture = ExtResource( 6 )
 hframes = 10
 vframes = 9
-frame = 71
+frame = 44
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -2.67837, -2.47936 )
@@ -801,10 +617,14 @@ anims/SideSwipeRightKick2 = SubResource( 12 )
 anims/WalkRight = SubResource( 13 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 120 )
+tree_root = SubResource( 32 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
-parameters/playback = SubResource( 121 )
+parameters/Attack/current = 0
+parameters/Combo1/current = 0
+parameters/Combo2/current = 0
+parameters/Main/current = 0
+parameters/Movement/current = 0
+parameters/Special/current = 0
 
 [node name="TrailTimer" type="Timer" parent="."]
 wait_time = 0.1
@@ -838,7 +658,7 @@ collision_mask = 4096
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2( -0.724312, 19.2232 )
-shape = SubResource( 122 )
+shape = SubResource( 33 )
 
 [node name="attack" type="Area2D" parent="."]
 position = Vector2( -0.730887, -23.75 )
@@ -848,8 +668,7 @@ collision_mask = 0
 [node name="sideSwipeRight" type="CollisionShape2D" parent="attack"]
 modulate = Color( 0.6, 0.298039, 1, 1 )
 position = Vector2( 12.5648, 7.92492 )
-shape = SubResource( 123 )
-disabled = true
+shape = SubResource( 34 )
 
 [node name="HadoukenSpawn" type="Position2D" parent="."]
 position = Vector2( 17.1474, -22.0971 )
