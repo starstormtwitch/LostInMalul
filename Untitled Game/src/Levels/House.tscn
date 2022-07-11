@@ -1,4 +1,4 @@
-[gd_scene load_steps=243 format=2]
+[gd_scene load_steps=240 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
@@ -200,6 +200,7 @@
 [ext_resource path="res://src/Props/HouseLevel/Garage/TrashPaper2.tscn" type="PackedScene" id=198]
 [ext_resource path="res://src/Props/HouseLevel/bedroom/bedroom_socks_2.tscn" type="PackedScene" id=199]
 [ext_resource path="res://src/Helpers/Utilities/Crt/CRTLayer.tscn" type="PackedScene" id=200]
+[ext_resource path="res://src/Helpers/GUI/ContinueRight.tscn" type="PackedScene" id=201]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3680.33, 10 )
@@ -280,69 +281,57 @@ b = Vector2( 1014.24, 206.202 )
 extents = Vector2( 635.219, 10 )
 
 [sub_resource type="RectangleShape2D" id=22]
-extents = Vector2( 6.46179, 120.456 )
-
-[sub_resource type="RectangleShape2D" id=23]
 extents = Vector2( 10, 106.123 )
 
-[sub_resource type="RectangleShape2D" id=24]
+[sub_resource type="RectangleShape2D" id=23]
 extents = Vector2( 11.8075, 11.755 )
 
-[sub_resource type="RectangleShape2D" id=25]
+[sub_resource type="RectangleShape2D" id=24]
 extents = Vector2( 9.60168, 10.0379 )
 
-[sub_resource type="RectangleShape2D" id=26]
+[sub_resource type="RectangleShape2D" id=25]
 extents = Vector2( 7.76685, 15.9323 )
 
-[sub_resource type="RectangleShape2D" id=28]
+[sub_resource type="RectangleShape2D" id=26]
 extents = Vector2( 17.2043, 37.1483 )
 
-[sub_resource type="RectangleShape2D" id=29]
+[sub_resource type="RectangleShape2D" id=27]
 extents = Vector2( 22.6563, 31.9913 )
 
-[sub_resource type="RectangleShape2D" id=30]
+[sub_resource type="RectangleShape2D" id=28]
 extents = Vector2( 10, 19.0431 )
 
-[sub_resource type="RectangleShape2D" id=31]
+[sub_resource type="RectangleShape2D" id=29]
 extents = Vector2( 10, 23.0021 )
 
-[sub_resource type="RectangleShape2D" id=32]
-extents = Vector2( 20.698, 60.8375 )
-
-[sub_resource type="RectangleShape2D" id=33]
+[sub_resource type="RectangleShape2D" id=31]
 extents = Vector2( 23.5465, 27.1247 )
 
-[sub_resource type="RectangleShape2D" id=34]
+[sub_resource type="RectangleShape2D" id=32]
 extents = Vector2( 19.2661, 19.2734 )
 
-[sub_resource type="RectangleShape2D" id=35]
-extents = Vector2( 15.3081, 62.7607 )
-
-[sub_resource type="RectangleShape2D" id=36]
+[sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 16.8516, 61.7289 )
 
-[sub_resource type="RectangleShape2D" id=37]
+[sub_resource type="RectangleShape2D" id=34]
 extents = Vector2( 22.1809, 10 )
 
-[sub_resource type="RectangleShape2D" id=38]
+[sub_resource type="RectangleShape2D" id=35]
 extents = Vector2( 23.2275, 19.9813 )
 
-[sub_resource type="RectangleShape2D" id=39]
+[sub_resource type="RectangleShape2D" id=36]
 
-[sub_resource type="RectangleShape2D" id=27]
-extents = Vector2( 11.5413, 61.6581 )
-
-[sub_resource type="RectangleShape2D" id=40]
+[sub_resource type="RectangleShape2D" id=37]
 extents = Vector2( 447.481, 28.3017 )
 
-[sub_resource type="DynamicFont" id=41]
+[sub_resource type="DynamicFont" id=38]
 size = 8
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
 font_data = ExtResource( 178 )
 
-[sub_resource type="DynamicFont" id=42]
+[sub_resource type="DynamicFont" id=39]
 size = 8
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -353,7 +342,9 @@ font_data = ExtResource( 178 )
 pause_mode = 2
 script = ExtResource( 4 )
 __meta__ = {
-"_edit_lock_": true
+"_edit_horizontal_guides_": [ 290.935, 298.869, 293.486 ],
+"_edit_lock_": true,
+"_edit_vertical_guides_": [ 2359.5, 2303.91, 2280.04 ]
 }
 
 [node name="LevelBackground" type="Sprite" parent="."]
@@ -478,13 +469,9 @@ shape = SubResource( 20 )
 position = Vector2( 380.468, 216.782 )
 shape = SubResource( 21 )
 
-[node name="BossSeperator" type="CollisionShape2D" parent="LevelBackground/Boundaries/Basement"]
-position = Vector2( 509.62, 90.1226 )
-shape = SubResource( 22 )
-
 [node name="Lockout" type="CollisionShape2D" parent="LevelBackground/Boundaries/Basement"]
 position = Vector2( -96.1665, 104.652 )
-shape = SubResource( 23 )
+shape = SubResource( 22 )
 disabled = true
 
 [node name="CameraPositions" type="Node" parent="LevelBackground"]
@@ -546,14 +533,14 @@ texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bathroom/Toilet"]
 position = Vector2( -3.5, -6 )
-shape = SubResource( 24 )
+shape = SubResource( 23 )
 
 [node name="Sink" parent="LevelBackground/Interactions/Bathroom" instance=ExtResource( 175 )]
 interactableText = "You found the plunger under the sink!"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bathroom/Sink"]
 position = Vector2( 316.585, 192.097 )
-shape = SubResource( 25 )
+shape = SubResource( 24 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Bathroom/Sink"]
 visible = false
@@ -570,7 +557,7 @@ interactableText = "Another good night's rest.  Time to start the day."
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bedroom/Bed"]
 position = Vector2( -18.4928, 11.6899 )
-shape = SubResource( 26 )
+shape = SubResource( 25 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Bedroom/Bed"]
 visible = false
@@ -583,12 +570,12 @@ scale = Vector2( 1, 1.01378 )
 interactableText = "I should use the toilet before I start my stream."
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon"]
-position = Vector2( 69.2712, 22.8743 )
-shape = SubResource( 26 )
+position = Vector2( 92.3209, 26.4027 )
+shape = SubResource( 25 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon"]
 visible = false
-position = Vector2( 603.076, -13.0342 )
+position = Vector2( 73.211, -3.73948 )
 texture = ExtResource( 25 )
 
 [node name="Wardrobe" parent="LevelBackground/Interactions/Bedroom" instance=ExtResource( 175 )]
@@ -598,18 +585,12 @@ interactableText = "Wow, my comfy socks, nothing is more comfy."
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bedroom/Wardrobe"]
 position = Vector2( -178.298, 1.95135 )
-shape = SubResource( 26 )
+shape = SubResource( 25 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Bedroom/Wardrobe"]
 visible = false
 position = Vector2( -177.298, -25.5343 )
 texture = ExtResource( 25 )
-
-[node name="BedroomAttack" type="Area2D" parent="LevelBackground/Interactions/Bedroom"]
-position = Vector2( -2800.54, 27.2064 )
-
-[node name="BedroomAttack2" type="Area2D" parent="LevelBackground/Interactions/Bedroom"]
-position = Vector2( -2477.08, 25.259 )
 
 [node name="LivingRoom" type="Node2D" parent="LevelBackground/Interactions"]
 position = Vector2( 1929.02, 75.1823 )
@@ -621,7 +602,7 @@ interactableText = "Had to buy cat trees to stop Nabi from scratching the furnit
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/LivingRoom/InteractPromptArea"]
 scale = Vector2( 0.383436, 0.775982 )
-shape = SubResource( 26 )
+shape = SubResource( 25 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/LivingRoom/InteractPromptArea"]
 visible = false
@@ -636,7 +617,7 @@ interactableText = "I found my gamer candle, part of the perfect comfy combo."
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/LivingRoom/TVStand"]
 position = Vector2( 246.312, 5.11754 )
 scale = Vector2( 0.383436, 0.775982 )
-shape = SubResource( 28 )
+shape = SubResource( 26 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/LivingRoom/TVStand"]
 visible = false
@@ -654,7 +635,7 @@ interactableText = "$3000 coffee machine. Found this one through a review video 
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Coffee"]
 position = Vector2( -3.12475, 11.749 )
-shape = SubResource( 29 )
+shape = SubResource( 27 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Kitchen/Coffee"]
 visible = false
@@ -671,7 +652,7 @@ texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Fridge"]
 position = Vector2( 1.19209e-06, 11.8686 )
-shape = SubResource( 30 )
+shape = SubResource( 28 )
 
 [node name="Microwave" parent="LevelBackground/Interactions/Kitchen" instance=ExtResource( 175 )]
 position = Vector2( 281.583, 75.9244 )
@@ -683,21 +664,14 @@ texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Microwave"]
 position = Vector2( 1.43051e-06, 36.5558 )
-shape = SubResource( 31 )
-
-[node name="KitchenFirstTime" type="Area2D" parent="LevelBackground/Interactions/Kitchen"]
-position = Vector2( -1344.11, 160.626 )
-
-[node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/KitchenFirstTime"]
-position = Vector2( 5.70825, -3.8147e-06 )
-shape = SubResource( 32 )
+shape = SubResource( 29 )
 
 [node name="BasementNeedKey" parent="LevelBackground/Interactions/Kitchen" instance=ExtResource( 175 )]
 interactableText = "I am going to need to search and bring the basement key first."
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/BasementNeedKey"]
 position = Vector2( 47.0188, 110.907 )
-shape = SubResource( 33 )
+shape = SubResource( 31 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Kitchen/BasementNeedKey"]
 visible = false
@@ -715,7 +689,7 @@ texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Drawer"]
 position = Vector2( 150.19, 71.5372 )
-shape = SubResource( 31 )
+shape = SubResource( 29 )
 
 [node name="Office" type="Node2D" parent="LevelBackground/Interactions"]
 
@@ -732,7 +706,7 @@ texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Office/Computer"]
 position = Vector2( 1496.63, 226.537 )
-shape = SubResource( 33 )
+shape = SubResource( 31 )
 
 [node name="OfficeCabinet" type="Area2D" parent="LevelBackground/Interactions/Office"]
 position = Vector2( 119.399, 4.50531 )
@@ -747,23 +721,16 @@ texture = ExtResource( 25 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Office/OfficeCabinet"]
 position = Vector2( 1472.76, 185.663 )
-shape = SubResource( 34 )
+shape = SubResource( 32 )
 
 [node name="Basement" type="Node2D" parent="LevelBackground/Interactions"]
-
-[node name="BasementAttack" type="Area2D" parent="LevelBackground/Interactions/Basement"]
-position = Vector2( 250.127, 391.708 )
-
-[node name="BasementAttackCollision" type="CollisionShape2D" parent="LevelBackground/Interactions/Basement/BasementAttack"]
-position = Vector2( 199.066, 152.292 )
-shape = SubResource( 35 )
 
 [node name="BossEncounter" type="Area2D" parent="LevelBackground/Interactions/Basement"]
 position = Vector2( 26.4882, -3.05176e-05 )
 
 [node name="BossEncounterCollision" type="CollisionShape2D" parent="LevelBackground/Interactions/Basement/BossEncounter"]
 position = Vector2( 995.17, 534.2 )
-shape = SubResource( 36 )
+shape = SubResource( 33 )
 
 [node name="Foyer" type="Node2D" parent="LevelBackground/Interactions"]
 
@@ -773,7 +740,7 @@ interactableText = "Aha, here's my garage key. Now to just get to the garage."
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Foyer/FoyerEndTable"]
 position = Vector2( 3557.92, 201.047 )
-shape = SubResource( 37 )
+shape = SubResource( 34 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Foyer/FoyerEndTable"]
 visible = false
@@ -785,7 +752,7 @@ interactableText = "I know I should take my shoes off at the door, but I rarely 
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Foyer/FoyerShoeRack"]
 position = Vector2( 3545.93, 220.981 )
-shape = SubResource( 38 )
+shape = SubResource( 35 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Foyer/FoyerShoeRack"]
 visible = false
@@ -809,7 +776,7 @@ interactableText = "I am going to need to search and bring the garage key first.
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Foyer/GarageNeedKey"]
 position = Vector2( 2638.5, 187.895 )
-shape = SubResource( 33 )
+shape = SubResource( 31 )
 disabled = true
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Foyer/GarageNeedKey"]
@@ -824,19 +791,12 @@ interactableText = "Found my trusty screwdriver"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Garage/WorkBench"]
 position = Vector2( 3404.67, 490.095 )
-shape = SubResource( 39 )
+shape = SubResource( 36 )
 
 [node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Garage/WorkBench"]
 visible = false
 position = Vector2( 3403, 461.919 )
 texture = ExtResource( 25 )
-
-[node name="GarageAttack" type="Area2D" parent="LevelBackground/Interactions/Garage"]
-position = Vector2( 250.127, 391.708 )
-
-[node name="GarageAttackCollision" type="CollisionShape2D" parent="LevelBackground/Interactions/Garage/GarageAttack"]
-position = Vector2( 2826.2, 146.65 )
-shape = SubResource( 27 )
 
 [node name="Teleports" type="Node" parent="LevelBackground"]
 
@@ -945,6 +905,9 @@ position = Vector2( -3.33407, 27.1618 )
 [node name="Kitchen_Foyer_2WT" parent="LevelBackground/Teleports" instance=ExtResource( 22 )]
 position = Vector2( 3121.75, 267.487 )
 
+[node name="ToBetaActivationArea" parent="LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointAlpha" index="0"]
+position = Vector2( 0, -2.93982 )
+
 [node name="ToAlphaTeleportPosition" parent="LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointAlpha" index="1"]
 position = Vector2( -38.2385, -7.78979 )
 
@@ -990,7 +953,7 @@ collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/SpecialZones/BossMobZone"]
 position = Vector2( 669.398, 265.792 )
-shape = SubResource( 40 )
+shape = SubResource( 37 )
 
 [node name="Checkpoints" type="Node" parent="LevelBackground"]
 
@@ -1000,7 +963,7 @@ LevelName = "House"
 CheckpointName = "Boss"
 
 [node name="Checkpoint" parent="LevelBackground/Checkpoints" instance=ExtResource( 181 )]
-position = Vector2( 1851.89, 54.6264 )
+position = Vector2( 3064.51, 370.827 )
 LevelName = "House"
 CheckpointName = "FirstEnemy"
 
@@ -1011,74 +974,12 @@ pause_mode = 1
 position = Vector2( 2.10999, 0 )
 
 [node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 2 )]
-position = Vector2( 761.686, 225.994 )
-
-[node name="FirstRat" parent="YSort/Actors" instance=ExtResource( 176 )]
-position = Vector2( 1503.97, 217.292 )
-enemy = "SlimeFR"
-automatic = false
-
-[node name="BasementL1" parent="YSort/Actors" instance=ExtResource( 176 )]
-position = Vector2( 187.556, 504.257 )
-scale = Vector2( 1.67996, 1 )
-rect = Rect2( 0, 0, 20, 80 )
-duration_between_spawn = 5
-count = 10
-enemy = "SlimeFR"
-automatic = false
-
-[node name="BasementR1" parent="YSort/Actors" instance=ExtResource( 176 )]
-position = Vector2( 717.26, 523.551 )
-rect = Rect2( 0, 0, 50, 70 )
-duration_between_spawn = 5
-count = 10
-enemy = "SlimeFR"
-automatic = false
+position = Vector2( 1872.43, 270.856 )
 
 [node name="GrannySpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 2065.89, 230.244 )
 only_off_screen = true
 enemy = "Granny"
-automatic = false
-
-[node name="FoyerEnemies" parent="YSort/Actors" instance=ExtResource( 176 )]
-position = Vector2( 3291.02, 205.969 )
-scale = Vector2( 0.98145, 1 )
-rect = Rect2( 0, 0, 200, 80 )
-duration_between_spawn = 1
-count = 4
-enemy = "SlimeFR"
-
-[node name="Garage1" parent="YSort/Actors" instance=ExtResource( 176 )]
-position = Vector2( 3386.98, 506.247 )
-rect = Rect2( 0, 0, 20, 80 )
-duration_between_spawn = 1
-count = 4
-enemy = "SlimeFR"
-automatic = false
-
-[node name="Garage2" parent="YSort/Actors" instance=ExtResource( 176 )]
-position = Vector2( 3402.42, 507.095 )
-rect = Rect2( 0, 0, 20, 80 )
-duration_between_spawn = 1
-count = 2
-enemy = "RatSoldier"
-automatic = false
-
-[node name="Garage3" parent="YSort/Actors" instance=ExtResource( 176 )]
-position = Vector2( 3420.32, 507.095 )
-rect = Rect2( 0, 0, 20, 80 )
-duration_between_spawn = 1
-count = 2
-enemy = "SlimeFR"
-automatic = false
-
-[node name="Garage4" parent="YSort/Actors" instance=ExtResource( 176 )]
-position = Vector2( 3434.35, 508.81 )
-rect = Rect2( 0, 0, 20, 80 )
-duration_between_spawn = 1
-count = 6
-enemy = "RatSoldier"
 automatic = false
 
 [node name="BathroomSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
@@ -1144,89 +1045,275 @@ count = 10
 enemy = "SlimeFR"
 automatic = false
 
-[node name="Garage5" parent="YSort/Actors" instance=ExtResource( 176 )]
-position = Vector2( 3447.19, 508.68 )
+[node name="RatKingSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
+position = Vector2( 1117.95, 544 )
+enemy = "RatKing"
+automatic = false
+
+[node name="GarageFight1" parent="YSort/Actors" instance=ExtResource( 19 )]
+position = Vector2( 3115.8, 518.821 )
+scale = Vector2( 0.98145, 1 )
+
+[node name="Garage_Fight" parent="YSort/Actors/GarageFight1" instance=ExtResource( 20 )]
+position = Vector2( -310.08, -169.994 )
+scale = Vector2( 1.0189, 1 )
+AutomaticTransition = false
+
+[node name="BottomRight" parent="YSort/Actors/GarageFight1/Garage_Fight" index="0"]
+position = Vector2( 491.927, 254.067 )
+
+[node name="Garage1" parent="YSort/Actors/GarageFight1" instance=ExtResource( 176 )]
+position = Vector2( 320.719, -34.488 )
+scale = Vector2( 1.0189, 1 )
+rect = Rect2( 0, 0, 20, 80 )
+duration_between_spawn = 1
+count = 4
+enemy = "SlimeFR"
+automatic = false
+
+[node name="Garage2" parent="YSort/Actors/GarageFight1" instance=ExtResource( 176 )]
+position = Vector2( 337.382, -33.415 )
+scale = Vector2( 1.0189, 1 )
+rect = Rect2( 0, 0, 20, 80 )
+duration_between_spawn = 1
+count = 2
+enemy = "RatSoldier"
+automatic = false
+
+[node name="GarageFight2" parent="YSort/Actors" instance=ExtResource( 19 )]
+position = Vector2( 3318.4, 542.125 )
+scale = Vector2( 0.98145, 1 )
+
+[node name="Garage_Fight2" parent="YSort/Actors/GarageFight2" instance=ExtResource( 20 )]
+position = Vector2( -75.3059, -192.298 )
+scale = Vector2( 1.0189, 1 )
+AutomaticTransition = false
+
+[node name="BottomRight" parent="YSort/Actors/GarageFight2/Garage_Fight2" index="0"]
+position = Vector2( 399.498, 253.067 )
+
+[node name="Garage3" parent="YSort/Actors/GarageFight2" instance=ExtResource( 176 )]
+position = Vector2( -164.426, -40.2127 )
+scale = Vector2( 1.0189, 1 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
 count = 2
 enemy = "SlimeFR"
 automatic = false
 
-[node name="RatKingSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
-position = Vector2( 1117.95, 544 )
-enemy = "RatKing"
+[node name="Garage4" parent="YSort/Actors/GarageFight2" instance=ExtResource( 176 )]
+position = Vector2( -150.131, -38.4977 )
+scale = Vector2( 1.0189, 1 )
+rect = Rect2( 0, 0, 20, 80 )
+duration_between_spawn = 1
+count = 6
+enemy = "RatSoldier"
 automatic = false
 
-[node name="AreaLockFight2" parent="YSort/Actors" instance=ExtResource( 19 )]
-position = Vector2( 993.532, 241.429 )
+[node name="Garage5" parent="YSort/Actors/GarageFight2" instance=ExtResource( 176 )]
+position = Vector2( -137.048, -38.6277 )
+scale = Vector2( 1.0189, 1 )
+rect = Rect2( 0, 0, 20, 80 )
+duration_between_spawn = 1
+count = 2
+enemy = "SlimeFR"
+automatic = false
 
-[node name="Bedroom_Fight2" parent="YSort/Actors/AreaLockFight2" instance=ExtResource( 20 )]
-position = Vector2( -319.307, -211.302 )
+[node name="LivingFight1" parent="YSort/Actors" instance=ExtResource( 19 )]
+position = Vector2( 1926.91, 242.957 )
+
+[node name="LivingRoom_Fight1" parent="YSort/Actors/LivingFight1" instance=ExtResource( 20 )]
+position = Vector2( -120.82, -192.01 )
 AutomaticTransition = false
 
-[node name="BottomRight" parent="YSort/Actors/AreaLockFight2/Bedroom_Fight2" index="0"]
-position = Vector2( 400.905, 264.315 )
+[node name="BottomRight" parent="YSort/Actors/LivingFight1/LivingRoom_Fight1" index="0"]
+position = Vector2( 471.842, 250.296 )
 
-[node name="BedroomFight6" parent="YSort/Actors/AreaLockFight2" instance=ExtResource( 176 )]
-position = Vector2( -347.307, -42.0192 )
+[node name="Spawner" parent="YSort/Actors/LivingFight1" instance=ExtResource( 176 )]
+position = Vector2( 344.326, 33.1492 )
+scale = Vector2( 0.611096, 0.649235 )
+count = 2
+enemy = "RatSoldier"
+automatic = false
+
+[node name="Spawner2" parent="YSort/Actors/LivingFight1" instance=ExtResource( 176 )]
+position = Vector2( 344.326, 31.661 )
+scale = Vector2( 0.653125, 0.614008 )
+count = 3
+enemy = "SlimeFR"
+automatic = false
+
+[node name="LivingFight2" parent="YSort/Actors" instance=ExtResource( 19 )]
+position = Vector2( 2307.66, 242.827 )
+
+[node name="LivingRoom_Fight2" parent="YSort/Actors/LivingFight2" instance=ExtResource( 20 )]
+position = Vector2( -252.094, -191.83 )
+AutomaticTransition = false
+
+[node name="BottomRight" parent="YSort/Actors/LivingFight2/LivingRoom_Fight2" index="0"]
+position = Vector2( 403.479, 250.116 )
+
+[node name="Spawner" parent="YSort/Actors/LivingFight2" instance=ExtResource( 176 )]
+position = Vector2( -286.094, -29.6138 )
+scale = Vector2( 1, 4.02566 )
+count = 5
+enemy = "SlimeFR"
+automatic = false
+
+[node name="KitchenFight1" parent="YSort/Actors" instance=ExtResource( 19 )]
+position = Vector2( 2591.09, 238.889 )
+
+[node name="Kitchen_fight1" parent="YSort/Actors/KitchenFight1" instance=ExtResource( 20 )]
+position = Vector2( -123.12, -187.942 )
+AutomaticTransition = false
+
+[node name="BottomRight" parent="YSort/Actors/KitchenFight1/Kitchen_fight1" index="0"]
+position = Vector2( 412.969, 249.053 )
+
+[node name="Spawner" parent="YSort/Actors/KitchenFight1" instance=ExtResource( 176 )]
+position = Vector2( 309.338, 35.729 )
+scale = Vector2( 0.572791, 0.576901 )
+count = 4
+enemy = "SlimeFR"
+automatic = false
+
+[node name="KitchenFight2" parent="YSort/Actors" instance=ExtResource( 19 )]
+position = Vector2( 2973.06, 240.955 )
+
+[node name="Kitchen_fight2" parent="YSort/Actors/KitchenFight2" instance=ExtResource( 20 )]
+position = Vector2( -243.718, -190.955 )
+AutomaticTransition = false
+
+[node name="BottomRight" parent="YSort/Actors/KitchenFight2/Kitchen_fight2" index="0"]
+position = Vector2( 390.298, 250.493 )
+
+[node name="Spawner" parent="YSort/Actors/KitchenFight2" instance=ExtResource( 176 )]
+position = Vector2( -329.902, -40.858 )
+scale = Vector2( 2.897, 0.262559 )
+count = 3
+enemy = "RatSoldier"
+automatic = false
+
+[node name="OfficeFight1" parent="YSort/Actors" instance=ExtResource( 19 )]
+position = Vector2( 1264.2, 239.495 )
+
+[node name="Office_Fight1" parent="YSort/Actors/OfficeFight1" instance=ExtResource( 20 )]
+position = Vector2( -119.574, -188.368 )
+AutomaticTransition = false
+
+[node name="BottomRight" parent="YSort/Actors/OfficeFight1/Office_Fight1" index="0"]
+position = Vector2( 469.101, 252.123 )
+
+[node name="Spawner" parent="YSort/Actors/OfficeFight1" instance=ExtResource( 176 )]
+position = Vector2( 383.19, 15.6286 )
+scale = Vector2( 1, 2.06685 )
+count = 4
+enemy = "SlimeFR"
+automatic = false
+
+[node name="OfficeFight2" parent="YSort/Actors" instance=ExtResource( 19 )]
+position = Vector2( 1647.39, 238.285 )
+
+[node name="Office_Fight2" parent="YSort/Actors/OfficeFight2" instance=ExtResource( 20 )]
+position = Vector2( -246.01, -187.158 )
+AutomaticTransition = false
+
+[node name="BottomRight" parent="YSort/Actors/OfficeFight2/Office_Fight2" index="0"]
+position = Vector2( 395.21, 249.786 )
+
+[node name="Spawner2" parent="YSort/Actors/OfficeFight2" instance=ExtResource( 176 )]
+position = Vector2( -286.764, -26.0568 )
+scale = Vector2( 1, 3.61594 )
+count = 3
+enemy = "SlimeFR"
+automatic = false
+
+[node name="Spawner3" parent="YSort/Actors/OfficeFight2" instance=ExtResource( 176 )]
+position = Vector2( -286.764, -36.3002 )
+scale = Vector2( 1, 3.61594 )
+count = 2
+enemy = "RatSoldier"
+automatic = false
+
+[node name="FoyerFight" parent="YSort/Actors" instance=ExtResource( 19 )]
+position = Vector2( 3252.71, 240.287 )
+
+[node name="CustomDelimiter2D" parent="YSort/Actors/FoyerFight" instance=ExtResource( 20 )]
+position = Vector2( -126.57, -192.16 )
+
+[node name="BottomRight" parent="YSort/Actors/FoyerFight/CustomDelimiter2D" index="0"]
+position = Vector2( 450.24, 250.742 )
+
+[node name="FoyerEnemies" parent="YSort/Actors/FoyerFight" instance=ExtResource( 176 )]
+position = Vector2( 325.828, 22.488 )
+scale = Vector2( 0.0323831, 0.267097 )
+rect = Rect2( 0, 0, 200, 80 )
+duration_between_spawn = 1
+count = 4
+enemy = "SlimeFR"
+automatic = false
+
+[node name="BasementFight" parent="YSort/Actors" instance=ExtResource( 19 )]
+position = Vector2( 419.609, 543.413 )
+
+[node name="Basement_Fight1" parent="YSort/Actors/BasementFight" instance=ExtResource( 20 )]
+position = Vector2( -188.384, -184.586 )
+AutomaticTransition = false
+
+[node name="BottomRight" parent="YSort/Actors/BasementFight/Basement_Fight1" index="0"]
+position = Vector2( 477, 244.067 )
+
+[node name="BasementL1" parent="YSort/Actors/BasementFight" instance=ExtResource( 176 )]
+position = Vector2( -232.053, -39.1556 )
+scale = Vector2( 1.67996, 1 )
+rect = Rect2( 0, 0, 20, 80 )
+duration_between_spawn = 5
+count = 10
+enemy = "SlimeFR"
+automatic = false
+
+[node name="BasementR1" parent="YSort/Actors/BasementFight" instance=ExtResource( 176 )]
+position = Vector2( 297.651, -19.8616 )
+rect = Rect2( 0, 0, 50, 70 )
+duration_between_spawn = 5
+count = 10
+enemy = "SlimeFR"
+automatic = false
+
+[node name="BedroomFight1" parent="YSort/Actors" instance=ExtResource( 19 )]
+position = Vector2( 618.064, 235.827 )
+
+[node name="Bedroom_Fight1" parent="YSort/Actors/BedroomFight1" instance=ExtResource( 20 )]
+position = Vector2( -75.2131, -216.52 )
+AutomaticTransition = false
+
+[node name="BottomRight" parent="YSort/Actors/BedroomFight1/Bedroom_Fight1" index="0"]
+position = Vector2( 435.374, 280.311 )
+
+[node name="BedroomFight1" parent="YSort/Actors/BedroomFight1" instance=ExtResource( 176 )]
+position = Vector2( 378.725, -29.0653 )
+rect = Rect2( 0, 0, 20, 80 )
+duration_between_spawn = 1
+enemy = "SlimeFR"
+automatic = false
+
+[node name="BedroomFight2" parent="YSort/Actors" instance=ExtResource( 19 )]
+position = Vector2( 993.532, 241.429 )
+
+[node name="Bedroom_Fight2" parent="YSort/Actors/BedroomFight2" instance=ExtResource( 20 )]
+position = Vector2( -321.892, -222.049 )
+AutomaticTransition = false
+
+[node name="BottomRight" parent="YSort/Actors/BedroomFight2/Bedroom_Fight2" index="0"]
+position = Vector2( 462.202, 279.489 )
+
+[node name="BedroomFight6" parent="YSort/Actors/BedroomFight2" instance=ExtResource( 176 )]
+position = Vector2( -352.307, -34.215 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
 count = 3
 enemy = "SlimeFR"
 automatic = false
-
-[node name="AreaLockFight" parent="YSort/Actors" instance=ExtResource( 19 )]
-position = Vector2( 618.064, 235.827 )
-
-[node name="Bedroom_Fight1" parent="YSort/Actors/AreaLockFight" instance=ExtResource( 20 )]
-position = Vector2( -75.2131, -216.52 )
-AutomaticTransition = false
-
-[node name="BottomRight" parent="YSort/Actors/AreaLockFight/Bedroom_Fight1" index="0"]
-position = Vector2( 435.375, 277.687 )
-
-[node name="BedroomFight1" parent="YSort/Actors/AreaLockFight" instance=ExtResource( 176 )]
-position = Vector2( 364.818, -27.5938 )
-rect = Rect2( 0, 0, 20, 80 )
-duration_between_spawn = 1
-enemy = "SlimeFR"
-automatic = false
-
-[node name="Garage_Fight" parent="YSort/Actors" instance=ExtResource( 20 )]
-position = Vector2( 2813.58, 348.827 )
-AutomaticTransition = false
-
-[node name="Garage_Fight2" parent="YSort/Actors" instance=ExtResource( 20 )]
-position = Vector2( 3242.91, 348.827 )
-AutomaticTransition = false
-
-[node name="Basement_Fight1" parent="YSort/Actors" instance=ExtResource( 20 )]
-position = Vector2( 233.335, 316.827 )
-AutomaticTransition = false
-
-[node name="Office_Fight1" parent="YSort/Actors" instance=ExtResource( 20 )]
-position = Vector2( 1153.63, 21.6612 )
-AutomaticTransition = false
-
-[node name="Office_Fight2" parent="YSort/Actors" instance=ExtResource( 20 )]
-position = Vector2( 1392.67, 21.6612 )
-AutomaticTransition = false
-
-[node name="LivingRoom_Fight1" parent="YSort/Actors" instance=ExtResource( 20 )]
-position = Vector2( 1815.22, 21.6612 )
-AutomaticTransition = false
-
-[node name="LivingRoom_Fight2" parent="YSort/Actors" instance=ExtResource( 20 )]
-position = Vector2( 2052.79, 21.6612 )
-AutomaticTransition = false
-
-[node name="Kitchen_fight1" parent="YSort/Actors" instance=ExtResource( 20 )]
-position = Vector2( 2474.16, 21.6612 )
-AutomaticTransition = false
-
-[node name="Kitchen_fight2" parent="YSort/Actors" instance=ExtResource( 20 )]
-position = Vector2( 2714.54, 19.3074 )
-AutomaticTransition = false
 
 [node name="Props" type="YSort" parent="YSort"]
 
@@ -1461,10 +1548,10 @@ position = Vector2( 180.548, 125.063 )
 position = Vector2( 1818.63, 0 )
 
 [node name="SmallRugLivingRoom" parent="YSort/Props/Livingroom" instance=ExtResource( 193 )]
-position = Vector2( 132.406, 206.011 )
+position = Vector2( 129, 205.969 )
 
 [node name="Plant3" parent="YSort/Props/Livingroom" instance=ExtResource( 186 )]
-position = Vector2( 617.838, 296.224 )
+position = Vector2( 621.604, 295.797 )
 
 [node name="Plant4" parent="YSort/Props/Livingroom" instance=ExtResource( 186 )]
 position = Vector2( 11.5817, 294.442 )
@@ -1586,13 +1673,13 @@ position = Vector2( 313.422, 196.463 )
 position = Vector2( 447.705, 219.965 )
 
 [node name="DiningTable" parent="YSort/Props/Kitchen" instance=ExtResource( 69 )]
-position = Vector2( 203.292, 237.698 )
+position = Vector2( 203.292, 237.389 )
 
 [node name="LightSwitch" parent="YSort/Props/Kitchen" instance=ExtResource( 73 )]
 position = Vector2( 587.745, 223.361 )
 
 [node name="KitchenExit" parent="YSort/Props/Kitchen" instance=ExtResource( 15 )]
-position = Vector2( 608.351, 230.997 )
+position = Vector2( 608.765, 230.244 )
 
 [node name="Basement" type="YSort" parent="YSort/Props"]
 position = Vector2( 71.8405, 356.782 )
@@ -1980,7 +2067,7 @@ margin_left = 268.112
 margin_top = 520.0
 margin_right = 756.112
 margin_bottom = 544.0
-custom_fonts/font = SubResource( 41 )
+custom_fonts/font = SubResource( 38 )
 text = "Rex Magnus Rattorum, The Rat King"
 uppercase = true
 __meta__ = {
@@ -2027,7 +2114,7 @@ margin_right = 192.134
 margin_bottom = 60.9467
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 42 )
+custom_fonts/font = SubResource( 39 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "0"
 __meta__ = {
@@ -2041,7 +2128,7 @@ margin_right = 96.2014
 margin_bottom = 86.7737
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 42 )
+custom_fonts/font = SubResource( 39 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "x"
 __meta__ = {
@@ -2057,6 +2144,12 @@ margin_bottom = 112.5
 [node name="Inventory" parent="GUI/PlayerGui" instance=ExtResource( 21 )]
 position = Vector2( 15.0934, 21.6612 )
 scale = Vector2( 2, 2 )
+
+[node name="ContinueRight" parent="GUI/PlayerGui" instance=ExtResource( 201 )]
+margin_left = 756.112
+margin_top = 74.1624
+margin_right = 1000.75
+margin_bottom = 104.002
 
 [node name="PauseScreenContainer" parent="GUI" instance=ExtResource( 26 )]
 margin_left = 9.33495
@@ -2092,41 +2185,50 @@ visible = false
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/Bed" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/Wardrobe" to="." method="_on_Wardrobe_interactable_text_signal"]
-[connection signal="body_entered" from="LevelBackground/Interactions/Bedroom/BedroomAttack" to="." method="_on_BedroomAttack_body_entered"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/LivingRoom/InteractPromptArea" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/LivingRoom/TVStand" to="." method="_on_TVStand_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Kitchen/Coffee" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Kitchen/Fridge" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Kitchen/Microwave" to="." method="_on_InteractPromptArea_interactable_text_signal"]
-[connection signal="body_entered" from="LevelBackground/Interactions/Kitchen/KitchenFirstTime" to="." method="_on_KitchenFirstTime_body_entered"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Kitchen/BasementNeedKey" to="." method="_on_BasementNeedKey_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Kitchen/Drawer" to="." method="_on_Drawer_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Office/Computer" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Office/OfficeCabinet" to="." method="_on_OfficeCabinet_interactable_text_signal"]
-[connection signal="body_entered" from="LevelBackground/Interactions/Basement/BasementAttack" to="." method="_on_BasementAttack_body_entered"]
 [connection signal="body_entered" from="LevelBackground/Interactions/Basement/BossEncounter" to="." method="_on_BossEncounter_body_entered"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Foyer/FoyerEndTable" to="." method="_on_FoyerEndTable_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Foyer/FoyerShoeRack" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Foyer/FoyerCabinet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Foyer/GarageNeedKey" to="." method="_on_GarageNeedKey_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Garage/WorkBench" to="." method="_on_WorkBench_interactable_text_signal"]
-[connection signal="body_entered" from="LevelBackground/Interactions/Garage/GarageAttack" to="." method="_on_GarageAttack_body_entered"]
 [connection signal="item_delete" from="YSort/Actors/LirikYaki" to="." method="_on_LirikYaki_item_delete"]
 [connection signal="item_pickup" from="YSort/Actors/LirikYaki" to="." method="_on_LirikYaki_item_pickup"]
-[connection signal="AllEnemiesDefeated" from="YSort/Actors/FirstRat" to="." method="_on_FirstRat_AllEnemiesDefeated"]
-[connection signal="AllEnemiesDefeated" from="YSort/Actors/BasementL1" to="." method="_on_BasementL1_AllEnemiesDefeated"]
-[connection signal="AllEnemiesDefeated" from="YSort/Actors/BasementR1" to="." method="_on_BasementR1_AllEnemiesDefeated"]
 [connection signal="AllEnemiesDefeated" from="YSort/Actors/GrannySpawner" to="." method="_on_GrannySpawner_AllEnemiesDefeated"]
-[connection signal="AllEnemiesDefeated" from="YSort/Actors/FoyerEnemies" to="." method="_on_FoyerEnemies_AllEnemiesDefeated"]
-[connection signal="AllEnemiesDefeated" from="YSort/Actors/Garage1" to="." method="_on_Garage1_AllEnemiesDefeated"]
-[connection signal="AllEnemiesDefeated" from="YSort/Actors/Garage2" to="." method="_on_Garage2_AllEnemiesDefeated"]
-[connection signal="AllEnemiesDefeated" from="YSort/Actors/Garage3" to="." method="_on_Garage3_AllEnemiesDefeated"]
-[connection signal="AllEnemiesDefeated" from="YSort/Actors/Garage4" to="." method="_on_Garage4_AllEnemiesDefeated"]
-[connection signal="AllEnemiesDefeated" from="YSort/Actors/Garage5" to="." method="_on_Garage5_AllEnemiesDefeated"]
 [connection signal="AllEnemiesDefeated" from="YSort/Actors/RatKingSpawner" to="." method="_on_RatKingSpawner_AllEnemiesDefeated"]
 [connection signal="spawned" from="YSort/Actors/RatKingSpawner" to="." method="_on_RatKingSpawner_spawned"]
-[connection signal="AllEnemiesDefeated" from="YSort/Actors/AreaLockFight2/BedroomFight6" to="." method="_on_Garage1_AllEnemiesDefeated"]
-[connection signal="AllEnemiesDefeated" from="YSort/Actors/AreaLockFight/BedroomFight1" to="." method="_on_Garage1_AllEnemiesDefeated"]
+[connection signal="lockout_finished" from="YSort/Actors/GarageFight1" to="." method="_on_GarageFight1_lockout_finished"]
+[connection signal="lockout_started" from="YSort/Actors/GarageFight1" to="." method="_on_GarageFight1_lockout_started"]
+[connection signal="lockout_finished" from="YSort/Actors/GarageFight2" to="." method="_on_GarageFight2_lockout_finished"]
+[connection signal="lockout_started" from="YSort/Actors/GarageFight2" to="." method="_on_GarageFight2_lockout_started"]
+[connection signal="lockout_finished" from="YSort/Actors/LivingFight1" to="." method="_on_LivingFight1_lockout_finished"]
+[connection signal="lockout_started" from="YSort/Actors/LivingFight1" to="." method="_on_LivingFight1_lockout_started"]
+[connection signal="lockout_finished" from="YSort/Actors/LivingFight2" to="." method="_on_LivingFight2_lockout_finished"]
+[connection signal="lockout_started" from="YSort/Actors/LivingFight2" to="." method="_on_LivingFight2_lockout_started"]
+[connection signal="lockout_finished" from="YSort/Actors/KitchenFight1" to="." method="_on_KitchenFight1_lockout_finished"]
+[connection signal="lockout_started" from="YSort/Actors/KitchenFight1" to="." method="_on_KitchenFight1_lockout_started"]
+[connection signal="lockout_finished" from="YSort/Actors/KitchenFight2" to="." method="_on_KitchenFight2_lockout_finished"]
+[connection signal="lockout_started" from="YSort/Actors/KitchenFight2" to="." method="_on_KitchenFight2_lockout_started"]
+[connection signal="lockout_finished" from="YSort/Actors/OfficeFight1" to="." method="_on_OfficeFight1_lockout_finished"]
+[connection signal="lockout_started" from="YSort/Actors/OfficeFight1" to="." method="_on_OfficeFight1_lockout_started"]
+[connection signal="lockout_finished" from="YSort/Actors/OfficeFight2" to="." method="_on_OfficeFight2_lockout_finished"]
+[connection signal="lockout_started" from="YSort/Actors/OfficeFight2" to="." method="_on_OfficeFight2_lockout_started"]
+[connection signal="lockout_finished" from="YSort/Actors/FoyerFight" to="." method="_on_FoyerFight_lockout_finished"]
+[connection signal="lockout_started" from="YSort/Actors/FoyerFight" to="." method="_on_FoyerFight_lockout_started"]
+[connection signal="lockout_finished" from="YSort/Actors/BasementFight" to="." method="_on_BasementFight_lockout_finished"]
+[connection signal="lockout_started" from="YSort/Actors/BasementFight" to="." method="_on_BasementFight_lockout_started"]
+[connection signal="lockout_finished" from="YSort/Actors/BedroomFight1" to="." method="_on_BedroomFight1_lockout_finished"]
+[connection signal="lockout_started" from="YSort/Actors/BedroomFight1" to="." method="_on_BedroomFight1_lockout_started"]
+[connection signal="lockout_finished" from="YSort/Actors/BedroomFight2" to="." method="_on_BedroomFight2_lockout_finished"]
+[connection signal="lockout_started" from="YSort/Actors/BedroomFight2" to="." method="_on_BedroomFight2_lockout_started"]
 [connection signal="closed" from="GUI/TextBox2" to="." method="_on_TextBox_closed"]
 
 [editable path="LevelBackground/Boundaries/StreamingRoom/Basement_Delimeter"]
@@ -2144,5 +2246,15 @@ visible = false
 [editable path="LevelBackground/Teleports/Kitchen_Basement_2WT"]
 [editable path="LevelBackground/Teleports/Kitchen_Foyer_2WT"]
 [editable path="LevelBackground/Teleports/Foyer_Garage_2WT"]
-[editable path="YSort/Actors/AreaLockFight2/Bedroom_Fight2"]
-[editable path="YSort/Actors/AreaLockFight/Bedroom_Fight1"]
+[editable path="YSort/Actors/GarageFight1/Garage_Fight"]
+[editable path="YSort/Actors/GarageFight2/Garage_Fight2"]
+[editable path="YSort/Actors/LivingFight1/LivingRoom_Fight1"]
+[editable path="YSort/Actors/LivingFight2/LivingRoom_Fight2"]
+[editable path="YSort/Actors/KitchenFight1/Kitchen_fight1"]
+[editable path="YSort/Actors/KitchenFight2/Kitchen_fight2"]
+[editable path="YSort/Actors/OfficeFight1/Office_Fight1"]
+[editable path="YSort/Actors/OfficeFight2/Office_Fight2"]
+[editable path="YSort/Actors/FoyerFight/CustomDelimiter2D"]
+[editable path="YSort/Actors/BasementFight/Basement_Fight1"]
+[editable path="YSort/Actors/BedroomFight1/Bedroom_Fight1"]
+[editable path="YSort/Actors/BedroomFight2/Bedroom_Fight2"]

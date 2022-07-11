@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/GUI/continue.png" type="Texture" id=1]
+[ext_resource path="res://src/Helpers/GUI/ContinueRight.gd" type="Script" id=2]
+
+[node name="ContinueRight" type="TextureRect"]
+anchor_right = 0.259
+anchor_bottom = 0.054
+margin_top = -1.0
+margin_right = -0.216003
+margin_bottom = -0.104
+texture = ExtResource( 1 )
+expand = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

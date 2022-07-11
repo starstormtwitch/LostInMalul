@@ -61,9 +61,9 @@ func NextEnemySpawner():
 		
 func LockOutFightFinish(delimiterNode: CustomDelimiter2D):
 	areaLocked = false;
+	emit_signal("lockout_finished")
 	emit_signal("area_lock", false)
 	delimiterNode.ManualTransition_Exit();
-	emit_signal("lockout_finished", currentDelimiterForLockOut)
 
 func _on_StartArea_body_entered(body):
 	if body == LevelGlobals.GetPlayerActor():

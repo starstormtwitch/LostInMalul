@@ -763,7 +763,7 @@ extents = Vector2( 10.2453, 11.7708 )
 "Player",
 ]]
 collision_layer = 4
-collision_mask = 1025
+collision_mask = 1031
 collision/safe_margin = 0.001
 script = ExtResource( 1 )
 
@@ -778,7 +778,7 @@ position = Vector2( -0.893405, -23.5687 )
 texture = ExtResource( 6 )
 hframes = 10
 vframes = 9
-frame = 71
+frame = 4
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -2.67837, -2.47936 )

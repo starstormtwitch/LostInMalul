@@ -57,7 +57,7 @@ var _rightBound: StaticBody2D = null
 var _upperBound: StaticBody2D = null
 var _bottomBound: StaticBody2D = null
 var _boundWidth: int = 40
-var _defaultBoundLength: int = 10000000
+var _defaultBoundLength: int = 10
 
 func _init(cameraTarget: Node, current: bool):
 	assert(cameraTarget, "Camera target is not a node.")
@@ -337,7 +337,10 @@ func _createNewBound() -> StaticBody2D:
 	coll.shape = rect
 	#The rectangle's half extents. The width and height of this shape is twice the half extents.
 	rect.extents = Vector2(_defaultBoundLength, _boundWidth)#shapes are rotated later
-	sb.set_collision_layer_bit(LevelGlobals.GetLayerBit("Boundaries"),true) #set boundary layer
+	var boundaryBit = LevelGlobals.GetLayerBit("Boundaries")
+	var toggleBit = LevelGlobals.GetLayerBit("TogglableBoundaries")
+	sb.set_collision_layer_bit(LevelGlobals.GetLayerBit("Boundaries"),false) #set boundary layer
+	sb.set_collision_layer_bit(LevelGlobals.GetLayerBit("TogglableBoundaries"),true) #set boundary layer
 	sb.set_collision_mask_bit(LevelGlobals.GetLayerBit("Player"),true) #mask to player layer
 	sb.set_collision_mask_bit(LevelGlobals.GetLayerBit("Enemy"),true) #mask to enemy layer
 	coll.one_way_collision = true
