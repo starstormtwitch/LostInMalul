@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Levels/Streets/Level_Start.png" type="Texture" id=2]
@@ -40,6 +40,9 @@
 [ext_resource path="res://src/Props/StreetLevel/Trees/BottomRightTree.tscn" type="PackedScene" id=38]
 [ext_resource path="res://src/Props/StreetLevel/Shared/WhiteFlower.tscn" type="PackedScene" id=39]
 [ext_resource path="res://src/Props/StreetLevel/Road/BusStop.tscn" type="PackedScene" id=40]
+[ext_resource path="res://src/Helpers/ObjectPool.gd" type="Script" id=41]
+[ext_resource path="res://src/GUI/WarningSign.tscn" type="PackedScene" id=42]
+[ext_resource path="res://assets/SpriteSheets/falling_leaf_particle2.png" type="Texture" id=43]
 [ext_resource path="res://src/GUI/DashCooldownUI.tscn" type="PackedScene" id=177]
 [ext_resource path="res://assets/fonts/Early GameBoy.ttf" type="DynamicFontData" id=178]
 [ext_resource path="res://assets/GUI/BossHealthBarTheme.tres" type="Theme" id=179]
@@ -141,6 +144,85 @@ outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
 font_data = ExtResource( 178 )
 
+[sub_resource type="Shader" id=27]
+code = "shader_type particles;
+
+uniform vec4 color_1 : hint_color = vec4( 1.0 );
+uniform vec4 color_2 : hint_color = vec4( 1.0 );
+uniform vec4 color_3 : hint_color = vec4( 1.0 );
+uniform vec4 color_4 : hint_color = vec4( 1.0 );
+
+float rand_from_seed(inout uint seed) {
+	int k;
+	int s = int(seed);
+	if (s == 0)
+	s = 305420679;
+	k = s / 127773;
+	s = 16807 * (s - k * 127773) - 2836 * k;
+	if (s < 0)
+		s += 2147483647;
+	seed = uint(s);
+	return float(seed % uint(65536)) / 65535.0;
+}
+
+float rand_from_seed_m1_p1(inout uint seed) {
+	return rand_from_seed(seed) * 2.0 - 1.0;
+}
+
+uint hash(uint x) {
+	x = ((x >> uint(16)) ^ x) * uint(73244475);
+	x = ((x >> uint(16)) ^ x) * uint(73244475);
+	x = (x >> uint(16)) ^ x;
+	return x;
+}
+
+void vertex() {
+	uint base_number = NUMBER;
+	uint alt_seed = hash(base_number + uint(1) + RANDOM_SEED);
+	
+
+	if (RESTART) 
+	{
+		TRANSFORM[3].x = rand_from_seed( alt_seed ) * 30.0 - 15.0;
+		TRANSFORM[3].y = rand_from_seed( alt_seed ) * 30.0 - 15.0;
+		VELOCITY.x = rand_from_seed( alt_seed ) * ( -10.0 );
+		VELOCITY.y = rand_from_seed( alt_seed ) * ( 10.0 );
+		
+		int color_index = int( rand_from_seed( alt_seed ) * 4.0 );
+		if( color_index == 0 )
+		{
+			COLOR = color_1;
+		}
+		else if( color_index == 1 )
+		{
+			COLOR = color_2;
+		}
+		else if( color_index == 2 )
+		{
+			COLOR = color_3;
+		}
+		else if( color_index == 3 )
+		{
+			COLOR = color_4;
+		}
+	} 
+	else
+	{
+		CUSTOM.x += DELTA;
+		TRANSFORM[0] = vec4(cos(CUSTOM.x), -sin(CUSTOM.x), 0.0, 0.0);
+		TRANSFORM[1] = vec4(sin(CUSTOM.x), cos(CUSTOM.x), 0.0, 0.0);
+	}
+}
+
+"
+
+[sub_resource type="ShaderMaterial" id=28]
+shader = SubResource( 27 )
+shader_param/color_1 = Color( 0.152941, 0.403922, 0.360784, 1 )
+shader_param/color_2 = Color( 0.203922, 0.596078, 0.372549, 1 )
+shader_param/color_3 = Color( 0.309804, 0.772549, 0.360784, 1 )
+shader_param/color_4 = Color( 0.454902, 0.917647, 0.431373, 1 )
+
 [node name="Streets" type="Node2D"]
 pause_mode = 2
 script = ExtResource( 7 )
@@ -167,7 +249,7 @@ position = Vector2( 384.765, 233.155 )
 shape = SubResource( 1 )
 
 [node name="Left" type="CollisionShape2D" parent="LevelBackground/Boundaries/OutsideBoundaries"]
-position = Vector2( -10.3627, 114.293 )
+position = Vector2( -10.3627, 114.647 )
 shape = SubResource( 2 )
 
 [node name="Right" type="CollisionShape2D" parent="LevelBackground/Boundaries/OutsideBoundaries"]
@@ -300,6 +382,31 @@ position = Vector2( 766.858, 223.327 )
 [node name="YSort" type="YSort" parent="."]
 pause_mode = 1
 
+[node name="TrafficSystemRight" type="Node2D" parent="YSort"]
+visible = false
+script = ExtResource( 41 )
+g_copies_of_each = 1
+g_min_y = 160
+g_max_y = 170
+g_min_spawn_wait_ms = 10000
+g_max_spawn_wait_ms = 40000
+g_object_velocity = 4.0
+g_path = "res://src/Props/StreetLevel/Vehicles/"
+g_starting_x = 800
+
+[node name="TrafficSystemLeft" type="Node2D" parent="YSort"]
+visible = false
+position = Vector2( 0.707108, -0.707413 )
+script = ExtResource( 41 )
+g_copies_of_each = 1
+g_min_y = 140
+g_max_y = 160
+g_min_spawn_wait_ms = 10000
+g_max_spawn_wait_ms = 40000
+g_object_velocity = -4.0
+g_path = "res://src/Props/StreetLevel/Vehicles/"
+g_starting_x = 0
+
 [node name="Actors" type="YSort" parent="YSort"]
 
 [node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 3 )]
@@ -323,11 +430,11 @@ position = Vector2( 55.1622, 77.7827 )
 [node name="BlueMailbox" parent="YSort/1stHouse" instance=ExtResource( 11 )]
 position = Vector2( -11.1702, 26.3851 )
 
+[node name="BlueTruck" parent="YSort/1stHouse" instance=ExtResource( 19 )]
+position = Vector2( 339.312, 119.089 )
+
 [node name="FireHydrant" parent="YSort/1stHouse" instance=ExtResource( 10 )]
 position = Vector2( -43.6554, 46.1588 )
-
-[node name="BlueTruck" parent="YSort/1stHouse/FireHydrant" instance=ExtResource( 19 )]
-position = Vector2( 382.967, 66.4033 )
 
 [node name="ThingNextToCat" parent="YSort/1stHouse" instance=ExtResource( 9 )]
 position = Vector2( 19.8303, 19.2579 )
@@ -568,6 +675,50 @@ margin_right = 512.0
 [node name="CRTLayer" parent="GUI" instance=ExtResource( 200 )]
 visible = false
 
+[node name="Warnings" type="Control" parent="GUI"]
+margin_left = 5.33936
+margin_top = 35.2208
+margin_right = 45.3394
+margin_bottom = 75.2208
+size_flags_vertical = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WarningSignRight" parent="GUI/Warnings" instance=ExtResource( 42 )]
+visible = false
+margin_left = 949.246
+margin_top = 278.684
+margin_right = 981.246
+margin_bottom = 310.684
+
+[node name="WarningSignLeft" parent="GUI/Warnings" instance=ExtResource( 42 )]
+visible = false
+margin_left = 45.041
+margin_top = 278.684
+margin_right = 77.041
+margin_bottom = 310.684
+
+[node name="Leaves" type="Particles2D" parent="."]
+position = Vector2( 512.785, 42.5487 )
+amount = 60
+lifetime = 10.0
+preprocess = 60.0
+speed_scale = 0.5
+process_material = SubResource( 28 )
+texture = ExtResource( 43 )
+
+[node name="Leaves2" type="Particles2D" parent="."]
+position = Vector2( 162.056, 4.50578 )
+amount = 30
+lifetime = 10.0
+preprocess = 60.0
+speed_scale = 0.5
+process_material = SubResource( 28 )
+texture = ExtResource( 43 )
+
+[connection signal="SpawnWarning" from="YSort/TrafficSystemRight" to="." method="_on_TrafficSystemRight_SpawnWarning"]
+[connection signal="SpawnWarning" from="YSort/TrafficSystemLeft" to="." method="_on_TrafficSystemLeft_SpawnWarning"]
 [connection signal="closed" from="GUI/TextBox2" to="." method="_on_TextBox_closed"]
 
 [editable path="LevelBackground/CameraPositions/Street_Delimiter"]

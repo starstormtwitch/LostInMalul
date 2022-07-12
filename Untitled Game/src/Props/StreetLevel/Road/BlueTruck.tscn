@@ -8,10 +8,11 @@ extents = Vector2( 32.8327, 10.7644 )
 [node name="BlueTruck" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, 4.59905 )
+position = Vector2( 0.140305, -2.13572 )
 texture = ExtResource( 1 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 0.140305, -6.73477 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 0, 10.7645 )

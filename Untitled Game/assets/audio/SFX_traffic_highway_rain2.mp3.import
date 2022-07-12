@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/SFX_traffic_highway_rain2.mp3-19dcd23c16424144403477cff671f1be.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/SFX_traffic_highway_rain2.mp3"
+dest_files=[ "res://.import/SFX_traffic_highway_rain2.mp3-19dcd23c16424144403477cff671f1be.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

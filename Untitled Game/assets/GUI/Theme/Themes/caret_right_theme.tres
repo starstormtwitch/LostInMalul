@@ -6,7 +6,6 @@
 [sub_resource type="StyleBoxEmpty" id=1]
 
 [sub_resource type="StreamTexture" id=2]
-load_path = "res://.import/caret_right_pressed.png-480c72dd507c350f376a39694c8d2e0f.stex"
 
 [sub_resource type="StyleBoxTexture" id=3]
 texture = SubResource( 2 )

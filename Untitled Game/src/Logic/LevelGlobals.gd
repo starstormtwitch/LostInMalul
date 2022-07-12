@@ -19,8 +19,10 @@ const _levelDictionary = {
 	"House" : preload("res://src/Levels/House.tscn"),
 	"Streets" : preload("res://src/Levels/Streets.tscn"),
 }  
+var rng = RandomNumberGenerator.new();
 
 func _ready():
+	rng.randomize();
 	_createLayerDictionary()
 	InputFunctions.LoadCustomMappings()
 

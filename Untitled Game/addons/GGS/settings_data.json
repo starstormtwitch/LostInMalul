@@ -55,7 +55,7 @@
 			"value": 50
 		},
 		"current": {
-			"value": 46
+			"value": 0
 		},
 		"logic": "res://src/Helpers/Settings/Audio_MusicVolume.gd"
 	},
