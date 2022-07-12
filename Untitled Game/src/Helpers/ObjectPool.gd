@@ -44,11 +44,11 @@ func _process(delta: float) -> void:
 	if time_diff > g_rand_spawn_wait_ms:
 		var available_object = _find_and_remove_available_object()
 		if available_object:
+			_played_warning_sound = false
 			available_object.global_position = _get_random_global_position(available_object)
 			available_object.start(g_object_velocity)
 			g_last_spawn_time_ms = OS.get_system_time_msecs()
 			g_rand_spawn_wait_ms = rand_range(g_min_spawn_wait_ms, g_max_spawn_wait_ms)
-		_played_warning_sound = false
 		_add_to_available_objects()
 
 # check if we should show warning for spawning

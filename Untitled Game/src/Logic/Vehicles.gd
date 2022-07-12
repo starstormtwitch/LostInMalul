@@ -7,15 +7,19 @@ const traffic1 = preload("res://assets/audio/traffic1.mp3")
 const traffic2 = preload("res://assets/audio/traffic2.mp3")
 const traffic3 = preload("res://assets/audio/traffic3.mp3")
 const traffic4 = preload("res://assets/audio/traffic4.mp3")
+var spriteWidth
+
+func _ready():
+	spriteWidth = $Sprite.texture.get_width()
 
 func _process(_delta: float) -> void:
 	position.x += g_velocity
 	if(g_velocity > 1):
 		$Sprite.scale.x = -1
-		$CollisionShape2D.position.x = -abs($CollisionShape2D.position.x)
+		$CollisionShape2D.position.x = (spriteWidth*2)-30
 	else:
 		$Sprite.scale.x = 1
-		$CollisionShape2D.position.x = abs($CollisionShape2D.position.x)
+		$CollisionShape2D.position.x = spriteWidth
 
 # @note: for ObjectPool.
 func get_height() -> float:

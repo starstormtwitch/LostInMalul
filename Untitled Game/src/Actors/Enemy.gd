@@ -63,7 +63,7 @@ func _physics_process(_delta: float) -> void:
 			
 	if(!_isStunned && !_inAir && !isDying):
 		var targetDirection = try_chase()
-		print(targetDirection)
+		#print(targetDirection)
 		get_next_state(targetDirection)
 		if(!_isAttacking):
 			if(_state == EnemyState.CHASE):
@@ -161,19 +161,20 @@ func try_chase() -> Vector2:
 				break
 	#we found something to chase after, now check for collisions
 	if direction != Vector2.ZERO:
-		var obstacleSights = self.get_node("ObstacleAvoidRaycasts");
-		var seperation = Vector2.ZERO;
-		for obstacleSight in obstacleSights.get_children():
-			obstacleSight.cast_to = look.get_cast_to()
-			obstacleSight.force_raycast_update()
-			if obstacleSight.is_colliding():
-				var obstaclePoint = obstacleSight.get_collision_point()
-				var distanceFromObstacle = self.position.distance_to(obstaclePoint)
-				if distanceFromObstacle < 1:
-					distanceFromObstacle = rand_range(-8,8)
-				seperation -= (obstaclePoint - self.global_position).normalized() * (10 / distanceFromObstacle)
-		if seperation != Vector2.ZERO:
-			return (direction + (seperation * .5))
+		if get_node_or_null("ObstacleAvoidRaycasts") != null:
+			var obstacleSights = self.get_node("ObstacleAvoidRaycasts");
+			var seperation = Vector2.ZERO;
+			for obstacleSight in obstacleSights.get_children():
+				obstacleSight.cast_to = look.get_cast_to()
+				obstacleSight.force_raycast_update()
+				if obstacleSight.is_colliding():
+					var obstaclePoint = obstacleSight.get_collision_point()
+					var distanceFromObstacle = self.position.distance_to(obstaclePoint)
+					if distanceFromObstacle < 1:
+						distanceFromObstacle = rand_range(-8,8)
+					seperation -= (obstaclePoint - self.global_position).normalized() * (10 / distanceFromObstacle)
+			if seperation != Vector2.ZERO:
+				return (direction + (seperation * .5))
 	return direction
 
 func _play_walk_animation_if_available(velocity_x: float):

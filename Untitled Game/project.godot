@@ -20,14 +20,14 @@ _global_script_classes=[ {
 "path": "res://src/Actors/Actor.gd"
 }, {
 "base": "Node",
-"class": "AreaLockFight",
-"language": "GDScript",
-"path": "res://src/Helpers/Interacts/AreaLockFight.gd"
-}, {
-"base": "Node",
 "class": "AnimationHandler",
 "language": "GDScript",
 "path": "res://src/Actors/Animations/AnimationHandler.gd"
+}, {
+"base": "Node",
+"class": "AreaLockFight",
+"language": "GDScript",
+"path": "res://src/Helpers/Interacts/AreaLockFight.gd"
 }, {
 "base": "Node",
 "class": "AttackManager",
@@ -227,8 +227,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "ActionRemapButton": "",
 "Actor": "",
-"AreaLockFight": "",
 "AnimationHandler": "",
+"AreaLockFight": "",
 "AttackManager": "",
 "AudioFunctions": "",
 "BaseInput": "",
@@ -273,7 +273,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Lost in Malul"
-run/main_scene="res://src/Levels/House.tscn"
+run/main_scene="res://src/Levels/Streets.tscn"
 config/use_custom_user_dir=true
 config/icon="res://assets/lirik_icon-5.png"
 config/macos_native_icon="res://assets/lirik_icon-4.icns"

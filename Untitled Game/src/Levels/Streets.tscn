@@ -388,7 +388,8 @@ script = ExtResource( 41 )
 g_copies_of_each = 1
 g_min_y = 160
 g_max_y = 170
-g_max_spawn_wait_ms = 4000
+g_min_spawn_wait_ms = 8000
+g_max_spawn_wait_ms = 20000
 g_object_velocity = 3.0
 g_path = "res://src/Props/StreetLevel/Vehicles/"
 g_starting_x = 800
@@ -400,10 +401,11 @@ script = ExtResource( 41 )
 g_copies_of_each = 1
 g_min_y = 140
 g_max_y = 160
-g_max_spawn_wait_ms = 4000
+g_min_spawn_wait_ms = 4000
+g_max_spawn_wait_ms = 20000
 g_object_velocity = -3.0
 g_path = "res://src/Props/StreetLevel/Vehicles/"
-g_starting_x = 0
+g_starting_x = -50
 
 [node name="Actors" type="YSort" parent="YSort"]
 

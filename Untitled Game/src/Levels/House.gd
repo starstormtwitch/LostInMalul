@@ -211,8 +211,6 @@ func _on_GarageNeedKey_interactable_text_signal(text):
 func GetReadyForBossEncounter():
 	_textBox.showText("I think that's all of them.")
 	get_node("YSort/Actors/RatKingSpawner").call_deferred("spawnEnemy")
-	emit_signal("area_lock", false)
-	get_node("LevelBackground/CameraPositions/Basement_Fight1").ManualTransition_Exit();
 	get_node("LevelBackground/Boundaries/Basement/BossSeperator").set_deferred("disabled", true);
 
 func _on_GrannySpawner_AllEnemiesDefeated():
@@ -228,8 +226,6 @@ func AllDefeatedGarage():
 	get_node("YSort/Actors/FoyerSpawner").spawnEnemy()
 	get_node("YSort/Actors/GarageSpawner").spawnEnemy()
 	get_node("LevelBackground/Teleports/Foyer_Garage_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
-	emit_signal("area_lock", false)
-	get_node("LevelBackground/CameraPositions/Garage_Fight").ManualTransition_Exit();
 
 func _on_BossEncounter_body_entered(body):
 	if (body == _player):
@@ -321,7 +317,7 @@ func _on_FoyerFight_lockout_started():
 	get_node("GUI/PlayerGui/ContinueRight").stop_blinking()
 	
 func _on_FoyerFight_lockout_finished():
-	get_node("GUI/PlayerGui/ContinueRight").start_blinking()
+	_textBox.showText("I need to find the basement key now that the house is cleared out... I think it might be in the garage.")
 	get_node("LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
 	get_node("LevelBackground/Interactions/Foyer/GarageNeedKey/CollisionShape").set_deferred("disabled", false);
 
