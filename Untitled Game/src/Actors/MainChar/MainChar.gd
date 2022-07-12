@@ -436,6 +436,8 @@ func _on_GhostDurationTImer_timeout():
 func _on_ChargeIntervalTimer_timeout():
 	_attackManager.increaseChargeBar()
 
+func playShoryukenSFX():
+	_attackManager.playShoryukenSound(get_tree().get_current_scene())
 
 func _getDebugSettings():
 	var gameSettings = Settings.load_game_settings()

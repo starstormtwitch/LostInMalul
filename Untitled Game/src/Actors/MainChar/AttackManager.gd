@@ -90,7 +90,6 @@ func doSideSwipeKick(scene : Node):
 		print("Combo B: " + String(_comboBPoints))
 		if _comboBPoints == 1 or _comboAPoints == 1:
 			_animationHandler.shoryuken()
-			SoundPlayer.playSound(scene, shoryukenSound, _DEFAULT_ATTACK_VOLUME)
 			damageForce = MAX_DAMAGE_FORCE
 			combo_reset()
 		elif _comboBPoints == 3:
@@ -137,6 +136,10 @@ func _hideChargeBar():
 func increaseChargeBar():
 	if IsChargingSpecial:
 		_chargeBar.value += 1
+
+
+func playShoryukenSound(scene):
+	SoundPlayer.playSound(scene, shoryukenSound, _DEFAULT_ATTACK_VOLUME)
 
 
 func playHitSounds(scene : Node):
