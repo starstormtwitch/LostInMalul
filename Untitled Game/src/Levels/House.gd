@@ -16,7 +16,6 @@ const _MENU_EVENT: String = "Menu"
 const _UI_CANCEL_EVENT: String = "ui_cancel"
 
 var _menuOpen: bool = false
-var _firstTimeEnteredKitchen: bool = false
 var _sendKitchenCrash: bool = false
 var _leftBasementDefeated: bool = false
 var _Garage2Defeated: bool = false
@@ -34,8 +33,6 @@ var _pickedUpScrewdriver: bool = false
 var _rightBasementDefeated: bool = false
 var ratKing
 
-signal area_lock
-
 onready var _textBox: TextBox = $GUI/TextBox
 
 # Called when the node enters the scene tree for the first time.
@@ -52,18 +49,31 @@ func SetLevelCheckpointVariables(saveData):
 	assert(saveData.has("checkpoint"))
 	match(saveData["checkpoint"]):
 		"Start":
+			get_node("YSort/Actors/BedroomFight2").Disable()
+			get_node("YSort/Actors/BedroomFight1").Disable()
 			pass;
 		"FirstEnemy":
 			_toiletClogged = false;
 			_pickedUpPlunger = true;
-			_firstTimeEnteredKitchen = true;
 			_sendKitchenCrash = false;
+			get_node("YSort/Actors/BedroomFight1").Disable()
+			get_node("YSort/Actors/BedroomFight2").Disable()
+			get_node("YSort/Actors/LivingFight2").Disable()
+			get_node("YSort/Actors/LivingFight1").Disable()
+			get_node("YSort/Actors/GarageFight2").Disable()
+			get_node("YSort/Actors/GarageFight1").Disable()
+			get_node("YSort/Actors/KitchenFight1").Disable()
+			get_node("YSort/Actors/KitchenFight2").Disable()
+			get_node("YSort/Actors/OfficeFight1").Disable()
+			get_node("YSort/Actors/OfficeFight2").Disable()
+			get_node("YSort/Actors/FoyerFight").Disable()
+			get_node("YSort/Actors/BasementFight").Disable()
 			get_node("LevelBackground/Interactions/Bedroom/StreamRoomTooSoon/CollisionShape").set_deferred("disabled", true);
 			get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
 			get_node("LevelBackground/Interactions/Bathroom/Toilet/CollisionShape").set_deferred("disabled", true);
 			get_node("YSort/Actors/GrannySpawner").spawnEnemy()
-			get_node("LevelBackground/Teleports/Streaming_LivingRoom_2WT/EndpointAlpha/ToBetaActivationArea").disabled = false;
-			get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointBeta/ToAlphaActivationArea").disabled = false;
+			get_node("LevelBackground/Teleports/Streaming_LivingRoom_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
+			get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
 			StartupPlayerInPosition(Vector2(1700, 275), 5)
 		"Boss":
 			get_node("LevelBackground/Boundaries/Basement/Lockout").set_deferred("disabled", false);
@@ -84,23 +94,16 @@ func _on_Player_health_changed(_oldHealth, newHealth, maxHealth):
 func _on_InteractPromptArea_interactable_text_signal(text):
 	_textBox.showText(text)
 
-func _on_KitchenFirstTime_body_entered(body):
-	if body == _player && _firstTimeEnteredKitchen == false:
-		_firstTimeEnteredKitchen = true
-		_textBox.showText("I think I know what that is... but how is it alive?! \n Left click to attack")
-		get_node("LevelBackground/Teleports/Streaming_LivingRoom_2WT/EndpointAlpha/ToBetaActivationArea").disabled = true;
-		get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointBeta/ToAlphaActivationArea").disabled = true;
-		get_node("YSort/Actors/FirstRat").spawnEnemy()
-	pass # Replace with function body.
-
 func _on_Toilet_interactable_text_signal(text):
 	if($GUI/PlayerGui/Inventory.InventoryItem != null && $GUI/PlayerGui/Inventory.InventoryItem.name == "Plunger"):
 		_sendKitchenCrash = true;
 		_textBox.showText("*Unclogs toilet with plunger and takes morning poop*")
 		_player.delete_item_from_inventory()
 		_toiletClogged = false;
-		get_node("LevelBackground/Interactions/Bedroom/StreamRoomTooSoon/CollisionShape").disabled = true;
-		get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").disabled = false;
+		get_node("LevelBackground/Interactions/Bedroom/StreamRoomTooSoon/CollisionShape").set_deferred("disabled", true);
+		get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
+		get_node("YSort/Actors/BedroomFight1").Enable()
+		get_node("YSort/Actors/BedroomFight2").Enable()
 	elif(!_toiletClogged):
 		_textBox.showText(text)
 	else: 
@@ -111,60 +114,13 @@ func _on_TextBox_closed():
 		_sendKitchenCrash = false
 		_textBox.showText("*crashing noise* I better go check out what happened. Looks like the power shut off, I'll have to fire up my generator before I can turn on my pc...")
 
-func _on_FirstRat_AllEnemiesDefeated():
-	_textBox.showText("That was insane, it had to have come from the basement... and is that grandma's laugh I just heard? I better find some comfy items to give to grandma to make her happy.")
-	get_node("YSort/Actors/GrannySpawner").spawnEnemy()
-	get_node("LevelBackground/Teleports/Streaming_LivingRoom_2WT/EndpointAlpha/ToBetaActivationArea").disabled = false;
-	get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointBeta/ToAlphaActivationArea").disabled = false;
-
-func _on_BasementAttack_body_entered(body):
-	if (body == _player):
-		get_node("LevelBackground/Boundaries/Basement/Lockout").set_deferred("disabled", false);
-		get_node("LevelBackground/Interactions/Basement/BasementAttack/BasementAttackCollision").set_deferred("disabled", true);
-		_textBox.showText("That's a lot of rats, I have a bad feeling about this.")
-		emit_signal("area_lock", true)
-		get_node("LevelBackground/CameraPositions/Basement_Fight1").ManualTransition_Enter();
-		get_node("YSort/Actors/BasementL1").spawnEnemy()
-		get_node("YSort/Actors/BasementR1").spawnEnemy()
-
-
-func _on_BasementL1_AllEnemiesDefeated():
-	_leftBasementDefeated = true;
-	if(_rightBasementDefeated):
-		GetReadyForBossEncounter();
-		
-func _on_BasementR1_AllEnemiesDefeated():
-	_rightBasementDefeated = true;
-	if(_leftBasementDefeated):
-		GetReadyForBossEncounter();
-		
-func GetReadyForBossEncounter():
-	_textBox.showText("I think that's all of them.")
-	get_node("YSort/Actors/RatKingSpawner").call_deferred("spawnEnemy")
-	emit_signal("area_lock", false)
-	get_node("LevelBackground/CameraPositions/Basement_Fight1").ManualTransition_Exit();
-	get_node("LevelBackground/Boundaries/Basement/BossSeperator").disabled = true;
-	
 func _on_Boss_health_changed(_oldHealth, newHealth, maxHealth):
 	var progressValue = (float(newHealth) / float(maxHealth)) * 100.00
 	$GUI/BossGui/ProgressBar.set_value(progressValue);
 
-func _on_BossEncounter_body_entered(body):
-	if (body == _player):
-		get_node("LevelBackground/Interactions/Basement/BossEncounter/BossEncounterCollision").set_deferred("disabled", true);
-		_textBox.showText("Rat King: So... you think you can take your house back from me? I'm afraid that can't happen... you see, us rats are sick of living in this damp disgusting basement.  We will enjoy this house better than you ever did, and now I'll make sure you never hurt a rat again.")
-		ratKing._target = _player;
-		ratKing._mobSpawnArea = get_node("LevelBackground/SpecialZones/BossMobZone/CollisionShape");		
-		$GUI/BossGui.set_deferred("visible", true);
-
 func _on_LirikYaki_item_pickup(item : Node2D):
 	$GUI/PlayerGui/Inventory.InventoryItem = item;
 	
-func _on_RatKingSpawner_AllEnemiesDefeated():
-	LevelGlobals.SetCheckpoint("Streets", "Start");
-	LevelGlobals.save_game();
-	LevelGlobals.load_checkpoint();
-
 func _on_LirikYaki_item_delete():
 	$GUI/PlayerGui/Inventory.InventoryItem.queue_free()
 	$GUI/PlayerGui/Inventory.InventoryItem = null; 
@@ -181,8 +137,8 @@ func _on_BasementNeedKey_interactable_text_signal(text):
 	if($GUI/PlayerGui/Inventory.InventoryItem != null && $GUI/PlayerGui/Inventory.InventoryItem.name == "BasementKey"):
 		_textBox.showText("*Unlocks door with basement key*")
 		_player.delete_item_from_inventory()
-		get_node("LevelBackground/Interactions/Kitchen/BasementNeedKey/CollisionShape").disabled = true;
-		get_node("LevelBackground/Teleports/Kitchen_Basement_2WT/EndpointAlpha/ToBetaActivationArea").disabled = false;
+		get_node("LevelBackground/Interactions/Kitchen/BasementNeedKey/CollisionShape").set_deferred("disabled", true);
+		get_node("LevelBackground/Teleports/Kitchen_Basement_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
 	else: 
 		_textBox.showText(text)
 
@@ -242,59 +198,27 @@ func _on_TVStand_interactable_text_signal(text):
 		get_node("LevelBackground/Interactions/LivingRoom/TVStand/CollisionShape").set_deferred("disabled", true);
 	pass # Replace with function body.
 
-
-func _on_GarageAttack_body_entered(body):
-	if (body == _player):
-		get_node("LevelBackground/Teleports/Foyer_Garage_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", true);
-		get_node("LevelBackground/Interactions/Garage/GarageAttack/GarageAttackCollision").set_deferred("disabled", true);
-		emit_signal("area_lock", true)
-		get_node("LevelBackground/CameraPositions/Garage_Fight").ManualTransition_Enter();
-		get_node("YSort/Actors/Garage1").spawnEnemy()
-
-func _on_GrannySpawner_AllEnemiesDefeated():
-	_textBox.showText("Grandma has faded away comfy, and she left you a little something.")
-	_player.add_item_to_inventory(basement_Key.instance())
-
-
 func _on_GarageNeedKey_interactable_text_signal(text):
 	if($GUI/PlayerGui/Inventory.InventoryItem != null && $GUI/PlayerGui/Inventory.InventoryItem.name == "GarageKey"):
 		_textBox.showText("*Unlocks door with garage key*")
 		$GUI/PlayerGui/Inventory.InventoryItem.queue_free()
 		$GUI/PlayerGui/Inventory.InventoryItem = null; 
-		get_node("LevelBackground/Interactions/Foyer/GarageNeedKey/CollisionShape").disabled = true;
-		get_node("LevelBackground/Teleports/Foyer_Garage_2WT/EndpointAlpha/ToBetaActivationArea").disabled = false;
+		get_node("LevelBackground/Interactions/Foyer/GarageNeedKey/CollisionShape").set_deferred("disabled", true);
+		get_node("LevelBackground/Teleports/Foyer_Garage_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
 	else: 
 		_textBox.showText(text)
 
+func GetReadyForBossEncounter():
+	_textBox.showText("I think that's all of them.")
+	get_node("YSort/Actors/RatKingSpawner").call_deferred("spawnEnemy")
+	emit_signal("area_lock", false)
+	get_node("LevelBackground/CameraPositions/Basement_Fight1").ManualTransition_Exit();
+	get_node("LevelBackground/Boundaries/Basement/BossSeperator").set_deferred("disabled", true);
 
-func _on_Garage1_AllEnemiesDefeated():
-	get_node("YSort/Actors/Garage2").spawnEnemy()
-	get_node("YSort/Actors/Garage3").spawnEnemy()
+func _on_GrannySpawner_AllEnemiesDefeated():
+	_textBox.showText("Grandma has faded away comfy, and she left you a little something.")
+	_player.add_item_to_inventory(basement_Key.instance())
 
-func _on_Garage2_AllEnemiesDefeated():
-	_Garage2Defeated = true;
-	if(_Garage3Defeated):
-		SpawnRound3Garage();
-
-func _on_Garage3_AllEnemiesDefeated():
-	_Garage3Defeated = true;
-	if(_Garage2Defeated):
-		SpawnRound3Garage();
-		
-func SpawnRound3Garage():
-	get_node("YSort/Actors/Garage4").spawnEnemy()
-	get_node("YSort/Actors/Garage5").spawnEnemy()
-
-func _on_Garage4_AllEnemiesDefeated():
-	_Garage4Defeated = true;
-	if(_Garage5Defeated):
-		AllDefeatedGarage();
-
-func _on_Garage5_AllEnemiesDefeated():
-	_Garage5Defeated = true;
-	if(_Garage4Defeated):
-		AllDefeatedGarage();
-	
 func AllDefeatedGarage():
 	get_node("YSort/Actors/BathroomSpawner").spawnEnemy()
 	get_node("YSort/Actors/BedroomSpawner").spawnEnemy()
@@ -307,17 +231,120 @@ func AllDefeatedGarage():
 	emit_signal("area_lock", false)
 	get_node("LevelBackground/CameraPositions/Garage_Fight").ManualTransition_Exit();
 
-
-
-
-func _on_FoyerEnemies_AllEnemiesDefeated():
-	get_node("LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
-	get_node("LevelBackground/Interactions/Foyer/GarageNeedKey/CollisionShape").set_deferred("disabled", false);
-
+func _on_BossEncounter_body_entered(body):
+	if (body == _player):
+		get_node("GUI/PlayerGui/ContinueRight").stop_blinking()
+		get_node("LevelBackground/Interactions/Basement/BossEncounter/BossEncounterCollision").set_deferred("disabled", true);
+		_textBox.showText("Rat King: So... you think you can take your house back from me? I'm afraid that can't happen... you see, us rats are sick of living in this damp disgusting basement.  We will enjoy this house better than you ever did, and now I'll make sure you never hurt a rat again.")
+		ratKing._target = _player;
+		ratKing._mobSpawnArea = get_node("LevelBackground/SpecialZones/BossMobZone/CollisionShape");		
+		$GUI/BossGui.set_deferred("visible", true);
 
 func _on_RatKingSpawner_spawned(spawn):
 	ratKing = spawn
 	spawn.connect("health_changed", self, "_on_Boss_health_changed")
 	$GUI/BossGui/ProgressBar.set_deferred("value",   (spawn._health / spawn._maxHealth) * 100);
 
+func _on_RatKingSpawner_AllEnemiesDefeated():
+	LevelGlobals.SetCheckpoint("Streets", "Start");
+	LevelGlobals.save_game();
+	LevelGlobals.load_checkpoint();
+
+func _on_BedroomFight1_lockout_started():
+	get_node("GUI/PlayerGui/ContinueRight").stop_blinking()
+	_textBox.showText("I think I know what that is... but how is it alive?! \n Left click to attack")
+	get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", true);
+	get_node("LevelBackground/Teleports/Bathroom_Bedroom_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", true);
+
+func _on_BedroomFight1_lockout_finished():
+	_textBox.showText("That was insane, it had to have come from the basement...")
+	get_node("GUI/PlayerGui/ContinueRight").start_blinking()
+	
+func _on_BedroomFight2_lockout_started():
+	get_node("GUI/PlayerGui/ContinueRight").stop_blinking()
+
+func _on_BedroomFight2_lockout_finished():
+	get_node("GUI/PlayerGui/ContinueRight").start_blinking()
+	get_node("LevelBackground/Teleports/Bathroom_Bedroom_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
+	get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
+	
+func _on_OfficeFight1_lockout_started():
+	get_node("LevelBackground/Teleports/Streaming_LivingRoom_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", true);
+	get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", true);
+	get_node("GUI/PlayerGui/ContinueRight").stop_blinking()
+	
+func _on_OfficeFight1_lockout_finished():
+	get_node("GUI/PlayerGui/ContinueRight").start_blinking()
+
+func _on_OfficeFight2_lockout_started():
+	get_node("GUI/PlayerGui/ContinueRight").stop_blinking()
+
+func _on_OfficeFight2_lockout_finished():
+	get_node("GUI/PlayerGui/ContinueRight").start_blinking()
+	get_node("LevelBackground/Teleports/Streaming_LivingRoom_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
+	get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
+
+func _on_LivingFight1_lockout_started():
+	get_node("LevelBackground/Teleports/LivingRoom_Kitchen_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", true);
+	get_node("LevelBackground/Teleports/Streaming_LivingRoom_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", true);
+	get_node("GUI/PlayerGui/ContinueRight").stop_blinking()
+	
+func _on_LivingFight1_lockout_finished():
+	get_node("GUI/PlayerGui/ContinueRight").start_blinking()
+
+func _on_LivingFight2_lockout_started():
+	get_node("GUI/PlayerGui/ContinueRight").stop_blinking()
+	
+func _on_LivingFight2_lockout_finished():
+	get_node("GUI/PlayerGui/ContinueRight").start_blinking()
+	get_node("LevelBackground/Teleports/LivingRoom_Kitchen_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
+	get_node("LevelBackground/Teleports/Streaming_LivingRoom_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
+
+func _on_KitchenFight1_lockout_started():
+	get_node("LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", true);
+	get_node("LevelBackground/Teleports/LivingRoom_Kitchen_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", true);
+	get_node("GUI/PlayerGui/ContinueRight").stop_blinking()
+	
+func _on_KitchenFight1_lockout_finished():
+	get_node("GUI/PlayerGui/ContinueRight").start_blinking()
+
+func _on_KitchenFight2_lockout_started():
+	get_node("GUI/PlayerGui/ContinueRight").stop_blinking()
+
+func _on_KitchenFight2_lockout_finished():
+	get_node("GUI/PlayerGui/ContinueRight").start_blinking()
+	get_node("LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
+	get_node("LevelBackground/Teleports/LivingRoom_Kitchen_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
+
+func _on_FoyerFight_lockout_started():
+	get_node("LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", true);
+	get_node("GUI/PlayerGui/ContinueRight").stop_blinking()
+	
+func _on_FoyerFight_lockout_finished():
+	get_node("GUI/PlayerGui/ContinueRight").start_blinking()
+	get_node("LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
+	get_node("LevelBackground/Interactions/Foyer/GarageNeedKey/CollisionShape").set_deferred("disabled", false);
+
+func _on_GarageFight1_lockout_started():
+	get_node("GUI/PlayerGui/ContinueRight").stop_blinking()
+	get_node("LevelBackground/Teleports/Foyer_Garage_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", true);
+
+func _on_GarageFight1_lockout_finished():
+	get_node("GUI/PlayerGui/ContinueRight").start_blinking()
+
+func _on_GarageFight2_lockout_started():
+	get_node("GUI/PlayerGui/ContinueRight").stop_blinking()
+
+func _on_GarageFight2_lockout_finished():
+	get_node("LevelBackground/Teleports/Foyer_Garage_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
+	get_node("YSort/Actors/GrannySpawner").spawnEnemy()
+	_textBox.showText("Is that grandma's laugh I just heard? She has the key to the basement. I better find some comfy items to give to grandma to make her happy.")
+	AllDefeatedGarage();
+	
+func _on_BasementFight_lockout_started():
+	_textBox.showText("That's a lot of rats, I have a bad feeling about this.")
+	
+func _on_BasementFight_lockout_finished():
+	get_node("GUI/PlayerGui/ContinueRight").start_blinking()
+	GetReadyForBossEncounter();
 

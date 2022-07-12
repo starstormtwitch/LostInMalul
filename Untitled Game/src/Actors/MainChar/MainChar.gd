@@ -115,7 +115,7 @@ func _ready() -> void:
 func _setup_timer(timer: Timer, callback_name: String):
 	timer.connect("timeout", self, callback_name) 
 	timer.one_shot = true
-	add_child(timer)
+	self.add_child(timer)
 
 
 func _physics_process(_delta: float) -> void:

@@ -24,42 +24,39 @@ __meta__ = {
 rect = Rect2( 0, 0, 0, 0 )
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-margin_left = -5.0
-margin_top = -5.0
-margin_right = 5.0
-margin_bottom = 5.0
+margin_left = -85.0
+margin_top = -86.0
+margin_right = 85.0
+margin_bottom = 85.0
 
 [node name="PauseMenuContainer" type="VBoxContainer" parent="PanelContainer"]
-visible = false
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 452.0
-margin_bottom = 201.0
+margin_right = 165.0
+margin_bottom = 166.0
 
 [node name="Label" type="Label" parent="PanelContainer/PauseMenuContainer"]
-margin_right = 447.0
+margin_right = 160.0
 margin_bottom = 17.0
 text = "Pause"
 align = 1
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/PauseMenuContainer"]
 margin_top = 21.0
-margin_right = 447.0
+margin_right = 160.0
 margin_bottom = 25.0
 
 [node name="ResumeButton" type="Button" parent="PanelContainer/PauseMenuContainer"]
-margin_left = 143.0
 margin_top = 29.0
-margin_right = 303.0
+margin_right = 160.0
 margin_bottom = 59.0
 rect_min_size = Vector2( 160, 30 )
 size_flags_horizontal = 4
 text = "Resume"
 
 [node name="RestartButton" type="Button" parent="PanelContainer/PauseMenuContainer"]
-margin_left = 143.0
 margin_top = 63.0
-margin_right = 303.0
+margin_right = 160.0
 margin_bottom = 93.0
 rect_min_size = Vector2( 160, 30 )
 mouse_default_cursor_shape = 2
@@ -67,18 +64,16 @@ size_flags_horizontal = 4
 text = "Restart"
 
 [node name="SettingsButton" type="Button" parent="PanelContainer/PauseMenuContainer"]
-margin_left = 143.0
 margin_top = 97.0
-margin_right = 303.0
+margin_right = 160.0
 margin_bottom = 127.0
 rect_min_size = Vector2( 160, 30 )
 size_flags_horizontal = 4
 text = "Settings"
 
 [node name="ExitButton" type="Button" parent="PanelContainer/PauseMenuContainer"]
-margin_left = 143.0
 margin_top = 131.0
-margin_right = 303.0
+margin_right = 160.0
 margin_bottom = 161.0
 rect_min_size = Vector2( 160, 30 )
 mouse_default_cursor_shape = 2
@@ -96,17 +91,17 @@ text = "*DEBUG*"
 visible = false
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 155.0
-margin_bottom = 57.0
+margin_right = 165.0
+margin_bottom = 166.0
 
 [node name="ExitMenuResumeButton" type="Button" parent="PanelContainer/ExitMenuContainer"]
-margin_right = 150.0
+margin_right = 160.0
 margin_bottom = 24.0
 text = "Resume"
 
 [node name="ExitMenuSaveButton" type="Button" parent="PanelContainer/ExitMenuContainer"]
 margin_top = 28.0
-margin_right = 150.0
+margin_right = 160.0
 margin_bottom = 52.0
 text = "Save & Exit"
 
@@ -121,26 +116,26 @@ text = "Exit"
 visible = false
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 452.0
-margin_bottom = 201.0
+margin_right = 464.0
+margin_bottom = 262.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/DebugMenuContainer"]
-margin_right = 447.0
-margin_bottom = 196.0
+margin_right = 459.0
+margin_bottom = 257.0
 
 [node name="VBoxContainerA" type="VBoxContainer" parent="PanelContainer/DebugMenuContainer/HBoxContainer"]
-margin_right = 275.0
-margin_bottom = 196.0
+margin_right = 287.0
+margin_bottom = 257.0
 
 [node name="Label" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA"]
-margin_right = 275.0
+margin_right = 287.0
 margin_bottom = 17.0
 text = "Debug options"
 align = 1
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA"]
 margin_top = 21.0
-margin_right = 275.0
+margin_right = 287.0
 margin_bottom = 25.0
 
 [node name="GridContainer" type="GridContainer" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA"]
@@ -150,113 +145,115 @@ margin_bottom = 221.0
 columns = 2
 
 [node name="Label" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer"]
-margin_right = 185.0
+margin_right = 197.0
 margin_bottom = 17.0
 text = "Infinite health"
 
 [node name="InfiniteHealthCheckbox" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer" instance=ExtResource( 1 )]
-margin_left = 232.0
-margin_right = 232.0
+margin_left = 236.0
+margin_right = 252.0
 margin_bottom = 17.0
 size_flags_horizontal = 6
 align = 1
 setting_index = 3
 
 [node name="Label7" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer"]
-margin_right = 185.0
-margin_bottom = 17.0
+margin_top = 25.0
+margin_right = 197.0
+margin_bottom = 42.0
 text = "Infinite damage"
 
 [node name="InfiniteDamageCheckbox2" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer" instance=ExtResource( 1 )]
-margin_left = 232.0
-margin_right = 232.0
-margin_bottom = 17.0
+margin_left = 236.0
+margin_top = 25.0
+margin_right = 252.0
+margin_bottom = 42.0
 size_flags_horizontal = 6
 align = 1
 setting_index = 12
 
 [node name="Label2" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer"]
-margin_top = 25.0
-margin_right = 185.0
-margin_bottom = 62.0
+margin_top = 50.0
+margin_right = 197.0
+margin_bottom = 87.0
 text = "
 Screen shake:"
 
 [node name="Label3" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer"]
-margin_left = 189.0
-margin_top = 35.0
-margin_right = 275.0
-margin_bottom = 52.0
+margin_left = 201.0
+margin_top = 60.0
+margin_right = 287.0
+margin_bottom = 77.0
 
 [node name="Label4" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer"]
-margin_top = 75.0
-margin_right = 185.0
-margin_bottom = 92.0
+margin_top = 100.0
+margin_right = 197.0
+margin_bottom = 117.0
 text = "Duration"
 
 [node name="DurationField" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer" instance=ExtResource( 2 )]
-margin_left = 189.0
-margin_top = 70.0
-margin_right = 275.0
-margin_bottom = 97.0
+margin_left = 201.0
+margin_top = 95.0
+margin_right = 287.0
+margin_bottom = 122.0
 size_flags_horizontal = 3
 max_value = 1.0
 step = 0.05
 align = 1
 
 [node name="Label5" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer"]
-margin_top = 110.0
-margin_right = 185.0
-margin_bottom = 127.0
+margin_top = 135.0
+margin_right = 197.0
+margin_bottom = 152.0
 text = "Frequency"
 
 [node name="FrequencyField" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer" instance=ExtResource( 2 )]
-margin_left = 189.0
-margin_top = 105.0
-margin_right = 275.0
-margin_bottom = 132.0
+margin_left = 201.0
+margin_top = 130.0
+margin_right = 287.0
+margin_bottom = 157.0
 align = 1
 setting_index = 1
 
 [node name="Label6" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer"]
-margin_top = 145.0
-margin_right = 185.0
-margin_bottom = 162.0
+margin_top = 170.0
+margin_right = 197.0
+margin_bottom = 187.0
 text = "Amplitude"
 
 [node name="AmplitudeField" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA/GridContainer" instance=ExtResource( 2 )]
-margin_left = 189.0
-margin_top = 140.0
-margin_right = 275.0
-margin_bottom = 167.0
+margin_left = 201.0
+margin_top = 165.0
+margin_right = 287.0
+margin_bottom = 192.0
 max_value = 10.0
 step = 0.1
 align = 1
 setting_index = 2
 
 [node name="HSeparator2" type="HSeparator" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA"]
-margin_top = 21.0
-margin_right = 275.0
-margin_bottom = 25.0
+margin_top = 225.0
+margin_right = 287.0
+margin_bottom = 229.0
 
 [node name="OkButton" type="Button" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerA"]
-margin_left = 234.0
-margin_top = 29.0
-margin_right = 332.0
-margin_bottom = 53.0
+margin_left = 94.0
+margin_top = 233.0
+margin_right = 192.0
+margin_bottom = 257.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "     OK     "
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/DebugMenuContainer/HBoxContainer"]
-margin_left = 279.0
-margin_right = 283.0
-margin_bottom = 196.0
+margin_left = 291.0
+margin_right = 295.0
+margin_bottom = 257.0
 
 [node name="VBoxContainerB" type="VBoxContainer" parent="PanelContainer/DebugMenuContainer/HBoxContainer"]
-margin_left = 287.0
-margin_right = 447.0
-margin_bottom = 196.0
+margin_left = 299.0
+margin_right = 459.0
+margin_bottom = 257.0
 
 [node name="Label" type="Label" parent="PanelContainer/DebugMenuContainer/HBoxContainer/VBoxContainerB"]
 margin_right = 160.0

@@ -1,4 +1,4 @@
-extends "res://src/Helpers/Spawning/Spawner.gd"
+extends spawner
 
 #Names must match enum exactly
 const enemyDict = {
@@ -15,6 +15,8 @@ export(bool) var automatic = true
 signal AllEnemiesDefeated
 
 var EnemiesLeft = 1;
+
+class_name EnemySpawner
 
 func _ready():
 	EnemiesLeft = count;

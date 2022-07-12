@@ -294,7 +294,7 @@ extents = Vector2( 13.3553, 8.96162 )
 position = Vector2( -5, -1 )
 z_as_relative = false
 collision_layer = 1024
-collision_mask = 5
+collision_mask = 7
 script = ExtResource( 2 )
 
 [node name="KinematicSprite" type="KinematicBody2D" parent="."]
@@ -331,7 +331,7 @@ texture = ExtResource( 3 )
 offset = Vector2( 0, -15 )
 hframes = 16
 vframes = 6
-frame = 38
+frame = 2
 
 [node name="Shadow" type="Sprite" parent="."]
 position = Vector2( 5.05412, -0.230137 )
@@ -349,7 +349,41 @@ anims/walk = SubResource( 10 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 38 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/playback = SubResource( 39 )
+
+[node name="Sight" type="RayCast2D" parent="."]
+modulate = Color( 0.054902, 1, 0, 1 )
+position = Vector2( 4.98629, -3.79149 )
+enabled = true
+cast_to = Vector2( 0, 100 )
+
+[node name="ObstacleAvoidRaycasts" type="Node2D" parent="."]
+position = Vector2( 6.31385, 1.54338 )
+
+[node name="ObstacleAvoidSE" type="RayCast2D" parent="ObstacleAvoidRaycasts"]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 7.56071, -1.69039 )
+enabled = true
+cast_to = Vector2( 0, 100 )
+
+[node name="ObstacleAvoidSW" type="RayCast2D" parent="ObstacleAvoidRaycasts"]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( -10.8816, -1.67607 )
+enabled = true
+cast_to = Vector2( 0, 100 )
+
+[node name="ObstacleAvoidNW" type="RayCast2D" parent="ObstacleAvoidRaycasts"]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( -10.861, -9.58638 )
+enabled = true
+cast_to = Vector2( 0, 100 )
+
+[node name="ObstacleAvoidNE" type="RayCast2D" parent="ObstacleAvoidRaycasts"]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 7.58607, -9.5799 )
+enabled = true
+cast_to = Vector2( 0, 100 )
 
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
@@ -363,14 +397,9 @@ position = Vector2( -0.936443, 4.8695 )
 shape = SubResource( 40 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+modulate = Color( 0.968627, 1, 0, 1 )
 position = Vector2( 4.66372, -4.08509 )
 shape = SubResource( 41 )
-
-[node name="Sight" type="RayCast2D" parent="."]
-position = Vector2( 0.353554, -14.8493 )
-enabled = true
-cast_to = Vector2( 0, 100 )
-collide_with_bodies = false
 
 [node name="FlockBox" type="Area2D" parent="." groups=[
 "enemy",
@@ -380,7 +409,7 @@ collision_layer = 262144
 collision_mask = 262144
 
 [node name="FlockBoxArea" type="CollisionShape2D" parent="FlockBox"]
-position = Vector2( 0.686863, 0.873051 )
+position = Vector2( 0.520008, 0.414199 )
 shape = SubResource( 42 )
 
 [node name="Attack" type="Area2D" parent="."]

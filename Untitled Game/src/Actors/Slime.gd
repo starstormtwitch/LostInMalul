@@ -38,7 +38,7 @@ func _handleJumpPhysics():
 
 func _on_jump_attack():
 	_isJumping = true
-	var targetDirection = get_target_direction()
+	var targetDirection = try_chase()
 	_jumpVelocity.x = targetDirection.x * _JUMP_SPEED
 	_velocity = move_and_slide(_jumpVelocity)
 	

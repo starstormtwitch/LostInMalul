@@ -2,9 +2,13 @@ extends Node
 
 class_name BaseLevelScript
 
+const LockOutFight = preload("res://src/Helpers/Interacts/AreaLockFight.gd")
+
 var _cameraManager: CustomCamera2D
 var _enteredAreas: Array
 var settings
+
+signal area_lock
 
 func _ready():
 	_setup()
@@ -29,6 +33,9 @@ func InitCameraManager() -> void:
 
 func GetCameraManager() -> CustomCamera2D:
 	return _cameraManager
+
+func area_lock_handler(enabled):
+	emit_signal("area_lock", enabled)
 
 func RegisterTeleporterSignals() -> void:
 	var teleporters = self.get_parent().get_tree().get_nodes_in_group("TeleportNode")

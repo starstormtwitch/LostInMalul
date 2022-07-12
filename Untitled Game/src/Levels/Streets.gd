@@ -12,8 +12,6 @@ const _UI_CANCEL_EVENT: String = "ui_cancel"
 var _menuOpen: bool = false
 var _playingWarningSound = false
 
-signal area_lock
-
 onready var _textBox: TextBox = $GUI/TextBox
 
 onready var _leftWarningSign = $GUI/Warnings/WarningSignLeft

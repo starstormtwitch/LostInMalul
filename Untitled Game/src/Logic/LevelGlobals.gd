@@ -144,7 +144,7 @@ func _createLayerDictionary() -> void:
 		var layer = ProjectSettings.get_setting("layer_names/2d_physics/layer_" + str(i))
 		if layer != null && !layer.empty():
 			_layerDict[layer] = {
-				_layerBitParamName : i,
+				_layerBitParamName : i-1,
 				_layerValueParamName : pow(2, i-1)
 			}
 #	print(_layerDict)

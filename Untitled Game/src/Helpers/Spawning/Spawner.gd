@@ -12,6 +12,8 @@ var _countToSpawn = 1
 var prime_off_screen_add = false;
 var packed_scene;
 
+class_name spawner
+
 func _ready():
 	_countToSpawn = count;
 

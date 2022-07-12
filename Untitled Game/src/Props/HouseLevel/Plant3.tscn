@@ -2,9 +2,8 @@
 
 [ext_resource path="res://assets/Props/House Level/plant3.png" type="Texture" id=1]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 4.24886
-height = 2.76862
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3.89546, 4.98639 )
 
 [node name="Plant3" type="Node2D"]
 
@@ -16,6 +15,6 @@ texture = ExtResource( 1 )
 position = Vector2( 1.05948, 14.3028 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/StaticBody2D"]
-position = Vector2( 0.09552, 0.644974 )
+position = Vector2( -0.69282, 0.840897 )
 rotation = 1.5708
 shape = SubResource( 1 )

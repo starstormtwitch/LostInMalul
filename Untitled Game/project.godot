@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://src/Actors/Actor.gd"
 }, {
 "base": "Node",
+"class": "AreaLockFight",
+"language": "GDScript",
+"path": "res://src/Helpers/Interacts/AreaLockFight.gd"
+}, {
+"base": "Node",
 "class": "AnimationHandler",
 "language": "GDScript",
 "path": "res://src/Actors/Animations/AnimationHandler.gd"
@@ -88,6 +93,11 @@ _global_script_classes=[ {
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://src/Actors/Enemy.gd"
+}, {
+"base": "spawner",
+"class": "EnemySpawner",
+"language": "GDScript",
+"path": "res://src/Helpers/Spawning/EnemySpawner.gd"
 }, {
 "base": "Object",
 "class": "ErrorLogger",
@@ -208,10 +218,16 @@ _global_script_classes=[ {
 "class": "TwoWayTeleportNode2D",
 "language": "GDScript",
 "path": "res://src/Helpers/Utilities/TwoWayTeleportNode2D.gd"
+}, {
+"base": "VisibilityNotifier2D",
+"class": "spawner",
+"language": "GDScript",
+"path": "res://src/Helpers/Spawning/Spawner.gd"
 } ]
 _global_script_class_icons={
 "ActionRemapButton": "",
 "Actor": "",
+"AreaLockFight": "",
 "AnimationHandler": "",
 "AttackManager": "",
 "AudioFunctions": "",
@@ -226,6 +242,7 @@ _global_script_class_icons={
 "CustomSlider": "",
 "CustomSlider_ggs": "",
 "Enemy": "",
+"EnemySpawner": "",
 "ErrorLogger": "",
 "GGSUtils": "",
 "GameSettings": "",
@@ -249,13 +266,14 @@ _global_script_class_icons={
 "SuperBar": "",
 "TeleportNode2D": "",
 "TextBox": "",
-"TwoWayTeleportNode2D": ""
+"TwoWayTeleportNode2D": "",
+"spawner": ""
 }
 
 [application]
 
 config/name="Lost in Malul"
-run/main_scene="res://src/Levels/Streets.tscn"
+run/main_scene="res://src/Levels/House.tscn"
 config/use_custom_user_dir=true
 config/icon="res://assets/lirik_icon-5.png"
 config/macos_native_icon="res://assets/lirik_icon-4.icns"
@@ -271,6 +289,10 @@ EventsList="*res://src/Helpers/EventsList.gd"
 ggsManager="*res://addons/GGS/src/ggs_manager.gd"
 MusicManager="*res://src/Helpers/Audio/MusicManager.tscn"
 LevelGlobals="*res://src/Logic/LevelGlobals.gd"
+
+[debug]
+
+shapes/collision/shape_color=Color( 1, 1, 1, 0.501961 )
 
 [display]
 
