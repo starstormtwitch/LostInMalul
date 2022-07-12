@@ -16,6 +16,7 @@ func _ready():
 	_speed = 65
 	_attack_range = 50
 	attackBox.disabled = true
+	_animationHandler = NodeStateMachineAnimationHandler.new($AnimationTree)
 	if($AnimationTree != null):
 		$AnimationTree.active = true
 	$AnimationTree.get("parameters/playback").travel("spawn")

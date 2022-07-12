@@ -5,7 +5,7 @@ class_name LirikYaki
 func _ready() -> void:
 	._ready()
 	_attackManager = AttackManager.new(_attackResetTimer,
-		chargeBar, animationTree)
+		chargeBar, _animationHandler)
 
 func _check_for_events(delta) -> bool:
 	if Input.is_action_just_released(AttackManager.SPECIAL_ATTACK_EVENT) and _attackManager.IsChargingSpecial:

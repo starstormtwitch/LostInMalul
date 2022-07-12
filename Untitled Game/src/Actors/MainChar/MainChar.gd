@@ -99,6 +99,7 @@ func _ready() -> void:
 	rightHitBox.disabled = true
 	_setting.connectNodeToDebugSettingsChangedSignal(self, "_getDebugSettings")
 	_getDebugSettings()
+	_animationHandler = BlendTreeAnimationHandler.new(animationTree)
 	
 	_invincibilityTimer.start(3)
 	
@@ -271,7 +272,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		_beingHurt = true
 		_attackManager.gotHit()
 		_hitDoneTimer.start(_hitAnimationTime)
-		animationTree.get("parameters/playback").travel("Hurt")
+		_animationHandler.hurt()
 		_invincibilityTimer.start(3)
 		var finalDamage = ceil(damage * _takeDamageModifier)
 		if isInfiniteHealth:
@@ -312,10 +313,11 @@ func evaluatePlayerInput(delta) -> Vector2:
 		return Vector2.ZERO
 		
 	#set animation for direction and return for movement
-	if direction == Vector2.ZERO:
-		animationTree.get("parameters/playback").travel("Idle")
-	else:
-		animationTree.get("parameters/playback").travel("Walk")
+	if !_attackManager.IsChargingSpecial:
+		if direction == Vector2.ZERO:
+			_animationHandler.idle()
+		else:
+			_animationHandler.walk()
 	return direction
 
 
@@ -434,6 +436,8 @@ func _on_GhostDurationTImer_timeout():
 func _on_ChargeIntervalTimer_timeout():
 	_attackManager.increaseChargeBar()
 
+func playShoryukenSFX():
+	_attackManager.playShoryukenSound(get_tree().get_current_scene())
 
 func _getDebugSettings():
 	var gameSettings = Settings.load_game_settings()
