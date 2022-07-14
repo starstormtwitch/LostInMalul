@@ -3,7 +3,6 @@ extends MainChar
 class_name LirikYaki
 
 func _ready() -> void:
-	._ready()
 	_attackManager = AttackManager.new(_attackResetTimer,
 		chargeBar, _animationHandler)
 

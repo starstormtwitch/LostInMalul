@@ -262,13 +262,13 @@ graph_offset = Vector2( -100.741, 38 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=26]
 
-[sub_resource type="RectangleShape2D" id=28]
+[sub_resource type="RectangleShape2D" id=27]
 extents = Vector2( 12.25, 6.66518 )
 
-[sub_resource type="RectangleShape2D" id=27]
+[sub_resource type="RectangleShape2D" id=28]
 extents = Vector2( 12.25, 5 )
 
-[sub_resource type="CircleShape2D" id=31]
+[sub_resource type="CircleShape2D" id=29]
 radius = 16.0297
 
 [sub_resource type="RectangleShape2D" id=30]
@@ -372,7 +372,7 @@ cast_to = Vector2( 0, 100 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( 3.18838, -9.9084 )
-shape = SubResource( 28 )
+shape = SubResource( 27 )
 
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
@@ -383,7 +383,7 @@ collision_mask = 16
 
 [node name="HurtBoxArea" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2( 1.00114, 6.6742 )
-shape = SubResource( 27 )
+shape = SubResource( 28 )
 
 [node name="FlockBox" type="Area2D" parent="." groups=[
 "enemy",
@@ -394,7 +394,7 @@ collision_mask = 262144
 
 [node name="FlockBoxArea" type="CollisionShape2D" parent="FlockBox"]
 position = Vector2( 3.99241, 3.41379 )
-shape = SubResource( 31 )
+shape = SubResource( 29 )
 
 [node name="Attack" type="Area2D" parent="."]
 modulate = Color( 0.431373, 1, 0, 1 )
@@ -410,6 +410,7 @@ shape = SubResource( 30 )
 position = Vector2( -6.62912, -19.4454 )
 scale = Vector2( 0.990515, 1 )
 MaxCoins = 2
+PowerupChance = 30
 
 [node name="explosionPosition" type="Position2D" parent="."]
 position = Vector2( 4.03946, -13.3391 )

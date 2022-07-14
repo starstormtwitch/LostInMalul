@@ -19,6 +19,7 @@ const SPECIAL_ATTACK_EVENT = "special_attack"
 const _DEFAULT_ATTACK_VOLUME = -4
 const _DEFAULT_WOOSH_VOLUME = 4
 
+var attackLock: Mutex = Mutex.new()
 var isAttacking: bool = false
 var didHitEnemy: bool = false #To check to see if we should play woosh sfx if we missed
 var _beingHurt: bool = false
@@ -61,7 +62,7 @@ func _attack_setup(is_kick: bool):
 
 
 func doSideSwipeAttack(scene : Node):
-	if !isAttacking:
+	if attackLock.try_lock() == OK:
 		_attack_setup(false)
 		_playPunchSFX = true
 		print("Combo A: " + String(_comboAPoints))
@@ -85,7 +86,7 @@ func doSideSwipeAttack(scene : Node):
 
 
 func doSideSwipeKick(scene : Node):
-	if !isAttacking:
+	if attackLock.try_lock() == OK:
 		_attack_setup(true)
 		print("Combo B: " + String(_comboBPoints))
 		if _comboBPoints == 1 or _comboAPoints == 1:
@@ -121,6 +122,7 @@ func startSpecial():
 
 
 func releaseSpecial():
+	attackLock.lock()
 	isAttacking = true
 	_animationHandler.releaseHadouken()
 	IsChargingSpecial = false
@@ -161,6 +163,7 @@ func _resetAllSounds():
 
 func gotHit():
 	IsChargingSpecial = false
+	attackLock.unlock()
 	isAttacking = false
 	_hideChargeBar()
 	resetCombo()

@@ -1200,7 +1200,7 @@ position = Vector2( -119.574, -188.368 )
 AutomaticTransition = false
 
 [node name="BottomRight" parent="YSort/Actors/OfficeFight1/Office_Fight1" index="0"]
-position = Vector2( 469.101, 252.123 )
+position = Vector2( 469.102, 251.859 )
 
 [node name="Spawner" parent="YSort/Actors/OfficeFight1" instance=ExtResource( 176 )]
 position = Vector2( 365.505, 35.4149 )

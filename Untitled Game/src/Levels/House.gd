@@ -51,8 +51,10 @@ func SetLevelCheckpointVariables(saveData):
 		"Start":
 			get_node("YSort/Actors/BedroomFight2").Disable()
 			get_node("YSort/Actors/BedroomFight1").Disable()
+			get_node("LevelBackground/Checkpoints/Checkpoint").set_deferred("disabled", true)
 			pass;
 		"FirstEnemy":
+			get_node("LevelBackground/Checkpoints/Checkpoint").set_deferred("disabled", true)
 			_toiletClogged = false;
 			_pickedUpPlunger = true;
 			_sendKitchenCrash = false;
@@ -76,6 +78,8 @@ func SetLevelCheckpointVariables(saveData):
 			get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
 			StartupPlayerInPosition(Vector2(1700, 275), 5)
 		"Boss":
+			get_node("LevelBackground/Checkpoints/Checkpoint").set_deferred("disabled", true)
+			get_node("LevelBackground/Checkpoints/Checkpoint2").set_deferred("disabled", true)
 			get_node("LevelBackground/Boundaries/Basement/Lockout").set_deferred("disabled", false);
 			StartupPlayerInPosition(Vector2(200, 575), 5)
 			get_node("LevelBackground/Teleports/Kitchen_Basement_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", true);
@@ -332,10 +336,12 @@ func _on_GarageFight2_lockout_started():
 	get_node("GUI/PlayerGui/ContinueRight").stop_blinking()
 
 func _on_GarageFight2_lockout_finished():
+	get_node("LevelBackground/Checkpoints/Checkpoint").set_deferred("disabled", false)
 	get_node("LevelBackground/Teleports/Foyer_Garage_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
 	get_node("YSort/Actors/GrannySpawner").spawnEnemy()
 	_textBox.showText("Is that grandma's laugh I just heard? She has the key to the basement. I better find some comfy items to give to grandma to make her happy.")
 	AllDefeatedGarage();
+	
 	
 func _on_BasementFight_lockout_started():
 	_textBox.showText("That's a lot of rats, I have a bad feeling about this.")

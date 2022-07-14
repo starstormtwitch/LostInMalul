@@ -11,7 +11,7 @@ onready var attackBox = $Attack/AttackBox
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_health = 6
+	_health = 8
 	_acceleration = 0.2
 	_speed = 65
 	_attack_range = 50

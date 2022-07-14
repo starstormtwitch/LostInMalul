@@ -344,7 +344,7 @@ func _createNewBound() -> StaticBody2D:
 	sb.set_collision_mask_bit(LevelGlobals.GetLayerBit("Player"),true) #mask to player layer
 	sb.set_collision_mask_bit(LevelGlobals.GetLayerBit("Enemy"),true) #mask to enemy layer
 	coll.one_way_collision = true
-	coll.one_way_collision_margin = 10
+	coll.one_way_collision_margin = 20
 	sb.add_child(coll)
 	self.get_tree().current_scene.add_child(sb)
 	return sb

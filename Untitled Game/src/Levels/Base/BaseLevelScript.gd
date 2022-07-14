@@ -85,5 +85,3 @@ func StartupPlayerInPosition(position: Vector2, playFadeTime: float = 0) -> void
 	
 func _on_Player_died():
 	_cameraManager._animationPlayer.playFadeIn(5)
-	yield(_cameraManager._animationPlayer._player, "animation_finished")
-	LevelGlobals.load_checkpoint()

@@ -331,7 +331,7 @@ texture = ExtResource( 3 )
 offset = Vector2( 0, -15 )
 hframes = 16
 vframes = 6
-frame = 2
+frame = 1
 
 [node name="Shadow" type="Sprite" parent="."]
 position = Vector2( 5.05412, -0.230137 )
@@ -427,7 +427,7 @@ visible = false
 position = Vector2( -9.6676, -19.0703 )
 MinCoins = 0
 MaxCoins = 0
-PowerupChance = 40
+PowerupChance = 80
 
 [node name="explosionPosition" type="Position2D" parent="."]
 position = Vector2( -4.17138, -14.2661 )
