@@ -974,7 +974,7 @@ pause_mode = 1
 position = Vector2( 2.10999, 0 )
 
 [node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 2 )]
-position = Vector2( 70.9326, 579.49 )
+position = Vector2( 771.225, 222.003 )
 
 [node name="GrannySpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 2065.89, 230.244 )
