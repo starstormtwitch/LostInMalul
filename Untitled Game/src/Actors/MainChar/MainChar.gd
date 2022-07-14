@@ -119,21 +119,22 @@ func _setup_timer(timer: Timer, callback_name: String):
 
 
 func _physics_process(_delta: float) -> void:
-	._physics_process(_delta)
-	var direction = Vector2.ZERO
-	
-	_assign_player_color()
-	
-	if(!_attackManager.isAttacking and !_isDodging):
-		direction = evaluatePlayerInput(_delta)
-		_dodgeDirection = direction
+	if !isDying:
+		._physics_process(_delta)
+		var direction = Vector2.ZERO
 		
-	if _isDodging:
-		_velocity = getMovement(_dodgeDirection, _DODGE_SPEED, _DODGE_ACCELERATION)
-		_velocity = move_and_slide(_velocity)
-	elif !_beingHurt:
-		_velocity = getMovement(direction, _speed, _acceleration)
-		_velocity = move_and_slide(_velocity)
+		_assign_player_color()
+		
+		if(!_attackManager.isAttacking and !_isDodging):
+			direction = evaluatePlayerInput(_delta)
+			_dodgeDirection = direction
+			
+		if _isDodging:
+			_velocity = getMovement(_dodgeDirection, _DODGE_SPEED, _DODGE_ACCELERATION)
+			_velocity = move_and_slide(_velocity)
+		elif !_beingHurt:
+			_velocity = getMovement(direction, _speed, _acceleration)
+			_velocity = move_and_slide(_velocity)
 
 
 func _assign_player_color():
@@ -272,7 +273,6 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		_beingHurt = true
 		_attackManager.gotHit()
 		_hitDoneTimer.start(_hitAnimationTime)
-		_animationHandler.hurt()
 		_invincibilityTimer.start(3)
 		var finalDamage = ceil(damage * _takeDamageModifier)
 		if isInfiniteHealth:
