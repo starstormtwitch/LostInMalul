@@ -108,7 +108,6 @@ func getMovement(direction: Vector2, speed: float, acceleration: float) -> Vecto
 	
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if !isDying:
-		_animationHandler.hurt()
 		var newHealth = _health-damage
 		emit_signal("health_changed", _health, newHealth, _maxHealth)
 		_health=newHealth
@@ -117,6 +116,8 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		_velocity = move_and_slide(knockbackVelocity)
 		if(_health <= 0):
 			die()
+		else:
+			_animationHandler.hurt()
 		
 func die() -> void:
 	isDying = true
