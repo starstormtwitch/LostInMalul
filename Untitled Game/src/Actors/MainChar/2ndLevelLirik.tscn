@@ -171,7 +171,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=7]
-length = 0.3
+length = 0.7
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("KinematicSprite/Sprite:frame")
@@ -180,7 +180,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
+"times": PoolRealArray( 0, 0.3, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 30, 31, 32 ]
@@ -569,7 +569,7 @@ nodes/Special/node = SubResource( 30 )
 nodes/Special/position = Vector2( -360, 620 )
 nodes/Walk/node = SubResource( 31 )
 nodes/Walk/position = Vector2( -400, -80 )
-node_connections = [ "output", 0, "Main", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Combo1", 2, "HeadButt", "Combo2", 0, "Kick1", "Combo2", 1, "Kick2", "Combo2", 2, "Shoryuken", "Attack", 0, "Combo1", "Attack", 1, "Combo2", "Attack", 2, "Special", "Special", 0, "HadoukenCharge", "Special", 1, "HadoukenRelease", "Movement", 0, "Idle", "Movement", 1, "Walk", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack" ]
+node_connections = [ "output", 0, "Main", "Attack", 0, "Combo1", "Attack", 1, "Combo2", "Attack", 2, "Special", "Combo2", 0, "Kick1", "Combo2", 1, "Kick2", "Combo2", 2, "Shoryuken", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Combo1", 2, "HeadButt", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack", "Movement", 0, "Idle", "Movement", 1, "Walk", "Special", 0, "HadoukenCharge", "Special", 1, "HadoukenRelease" ]
 
 [sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 5.7005, 3.48579 )
@@ -599,7 +599,7 @@ position = Vector2( 6.22748, -11.4582 )
 texture = ExtResource( 3 )
 hframes = 15
 vframes = 5
-frame = 60
+frame = 30
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -2.56038, -2.12541 )
