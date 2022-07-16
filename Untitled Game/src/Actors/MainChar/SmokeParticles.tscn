@@ -15,8 +15,8 @@ spread = 180.0
 gravity = Vector3( -20, 0, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 0.5
-anim_speed = 1.0
+damping = 1.0
+anim_speed = 2.0
 
 [node name="SmokeParticles" type="Particles2D"]
 material = SubResource( 1 )
