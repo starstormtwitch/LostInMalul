@@ -12,6 +12,8 @@ const _DEFAULT_PAN_TIME = 1
 const _DEFAULT_PAN_SPEED = 1
 const _DEFAULT_PAN_ZOOM = Vector2(0.2,0.2)
 const _DEFAULT_PAN_ZOOM_SPEED = 7
+const _CAMERA_DISTANCE_TARGET = 25
+const _SMALLER_CAMERA_DISTANCE_TARGET = 10
 
 #const _SMOOTHING = 0.05
 
@@ -58,6 +60,7 @@ var _upperBound: StaticBody2D = null
 var _bottomBound: StaticBody2D = null
 var _boundWidth: int = 40
 var _defaultBoundLength: int = 10
+var _lockoutEnabled = false
 
 func _init(cameraTarget: Node, current: bool):
 	assert(cameraTarget, "Camera target is not a node.")
@@ -75,7 +78,14 @@ func _ready():
 
 func _process(delta):
 	if _limit_smooth_active and !_is_shaking:
+		#if we just finished an arena fight, we always update target to player position
+		if _lockoutEnabled:
+			var _player = LevelGlobals.GetPlayerActor()
+			_limit_smooth_target_position = _player.position
 		var cameraReachedTarget = self.position.x == _limit_smooth_target_position.x && self.position.y == _limit_smooth_target_position.y
+		#we need to change our cameraReached logic, Since we will be tracking a moving object AKA the player
+		if _lockoutEnabled:
+			cameraReachedTarget = self.position.distance_to(_limit_smooth_target_position) < _SMALLER_CAMERA_DISTANCE_TARGET
 		if !cameraReachedTarget:
 			self.position.x = move_toward(self.position.x, _limit_smooth_target_position.x, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
 			self.position.y = move_toward(self.position.y, _limit_smooth_target_position.y, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
@@ -93,11 +103,10 @@ func _process(delta):
 			emit_signal("smooth_limit_finished")
 	elif _panTarget != null and !_is_shaking:
 		var panTargetPosition = _panTarget.getPosition()
-		print("panning to target at position: " + panTargetPosition.x + " " + panTargetPosition.y)
 		var distanceToTarget = self.position.distance_to(panTargetPosition)
 		self.position = lerp(self.get_global_position(), panTargetPosition,  delta * _panTarget._speed * abs(log(distanceToTarget)))
 		self.zoom = lerp(self.zoom, _panTarget._zoom , (delta * _panTarget._zoomSpeed) / distanceToTarget) #formula can/must be improved
-		if _panTarget._clearTimer == null && distanceToTarget < 25: #magic number that works well enough for now
+		if _panTarget._clearTimer == null && distanceToTarget < _CAMERA_DISTANCE_TARGET: #magic number that works well enough for now
 			yield(_panTarget.startPanTimer(), "timeout")
 			clearPan()
 	_handleShake(delta)
@@ -179,6 +188,9 @@ func clearPan() -> void:
 		setRemoteUpdates(true)
 		self.zoom = _DEFAULT_CAMERA_ZOOM
 		emit_signal("pan_finished")
+		if _lockoutEnabled:
+			_lockoutEnabled = false
+			enableBounds(false)
 
 func temporarylyFocusOn(target: Node, time: float, zoom: Vector2) -> void:
 	if _verbose:
@@ -276,7 +288,13 @@ func resetLimits() -> void:
 func connect_to_area_lock_signal(scene: Node):
 	print("Connect area lock signal")
 	assert(scene, "Scene cannot be null")
-	scene.connect("area_lock", self, "enableBounds")
+	scene.connect("area_lock", self, "_startAreaLock")
+
+
+func _startAreaLock(enabled: bool):
+	enableBounds(enabled)
+	if !enabled:
+		_lockoutEnabled = true
 
 ## Enable/disable one-way collision boxes around camera
 func enableBounds(enabled: bool):
