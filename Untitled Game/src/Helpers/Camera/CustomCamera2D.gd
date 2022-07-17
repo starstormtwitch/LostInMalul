@@ -93,6 +93,7 @@ func _process(delta):
 			emit_signal("smooth_limit_finished")
 	elif _panTarget != null and !_is_shaking:
 		var panTargetPosition = _panTarget.getPosition()
+		print("panning to target at position: " + panTargetPosition.x + " " + panTargetPosition.y)
 		var distanceToTarget = self.position.distance_to(panTargetPosition)
 		self.position = lerp(self.get_global_position(), panTargetPosition,  delta * _panTarget._speed * abs(log(distanceToTarget)))
 		self.zoom = lerp(self.zoom, _panTarget._zoom , (delta * _panTarget._zoomSpeed) / distanceToTarget) #formula can/must be improved
