@@ -269,8 +269,8 @@ func _on_BedroomFight2_lockout_finished():
 	get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
 	
 func _on_OfficeFight1_lockout_started():
-	get_node("LevelBackground/Teleports/Streaming_LivingRoom_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", true);
-	get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", true);
+	get_node("LevelBackground/Teleports/Streaming_LivingRoom_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", true);
+	get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", true);
 	get_node("GUI/PlayerGui/ContinueRight").stop_blinking()
 	
 func _on_OfficeFight1_lockout_finished():
@@ -281,8 +281,8 @@ func _on_OfficeFight2_lockout_started():
 
 func _on_OfficeFight2_lockout_finished():
 	get_node("GUI/PlayerGui/ContinueRight").start_blinking()
-	get_node("LevelBackground/Teleports/Streaming_LivingRoom_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
-	get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
+	get_node("LevelBackground/Teleports/Streaming_LivingRoom_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
+	get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
 
 func _on_LivingFight1_lockout_started():
 	get_node("LevelBackground/Teleports/LivingRoom_Kitchen_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", true);
