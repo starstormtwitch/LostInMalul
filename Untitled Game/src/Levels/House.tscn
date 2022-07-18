@@ -1253,11 +1253,11 @@ automatic = false
 position = Vector2( 419.609, 543.413 )
 
 [node name="Basement_Fight1" parent="YSort/Actors/BasementFight" instance=ExtResource( 20 )]
-position = Vector2( -195.564, -233.67 )
+position = Vector2( -195.564, -186.631 )
 AutomaticTransition = false
 
 [node name="BottomRight" parent="YSort/Actors/BasementFight/Basement_Fight1" index="0"]
-position = Vector2( 477, 244.067 )
+position = Vector2( 487.18, 251.781 )
 
 [node name="BasementL1" parent="YSort/Actors/BasementFight" instance=ExtResource( 176 )]
 position = Vector2( -232.013, -28.213 )
