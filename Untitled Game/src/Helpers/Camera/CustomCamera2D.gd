@@ -17,7 +17,7 @@ const _SMALLER_CAMERA_DISTANCE_TARGET = 10
 
 #const _SMOOTHING = 0.05
 
-enum TransitionTypeEnum {INSTANT = 0, SMOOTH = 1, FADE = 2}
+enum TransitionTypeEnum {INSTANT = 0, SMOOTH = 1, FADE = 2, AREA_LOCK = 3}
 
 signal pan_started
 signal pan_finished
@@ -215,9 +215,10 @@ func setRemoteUpdates(update: bool) -> void:
 	_remoteTransform2d.update_scale = update
 
 
-func limitCameraToDelimiter(delimiter: CustomDelimiter2D, transitionType: int = TransitionTypeEnum.INSTANT) -> void:
+func limitCameraToDelimiter(delimiter: CustomDelimiter2D, transitionType: int = TransitionTypeEnum.INSTANT, isAreaLock: bool = false) -> void:
 	print("Limiting to new area")
 	_currentDelimiter = delimiter
+	# TODO: i think we need to pan to middle of boundary and then limit the camera to boundaries
 	limitCameraToCoordinates(delimiter.getTop(), delimiter.getLeft(), delimiter.getBottom(), delimiter.getRight(), transitionType)
 
 
@@ -252,6 +253,21 @@ func limitCameraToCoordinates(top: int, left: int, bottom: int, right: int, tran
 		if self.limit_right > _limit_smooth_right:
 			_limit_smooth_target_position.x = right - xDist
 		emit_signal("smooth_limit_started")
+	elif transitionType == TransitionTypeEnum.AREA_LOCK:
+		print("ares lock fight")
+		setRemoteUpdates(false)
+		self.smoothing_enabled = true
+		self.smoothing_speed = 100
+		_limit_smooth_top = top
+		_limit_smooth_left = left
+		_limit_smooth_bottom = bottom
+		_limit_smooth_right = right
+		var _player = LevelGlobals.GetPlayerActor()
+		_limit_smooth_target_position = Vector2(self.position.x, self.position.y)
+		_limit_smooth_target_position.y = _player.position.y
+		var viewportRectSize = self.get_viewport_rect()
+		var xDist = (viewportRectSize.size.x / 2) * self.zoom.x
+		emit_signal("smooth_limit_started")
 	elif transitionType == TransitionTypeEnum.FADE:
 		_animationPlayer.playFadeIn()
 		yield(_animationPlayer._player, "animation_finished")
@@ -259,7 +275,7 @@ func limitCameraToCoordinates(top: int, left: int, bottom: int, right: int, tran
 		_animationPlayer.playFadeOut()
 		yield(_animationPlayer._player, "animation_finished")
 
-	_limit_smooth_active = transitionType == TransitionTypeEnum.SMOOTH
+	_limit_smooth_active = (transitionType == TransitionTypeEnum.SMOOTH ||  transitionType == TransitionTypeEnum.AREA_LOCK)
 
 	if _verbose:
 		print("CustomCamera2D: New camera limits (Smooth:"+str(_limit_smooth_active)+") Top/Left/Bottom/Right "
@@ -294,6 +310,7 @@ func connect_to_area_lock_signal(scene: Node):
 func _startAreaLock(enabled: bool):
 	enableBounds(enabled)
 	if !enabled:
+		print("enable lockout")
 		_lockoutEnabled = true
 
 ## Enable/disable one-way collision boxes around camera

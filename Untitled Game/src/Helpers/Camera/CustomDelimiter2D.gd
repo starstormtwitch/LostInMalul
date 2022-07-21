@@ -5,10 +5,13 @@ class_name CustomDelimiter2D
 ##If enabled the camera will transition automatically to the delimiter area when the player enters it.
 export var AutomaticTransition: bool = true
 
+## If enabled, will change how delim
+export var IsAreaLockDelimeter: bool = false
+
 ##If enabled the camera will transition automatically to an overlapping delimiter area when the player exit it.
 export var TransitionToOverlappingDelimiterOnExit: bool = false
 
-signal PlayerEnteredAreaDelimiter(delimiter)
+signal PlayerEnteredAreaDelimiter(delimiter, IsAreaLock)
 signal PlayerExitedAreaDelimiter(delimiter)
 
 func _init():
@@ -55,7 +58,7 @@ func _configureAutomaticTransitionArea2D() -> void:
 
 func ManualTransition_Enter() -> void:
 	print("Delimiter triggered: " + self.name)
-	emit_signal("PlayerEnteredAreaDelimiter", self)
+	emit_signal("PlayerEnteredAreaDelimiter", self, IsAreaLockDelimeter)
 	
 func ManualTransition_Exit() -> void:
 	print("Delimiter triggered: " + self.name)
@@ -64,7 +67,7 @@ func ManualTransition_Exit() -> void:
 func _on_AutomaticTransition_Area2D_body_entered(body) -> void:
 	if AutomaticTransition && body.is_in_group("Player"):
 		print("Delimiter triggered: " + self.name)
-		emit_signal("PlayerEnteredAreaDelimiter", self)
+		emit_signal("PlayerEnteredAreaDelimiter", self, IsAreaLockDelimeter)
 		#TransitionsManager.CameraTransitionToDelimiter(self)
 		
 func _on_AutomaticTransition_Area2D_body_exited(body) -> void:

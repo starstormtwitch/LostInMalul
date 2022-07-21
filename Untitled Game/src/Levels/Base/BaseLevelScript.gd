@@ -63,8 +63,11 @@ func CameraTransitionToOuterDelimiter(delimiter: CustomDelimiter2D) -> void:
 	_cameraManager.limitCameraToDelimiter(overlappingDelimiter, _cameraManager.TransitionTypeEnum.SMOOTH)
 
 
-func CameraTransitionToDelimiter(delimiter: CustomDelimiter2D) -> void:
-	_cameraManager.limitCameraToDelimiter(delimiter)
+func CameraTransitionToDelimiter(delimiter: CustomDelimiter2D, isAreaLock: bool) -> void:
+	var transitionType = _cameraManager.TransitionTypeEnum.INSTANT
+	if isAreaLock:
+		transitionType = _cameraManager.TransitionTypeEnum.AREA_LOCK
+	_cameraManager.limitCameraToDelimiter(delimiter, transitionType)
 	_enteredAreas.push_back(delimiter);
 
 func TeleportPlayerToPosition(position: Vector2, playFadeTime: float = 0) -> void:
