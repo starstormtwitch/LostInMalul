@@ -56,6 +56,7 @@ func RegisterDelimiterSignals() -> void:
 	print("Registered delimiters.")
 
 func CameraTransitionToOuterDelimiter(delimiter: CustomDelimiter2D) -> void:
+	print("Trasitioning to outer delimiter ")
 	var thisDelimiter = _enteredAreas.pop_back();
 	var overlappingDelimiter = _enteredAreas.pop_back();
 	_enteredAreas.push_back(overlappingDelimiter);
