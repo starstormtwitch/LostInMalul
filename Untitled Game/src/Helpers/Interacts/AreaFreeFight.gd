@@ -1,16 +1,13 @@
 extends Node
 
-class_name AreaLockFight
+class_name AreaFreeFight
 
 onready var baseLevelScript  = load("res://src/Levels/Base/BaseLevelScript.gd")
 
 var areaLocked = false;
 var currentSpawnersInLockOut: Array
-var currentDelimiterForLockOut: CustomDelimiter2D
 
 signal lockout_started
-signal lockout_finished
-signal area_lock
 
 func _ready():
 	var parentLevel = self.get_parent()
@@ -22,13 +19,6 @@ func _ready():
 	
 	#make sure there is a customdelimiter2d child for the node for the lock fight
 	var children = self.get_children()
-	for child in children:
-		if child is CustomDelimiter2D:
-			if not is_instance_valid(currentDelimiterForLockOut):
-				currentDelimiterForLockOut = child;
-			else:
-				assert(false, "More than one custom delimiter in area fight!")
-	assert(is_instance_valid(currentDelimiterForLockOut), "No custom delimiter found in the area fight.")
 	
 	#Make sure there is at least one spawner for enemies
 	for child in children:
@@ -42,13 +32,11 @@ func Disable():
 func Enable():
 	$StartArea/CollisionShape2D.set_deferred("disabled", false);
 
-func LockOutFightStart():
+func AreaFightStart():
 	if !areaLocked:
+		areaLocked = true
 		print("lockout started")
 		emit_signal("lockout_started")
-		areaLocked = true;
-		emit_signal("area_lock", true)
-		currentDelimiterForLockOut.ManualTransition_Enter();
 		NextEnemySpawner();
 		
 func NextEnemySpawner():
@@ -57,16 +45,8 @@ func NextEnemySpawner():
 		if is_instance_valid(spawner):
 			spawner.spawnEnemy()
 			spawner.connect("AllEnemiesDefeated", self, "NextEnemySpawner")
-		else:
-			LockOutFightFinish(currentDelimiterForLockOut);
-		
-func LockOutFightFinish(delimiterNode: CustomDelimiter2D):
-	areaLocked = false;
-	emit_signal("lockout_finished")
-	emit_signal("area_lock", false)
-	delimiterNode.ManualTransition_Exit();
 
 func _on_StartArea_body_entered(body):
 	if body == LevelGlobals.GetPlayerActor():
 		$StartArea/CollisionShape2D.set_deferred("disabled", true);
-		LockOutFightStart();
+		AreaFightStart();
