@@ -5,7 +5,6 @@ var _player : Actor
 func init(player : Actor, item : Node2D):
 	_player = player;
 	$CenterContainer/ItemContainer.add_child(item);
-	$InteractPromptArea.playerNodePath = _player.get_path()
 	return self;
 	
 # Called when the node enters the scene tree for the first time.
