@@ -436,6 +436,20 @@ count = 3
 enemy = "SlimeFR"
 automatic = false
 
+[node name="AreaLockFight2" parent="YSort/Actors" instance=ExtResource( 44 )]
+position = Vector2( 558.163, 159.767 )
+
+[node name="CustomDelimiter2D" parent="YSort/Actors/AreaLockFight2" instance=ExtResource( 20 )]
+position = Vector2( -75.5099, -157.742 )
+
+[node name="BottomRight" parent="YSort/Actors/AreaLockFight2/CustomDelimiter2D" index="0"]
+position = Vector2( 287.588, 222.611 )
+
+[node name="Spawner" parent="YSort/Actors/AreaLockFight2" instance=ExtResource( 46 )]
+position = Vector2( 168.657, -5.25974 )
+enemy = "SlimeFR"
+automatic = false
+
 [node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 3 )]
 position = Vector2( 19.8676, 94.1062 )
 
@@ -444,6 +458,30 @@ position = Vector2( 376.45, 159.195 )
 
 [node name="Spawner" parent="YSort/Actors/AreaFreeFight" instance=ExtResource( 46 )]
 position = Vector2( -127.731, -20.6017 )
+count = 2
+enemy = "SlimeFR"
+automatic = false
+
+[node name="AreaFreeFight2" parent="YSort/Actors" instance=ExtResource( 47 )]
+position = Vector2( 970.773, 159.902 )
+
+[node name="Spawner" parent="YSort/Actors/AreaFreeFight2" instance=ExtResource( 46 )]
+position = Vector2( -127.731, -20.6017 )
+count = 2
+enemy = "SlimeFR"
+automatic = false
+
+[node name="Spawner2" parent="YSort/Actors/AreaFreeFight2" instance=ExtResource( 46 )]
+position = Vector2( 89.449, -12.3744 )
+count = 2
+enemy = "SlimeFR"
+automatic = false
+
+[node name="AreaFreeFight3" parent="YSort/Actors" instance=ExtResource( 47 )]
+position = Vector2( 1151.44, 159.902 )
+
+[node name="Spawner" parent="YSort/Actors/AreaFreeFight3" instance=ExtResource( 46 )]
+position = Vector2( 91.8257, -9.99509 )
 count = 2
 enemy = "SlimeFR"
 automatic = false
@@ -759,3 +797,4 @@ texture = ExtResource( 43 )
 
 [editable path="LevelBackground/CameraPositions/Street_Delimiter"]
 [editable path="YSort/Actors/AreaLockFight1/CustomDelimiter2D"]
+[editable path="YSort/Actors/AreaLockFight2/CustomDelimiter2D"]
