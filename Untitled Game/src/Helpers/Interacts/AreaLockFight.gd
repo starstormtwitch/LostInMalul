@@ -35,6 +35,7 @@ func _ready():
 		if child is EnemySpawner:
 			currentSpawnersInLockOut.append(child);
 	assert(currentSpawnersInLockOut.size() > 0, "No enemy spawners in area lockout!")
+	currentDelimiterForLockOut.IsAreaLockDelimeter = true
 
 func Disable():
 	$StartArea/CollisionShape2D.set_deferred("disabled", true);
