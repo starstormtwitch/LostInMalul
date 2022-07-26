@@ -70,7 +70,13 @@ func SetLevelCheckpointVariables(saveData):
 			get_node("YSort/Actors/OfficeFight1").Disable()
 			get_node("YSort/Actors/OfficeFight2").Disable()
 			get_node("YSort/Actors/FoyerFight").Disable()
-			get_node("YSort/Actors/BasementFight").Disable()
+			get_node("YSort/Actors/BathroomSpawner").spawnEnemy()
+			get_node("YSort/Actors/BedroomSpawner").spawnEnemy()
+			get_node("YSort/Actors/OfficeSpawner").spawnEnemy()
+			get_node("YSort/Actors/LivingRoomSpawner").spawnEnemy()
+			get_node("YSort/Actors/KitchenSpawner").spawnEnemy()
+			get_node("YSort/Actors/FoyerSpawner").spawnEnemy()
+			get_node("YSort/Actors/GarageSpawner").spawnEnemy()
 			get_node("LevelBackground/Interactions/Foyer/GarageNeedKey/CollisionShape").set_deferred("disabled", true);
 			get_node("LevelBackground/Teleports/Foyer_Garage_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
 			get_node("LevelBackground/Teleports/Foyer_Garage_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
@@ -219,7 +225,6 @@ func _on_GarageNeedKey_interactable_text_signal(text):
 func GetReadyForBossEncounter():
 	_textBox.showText("I think that's all of them.")
 	get_node("YSort/Actors/RatKingSpawner").call_deferred("spawnEnemy")
-	get_node("LevelBackground/Boundaries/Basement/BossSeperator").set_deferred("disabled", true);
 
 func _on_GrannySpawner_AllEnemiesDefeated():
 	_textBox.showText("Grandma has faded away comfy, and she left you a little something.")
