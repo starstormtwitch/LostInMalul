@@ -58,6 +58,7 @@ func SetLevelCheckpointVariables(saveData):
 			_toiletClogged = false;
 			_pickedUpPlunger = true;
 			_sendKitchenCrash = false;
+			_pickedUpBasementKey = true;
 			get_node("YSort/Actors/BedroomFight1").Disable()
 			get_node("YSort/Actors/BedroomFight2").Disable()
 			get_node("YSort/Actors/LivingFight2").Disable()
@@ -70,13 +71,16 @@ func SetLevelCheckpointVariables(saveData):
 			get_node("YSort/Actors/OfficeFight2").Disable()
 			get_node("YSort/Actors/FoyerFight").Disable()
 			get_node("YSort/Actors/BasementFight").Disable()
+			get_node("LevelBackground/Interactions/Foyer/GarageNeedKey/CollisionShape").set_deferred("disabled", true);
+			get_node("LevelBackground/Teleports/Foyer_Garage_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
+			get_node("LevelBackground/Teleports/Foyer_Garage_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
 			get_node("LevelBackground/Interactions/Bedroom/StreamRoomTooSoon/CollisionShape").set_deferred("disabled", true);
 			get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
 			get_node("LevelBackground/Interactions/Bathroom/Toilet/CollisionShape").set_deferred("disabled", true);
 			get_node("YSort/Actors/GrannySpawner").spawnEnemy()
 			get_node("LevelBackground/Teleports/Streaming_LivingRoom_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
 			get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
-			StartupPlayerInPosition(Vector2(1700, 275), 5)
+			StartupPlayerInPosition(Vector2(3000, 525), 5)
 		"Boss":
 			get_node("LevelBackground/Checkpoints/Checkpoint").set_deferred("disabled", true)
 			get_node("LevelBackground/Checkpoints/Checkpoint2").set_deferred("disabled", true)

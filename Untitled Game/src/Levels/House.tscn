@@ -914,9 +914,6 @@ position = Vector2( -38.2385, -7.78979 )
 [node name="EndpointBeta" parent="LevelBackground/Teleports/Kitchen_Foyer_2WT" index="1"]
 position = Vector2( 43.2727, 8.6192 )
 
-[node name="ToAlphaActivationArea" parent="LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointBeta" index="0"]
-disabled = true
-
 [node name="ToBetaTeleportPosition" parent="LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointBeta" index="1"]
 position = Vector2( 27.5566, 4.5 )
 
@@ -963,7 +960,7 @@ LevelName = "House"
 CheckpointName = "Boss"
 
 [node name="Checkpoint" parent="LevelBackground/Checkpoints" instance=ExtResource( 181 )]
-position = Vector2( 3064.51, 370.827 )
+position = Vector2( 3064.93, 358.827 )
 LevelName = "House"
 CheckpointName = "FirstEnemy"
 
@@ -974,7 +971,7 @@ pause_mode = 1
 position = Vector2( 2.10999, 0 )
 
 [node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 2 )]
-position = Vector2( 771.225, 222.003 )
+position = Vector2( 752.225, 229.633 )
 
 [node name="GrannySpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 2065.89, 230.244 )
@@ -1243,7 +1240,8 @@ position = Vector2( -126.57, -192.16 )
 position = Vector2( 413.13, 252.453 )
 
 [node name="FoyerEnemies" parent="YSort/Actors/FoyerFight" instance=ExtResource( 176 )]
-position = Vector2( 300.724, 17.2825 )
+position = Vector2( 317.48, 24.2602 )
+rect = Rect2( 0, 0, 10, 10 )
 duration_between_spawn = 1
 count = 8
 enemy = "SlimeFR"
