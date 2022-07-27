@@ -373,7 +373,7 @@ shape = SubResource( 24 )
 position = Vector2( 0.704262, -0.318108 )
 
 [node name="BottomRight" parent="LevelBackground/CameraPositions/Street_Delimiter" index="0"]
-position = Vector2( 1534.8, 224.421 )
+position = Vector2( 1536.3, 225.545 )
 
 [node name="Interactions" type="Node" parent="LevelBackground"]
 
@@ -424,10 +424,12 @@ g_starting_x = -50
 [node name="AreaLockFight1" parent="YSort/Actors" instance=ExtResource( 44 )]
 position = Vector2( 115.37, 165.563 )
 
-[node name="CustomDelimiter2D" parent="YSort/Actors/AreaLockFight1" instance=ExtResource( 20 )]
+[node name="AreaLockFight1" parent="YSort/Actors/AreaLockFight1" instance=ExtResource( 20 )]
 position = Vector2( -115.37, -165.563 )
+AutomaticTransition = false
+IsAreaLockDelimeter = true
 
-[node name="BottomRight" parent="YSort/Actors/AreaLockFight1/CustomDelimiter2D" index="0"]
+[node name="BottomRight" parent="YSort/Actors/AreaLockFight1/AreaLockFight1" index="0"]
 position = Vector2( 318.932, 222.644 )
 
 [node name="Spawner" parent="YSort/Actors/AreaLockFight1" instance=ExtResource( 46 )]
@@ -439,14 +441,34 @@ automatic = false
 [node name="AreaLockFight2" parent="YSort/Actors" instance=ExtResource( 44 )]
 position = Vector2( 558.163, 159.767 )
 
-[node name="CustomDelimiter2D" parent="YSort/Actors/AreaLockFight2" instance=ExtResource( 20 )]
+[node name="AreaLockFight2" parent="YSort/Actors/AreaLockFight2" instance=ExtResource( 20 )]
 position = Vector2( -75.5099, -157.742 )
+AutomaticTransition = false
+IsAreaLockDelimeter = true
 
-[node name="BottomRight" parent="YSort/Actors/AreaLockFight2/CustomDelimiter2D" index="0"]
-position = Vector2( 287.588, 222.611 )
+[node name="BottomRight" parent="YSort/Actors/AreaLockFight2/AreaLockFight2" index="0"]
+position = Vector2( 287.338, 220.361 )
 
 [node name="Spawner" parent="YSort/Actors/AreaLockFight2" instance=ExtResource( 46 )]
 position = Vector2( 168.657, -5.25974 )
+count = 2
+enemy = "SlimeFR"
+automatic = false
+
+[node name="AreaLockFight3" parent="YSort/Actors" instance=ExtResource( 44 )]
+position = Vector2( 1321.44, 161.451 )
+
+[node name="AreaLockFight3" parent="YSort/Actors/AreaLockFight3" instance=ExtResource( 20 )]
+position = Vector2( -75.5099, -157.742 )
+AutomaticTransition = false
+IsAreaLockDelimeter = true
+
+[node name="BottomRight" parent="YSort/Actors/AreaLockFight3/AreaLockFight3" index="0"]
+position = Vector2( 287.713, 219.237 )
+
+[node name="Spawner" parent="YSort/Actors/AreaLockFight3" instance=ExtResource( 46 )]
+position = Vector2( 168.657, -5.25974 )
+count = 2
 enemy = "SlimeFR"
 automatic = false
 
@@ -796,5 +818,6 @@ texture = ExtResource( 43 )
 [connection signal="closed" from="GUI/TextBox2" to="." method="_on_TextBox_closed"]
 
 [editable path="LevelBackground/CameraPositions/Street_Delimiter"]
-[editable path="YSort/Actors/AreaLockFight1/CustomDelimiter2D"]
-[editable path="YSort/Actors/AreaLockFight2/CustomDelimiter2D"]
+[editable path="YSort/Actors/AreaLockFight1/AreaLockFight1"]
+[editable path="YSort/Actors/AreaLockFight2/AreaLockFight2"]
+[editable path="YSort/Actors/AreaLockFight3/AreaLockFight3"]

@@ -216,7 +216,7 @@ func setRemoteUpdates(update: bool) -> void:
 
 
 func limitCameraToDelimiter(delimiter: CustomDelimiter2D, transitionType: int = TransitionTypeEnum.INSTANT, isAreaLock: bool = false) -> void:
-	print("Limiting to new area")
+	print("Limiting to new area: " + delimiter.name)
 	_currentDelimiter = delimiter
 	# TODO: i think we need to pan to middle of boundary and then limit the camera to boundaries
 	limitCameraToCoordinates(delimiter.getTop(), delimiter.getLeft(), delimiter.getBottom(), delimiter.getRight(), transitionType)

@@ -61,17 +61,17 @@ func _on_LirikYaki_item_delete():
 
 func _play_warning_sound() -> void:
 	if !_playingWarningSound:
-		print("play warning sounds")
+		#print("play warning sounds")
 		SoundPlayer.playSound(get_tree().get_current_scene(), _warning_sfx, 0)
 		_playingWarningSound = true
 
 func _stop_warning_sound() -> void:
 	if _playingWarningSound:
-		print("turn off warning sounds")
+		#print("turn off warning sounds")
 		_playingWarningSound = false
 
 func _on_TrafficSystemRight_SpawnWarning():
-	print("right warnign sign")
+	#print("right warnign sign")
 	_play_warning_sound()
 	_rightWarningSign.visible = true
 	yield(get_tree().create_timer(2), "timeout")
@@ -79,7 +79,7 @@ func _on_TrafficSystemRight_SpawnWarning():
 	_stop_warning_sound()
 
 func _on_TrafficSystemLeft_SpawnWarning():
-	print("left warnign sign")
+	#print("left warnign sign")
 	_play_warning_sound()
 	_leftWarningSign.visible = true
 	yield(get_tree().create_timer(2), "timeout")
