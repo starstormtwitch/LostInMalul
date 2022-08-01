@@ -54,7 +54,7 @@
 [ext_resource path="res://src/Helpers/Utilities/Crt/CRTLayer.tscn" type="PackedScene" id=200]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 1151.82, 10 )
+extents = Vector2( 1931.32, 10 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 119.7 )
@@ -257,7 +257,7 @@ position = Vector2( -10.3627, 114.647 )
 shape = SubResource( 2 )
 
 [node name="Right" type="CollisionShape2D" parent="LevelBackground/Boundaries/OutsideBoundaries"]
-position = Vector2( 1545.77, 118.966 )
+position = Vector2( 2314.77, 117.966 )
 shape = SubResource( 2 )
 
 [node name="RedHouseBoundaries" type="StaticBody2D" parent="LevelBackground/Boundaries"]
@@ -373,7 +373,7 @@ shape = SubResource( 24 )
 position = Vector2( 0.704262, -0.318108 )
 
 [node name="BottomRight" parent="LevelBackground/CameraPositions/Street_Delimiter" index="0"]
-position = Vector2( 1536.3, 225.545 )
+position = Vector2( 2302.3, 223.045 )
 
 [node name="Interactions" type="Node" parent="LevelBackground"]
 
@@ -387,6 +387,12 @@ position = Vector2( 1536.3, 225.545 )
 
 [node name="Road2" parent="LevelBackground/MoreRoad" instance=ExtResource( 45 )]
 position = Vector2( 1342.91, 160.289 )
+
+[node name="Road3" parent="LevelBackground/MoreRoad" instance=ExtResource( 45 )]
+position = Vector2( 1726.99, 160.126 )
+
+[node name="Road4" parent="LevelBackground/MoreRoad" instance=ExtResource( 45 )]
+position = Vector2( 2110.99, 160.126 )
 
 [node name="Road" parent="LevelBackground/MoreRoad" instance=ExtResource( 45 )]
 position = Vector2( 959.092, 160.275 )
@@ -472,6 +478,34 @@ count = 2
 enemy = "SlimeFR"
 automatic = false
 
+[node name="AreaLockFight4" parent="YSort/Actors" instance=ExtResource( 44 )]
+position = Vector2( 1783.94, 159.563 )
+
+[node name="AreaLockFight4" parent="YSort/Actors/AreaLockFight4" instance=ExtResource( 20 )]
+position = Vector2( -75.5099, -157.742 )
+AutomaticTransition = false
+IsAreaLockDelimeter = true
+
+[node name="Spawner" parent="YSort/Actors/AreaLockFight4" instance=ExtResource( 46 )]
+position = Vector2( 168.657, -5.25974 )
+count = 2
+enemy = "SlimeFR"
+automatic = false
+
+[node name="AreaLockFight5" parent="YSort/Actors" instance=ExtResource( 44 )]
+position = Vector2( 2088.81, 160.035 )
+
+[node name="AreaLockFight5" parent="YSort/Actors/AreaLockFight5" instance=ExtResource( 20 )]
+position = Vector2( -75.5099, -157.742 )
+AutomaticTransition = false
+IsAreaLockDelimeter = true
+
+[node name="Spawner" parent="YSort/Actors/AreaLockFight5" instance=ExtResource( 46 )]
+position = Vector2( 168.657, -5.25974 )
+count = 2
+enemy = "SlimeFR"
+automatic = false
+
 [node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 3 )]
 position = Vector2( 19.8676, 94.1062 )
 
@@ -503,6 +537,15 @@ automatic = false
 position = Vector2( 1151.44, 159.902 )
 
 [node name="Spawner" parent="YSort/Actors/AreaFreeFight3" instance=ExtResource( 46 )]
+position = Vector2( 91.8257, -9.99509 )
+count = 2
+enemy = "SlimeFR"
+automatic = false
+
+[node name="AreaFreeFight4" parent="YSort/Actors" instance=ExtResource( 47 )]
+position = Vector2( 1562.97, 160.374 )
+
+[node name="Spawner" parent="YSort/Actors/AreaFreeFight4" instance=ExtResource( 46 )]
 position = Vector2( 91.8257, -9.99509 )
 count = 2
 enemy = "SlimeFR"
