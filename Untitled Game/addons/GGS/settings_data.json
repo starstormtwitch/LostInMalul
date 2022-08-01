@@ -105,7 +105,7 @@
 			"value": 50
 		},
 		"current": {
-			"value": 65
+			"value": 20
 		},
 		"logic": "res://src/Helpers/Settings/Audio_MasterVolume.gd"
 	},
