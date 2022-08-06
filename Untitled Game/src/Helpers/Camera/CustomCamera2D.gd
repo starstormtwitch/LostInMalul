@@ -62,6 +62,12 @@ var _boundWidth: int = 40
 var _defaultBoundLength: int = 10
 var _lockoutEnabled = false
 
+# debugging options
+var printTimer = false
+var printCameraTargetReached = false
+var printLimitReached = false
+var startTime = 0
+
 func _init(cameraTarget: Node, current: bool):
 	assert(cameraTarget, "Camera target is not a node.")
 	cameraTarget.get_tree().current_scene.add_child(self)
@@ -77,30 +83,39 @@ func _ready():
 	self.set_process(true)
 
 func _process(delta):
-	if _limit_smooth_active and !_is_shaking:
+	if _lockoutEnabled:
 		#if we just finished an arena fight, we always update target to player position
-		if _lockoutEnabled:
-			var _player = LevelGlobals.GetPlayerActor()
-			_limit_smooth_target_position = _player.position
-		var cameraReachedTarget = self.position.x == _limit_smooth_target_position.x && self.position.y == _limit_smooth_target_position.y
+		var _player = LevelGlobals.GetPlayerActor()
+		_limit_smooth_target_position = _player.position
 		#we need to change our cameraReached logic, Since we will be tracking a moving object AKA the player
-		if _lockoutEnabled:
-			cameraReachedTarget = self.position.distance_to(_limit_smooth_target_position) < _SMALLER_CAMERA_DISTANCE_TARGET
+		var cameraReachedTarget = self.position.distance_to(_limit_smooth_target_position) < _SMALLER_CAMERA_DISTANCE_TARGET
 		if !cameraReachedTarget:
 			self.position.x = move_toward(self.position.x, _limit_smooth_target_position.x, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
 			self.position.y = move_toward(self.position.y, _limit_smooth_target_position.y, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
+		if cameraReachedTarget:
+			_lockoutEnabled = false
+			reachedCameraTarget()
+	elif _limit_smooth_active and !_is_shaking:
+		var cameraReachedTarget = self.position.x == _limit_smooth_target_position.x && self.position.y == _limit_smooth_target_position.y
+		if !cameraReachedTarget:
+			self.position.x = move_toward(self.position.x, _limit_smooth_target_position.x, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
+			self.position.y = move_toward(self.position.y, _limit_smooth_target_position.y, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
+		if cameraReachedTarget and printCameraTargetReached:
+			var difference = OS.get_ticks_msec() - startTime
+			print("camera target reached: " + String(difference))
+			printCameraTargetReached = false
 		var limitsReachedTarget = compareCameraLimitIsEqual(_limit_smooth_top, _limit_smooth_left, _limit_smooth_bottom, _limit_smooth_right)
 		if !limitsReachedTarget:
 			self.limit_top = move_toward(self.limit_top, _limit_smooth_top, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
 			self.limit_bottom = move_toward(self.limit_bottom, _limit_smooth_bottom, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
 			self.limit_left = move_toward(self.limit_left, _limit_smooth_left, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
 			self.limit_right = move_toward(self.limit_right, _limit_smooth_right, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
+		if limitsReachedTarget and printLimitReached:
+			var difference = OS.get_ticks_msec() - startTime
+			print("limits reached: " + String(difference))
+			printLimitReached = false
 		if cameraReachedTarget && limitsReachedTarget:
-			_limit_smooth_active = false
-			self.smoothing_enabled = false
-			setRemoteUpdates(true)
-			_updateBoundLimits()
-			emit_signal("smooth_limit_finished")
+			reachedCameraTarget()
 	elif _panTarget != null and !_is_shaking:
 		var panTargetPosition = _panTarget.getPosition()
 		var distanceToTarget = self.position.distance_to(panTargetPosition)
@@ -110,6 +125,20 @@ func _process(delta):
 			yield(_panTarget.startPanTimer(), "timeout")
 			clearPan()
 	_handleShake(delta)
+
+
+func reachedCameraTarget():
+	print("reached limit for camera smoothing")
+	if printTimer:
+		printTimer = false
+		var difference = OS.get_ticks_msec() - startTime
+		print("Time to zoom into target in ms: " + String(difference))
+		startTime = 0
+	_limit_smooth_active = false
+	self.smoothing_enabled = false
+	setRemoteUpdates(true)
+	_updateBoundLimits()
+	emit_signal("smooth_limit_finished")
 
 
 func _handleShake(delta):
@@ -189,6 +218,7 @@ func clearPan() -> void:
 		self.zoom = _DEFAULT_CAMERA_ZOOM
 		emit_signal("pan_finished")
 		if _lockoutEnabled:
+			print("disable lockout flag")
 			_lockoutEnabled = false
 			enableBounds(false)
 
@@ -217,6 +247,9 @@ func setRemoteUpdates(update: bool) -> void:
 
 func limitCameraToDelimiter(delimiter: CustomDelimiter2D, transitionType: int = TransitionTypeEnum.INSTANT, isAreaLock: bool = false) -> void:
 	print("Limiting to new area: " + delimiter.name)
+	if transitionType == TransitionTypeEnum.AREA_LOCK:
+		startTime = OS.get_ticks_msec()
+		printTimer = true
 	_currentDelimiter = delimiter
 	# TODO: i think we need to pan to middle of boundary and then limit the camera to boundaries
 	limitCameraToCoordinates(delimiter.getTop(), delimiter.getLeft(), delimiter.getBottom(), delimiter.getRight(), transitionType)
@@ -254,7 +287,9 @@ func limitCameraToCoordinates(top: int, left: int, bottom: int, right: int, tran
 			_limit_smooth_target_position.x = right - xDist
 		emit_signal("smooth_limit_started")
 	elif transitionType == TransitionTypeEnum.AREA_LOCK:
-		print("ares lock fight")
+		print("area lock fight")
+		printCameraTargetReached = true
+		printLimitReached = true
 		setRemoteUpdates(false)
 		self.smoothing_enabled = true
 		self.smoothing_speed = 100
@@ -310,7 +345,7 @@ func connect_to_area_lock_signal(scene: Node):
 func _startAreaLock(enabled: bool):
 	enableBounds(enabled)
 	if !enabled:
-		print("enable lockout")
+		print("enable lockout" )
 		_lockoutEnabled = true
 
 ## Enable/disable one-way collision boxes around camera
