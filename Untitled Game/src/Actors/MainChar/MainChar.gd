@@ -268,7 +268,7 @@ func delete_item_from_inventory():
 
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if _canTakeDamage:
-		print("call hurt logic")
+		#print("call hurt logic")
 		_canTakeDamage = false
 		_beingHurt = true
 		_attackManager.gotHit()
