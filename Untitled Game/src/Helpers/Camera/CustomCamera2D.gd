@@ -68,6 +68,7 @@ var printTimer = false
 var _printDebugMessageCameraTargetReached = false
 var _printDebugMessageLimitReached = false
 var startTime = 0
+var maxDeltaTime = 0
 
 
 func _init(cameraTarget: Node, current: bool):
@@ -88,7 +89,7 @@ func _process(delta):
 	if _zoomToPlayer:
 		_zoomToPlayer()
 	elif _zoomToAreaLock:
-		_zoomtToArenaLock()
+		_zoomtToArenaLock(delta)
 	elif _checkForRegularCameraBoundLimitSmoothing():
 		var cameraReachedTarget = _checkAndMoveCameraToTarget()
 		_printTimeDifferenceDebugMessage(cameraReachedTarget, _printDebugMessageCameraTargetReached, "regular, camera target reached: ")
@@ -118,10 +119,14 @@ func _zoomToPlayer():
 		_zoomToPlayer = false
 		reachedCameraTarget()
 
-func _zoomtToArenaLock():
+func _zoomtToArenaLock(delta: float):
 	var cameraReachedTarget = _checkAndMoveCameraToTarget()
 	_printTimeDifferenceDebugMessage(cameraReachedTarget, _printDebugMessageCameraTargetReached, "_zoomToAreaLock, camera target reached: ")
+	if maxDeltaTime < delta:
+		maxDeltaTime = delta
 	if cameraReachedTarget:
+		print("Highest delta time: " + String(maxDeltaTime))
+		maxDeltaTime = 0
 		setLimits(_limit_smooth_top, _limit_smooth_left, _limit_smooth_bottom, _limit_smooth_right)
 		_zoomToAreaLock = false
 		reachedCameraTarget()
@@ -274,7 +279,7 @@ func setRemoteUpdates(update: bool) -> void:
 func limitCameraToDelimiter(delimiter: CustomDelimiter2D, transitionType: int = TransitionTypeEnum.INSTANT, isAreaLock: bool = false) -> void:
 	print("Limiting to new area: " + delimiter.name)
 	if transitionType == TransitionTypeEnum.AREA_LOCK:
-		print("new start time")
+		#print("new start time")
 		startTime = OS.get_ticks_msec()
 		printTimer = true
 	_currentDelimiter = delimiter
@@ -325,7 +330,11 @@ func _smoothCamera(top: int, left: int, bottom: int, right: int):
 
 
 func _areaLockCamera(top: int, left: int, bottom: int, right: int):
+	var _player = LevelGlobals.GetPlayerActor()
 	print("area lock fight starting. Count the time for it to zoom")
+	var playerString = "Player Position: " + String(_player.position.x) + ", " + String(_player.position.y)
+	var cameraString = " - Camera Position: " + String(self.position.x) + ", " + String(self.position.y)
+	print("Comparing positiions. " + playerString + cameraString)
 	_printDebugMessageCameraTargetReached = true
 	_printDebugMessageLimitReached = true
 	_zoomToAreaLock = true
@@ -333,7 +342,6 @@ func _areaLockCamera(top: int, left: int, bottom: int, right: int):
 	self.smoothing_enabled = true
 	self.smoothing_speed = 100
 	setSmoothingLimits(top, left, bottom, right)
-	var _player = LevelGlobals.GetPlayerActor()
 	_limit_smooth_target_position = Vector2(self.position.x, self.position.y)
 	_limit_smooth_target_position.y = _player.position.y
 	var viewportRectSize = self.get_viewport_rect()
