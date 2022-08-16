@@ -8,7 +8,7 @@ const missSound = preload("res://assets/audio/HitAudio/miss_sfx.wav")
 const shoryukenSound = preload("res://assets/audio/HitAudio/shoryken_sfx.wav")
 const hadouken = preload("res://assets/audio/HitAudio/explosion_sound.wav")
 
-const _START_A_COMBO = 3
+var _START_A_COMBO = 3
 const _START_B_COMBO = 3
 const COMBOTIME = 1
 const MAX_DAMAGE_FORCE = 4000
