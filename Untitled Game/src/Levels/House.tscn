@@ -1,4 +1,4 @@
-[gd_scene load_steps=240 format=2]
+[gd_scene load_steps=241 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
@@ -201,6 +201,7 @@
 [ext_resource path="res://src/Props/HouseLevel/bedroom/bedroom_socks_2.tscn" type="PackedScene" id=199]
 [ext_resource path="res://src/Helpers/Utilities/Crt/CRTLayer.tscn" type="PackedScene" id=200]
 [ext_resource path="res://src/Helpers/GUI/ContinueRight.tscn" type="PackedScene" id=201]
+[ext_resource path="res://src/Actors/Box.tscn" type="PackedScene" id=202]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3680.33, 10 )
@@ -969,6 +970,60 @@ pause_mode = 1
 
 [node name="Actors" type="YSort" parent="YSort"]
 position = Vector2( 2.10999, 0 )
+
+[node name="Box" parent="YSort/Actors" instance=ExtResource( 202 )]
+position = Vector2( 912.924, 196.463 )
+
+[node name="Box2" parent="YSort/Actors" instance=ExtResource( 202 )]
+position = Vector2( 1445.79, 198.703 )
+
+[node name="Box3" parent="YSort/Actors" instance=ExtResource( 202 )]
+position = Vector2( 1559.35, 263.262 )
+
+[node name="Box4" parent="YSort/Actors" instance=ExtResource( 202 )]
+position = Vector2( 357.402, 286.965 )
+
+[node name="Box5" parent="YSort/Actors" instance=ExtResource( 202 )]
+position = Vector2( 2122.77, 200.42 )
+
+[node name="Box6" parent="YSort/Actors" instance=ExtResource( 202 )]
+position = Vector2( 1945.52, 223.529 )
+
+[node name="Box8" parent="YSort/Actors" instance=ExtResource( 202 )]
+position = Vector2( 2915.6, 296.994 )
+
+[node name="Box7" parent="YSort/Actors" instance=ExtResource( 202 )]
+position = Vector2( 2584.17, 214.615 )
+
+[node name="Box9" parent="YSort/Actors" instance=ExtResource( 202 )]
+position = Vector2( 3404.74, 208.827 )
+
+[node name="Box10" parent="YSort/Actors" instance=ExtResource( 202 )]
+position = Vector2( 2980.75, 590.643 )
+
+[node name="Box11" parent="YSort/Actors" instance=ExtResource( 202 )]
+position = Vector2( 3249.41, 502.736 )
+
+[node name="Box12" parent="YSort/Actors" instance=ExtResource( 202 )]
+position = Vector2( 3506.73, 506.247 )
+
+[node name="Box13" parent="YSort/Actors" instance=ExtResource( 202 )]
+position = Vector2( 3476.99, 506.247 )
+
+[node name="Box14" parent="YSort/Actors" instance=ExtResource( 202 )]
+position = Vector2( 133.082, 563.159 )
+
+[node name="Box15" parent="YSort/Actors" instance=ExtResource( 202 )]
+position = Vector2( 825.555, 509.588 )
+
+[node name="Box16" parent="YSort/Actors" instance=ExtResource( 202 )]
+position = Vector2( 855.925, 509.247 )
+
+[node name="Box17" parent="YSort/Actors" instance=ExtResource( 202 )]
+position = Vector2( 889.838, 509.569 )
+
+[node name="Box18" parent="YSort/Actors" instance=ExtResource( 202 )]
+position = Vector2( 926.425, 509.588 )
 
 [node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 2 )]
 position = Vector2( 752.225, 229.633 )
