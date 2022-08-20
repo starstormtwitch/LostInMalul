@@ -74,3 +74,4 @@ func releaseHadouken():
 	_animationTree.set("parameters/Main/current", 3)
 	_animationTree.set("parameters/Attack/current", 2)
 	_animationTree.set("parameters/Special/current", 1)
+	

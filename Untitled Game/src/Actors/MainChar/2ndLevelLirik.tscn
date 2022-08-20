@@ -1,6 +1,6 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=36 format=2]
 
-[ext_resource path="res://src/Actors/MainChar/LirikYaki.gd" type="Script" id=1]
+[ext_resource path="res://src/Actors/MainChar/2ndLevelLirik.gd" type="Script" id=1]
 [ext_resource path="res://assets/SpriteSheets/main_char/mc_shadow.png" type="Texture" id=2]
 [ext_resource path="res://assets/SpriteSheets/main_char/level_2_lirik_char-Sheet.png" type="Texture" id=3]
 [ext_resource path="res://assets/GUI/chargeBar/BarV8_Bar.png" type="Texture" id=5]
@@ -44,6 +44,37 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "Hadouken"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("KinematicSprite/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 75, 76, 77, 78, 80 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.39 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "playChargeAnimation"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Hadouken 2"
 length = 0.16
 loop = true
 tracks/0/type = "value"
@@ -56,12 +87,11 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.08 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 71, 72 ]
+"values": [ 81, 82 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Hadouken2"
-length = 0.48
+[sub_resource type="Animation" id=5]
+length = 0.32
 tracks/0/type = "value"
 tracks/0/path = NodePath("KinematicSprite/Sprite:frame")
 tracks/0/interp = 1
@@ -69,10 +99,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.08, 0.16, 0.24 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 73, 74, 75, 76, 77, 78 ]
+"values": [ 85, 86, 87, 88 ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -81,7 +111,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.47 ),
+"times": PoolRealArray( 0.04, 0.31 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -90,52 +120,6 @@ tracks/1/keys = {
 "args": [  ],
 "method": "_finishedAttack"
 } ]
-}
-
-[sub_resource type="Animation" id=5]
-resource_name = "Headbutt"
-length = 0.33
-step = 0.01
-tracks/0/type = "method"
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.24, 0.32 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "checkIfWePlayWooshSFX"
-}, {
-"args": [  ],
-"method": "_finishedAttack"
-} ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("KinematicSprite/Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 36, 37, 38, 39 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("attack/sideSwipeRight:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.24 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -321,7 +305,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=11]
-length = 0.25
+length = 0.78
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -329,7 +313,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.1875, 0.24 ),
+"times": PoolRealArray( 0.54, 0.77 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -346,10 +330,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.0625, 0.125, 0.1875 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.0625, 0.12, 0.18, 0.24, 0.3, 0.36, 0.42, 0.48, 0.54, 0.6, 0.66, 0.72 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 40, 41, 42, 43 ]
+"values": [ 90, 91, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("attack/sideSwipeRight:disabled")
@@ -358,58 +342,13 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.24 ),
+"times": PoolRealArray( 0.19, 0.54 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
 }
 
 [sub_resource type="Animation" id=12]
-length = 0.25
-step = 0.01
-tracks/0/type = "method"
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.1875, 0.24 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "checkIfWePlayWooshSFX"
-}, {
-"args": [  ],
-"method": "_finishedAttack"
-} ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("KinematicSprite/Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.0625, 0.125, 0.1875 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 44, 45, 46, 47 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("attack/sideSwipeRight:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.24 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-
-[sub_resource type="Animation" id=13]
 length = 0.5
 loop = true
 step = 0.0625
@@ -443,7 +382,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="AnimationNodeTransition" id=14]
+[sub_resource type="AnimationNodeTransition" id=13]
 input_count = 3
 input_0/name = "Combo1"
 input_0/auto_advance = false
@@ -452,49 +391,35 @@ input_1/auto_advance = false
 input_2/name = "Special"
 input_2/auto_advance = false
 
-[sub_resource type="AnimationNodeTransition" id=15]
-input_count = 3
+[sub_resource type="AnimationNodeTransition" id=14]
+input_count = 2
 input_0/name = "Punch1"
 input_0/auto_advance = false
 input_1/name = "Punch2"
 input_1/auto_advance = false
-input_2/name = "Punch3"
-input_2/auto_advance = false
 
-[sub_resource type="AnimationNodeTransition" id=16]
-input_count = 3
-input_0/name = "Kick1"
-input_0/auto_advance = false
-input_1/name = "Kick2"
-input_1/auto_advance = false
-input_2/name = "Kick3"
-input_2/auto_advance = false
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "Die"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "Hadouken 2"
 
 [sub_resource type="AnimationNodeAnimation" id=17]
-animation = "Die"
+animation = "Hadouken3"
 
 [sub_resource type="AnimationNodeAnimation" id=18]
 animation = "Hadouken"
 
 [sub_resource type="AnimationNodeAnimation" id=19]
-animation = "Hadouken2"
-
-[sub_resource type="AnimationNodeAnimation" id=20]
-animation = "Headbutt"
-
-[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "HurtRight"
 
-[sub_resource type="AnimationNodeAnimation" id=22]
+[sub_resource type="AnimationNodeAnimation" id=20]
 animation = "IdleRight"
 
-[sub_resource type="AnimationNodeAnimation" id=23]
+[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "SideSwipeRightKick"
 
-[sub_resource type="AnimationNodeAnimation" id=24]
-animation = "SideSwipeRightKick2"
-
-[sub_resource type="AnimationNodeTransition" id=25]
+[sub_resource type="AnimationNodeTransition" id=22]
 input_count = 4
 input_0/name = "Movement"
 input_0/auto_advance = false
@@ -505,76 +430,69 @@ input_2/auto_advance = false
 input_3/name = "Attack"
 input_3/auto_advance = false
 
-[sub_resource type="AnimationNodeTransition" id=26]
+[sub_resource type="AnimationNodeTransition" id=23]
 input_count = 2
 input_0/name = "Idle"
 input_0/auto_advance = false
 input_1/name = "Walk"
 input_1/auto_advance = false
 
-[sub_resource type="AnimationNodeAnimation" id=27]
+[sub_resource type="AnimationNodeAnimation" id=24]
 animation = "SideSwipeRight"
 
-[sub_resource type="AnimationNodeAnimation" id=28]
+[sub_resource type="AnimationNodeAnimation" id=25]
 animation = "SideSwipeRight2"
 
-[sub_resource type="AnimationNodeAnimation" id=29]
-animation = "Shoryuken"
-
-[sub_resource type="AnimationNodeTransition" id=30]
-input_count = 2
-input_0/name = "HadoukenCharge"
+[sub_resource type="AnimationNodeTransition" id=26]
+input_count = 3
+input_0/name = "HadoukenStart"
 input_0/auto_advance = false
-input_1/name = "HadoukenRelease"
+input_1/name = "HadoukenCharge"
 input_1/auto_advance = false
+input_2/name = "HadoukenRelease"
+input_2/auto_advance = false
 
-[sub_resource type="AnimationNodeAnimation" id=31]
+[sub_resource type="AnimationNodeAnimation" id=27]
 animation = "WalkRight"
 
-[sub_resource type="AnimationNodeBlendTree" id=32]
-graph_offset = Vector2( -1102.52, -217.75 )
-nodes/Attack/node = SubResource( 14 )
+[sub_resource type="AnimationNodeBlendTree" id=28]
+graph_offset = Vector2( -1128, 577 )
+nodes/Attack/node = SubResource( 13 )
 nodes/Attack/position = Vector2( -220, 340 )
-nodes/Combo1/node = SubResource( 15 )
+nodes/Combo1/node = SubResource( 14 )
 nodes/Combo1/position = Vector2( -540, 220 )
-nodes/Combo2/node = SubResource( 16 )
-nodes/Combo2/position = Vector2( -540, 420 )
-nodes/Die/node = SubResource( 17 )
+nodes/Die/node = SubResource( 15 )
 nodes/Die/position = Vector2( -320, 180 )
-nodes/HadoukenCharge/node = SubResource( 18 )
-nodes/HadoukenCharge/position = Vector2( -560, 840 )
-nodes/HadoukenRelease/node = SubResource( 19 )
-nodes/HadoukenRelease/position = Vector2( -300, 860 )
-nodes/HeadButt/node = SubResource( 20 )
-nodes/HeadButt/position = Vector2( -860, 300 )
-nodes/Hurt/node = SubResource( 21 )
+nodes/HadoukenCharge/node = SubResource( 16 )
+nodes/HadoukenCharge/position = Vector2( -720, 760 )
+nodes/HadoukenRelease/node = SubResource( 17 )
+nodes/HadoukenRelease/position = Vector2( -688, 908 )
+nodes/HadoukenStart/node = SubResource( 18 )
+nodes/HadoukenStart/position = Vector2( -680, 640 )
+nodes/Hurt/node = SubResource( 19 )
 nodes/Hurt/position = Vector2( -320, 60 )
-nodes/Idle/node = SubResource( 22 )
+nodes/Idle/node = SubResource( 20 )
 nodes/Idle/position = Vector2( -260, -200 )
-nodes/Kick1/node = SubResource( 23 )
-nodes/Kick1/position = Vector2( -860, 460 )
-nodes/Kick2/node = SubResource( 24 )
-nodes/Kick2/position = Vector2( -860, 600 )
-nodes/Main/node = SubResource( 25 )
+nodes/Kick1/node = SubResource( 21 )
+nodes/Kick1/position = Vector2( -620, 460 )
+nodes/Main/node = SubResource( 22 )
 nodes/Main/position = Vector2( 60, 140 )
-nodes/Movement/node = SubResource( 26 )
+nodes/Movement/node = SubResource( 23 )
 nodes/Movement/position = Vector2( -100, -60 )
-nodes/Punch1/node = SubResource( 27 )
+nodes/Punch1/node = SubResource( 24 )
 nodes/Punch1/position = Vector2( -760, 40 )
-nodes/Punch2/node = SubResource( 28 )
+nodes/Punch2/node = SubResource( 25 )
 nodes/Punch2/position = Vector2( -880, 180 )
-nodes/Shoryuken/node = SubResource( 29 )
-nodes/Shoryuken/position = Vector2( -780, 760 )
-nodes/Special/node = SubResource( 30 )
+nodes/Special/node = SubResource( 26 )
 nodes/Special/position = Vector2( -360, 620 )
-nodes/Walk/node = SubResource( 31 )
+nodes/Walk/node = SubResource( 27 )
 nodes/Walk/position = Vector2( -400, -80 )
-node_connections = [ "output", 0, "Main", "Attack", 0, "Combo1", "Attack", 1, "Combo2", "Attack", 2, "Special", "Combo2", 0, "Kick1", "Combo2", 1, "Kick2", "Combo2", 2, "Shoryuken", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Combo1", 2, "HeadButt", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack", "Movement", 0, "Idle", "Movement", 1, "Walk", "Special", 0, "HadoukenCharge", "Special", 1, "HadoukenRelease" ]
+node_connections = [ "output", 0, "Main", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Movement", 0, "Idle", "Movement", 1, "Walk", "Attack", 0, "Combo1", "Attack", 1, "Kick1", "Attack", 2, "Special", "Special", 0, "HadoukenStart", "Special", 1, "HadoukenCharge", "Special", 2, "HadoukenRelease" ]
 
-[sub_resource type="RectangleShape2D" id=33]
+[sub_resource type="RectangleShape2D" id=29]
 extents = Vector2( 5.7005, 3.48579 )
 
-[sub_resource type="RectangleShape2D" id=34]
+[sub_resource type="RectangleShape2D" id=30]
 extents = Vector2( 6.37621, 4.78023 )
 
 [node name="LirikYaki" type="KinematicBody2D" groups=[
@@ -595,11 +513,11 @@ texture = ExtResource( 2 )
 position = Vector2( -8.96681, 1.41581 )
 
 [node name="Sprite" type="Sprite" parent="KinematicSprite"]
-position = Vector2( 6.22748, -11.4582 )
+position = Vector2( 6.29999, -15.7138 )
 texture = ExtResource( 3 )
 hframes = 15
-vframes = 5
-frame = 30
+vframes = 7
+frame = 81
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -2.56038, -2.12541 )
@@ -610,26 +528,24 @@ shape = SubResource( 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Die = SubResource( 2 )
 anims/Hadouken = SubResource( 3 )
-anims/Hadouken2 = SubResource( 4 )
-anims/Headbutt = SubResource( 5 )
+"anims/Hadouken 2" = SubResource( 4 )
+anims/Hadouken3 = SubResource( 5 )
 anims/HurtRight = SubResource( 6 )
 anims/IdleRight = SubResource( 7 )
 anims/Shoryuken = SubResource( 8 )
 anims/SideSwipeRight = SubResource( 9 )
 anims/SideSwipeRight2 = SubResource( 10 )
 anims/SideSwipeRightKick = SubResource( 11 )
-anims/SideSwipeRightKick2 = SubResource( 12 )
-anims/WalkRight = SubResource( 13 )
+anims/WalkRight = SubResource( 12 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 32 )
+tree_root = SubResource( 28 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/Attack/current = 0
+parameters/Attack/current = 2
 parameters/Combo1/current = 0
-parameters/Combo2/current = 0
-parameters/Main/current = 0
+parameters/Main/current = 3
 parameters/Movement/current = 0
-parameters/Special/current = 0
+parameters/Special/current = 1
 
 [node name="TrailTimer" type="Timer" parent="."]
 wait_time = 0.1
@@ -663,7 +579,7 @@ collision_mask = 4096
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2( 0.101578, 20.757 )
-shape = SubResource( 33 )
+shape = SubResource( 29 )
 
 [node name="attack" type="Area2D" parent="."]
 position = Vector2( -0.730887, -23.75 )
@@ -674,7 +590,7 @@ collision_mask = 0
 modulate = Color( 0.6, 0.298039, 1, 1 )
 position = Vector2( 11.031, 12.7623 )
 scale = Vector2( -1.21357, 1.25343 )
-shape = SubResource( 34 )
+shape = SubResource( 30 )
 
 [node name="HadoukenSpawn" type="Position2D" parent="."]
 position = Vector2( 7.70866, -9.35479 )

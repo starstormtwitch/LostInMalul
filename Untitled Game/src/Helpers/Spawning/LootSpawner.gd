@@ -22,7 +22,7 @@ func _ready():
 	assert(MinCoins <= MaxCoins, "Cannot have a min more than max")
 	if(AutomaticOnDeath):
 		var parent = get_parent()
-		assert(parent != null && parent is Actor, "No parent actor in scene to check death of")
+		assert(parent != null && parent.has_method("die"), "No parent actor in scene to check death of")
 		parent.connect("died", self, "on_death_loot")
 
 func spawnLoot():
