@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=2]
+[gd_scene load_steps=81 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Levels/Streets/Level_Start.png" type="Texture" id=2]
@@ -47,18 +47,6 @@
 [ext_resource path="res://src/Props/StreetLevel/Road/Road.tscn" type="PackedScene" id=45]
 [ext_resource path="res://src/Helpers/Spawning/EnemySpawner.tscn" type="PackedScene" id=46]
 [ext_resource path="res://src/Helpers/Interacts/AreaFreeFight.tscn" type="PackedScene" id=47]
-[ext_resource path="res://src/Props/StreetLevel/Apartments/ApartmentsOne.tscn" type="PackedScene" id=48]
-[ext_resource path="res://src/Props/StreetLevel/UniqueBuildings/Graveyard.tscn" type="PackedScene" id=49]
-[ext_resource path="res://src/Props/StreetLevel/Apartments/PcShop.tscn" type="PackedScene" id=50]
-[ext_resource path="res://src/Props/StreetLevel/UniqueBuildings/GambaBuilding.tscn" type="PackedScene" id=51]
-[ext_resource path="res://src/Props/StreetLevel/Apartments/OnePixelCamBuilding.tscn" type="PackedScene" id=52]
-[ext_resource path="res://src/Props/StreetLevel/UniqueBuildings/ShitmanBuilding.tscn" type="PackedScene" id=53]
-[ext_resource path="res://src/Props/StreetLevel/UniqueBuildings/ParkingLot.tscn" type="PackedScene" id=54]
-[ext_resource path="res://src/Props/StreetLevel/Apartments/ApartmentsTwo.tscn" type="PackedScene" id=55]
-[ext_resource path="res://src/Props/StreetLevel/Apartments/CafeBuilding.tscn" type="PackedScene" id=56]
-[ext_resource path="res://src/Props/StreetLevel/Apartments/NomuBuilding.tscn" type="PackedScene" id=57]
-[ext_resource path="res://src/Props/StreetLevel/UniqueBuildings/Park.tscn" type="PackedScene" id=58]
-[ext_resource path="res://src/Props/StreetLevel/Apartments/ABunchOfApartments.tscn" type="PackedScene" id=59]
 [ext_resource path="res://src/GUI/DashCooldownUI.tscn" type="PackedScene" id=177]
 [ext_resource path="res://assets/fonts/Early GameBoy.ttf" type="DynamicFontData" id=178]
 [ext_resource path="res://assets/GUI/BossHealthBarTheme.tres" type="Theme" id=179]
@@ -66,7 +54,7 @@
 [ext_resource path="res://src/Helpers/Utilities/Crt/CRTLayer.tscn" type="PackedScene" id=200]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 4049.28, 10 )
+extents = Vector2( 3852.82, 10 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 119.7 )
@@ -269,7 +257,7 @@ position = Vector2( -10.3627, 114.647 )
 shape = SubResource( 2 )
 
 [node name="Right" type="CollisionShape2D" parent="LevelBackground/Boundaries/OutsideBoundaries"]
-position = Vector2( 4443.42, 110.052 )
+position = Vector2( 4234.79, 110.052 )
 shape = SubResource( 2 )
 
 [node name="RedHouseBoundaries" type="StaticBody2D" parent="LevelBackground/Boundaries"]
@@ -385,7 +373,7 @@ shape = SubResource( 24 )
 position = Vector2( 0.704262, -0.318108 )
 
 [node name="BottomRight" parent="LevelBackground/CameraPositions/Street_Delimiter" index="0"]
-position = Vector2( 4434.91, 222.118 )
+position = Vector2( 4223.27, 223.242 )
 
 [node name="Interactions" type="Node" parent="LevelBackground"]
 
@@ -423,9 +411,6 @@ position = Vector2( 3646.67, 160.476 )
 
 [node name="Road9" parent="LevelBackground/MoreRoad" instance=ExtResource( 45 )]
 position = Vector2( 4030.33, 160.476 )
-
-[node name="Road10" parent="LevelBackground/MoreRoad" instance=ExtResource( 45 )]
-position = Vector2( 4415.05, 160.576 )
 
 [node name="YSort" type="YSort" parent="."]
 pause_mode = 1
@@ -790,42 +775,6 @@ position = Vector2( -25.3774, -2.94439 )
 
 [node name="BottomRightTree" parent="YSort/Trees" instance=ExtResource( 38 )]
 position = Vector2( 47.128, 66.0709 )
-
-[node name="ParkingLot" parent="YSort" instance=ExtResource( 54 )]
-position = Vector2( 2456.2, 170.407 )
-
-[node name="ABunchOfApartments" parent="YSort" instance=ExtResource( 59 )]
-position = Vector2( 1317, 225 )
-
-[node name="GambaBuilding" parent="YSort" instance=ExtResource( 51 )]
-position = Vector2( 1986.38, 129.356 )
-
-[node name="OnePixelCamBuilding" parent="YSort" instance=ExtResource( 52 )]
-position = Vector2( 3337.29, 128.165 )
-
-[node name="ApartmentsOne" parent="YSort" instance=ExtResource( 48 )]
-position = Vector2( 3079.62, 105.24 )
-
-[node name="PcShop" parent="YSort" instance=ExtResource( 50 )]
-position = Vector2( 2742.24, 129.363 )
-
-[node name="NomuBuilding" parent="YSort" instance=ExtResource( 57 )]
-position = Vector2( 3521.92, 128.26 )
-
-[node name="ApartmentsTwo" parent="YSort" instance=ExtResource( 55 )]
-position = Vector2( 3751.85, 104.837 )
-
-[node name="Graveyard" parent="YSort" instance=ExtResource( 49 )]
-position = Vector2( 4286.79, 96.6484 )
-
-[node name="CafeBuilding" parent="YSort" instance=ExtResource( 56 )]
-position = Vector2( 4058.17, 127.816 )
-
-[node name="ShitmanBuilding" parent="YSort" instance=ExtResource( 53 )]
-position = Vector2( 2248.76, 103.277 )
-
-[node name="Park" parent="YSort" instance=ExtResource( 58 )]
-position = Vector2( 847, 96.5 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
