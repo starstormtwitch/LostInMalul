@@ -85,12 +85,13 @@ func _physics_process(_delta: float) -> void:
 		moveKinematicSprite(_velocity)
 
 func _flipBoxesIfNecessary(velocity_x: float):
-	var rightHitBox: CollisionShape2D = get_node("Attack/AttackBox")
+	var rightHitBox: CollisionShape2D = get_node_or_null("Attack/AttackBox")
 	var sprite: Sprite = get_node("KinematicSprite/Sprite")
 	
 	var shadow: Sprite = get_node_or_null("Shadow")
 	if velocity_x > 0:
-		rightHitBox.position.x = abs(rightHitBox.position.x)
+		if rightHitBox != null:
+			rightHitBox.position.x = abs(rightHitBox.position.x)
 		sprite.flip_h = true
 		if shadow != null:
 			shadow.flip_h = true

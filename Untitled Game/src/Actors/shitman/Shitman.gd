@@ -1,5 +1,9 @@
 extends Enemy
 
+
+const bullet_scene = preload("res://src/Actors/shitman/Bullet.tscn")
+
+
 const _GRAVITY = 10
 const _JUMPFORCE = -160
 const _JUMP_SPEED = 60
@@ -7,19 +11,17 @@ const _JUMP_SPEED = 60
 var _jumpVelocity = Vector2()
 var _jumpDirection = Vector2()
 
-onready var attackBox = $Attack/AttackBox
+onready var bulletSpawn: Position2D = $BulletSpawn
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_health = 8
 	_acceleration = 0.2
 	_speed = 65
-	_attack_range = 50
-	attackBox.disabled = true
+	_attack_range = 200
 	_animationHandler = NodeStateMachineAnimationHandler.new($AnimationTree)
 	if($AnimationTree != null):
 		$AnimationTree.active = true
-	$AnimationTree.get("parameters/playback").travel("spawn")
 		
 #disabling attacking for now
 func _physics_process(_delta: float) -> void:
@@ -29,7 +31,7 @@ func _physics_process(_delta: float) -> void:
 			if !_isAttacking:
 				_isAttacking = true
 				if($AnimationTree != null):
-					$AnimationTree.get("parameters/playback").travel("jump_attack")
+					$AnimationTree.get("parameters/playback").travel("attack")
 
 
 func _attack_done():
@@ -54,4 +56,15 @@ func _on_FlockBox_area_exited(area):
 
 
 func summon_bullet():
-	pass
+	var instance = bullet_scene.instance()
+	instance.set_direction(_directionFacing)
+	instance.global_position = bulletSpawn.global_position
+	get_parent().add_child(instance)
+
+
+func _flipBoxesIfNecessary(velocity_x: float):
+	._flipBoxesIfNecessary(velocity_x)
+	if velocity_x > 0:
+		bulletSpawn.position.x = abs(bulletSpawn.position.x)
+	elif velocity_x < 0:
+		bulletSpawn.position.x = -abs(bulletSpawn.position.x)
