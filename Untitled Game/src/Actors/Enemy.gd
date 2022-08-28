@@ -96,7 +96,8 @@ func _flipBoxesIfNecessary(velocity_x: float):
 		if shadow != null:
 			shadow.flip_h = true
 	elif velocity_x < 0:
-		rightHitBox.position.x = -abs(rightHitBox.position.x)
+		if rightHitBox != null:
+			rightHitBox.position.x = -abs(rightHitBox.position.x)
 		sprite.flip_h = false
 		if shadow != null:
 			shadow.flip_h = false

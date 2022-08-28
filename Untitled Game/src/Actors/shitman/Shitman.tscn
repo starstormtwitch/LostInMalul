@@ -1,7 +1,9 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://assets/SpriteSheets/shitman/small_shitman-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/shitman/Shitman.gd" type="Script" id=2]
+[ext_resource path="res://src/Helpers/Spawning/LootSpawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/SpriteSheets/main_char/mc_shadow.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -209,14 +211,19 @@ graph_offset = Vector2( -34, -98 )
 [node name="Shitman" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+[node name="KinematicSprite" type="KinematicBody2D" parent="."]
 
-[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+[node name="Sprite" type="Sprite" parent="KinematicSprite"]
 position = Vector2( -0.365814, -11.7859 )
 texture = ExtResource( 1 )
 hframes = 15
 vframes = 5
 frame = 68
+
+[node name="Shadow" type="Sprite" parent="."]
+position = Vector2( -0.785804, -0.396992 )
+scale = Vector2( 0.374092, 0.388795 )
+texture = ExtResource( 4 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 visible = false
@@ -265,3 +272,43 @@ parameters/playback = SubResource( 35 )
 
 [node name="BulletSpawn" type="Position2D" parent="."]
 position = Vector2( 16.9264, -11.7557 )
+
+[node name="Sight" type="RayCast2D" parent="."]
+modulate = Color( 0.054902, 1, 0, 1 )
+position = Vector2( 4.98629, -3.79149 )
+enabled = true
+cast_to = Vector2( 0, 100 )
+
+[node name="ObstacleAvoidRaycasts" type="Node2D" parent="."]
+position = Vector2( 6.31385, 1.54338 )
+
+[node name="ObstacleAvoidSE" type="RayCast2D" parent="ObstacleAvoidRaycasts"]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 7.56071, -1.69039 )
+enabled = true
+cast_to = Vector2( 0, 100 )
+
+[node name="ObstacleAvoidSW" type="RayCast2D" parent="ObstacleAvoidRaycasts"]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( -10.8816, -1.67607 )
+enabled = true
+cast_to = Vector2( 0, 100 )
+
+[node name="ObstacleAvoidNW" type="RayCast2D" parent="ObstacleAvoidRaycasts"]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( -10.861, -9.58638 )
+enabled = true
+cast_to = Vector2( 0, 100 )
+
+[node name="ObstacleAvoidNE" type="RayCast2D" parent="ObstacleAvoidRaycasts"]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 7.58607, -9.5799 )
+enabled = true
+cast_to = Vector2( 0, 100 )
+
+[node name="LootSpawner" parent="." instance=ExtResource( 3 )]
+visible = false
+position = Vector2( -9.6676, -19.0703 )
+MinCoins = 0
+MaxCoins = 0
+PowerupChance = 80

@@ -3,7 +3,6 @@ extends Enemy
 
 const bullet_scene = preload("res://src/Actors/shitman/Bullet.tscn")
 
-
 const _GRAVITY = 10
 const _JUMPFORCE = -160
 const _JUMP_SPEED = 60
@@ -25,6 +24,7 @@ func _ready():
 		
 #disabling attacking for now
 func _physics_process(_delta: float) -> void:
+	#._physics_process(_delta)
 	match _state:
 		EnemyState.ATTACK_IN_PLACE:
 			#print("attack state")
