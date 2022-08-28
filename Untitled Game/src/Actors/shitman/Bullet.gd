@@ -31,11 +31,11 @@ func _physics_process(delta):
 		move_and_slide(velocity)
 
 
-func set_direction(direction: Vector2):
-	if direction.x > 0:
+func set_direction(direction: int):
+	if direction > 0:
 		self.scale = Vector2(1, 1)
 		_direction = 1
-	elif direction.x < 0:
+	elif direction < 0:
 		self.scale = Vector2(-1, 1)
 		_direction = -1
 

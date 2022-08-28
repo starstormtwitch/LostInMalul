@@ -258,7 +258,7 @@ scale = Vector2( 0.508719, 0.439879 )
 shape = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../KinematicBody2D/Sprite")
+root_node = NodePath("../KinematicSprite/Sprite")
 anims/attack = SubResource( 4 )
 anims/die = SubResource( 5 )
 anims/hurt = SubResource( 6 )
