@@ -57,7 +57,7 @@ func _on_FlockBox_area_exited(area):
 
 func summon_bullet():
 	var instance = bullet_scene.instance()
-	instance.set_direction(_directionFacing)
+	instance.set_direction(_isFacingDirectionLeft)
 	instance.global_position = bulletSpawn.global_position
 	get_parent().add_child(instance)
 

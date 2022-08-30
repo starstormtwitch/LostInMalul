@@ -13,8 +13,9 @@ var _isMoving = false
 
 var _timer: Timer = Timer.new()
 
-onready var animationTree: AnimationTree = $AnimationTree
+onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 onready var queueFreeTimer: Timer = $QueueFreeTimer
+onready var trail: Trail = $Trail
 
 
 # Called when the node enters the scene tree for the first time.
@@ -23,30 +24,27 @@ func _ready():
 	_timer.one_shot = true
 	add_child(_timer)
 	_timer.start(_TIME)
+	animationPlayer.play("Bullet")
 
 
 func _physics_process(delta):
-	if !_isMoving:
+	if _isMoving:
 		var velocity = Vector2(_SPEED * _direction, 0)
 		move_and_slide(velocity)
 
 
-func set_direction(direction: int):
-	if direction > 0:
+func set_direction(isFacingDirectionLeft: bool):
+	if !isFacingDirectionLeft:
 		self.scale = Vector2(1, 1)
 		_direction = 1
-	elif direction < 0:
+	else:
 		self.scale = Vector2(-1, 1)
 		_direction = -1
 
 
 func startMoving():
 	_isMoving = true
-
-
-func _on_attack_area_entered(area: Area2D) -> void:
-	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
-		queueFreeTimer.start()
+	trail.turnTrailOn()
 
 
 func _on_QueueFreeTimer_timeout():

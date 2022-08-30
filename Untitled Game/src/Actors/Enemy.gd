@@ -24,6 +24,7 @@ var _attackCooldownTimer = Timer.new()
 var _stunTimer = Timer.new()
 var _hitFlashTimer = Timer.new()
 var _directionFacing = 0
+var _isFacingDirectionLeft = true
 var _minDistanceToStayFromPlayer = 0;
 var _maxDistanceToStayFromPlayer = 0;
 
@@ -54,13 +55,11 @@ func _ready():
 func _physics_process(_delta: float) -> void:
 	._physics_process(_delta)
 	var direction = Vector2.ZERO
-	
 	if isDying:
 		if deathVisible(_deathBlinkCountdown.time_left):
 			self.visible = true
 		else:
 			self.visible = false
-			
 	if(!_isStunned && !_inAir && !isDying):
 		var targetDirection = try_chase()
 		#print(targetDirection)
@@ -74,7 +73,6 @@ func _physics_process(_delta: float) -> void:
 			_play_idle_animation_if_available(targetDirection.x)
 		_directionFacing = targetDirection.x
 		_flipBoxesIfNecessary(targetDirection.x)
-		
 		if(_flocks):
 			direction = _flock_direction(direction)
 		_velocity = getMovement(direction, _speed, _acceleration)
@@ -84,18 +82,20 @@ func _physics_process(_delta: float) -> void:
 		moveParent(_velocity)
 		moveKinematicSprite(_velocity)
 
+
 func _flipBoxesIfNecessary(velocity_x: float):
 	var rightHitBox: CollisionShape2D = get_node_or_null("Attack/AttackBox")
 	var sprite: Sprite = get_node("KinematicSprite/Sprite")
-	
 	var shadow: Sprite = get_node_or_null("Shadow")
 	if velocity_x > 0:
+		_isFacingDirectionLeft = false
 		if rightHitBox != null:
 			rightHitBox.position.x = abs(rightHitBox.position.x)
 		sprite.flip_h = true
 		if shadow != null:
 			shadow.flip_h = true
 	elif velocity_x < 0:
+		_isFacingDirectionLeft = true
 		if rightHitBox != null:
 			rightHitBox.position.x = -abs(rightHitBox.position.x)
 		sprite.flip_h = false
