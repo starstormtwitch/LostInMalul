@@ -240,9 +240,9 @@ _global_script_classes=[ {
 "path": "res://src/GUI/Textbox.gd"
 }, {
 "base": "Line2D",
-"class": "Trail",
+"class": "TrailDrawer",
 "language": "GDScript",
-"path": "res://src/Effects/Trail.gd"
+"path": "res://src/Effects/TrailDrawer.gd"
 }, {
 "base": "Node2D",
 "class": "TwoWayTeleportNode2D",
@@ -301,7 +301,7 @@ _global_script_class_icons={
 "SuperBar": "",
 "TeleportNode2D": "",
 "TextBox": "",
-"Trail": "",
+"TrailDrawer": "",
 "TwoWayTeleportNode2D": "",
 "spawner": ""
 }

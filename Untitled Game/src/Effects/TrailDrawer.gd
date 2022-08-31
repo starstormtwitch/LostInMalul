@@ -1,7 +1,7 @@
 extends Line2D
 
 
-class_name Trail
+class_name TrailDrawer
 
 
 var target: Node2D

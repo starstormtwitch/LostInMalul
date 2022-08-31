@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://src/Effects/Trail.gd" type="Script" id=1]
-
-[node name="Trail" type="Line2D"]
-points = PoolVector2Array( -8.33412, -1.91048 )
-default_color = Color( 0.956863, 0.956863, 0.956863, 1 )
-script = ExtResource( 1 )

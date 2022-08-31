@@ -271,7 +271,7 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource( 35 )
 
 [node name="BulletSpawn" type="Position2D" parent="."]
-position = Vector2( 16.9264, -11.7557 )
+position = Vector2( -22.6181, -11.2551 )
 
 [node name="Sight" type="RayCast2D" parent="."]
 modulate = Color( 0.054902, 1, 0, 1 )

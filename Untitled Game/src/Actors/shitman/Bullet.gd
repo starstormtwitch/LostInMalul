@@ -15,7 +15,8 @@ var _timer: Timer = Timer.new()
 
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 onready var queueFreeTimer: Timer = $QueueFreeTimer
-onready var trail: Trail = $Trail
+onready var trail: TrailDrawer = $Trail
+onready var trailTracker: Position2D = $TrailTracker
 
 
 # Called when the node enters the scene tree for the first time.
@@ -25,12 +26,20 @@ func _ready():
 	add_child(_timer)
 	_timer.start(_TIME)
 	animationPlayer.play("Bullet")
+	_flipTracker()
 
 
 func _physics_process(delta):
 	if _isMoving:
 		var velocity = Vector2(_SPEED * _direction, 0)
 		move_and_slide(velocity)
+
+
+func _flipTracker():
+	if _direction == 1:
+		trailTracker.position.x = abs(trailTracker.position.x)
+	else:
+		trailTracker.position.x = -abs(trailTracker.position.x)
 
 
 func set_direction(isFacingDirectionLeft: bool):
