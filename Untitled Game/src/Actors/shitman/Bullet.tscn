@@ -5,7 +5,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "Bullet"
-length = 0.65
+length = 0.39
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -13,7 +13,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
+"times": PoolRealArray( 0, 0.03, 0.06, 0.09, 0.12, 0.15, 0.18, 0.21, 0.24, 0.27, 0.3, 0.33, 0.36 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]
@@ -25,7 +25,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.6 ),
+"times": PoolRealArray( 0.36 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -43,13 +43,13 @@ script = ExtResource( 2 )
 position = Vector2( 16.0646, -1.56424 )
 texture = ExtResource( 1 )
 hframes = 14
-frame = 12
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 method_call_mode = 1
 anims/Bullet = SubResource( 1 )
 
 [node name="Attack" type="Area2D" parent="."]
+visible = false
 modulate = Color( 0.431373, 1, 0, 1 )
 position = Vector2( 0.353554, -14.8493 )
 collision_layer = 8192
