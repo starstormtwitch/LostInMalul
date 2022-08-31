@@ -53,7 +53,7 @@ func set_direction(isFacingDirectionLeft: bool):
 
 func startMoving():
 	_isMoving = true
-	trail.turnTrailOn()
+	#trail.turnTrailOn()
 
 
 func _on_QueueFreeTimer_timeout():

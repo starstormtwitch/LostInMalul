@@ -1,9 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/SpriteSheets/shitman/small_bullet-Sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/SpriteSheets/shitman/Animated Bullet Shooting V2-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/shitman/Bullet.gd" type="Script" id=2]
-[ext_resource path="res://src/Effects/TrailDrawer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/Actors/shitman/Bullet.tres" type="Gradient" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Bullet"
@@ -36,13 +34,13 @@ tracks/1/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 3.33406, 0.56274 )
+extents = Vector2( 11.0753, 0.9648 )
 
 [node name="Bullet" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 8.05243, -0.736535 )
+position = Vector2( 16.0646, -1.56424 )
 texture = ExtResource( 1 )
 hframes = 14
 frame = 12
@@ -51,11 +49,6 @@ frame = 12
 method_call_mode = 1
 anims/Bullet = SubResource( 1 )
 
-[node name="Trail" parent="." instance=ExtResource( 3 )]
-gradient = ExtResource( 4 )
-targetPath = NodePath("../TrailTracker")
-trailLength = 20
-
 [node name="Attack" type="Area2D" parent="."]
 modulate = Color( 0.431373, 1, 0, 1 )
 position = Vector2( 0.353554, -14.8493 )
@@ -63,7 +56,7 @@ collision_layer = 8192
 collision_mask = 0
 
 [node name="AttackBox" type="CollisionShape2D" parent="Attack"]
-position = Vector2( 3.31623, 14.6789 )
+position = Vector2( 19.6678, 13.2296 )
 shape = SubResource( 2 )
 
 [node name="TrailTracker" type="Position2D" parent="."]
