@@ -54,6 +54,7 @@ method_call_mode = 1
 anims/Bullet = SubResource( 1 )
 
 [node name="Trail" parent="." instance=ExtResource( 3 )]
+points = PoolVector2Array(  )
 width = 0.8
 gradient = SubResource( 2 )
 targetPath = NodePath("../TrailTracker")
