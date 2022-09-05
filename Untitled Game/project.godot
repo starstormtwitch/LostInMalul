@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Actors/MainChar/AttackManager.gd"
 }, {
+"base": "AttackManager",
+"class": "AttackManagerLevel2",
+"language": "GDScript",
+"path": "res://src/Actors/MainChar/AttackManagerLevel2.gd"
+}, {
 "base": "Node",
 "class": "AudioFunctions",
 "language": "GDScript",
@@ -53,6 +58,11 @@ _global_script_classes=[ {
 "class": "BlendTreeAnimationHandler",
 "language": "GDScript",
 "path": "res://src/Actors/Animations/BlendTreeAnimationHandler.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Bullet",
+"language": "GDScript",
+"path": "res://src/Actors/shitman/Bullet.gd"
 }, {
 "base": "Control",
 "class": "CRTLayer",
@@ -149,6 +159,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Helpers/JumpHelper.gd"
 }, {
+"base": "BlendTreeAnimationHandler",
+"class": "Level2BlendTreeAnimationHandler",
+"language": "GDScript",
+"path": "res://src/Actors/Animations/Level2BlendTreeAnimationHandler.gd"
+}, {
 "base": "MainChar",
 "class": "LirikYaki",
 "language": "GDScript",
@@ -178,6 +193,11 @@ _global_script_classes=[ {
 "class": "ScreenShakeSettings",
 "language": "GDScript",
 "path": "res://src/Helpers/Settings/ScreenShakeSettings.gd"
+}, {
+"base": "LirikYaki",
+"class": "SecondLevelLirik",
+"language": "GDScript",
+"path": "res://src/Actors/MainChar/2ndLevelLirik.gd"
 }, {
 "base": "AudioStreamPlayer",
 "class": "SelfDisposingAudioPlayer",
@@ -219,6 +239,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/GUI/Textbox.gd"
 }, {
+"base": "Line2D",
+"class": "TrailDrawer",
+"language": "GDScript",
+"path": "res://src/Effects/TrailDrawer.gd"
+}, {
 "base": "Node2D",
 "class": "TwoWayTeleportNode2D",
 "language": "GDScript",
@@ -235,10 +260,12 @@ _global_script_class_icons={
 "AnimationHandler": "",
 "AreaLockFight": "",
 "AttackManager": "",
+"AttackManagerLevel2": "",
 "AudioFunctions": "",
 "BaseInput": "",
 "BaseLevelScript": "",
 "BlendTreeAnimationHandler": "",
+"Bullet": "",
 "CRTLayer": "",
 "CustomCamera2D": "",
 "CustomDelimiter2D": "",
@@ -258,12 +285,14 @@ _global_script_class_icons={
 "InteractPromptArea": "",
 "JSONBeautifier": "",
 "JumpHelper": "",
+"Level2BlendTreeAnimationHandler": "",
 "LirikYaki": "",
 "MainChar": "",
 "MainMenu": "",
 "NodeStateMachineAnimationHandler": "",
 "PauseMenu": "",
 "ScreenShakeSettings": "",
+"SecondLevelLirik": "",
 "SelfDisposingAudioPlayer": "",
 "Settings": "",
 "SettingsMenu": "",
@@ -272,6 +301,7 @@ _global_script_class_icons={
 "SuperBar": "",
 "TeleportNode2D": "",
 "TextBox": "",
+"TrailDrawer": "",
 "TwoWayTeleportNode2D": "",
 "spawner": ""
 }
@@ -412,9 +442,11 @@ dodge={
 2d_physics/layer_3="Player"
 2d_physics/layer_5="PlayerHitbox"
 2d_physics/layer_7="PlayerHurtbox"
+2d_physics/layer_8="RangedPlayerHurtbox"
 2d_physics/layer_9="PlayerGhost"
 2d_physics/layer_11="Enemy"
 2d_physics/layer_13="EnemyHitbox"
+2d_physics/layer_14="RangedEnemyHitbox"
 2d_physics/layer_15="EnemyHurtbox"
 2d_physics/layer_17="EnemyGhost"
 2d_physics/layer_19="EnemyFlock"

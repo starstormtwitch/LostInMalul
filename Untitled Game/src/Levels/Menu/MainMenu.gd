@@ -37,5 +37,3 @@ func _on_ExitButton_pressed():
 
 func _show_menu():
 	menuContainer.show()
-
-
