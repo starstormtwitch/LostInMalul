@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/SpriteSheets/shitman/Animated Bullet Shooting V2-Sheet.png" type="Texture" id=1]
+[ext_resource path="res://src/Actors/shitman/Bullet.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Bullet"
+length = 0.39
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.03, 0.06, 0.09, 0.12, 0.15, 0.18, 0.21, 0.24, 0.27, 0.3, 0.33, 0.36 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.36 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "startMoving"
+} ]
+}
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 11.0753, 0.9648 )
+
+[node name="Bullet" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 16.0646, -1.56424 )
+texture = ExtResource( 1 )
+hframes = 14
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+method_call_mode = 1
+anims/Bullet = SubResource( 1 )
+
+[node name="Attack" type="Area2D" parent="."]
+visible = false
+modulate = Color( 0.431373, 1, 0, 1 )
+position = Vector2( 0.353554, -14.8493 )
+collision_layer = 8192
+collision_mask = 0
+
+[node name="AttackBox" type="CollisionShape2D" parent="Attack"]
+position = Vector2( 19.6678, 13.2296 )
+shape = SubResource( 2 )
+
+[node name="TrailTracker" type="Position2D" parent="."]
+position = Vector2( 3.96875, -0.09375 )
+
+[connection signal="area_entered" from="Attack" to="." method="_on_Attack_area_entered"]

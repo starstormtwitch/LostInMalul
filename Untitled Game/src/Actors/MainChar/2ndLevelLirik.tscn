@@ -487,10 +487,10 @@ nodes/Special/node = SubResource( 26 )
 nodes/Special/position = Vector2( -360, 620 )
 nodes/Walk/node = SubResource( 27 )
 nodes/Walk/position = Vector2( -400, -80 )
-node_connections = [ "output", 0, "Main", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Movement", 0, "Idle", "Movement", 1, "Walk", "Attack", 0, "Combo1", "Attack", 1, "Kick1", "Attack", 2, "Special", "Special", 0, "HadoukenStart", "Special", 1, "HadoukenCharge", "Special", 2, "HadoukenRelease" ]
+node_connections = [ "output", 0, "Main", "Attack", 0, "Combo1", "Attack", 1, "Kick1", "Attack", 2, "Special", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Special", 0, "HadoukenStart", "Special", 1, "HadoukenCharge", "Special", 2, "HadoukenRelease", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack", "Movement", 0, "Idle", "Movement", 1, "Walk" ]
 
 [sub_resource type="RectangleShape2D" id=29]
-extents = Vector2( 5.7005, 3.48579 )
+extents = Vector2( 4.15426, 7.5077 )
 
 [sub_resource type="RectangleShape2D" id=30]
 extents = Vector2( 6.37621, 4.78023 )
@@ -520,6 +520,7 @@ vframes = 7
 frame = 81
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( -2.56038, -2.12541 )
 rotation = 1.5708
 scale = Vector2( 1.01091, 1.11191 )
@@ -573,6 +574,7 @@ autostart = true
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
 ]]
+visible = false
 position = Vector2( -2.65, -23.75 )
 collision_layer = 64
 collision_mask = 4096
@@ -581,7 +583,19 @@ collision_mask = 4096
 position = Vector2( 0.101578, 20.757 )
 shape = SubResource( 29 )
 
+[node name="HurtBox2" type="Area2D" parent="." groups=[
+"hurtbox",
+]]
+position = Vector2( -2.65, -23.75 )
+collision_layer = 128
+collision_mask = 8192
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox2"]
+position = Vector2( 0.101578, 14.1083 )
+shape = SubResource( 29 )
+
 [node name="attack" type="Area2D" parent="."]
+visible = false
 position = Vector2( -0.730887, -23.75 )
 collision_layer = 16
 collision_mask = 0
