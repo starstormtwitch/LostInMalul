@@ -17,7 +17,7 @@ func doSideSwipeAttack(scene : Node):
 	if attackLock.try_lock() == OK:
 		_attack_setup(false)
 		_playPunchSFX = true
-		print("Combo A: " + String(_comboAPoints))
+		#print("Combo A: " + String(_comboAPoints))
 		if _comboAPoints == 2:
 			_animationHandler.punch1()
 			SoundPlayer.playSound(scene, missSound, -4)

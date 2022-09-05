@@ -7,12 +7,14 @@ onready var baseLevelScript  = load("res://src/Levels/Base/BaseLevelScript.gd")
 var areaLocked = false;
 var currentSpawnersInLockOut: Array
 var currentDelimiterForLockOut: CustomDelimiter2D
+var _player: Node2D
 
 signal lockout_started
 signal lockout_finished
 signal area_lock
 
 func _ready():
+	_player = LevelGlobals.GetPlayerActor()
 	var parentLevel = self.get_parent()
 	while (not parentLevel is baseLevelScript) and (is_instance_valid(parentLevel)):
 		parentLevel = parentLevel.get_parent();
@@ -45,7 +47,7 @@ func Enable():
 
 func LockOutFightStart():
 	if !areaLocked:
-		print("lockout started")
+		#print("lockout started")
 		emit_signal("lockout_started")
 		areaLocked = true;
 		emit_signal("area_lock", true)
@@ -68,6 +70,6 @@ func LockOutFightFinish(delimiterNode: CustomDelimiter2D):
 	delimiterNode.ManualTransition_Exit();
 
 func _on_StartArea_body_entered(body):
-	if body == LevelGlobals.GetPlayerActor():
+	if body == _player:
 		$StartArea/CollisionShape2D.set_deferred("disabled", true);
 		LockOutFightStart();

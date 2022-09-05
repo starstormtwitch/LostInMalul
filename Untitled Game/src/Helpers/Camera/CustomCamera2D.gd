@@ -6,7 +6,7 @@ class_name CustomCamera2D
 const _DEFAULT_CAMERA_LIMIT_TOP_LEFT: int = -10000000
 const _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT: int = 10000000
 const _DEFAULT_CAMERA_ZOOM: Vector2 = Vector2(0.4,0.4)
-const _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED: int = 2
+const _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED: int = 3
 
 const _DEFAULT_PAN_TIME = 1
 const _DEFAULT_PAN_SPEED = 1
@@ -62,11 +62,16 @@ var _boundWidth: int = 40
 var _defaultBoundLength: int = 10
 var _zoomToPlayer = false
 var _zoomToAreaLock = false
+var _player: Node2D
 
 # debugging options
 var printTimer = false
 var _printDebugMessageCameraTargetReached = false
+var _printDebugMessageProcessStarted = false
 var _printDebugMessageLimitReached = false
+var _printDebugMessageStartCameraMovement = false
+var _printDebugMessageCameraMovementFinsihed = false
+var currentDelimName = ""
 var startTime = 0
 var maxDeltaTime = 0
 
@@ -81,11 +86,16 @@ func _init(cameraTarget: Node, current: bool):
 	self.current = current
 	_animationPlayer = CustomCamera2DSimpleTransitionPlayer.new(cameraTarget.get_tree().current_scene)
 	_configureBounds()
+	_player = LevelGlobals.GetPlayerActor()
 
 func _ready():
 	self.set_process(true)
 
 func _process(delta):
+	if _printDebugMessageProcessStarted:
+		_printDebugMessageProcessStarted = false
+		var difference = OS.get_ticks_msec() - startTime
+		print("time to start process after camera check: " + String(difference))
 	if _zoomToPlayer:
 		_zoomToPlayer()
 	elif _zoomToAreaLock:
@@ -110,7 +120,6 @@ func _process(delta):
 
 func _zoomToPlayer():
 	#if we just finished an arena fight, we always update target to player position
-	var _player = LevelGlobals.GetPlayerActor()
 	_limit_smooth_target_position = _player.position
 	#we need to change our cameraReached logic, Since we will be tracking a moving object AKA the player
 	var cameraReachedTarget = _checkAndMoveCameraToTarget()
@@ -125,7 +134,8 @@ func _zoomtToArenaLock(delta: float):
 	if maxDeltaTime < delta:
 		maxDeltaTime = delta
 	if cameraReachedTarget:
-		print("Highest delta time: " + String(maxDeltaTime))
+		if currentDelimName == "AreaLockFight2":
+			print("Highest delta time: " + String(maxDeltaTime))
 		maxDeltaTime = 0
 		setLimits(_limit_smooth_top, _limit_smooth_left, _limit_smooth_bottom, _limit_smooth_right)
 		_zoomToAreaLock = false
@@ -147,7 +157,18 @@ func _printTimeDifferenceDebugMessage(cameraCheck: bool, debugMessageCheck: bool
 		debugMessageCheck = false
 
 
+func printTimerMessage(message: String, booleanFlag: bool):
+	if booleanFlag:
+		var difference = OS.get_ticks_msec() - startTime
+		print(message + String(difference))
+		booleanFlag = false
+
+
 func _checkAndMoveCameraToTarget() -> bool:
+	if _printDebugMessageStartCameraMovement:
+		_printDebugMessageStartCameraMovement = false
+		var difference = OS.get_ticks_msec() - startTime
+		print("time to start camera movemnt: " + String(difference))
 	var cameraReachedTarget = self.position.distance_to(_limit_smooth_target_position) < _SMALLER_CAMERA_DISTANCE_TARGET
 	if !cameraReachedTarget:
 		self.position.x = move_toward(self.position.x, _limit_smooth_target_position.x, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
@@ -167,10 +188,7 @@ func _checkAndMoveCameraLimitBounds() -> bool:
 
 func reachedCameraTarget():
 	print("reached limit for camera smoothing")
-	if printTimer:
-		printTimer = false
-		var difference = OS.get_ticks_msec() - startTime
-		print("Time to zoom into target in ms: " + String(difference))
+	printTimerMessage("Time to zoom into target in ms: ", printTimer)
 	_limit_smooth_active = false
 	self.smoothing_enabled = false
 	setRemoteUpdates(true)
@@ -278,10 +296,12 @@ func setRemoteUpdates(update: bool) -> void:
 
 func limitCameraToDelimiter(delimiter: CustomDelimiter2D, transitionType: int = TransitionTypeEnum.INSTANT, isAreaLock: bool = false) -> void:
 	print("Limiting to new area: " + delimiter.name)
+	currentDelimName = delimiter.name 
 	if transitionType == TransitionTypeEnum.AREA_LOCK:
 		#print("new start time")
 		startTime = OS.get_ticks_msec()
 		printTimer = true
+		_printDebugMessageProcessStarted = true
 	_currentDelimiter = delimiter
 	# TODO: i think we need to pan to middle of boundary and then limit the camera to boundaries
 	limitCameraToCoordinates(delimiter.getTop(), delimiter.getLeft(), delimiter.getBottom(), delimiter.getRight(), transitionType)
@@ -330,13 +350,14 @@ func _smoothCamera(top: int, left: int, bottom: int, right: int):
 
 
 func _areaLockCamera(top: int, left: int, bottom: int, right: int):
-	var _player = LevelGlobals.GetPlayerActor()
 	print("area lock fight starting. Count the time for it to zoom")
-	var playerString = "Player Position: " + String(_player.position.x) + ", " + String(_player.position.y)
-	var cameraString = " - Camera Position: " + String(self.position.x) + ", " + String(self.position.y)
-	print("Comparing positiions. " + playerString + cameraString)
+	#var playerString = "Player Position: " + String(_player.position.x) + ", " + String(_player.position.y)
+	#var cameraString = " - Camera Position: " + String(self.position.x) + ", " + String(self.position.y)
+	#print("Comparing positiions. " + playerString + cameraString)
 	_printDebugMessageCameraTargetReached = true
 	_printDebugMessageLimitReached = true
+	_printDebugMessageStartCameraMovement = true
+	_printDebugMessageCameraMovementFinsihed = true
 	_zoomToAreaLock = true
 	setRemoteUpdates(false)
 	self.smoothing_enabled = true
