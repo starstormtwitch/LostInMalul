@@ -395,6 +395,42 @@ position = Vector2( 4434.91, 222.118 )
 
 [node name="Checkpoints" type="Node" parent="LevelBackground"]
 
+[node name="ParkingLot" parent="LevelBackground" instance=ExtResource( 54 )]
+position = Vector2( 2455.62, 170.643 )
+
+[node name="ABunchOfApartments" parent="LevelBackground" instance=ExtResource( 59 )]
+position = Vector2( 1316.42, 225.236 )
+
+[node name="GambaBuilding" parent="LevelBackground" instance=ExtResource( 51 )]
+position = Vector2( 1985.8, 129.592 )
+
+[node name="OnePixelCamBuilding" parent="LevelBackground" instance=ExtResource( 52 )]
+position = Vector2( 3336.71, 128.401 )
+
+[node name="ApartmentsOne" parent="LevelBackground" instance=ExtResource( 48 )]
+position = Vector2( 3079.04, 105.476 )
+
+[node name="PcShop" parent="LevelBackground" instance=ExtResource( 50 )]
+position = Vector2( 2741.28, 134.468 )
+
+[node name="NomuBuilding" parent="LevelBackground" instance=ExtResource( 57 )]
+position = Vector2( 3521.34, 128.496 )
+
+[node name="ApartmentsTwo" parent="LevelBackground" instance=ExtResource( 55 )]
+position = Vector2( 3751.27, 105.073 )
+
+[node name="Graveyard" parent="LevelBackground" instance=ExtResource( 49 )]
+position = Vector2( 4286.21, 96.8844 )
+
+[node name="CafeBuilding" parent="LevelBackground" instance=ExtResource( 56 )]
+position = Vector2( 4057.59, 128.052 )
+
+[node name="ShitmanBuilding" parent="LevelBackground" instance=ExtResource( 53 )]
+position = Vector2( 2248.18, 103.513 )
+
+[node name="Park" parent="LevelBackground" instance=ExtResource( 58 )]
+position = Vector2( 846.415, 96.736 )
+
 [node name="MoreRoad" type="Node2D" parent="LevelBackground"]
 
 [node name="Road5" parent="LevelBackground/MoreRoad" instance=ExtResource( 45 )]
@@ -606,6 +642,7 @@ count = 2
 automatic = false
 
 [node name="AreaFreeFight2" parent="YSort/Actors" instance=ExtResource( 47 )]
+visible = false
 position = Vector2( 970.773, 159.902 )
 
 [node name="Spawner" parent="YSort/Actors/AreaFreeFight2" instance=ExtResource( 46 )]
@@ -790,42 +827,6 @@ position = Vector2( -25.3774, -2.94439 )
 
 [node name="BottomRightTree" parent="YSort/Trees" instance=ExtResource( 38 )]
 position = Vector2( 47.128, 66.0709 )
-
-[node name="ParkingLot" parent="YSort" instance=ExtResource( 54 )]
-position = Vector2( 2456.2, 170.407 )
-
-[node name="ABunchOfApartments" parent="YSort" instance=ExtResource( 59 )]
-position = Vector2( 1317, 225 )
-
-[node name="GambaBuilding" parent="YSort" instance=ExtResource( 51 )]
-position = Vector2( 1986.38, 129.356 )
-
-[node name="OnePixelCamBuilding" parent="YSort" instance=ExtResource( 52 )]
-position = Vector2( 3337.29, 128.165 )
-
-[node name="ApartmentsOne" parent="YSort" instance=ExtResource( 48 )]
-position = Vector2( 3079.62, 105.24 )
-
-[node name="PcShop" parent="YSort" instance=ExtResource( 50 )]
-position = Vector2( 2742.24, 129.363 )
-
-[node name="NomuBuilding" parent="YSort" instance=ExtResource( 57 )]
-position = Vector2( 3521.92, 128.26 )
-
-[node name="ApartmentsTwo" parent="YSort" instance=ExtResource( 55 )]
-position = Vector2( 3751.85, 104.837 )
-
-[node name="Graveyard" parent="YSort" instance=ExtResource( 49 )]
-position = Vector2( 4286.79, 96.6484 )
-
-[node name="CafeBuilding" parent="YSort" instance=ExtResource( 56 )]
-position = Vector2( 4058.17, 127.816 )
-
-[node name="ShitmanBuilding" parent="YSort" instance=ExtResource( 53 )]
-position = Vector2( 2248.76, 103.277 )
-
-[node name="Park" parent="YSort" instance=ExtResource( 58 )]
-position = Vector2( 847, 96.5 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
