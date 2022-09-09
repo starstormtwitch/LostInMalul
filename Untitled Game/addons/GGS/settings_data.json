@@ -125,7 +125,7 @@
 			"value": false
 		},
 		"current": {
-			"value": true
+			"value": false
 		},
 		"logic": "res://src/Helpers/Settings/Infinite Damage.gd"
 	},
