@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=2]
+[gd_scene load_steps=95 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Levels/Streets/Level_Start.png" type="Texture" id=2]
@@ -60,6 +60,7 @@
 [ext_resource path="res://src/Props/StreetLevel/UniqueBuildings/Park.tscn" type="PackedScene" id=58]
 [ext_resource path="res://src/Props/StreetLevel/Apartments/ABunchOfApartments.tscn" type="PackedScene" id=59]
 [ext_resource path="res://src/Props/StreetLevel/Shared/grass.tscn" type="PackedScene" id=60]
+[ext_resource path="res://src/Props/StreetLevel/Trees/ParkingLotTree.tscn" type="PackedScene" id=61]
 [ext_resource path="res://src/GUI/DashCooldownUI.tscn" type="PackedScene" id=177]
 [ext_resource path="res://assets/fonts/Early GameBoy.ttf" type="DynamicFontData" id=178]
 [ext_resource path="res://assets/GUI/BossHealthBarTheme.tres" type="Theme" id=179]
@@ -839,6 +840,12 @@ position = Vector2( 593.569, 138.952 )
 
 [node name="Trees" type="YSort" parent="YSort"]
 position = Vector2( 475.537, 30.7013 )
+
+[node name="BottomRightTree2" parent="YSort/Trees" instance=ExtResource( 38 )]
+position = Vector2( 3908.53, 40.7865 )
+
+[node name="ParkingLottTree" parent="YSort/Trees" instance=ExtResource( 61 )]
+position = Vector2( 1933.53, 53.125 )
 
 [node name="MIddleTree2" parent="YSort/Trees" instance=ExtResource( 34 )]
 position = Vector2( 268.237, 48.8194 )
