@@ -19,6 +19,7 @@ onready var _rightWarningSign = $GUI/Warnings/WarningSignRight
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	._ready()
 	_cameraManager.zoom = Vector2(.3,.3)
 	_player = LevelGlobals.GetPlayerActor()
 	assert(is_instance_valid(_player),"Player instance invalid")
@@ -27,6 +28,7 @@ func _ready():
 	_player.connect("health_changed", self, "_on_Player_health_changed")
 	_on_Player_health_changed(_player._health, _player._health, _player._maxHealth)
 	SetLevelCheckpointVariables(LevelGlobals.GetPlayerSaveData())
+	_cameraManager._isLevelTwo = true
 	
 func SetLevelCheckpointVariables(saveData):
 	assert(saveData.has("checkpoint"))

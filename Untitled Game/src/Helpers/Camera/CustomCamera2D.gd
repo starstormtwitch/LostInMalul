@@ -62,6 +62,7 @@ var _boundWidth: int = 40
 var _defaultBoundLength: int = 10
 var _zoomToPlayer = false
 var _zoomToAreaLock = false
+var _isLevelTwo = false
 var _player: Node2D
 
 # debugging options
@@ -294,9 +295,11 @@ func setRemoteUpdates(update: bool) -> void:
 	_remoteTransform2d.update_scale = update
 
 
-func limitCameraToDelimiter(delimiter: CustomDelimiter2D, transitionType: int = TransitionTypeEnum.INSTANT, isAreaLock: bool = false) -> void:
+func limitCameraToDelimiter(delimiter: CustomDelimiter2D, transitionType: int = TransitionTypeEnum.INSTANT, isLevelTwo: bool = false) -> void:
 	print("Limiting to new area: " + delimiter.name)
-	currentDelimName = delimiter.name 
+	currentDelimName = delimiter.name
+	if isLevelTwo:
+		_isLevelTwo = isLevelTwo
 	if transitionType == TransitionTypeEnum.AREA_LOCK:
 		#print("new start time")
 		startTime = OS.get_ticks_msec()
@@ -359,6 +362,7 @@ func _areaLockCamera(top: int, left: int, bottom: int, right: int):
 	_printDebugMessageStartCameraMovement = true
 	_printDebugMessageCameraMovementFinsihed = true
 	_zoomToAreaLock = true
+	# TODO update limits
 	setRemoteUpdates(false)
 	self.smoothing_enabled = true
 	self.smoothing_speed = 100
@@ -367,6 +371,9 @@ func _areaLockCamera(top: int, left: int, bottom: int, right: int):
 	_limit_smooth_target_position.y = _player.position.y
 	var viewportRectSize = self.get_viewport_rect()
 	var xDist = (viewportRectSize.size.x / 2) * self.zoom.x
+	if _isLevelTwo:
+		print("SET RIGHT CAMERA LIMIT")
+		setRightLimit(right)
 	emit_signal("smooth_limit_started")
 
 
@@ -391,6 +398,11 @@ func setSmoothingLimits(top: int, left: int, bottom: int, right: int) -> void:
 	_limit_smooth_left = left
 	_limit_smooth_bottom = bottom
 	_limit_smooth_right = right
+
+
+func setRightLimit(right: int):
+	self.limit_right = right
+	_updateBoundLimits()
 
 
 func setLimits(top: int, left: int, bottom: int, right: int) -> void:
