@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=2]
+[gd_scene load_steps=96 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Levels/Streets/Level_Start.png" type="Texture" id=2]
@@ -73,8 +73,11 @@ extents = Vector2( 4049.28, 10 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 119.7 )
 
+[sub_resource type="RectangleShape2D" id=29]
+extents = Vector2( 1031.87, 10 )
+
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 865.268, 6.09958 )
+extents = Vector2( 869.923, 6.09958 )
 
 [sub_resource type="SegmentShape2D" id=4]
 a = Vector2( -76.1052, -3.69151 )
@@ -309,12 +312,13 @@ position = Vector2( 4443.42, 110.052 )
 shape = SubResource( 2 )
 
 [node name="HouseBoundaries1" type="CollisionShape2D" parent="LevelBackground/Boundaries/OutsideBoundaries"]
-position = Vector2( 1396.89, 95.7093 )
-shape = SubResource( 3 )
+position = Vector2( 1398.02, 94.5869 )
+shape = SubResource( 29 )
 
 [node name="HouseBoundaries2" type="CollisionShape2D" parent="LevelBackground/Boundaries/OutsideBoundaries"]
-position = Vector2( 3345.1, 97.6154 )
+position = Vector2( 3352.17, 97.5705 )
 shape = SubResource( 3 )
+disabled = true
 
 [node name="RedHouseBoundaries" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 75.8518, 58.2467 )
@@ -548,6 +552,7 @@ position = Vector2( 318.932, 222.644 )
 [node name="Spawner" parent="YSort/Actors/AreaLockFight1" instance=ExtResource( 46 )]
 position = Vector2( 134.098, -6.74237 )
 count = 3
+enemy = "Shitman"
 automatic = false
 
 [node name="AreaLockFight3" parent="YSort/Actors" instance=ExtResource( 44 )]
@@ -563,7 +568,8 @@ position = Vector2( 287.713, 219.237 )
 
 [node name="Spawner" parent="YSort/Actors/AreaLockFight3" instance=ExtResource( 46 )]
 position = Vector2( 168.657, -5.25974 )
-count = 2
+count = 4
+enemy = "Shitman"
 automatic = false
 
 [node name="AreaLockFight4" parent="YSort/Actors" instance=ExtResource( 44 )]
@@ -571,6 +577,8 @@ position = Vector2( 2147.75, 160.191 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaLockFight4" instance=ExtResource( 46 )]
 position = Vector2( 89.9807, -5.3454 )
+count = 2
+enemy = "Shitman"
 automatic = false
 
 [node name="AreaLockFight4" parent="YSort/Actors/AreaLockFight4" instance=ExtResource( 20 )]
@@ -586,7 +594,8 @@ position = Vector2( 2811.92, 160.191 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaLockFight5" instance=ExtResource( 46 )]
 position = Vector2( 89.9807, -5.3454 )
-count = 2
+count = 5
+enemy = "Shitman"
 automatic = false
 
 [node name="AreaLockFight5" parent="YSort/Actors/AreaLockFight5" instance=ExtResource( 20 )]
@@ -601,8 +610,9 @@ position = Vector2( 248.703, 221.579 )
 position = Vector2( 3173.18, 160.191 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaLockFight6" instance=ExtResource( 46 )]
-position = Vector2( 89.9807, -5.3454 )
+position = Vector2( 90.542, -5.3454 )
 count = 4
+enemy = "Shitman"
 automatic = false
 
 [node name="AreaLockFight6" parent="YSort/Actors/AreaLockFight6" instance=ExtResource( 20 )]
@@ -619,11 +629,13 @@ position = Vector2( 3518.64, 160.785 )
 [node name="EnemySpawner" parent="YSort/Actors/AreaLockFight7" instance=ExtResource( 46 )]
 position = Vector2( -77.3577, -12.9135 )
 count = 4
+enemy = "Shitman"
 automatic = false
 
 [node name="EnemySpawner2" parent="YSort/Actors/AreaLockFight7" instance=ExtResource( 46 )]
 position = Vector2( 118.987, -13.0339 )
-count = 3
+count = 5
+enemy = "Shitman"
 automatic = false
 
 [node name="AreaLockFight7" parent="YSort/Actors/AreaLockFight7" instance=ExtResource( 20 )]
@@ -640,11 +652,13 @@ position = Vector2( 4009.08, 161.231 )
 [node name="EnemySpawner" parent="YSort/Actors/AreaLockFight8" instance=ExtResource( 46 )]
 position = Vector2( -110.321, -14.2498 )
 count = 4
+enemy = "Shitman"
 automatic = false
 
 [node name="EnemySpawner2" parent="YSort/Actors/AreaLockFight8" instance=ExtResource( 46 )]
 position = Vector2( 118.987, -13.0339 )
 count = 3
+enemy = "ChimeraBeast"
 automatic = false
 
 [node name="CustomDelimiter8" parent="YSort/Actors/AreaLockFight8" instance=ExtResource( 20 )]
@@ -664,6 +678,7 @@ position = Vector2( 376.45, 159.195 )
 [node name="Spawner" parent="YSort/Actors/AreaFreeFight" instance=ExtResource( 46 )]
 position = Vector2( -127.731, -20.6017 )
 count = 2
+enemy = "Shitman"
 automatic = false
 
 [node name="AreaFreeFight2" parent="YSort/Actors" instance=ExtResource( 47 )]
@@ -685,7 +700,8 @@ position = Vector2( 1151.44, 159.902 )
 
 [node name="Spawner" parent="YSort/Actors/AreaFreeFight3" instance=ExtResource( 46 )]
 position = Vector2( 91.8257, -9.99509 )
-count = 2
+count = 4
+enemy = "Shitman"
 automatic = false
 
 [node name="AreaFreeFight4" parent="YSort/Actors" instance=ExtResource( 47 )]
@@ -694,6 +710,7 @@ position = Vector2( 1780, 159.5 )
 [node name="Spawner" parent="YSort/Actors/AreaFreeFight4" instance=ExtResource( 46 )]
 position = Vector2( -64, -3 )
 count = 3
+enemy = "Shitman"
 automatic = false
 
 [node name="AreaFreeFight5" parent="YSort/Actors" instance=ExtResource( 47 )]
@@ -701,7 +718,8 @@ position = Vector2( 1934.5, 159.5 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaFreeFight5" instance=ExtResource( 46 )]
 position = Vector2( 43.5, -2 )
-count = 3
+count = 5
+enemy = "Shitman"
 automatic = false
 
 [node name="AreaFreeFight6" parent="YSort/Actors" instance=ExtResource( 47 )]
@@ -709,7 +727,8 @@ position = Vector2( 2431.49, 160.364 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaFreeFight6" instance=ExtResource( 46 )]
 position = Vector2( 82.408, -1.68179 )
-count = 2
+count = 3
+enemy = "Shitman"
 automatic = false
 
 [node name="AreaFreeFight7" parent="YSort/Actors" instance=ExtResource( 47 )]
@@ -717,14 +736,17 @@ position = Vector2( 2595.86, 159.918 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaFreeFight7" instance=ExtResource( 46 )]
 position = Vector2( 82.408, -1.68179 )
-count = 2
+count = 6
+enemy = "Shitman"
 automatic = false
 
 [node name="AreaLockFight2" parent="YSort/Actors" instance=ExtResource( 44 )]
 position = Vector2( 641.226, 161.111 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaLockFight2" instance=ExtResource( 46 )]
-position = Vector2( 77, -6 )
+position = Vector2( 75.9393, -5.64645 )
+count = 3
+enemy = "Shitman"
 level = 2
 automatic = false
 
@@ -741,7 +763,8 @@ position = Vector2( 3729.75, 160.356 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaFreeFight8" instance=ExtResource( 46 )]
 position = Vector2( 58.7991, -9.69986 )
-count = 3
+count = 4
+enemy = "Shitman"
 automatic = false
 
 [node name="RatGraffitiHouse" type="YSort" parent="YSort"]
