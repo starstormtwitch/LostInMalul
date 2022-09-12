@@ -73,30 +73,29 @@ extents = Vector2( 4049.28, 10 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 119.7 )
 
-[sub_resource type="SegmentShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 865.268, 6.09958 )
+
+[sub_resource type="SegmentShape2D" id=4]
 a = Vector2( -76.1052, -3.69151 )
 b = Vector2( -11.3035, -3.8788 )
 
-[sub_resource type="SegmentShape2D" id=4]
+[sub_resource type="SegmentShape2D" id=5]
 a = Vector2( -41.4569, 5.86019 )
 b = Vector2( 39.0771, 6.04748 )
 
-[sub_resource type="SegmentShape2D" id=5]
+[sub_resource type="SegmentShape2D" id=6]
 a = Vector2( -12.0526, -3.31694 )
 b = Vector2( -12.4272, 10.5424 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 10.4254, 17.6327 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 4.19347, 10 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 36.5392, 10 )
-
-[sub_resource type="SegmentShape2D" id=9]
-a = Vector2( 190.691, -66.1549 )
-b = Vector2( 532.039, -66.6376 )
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 6.13144, 11.5701 )
@@ -294,7 +293,7 @@ position = Vector2( 4314.45, -10.2872 )
 [node name="OutsideBoundaries" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 
 [node name="Top" type="CollisionShape2D" parent="LevelBackground/Boundaries/OutsideBoundaries"]
-position = Vector2( 383.177, -10.2109 )
+position = Vector2( 383.177, 26.2993 )
 shape = SubResource( 1 )
 
 [node name="Bottom" type="CollisionShape2D" parent="LevelBackground/Boundaries/OutsideBoundaries"]
@@ -309,35 +308,40 @@ shape = SubResource( 2 )
 position = Vector2( 4443.42, 110.052 )
 shape = SubResource( 2 )
 
+[node name="HouseBoundaries1" type="CollisionShape2D" parent="LevelBackground/Boundaries/OutsideBoundaries"]
+position = Vector2( 1396.89, 95.7093 )
+shape = SubResource( 3 )
+
+[node name="HouseBoundaries2" type="CollisionShape2D" parent="LevelBackground/Boundaries/OutsideBoundaries"]
+position = Vector2( 3345.1, 97.6154 )
+shape = SubResource( 3 )
+
 [node name="RedHouseBoundaries" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 75.8518, 58.2467 )
 
 [node name="FrontDoorHouse" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="FrontOfGarage" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
 position = Vector2( 31.0899, 4.30763 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="FrontDoorHouse2" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="TrashCans" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
 position = Vector2( 6.45899, 20.2679 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="Chair" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
 position = Vector2( -43.8317, -8.61919 )
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 
 [node name="Street" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 232.93, 170.192 )
 
 [node name="BusStop" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 234.554, -68.9937 )
-shape = SubResource( 8 )
-
-[node name="RightSide" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 shape = SubResource( 9 )
 
 [node name="RatGraffitiHouse" type="StaticBody2D" parent="LevelBackground/Boundaries"]
@@ -498,7 +502,7 @@ position = Vector2( 2248.18, 105.011 )
 position = Vector2( 846.415, 96.5624 )
 
 [node name="ABunchOfApartments" parent="LevelBackground" instance=ExtResource( 59 )]
-position = Vector2( 1315.77, 225.059 )
+position = Vector2( 1315.64, 225.059 )
 
 [node name="YSort" type="YSort" parent="."]
 pause_mode = 1
@@ -808,6 +812,9 @@ position = Vector2( 470.582, 113.795 )
 [node name="RedTruck" parent="YSort/Road" instance=ExtResource( 31 )]
 position = Vector2( 544.896, 120.023 )
 
+[node name="Lamp3" parent="YSort/Road" instance=ExtResource( 30 )]
+position = Vector2( 1629.85, 120.966 )
+
 [node name="Lamp2" parent="YSort/Road" instance=ExtResource( 30 )]
 position = Vector2( 728.847, 123.944 )
 
@@ -837,6 +844,33 @@ position = Vector2( 615.742, 126.569 )
 
 [node name="box" parent="YSort/Road" instance=ExtResource( 32 )]
 position = Vector2( 593.569, 138.952 )
+
+[node name="Lamp4" parent="YSort/Road" instance=ExtResource( 30 )]
+position = Vector2( 1795.83, 124.694 )
+
+[node name="Lamp5" parent="YSort/Road" instance=ExtResource( 30 )]
+position = Vector2( 2131.83, 124.799 )
+
+[node name="Lamp6" parent="YSort/Road" instance=ExtResource( 30 )]
+position = Vector2( 2623.86, 125.226 )
+
+[node name="Lamp7" parent="YSort/Road" instance=ExtResource( 30 )]
+position = Vector2( 2894.9, 125.159 )
+
+[node name="Lamp8" parent="YSort/Road" instance=ExtResource( 30 )]
+position = Vector2( 3279.67, 123.617 )
+
+[node name="Lamp9" parent="YSort/Road" instance=ExtResource( 30 )]
+position = Vector2( 3413.77, 123.75 )
+
+[node name="Lamp10" parent="YSort/Road" instance=ExtResource( 30 )]
+position = Vector2( 3902, 123.346 )
+
+[node name="Lamp11" parent="YSort/Road" instance=ExtResource( 30 )]
+position = Vector2( 4057.81, 123.441 )
+
+[node name="Lamp12" parent="YSort/Road" instance=ExtResource( 30 )]
+position = Vector2( 4209.77, 123.524 )
 
 [node name="Trees" type="YSort" parent="YSort"]
 position = Vector2( 475.537, 30.7013 )
