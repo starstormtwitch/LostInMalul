@@ -3,7 +3,7 @@
 [ext_resource path="res://src/Helpers/Spawning/Spawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Helpers/Spawning/EnemySpawner.gd" type="Script" id=2]
 
-[node name="Spawner" groups=[
+[node name="EnemySpawner" groups=[
 "EnemySpawner",
 ] instance=ExtResource( 1 )]
 script = ExtResource( 2 )

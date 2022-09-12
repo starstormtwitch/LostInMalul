@@ -269,7 +269,7 @@ func delete_item_from_inventory():
 
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if _canTakeDamage:
-		print("call hurt logic")
+		#print("call hurt logic")
 		_canTakeDamage = false
 		_beingHurt = true
 		_attackManager.gotHit()
@@ -350,7 +350,7 @@ func checkForEvent(event_name: String, delta) -> bool:
 	return false
 
 func _finishedAttack() -> void:
-	print("attack finished")
+	#print("attack finished")
 	_attackManager.isAttacking = false
 
 
@@ -361,7 +361,7 @@ func _hurtAnimationFinished() -> void:
 
 func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
-		print("direction of hit: " + String(_directionFacing.x))
+		#print("direction of hit: " + String(_directionFacing.x))
 		var finalDam = ceil(_damage * _giveDamageModifier)
 		if isInfiniteDamage:
 			finalDam = INFINITE_DAMAGE_VALUE

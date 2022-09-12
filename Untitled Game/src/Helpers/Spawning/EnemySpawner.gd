@@ -2,13 +2,12 @@ extends spawner
 
 #Names must match enum exactly
 const enemyDict = {
-	"Slime" : preload("res://src/Actors/Slime.tscn"),
 	"SlimeFR" : preload("res://src/Actors/SlimeFR.tscn"),
 	"RatSoldier" : preload("res://src/Actors/RatSoldier.tscn"),
 	"RatKing" : preload("res://src/Actors/RatKing/RatKing.tscn"),
 	"Granny" : preload("res://src/Actors/Granny.tscn")
 }  
-export(String, "Slime", "SlimeFR", "RatSoldier", "RatKing", "Granny") var enemy = "Slime"
+export(String, "SlimeFR", "RatSoldier", "RatKing", "Granny") var enemy = "SlimeFR"
 
 export(int) var level = 1
 export(bool) var automatic = true

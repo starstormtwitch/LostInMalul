@@ -105,7 +105,7 @@
 			"value": 50
 		},
 		"current": {
-			"value": 65
+			"value": 20
 		},
 		"logic": "res://src/Helpers/Settings/Audio_MasterVolume.gd"
 	},
@@ -125,7 +125,7 @@
 			"value": false
 		},
 		"current": {
-			"value": false
+			"value": true
 		},
 		"logic": "res://src/Helpers/Settings/Infinite Damage.gd"
 	},

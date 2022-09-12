@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/Props/street/Apartments/789buildings.png" type="Texture" id=1]
+
+[node name="ApartmentsTwo" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0.707092, -56.9221 )
+texture = ExtResource( 1 )

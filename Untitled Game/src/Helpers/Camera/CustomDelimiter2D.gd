@@ -66,12 +66,12 @@ func ManualTransition_Exit() -> void:
 
 func _on_AutomaticTransition_Area2D_body_entered(body) -> void:
 	if AutomaticTransition && body.is_in_group("Player"):
-		print("Delimiter triggered: " + self.name)
+		print("Delimiter entered triggered: " + self.name)
 		emit_signal("PlayerEnteredAreaDelimiter", self, IsAreaLockDelimeter)
 		#TransitionsManager.CameraTransitionToDelimiter(self)
 		
 func _on_AutomaticTransition_Area2D_body_exited(body) -> void:
 	if TransitionToOverlappingDelimiterOnExit && AutomaticTransition && body.is_in_group("Player"):
-		print("Delimiter triggered: " + self.name)
+		print("Delimiter Exited triggered: " + self.name)
 		emit_signal("PlayerExitedAreaDelimiter", self)
 		#TransitionsManager.CameraTransitionToDelimiter(self)

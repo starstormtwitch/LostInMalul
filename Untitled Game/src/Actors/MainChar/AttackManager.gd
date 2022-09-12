@@ -65,7 +65,7 @@ func doSideSwipeAttack(scene : Node):
 	if attackLock.try_lock() == OK:
 		_attack_setup(false)
 		_playPunchSFX = true
-		print("Combo A: " + String(_comboAPoints))
+		#print("Combo A: " + String(_comboAPoints))
 		if _comboAPoints == 1 or _comboBPoints == 1:
 			_animationHandler.headbutt()
 			SoundPlayer.playSound(scene, missSound, -4)
@@ -88,7 +88,7 @@ func doSideSwipeAttack(scene : Node):
 func doSideSwipeKick(scene : Node):
 	if attackLock.try_lock() == OK:
 		_attack_setup(true)
-		print("Combo B: " + String(_comboBPoints))
+		#print("Combo B: " + String(_comboBPoints))
 		if _comboBPoints == 1 or _comboAPoints == 1:
 			_animationHandler.shoryuken()
 			damageForce = MAX_DAMAGE_FORCE
