@@ -24,7 +24,7 @@
 [ext_resource path="res://src/Helpers/Utilities/TwoWayTeleportNode2D.tscn" type="PackedScene" id=22]
 [ext_resource path="res://src/Helpers/GUI/HealthBar.tscn" type="PackedScene" id=23]
 [ext_resource path="res://assets/GUI/cashIcon.png" type="Texture" id=24]
-[ext_resource path="res://assets/actions/tile_0395.png" type="Texture" id=25]
+[ext_resource path="res://assets/actions/f_key.png" type="Texture" id=25]
 [ext_resource path="res://src/Helpers/GUI/Pause/PauseScreenContainer.tscn" type="PackedScene" id=26]
 [ext_resource path="res://src/Props/HouseLevel/bathroom/bathroom_bidet.tscn" type="PackedScene" id=27]
 [ext_resource path="res://src/Props/HouseLevel/bathroom/bathroom_toilet.tscn" type="PackedScene" id=28]
@@ -202,6 +202,7 @@
 [ext_resource path="res://src/Helpers/Utilities/Crt/CRTLayer.tscn" type="PackedScene" id=200]
 [ext_resource path="res://src/Helpers/GUI/ContinueRight.tscn" type="PackedScene" id=201]
 [ext_resource path="res://src/Actors/Box.tscn" type="PackedScene" id=202]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3680.33, 10 )

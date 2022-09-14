@@ -1,9 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/InventoryItems/ItemBase.gd" type="Script" id=1]
-[ext_resource path="res://assets/actions/tile_0395.png" type="Texture" id=2]
+[ext_resource path="res://assets/actions/f_key.png" type="Texture" id=2]
 [ext_resource path="res://src/Helpers/Interacts/InteractPromptArea.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/SpriteSheets/main_char/mc_shadow.png" type="Texture" id=4]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13.7224, 14.0084 )
