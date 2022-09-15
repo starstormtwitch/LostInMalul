@@ -1,7 +1,9 @@
 extends Sprite
 
 
-const INTERACT_ACTION = "Interact"
+class_name InteractSprite
+
+const INTERACT_ACTION = "interact"
 
 var actionImagePathKey = {
 	"a": "res://assets/actions/a_key.png",
@@ -59,3 +61,5 @@ func getTextureFromPath(path: String):
 
 	var texture = ImageTexture.new()
 	texture.create_from_image(image)
+	return texture
+	
