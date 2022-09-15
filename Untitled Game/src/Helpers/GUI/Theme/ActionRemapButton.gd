@@ -2,7 +2,7 @@ extends Button
 
 class_name ActionRemapButton
 
-export(String, "move_up", "move_down", "move_left", "move_right", "dodge", "special_attack", "side_swipe_attack", "attack_2") var action = "move_up"
+export(String, "move_up", "move_down", "move_left", "move_right", "dodge", "special_attack", "side_swipe_attack", "attack_2", "interact") var action = "move_up"
 export(String, "keyboard", "mouse", "joypad") var input_type = "keyboard"
 
 var isEditing: bool = false
