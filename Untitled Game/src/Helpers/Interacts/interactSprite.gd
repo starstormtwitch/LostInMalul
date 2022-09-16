@@ -34,9 +34,12 @@ var actionImagePathKey = {
 	"z": "res://assets/actions/z_key.png"
 }
 
+var settings = Settings.new()
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	settings.connectNodeToSettingsChangedSignal(self, "checkInteractActionButton")
 	checkInteractActionButton()
 
 
