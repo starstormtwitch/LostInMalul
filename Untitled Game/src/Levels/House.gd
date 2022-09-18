@@ -5,6 +5,7 @@ var garage_Key : PackedScene = preload("res://src/InventoryItems/GarageKey.tscn"
 var plunger : PackedScene = preload("res://src/InventoryItems/Plunger.tscn")
 var screwdriver : PackedScene = preload("res://src/InventoryItems/Screwdriver.tscn")
 var socks : PackedScene = preload("res://src/InventoryItems/ComfySocks.tscn")
+var switch : PackedScene = preload("res://src/InventoryItems/Switch.tscn")
 var trophy : PackedScene = preload("res://src/InventoryItems/Trophy.tscn")
 var pillow : PackedScene = preload("res://src/InventoryItems/Pillow.tscn")
 var candle : PackedScene = preload("res://src/InventoryItems/Candle.tscn")
@@ -24,11 +25,13 @@ var _Garage4Defeated: bool = false
 var _Garage5Defeated: bool = false
 var _pickedUpBasementKey: bool = false
 var _toiletClogged: bool = true
+var _toiletUsed: bool = false
 var _pickedUpPlunger: bool = false
 var _pickedUpTrophy: bool = false
 var _pickedUpSocks: bool = false
 var _pickedUpPillow: bool = false
 var _pickedUpCandle: bool = false
+var _pickedUpSwitch: bool = false
 var _pickedUpScrewdriver: bool = false
 var _rightBasementDefeated: bool = false
 var ratKing
@@ -53,10 +56,24 @@ func SetLevelCheckpointVariables(saveData):
 			get_node("YSort/Actors/BedroomFight1").Disable()
 			get_node("LevelBackground/Checkpoints/Checkpoint").set_deferred("disabled", true)
 			pass;
+		"DoneWithSwitch":
+			get_node("LevelBackground/Checkpoints/Checkpoint").set_deferred("disabled", true)
+			_toiletClogged = false;
+			_toiletUsed = true;
+			_pickedUpPlunger = true;
+			_pickedUpSwitch = true;
+			_sendKitchenCrash = true;
+			get_node("LevelBackground/Interactions/Bedroom/StreamRoomTooSoon/CollisionShape").set_deferred("disabled", true);
+			get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
+			get_node("YSort/Actors/BedroomFight1").Enable()
+			get_node("YSort/Actors/BedroomFight2").Enable()
+			StartupPlayerInPosition(Vector2(150, 225), 5)
 		"FirstEnemy":
 			get_node("LevelBackground/Checkpoints/Checkpoint").set_deferred("disabled", true)
 			_toiletClogged = false;
+			_toiletUsed = true;
 			_pickedUpPlunger = true;
+			_pickedUpSwitch = true;
 			_sendKitchenCrash = false;
 			_pickedUpBasementKey = true;
 			get_node("YSort/Actors/BedroomFight1").Disable()
@@ -111,17 +128,22 @@ func _on_InteractPromptArea_interactable_text_signal(text):
 func _on_Toilet_interactable_text_signal(text):
 	if($GUI/PlayerGui/Inventory.InventoryItem != null && $GUI/PlayerGui/Inventory.InventoryItem.name == "Plunger"):
 		_sendKitchenCrash = true;
-		_textBox.showText("*Unclogs toilet with plunger and takes morning poop*")
+		_textBox.showText("*Unclogs toilet with plunger*  That's better, but I can't take my morning poop without my Switch.")
 		_player.delete_item_from_inventory()
 		_toiletClogged = false;
-		get_node("LevelBackground/Interactions/Bedroom/StreamRoomTooSoon/CollisionShape").set_deferred("disabled", true);
-		get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
-		get_node("YSort/Actors/BedroomFight1").Enable()
-		get_node("YSort/Actors/BedroomFight2").Enable()
-	elif(!_toiletClogged):
+	elif(_toiletClogged): 
+		_textBox.showText("The toilet is clogged, who just let this sit in here all night? I think I put a plunger underneath the sink.")
+	elif($GUI/PlayerGui/Inventory.InventoryItem != null && $GUI/PlayerGui/Inventory.InventoryItem.name == "Switch"):
+		_sendKitchenCrash = true;
+		_player.delete_item_from_inventory()
+		_toiletUsed = true;
+		LevelGlobals.SetCheckpoint("Streets", "Start");
+		LevelGlobals.save_game();
+		LevelGlobals.load_checkpoint();
+	elif(!_toiletClogged && !_toiletUsed):
+		_textBox.showText("I can't take my morning poop without my Switch.")
+	else:
 		_textBox.showText(text)
-	else: 
-		_textBox.showText("The toilet is clogged, I think I put a plunger underneath the sink.")
 
 func _on_TextBox_closed():
 	if(_sendKitchenCrash):
@@ -255,9 +277,10 @@ func _on_RatKingSpawner_spawned(spawn):
 	$GUI/BossGui/ProgressBar.set_deferred("value",   (spawn._health / spawn._maxHealth) * 100);
 
 func _on_RatKingSpawner_AllEnemiesDefeated():
-	LevelGlobals.SetCheckpoint("Streets", "Start");
-	LevelGlobals.save_game();
-	LevelGlobals.load_checkpoint();
+	_textBox.showText("I've...I've done it, I've defeated the rat king, I've finally reclaimed my house as my own.  *checks phone* Oh no, I'm an hour late for my stream.  There is no way they will believe my excuse.")
+	var gameScene = LevelGlobals.GetLevelScene("Credits");
+	assert(gameScene != null, "Unknown level!");
+	get_tree().change_scene_to(gameScene);
 
 func _on_BedroomFight1_lockout_started():
 	get_node("GUI/PlayerGui/ContinueRight").stop_blinking()
@@ -359,3 +382,10 @@ func _on_BasementFight_lockout_finished():
 	get_node("GUI/PlayerGui/ContinueRight").start_blinking()
 	GetReadyForBossEncounter();
 
+func _on_Chair_interactable_text_signal(text):
+	_textBox.showText(text)
+	if(!_pickedUpSwitch):
+		_pickedUpSwitch = true
+		_player.add_item_to_inventory(switch.instance())
+		$LevelBackground/Interactions/Bedroom/Chair.interactableText = "This chair looks weird."
+	pass # Replace with function body.

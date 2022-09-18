@@ -87,3 +87,8 @@ func _on_TrafficSystemLeft_SpawnWarning():
 	yield(get_tree().create_timer(2), "timeout")
 	_leftWarningSign.visible = false
 	_stop_warning_sound()
+
+func _on_BossSpawner_AllEnemiesDefeated():
+	LevelGlobals.SetCheckpoint("House", "DoneWithSwitch");
+	LevelGlobals.save_game();
+	LevelGlobals.load_checkpoint();
