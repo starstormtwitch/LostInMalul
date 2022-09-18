@@ -6,6 +6,7 @@ onready var label = $MarginContainer/MarginContainer/Label
 onready var animationPlayer = $AnimationPlayer
 
 var isShowing = false
+var isAnimating = false
 
 signal closed
 
@@ -17,7 +18,12 @@ func _input(event: InputEvent) -> void:
 
 # Call when the "UI_Cacnel" event is called. will close textboxes if open
 func _handleUICancelEvent() -> void:
-	if isShowing:
+	if isAnimating:
+		animationPlayer.stop()
+		label.percent_visible = 1
+		isAnimating = false
+		get_tree().set_input_as_handled()
+	elif isShowing:
 		hideText()
 		get_tree().set_input_as_handled()
 
@@ -37,5 +43,10 @@ func showText(text: String):
 		get_tree().paused = true
 		self.visible = true
 		isShowing = true
+		isAnimating = true
 		label.text = text
 		animationPlayer.play("typewriter_effect")
+
+
+func animationDone():
+	isAnimating = false
