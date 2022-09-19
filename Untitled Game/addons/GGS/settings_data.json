@@ -115,7 +115,11 @@
 			"value": ""
 		},
 		"current": {
-			"value": null
+			"value": {
+				"interact": {
+					"keyboard": "N"
+				}
+			}
 		},
 		"logic": "res://src/Helpers/Settings/InputMapping.gd"
 	},

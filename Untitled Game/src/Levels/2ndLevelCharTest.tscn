@@ -30,7 +30,7 @@
 [ext_resource path="res://assets/fonts/Early GameBoy.ttf" type="DynamicFontData" id=28]
 [ext_resource path="res://src/Levels/House.gd" type="Script" id=29]
 [ext_resource path="res://src/Helpers/Interacts/InteractPromptArea.gd" type="Script" id=30]
-[ext_resource path="res://assets/actions/tile_0395.png" type="Texture" id=31]
+[ext_resource path="res://assets/actions/f_key.png" type="Texture" id=31]
 [ext_resource path="res://assets/Levels/House/House_level.png" type="Texture" id=32]
 [ext_resource path="res://assets/Levels/House/HouseBGfin.png" type="Texture" id=33]
 [ext_resource path="res://src/Props/HouseLevel/bedroom/bedroom_nightstand_left.tscn" type="PackedScene" id=34]
