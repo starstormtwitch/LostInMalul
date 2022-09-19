@@ -8,15 +8,17 @@ var HasPillow = false;
 var HasCandle = false;
 var _player;
 var _itemTimer = Timer.new()
+var _textBox: TextBox
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_player = LevelGlobals.GetPlayerActor();
+	_textBox = LevelGlobals.GetTextBox();
 	$InteractPromptArea._player = _player
 	_health = 9999
-	_acceleration = 0.2
-	_speed = 50
-	_attack_range = 10
+	_acceleration = 0
+	_speed = 0
+	_attack_range = 0
 	_animationHandler = AnimationHandler.new()
 	if(get_node_or_null("AnimationTree") != null):
 		$AnimationTree.active = true
@@ -39,50 +41,26 @@ func _physics_process(_delta: float) -> void:
 		self.modulate.a = 0
 	
 
-func _attack_done():
-	_velocity = getMovement(Vector2.ZERO, 0, .5)
-	#_velocity = move_and_slide(_velocity)
-	_finishedAttack(2)
-
-func _on_Attack_area_entered(area):
-	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage") && _isStunned == false:
-		area.get_parent().take_damage(5, _velocity.normalized(), 50000)
-
 func _on_InteractPromptArea_interactable_text_signal(text):
 	if(!_isStunned):
 		if(is_instance_valid(_player.InventoryItem) && _player.InventoryItem.name == "ComfySocks"):
 			_player.delete_item_from_inventory()
 			HasSocks = true;
-			self.modulate =  Color(0,0,20,.5) 
-			$Attack.set_deferred("disabled", true);
-			stun(5)
-			_hitFlashTimer.start(5)
+			_textBox.showText("I am so warm and comfy with these nice socks.")
 		elif(is_instance_valid(_player.InventoryItem) && _player.InventoryItem.name == "Trophy"):
 			_player.delete_item_from_inventory()
 			HasTrophy = true;
-			self.modulate =  Color(0,0,1,.5) 
-			$Attack.set_deferred("disabled", true);
-			stun(5)
-			_hitFlashTimer.start(5)
+			_textBox.showText("What a shiny trophy, I am always so proud of you.")
 		elif(is_instance_valid(_player.InventoryItem) && _player.InventoryItem.name == "Pillow"):
 			_player.delete_item_from_inventory()
 			HasPillow = true;
-			self.modulate =  Color(0,0,1,.5) 
-			$Attack.set_deferred("disabled", true);
-			stun(5)
-			_hitFlashTimer.start(5)
+			_textBox.showText("This pillow is very weird, why would you think your poor granny would want this?")
 		elif(is_instance_valid(_player.InventoryItem) && _player.InventoryItem.name == "Candle"):
 			_player.delete_item_from_inventory()
 			HasCandle = true;
-			self.modulate =  Color(0,0,1,.5) 
-			$Attack.set_deferred("disabled", true);
-			stun(5)
-			_hitFlashTimer.start(5)
+			_textBox.showText("Thank you, the smell of this wonderful gamer candle makes your granny so happy.")
 		else:
-			self.modulate =  Color(2,2,2,.5) 
-			stun(5)
-			$Attack.set_deferred("disabled", true);
-			_hitFlashTimer.start(5)
+			_textBox.showText("Hey there sonny, I'm so cold and uncomfortable, can you please take care of your poor granny?")
 	if(HasSocks && HasTrophy && HasPillow && HasCandle):
 		die();
 		self.dispose();
