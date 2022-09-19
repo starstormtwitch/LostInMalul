@@ -1,4 +1,4 @@
-[gd_scene load_steps=243 format=2]
+[gd_scene load_steps=244 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
@@ -607,10 +607,11 @@ interactableText = "I found my switch in the cushion"
 position = Vector2( -233.814, 28.2874 )
 shape = SubResource( 26 )
 
-[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Bedroom/Chair"]
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Bedroom/Chair"]
 visible = false
 position = Vector2( -233.814, 8.07408 )
 texture = ExtResource( 25 )
+script = ExtResource( 204 )
 
 [node name="LivingRoom" type="Node2D" parent="LevelBackground/Interactions"]
 position = Vector2( 1929.02, 75.1823 )
