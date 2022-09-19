@@ -30,7 +30,7 @@
 [ext_resource path="res://assets/fonts/Early GameBoy.ttf" type="DynamicFontData" id=28]
 [ext_resource path="res://src/Levels/House.gd" type="Script" id=29]
 [ext_resource path="res://src/Helpers/Interacts/InteractPromptArea.gd" type="Script" id=30]
-[ext_resource path="res://assets/actions/tile_0395.png" type="Texture" id=31]
+[ext_resource path="res://assets/actions/f_key.png" type="Texture" id=31]
 [ext_resource path="res://assets/Levels/House/House_level.png" type="Texture" id=32]
 [ext_resource path="res://assets/Levels/House/HouseBGfin.png" type="Texture" id=33]
 [ext_resource path="res://src/Props/HouseLevel/bedroom/bedroom_nightstand_left.tscn" type="PackedScene" id=34]
@@ -1028,7 +1028,6 @@ position = Vector2( 702.719, 250.282 )
 
 [node name="FirstRat" parent="YSort/Actors" instance=ExtResource( 186 )]
 position = Vector2( 1503.97, 217.292 )
-enemy = "SlimeFR"
 automatic = false
 
 [node name="BasementL1" parent="YSort/Actors" instance=ExtResource( 186 )]
@@ -1037,7 +1036,6 @@ scale = Vector2( 1.67996, 1 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 7
 count = 10
-enemy = "SlimeFR"
 automatic = false
 
 [node name="BasementR1" parent="YSort/Actors" instance=ExtResource( 186 )]
@@ -1045,7 +1043,6 @@ position = Vector2( 717.26, 523.551 )
 rect = Rect2( 0, 0, 50, 70 )
 duration_between_spawn = 7
 count = 10
-enemy = "SlimeFR"
 automatic = false
 
 [node name="GrannySpawner" parent="YSort/Actors" instance=ExtResource( 186 )]
@@ -1060,14 +1057,12 @@ scale = Vector2( 0.98145, 1 )
 rect = Rect2( 0, 0, 200, 80 )
 duration_between_spawn = 1
 count = 4
-enemy = "SlimeFR"
 
 [node name="Garage1" parent="YSort/Actors" instance=ExtResource( 186 )]
 position = Vector2( 3386.98, 506.247 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
 count = 4
-enemy = "SlimeFR"
 automatic = false
 
 [node name="Garage2" parent="YSort/Actors" instance=ExtResource( 186 )]
@@ -1083,7 +1078,6 @@ position = Vector2( 3420.32, 507.095 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
 count = 2
-enemy = "SlimeFR"
 automatic = false
 
 [node name="Garage4" parent="YSort/Actors" instance=ExtResource( 186 )]
@@ -1100,7 +1094,6 @@ rect = Rect2( 0, 0, 200, 40 )
 only_off_screen = true
 duration_between_spawn = 30
 count = 30
-enemy = "SlimeFR"
 automatic = false
 
 [node name="BedroomSpawner" parent="YSort/Actors" instance=ExtResource( 186 )]
@@ -1109,7 +1102,6 @@ rect = Rect2( 0, 0, 200, 40 )
 only_off_screen = true
 duration_between_spawn = 30
 count = 30
-enemy = "SlimeFR"
 automatic = false
 
 [node name="OfficeSpawner" parent="YSort/Actors" instance=ExtResource( 186 )]
@@ -1118,7 +1110,6 @@ rect = Rect2( 0, 0, 200, 40 )
 only_off_screen = true
 duration_between_spawn = 30
 count = 30
-enemy = "SlimeFR"
 automatic = false
 
 [node name="LivingRoomSpawner" parent="YSort/Actors" instance=ExtResource( 186 )]
@@ -1127,7 +1118,6 @@ rect = Rect2( 0, 0, 200, 40 )
 only_off_screen = true
 duration_between_spawn = 30
 count = 30
-enemy = "SlimeFR"
 automatic = false
 
 [node name="KitchenSpawner" parent="YSort/Actors" instance=ExtResource( 186 )]
@@ -1136,7 +1126,6 @@ rect = Rect2( 0, 0, 100, 40 )
 only_off_screen = true
 duration_between_spawn = 30
 count = 30
-enemy = "SlimeFR"
 automatic = false
 
 [node name="FoyerSpawner" parent="YSort/Actors" instance=ExtResource( 186 )]
@@ -1145,7 +1134,6 @@ rect = Rect2( 0, 0, 100, 40 )
 only_off_screen = true
 duration_between_spawn = 30
 count = 30
-enemy = "SlimeFR"
 automatic = false
 
 [node name="GarageSpawner" parent="YSort/Actors" instance=ExtResource( 186 )]
@@ -1154,7 +1142,6 @@ rect = Rect2( 0, 0, 100, 40 )
 only_off_screen = true
 duration_between_spawn = 30
 count = 30
-enemy = "SlimeFR"
 automatic = false
 
 [node name="Garage5" parent="YSort/Actors" instance=ExtResource( 186 )]
@@ -1162,7 +1149,6 @@ position = Vector2( 3447.19, 508.68 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
 count = 2
-enemy = "SlimeFR"
 automatic = false
 
 [node name="RatKingSpawner" parent="YSort/Actors" instance=ExtResource( 186 )]

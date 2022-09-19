@@ -65,7 +65,7 @@
 			"value": 50
 		},
 		"current": {
-			"value": 44
+			"value": 69
 		},
 		"logic": "res://src/Helpers/Settings/Audio_EffectsVolume.gd"
 	},
@@ -105,7 +105,7 @@
 			"value": 50
 		},
 		"current": {
-			"value": 20
+			"value": 56
 		},
 		"logic": "res://src/Helpers/Settings/Audio_MasterVolume.gd"
 	},
@@ -115,7 +115,11 @@
 			"value": ""
 		},
 		"current": {
-			"value": null
+			"value": {
+				"interact": {
+					"keyboard": "N"
+				}
+			}
 		},
 		"logic": "res://src/Helpers/Settings/InputMapping.gd"
 	},
@@ -135,7 +139,7 @@
 			"value": true
 		},
 		"current": {
-			"value": false
+			"value": true
 		},
 		"logic": "res://src/Helpers/Settings/CRT_Effect.gd"
 	}

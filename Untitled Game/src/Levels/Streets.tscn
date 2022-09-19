@@ -222,11 +222,13 @@ position = Vector2( 4334.49, 2.26112 )
 [node name="OutsideBoundaries" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 
 [node name="Top" type="CollisionShape2D" parent="LevelBackground/Boundaries/OutsideBoundaries"]
-position = Vector2( 533.956, -1.95732 )
+position = Vector2( 2339.18, -15.3348 )
+scale = Vector2( 0.580311, 1 )
 shape = SubResource( 1 )
 
 [node name="Bottom" type="CollisionShape2D" parent="LevelBackground/Boundaries/OutsideBoundaries"]
-position = Vector2( 530.127, 234.14 )
+position = Vector2( 2356.75, 234.14 )
+scale = Vector2( 0.585425, 1.00653 )
 shape = SubResource( 1 )
 
 [node name="Left" type="CollisionShape2D" parent="LevelBackground/Boundaries/OutsideBoundaries"]

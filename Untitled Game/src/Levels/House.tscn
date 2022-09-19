@@ -1,4 +1,4 @@
-[gd_scene load_steps=241 format=2]
+[gd_scene load_steps=244 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
@@ -24,7 +24,7 @@
 [ext_resource path="res://src/Helpers/Utilities/TwoWayTeleportNode2D.tscn" type="PackedScene" id=22]
 [ext_resource path="res://src/Helpers/GUI/HealthBar.tscn" type="PackedScene" id=23]
 [ext_resource path="res://assets/GUI/cashIcon.png" type="Texture" id=24]
-[ext_resource path="res://assets/actions/tile_0395.png" type="Texture" id=25]
+[ext_resource path="res://assets/actions/f_key.png" type="Texture" id=25]
 [ext_resource path="res://src/Helpers/GUI/Pause/PauseScreenContainer.tscn" type="PackedScene" id=26]
 [ext_resource path="res://src/Props/HouseLevel/bathroom/bathroom_bidet.tscn" type="PackedScene" id=27]
 [ext_resource path="res://src/Props/HouseLevel/bathroom/bathroom_toilet.tscn" type="PackedScene" id=28]
@@ -202,6 +202,8 @@
 [ext_resource path="res://src/Helpers/Utilities/Crt/CRTLayer.tscn" type="PackedScene" id=200]
 [ext_resource path="res://src/Helpers/GUI/ContinueRight.tscn" type="PackedScene" id=201]
 [ext_resource path="res://src/Actors/Box.tscn" type="PackedScene" id=202]
+[ext_resource path="res://src/Helpers/Interacts/interactSprite.tscn" type="PackedScene" id=203]
+[ext_resource path="res://src/Helpers/Interacts/interactSprite.gd" type="Script" id=204]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3680.33, 10 )
@@ -294,45 +296,48 @@ extents = Vector2( 9.60168, 10.0379 )
 extents = Vector2( 7.76685, 15.9323 )
 
 [sub_resource type="RectangleShape2D" id=26]
-extents = Vector2( 17.2043, 37.1483 )
+extents = Vector2( 12.8932, 10 )
 
 [sub_resource type="RectangleShape2D" id=27]
-extents = Vector2( 22.6563, 31.9913 )
+extents = Vector2( 17.2043, 37.1483 )
 
 [sub_resource type="RectangleShape2D" id=28]
-extents = Vector2( 10, 19.0431 )
+extents = Vector2( 22.6563, 31.9913 )
 
 [sub_resource type="RectangleShape2D" id=29]
-extents = Vector2( 10, 23.0021 )
+extents = Vector2( 10, 19.0431 )
 
 [sub_resource type="RectangleShape2D" id=30]
-extents = Vector2( 23.5465, 27.1247 )
+extents = Vector2( 10, 23.0021 )
 
 [sub_resource type="RectangleShape2D" id=31]
-extents = Vector2( 19.2661, 19.2734 )
+extents = Vector2( 23.5465, 27.1247 )
 
 [sub_resource type="RectangleShape2D" id=32]
-extents = Vector2( 16.8516, 61.7289 )
+extents = Vector2( 19.2661, 19.2734 )
 
 [sub_resource type="RectangleShape2D" id=33]
-extents = Vector2( 22.1809, 10 )
+extents = Vector2( 16.8516, 61.7289 )
 
 [sub_resource type="RectangleShape2D" id=34]
-extents = Vector2( 23.2275, 19.9813 )
+extents = Vector2( 22.1809, 10 )
 
 [sub_resource type="RectangleShape2D" id=35]
+extents = Vector2( 23.2275, 19.9813 )
 
 [sub_resource type="RectangleShape2D" id=36]
+
+[sub_resource type="RectangleShape2D" id=37]
 extents = Vector2( 447.481, 28.3017 )
 
-[sub_resource type="DynamicFont" id=37]
+[sub_resource type="DynamicFont" id=38]
 size = 8
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
 font_data = ExtResource( 178 )
 
-[sub_resource type="DynamicFont" id=38]
+[sub_resource type="DynamicFont" id=39]
 size = 8
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -527,10 +532,9 @@ position = Vector2( 517.918, 250 )
 position = Vector2( 94.702, 236.582 )
 interactableText = "*Uses* Ahhh, that's better."
 
-[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Bathroom/Toilet"]
+[node name="InteractSprite" parent="LevelBackground/Interactions/Bathroom/Toilet" instance=ExtResource( 203 )]
 visible = false
-position = Vector2( -16.5, -9.25 )
-texture = ExtResource( 25 )
+position = Vector2( -16.1068, -9.36443 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bathroom/Toilet"]
 position = Vector2( -3.5, -6 )
@@ -543,10 +547,9 @@ interactableText = "You found the plunger under the sink!"
 position = Vector2( 316.585, 192.097 )
 shape = SubResource( 24 )
 
-[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Bathroom/Sink"]
+[node name="InteractSprite" parent="LevelBackground/Interactions/Bathroom/Sink" instance=ExtResource( 203 )]
 visible = false
-position = Vector2( 315.778, 165.3 )
-texture = ExtResource( 25 )
+position = Vector2( 316.517, 173.429 )
 
 [node name="Bedroom" type="Node2D" parent="LevelBackground/Interactions"]
 position = Vector2( 604, 72.5 )
@@ -556,14 +559,14 @@ position = Vector2( 222.633, 120.826 )
 scale = Vector2( 1, 1.01378 )
 interactableText = "Another good night's rest.  Time to start the day."
 
+[node name="InteractSprite" parent="LevelBackground/Interactions/Bedroom/Bed" instance=ExtResource( 203 )]
+visible = false
+position = Vector2( 6.28931, 9.85101 )
+scale = Vector2( 1, 0.986407 )
+
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bedroom/Bed"]
 position = Vector2( -18.4928, 11.6899 )
 shape = SubResource( 25 )
-
-[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Bedroom/Bed"]
-visible = false
-position = Vector2( 8.18664, 1.602 )
-texture = ExtResource( 25 )
 
 [node name="StreamRoomTooSoon" parent="LevelBackground/Interactions/Bedroom" instance=ExtResource( 175 )]
 position = Vector2( 423.739, 172.72 )
@@ -574,10 +577,11 @@ interactableText = "I should use the toilet before I start my stream."
 position = Vector2( 92.3209, 26.4027 )
 shape = SubResource( 25 )
 
-[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon"]
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon"]
 visible = false
 position = Vector2( 73.211, -3.73948 )
 texture = ExtResource( 25 )
+script = ExtResource( 204 )
 
 [node name="Wardrobe" parent="LevelBackground/Interactions/Bedroom" instance=ExtResource( 175 )]
 position = Vector2( 222.633, 120.826 )
@@ -588,10 +592,26 @@ interactableText = "Wow, my comfy socks, nothing is more comfy."
 position = Vector2( -178.298, 1.95135 )
 shape = SubResource( 25 )
 
-[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Bedroom/Wardrobe"]
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Bedroom/Wardrobe"]
 visible = false
 position = Vector2( -177.298, -25.5343 )
 texture = ExtResource( 25 )
+script = ExtResource( 204 )
+
+[node name="Chair" parent="LevelBackground/Interactions/Bedroom" instance=ExtResource( 175 )]
+position = Vector2( 222.633, 120.826 )
+scale = Vector2( 1, 1.01378 )
+interactableText = "I found my switch in the cushion"
+
+[node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bedroom/Chair"]
+position = Vector2( -233.814, 28.2874 )
+shape = SubResource( 26 )
+
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Bedroom/Chair"]
+visible = false
+position = Vector2( -233.814, 8.07408 )
+texture = ExtResource( 25 )
+script = ExtResource( 204 )
 
 [node name="LivingRoom" type="Node2D" parent="LevelBackground/Interactions"]
 position = Vector2( 1929.02, 75.1823 )
@@ -605,10 +625,11 @@ interactableText = "Had to buy cat trees to stop Nabi from scratching the furnit
 scale = Vector2( 0.383436, 0.775982 )
 shape = SubResource( 25 )
 
-[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/LivingRoom/InteractPromptArea"]
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/LivingRoom/InteractPromptArea"]
 visible = false
 position = Vector2( 1.03527, -0.749395 )
 texture = ExtResource( 25 )
+script = ExtResource( 204 )
 
 [node name="TVStand" parent="LevelBackground/Interactions/LivingRoom" instance=ExtResource( 175 )]
 position = Vector2( 164.106, 123.506 )
@@ -618,12 +639,13 @@ interactableText = "I found my gamer candle, part of the perfect comfy combo."
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/LivingRoom/TVStand"]
 position = Vector2( 246.312, 5.11754 )
 scale = Vector2( 0.383436, 0.775982 )
-shape = SubResource( 26 )
+shape = SubResource( 27 )
 
-[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/LivingRoom/TVStand"]
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/LivingRoom/TVStand"]
 visible = false
 position = Vector2( 259.327, -21.8804 )
 texture = ExtResource( 25 )
+script = ExtResource( 204 )
 
 [node name="Kitchen" type="Node2D" parent="LevelBackground/Interactions"]
 position = Vector2( 2590.31, 76.5638 )
@@ -636,61 +658,66 @@ interactableText = "$3000 coffee machine. Found this one through a review video 
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Coffee"]
 position = Vector2( -3.12475, 11.749 )
-shape = SubResource( 27 )
+shape = SubResource( 28 )
 
-[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Kitchen/Coffee"]
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Kitchen/Coffee"]
 visible = false
 texture = ExtResource( 25 )
+script = ExtResource( 204 )
 
 [node name="Fridge" parent="LevelBackground/Interactions/Kitchen" instance=ExtResource( 175 )]
 position = Vector2( 197.182, 84.9181 )
 scale = Vector2( 1, 1.0042 )
 interactableText = "Damn, FF7 and Metro Exodus are in the freezer hibernating. I keep forgetting about them but ill play them one day..."
 
-[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Kitchen/Fridge"]
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Kitchen/Fridge"]
 visible = false
 texture = ExtResource( 25 )
+script = ExtResource( 204 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Fridge"]
 position = Vector2( 1.19209e-06, 11.8686 )
-shape = SubResource( 28 )
+shape = SubResource( 29 )
 
 [node name="Microwave" parent="LevelBackground/Interactions/Kitchen" instance=ExtResource( 175 )]
 position = Vector2( 281.583, 75.9244 )
 interactableText = "Im proud of what a great cooker I am, all thanks to you."
 
-[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Kitchen/Microwave"]
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Kitchen/Microwave"]
 visible = false
 texture = ExtResource( 25 )
+script = ExtResource( 204 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Microwave"]
 position = Vector2( 1.43051e-06, 36.5558 )
-shape = SubResource( 29 )
+shape = SubResource( 30 )
 
 [node name="BasementNeedKey" parent="LevelBackground/Interactions/Kitchen" instance=ExtResource( 175 )]
 interactableText = "I am going to need to search and bring the basement key first."
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/BasementNeedKey"]
 position = Vector2( 47.0188, 110.907 )
-shape = SubResource( 30 )
+shape = SubResource( 31 )
 
-[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Kitchen/BasementNeedKey"]
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Kitchen/BasementNeedKey"]
 visible = false
 position = Vector2( 47.1824, 72.7977 )
 texture = ExtResource( 25 )
+script = ExtResource( 204 )
 
 [node name="Drawer" parent="LevelBackground/Interactions/Kitchen" instance=ExtResource( 175 )]
 position = Vector2( 281.583, 75.9244 )
 interactableText = "Wow! A pristine waifu pillow, how did this fit in here?"
 
-[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Kitchen/Drawer"]
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Kitchen/Drawer"]
 visible = false
 position = Vector2( 154.143, 39.6088 )
 texture = ExtResource( 25 )
+script = ExtResource( 204 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Drawer"]
 position = Vector2( 150.19, 71.5372 )
-shape = SubResource( 29 )
+shape = SubResource( 30 )
 
 [node name="Office" type="Node2D" parent="LevelBackground/Interactions"]
 
@@ -700,14 +727,15 @@ scale = Vector2( 0.998591, 0.997906 )
 script = ExtResource( 174 )
 interactableText = "I should figure out what's going on before I stream."
 
-[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Office/Computer"]
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Office/Computer"]
 visible = false
 position = Vector2( 1506.55, 227.483 )
 texture = ExtResource( 25 )
+script = ExtResource( 204 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Office/Computer"]
 position = Vector2( 1496.63, 226.537 )
-shape = SubResource( 30 )
+shape = SubResource( 31 )
 
 [node name="OfficeCabinet" type="Area2D" parent="LevelBackground/Interactions/Office"]
 position = Vector2( 119.399, 4.50531 )
@@ -715,14 +743,15 @@ scale = Vector2( 0.998591, 0.997906 )
 script = ExtResource( 174 )
 interactableText = "My best accomplishment in life, the UFC trophy."
 
-[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Office/OfficeCabinet"]
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Office/OfficeCabinet"]
 visible = false
 position = Vector2( 1472.76, 151.668 )
 texture = ExtResource( 25 )
+script = ExtResource( 204 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Office/OfficeCabinet"]
 position = Vector2( 1472.76, 185.663 )
-shape = SubResource( 31 )
+shape = SubResource( 32 )
 
 [node name="Basement" type="Node2D" parent="LevelBackground/Interactions"]
 
@@ -731,7 +760,7 @@ position = Vector2( 26.4882, -3.05176e-05 )
 
 [node name="BossEncounterCollision" type="CollisionShape2D" parent="LevelBackground/Interactions/Basement/BossEncounter"]
 position = Vector2( 995.17, 534.2 )
-shape = SubResource( 32 )
+shape = SubResource( 33 )
 
 [node name="Foyer" type="Node2D" parent="LevelBackground/Interactions"]
 
@@ -741,24 +770,26 @@ interactableText = "Aha, here's my garage key. Now to just get to the garage."
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Foyer/FoyerEndTable"]
 position = Vector2( 3557.92, 201.047 )
-shape = SubResource( 33 )
+shape = SubResource( 34 )
 
-[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Foyer/FoyerEndTable"]
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Foyer/FoyerEndTable"]
 visible = false
 position = Vector2( 3558.63, 161.025 )
 texture = ExtResource( 25 )
+script = ExtResource( 204 )
 
 [node name="FoyerShoeRack" parent="LevelBackground/Interactions/Foyer" instance=ExtResource( 175 )]
 interactableText = "I know I should take my shoes off at the door, but I rarely do."
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Foyer/FoyerShoeRack"]
 position = Vector2( 3545.93, 220.981 )
-shape = SubResource( 34 )
+shape = SubResource( 35 )
 
-[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Foyer/FoyerShoeRack"]
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Foyer/FoyerShoeRack"]
 visible = false
 position = Vector2( 3557.96, 194.385 )
 texture = ExtResource( 25 )
+script = ExtResource( 204 )
 
 [node name="FoyerCabinet" parent="LevelBackground/Interactions/Foyer" instance=ExtResource( 175 )]
 interactableText = "Drawers are full of junk."
@@ -766,10 +797,11 @@ interactableText = "Drawers are full of junk."
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Foyer/FoyerCabinet"]
 position = Vector2( 3349.36, 190.03 )
 
-[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Foyer/FoyerCabinet"]
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Foyer/FoyerCabinet"]
 visible = false
 position = Vector2( 3351.5, 162.115 )
 texture = ExtResource( 25 )
+script = ExtResource( 204 )
 
 [node name="GarageNeedKey" parent="LevelBackground/Interactions/Foyer" instance=ExtResource( 175 )]
 position = Vector2( 648.684, -4.75555 )
@@ -777,13 +809,14 @@ interactableText = "I am going to need to search and bring the garage key first.
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Foyer/GarageNeedKey"]
 position = Vector2( 2638.5, 187.895 )
-shape = SubResource( 30 )
+shape = SubResource( 31 )
 disabled = true
 
-[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Foyer/GarageNeedKey"]
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Foyer/GarageNeedKey"]
 visible = false
 position = Vector2( 2639.01, 154.864 )
 texture = ExtResource( 25 )
+script = ExtResource( 204 )
 
 [node name="Garage" type="Node2D" parent="LevelBackground/Interactions"]
 
@@ -792,12 +825,13 @@ interactableText = "Found my trusty screwdriver"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Garage/WorkBench"]
 position = Vector2( 3404.67, 490.095 )
-shape = SubResource( 35 )
+shape = SubResource( 36 )
 
-[node name="FPrompt" type="Sprite" parent="LevelBackground/Interactions/Garage/WorkBench"]
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Garage/WorkBench"]
 visible = false
 position = Vector2( 3403, 461.919 )
 texture = ExtResource( 25 )
+script = ExtResource( 204 )
 
 [node name="Teleports" type="Node" parent="LevelBackground"]
 
@@ -951,7 +985,7 @@ collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/SpecialZones/BossMobZone"]
 position = Vector2( 669.398, 265.792 )
-shape = SubResource( 36 )
+shape = SubResource( 37 )
 
 [node name="Checkpoints" type="Node" parent="LevelBackground"]
 
@@ -1026,10 +1060,10 @@ position = Vector2( 889.838, 509.569 )
 position = Vector2( 926.425, 509.588 )
 
 [node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 2 )]
-position = Vector2( 752.225, 229.633 )
+position = Vector2( 750.306, 227.827 )
 
 [node name="GrannySpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
-position = Vector2( 2065.89, 230.244 )
+position = Vector2( 1992.6, 208.628 )
 only_off_screen = true
 enemy = "Granny"
 automatic = false
@@ -1040,6 +1074,7 @@ rect = Rect2( 0, 0, 200, 40 )
 only_off_screen = true
 duration_between_spawn = 30
 count = 10
+maxSpawnedAtATime = 2
 automatic = false
 
 [node name="BedroomSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
@@ -1048,6 +1083,7 @@ rect = Rect2( 0, 0, 200, 40 )
 only_off_screen = true
 duration_between_spawn = 30
 count = 10
+maxSpawnedAtATime = 2
 automatic = false
 
 [node name="OfficeSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
@@ -1056,6 +1092,7 @@ rect = Rect2( 0, 0, 200, 40 )
 only_off_screen = true
 duration_between_spawn = 30
 count = 10
+maxSpawnedAtATime = 2
 automatic = false
 
 [node name="LivingRoomSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
@@ -1064,6 +1101,7 @@ rect = Rect2( 0, 0, 200, 40 )
 only_off_screen = true
 duration_between_spawn = 30
 count = 10
+maxSpawnedAtATime = 2
 automatic = false
 
 [node name="KitchenSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
@@ -1072,14 +1110,16 @@ rect = Rect2( 0, 0, 100, 40 )
 only_off_screen = true
 duration_between_spawn = 30
 count = 10
+maxSpawnedAtATime = 2
 automatic = false
 
 [node name="FoyerSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
-position = Vector2( 3338.42, 222.867 )
+position = Vector2( 3336.5, 220.827 )
 rect = Rect2( 0, 0, 100, 40 )
 only_off_screen = true
 duration_between_spawn = 30
 count = 10
+maxSpawnedAtATime = 2
 automatic = false
 
 [node name="GarageSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
@@ -1088,6 +1128,7 @@ rect = Rect2( 0, 0, 100, 40 )
 only_off_screen = true
 duration_between_spawn = 30
 count = 10
+maxSpawnedAtATime = 2
 automatic = false
 
 [node name="RatKingSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
@@ -2096,7 +2137,7 @@ margin_left = 268.112
 margin_top = 520.0
 margin_right = 756.112
 margin_bottom = 544.0
-custom_fonts/font = SubResource( 37 )
+custom_fonts/font = SubResource( 38 )
 text = "Rex Magnus Rattorum, The Rat King"
 uppercase = true
 __meta__ = {
@@ -2143,7 +2184,7 @@ margin_right = 192.134
 margin_bottom = 60.9467
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 38 )
+custom_fonts/font = SubResource( 39 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "0"
 __meta__ = {
@@ -2157,7 +2198,7 @@ margin_right = 96.2014
 margin_bottom = 86.7737
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 38 )
+custom_fonts/font = SubResource( 39 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "x"
 __meta__ = {
@@ -2195,7 +2236,9 @@ margin_right = -11.358
 margin_bottom = -5.88672
 mouse_filter = 1
 
-[node name="TextBox" parent="GUI" instance=ExtResource( 1 )]
+[node name="TextBox" parent="GUI" groups=[
+"MainTextbox",
+] instance=ExtResource( 1 )]
 pause_mode = 2
 visible = false
 anchor_left = 0.5
@@ -2214,6 +2257,7 @@ visible = false
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/Bed" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/Wardrobe" to="." method="_on_Wardrobe_interactable_text_signal"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/Chair" to="." method="_on_Chair_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/LivingRoom/InteractPromptArea" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/LivingRoom/TVStand" to="." method="_on_TVStand_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Kitchen/Coffee" to="." method="_on_InteractPromptArea_interactable_text_signal"]
