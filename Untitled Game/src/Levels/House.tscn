@@ -2249,7 +2249,6 @@ margin_top = -576.0
 margin_right = 512.0
 
 [node name="CRTLayer" parent="GUI" instance=ExtResource( 200 )]
-visible = false
 
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_Toilet_interactable_text_signal"]

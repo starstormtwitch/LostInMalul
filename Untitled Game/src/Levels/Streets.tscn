@@ -117,49 +117,49 @@ extents = Vector2( 6.13144, 11.5701 )
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 10, 52.5724 )
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 420.749, 58.1924 )
 
-[sub_resource type="RectangleShape2D" id=13]
+[sub_resource type="RectangleShape2D" id=34]
 extents = Vector2( 50.7107, 24.4466 )
 
-[sub_resource type="RectangleShape2D" id=14]
+[sub_resource type="RectangleShape2D" id=35]
 extents = Vector2( 52.2573, 16.963 )
 
-[sub_resource type="RectangleShape2D" id=15]
+[sub_resource type="RectangleShape2D" id=36]
 extents = Vector2( 52.2573, 20.7088 )
 
-[sub_resource type="RectangleShape2D" id=16]
+[sub_resource type="RectangleShape2D" id=37]
 extents = Vector2( 28.634, 10.2518 )
 
-[sub_resource type="SegmentShape2D" id=17]
+[sub_resource type="SegmentShape2D" id=38]
 a = Vector2( 116.923, 8.23139 )
 b = Vector2( -2.45743, 8.89956 )
 
-[sub_resource type="SegmentShape2D" id=18]
+[sub_resource type="SegmentShape2D" id=39]
 a = Vector2( -0.578247, -28.2061 )
 b = Vector2( -0.578247, 12.2727 )
 
-[sub_resource type="RectangleShape2D" id=19]
+[sub_resource type="RectangleShape2D" id=40]
 extents = Vector2( 33.4598, 10 )
 
-[sub_resource type="RectangleShape2D" id=20]
+[sub_resource type="RectangleShape2D" id=41]
 extents = Vector2( 8.42667, 10 )
 
-[sub_resource type="SegmentShape2D" id=21]
+[sub_resource type="SegmentShape2D" id=42]
 a = Vector2( 1.66437, -33.5508 )
 b = Vector2( 1.83124, 26.517 )
 
-[sub_resource type="RectangleShape2D" id=22]
+[sub_resource type="RectangleShape2D" id=43]
 extents = Vector2( 13.5503, 10 )
 
-[sub_resource type="RectangleShape2D" id=23]
+[sub_resource type="RectangleShape2D" id=44]
 extents = Vector2( 5.87134, 20.5271 )
 
-[sub_resource type="RectangleShape2D" id=24]
+[sub_resource type="RectangleShape2D" id=45]
 extents = Vector2( 22.7273, 19.9653 )
 
-[sub_resource type="RectangleShape2D" id=25]
+[sub_resource type="RectangleShape2D" id=46]
 extents = Vector2( 29.6569, 3.85847 )
 
 [sub_resource type="SegmentShape2D" id=26]
@@ -170,7 +170,7 @@ b = Vector2( -7.98795, 1.38559 )
 a = Vector2( 110.796, -16.3299 )
 b = Vector2( 110.963, 26.3849 )
 
-[sub_resource type="RectangleShape2D" id=28]
+[sub_resource type="RectangleShape2D" id=47]
 extents = Vector2( 11.689, 10 )
 
 [sub_resource type="RectangleShape2D" id=29]
@@ -298,65 +298,65 @@ shape = SubResource( 11 )
 
 [node name="Block2" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 1682.31, -123.285 )
-shape = SubResource( 12 )
+shape = SubResource( 33 )
 
 [node name="truck" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 2295.45, -162.574 )
-shape = SubResource( 13 )
+shape = SubResource( 34 )
 
 [node name="parking1" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 2142.58, -80.9086 )
-shape = SubResource( 14 )
+shape = SubResource( 35 )
 
 [node name="parking2" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 2304.77, -87.651 )
-shape = SubResource( 15 )
+shape = SubResource( 36 )
 
 [node name="greencar" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 2130.94, -117.94 )
-shape = SubResource( 16 )
+shape = SubResource( 37 )
 
 [node name="RatGraffitiHouse" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 212.257, 50.113 )
 
 [node name="RightPot" type="CollisionShape2D" parent="LevelBackground/Boundaries/RatGraffitiHouse"]
 position = Vector2( 7.02744, 25.4143 )
-shape = SubResource( 17 )
+shape = SubResource( 38 )
 
 [node name="LeftBushes" type="CollisionShape2D" parent="LevelBackground/Boundaries/RatGraffitiHouse"]
 position = Vector2( -52.8239, 0.287952 )
-shape = SubResource( 18 )
+shape = SubResource( 39 )
 
 [node name="FrontOfHouse" type="CollisionShape2D" parent="LevelBackground/Boundaries/RatGraffitiHouse"]
 position = Vector2( -38.7541, 5.12267 )
-shape = SubResource( 19 )
+shape = SubResource( 40 )
 
 [node name="RightSideFence" type="CollisionShape2D" parent="LevelBackground/Boundaries/RatGraffitiHouse"]
 position = Vector2( 78.1795, 25.9937 )
-shape = SubResource( 20 )
+shape = SubResource( 41 )
 
 [node name="RightBushes" type="CollisionShape2D" parent="LevelBackground/Boundaries/RatGraffitiHouse"]
 position = Vector2( 42.3585, 19.9692 )
-shape = SubResource( 21 )
+shape = SubResource( 42 )
 
 [node name="LeftPot" type="CollisionShape2D" parent="LevelBackground/Boundaries/RatGraffitiHouse"]
 position = Vector2( -33.2883, 26.504 )
-shape = SubResource( 22 )
+shape = SubResource( 43 )
 
 [node name="BlueHouse" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 311.481, 76.7211 )
 
 [node name="LeftFence" type="CollisionShape2D" parent="LevelBackground/Boundaries/BlueHouse"]
 position = Vector2( -12.5057, 1.3922 )
-shape = SubResource( 23 )
+shape = SubResource( 44 )
 
 [node name="Bench" type="CollisionShape2D" parent="LevelBackground/Boundaries/BlueHouse"]
 position = Vector2( 3.1839, -21.3509 )
-shape = SubResource( 24 )
+shape = SubResource( 45 )
 
 [node name="LeftSideHouse" type="CollisionShape2D" parent="LevelBackground/Boundaries/BlueHouse"]
 position = Vector2( 23.0365, -22.6619 )
-shape = SubResource( 25 )
+shape = SubResource( 46 )
 
 [node name="RightSideHouse" type="CollisionShape2D" parent="LevelBackground/Boundaries/BlueHouse"]
 position = Vector2( 54.3135, -18.9161 )
@@ -368,7 +368,7 @@ shape = SubResource( 27 )
 
 [node name="FrontOfHouse" type="CollisionShape2D" parent="LevelBackground/Boundaries/BlueHouse"]
 position = Vector2( 36.5212, -22.4746 )
-shape = SubResource( 28 )
+shape = SubResource( 47 )
 
 [node name="RIghtSideFence" type="CollisionShape2D" parent="LevelBackground/Boundaries/BlueHouse"]
 position = Vector2( 110.846, 3.80642 )
@@ -1179,7 +1179,6 @@ margin_top = -576.0
 margin_right = 512.0
 
 [node name="CRTLayer" parent="GUI" instance=ExtResource( 200 )]
-visible = false
 
 [node name="Warnings" type="Control" parent="GUI"]
 margin_left = 5.33936
