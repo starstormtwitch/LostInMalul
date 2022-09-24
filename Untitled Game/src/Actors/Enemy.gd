@@ -27,6 +27,7 @@ var _directionFacing = 0
 var _isFacingDirectionLeft = true
 var _minDistanceToStayFromPlayer = 0;
 var _maxDistanceToStayFromPlayer = 0;
+var _flipBoxes = true;
 
 func _ready():
 	_attackCooldownTimer.connect("timeout",self,"_on_attack_cooldown_timeout") 
@@ -84,23 +85,24 @@ func _physics_process(_delta: float) -> void:
 
 
 func _flipBoxesIfNecessary(velocity_x: float):
-	var rightHitBox: CollisionShape2D = get_node_or_null("Attack/AttackBox")
-	var sprite: Sprite = get_node("KinematicSprite/Sprite")
-	var shadow: Sprite = get_node_or_null("Shadow")
-	if velocity_x > 0:
-		_isFacingDirectionLeft = false
-		if rightHitBox != null:
-			rightHitBox.position.x = abs(rightHitBox.position.x)
-		sprite.flip_h = true
-		if shadow != null:
-			shadow.flip_h = true
-	elif velocity_x < 0:
-		_isFacingDirectionLeft = true
-		if rightHitBox != null:
-			rightHitBox.position.x = -abs(rightHitBox.position.x)
-		sprite.flip_h = false
-		if shadow != null:
-			shadow.flip_h = false
+	if(_flipBoxes):
+		var rightHitBox: CollisionShape2D = get_node_or_null("Attack/AttackBox")
+		var sprite: Sprite = get_node("KinematicSprite/Sprite")
+		var shadow: Sprite = get_node_or_null("Shadow")
+		if velocity_x > 0:
+			_isFacingDirectionLeft = false
+			if rightHitBox != null:
+				rightHitBox.position.x = abs(rightHitBox.position.x)
+			sprite.flip_h = true
+			if shadow != null:
+				shadow.flip_h = true
+		elif velocity_x < 0:
+			_isFacingDirectionLeft = true
+			if rightHitBox != null:
+				rightHitBox.position.x = -abs(rightHitBox.position.x)
+			sprite.flip_h = false
+			if shadow != null:
+				shadow.flip_h = false
 
 
 func get_next_state(targetDirection: Vector2):
