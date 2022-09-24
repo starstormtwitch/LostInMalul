@@ -3,7 +3,7 @@ extends KinematicBody2D
 class_name Bullet
 
 
-const _SPEED = 96
+const _SPEED = 160
 const _TIME = 1.4
 const _DAMAGE = 1
 var _direction = 1
@@ -14,14 +14,13 @@ var _isMoving = false
 var _timer: Timer = Timer.new()
 
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
-onready var queueFreeTimer: Timer = $QueueFreeTimer
 onready var trail: TrailDrawer = $Trail
 onready var trailTracker: Position2D = $TrailTracker
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_timer.connect("timeout", self, "_dissapear") 
+	_timer.connect("timeout", self, "_dispose") 
 	_timer.one_shot = true
 	add_child(_timer)
 	_timer.start(_TIME)
@@ -56,7 +55,7 @@ func startMoving():
 	#trail.turnTrailOn()
 
 
-func _on_QueueFreeTimer_timeout():
+func _dispose():
 	queue_free()
 
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://src/Actors/shitman/Bullet.gd" type="Script" id=1]
+[ext_resource path="res://src/Actors/chat/chatting.gd" type="Script" id=1]
 [ext_resource path="res://assets/SpriteSheets/chat/chat_attack_sheet.png" type="Texture" id=2]
 
 [sub_resource type="Animation" id=1]
@@ -43,7 +43,6 @@ script = ExtResource( 1 )
 position = Vector2( 16.0646, -1.56424 )
 texture = ExtResource( 2 )
 hframes = 5
-frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 method_call_mode = 1

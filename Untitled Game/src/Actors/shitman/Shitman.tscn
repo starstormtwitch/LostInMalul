@@ -15,7 +15,7 @@ radius = 16.0297
 
 [sub_resource type="Animation" id=4]
 resource_name = "attack"
-length = 1.5
+length = 1.6
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -173,6 +173,7 @@ auto_advance = true
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=27]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=28]
 
@@ -204,7 +205,7 @@ states/walk/position = Vector2( 548, -45 )
 transitions = [ "idle", "walk", SubResource( 14 ), "walk", "idle", SubResource( 15 ), "idle", "die", SubResource( 16 ), "idle", "hurt", SubResource( 17 ), "idle", "attack", SubResource( 18 ), "walk", "hurt", SubResource( 19 ), "walk", "die", SubResource( 20 ), "walk", "attack", SubResource( 21 ), "attack", "idle", SubResource( 22 ), "attack", "walk", SubResource( 23 ), "hurt", "attack", SubResource( 24 ), "hurt", "idle", SubResource( 25 ), "hurt", "walk", SubResource( 26 ), "attack", "hurt", SubResource( 27 ), "hurt", "die", SubResource( 28 ), "attack", "die", SubResource( 29 ), "die", "idle", SubResource( 30 ), "die", "walk", SubResource( 31 ), "die", "hurt", SubResource( 32 ), "die", "attack", SubResource( 33 ) ]
 start_node = "idle"
 end_node = "die"
-graph_offset = Vector2( -34, -98 )
+graph_offset = Vector2( -9, 10 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=35]
 

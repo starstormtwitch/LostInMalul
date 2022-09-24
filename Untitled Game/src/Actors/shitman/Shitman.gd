@@ -14,10 +14,12 @@ onready var bulletSpawn: Position2D = $BulletSpawn
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	_minDistanceToStayFromPlayer = 30;
+	_maxDistanceToStayFromPlayer = 90;
 	_health = 8
 	_acceleration = 0.2
 	_speed = 65
-	_attack_range = 200
+	_attack_range = 30
 	_animationHandler = NodeStateMachineAnimationHandler.new($AnimationTree)
 	if($AnimationTree != null):
 		$AnimationTree.active = true

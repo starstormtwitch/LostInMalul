@@ -4,7 +4,7 @@ class_name chatting
 
 
 const _SPEED = 96
-const _TIME = 1.4
+const _TIME = 10
 const _DAMAGE = 1
 var _direction = 1
 
@@ -14,14 +14,13 @@ var _isMoving = false
 var _timer: Timer = Timer.new()
 
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
-onready var queueFreeTimer: Timer = $QueueFreeTimer
 onready var trail: TrailDrawer = $Trail
 onready var trailTracker: Position2D = $TrailTracker
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_timer.connect("timeout", self, "_dissapear") 
+	_timer.connect("timeout", self, "_dispose") 
 	_timer.one_shot = true
 	add_child(_timer)
 	_timer.start(_TIME)
@@ -55,13 +54,10 @@ func startMoving():
 	_isMoving = true
 	#trail.turnTrailOn()
 
-
-func _on_QueueFreeTimer_timeout():
+func _dispose():
 	queue_free()
-
 
 func _on_Attack_area_entered(area):
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
 		var directionVector = Vector2(_direction, 0)
 		area.get_parent().take_damage(_DAMAGE, directionVector, AttackManager.MAX_DAMAGE_FORCE)
-		queue_free()
