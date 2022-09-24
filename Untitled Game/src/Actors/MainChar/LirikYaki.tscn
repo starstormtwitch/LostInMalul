@@ -1,7 +1,8 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.gd" type="Script" id=1]
 [ext_resource path="res://assets/SpriteSheets/main_char/mc_shadow.png" type="Texture" id=2]
+[ext_resource path="res://assets/other/FlashlightCookie.png" type="Texture" id=3]
 [ext_resource path="res://assets/GUI/chargeBar/BarV8_Bar.png" type="Texture" id=5]
 [ext_resource path="res://assets/SpriteSheets/main_char/lirik_sprite_with_supers-Sheet.png" type="Texture" id=6]
 [ext_resource path="res://assets/GUI/chargeBar/BarV8_ProgressBar.png" type="Texture" id=9]
@@ -568,7 +569,7 @@ nodes/Special/node = SubResource( 30 )
 nodes/Special/position = Vector2( -360, 620 )
 nodes/Walk/node = SubResource( 31 )
 nodes/Walk/position = Vector2( -400, -80 )
-node_connections = [ "output", 0, "Main", "Attack", 0, "Combo1", "Attack", 1, "Combo2", "Attack", 2, "Special", "Combo2", 0, "Kick1", "Combo2", 1, "Kick2", "Combo2", 2, "Shoryuken", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Combo1", 2, "HeadButt", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack", "Movement", 0, "Idle", "Movement", 1, "Walk", "Special", 0, "HadoukenCharge", "Special", 1, "HadoukenRelease" ]
+node_connections = [ "output", 0, "Main", "Special", 0, "HadoukenCharge", "Special", 1, "HadoukenRelease", "Movement", 0, "Idle", "Movement", 1, "Walk", "Attack", 0, "Combo1", "Attack", 1, "Combo2", "Attack", 2, "Special", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Combo1", 2, "HeadButt", "Combo2", 0, "Kick1", "Combo2", 1, "Kick2", "Combo2", 2, "Shoryuken", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack" ]
 
 [sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 11.7115, 6.11188 )
@@ -687,6 +688,22 @@ texture_progress = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( -1.20711, -24.1638 )
+scale = Vector2( 7.82446, 7.82446 )
+texture = ExtResource( 3 )
+texture_scale = 0.03
+color = Color( 1, 0.796078, 0.509804, 1 )
+
+[node name="Light2D Mask" type="Light2D" parent="."]
+position = Vector2( -1.20711, -24.1638 )
+scale = Vector2( 7.82446, 7.82446 )
+texture = ExtResource( 3 )
+texture_scale = 0.03
+color = Color( 1, 0.796078, 0.509804, 1 )
+mode = 3
+range_item_cull_mask = 2
 
 [connection signal="timeout" from="DashDurationTimer" to="." method="_on_DashDurationTimer_timeout"]
 [connection signal="timeout" from="DashCooldownTimer" to="." method="_on_DashCooldownTimer_timeout"]
