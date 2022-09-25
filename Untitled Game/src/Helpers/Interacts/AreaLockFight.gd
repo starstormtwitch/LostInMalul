@@ -7,6 +7,8 @@ onready var baseLevelScript  = load("res://src/Levels/Base/BaseLevelScript.gd")
 var areaLocked = false;
 var currentSpawnersInLockOut: Array
 var currentDelimiterForLockOut: CustomDelimiter2D
+var _countOfSpawners: int
+var _defeatedSpawners: int
 var _player: Node2D
 
 signal lockout_started
@@ -35,6 +37,7 @@ func _ready():
 	#Make sure there is at least one spawner for enemies
 	for child in children:
 		if child is EnemySpawner:
+			_countOfSpawners = _countOfSpawners + 1;
 			currentSpawnersInLockOut.append(child);
 	assert(currentSpawnersInLockOut.size() > 0, "No enemy spawners in area lockout!")
 	currentDelimiterForLockOut.IsAreaLockDelimeter = true
@@ -58,16 +61,20 @@ func NextEnemySpawner():
 	if areaLocked:
 		var spawner = currentSpawnersInLockOut.pop_front()
 		if is_instance_valid(spawner):
+			spawner.connect("AllEnemiesDefeated", self, "SpawnerDefeated")
 			spawner.spawnEnemy();
 			NextEnemySpawner();
-		else:
-			LockOutFightFinish(currentDelimiterForLockOut);
+			
+func SpawnerDefeated():
+	_defeatedSpawners = _defeatedSpawners + 1;
+	if(_defeatedSpawners == _countOfSpawners):
+		LockOutFightFinish();
 		
-func LockOutFightFinish(delimiterNode: CustomDelimiter2D):
+func LockOutFightFinish():
 	areaLocked = false;
 	emit_signal("lockout_finished")
 	emit_signal("area_lock", false)
-	delimiterNode.ManualTransition_Exit();
+	currentDelimiterForLockOut.ManualTransition_Exit();
 
 func _on_StartArea_body_entered(body):
 	if body == _player:
