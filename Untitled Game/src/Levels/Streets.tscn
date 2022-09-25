@@ -550,9 +550,7 @@ position = Vector2( 318.932, 222.644 )
 
 [node name="Spawner" parent="YSort/Actors/AreaLockFight1" instance=ExtResource( 46 )]
 position = Vector2( 215.382, -6.60632 )
-count = 9
-maxSpawnedAtATime = 3
-enemy = "Shitman"
+count = 3
 automatic = false
 
 [node name="AreaLockFight2" parent="YSort/Actors" instance=ExtResource( 44 )]

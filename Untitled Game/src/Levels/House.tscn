@@ -1153,7 +1153,8 @@ position = Vector2( 320.719, -34.488 )
 scale = Vector2( 1.0189, 1 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
-count = 4
+count = 8
+maxSpawnedAtATime = 4
 automatic = false
 
 [node name="Garage2" parent="YSort/Actors/GarageFight1" instance=ExtResource( 176 )]
@@ -1161,8 +1162,9 @@ position = Vector2( 337.382, -33.415 )
 scale = Vector2( 1.0189, 1 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
-count = 2
-enemy = "RatSoldier"
+count = 4
+maxSpawnedAtATime = 2
+enemy = "Shitman"
 automatic = false
 
 [node name="GarageFight2" parent="YSort/Actors" instance=ExtResource( 19 )]
@@ -1200,6 +1202,8 @@ scale = Vector2( 1.0189, 1 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
 count = 2
+maxSpawnedAtATime = 2
+enemy = "Chat"
 automatic = false
 
 [node name="LivingFight1" parent="YSort/Actors" instance=ExtResource( 19 )]
@@ -1214,7 +1218,7 @@ position = Vector2( 471.842, 250.296 )
 
 [node name="Spawner" parent="YSort/Actors/LivingFight1" instance=ExtResource( 176 )]
 position = Vector2( 351.022, 28.234 )
-count = 2
+count = 3
 enemy = "RatSoldier"
 automatic = false
 
@@ -1237,6 +1241,7 @@ position = Vector2( 403.479, 250.116 )
 position = Vector2( -286.094, -29.6138 )
 scale = Vector2( 1, 4.02566 )
 count = 5
+maxSpawnedAtATime = 3
 automatic = false
 
 [node name="KitchenFight1" parent="YSort/Actors" instance=ExtResource( 19 )]
@@ -1252,7 +1257,8 @@ position = Vector2( 412.969, 249.053 )
 [node name="Spawner" parent="YSort/Actors/KitchenFight1" instance=ExtResource( 176 )]
 position = Vector2( 309.338, 35.729 )
 rect = Rect2( 0, 0, 10, 10 )
-count = 4
+count = 6
+maxSpawnedAtATime = 2
 automatic = false
 
 [node name="KitchenFight2" parent="YSort/Actors" instance=ExtResource( 19 )]
@@ -1268,7 +1274,8 @@ position = Vector2( 390.298, 250.493 )
 [node name="Spawner" parent="YSort/Actors/KitchenFight2" instance=ExtResource( 176 )]
 position = Vector2( -305.877, -42.1277 )
 rect = Rect2( 0, 0, 20, 10 )
-count = 3
+count = 4
+maxSpawnedAtATime = 2
 enemy = "RatSoldier"
 automatic = false
 
@@ -1299,9 +1306,10 @@ AutomaticTransition = false
 position = Vector2( 395.21, 249.786 )
 
 [node name="Spawner2" parent="YSort/Actors/OfficeFight2" instance=ExtResource( 176 )]
-position = Vector2( -286.764, -26.0568 )
+position = Vector2( -286.764, -26.7425 )
 scale = Vector2( 1, 3.61594 )
-count = 3
+count = 4
+maxSpawnedAtATime = 2
 automatic = false
 
 [node name="Spawner3" parent="YSort/Actors/OfficeFight2" instance=ExtResource( 176 )]
@@ -1325,6 +1333,7 @@ position = Vector2( 317.48, 24.2602 )
 rect = Rect2( 0, 0, 10, 10 )
 duration_between_spawn = 1
 count = 8
+maxSpawnedAtATime = 4
 automatic = false
 
 [node name="BasementFight" parent="YSort/Actors" instance=ExtResource( 19 )]
@@ -1342,14 +1351,16 @@ position = Vector2( -232.013, -28.213 )
 scale = Vector2( 1.67996, 0.856959 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
-count = 10
+count = 15
+maxSpawnedAtATime = 5
 automatic = false
 
 [node name="BasementR1" parent="YSort/Actors/BasementFight" instance=ExtResource( 176 )]
 position = Vector2( 297.651, -19.8616 )
 rect = Rect2( 0, 0, 50, 70 )
 duration_between_spawn = 1
-count = 10
+count = 15
+maxSpawnedAtATime = 5
 automatic = false
 
 [node name="BedroomFight1" parent="YSort/Actors" instance=ExtResource( 19 )]
@@ -1366,6 +1377,7 @@ position = Vector2( 435.374, 280.311 )
 position = Vector2( 378.725, -29.0653 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
+count = 2
 automatic = false
 
 [node name="BedroomFight2" parent="YSort/Actors" instance=ExtResource( 19 )]
@@ -1382,7 +1394,6 @@ position = Vector2( 462.202, 279.489 )
 position = Vector2( -354.307, -33.6017 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
-count = 3
 automatic = false
 
 [node name="Props" type="YSort" parent="YSort"]

@@ -58,8 +58,8 @@ func NextEnemySpawner():
 	if areaLocked:
 		var spawner = currentSpawnersInLockOut.pop_front()
 		if is_instance_valid(spawner):
-			spawner.spawnEnemy()
-			spawner.connect("AllEnemiesDefeated", self, "NextEnemySpawner")
+			spawner.spawnEnemy();
+			NextEnemySpawner();
 		else:
 			LockOutFightFinish(currentDelimiterForLockOut);
 		
