@@ -5,7 +5,7 @@
 [ext_resource path="res://src/Pickups/Defense.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 3.59424, 2.17362 )
+extents = Vector2( 6.32678, 3.51959 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "default"
@@ -51,7 +51,7 @@ scale = Vector2( 0.458833, 0.761052 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1.69894, -1.96758 )
+position = Vector2( 0.00289106, -1.96758 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]

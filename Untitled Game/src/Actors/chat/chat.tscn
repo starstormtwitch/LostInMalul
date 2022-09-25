@@ -8,7 +8,7 @@
 extents = Vector2( 35.1075, 36.215 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 23.693, 13.521 )
+extents = Vector2( 23.693, 9.49478 )
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 16.0297
@@ -207,7 +207,7 @@ collision_layer = 16384
 collision_mask = 16
 
 [node name="HurtBoxArea" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2( 0.715506, 2.12296 )
+position = Vector2( 1.4398, 10.0111 )
 shape = SubResource( 2 )
 
 [node name="FlockBox" type="Area2D" parent="." groups=[

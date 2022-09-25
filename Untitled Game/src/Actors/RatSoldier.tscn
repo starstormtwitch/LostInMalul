@@ -277,7 +277,7 @@ graph_offset = Vector2( -252.741, -64.4207 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=39]
 
 [sub_resource type="RectangleShape2D" id=40]
-extents = Vector2( 13.5128, 14.2018 )
+extents = Vector2( 12.0598, 4.39586 )
 
 [sub_resource type="RectangleShape2D" id=41]
 extents = Vector2( 9.27378, 4 )
@@ -331,7 +331,7 @@ texture = ExtResource( 3 )
 offset = Vector2( 0, -15 )
 hframes = 16
 vframes = 6
-frame = 2
+frame = 1
 
 [node name="Shadow" type="Sprite" parent="."]
 position = Vector2( 5.05412, -0.230137 )
@@ -393,7 +393,7 @@ collision_layer = 16384
 collision_mask = 16
 
 [node name="HurtBoxArea" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2( -0.936443, 4.8695 )
+position = Vector2( -1.72389, 13.2952 )
 shape = SubResource( 40 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
