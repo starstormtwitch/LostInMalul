@@ -509,7 +509,7 @@ g_min_y = 160
 g_max_y = 170
 g_min_spawn_wait_ms = 16000
 g_max_spawn_wait_ms = 40000
-g_object_velocity = 2.5
+g_object_velocity = 100.0
 g_path = "res://src/Props/StreetLevel/Vehicles/"
 g_starting_x = 800
 
@@ -522,7 +522,7 @@ g_min_y = 140
 g_max_y = 160
 g_min_spawn_wait_ms = 16000
 g_max_spawn_wait_ms = 40000
-g_object_velocity = -2.5
+g_object_velocity = -100.0
 g_path = "res://src/Props/StreetLevel/Vehicles/"
 g_starting_x = -100
 
@@ -549,25 +549,24 @@ IsAreaLockDelimeter = true
 position = Vector2( 318.932, 222.644 )
 
 [node name="Spawner" parent="YSort/Actors/AreaLockFight1" instance=ExtResource( 46 )]
-position = Vector2( 215.735, -6.60632 )
-only_off_screen = true
-count = 3
+position = Vector2( 215.382, -6.60632 )
+count = 9
+maxSpawnedAtATime = 3
+enemy = "Shitman"
 automatic = false
 
 [node name="AreaLockFight2" parent="YSort/Actors" instance=ExtResource( 44 )]
-position = Vector2( 641.226, 161.111 )
+position = Vector2( 642.117, 161.111 )
 
 [node name="EnemySpawner2" parent="YSort/Actors/AreaLockFight2" instance=ExtResource( 46 )]
 position = Vector2( -228.321, -15.8246 )
-only_off_screen = true
 count = 3
 enemy = "Shitman"
 level = 2
 automatic = false
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaLockFight2" instance=ExtResource( 46 )]
-position = Vector2( 135.184, -13.9738 )
-only_off_screen = true
+position = Vector2( 148.148, -13.9722 )
 count = 3
 level = 2
 automatic = false
@@ -593,14 +592,12 @@ position = Vector2( 287.713, 219.237 )
 
 [node name="Spawner" parent="YSort/Actors/AreaLockFight3" instance=ExtResource( 46 )]
 position = Vector2( 219.626, -6.20362 )
-only_off_screen = true
 count = 3
 enemy = "Chat"
 automatic = false
 
 [node name="Spawner2" parent="YSort/Actors/AreaLockFight3" instance=ExtResource( 46 )]
 position = Vector2( -106.159, -8.8523 )
-only_off_screen = true
 count = 3
 automatic = false
 
@@ -635,13 +632,11 @@ position = Vector2( 2811.92, 160.191 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaLockFight5" instance=ExtResource( 46 )]
 position = Vector2( 135.104, -2.04184 )
-only_off_screen = true
 count = 2
 automatic = false
 
 [node name="EnemySpawner2" parent="YSort/Actors/AreaLockFight5" instance=ExtResource( 46 )]
 position = Vector2( -174.905, -5.22023 )
-only_off_screen = true
 count = 3
 enemy = "Chat"
 automatic = false
@@ -659,7 +654,6 @@ position = Vector2( 3173.18, 160.191 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaLockFight6" instance=ExtResource( 46 )]
 position = Vector2( 157.669, -2.3454 )
-only_off_screen = true
 duration_between_spawn = 1
 count = 5
 maxSpawnedAtATime = 3
@@ -679,14 +673,12 @@ position = Vector2( 3518.64, 160.785 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaLockFight7" instance=ExtResource( 46 )]
 position = Vector2( -220.347, -21.8225 )
-only_off_screen = true
 count = 4
 enemy = "Shitman"
 automatic = false
 
 [node name="EnemySpawner2" parent="YSort/Actors/AreaLockFight7" instance=ExtResource( 46 )]
 position = Vector2( 118.987, -13.0339 )
-only_off_screen = true
 count = 3
 enemy = "Shitman"
 automatic = false
@@ -704,7 +696,6 @@ position = Vector2( 4009.08, 161.231 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaLockFightBoss" instance=ExtResource( 46 )]
 position = Vector2( -69.5402, -1.88301 )
-only_off_screen = true
 duration_between_spawn = 30
 count = 10
 maxSpawnedAtATime = 1
@@ -712,7 +703,6 @@ automatic = false
 
 [node name="EnemySpawner2" parent="YSort/Actors/AreaLockFightBoss" instance=ExtResource( 46 )]
 position = Vector2( 177.861, 15.7402 )
-only_off_screen = true
 enemy = "ChimeraBeast"
 automatic = false
 
@@ -728,7 +718,7 @@ position = Vector2( 478.398, 222.574 )
 position = Vector2( 376.45, 159.195 )
 
 [node name="Spawner" parent="YSort/Actors/AreaFreeFight" instance=ExtResource( 46 )]
-position = Vector2( 184.219, -0.308395 )
+position = Vector2( 180.444, 3.93904 )
 only_off_screen = true
 count = 2
 enemy = "Shitman"
@@ -740,11 +730,13 @@ position = Vector2( 970.773, 159.902 )
 
 [node name="Spawner" parent="YSort/Actors/AreaFreeFight2" instance=ExtResource( 46 )]
 position = Vector2( -127.731, -20.6017 )
+only_off_screen = true
 count = 2
 automatic = false
 
 [node name="Spawner2" parent="YSort/Actors/AreaFreeFight2" instance=ExtResource( 46 )]
 position = Vector2( 89.449, -12.3744 )
+only_off_screen = true
 count = 2
 automatic = false
 

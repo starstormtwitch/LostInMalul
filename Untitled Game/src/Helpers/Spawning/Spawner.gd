@@ -100,10 +100,10 @@ func spawnMultipleInArea(scene_spawn : PackedScene):
 func _despawned():
 	CurrentSpawnedCount = CurrentSpawnedCount - 1;
 	emit_signal("despawned");
-	if(prime_off_screen_add && packed_scene != null):
+	if((spawnWhenDespawned || prime_off_screen_add) && packed_scene != null):
 		spawnMultipleInArea(packed_scene)
 
 func _on_Spawner_screen_exited():
-	if(spawnWhenDespawned && packed_scene != null):
+	if(packed_scene != null):
 		spawnMultipleInArea(packed_scene)
 	pass # Replace with function body.

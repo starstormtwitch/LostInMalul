@@ -48,7 +48,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=5]
 resource_name = "die"
-length = 1.5
+length = 5.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -68,7 +68,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 1.49 ),
+"times": PoolRealArray( 4.8 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -219,7 +219,7 @@ position = Vector2( -0.365814, -11.7859 )
 texture = ExtResource( 1 )
 hframes = 15
 vframes = 5
-frame = 68
+frame = 15
 
 [node name="Shadow" type="Sprite" parent="."]
 position = Vector2( -0.785804, -0.396992 )
