@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=2]
+[gd_scene load_steps=97 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Levels/Streets/Level_Start.png" type="Texture" id=2]
@@ -117,10 +117,22 @@ extents = Vector2( 52.2573, 20.7088 )
 [sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 28.634, 10.2518 )
 
+[sub_resource type="RectangleShape2D" id=20]
+extents = Vector2( 28.1875, 10 )
+
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 55.2458, 14.7873 )
+
+[sub_resource type="RectangleShape2D" id=22]
+extents = Vector2( 38.8765, 13.279 )
+
 [sub_resource type="RectangleShape2D" id=13]
 
 [sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 10.2012, 6.93721 )
+
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 10, 62.1962 )
 
 [sub_resource type="DynamicFont" id=15]
 size = 8
@@ -257,6 +269,18 @@ shape = SubResource( 11 )
 position = Vector2( 2130.94, -117.94 )
 shape = SubResource( 12 )
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
+position = Vector2( 790.221, -64.5548 )
+shape = SubResource( 20 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
+position = Vector2( 972.474, -63.028 )
+shape = SubResource( 21 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
+position = Vector2( 1199.87, -62.2343 )
+shape = SubResource( 22 )
+
 [node name="RatGraffitiHouse" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 212.257, 50.113 )
 
@@ -338,6 +362,20 @@ visible = false
 texture = ExtResource( 74 )
 script = ExtResource( 75 )
 
+[node name="Grave2" parent="LevelBackground/Interactions" instance=ExtResource( 73 )]
+position = Vector2( 2071.69, 54.1939 )
+scale = Vector2( 1, 1.0042 )
+interactableText = "MrGoatsy (2021)"
+
+[node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Grave2"]
+position = Vector2( 2294.62, -23.5937 )
+shape = SubResource( 14 )
+
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Grave2"]
+visible = false
+texture = ExtResource( 74 )
+script = ExtResource( 75 )
+
 [node name="Grave3" parent="LevelBackground/Interactions" instance=ExtResource( 73 )]
 position = Vector2( 2114.3, 75.6508 )
 scale = Vector2( 1, 1.0042 )
@@ -352,17 +390,16 @@ visible = false
 texture = ExtResource( 74 )
 script = ExtResource( 75 )
 
-[node name="Grave2" parent="LevelBackground/Interactions" instance=ExtResource( 73 )]
-position = Vector2( 2071.69, 54.1939 )
-scale = Vector2( 1, 1.0042 )
-interactableText = "MrGoatsy (2021)"
+[node name="ExitLevel" parent="LevelBackground/Interactions" instance=ExtResource( 73 )]
+position = Vector2( 4566.08, 158.846 )
+scale = Vector2( 1, 1.00842 )
 
-[node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Grave2"]
-position = Vector2( 2294.62, -23.5937 )
-shape = SubResource( 14 )
+[node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/ExitLevel"]
+position = Vector2( -1.1123, 4.83324 )
+shape = SubResource( 19 )
 
-[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Grave2"]
-visible = false
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/ExitLevel"]
+position = Vector2( -0.319336, -5.64977 )
 texture = ExtResource( 74 )
 script = ExtResource( 75 )
 
@@ -387,7 +424,7 @@ position = Vector2( 2111.07, 160.361 )
 position = Vector2( 1342.91, 160.289 )
 
 [node name="Road" parent="LevelBackground/MoreRoad" instance=ExtResource( 45 )]
-position = Vector2( 959.092, 160.275 )
+position = Vector2( 959.592, 160.275 )
 
 [node name="Road6" parent="LevelBackground/MoreRoad" instance=ExtResource( 45 )]
 position = Vector2( 2879, 160.472 )
@@ -476,8 +513,8 @@ position = Vector2( 19.8676, 94.1062 )
 [node name="Box" parent="YSort/Actors" instance=ExtResource( 4 )]
 position = Vector2( 747.855, 29.9924 )
 
-[node name="Box" parent="YSort/Actors/Box" instance=ExtResource( 4 )]
-position = Vector2( 1618.5, 1.2135 )
+[node name="Box2" parent="YSort/Actors" instance=ExtResource( 4 )]
+position = Vector2( 2366.35, 31.2059 )
 
 [node name="AreaLockFight1" parent="YSort/Actors" instance=ExtResource( 44 )]
 position = Vector2( 115.37, 165.563 )
@@ -492,30 +529,38 @@ position = Vector2( 318.932, 222.644 )
 
 [node name="Spawner" parent="YSort/Actors/AreaLockFight1" instance=ExtResource( 46 )]
 position = Vector2( 215.735, -6.60632 )
+only_off_screen = true
 count = 3
-enemy = "Chat"
 automatic = false
 
 [node name="AreaLockFight2" parent="YSort/Actors" instance=ExtResource( 44 )]
 position = Vector2( 641.226, 161.111 )
 
-[node name="EnemySpawner" parent="YSort/Actors/AreaLockFight2" instance=ExtResource( 46 )]
-position = Vector2( 159.684, -2.97375 )
+[node name="EnemySpawner2" parent="YSort/Actors/AreaLockFight2" instance=ExtResource( 46 )]
+position = Vector2( -228.321, -15.8246 )
+only_off_screen = true
 count = 3
 enemy = "Shitman"
 level = 2
 automatic = false
 
+[node name="EnemySpawner" parent="YSort/Actors/AreaLockFight2" instance=ExtResource( 46 )]
+position = Vector2( 135.184, -13.9738 )
+only_off_screen = true
+count = 3
+level = 2
+automatic = false
+
 [node name="AreaLockFight2" parent="YSort/Actors/AreaLockFight2" instance=ExtResource( 20 )]
-position = Vector2( -248.328, -162.261 )
+position = Vector2( -189.336, -160.374 )
 AutomaticTransition = false
 IsAreaLockDelimeter = true
 
 [node name="BottomRight" parent="YSort/Actors/AreaLockFight2/AreaLockFight2" index="0"]
-position = Vector2( 376.257, 224.137 )
+position = Vector2( 310.38, 223.343 )
 
 [node name="AreaLockFight3" parent="YSort/Actors" instance=ExtResource( 44 )]
-position = Vector2( 1321.44, 161.451 )
+position = Vector2( 1321.44, 160.89 )
 
 [node name="AreaLockFight3" parent="YSort/Actors/AreaLockFight3" instance=ExtResource( 20 )]
 position = Vector2( -75.5099, -157.742 )
@@ -526,39 +571,62 @@ IsAreaLockDelimeter = true
 position = Vector2( 287.713, 219.237 )
 
 [node name="Spawner" parent="YSort/Actors/AreaLockFight3" instance=ExtResource( 46 )]
-position = Vector2( 168.657, -5.25974 )
-count = 4
-enemy = "Shitman"
+position = Vector2( 219.626, -6.20362 )
+only_off_screen = true
+count = 3
+enemy = "Chat"
+automatic = false
+
+[node name="Spawner2" parent="YSort/Actors/AreaLockFight3" instance=ExtResource( 46 )]
+position = Vector2( -106.159, -8.8523 )
+only_off_screen = true
+count = 3
 automatic = false
 
 [node name="AreaLockFight4" parent="YSort/Actors" instance=ExtResource( 44 )]
-position = Vector2( 2147.75, 160.191 )
+position = Vector2( 2223.5, 160.191 )
+
+[node name="EnemySpawner2" parent="YSort/Actors/AreaLockFight4" instance=ExtResource( 46 )]
+position = Vector2( -151.003, -4.48482 )
+duration_between_spawn = 3
+count = 6
+maxSpawnedAtATime = 2
+automatic = false
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaLockFight4" instance=ExtResource( 46 )]
-position = Vector2( 89.9807, -5.3454 )
-count = 2
+position = Vector2( 149.731, 1.01855 )
+duration_between_spawn = 3
+count = 9
+maxSpawnedAtATime = 3
 enemy = "Shitman"
 automatic = false
 
 [node name="AreaLockFight4" parent="YSort/Actors/AreaLockFight4" instance=ExtResource( 20 )]
-position = Vector2( -60.5813, -160.362 )
+position = Vector2( -116.203, -159.832 )
 AutomaticTransition = false
 IsAreaLockDelimeter = true
 
 [node name="BottomRight" parent="YSort/Actors/AreaLockFight4/AreaLockFight4" index="0"]
-position = Vector2( 199.964, 222.853 )
+position = Vector2( 258.764, 223.383 )
 
 [node name="AreaLockFight5" parent="YSort/Actors" instance=ExtResource( 44 )]
 position = Vector2( 2811.92, 160.191 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaLockFight5" instance=ExtResource( 46 )]
-position = Vector2( 89.9807, -5.3454 )
-count = 5
-enemy = "Shitman"
+position = Vector2( 135.104, -2.04184 )
+only_off_screen = true
+count = 2
+automatic = false
+
+[node name="EnemySpawner2" parent="YSort/Actors/AreaLockFight5" instance=ExtResource( 46 )]
+position = Vector2( -174.905, -5.22023 )
+only_off_screen = true
+count = 3
+enemy = "Chat"
 automatic = false
 
 [node name="AreaLockFight5" parent="YSort/Actors/AreaLockFight5" instance=ExtResource( 20 )]
-position = Vector2( -60.5813, -160.362 )
+position = Vector2( -121.461, -166.497 )
 AutomaticTransition = false
 IsAreaLockDelimeter = true
 
@@ -569,13 +637,16 @@ position = Vector2( 248.703, 221.579 )
 position = Vector2( 3173.18, 160.191 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaLockFight6" instance=ExtResource( 46 )]
-position = Vector2( 90.542, -5.3454 )
-count = 4
-enemy = "Shitman"
+position = Vector2( 157.669, -2.3454 )
+only_off_screen = true
+duration_between_spawn = 1
+count = 5
+maxSpawnedAtATime = 3
+enemy = "Chat"
 automatic = false
 
 [node name="AreaLockFight6" parent="YSort/Actors/AreaLockFight6" instance=ExtResource( 20 )]
-position = Vector2( -60.5813, -160.362 )
+position = Vector2( -125.081, -158.862 )
 AutomaticTransition = false
 IsAreaLockDelimeter = true
 
@@ -586,14 +657,16 @@ position = Vector2( 272.301, 221.855 )
 position = Vector2( 3518.64, 160.785 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaLockFight7" instance=ExtResource( 46 )]
-position = Vector2( -77.3577, -12.9135 )
+position = Vector2( -220.347, -21.8225 )
+only_off_screen = true
 count = 4
 enemy = "Shitman"
 automatic = false
 
 [node name="EnemySpawner2" parent="YSort/Actors/AreaLockFight7" instance=ExtResource( 46 )]
 position = Vector2( 118.987, -13.0339 )
-count = 5
+only_off_screen = true
+count = 3
 enemy = "Shitman"
 automatic = false
 
@@ -605,36 +678,39 @@ IsAreaLockDelimeter = true
 [node name="BottomRight" parent="YSort/Actors/AreaLockFight7/AreaLockFight7" index="0"]
 position = Vector2( 158.139, 215.97 )
 
-[node name="AreaLockFight8" parent="YSort/Actors" instance=ExtResource( 44 )]
+[node name="AreaLockFightBoss" parent="YSort/Actors" instance=ExtResource( 44 )]
 position = Vector2( 4009.08, 161.231 )
 
-[node name="EnemySpawner" parent="YSort/Actors/AreaLockFight8" instance=ExtResource( 46 )]
-position = Vector2( -110.321, -14.2498 )
-count = 4
-enemy = "Shitman"
+[node name="EnemySpawner" parent="YSort/Actors/AreaLockFightBoss" instance=ExtResource( 46 )]
+position = Vector2( -69.5402, -1.88301 )
+only_off_screen = true
+duration_between_spawn = 30
+count = 10
+maxSpawnedAtATime = 1
 automatic = false
 
-[node name="EnemySpawner2" parent="YSort/Actors/AreaLockFight8" instance=ExtResource( 46 )]
-position = Vector2( 118.987, -13.0339 )
-count = 3
+[node name="EnemySpawner2" parent="YSort/Actors/AreaLockFightBoss" instance=ExtResource( 46 )]
+position = Vector2( 177.861, 15.7402 )
+only_off_screen = true
 enemy = "ChimeraBeast"
 automatic = false
 
-[node name="CustomDelimiter8" parent="YSort/Actors/AreaLockFight8" instance=ExtResource( 20 )]
-position = Vector2( -120.717, -160.362 )
+[node name="CustomDelimiter8" parent="YSort/Actors/AreaLockFightBoss" instance=ExtResource( 20 )]
+position = Vector2( -304.534, -160.362 )
 AutomaticTransition = false
 IsAreaLockDelimeter = true
 
-[node name="BottomRight" parent="YSort/Actors/AreaLockFight8/CustomDelimiter8" index="0"]
-position = Vector2( 293.509, 221.517 )
+[node name="BottomRight" parent="YSort/Actors/AreaLockFightBoss/CustomDelimiter8" index="0"]
+position = Vector2( 478.398, 222.574 )
 
 [node name="AreaFreeFight" parent="YSort/Actors" instance=ExtResource( 47 )]
 position = Vector2( 376.45, 159.195 )
 
 [node name="Spawner" parent="YSort/Actors/AreaFreeFight" instance=ExtResource( 46 )]
 position = Vector2( 184.219, -0.308395 )
+only_off_screen = true
 count = 2
-enemy = "Chat"
+enemy = "Shitman"
 automatic = false
 
 [node name="AreaFreeFight2" parent="YSort/Actors" instance=ExtResource( 47 )]
@@ -652,57 +728,43 @@ count = 2
 automatic = false
 
 [node name="AreaFreeFight3" parent="YSort/Actors" instance=ExtResource( 47 )]
-position = Vector2( 1151.44, 159.902 )
+position = Vector2( 973.26, 157.229 )
 
 [node name="Spawner" parent="YSort/Actors/AreaFreeFight3" instance=ExtResource( 46 )]
-position = Vector2( 91.8257, -9.99509 )
-count = 4
-enemy = "Shitman"
+position = Vector2( 113.207, -9.10419 )
+only_off_screen = true
+enemy = "Chat"
 automatic = false
 
 [node name="AreaFreeFight4" parent="YSort/Actors" instance=ExtResource( 47 )]
-position = Vector2( 1780, 159.5 )
+position = Vector2( 1721.73, 160.03 )
 
 [node name="Spawner" parent="YSort/Actors/AreaFreeFight4" instance=ExtResource( 46 )]
-position = Vector2( -64, -3 )
-count = 3
-enemy = "Shitman"
+position = Vector2( 115.049, -0.351349 )
+only_off_screen = true
+count = 5
 automatic = false
 
 [node name="AreaFreeFight5" parent="YSort/Actors" instance=ExtResource( 47 )]
 position = Vector2( 1934.5, 159.5 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaFreeFight5" instance=ExtResource( 46 )]
-position = Vector2( 43.5, -2 )
-count = 5
-enemy = "Shitman"
-automatic = false
-
-[node name="AreaFreeFight6" parent="YSort/Actors" instance=ExtResource( 47 )]
-position = Vector2( 2431.49, 160.364 )
-
-[node name="EnemySpawner" parent="YSort/Actors/AreaFreeFight6" instance=ExtResource( 46 )]
-position = Vector2( 82.408, -1.68179 )
+position = Vector2( 165.5, -3.5 )
+only_off_screen = true
 count = 3
-enemy = "Shitman"
+maxSpawnedAtATime = 5
+enemy = "Chat"
 automatic = false
 
 [node name="AreaFreeFight7" parent="YSort/Actors" instance=ExtResource( 47 )]
-position = Vector2( 2595.86, 159.918 )
+position = Vector2( 2547.83, 166.477 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaFreeFight7" instance=ExtResource( 46 )]
-position = Vector2( 82.408, -1.68179 )
-count = 6
-enemy = "Shitman"
-automatic = false
-
-[node name="AreaFreeFight8" parent="YSort/Actors" instance=ExtResource( 47 )]
-position = Vector2( 3729.75, 160.356 )
-
-[node name="EnemySpawner" parent="YSort/Actors/AreaFreeFight8" instance=ExtResource( 46 )]
-position = Vector2( 58.7991, -9.69986 )
-count = 4
-enemy = "Shitman"
+position = Vector2( 153.161, -11.988 )
+only_off_screen = true
+duration_between_spawn = 3
+count = 8
+maxSpawnedAtATime = 3
 automatic = false
 
 [node name="1stHouse" type="YSort" parent="YSort"]
@@ -744,7 +806,7 @@ position = Vector2( 514.703, 218.032 )
 position = Vector2( 282.603, 211.722 )
 
 [node name="BottomLampost2" parent="YSort/Road" instance=ExtResource( 71 )]
-position = Vector2( 1076.67, 213.841 )
+position = Vector2( 1076.34, 213.507 )
 
 [node name="BottomLampost3" parent="YSort/Road" instance=ExtResource( 71 )]
 position = Vector2( 1311.56, 214.043 )
@@ -1087,6 +1149,7 @@ speed_scale = 0.5
 process_material = SubResource( 16 )
 texture = ExtResource( 43 )
 
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/ExitLevel" to="." method="_on_ExitLevel_interactable_text_signal"]
 [connection signal="SpawnWarning" from="YSort/TrafficSystemRight" to="." method="_on_TrafficSystemRight_SpawnWarning"]
 [connection signal="SpawnWarning" from="YSort/TrafficSystemLeft" to="." method="_on_TrafficSystemLeft_SpawnWarning"]
 [connection signal="closed" from="GUI/TextBox2" to="." method="_on_TextBox_closed"]
@@ -1099,4 +1162,4 @@ texture = ExtResource( 43 )
 [editable path="YSort/Actors/AreaLockFight5/AreaLockFight5"]
 [editable path="YSort/Actors/AreaLockFight6/AreaLockFight6"]
 [editable path="YSort/Actors/AreaLockFight7/AreaLockFight7"]
-[editable path="YSort/Actors/AreaLockFight8/CustomDelimiter8"]
+[editable path="YSort/Actors/AreaLockFightBoss/CustomDelimiter8"]
