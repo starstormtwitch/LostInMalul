@@ -1060,7 +1060,7 @@ position = Vector2( 889.838, 509.569 )
 position = Vector2( 926.425, 509.588 )
 
 [node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 2 )]
-position = Vector2( 2598.27, 270.014 )
+position = Vector2( 927.024, 248.449 )
 
 [node name="GrannySpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 1992.6, 208.628 )
