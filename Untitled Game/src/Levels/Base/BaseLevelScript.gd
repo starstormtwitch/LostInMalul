@@ -18,7 +18,8 @@ func _setup():
 	var player = LevelGlobals.GetPlayerActor()
 	assert(is_instance_valid(player),"Player instance invalid")
 	print(self.name + ': setup start.')
-	player.connect("died", self, "_on_Player_died")
+	if(!player.is_connected("died", self, "_on_Player_died")):
+		player.connect("died", self, "_on_Player_died")
 	InitCameraManager()
 	RegisterTeleporterSignals()
 	RegisterDelimiterSignals()
@@ -50,9 +51,11 @@ func RegisterDelimiterSignals() -> void:
 	for _dl in delimiters:
 		#var dl: CustomDelimiter2D = _dl
 		assert(_dl.has_signal("PlayerEnteredAreaDelimiter"), "Delimiter node has no PlayerEnteredAreaDelimiter signal.")
-		_dl.connect("PlayerEnteredAreaDelimiter", self, "CameraTransitionToDelimiter")
+		if(!_dl.is_connected("PlayerEnteredAreaDelimiter",self,"CameraTransitionToDelimiter")):
+			_dl.connect("PlayerEnteredAreaDelimiter", self, "CameraTransitionToDelimiter")
 		assert(_dl.has_signal("PlayerExitedAreaDelimiter"), "Delimiter node has no PlayerExitedAreaDelimiter signal.")
-		_dl.connect("PlayerExitedAreaDelimiter", self, "CameraTransitionToOuterDelimiter")
+		if(!_dl.is_connected("PlayerExitedAreaDelimiter",self,"CameraTransitionToOuterDelimiter")):
+			_dl.connect("PlayerExitedAreaDelimiter", self, "CameraTransitionToOuterDelimiter")
 	print("Registered delimiters.")
 
 func CameraTransitionToOuterDelimiter(delimiter: CustomDelimiter2D) -> void:

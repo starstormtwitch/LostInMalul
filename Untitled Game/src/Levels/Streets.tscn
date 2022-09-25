@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=2]
+[gd_scene load_steps=100 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Levels/Streets/Level_Start.png" type="Texture" id=2]
@@ -95,6 +95,15 @@ extents = Vector2( 41.4407, 38.1506 )
 
 [sub_resource type="RectangleShape2D" id=18]
 extents = Vector2( 29.0441, 21.0301 )
+
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 14.9716, 12.1656 )
+
+[sub_resource type="RectangleShape2D" id=24]
+extents = Vector2( 10, 7.2766 )
+
+[sub_resource type="RectangleShape2D" id=25]
+extents = Vector2( 10, 3.0769 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 36.0626, 17.9861 )
@@ -237,6 +246,18 @@ shape = SubResource( 17 )
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
 position = Vector2( 660.334, 26.1932 )
 shape = SubResource( 18 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
+position = Vector2( -21.4076, 34.7462 )
+shape = SubResource( 23 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
+position = Vector2( -66.4233, 38.3303 )
+shape = SubResource( 24 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
+position = Vector2( -67.9571, 62.753 )
+shape = SubResource( 25 )
 
 [node name="Street" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 232.93, 170.192 )
@@ -486,9 +507,9 @@ script = ExtResource( 41 )
 g_copies_of_each = 1
 g_min_y = 160
 g_max_y = 170
-g_min_spawn_wait_ms = 8000
-g_max_spawn_wait_ms = 20000
-g_object_velocity = 3.0
+g_min_spawn_wait_ms = 16000
+g_max_spawn_wait_ms = 40000
+g_object_velocity = 2.5
 g_path = "res://src/Props/StreetLevel/Vehicles/"
 g_starting_x = 800
 
@@ -499,11 +520,11 @@ script = ExtResource( 41 )
 g_copies_of_each = 1
 g_min_y = 140
 g_max_y = 160
-g_min_spawn_wait_ms = 4000
-g_max_spawn_wait_ms = 20000
-g_object_velocity = -3.0
+g_min_spawn_wait_ms = 16000
+g_max_spawn_wait_ms = 40000
+g_object_velocity = -2.5
 g_path = "res://src/Props/StreetLevel/Vehicles/"
-g_starting_x = -50
+g_starting_x = -100
 
 [node name="Actors" type="YSort" parent="YSort"]
 
@@ -774,7 +795,7 @@ position = Vector2( 55.1622, 77.7827 )
 position = Vector2( 339.312, 119.089 )
 
 [node name="FireHydrant" parent="YSort/1stHouse" instance=ExtResource( 10 )]
-position = Vector2( -43.6554, 46.1588 )
+position = Vector2( -43.051, 45.896 )
 
 [node name="BlueHouse" type="YSort" parent="YSort"]
 position = Vector2( 345.438, 87.8326 )
@@ -836,7 +857,7 @@ position = Vector2( 728.847, 123.944 )
 position = Vector2( 392.704, 123.83 )
 
 [node name="TruckWithPost" parent="YSort/Road" instance=ExtResource( 29 )]
-position = Vector2( 162.633, 124.006 )
+position = Vector2( 162.534, 123.6 )
 
 [node name="LampostWithGarbage" parent="YSort/Road" instance=ExtResource( 28 )]
 position = Vector2( 91.6733, 213.011 )

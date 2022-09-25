@@ -530,7 +530,7 @@ position = Vector2( 517.918, 250 )
 
 [node name="Toilet" parent="LevelBackground/Interactions/Bathroom" instance=ExtResource( 175 )]
 position = Vector2( 94.702, 236.582 )
-interactableText = "*Uses* Ahhh, that's better."
+interactableText = "The porcelain throne"
 
 [node name="InteractSprite" parent="LevelBackground/Interactions/Bathroom/Toilet" instance=ExtResource( 203 )]
 visible = false
@@ -1069,7 +1069,7 @@ enemy = "Granny"
 automatic = false
 
 [node name="BathroomSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
-position = Vector2( 138.33, 213.343 )
+position = Vector2( 137.183, 213.343 )
 rect = Rect2( 0, 0, 200, 40 )
 only_off_screen = true
 duration_between_spawn = 30

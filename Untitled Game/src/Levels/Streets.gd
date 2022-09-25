@@ -75,17 +75,17 @@ func _stop_warning_sound() -> void:
 func _on_TrafficSystemRight_SpawnWarning():
 	#print("right warnign sign")
 	_play_warning_sound()
-	_rightWarningSign.visible = true
+	#_rightWarningSign.visible = true
 	yield(get_tree().create_timer(2), "timeout")
-	_rightWarningSign.visible = false
+	#_rightWarningSign.visible = false
 	_stop_warning_sound()
 
 func _on_TrafficSystemLeft_SpawnWarning():
 	#print("left warnign sign")
 	_play_warning_sound()
-	_leftWarningSign.visible = true
+	#_leftWarningSign.visible = true
 	yield(get_tree().create_timer(2), "timeout")
-	_leftWarningSign.visible = false
+	#_leftWarningSign.visible = false
 	_stop_warning_sound()
 
 func _on_ExitLevel_interactable_text_signal(text):
