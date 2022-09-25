@@ -57,12 +57,5 @@ func switchSpriteForInput(input: InputEvent):
 
 
 func getTextureFromPath(path: String):
-	var image = Image.new()
-	var error = image.load(path)
-	if error != OK:
-		print("Error loading image from: " + path)
-
-	var texture = ImageTexture.new()
-	texture.create_from_image(image)
-	return texture
+	return load(path)
 	

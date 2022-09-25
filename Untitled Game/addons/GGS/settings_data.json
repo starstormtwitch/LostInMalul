@@ -75,7 +75,7 @@
 			"value": true
 		},
 		"current": {
-			"value": true
+			"value": false
 		},
 		"logic": "res://src/Helpers/Settings/Display_Vsync.gd"
 	},
@@ -129,7 +129,7 @@
 			"value": false
 		},
 		"current": {
-			"value": true
+			"value": false
 		},
 		"logic": "res://src/Helpers/Settings/Infinite Damage.gd"
 	},

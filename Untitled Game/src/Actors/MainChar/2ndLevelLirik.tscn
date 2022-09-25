@@ -633,7 +633,6 @@ autostart = true
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
 ]]
-visible = false
 position = Vector2( -2.65, -23.75 )
 collision_layer = 64
 collision_mask = 4096
@@ -645,7 +644,6 @@ shape = SubResource( 30 )
 [node name="HurtBox2" type="Area2D" parent="." groups=[
 "hurtbox",
 ]]
-visible = false
 position = Vector2( -2.65, -23.75 )
 collision_layer = 128
 collision_mask = 8192

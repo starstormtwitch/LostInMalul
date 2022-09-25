@@ -13,7 +13,7 @@ func _ready():
 	spriteWidth = $Sprite.texture.get_width()
 
 func _process(_delta: float) -> void:
-	position.x += g_velocity
+	position.x += g_velocity * _delta
 	if(g_velocity > 1):
 		$Sprite.scale.x = -1
 		$CollisionShape2D.position.x = (spriteWidth*2)-30

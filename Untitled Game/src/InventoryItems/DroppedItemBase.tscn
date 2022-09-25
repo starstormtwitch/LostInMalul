@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/InventoryItems/ItemBase.gd" type="Script" id=1]
 [ext_resource path="res://assets/actions/f_key.png" type="Texture" id=2]
 [ext_resource path="res://src/Helpers/Interacts/InteractPromptArea.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/SpriteSheets/main_char/mc_shadow.png" type="Texture" id=4]
-
+[ext_resource path="res://src/Helpers/Interacts/interactSprite.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13.7224, 14.0084 )
@@ -34,9 +34,10 @@ position = Vector2( -10.845, -22.5228 )
 position = Vector2( 10.7798, 12.7433 )
 shape = SubResource( 1 )
 
-[node name="FPrompt" type="Sprite" parent="InteractPromptArea"]
+[node name="InteractSprite" type="Sprite" parent="InteractPromptArea"]
 position = Vector2( 11.5754, -14.3324 )
 texture = ExtResource( 2 )
+script = ExtResource( 5 )
 
 [node name="Shadow" type="Sprite" parent="."]
 position = Vector2( -0.0532196, -1.07107 )

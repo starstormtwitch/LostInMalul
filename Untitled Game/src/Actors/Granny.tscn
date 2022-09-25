@@ -1,11 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/SpriteSheets/granny.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/Granny.gd" type="Script" id=2]
 [ext_resource path="res://assets/actions/f_key.png" type="Texture" id=3]
 [ext_resource path="res://src/Helpers/Interacts/InteractPromptArea.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Helpers/Interacts/interactSprite.gd" type="Script" id=5]
 [ext_resource path="res://src/Helpers/Spawning/LootSpawner.tscn" type="PackedScene" id=6]
-
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 13.2807
@@ -86,10 +86,11 @@ interactableText = "You have nothing to give to grandma to make her comfy. "
 position = Vector2( 11.7463, 11.1979 )
 shape = SubResource( 4 )
 
-[node name="FPrompt" type="Sprite" parent="InteractPromptArea"]
+[node name="InteractSprite" type="Sprite" parent="InteractPromptArea"]
 visible = false
-position = Vector2( 12.7928, -1.50315 )
+position = Vector2( 11.5754, -14.3324 )
 texture = ExtResource( 3 )
+script = ExtResource( 5 )
 
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
