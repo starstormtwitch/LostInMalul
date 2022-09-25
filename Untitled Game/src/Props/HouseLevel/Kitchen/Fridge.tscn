@@ -5,8 +5,9 @@
 [node name="Fridge" type="StaticBody2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -30.7401 )
+position = Vector2( -0.210228, -22.5414 )
 texture = ExtResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -0.210228, 8.19874 )
 polygon = PoolVector2Array( -24.0527, -7.94429, -16.1094, 0.288219, 25.9838, 0.27187, 26.0769, -53.762, 18.0245, -61.8439, -23.9367, -61.8715 )

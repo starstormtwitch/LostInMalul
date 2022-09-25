@@ -1060,7 +1060,7 @@ position = Vector2( 889.838, 509.569 )
 position = Vector2( 926.425, 509.588 )
 
 [node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 2 )]
-position = Vector2( 750.306, 227.827 )
+position = Vector2( 2598.27, 270.014 )
 
 [node name="GrannySpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 1992.6, 208.628 )
@@ -1710,8 +1710,11 @@ position = Vector2( 351.103, 122.607 )
 [node name="Kitchen" type="YSort" parent="YSort/Props"]
 position = Vector2( 2474.16, 0 )
 
+[node name="Bowls" parent="YSort/Props/Kitchen" instance=ExtResource( 64 )]
+position = Vector2( 250.713, 191.023 )
+
 [node name="ShelfKitchen" parent="YSort/Props/Kitchen" instance=ExtResource( 195 )]
-position = Vector2( 78.0483, 226.381 )
+position = Vector2( 81.5788, 226.426 )
 
 [node name="Node2D" parent="YSort/Props/Kitchen" instance=ExtResource( 14 )]
 position = Vector2( 28.8264, 234.965 )
@@ -1744,11 +1747,8 @@ position = Vector2( 94.8481, 230.666 )
 [node name="SpiceRack" parent="YSort/Props/Kitchen" instance=ExtResource( 63 )]
 position = Vector2( 239.222, 166.185 )
 
-[node name="Bowls" parent="YSort/Props/Kitchen" instance=ExtResource( 64 )]
-position = Vector2( 240.382, 191.814 )
-
 [node name="Fridge" parent="YSort/Props/Kitchen" instance=ExtResource( 67 )]
-position = Vector2( 313.422, 196.463 )
+position = Vector2( 313.368, 187.359 )
 
 [node name="Island" parent="YSort/Props/Kitchen" instance=ExtResource( 70 )]
 position = Vector2( 447.705, 219.965 )
