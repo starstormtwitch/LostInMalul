@@ -35,3 +35,7 @@ func _check_for_events(delta) -> bool:
 func playChargeAnimation():
 	print("play charging animation for hadouken.")
 	_attackManagerLevel2.playChargingSpecialAnimation()
+
+
+func playKickPart2():
+	_attackManagerLevel2.playKickPart2(self)
