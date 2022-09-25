@@ -533,7 +533,7 @@ position = Vector2( 517.918, 250 )
 
 [node name="Toilet" parent="LevelBackground/Interactions/Bathroom" instance=ExtResource( 175 )]
 position = Vector2( 94.702, 236.582 )
-interactableText = "*Uses* Ahhh, that's better."
+interactableText = "The porcelain throne"
 
 [node name="InteractSprite" parent="LevelBackground/Interactions/Bathroom/Toilet" instance=ExtResource( 203 )]
 visible = false
@@ -1063,7 +1063,7 @@ position = Vector2( 889.838, 509.569 )
 position = Vector2( 926.425, 509.588 )
 
 [node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 2 )]
-position = Vector2( 750.306, 227.827 )
+position = Vector2( 927.024, 248.449 )
 
 [node name="GrannySpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 1992.6, 208.628 )
@@ -1072,7 +1072,7 @@ enemy = "Granny"
 automatic = false
 
 [node name="BathroomSpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
-position = Vector2( 138.33, 213.343 )
+position = Vector2( 137.183, 213.343 )
 rect = Rect2( 0, 0, 200, 40 )
 only_off_screen = true
 duration_between_spawn = 30
@@ -1156,7 +1156,8 @@ position = Vector2( 320.719, -34.488 )
 scale = Vector2( 1.0189, 1 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
-count = 4
+count = 8
+maxSpawnedAtATime = 4
 automatic = false
 
 [node name="Garage2" parent="YSort/Actors/GarageFight1" instance=ExtResource( 176 )]
@@ -1164,8 +1165,9 @@ position = Vector2( 337.382, -33.415 )
 scale = Vector2( 1.0189, 1 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
-count = 2
-enemy = "RatSoldier"
+count = 4
+maxSpawnedAtATime = 2
+enemy = "Shitman"
 automatic = false
 
 [node name="GarageFight2" parent="YSort/Actors" instance=ExtResource( 19 )]
@@ -1203,6 +1205,8 @@ scale = Vector2( 1.0189, 1 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
 count = 2
+maxSpawnedAtATime = 2
+enemy = "Chat"
 automatic = false
 
 [node name="LivingFight1" parent="YSort/Actors" instance=ExtResource( 19 )]
@@ -1217,7 +1221,7 @@ position = Vector2( 471.842, 250.296 )
 
 [node name="Spawner" parent="YSort/Actors/LivingFight1" instance=ExtResource( 176 )]
 position = Vector2( 351.022, 28.234 )
-count = 2
+count = 3
 enemy = "RatSoldier"
 automatic = false
 
@@ -1240,6 +1244,7 @@ position = Vector2( 403.479, 250.116 )
 position = Vector2( -286.094, -29.6138 )
 scale = Vector2( 1, 4.02566 )
 count = 5
+maxSpawnedAtATime = 3
 automatic = false
 
 [node name="KitchenFight1" parent="YSort/Actors" instance=ExtResource( 19 )]
@@ -1255,7 +1260,8 @@ position = Vector2( 412.969, 249.053 )
 [node name="Spawner" parent="YSort/Actors/KitchenFight1" instance=ExtResource( 176 )]
 position = Vector2( 309.338, 35.729 )
 rect = Rect2( 0, 0, 10, 10 )
-count = 4
+count = 6
+maxSpawnedAtATime = 2
 automatic = false
 
 [node name="KitchenFight2" parent="YSort/Actors" instance=ExtResource( 19 )]
@@ -1271,7 +1277,8 @@ position = Vector2( 390.298, 250.493 )
 [node name="Spawner" parent="YSort/Actors/KitchenFight2" instance=ExtResource( 176 )]
 position = Vector2( -305.877, -42.1277 )
 rect = Rect2( 0, 0, 20, 10 )
-count = 3
+count = 4
+maxSpawnedAtATime = 2
 enemy = "RatSoldier"
 automatic = false
 
@@ -1302,9 +1309,10 @@ AutomaticTransition = false
 position = Vector2( 395.21, 249.786 )
 
 [node name="Spawner2" parent="YSort/Actors/OfficeFight2" instance=ExtResource( 176 )]
-position = Vector2( -286.764, -26.0568 )
+position = Vector2( -286.764, -26.7425 )
 scale = Vector2( 1, 3.61594 )
-count = 3
+count = 4
+maxSpawnedAtATime = 2
 automatic = false
 
 [node name="Spawner3" parent="YSort/Actors/OfficeFight2" instance=ExtResource( 176 )]
@@ -1328,6 +1336,7 @@ position = Vector2( 317.48, 24.2602 )
 rect = Rect2( 0, 0, 10, 10 )
 duration_between_spawn = 1
 count = 8
+maxSpawnedAtATime = 4
 automatic = false
 
 [node name="BasementFight" parent="YSort/Actors" instance=ExtResource( 19 )]
@@ -1345,14 +1354,16 @@ position = Vector2( -232.013, -28.213 )
 scale = Vector2( 1.67996, 0.856959 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
-count = 10
+count = 15
+maxSpawnedAtATime = 5
 automatic = false
 
 [node name="BasementR1" parent="YSort/Actors/BasementFight" instance=ExtResource( 176 )]
 position = Vector2( 297.651, -19.8616 )
 rect = Rect2( 0, 0, 50, 70 )
 duration_between_spawn = 1
-count = 10
+count = 15
+maxSpawnedAtATime = 5
 automatic = false
 
 [node name="BedroomFight1" parent="YSort/Actors" instance=ExtResource( 19 )]
@@ -1369,6 +1380,7 @@ position = Vector2( 435.374, 280.311 )
 position = Vector2( 378.725, -29.0653 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
+count = 2
 automatic = false
 
 [node name="BedroomFight2" parent="YSort/Actors" instance=ExtResource( 19 )]
@@ -1385,7 +1397,6 @@ position = Vector2( 462.202, 279.489 )
 position = Vector2( -354.307, -33.6017 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
-count = 3
 automatic = false
 
 [node name="Props" type="YSort" parent="YSort"]
@@ -1702,8 +1713,11 @@ position = Vector2( 351.103, 122.607 )
 [node name="Kitchen" type="YSort" parent="YSort/Props"]
 position = Vector2( 2474.16, 0 )
 
+[node name="Bowls" parent="YSort/Props/Kitchen" instance=ExtResource( 64 )]
+position = Vector2( 250.713, 191.023 )
+
 [node name="ShelfKitchen" parent="YSort/Props/Kitchen" instance=ExtResource( 195 )]
-position = Vector2( 78.0483, 226.381 )
+position = Vector2( 81.5788, 226.426 )
 
 [node name="Node2D" parent="YSort/Props/Kitchen" instance=ExtResource( 14 )]
 position = Vector2( 28.8264, 234.965 )
@@ -1736,11 +1750,8 @@ position = Vector2( 94.8481, 230.666 )
 [node name="SpiceRack" parent="YSort/Props/Kitchen" instance=ExtResource( 63 )]
 position = Vector2( 239.222, 166.185 )
 
-[node name="Bowls" parent="YSort/Props/Kitchen" instance=ExtResource( 64 )]
-position = Vector2( 240.382, 191.814 )
-
 [node name="Fridge" parent="YSort/Props/Kitchen" instance=ExtResource( 67 )]
-position = Vector2( 313.422, 196.463 )
+position = Vector2( 313.368, 187.359 )
 
 [node name="Island" parent="YSort/Props/Kitchen" instance=ExtResource( 70 )]
 position = Vector2( 447.705, 219.965 )

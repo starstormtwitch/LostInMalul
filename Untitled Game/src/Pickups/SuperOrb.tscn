@@ -5,7 +5,7 @@
 [ext_resource path="res://src/Pickups/SuperOrb.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 3.75913, 4.24094 )
+extents = Vector2( 9.27739, 6.51364 )
 
 [node name="SuperOrb" type="Area2D"]
 scale = Vector2( 0.333773, 0.34702 )
@@ -21,7 +21,7 @@ position = Vector2( 0.21022, -14.085 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.176781, -4.41942 )
+position = Vector2( 0.384344, -2.2606 )
 shape = SubResource( 1 )
 
 [connection signal="body_entered" from="." to="." method="_on_SuperOrb_body_entered"]

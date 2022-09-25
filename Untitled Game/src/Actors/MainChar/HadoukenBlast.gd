@@ -20,7 +20,7 @@ onready var queueFreeTimer: Timer = $QueueFreeTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_timer.connect("timeout", self, "_dissapear") 
+	_timer.connect("timeout", self, "_disappear") 
 	_timer.one_shot = true
 	add_child(_timer)
 	_timer.start(_TIME)
@@ -41,7 +41,7 @@ func set_direction(direction: Vector2):
 		_direction = -1
 
 
-func _dissapear():
+func _disappear():
 	animationTree.get("parameters/playback").travel("end")
 
 

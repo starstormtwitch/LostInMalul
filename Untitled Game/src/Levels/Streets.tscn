@@ -1,19 +1,13 @@
-[gd_scene load_steps=112 format=2]
+[gd_scene load_steps=100 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Levels/Streets/Level_Start.png" type="Texture" id=2]
 [ext_resource path="res://src/Actors/MainChar/2ndLevelLirik.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/Props/StreetLevel/1stHouse/LeftFence.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/Props/StreetLevel/1stHouse/RightFence.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Actors/Box.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Props/StreetLevel/Shared/YellowFlower.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Levels/Streets.gd" type="Script" id=7]
-[ext_resource path="res://src/Props/StreetLevel/1stHouse/Cat.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/Props/StreetLevel/1stHouse/ThingNextToCat.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/Props/StreetLevel/1stHouse/FireHydrant.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Props/StreetLevel/Shared/BlueMailbox.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/Props/StreetLevel/Shared/PinkFlower.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/Props/StreetLevel/Shared/WhiteMailbox.tscn" type="PackedScene" id=13]
-[ext_resource path="res://src/Props/StreetLevel/RatGraffitiHouse/BrownFence.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/Props/StreetLevel/Shared/RedFlower.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/Props/StreetLevel/BlueHouse/LeftWhiteFence.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/Props/StreetLevel/BlueHouse/RightWhiteFence.tscn" type="PackedScene" id=17]
@@ -76,6 +70,7 @@
 [ext_resource path="res://assets/actions/f_key.png" type="Texture" id=74]
 [ext_resource path="res://src/Helpers/Interacts/interactSprite.gd" type="Script" id=75]
 [ext_resource path="res://src/GUI/DashCooldownUI.tscn" type="PackedScene" id=177]
+[ext_resource path="res://assets/fonts/Early GameBoy.ttf" type="DynamicFontData" id=178]
 [ext_resource path="res://assets/GUI/BossHealthBarTheme.tres" type="Theme" id=179]
 [ext_resource path="res://src/GUI/SuperBar.tscn" type="PackedScene" id=182]
 [ext_resource path="res://src/Helpers/Utilities/Crt/CRTLayer.tscn" type="PackedScene" id=200]
@@ -86,102 +81,76 @@ extents = Vector2( 4052.88, 10 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 119.7 )
 
-[sub_resource type="SegmentShape2D" id=3]
-a = Vector2( -76.1052, -3.69151 )
-b = Vector2( -11.3035, -3.8788 )
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 257.807, 65.252 )
 
-[sub_resource type="SegmentShape2D" id=4]
-a = Vector2( -41.4569, 5.86019 )
-b = Vector2( 39.0771, 6.04748 )
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 816.38, 64.0705 )
 
-[sub_resource type="SegmentShape2D" id=5]
-a = Vector2( -12.0526, -3.31694 )
-b = Vector2( -12.4272, 10.5424 )
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 327.479, 53.3866 )
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 10.4254, 17.6327 )
+extents = Vector2( 41.4407, 38.1506 )
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 4.19347, 10 )
+extents = Vector2( 29.0441, 21.0301 )
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 36.5392, 10 )
+extents = Vector2( 14.9716, 12.1656 )
 
-[sub_resource type="SegmentShape2D" id=9]
-a = Vector2( 190.691, -66.1549 )
-b = Vector2( 532.039, -66.6376 )
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 10, 7.2766 )
 
 [sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 6.13144, 11.5701 )
+extents = Vector2( 10, 3.0769 )
 
 [sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 10, 52.5724 )
+extents = Vector2( 36.0626, 17.9861 )
 
-[sub_resource type="RectangleShape2D" id=33]
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 58.1115, 53.4582 )
+
+[sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 420.749, 58.1924 )
 
-[sub_resource type="RectangleShape2D" id=34]
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 50.7107, 24.4466 )
 
-[sub_resource type="RectangleShape2D" id=35]
+[sub_resource type="RectangleShape2D" id=15]
 extents = Vector2( 52.2573, 16.963 )
 
-[sub_resource type="RectangleShape2D" id=36]
+[sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 52.2573, 20.7088 )
 
-[sub_resource type="RectangleShape2D" id=37]
+[sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 28.634, 10.2518 )
 
-[sub_resource type="SegmentShape2D" id=38]
-a = Vector2( 116.923, 8.23139 )
-b = Vector2( -2.45743, 8.89956 )
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 28.1875, 10 )
 
-[sub_resource type="SegmentShape2D" id=39]
-a = Vector2( -0.578247, -28.2061 )
-b = Vector2( -0.578247, 12.2727 )
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 55.2458, 14.7873 )
 
-[sub_resource type="RectangleShape2D" id=40]
-extents = Vector2( 33.4598, 10 )
+[sub_resource type="RectangleShape2D" id=20]
+extents = Vector2( 38.8765, 13.279 )
 
-[sub_resource type="RectangleShape2D" id=41]
-extents = Vector2( 8.42667, 10 )
+[sub_resource type="RectangleShape2D" id=21]
 
-[sub_resource type="SegmentShape2D" id=42]
-a = Vector2( 1.66437, -33.5508 )
-b = Vector2( 1.83124, 26.517 )
-
-[sub_resource type="RectangleShape2D" id=43]
-extents = Vector2( 13.5503, 10 )
-
-[sub_resource type="RectangleShape2D" id=44]
-extents = Vector2( 5.87134, 20.5271 )
-
-[sub_resource type="RectangleShape2D" id=45]
-extents = Vector2( 22.7273, 19.9653 )
-
-[sub_resource type="RectangleShape2D" id=46]
-extents = Vector2( 29.6569, 3.85847 )
-
-[sub_resource type="SegmentShape2D" id=26]
-a = Vector2( 26.8477, 1.38559 )
-b = Vector2( -7.98795, 1.38559 )
-
-[sub_resource type="SegmentShape2D" id=27]
-a = Vector2( 110.796, -16.3299 )
-b = Vector2( 110.963, 26.3849 )
-
-[sub_resource type="RectangleShape2D" id=47]
-extents = Vector2( 11.689, 10 )
-
-[sub_resource type="RectangleShape2D" id=29]
-extents = Vector2( 4.34729, 10 )
-
-[sub_resource type="RectangleShape2D" id=30]
-
-[sub_resource type="RectangleShape2D" id=31]
+[sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 10.2012, 6.93721 )
 
-[sub_resource type="ShaderMaterial" id=32]
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 10, 62.1962 )
+
+[sub_resource type="DynamicFont" id=24]
+size = 8
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+font_data = ExtResource( 178 )
+
+[sub_resource type="ShaderMaterial" id=25]
 
 [node name="Streets" type="Node2D"]
 pause_mode = 2
@@ -266,120 +235,81 @@ disabled = true
 [node name="RedHouseBoundaries" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 75.8518, 58.2467 )
 
-[node name="FrontDoorHouse" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
+[node name="BeginningHouse" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
+position = Vector2( 318.257, -6.21736 )
 shape = SubResource( 5 )
 
-[node name="FrontOfGarage" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
-position = Vector2( 32.1494, -7.34645 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
+position = Vector2( -43.0425, -27.3461 )
 shape = SubResource( 6 )
 
-[node name="FrontDoorHouse2" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
-position = Vector2( -36.8163, -12.1838 )
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
+position = Vector2( 660.334, 26.1932 )
 shape = SubResource( 7 )
 
-[node name="TrashCans" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
-position = Vector2( 6.45899, 20.2679 )
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
+position = Vector2( -21.4076, 34.7462 )
 shape = SubResource( 8 )
 
-[node name="Chair" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
-position = Vector2( -43.8317, -8.61919 )
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
+position = Vector2( -66.4233, 38.3303 )
 shape = SubResource( 9 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
+position = Vector2( -67.9571, 62.753 )
+shape = SubResource( 10 )
 
 [node name="Street" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 232.93, 170.192 )
 
 [node name="BusStop" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 234.554, -76.1289 )
-shape = SubResource( 10 )
+shape = SubResource( 11 )
 
 [node name="Park" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 613.44, -130.185 )
-shape = SubResource( 11 )
+shape = SubResource( 12 )
 
 [node name="Block2" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 1682.31, -123.285 )
-shape = SubResource( 33 )
+shape = SubResource( 13 )
 
 [node name="truck" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 2295.45, -162.574 )
-shape = SubResource( 34 )
+shape = SubResource( 14 )
 
 [node name="parking1" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 2142.58, -80.9086 )
-shape = SubResource( 35 )
+shape = SubResource( 15 )
 
 [node name="parking2" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 2304.77, -87.651 )
-shape = SubResource( 36 )
+shape = SubResource( 16 )
 
 [node name="greencar" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 2130.94, -117.94 )
-shape = SubResource( 37 )
+shape = SubResource( 17 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
+position = Vector2( 790.221, -64.5548 )
+shape = SubResource( 18 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
+position = Vector2( 972.474, -63.028 )
+shape = SubResource( 19 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
+position = Vector2( 1199.87, -62.2343 )
+shape = SubResource( 20 )
 
 [node name="RatGraffitiHouse" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 212.257, 50.113 )
 
-[node name="RightPot" type="CollisionShape2D" parent="LevelBackground/Boundaries/RatGraffitiHouse"]
-position = Vector2( 7.02744, 25.4143 )
-shape = SubResource( 38 )
-
-[node name="LeftBushes" type="CollisionShape2D" parent="LevelBackground/Boundaries/RatGraffitiHouse"]
-position = Vector2( -52.8239, 0.287952 )
-shape = SubResource( 39 )
-
-[node name="FrontOfHouse" type="CollisionShape2D" parent="LevelBackground/Boundaries/RatGraffitiHouse"]
-position = Vector2( -38.7541, 5.12267 )
-shape = SubResource( 40 )
-
-[node name="RightSideFence" type="CollisionShape2D" parent="LevelBackground/Boundaries/RatGraffitiHouse"]
-position = Vector2( 78.1795, 25.9937 )
-shape = SubResource( 41 )
-
-[node name="RightBushes" type="CollisionShape2D" parent="LevelBackground/Boundaries/RatGraffitiHouse"]
-position = Vector2( 42.3585, 19.9692 )
-shape = SubResource( 42 )
-
-[node name="LeftPot" type="CollisionShape2D" parent="LevelBackground/Boundaries/RatGraffitiHouse"]
-position = Vector2( -33.2883, 26.504 )
-shape = SubResource( 43 )
-
 [node name="BlueHouse" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 311.481, 76.7211 )
 
-[node name="LeftFence" type="CollisionShape2D" parent="LevelBackground/Boundaries/BlueHouse"]
-position = Vector2( -12.5057, 1.3922 )
-shape = SubResource( 44 )
-
-[node name="Bench" type="CollisionShape2D" parent="LevelBackground/Boundaries/BlueHouse"]
-position = Vector2( 3.1839, -21.3509 )
-shape = SubResource( 45 )
-
-[node name="LeftSideHouse" type="CollisionShape2D" parent="LevelBackground/Boundaries/BlueHouse"]
-position = Vector2( 23.0365, -22.6619 )
-shape = SubResource( 46 )
-
-[node name="RightSideHouse" type="CollisionShape2D" parent="LevelBackground/Boundaries/BlueHouse"]
-position = Vector2( 54.3135, -18.9161 )
-shape = SubResource( 26 )
-
-[node name="Bushes" type="CollisionShape2D" parent="LevelBackground/Boundaries/BlueHouse"]
-position = Vector2( 78.8484, -1.49831 )
-shape = SubResource( 27 )
-
-[node name="FrontOfHouse" type="CollisionShape2D" parent="LevelBackground/Boundaries/BlueHouse"]
-position = Vector2( 36.5212, -22.4746 )
-shape = SubResource( 47 )
-
-[node name="RIghtSideFence" type="CollisionShape2D" parent="LevelBackground/Boundaries/BlueHouse"]
-position = Vector2( 110.846, 3.80642 )
-shape = SubResource( 29 )
-
 [node name="PogolisStore" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 663.565, 81.5804 )
-
-[node name="VendingMachine" type="CollisionShape2D" parent="LevelBackground/Boundaries/PogolisStore"]
-position = Vector2( -17.8582, 19.4457 )
-shape = SubResource( 30 )
 
 [node name="LeftPot" type="CollisionShape2D" parent="LevelBackground/Boundaries/PogolisStore"]
 position = Vector2( -40.4787, 18.0567 )
@@ -395,9 +325,11 @@ position = Vector2( 4221, 13.0621 )
 
 [node name="LeftBush" type="CollisionShape2D" parent="LevelBackground/Boundaries/Graveyard"]
 position = Vector2( 167.028, 80.2639 )
+shape = SubResource( 21 )
 
 [node name="RightBish" type="CollisionShape2D" parent="LevelBackground/Boundaries/Graveyard"]
 position = Vector2( 208.758, 80.0536 )
+shape = SubResource( 21 )
 
 [node name="CameraPositions" type="Node" parent="LevelBackground"]
 
@@ -416,7 +348,7 @@ interactableText = "Lilletsy (2020)"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Grave"]
 position = Vector2( 2294.62, -23.5937 )
-shape = SubResource( 31 )
+shape = SubResource( 22 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Grave"]
 visible = false
@@ -430,7 +362,7 @@ interactableText = "french_beret (2019)"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Grave4"]
 position = Vector2( 2294.62, -23.5937 )
-shape = SubResource( 31 )
+shape = SubResource( 22 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Grave4"]
 visible = false
@@ -444,23 +376,9 @@ interactableText = "StarStorm (tbd)"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Grave5"]
 position = Vector2( 2294.62, -23.5937 )
-shape = SubResource( 31 )
+shape = SubResource( 22 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Grave5"]
-visible = false
-texture = ExtResource( 74 )
-script = ExtResource( 75 )
-
-[node name="Grave3" parent="LevelBackground/Interactions" instance=ExtResource( 73 )]
-position = Vector2( 2114.3, 75.6508 )
-scale = Vector2( 1, 1.0042 )
-interactableText = "Ui20 (2016)"
-
-[node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Grave3"]
-position = Vector2( 2294.62, -23.5937 )
-shape = SubResource( 31 )
-
-[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Grave3"]
 visible = false
 texture = ExtResource( 74 )
 script = ExtResource( 75 )
@@ -472,10 +390,37 @@ interactableText = "MrGoatsy (2021)"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Grave2"]
 position = Vector2( 2294.62, -23.5937 )
-shape = SubResource( 31 )
+shape = SubResource( 22 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Grave2"]
 visible = false
+texture = ExtResource( 74 )
+script = ExtResource( 75 )
+
+[node name="Grave3" parent="LevelBackground/Interactions" instance=ExtResource( 73 )]
+position = Vector2( 2114.3, 75.6508 )
+scale = Vector2( 1, 1.0042 )
+interactableText = "Ui20 (2016)"
+
+[node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Grave3"]
+position = Vector2( 2294.62, -23.5937 )
+shape = SubResource( 22 )
+
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Grave3"]
+visible = false
+texture = ExtResource( 74 )
+script = ExtResource( 75 )
+
+[node name="ExitLevel" parent="LevelBackground/Interactions" instance=ExtResource( 73 )]
+position = Vector2( 4566.08, 158.846 )
+scale = Vector2( 1, 1.00842 )
+
+[node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/ExitLevel"]
+position = Vector2( -1.1123, 4.83324 )
+shape = SubResource( 23 )
+
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/ExitLevel"]
+position = Vector2( -0.319336, -5.64977 )
 texture = ExtResource( 74 )
 script = ExtResource( 75 )
 
@@ -488,34 +433,34 @@ script = ExtResource( 75 )
 [node name="MoreRoad" type="Node2D" parent="LevelBackground"]
 
 [node name="Road5" parent="LevelBackground/MoreRoad" instance=ExtResource( 45 )]
-position = Vector2( 2495.06, 160.357 )
+position = Vector2( 2492.06, 160.357 )
 
 [node name="Road3" parent="LevelBackground/MoreRoad" instance=ExtResource( 45 )]
 position = Vector2( 1727.02, 160.366 )
 
 [node name="Road4" parent="LevelBackground/MoreRoad" instance=ExtResource( 45 )]
-position = Vector2( 2111.07, 160.361 )
+position = Vector2( 2109.07, 160.361 )
 
 [node name="Road2" parent="LevelBackground/MoreRoad" instance=ExtResource( 45 )]
 position = Vector2( 1342.91, 160.289 )
 
 [node name="Road" parent="LevelBackground/MoreRoad" instance=ExtResource( 45 )]
-position = Vector2( 959.092, 160.275 )
+position = Vector2( 959.592, 160.275 )
 
 [node name="Road6" parent="LevelBackground/MoreRoad" instance=ExtResource( 45 )]
-position = Vector2( 2879, 160.472 )
+position = Vector2( 2874, 160.222 )
 
 [node name="Road7" parent="LevelBackground/MoreRoad" instance=ExtResource( 45 )]
-position = Vector2( 3262.9, 160.478 )
+position = Vector2( 3255.9, 160.478 )
 
 [node name="Road8" parent="LevelBackground/MoreRoad" instance=ExtResource( 45 )]
-position = Vector2( 3646.67, 160.476 )
+position = Vector2( 3638.67, 160.476 )
 
 [node name="Road9" parent="LevelBackground/MoreRoad" instance=ExtResource( 45 )]
-position = Vector2( 4030.46, 160.351 )
+position = Vector2( 4021.46, 160.351 )
 
 [node name="Road10" parent="LevelBackground/MoreRoad" instance=ExtResource( 45 )]
-position = Vector2( 4412.5, 160.326 )
+position = Vector2( 4404.5, 160.326 )
 
 [node name="ParkingLot" parent="LevelBackground" instance=ExtResource( 54 )]
 position = Vector2( 2455.62, 170.725 )
@@ -548,7 +493,7 @@ position = Vector2( 846.415, 96.5624 )
 position = Vector2( 4408.1, 150.64 )
 
 [node name="ABunchOfApartments" parent="LevelBackground" instance=ExtResource( 59 )]
-position = Vector2( 1315.64, 224.392 )
+position = Vector2( 1315.64, 225.392 )
 
 [node name="CafeBuilding" parent="LevelBackground" instance=ExtResource( 56 )]
 position = Vector2( 4057.59, 128.052 )
@@ -562,9 +507,9 @@ script = ExtResource( 41 )
 g_copies_of_each = 1
 g_min_y = 160
 g_max_y = 170
-g_min_spawn_wait_ms = 8000
-g_max_spawn_wait_ms = 20000
-g_object_velocity = 3.0
+g_min_spawn_wait_ms = 16000
+g_max_spawn_wait_ms = 40000
+g_object_velocity = 100.0
 g_path = "res://src/Props/StreetLevel/Vehicles/"
 g_starting_x = 800
 
@@ -575,13 +520,22 @@ script = ExtResource( 41 )
 g_copies_of_each = 1
 g_min_y = 140
 g_max_y = 160
-g_min_spawn_wait_ms = 4000
-g_max_spawn_wait_ms = 20000
-g_object_velocity = -3.0
+g_min_spawn_wait_ms = 16000
+g_max_spawn_wait_ms = 40000
+g_object_velocity = -100.0
 g_path = "res://src/Props/StreetLevel/Vehicles/"
-g_starting_x = -50
+g_starting_x = -100
 
 [node name="Actors" type="YSort" parent="YSort"]
+
+[node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 3 )]
+position = Vector2( 19.8676, 94.1062 )
+
+[node name="Box" parent="YSort/Actors" instance=ExtResource( 4 )]
+position = Vector2( 747.855, 29.9924 )
+
+[node name="Box2" parent="YSort/Actors" instance=ExtResource( 4 )]
+position = Vector2( 2366.35, 31.2059 )
 
 [node name="AreaLockFight1" parent="YSort/Actors" instance=ExtResource( 44 )]
 position = Vector2( 115.37, 165.563 )
@@ -595,13 +549,36 @@ IsAreaLockDelimeter = true
 position = Vector2( 318.932, 222.644 )
 
 [node name="Spawner" parent="YSort/Actors/AreaLockFight1" instance=ExtResource( 46 )]
-position = Vector2( 134.098, -6.74237 )
+position = Vector2( 246.382, -19.6063 )
 count = 3
-enemy = "Shitman"
 automatic = false
 
+[node name="AreaLockFight2" parent="YSort/Actors" instance=ExtResource( 44 )]
+position = Vector2( 642.117, 161.111 )
+
+[node name="EnemySpawner2" parent="YSort/Actors/AreaLockFight2" instance=ExtResource( 46 )]
+position = Vector2( -199.321, -6.8246 )
+count = 3
+enemy = "Shitman"
+level = 2
+automatic = false
+
+[node name="EnemySpawner" parent="YSort/Actors/AreaLockFight2" instance=ExtResource( 46 )]
+position = Vector2( 170.648, -16.9722 )
+count = 3
+level = 2
+automatic = false
+
+[node name="AreaLockFight2" parent="YSort/Actors/AreaLockFight2" instance=ExtResource( 20 )]
+position = Vector2( -189.336, -160.374 )
+AutomaticTransition = false
+IsAreaLockDelimeter = true
+
+[node name="BottomRight" parent="YSort/Actors/AreaLockFight2/AreaLockFight2" index="0"]
+position = Vector2( 310.38, 223.343 )
+
 [node name="AreaLockFight3" parent="YSort/Actors" instance=ExtResource( 44 )]
-position = Vector2( 1321.44, 161.451 )
+position = Vector2( 1321.44, 160.89 )
 
 [node name="AreaLockFight3" parent="YSort/Actors/AreaLockFight3" instance=ExtResource( 20 )]
 position = Vector2( -75.5099, -157.742 )
@@ -612,56 +589,78 @@ IsAreaLockDelimeter = true
 position = Vector2( 287.713, 219.237 )
 
 [node name="Spawner" parent="YSort/Actors/AreaLockFight3" instance=ExtResource( 46 )]
-position = Vector2( 168.657, -5.25974 )
-count = 4
-enemy = "Shitman"
+position = Vector2( 241.626, -6.20362 )
+count = 3
+enemy = "Chat"
+automatic = false
+
+[node name="Spawner2" parent="YSort/Actors/AreaLockFight3" instance=ExtResource( 46 )]
+position = Vector2( -159.159, -2.3523 )
+scale = Vector2( 1, 0.825 )
+count = 3
 automatic = false
 
 [node name="AreaLockFight4" parent="YSort/Actors" instance=ExtResource( 44 )]
-position = Vector2( 2147.75, 160.191 )
+position = Vector2( 2223.5, 160.191 )
+
+[node name="EnemySpawner2" parent="YSort/Actors/AreaLockFight4" instance=ExtResource( 46 )]
+position = Vector2( -185.454, -4.48482 )
+duration_between_spawn = 3
+count = 6
+maxSpawnedAtATime = 2
+automatic = false
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaLockFight4" instance=ExtResource( 46 )]
-position = Vector2( 89.9807, -5.3454 )
-count = 2
+position = Vector2( 190.164, -0.467946 )
+duration_between_spawn = 3
+count = 9
+maxSpawnedAtATime = 3
 enemy = "Shitman"
 automatic = false
 
 [node name="AreaLockFight4" parent="YSort/Actors/AreaLockFight4" instance=ExtResource( 20 )]
-position = Vector2( -60.5813, -160.362 )
+position = Vector2( -116.203, -159.832 )
 AutomaticTransition = false
 IsAreaLockDelimeter = true
 
 [node name="BottomRight" parent="YSort/Actors/AreaLockFight4/AreaLockFight4" index="0"]
-position = Vector2( 199.964, 222.853 )
+position = Vector2( 258.764, 223.383 )
 
 [node name="AreaLockFight5" parent="YSort/Actors" instance=ExtResource( 44 )]
 position = Vector2( 2811.92, 160.191 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaLockFight5" instance=ExtResource( 46 )]
-position = Vector2( 89.9807, -5.3454 )
-count = 5
-enemy = "Shitman"
+position = Vector2( 197.083, -5.74997 )
+count = 2
+automatic = false
+
+[node name="EnemySpawner2" parent="YSort/Actors/AreaLockFight5" instance=ExtResource( 46 )]
+position = Vector2( -220.462, -6.80943 )
+count = 3
+enemy = "Chat"
 automatic = false
 
 [node name="AreaLockFight5" parent="YSort/Actors/AreaLockFight5" instance=ExtResource( 20 )]
-position = Vector2( -93.3267, -159.809 )
+position = Vector2( -121.461, -166.497 )
 AutomaticTransition = false
 IsAreaLockDelimeter = true
 
 [node name="BottomRight" parent="YSort/Actors/AreaLockFight5/AreaLockFight5" index="0"]
-position = Vector2( 253.068, 223.166 )
+position = Vector2( 248.703, 221.579 )
 
 [node name="AreaLockFight6" parent="YSort/Actors" instance=ExtResource( 44 )]
 position = Vector2( 3173.18, 160.191 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaLockFight6" instance=ExtResource( 46 )]
-position = Vector2( 90.542, -5.3454 )
-count = 4
-enemy = "Shitman"
+position = Vector2( 198.123, -5.34204 )
+duration_between_spawn = 1
+count = 5
+maxSpawnedAtATime = 3
+enemy = "Chat"
 automatic = false
 
 [node name="AreaLockFight6" parent="YSort/Actors/AreaLockFight6" instance=ExtResource( 20 )]
-position = Vector2( -60.5813, -160.362 )
+position = Vector2( -125.081, -158.862 )
 AutomaticTransition = false
 IsAreaLockDelimeter = true
 
@@ -669,59 +668,57 @@ IsAreaLockDelimeter = true
 position = Vector2( 272.301, 221.855 )
 
 [node name="AreaLockFight7" parent="YSort/Actors" instance=ExtResource( 44 )]
-position = Vector2( 3499.19, 161.579 )
+position = Vector2( 3518.64, 160.785 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaLockFight7" instance=ExtResource( 46 )]
-position = Vector2( -77.3577, -12.9135 )
+position = Vector2( -275.784, -22.5716 )
 count = 4
 enemy = "Shitman"
 automatic = false
 
 [node name="EnemySpawner2" parent="YSort/Actors/AreaLockFight7" instance=ExtResource( 46 )]
-position = Vector2( 145.179, -14.2245 )
-count = 5
+position = Vector2( 174.424, -16.7797 )
+count = 3
 enemy = "Shitman"
 automatic = false
 
 [node name="AreaLockFight7" parent="YSort/Actors/AreaLockFight7" instance=ExtResource( 20 )]
-position = Vector2( -95.3936, -160.988 )
+position = Vector2( -54.4124, -156.088 )
 AutomaticTransition = false
 IsAreaLockDelimeter = true
 
 [node name="BottomRight" parent="YSort/Actors/AreaLockFight7/AreaLockFight7" index="0"]
-position = Vector2( 258.267, 223.494 )
+position = Vector2( 158.139, 215.97 )
 
-[node name="AreaLockFight8" parent="YSort/Actors" instance=ExtResource( 44 )]
+[node name="AreaLockFightBoss" parent="YSort/Actors" instance=ExtResource( 44 )]
 position = Vector2( 4009.08, 161.231 )
 
-[node name="EnemySpawner" parent="YSort/Actors/AreaLockFight8" instance=ExtResource( 46 )]
-position = Vector2( -110.321, -14.2498 )
-count = 4
-enemy = "Shitman"
+[node name="EnemySpawner" parent="YSort/Actors/AreaLockFightBoss" instance=ExtResource( 46 )]
+position = Vector2( -126.476, -8.62541 )
+duration_between_spawn = 30
+count = 10
+maxSpawnedAtATime = 1
 automatic = false
 
-[node name="EnemySpawner2" parent="YSort/Actors/AreaLockFight8" instance=ExtResource( 46 )]
-position = Vector2( 118.987, -13.0339 )
-count = 3
+[node name="EnemySpawner2" parent="YSort/Actors/AreaLockFightBoss" instance=ExtResource( 46 )]
+position = Vector2( 220.563, -4.48697 )
 enemy = "ChimeraBeast"
 automatic = false
 
-[node name="CustomDelimiter8" parent="YSort/Actors/AreaLockFight8" instance=ExtResource( 20 )]
-position = Vector2( -120.717, -160.362 )
+[node name="CustomDelimiter8" parent="YSort/Actors/AreaLockFightBoss" instance=ExtResource( 20 )]
+position = Vector2( -304.534, -160.362 )
 AutomaticTransition = false
 IsAreaLockDelimeter = true
 
-[node name="BottomRight" parent="YSort/Actors/AreaLockFight8/CustomDelimiter8" index="0"]
-position = Vector2( 293.509, 221.517 )
-
-[node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 3 )]
-position = Vector2( 19.8676, 94.1062 )
+[node name="BottomRight" parent="YSort/Actors/AreaLockFightBoss/CustomDelimiter8" index="0"]
+position = Vector2( 478.398, 222.574 )
 
 [node name="AreaFreeFight" parent="YSort/Actors" instance=ExtResource( 47 )]
 position = Vector2( 376.45, 159.195 )
 
 [node name="Spawner" parent="YSort/Actors/AreaFreeFight" instance=ExtResource( 46 )]
-position = Vector2( -127.731, -20.6017 )
+position = Vector2( 134.444, 4.43904 )
+only_off_screen = true
 count = 2
 enemy = "Shitman"
 automatic = false
@@ -732,124 +729,64 @@ position = Vector2( 970.773, 159.902 )
 
 [node name="Spawner" parent="YSort/Actors/AreaFreeFight2" instance=ExtResource( 46 )]
 position = Vector2( -127.731, -20.6017 )
+only_off_screen = true
 count = 2
 automatic = false
 
 [node name="Spawner2" parent="YSort/Actors/AreaFreeFight2" instance=ExtResource( 46 )]
 position = Vector2( 89.449, -12.3744 )
+only_off_screen = true
 count = 2
 automatic = false
 
 [node name="AreaFreeFight3" parent="YSort/Actors" instance=ExtResource( 47 )]
-position = Vector2( 1151.44, 159.902 )
+position = Vector2( 973.26, 157.229 )
 
 [node name="Spawner" parent="YSort/Actors/AreaFreeFight3" instance=ExtResource( 46 )]
-position = Vector2( 91.8257, -9.99509 )
-count = 4
-enemy = "Shitman"
+position = Vector2( 113.207, -9.10419 )
+only_off_screen = true
+enemy = "Chat"
 automatic = false
 
 [node name="AreaFreeFight4" parent="YSort/Actors" instance=ExtResource( 47 )]
-position = Vector2( 1780, 159.5 )
+position = Vector2( 1721.73, 160.03 )
 
 [node name="Spawner" parent="YSort/Actors/AreaFreeFight4" instance=ExtResource( 46 )]
-position = Vector2( -64, -3 )
-count = 3
-enemy = "Shitman"
+position = Vector2( 115.049, -0.351349 )
+only_off_screen = true
+count = 5
 automatic = false
 
 [node name="AreaFreeFight5" parent="YSort/Actors" instance=ExtResource( 47 )]
 position = Vector2( 1934.5, 159.5 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaFreeFight5" instance=ExtResource( 46 )]
-position = Vector2( 43.5, -2 )
-count = 5
-enemy = "Shitman"
-automatic = false
-
-[node name="AreaFreeFight6" parent="YSort/Actors" instance=ExtResource( 47 )]
-position = Vector2( 2431.49, 160.364 )
-
-[node name="EnemySpawner" parent="YSort/Actors/AreaFreeFight6" instance=ExtResource( 46 )]
-position = Vector2( 82.408, -1.68179 )
+position = Vector2( 172.107, -3.02806 )
+only_off_screen = true
 count = 3
-enemy = "Shitman"
+maxSpawnedAtATime = 5
+enemy = "Chat"
 automatic = false
 
 [node name="AreaFreeFight7" parent="YSort/Actors" instance=ExtResource( 47 )]
-position = Vector2( 2595.86, 159.918 )
+position = Vector2( 2547.83, 166.477 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaFreeFight7" instance=ExtResource( 46 )]
-position = Vector2( 82.408, -1.68179 )
-count = 6
-enemy = "Shitman"
+position = Vector2( 153.161, -11.988 )
+only_off_screen = true
+duration_between_spawn = 3
+count = 8
+maxSpawnedAtATime = 3
 automatic = false
-
-[node name="AreaLockFight2" parent="YSort/Actors" instance=ExtResource( 44 )]
-position = Vector2( 641.226, 161.111 )
-
-[node name="EnemySpawner" parent="YSort/Actors/AreaLockFight2" instance=ExtResource( 46 )]
-position = Vector2( 75.9393, -5.64645 )
-count = 3
-enemy = "Shitman"
-level = 2
-automatic = false
-
-[node name="AreaLockFight2" parent="YSort/Actors/AreaLockFight2" instance=ExtResource( 20 )]
-position = Vector2( -128.5, -161 )
-AutomaticTransition = false
-IsAreaLockDelimeter = true
-
-[node name="BottomRight" parent="YSort/Actors/AreaLockFight2/AreaLockFight2" index="0"]
-position = Vector2( 276.353, 222.014 )
-
-[node name="AreaFreeFight8" parent="YSort/Actors" instance=ExtResource( 47 )]
-position = Vector2( 3729.75, 160.356 )
-
-[node name="EnemySpawner" parent="YSort/Actors/AreaFreeFight8" instance=ExtResource( 46 )]
-position = Vector2( 58.7991, -9.69986 )
-count = 4
-enemy = "Shitman"
-automatic = false
-
-[node name="RatGraffitiHouse" type="YSort" parent="YSort"]
-position = Vector2( 245.02, 88.3893 )
-
-[node name="WhiteMailbox" parent="YSort/RatGraffitiHouse" instance=ExtResource( 13 )]
-position = Vector2( -19.0287, 15.7918 )
-
-[node name="BrownFence" parent="YSort/RatGraffitiHouse" instance=ExtResource( 14 )]
-position = Vector2( 16.9615, 16.6709 )
-
-[node name="PinkFlower" parent="YSort/RatGraffitiHouse" instance=ExtResource( 12 )]
-position = Vector2( 20.6464, 0.601875 )
 
 [node name="1stHouse" type="YSort" parent="YSort"]
 position = Vector2( 55.1622, 77.7827 )
-
-[node name="BlueMailbox" parent="YSort/1stHouse" instance=ExtResource( 11 )]
-position = Vector2( -11.1702, 26.3851 )
 
 [node name="BlueTruck" parent="YSort/1stHouse" instance=ExtResource( 19 )]
 position = Vector2( 339.312, 119.089 )
 
 [node name="FireHydrant" parent="YSort/1stHouse" instance=ExtResource( 10 )]
-position = Vector2( -43.6554, 46.1588 )
-
-[node name="ThingNextToCat" parent="YSort/1stHouse" instance=ExtResource( 9 )]
-position = Vector2( 19.8303, 19.2579 )
-
-[node name="Cat" parent="YSort/1stHouse" instance=ExtResource( 8 )]
-position = Vector2( 32.2808, 16.3623 )
-
-[node name="RightFence" parent="YSort/1stHouse" instance=ExtResource( 5 )]
-position = Vector2( 2.05014, 27.3086 )
-
-[node name="Flower" parent="YSort/1stHouse" instance=ExtResource( 6 )]
-position = Vector2( -2.48939, 3.2182 )
-
-[node name="LeftFence" parent="YSort/1stHouse" instance=ExtResource( 4 )]
-position = Vector2( -44.9967, 27.1714 )
+position = Vector2( -43.051, 45.896 )
 
 [node name="BlueHouse" type="YSort" parent="YSort"]
 position = Vector2( 345.438, 87.8326 )
@@ -881,7 +818,7 @@ position = Vector2( 514.703, 218.032 )
 position = Vector2( 282.603, 211.722 )
 
 [node name="BottomLampost2" parent="YSort/Road" instance=ExtResource( 71 )]
-position = Vector2( 1076.67, 213.841 )
+position = Vector2( 1076.34, 213.507 )
 
 [node name="BottomLampost3" parent="YSort/Road" instance=ExtResource( 71 )]
 position = Vector2( 1311.56, 214.043 )
@@ -911,7 +848,7 @@ position = Vector2( 728.847, 123.944 )
 position = Vector2( 392.704, 123.83 )
 
 [node name="TruckWithPost" parent="YSort/Road" instance=ExtResource( 29 )]
-position = Vector2( 162.633, 124.006 )
+position = Vector2( 162.534, 123.6 )
 
 [node name="LampostWithGarbage" parent="YSort/Road" instance=ExtResource( 28 )]
 position = Vector2( 91.6733, 213.011 )
@@ -1076,6 +1013,7 @@ margin_left = 268.112
 margin_top = 520.0
 margin_right = 756.112
 margin_bottom = 544.0
+custom_fonts/font = SubResource( 24 )
 text = "Rex Magnus Rattorum, The Rat King"
 uppercase = true
 __meta__ = {
@@ -1084,9 +1022,9 @@ __meta__ = {
 
 [node name="PlayerGui" type="Control" parent="GUI"]
 margin_left = -2.33597
-margin_top = -2.00226
+margin_top = -2.15975
 margin_right = 37.664
-margin_bottom = 37.9977
+margin_bottom = 37.8402
 mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1094,9 +1032,9 @@ __meta__ = {
 
 [node name="Cash" type="TextureRect" parent="GUI/PlayerGui"]
 margin_left = 51.0934
-margin_top = 48.1271
+margin_top = 47.9696
 margin_right = 75.0934
-margin_bottom = 73.1271
+margin_bottom = 72.9696
 mouse_filter = 2
 texture = ExtResource( 24 )
 expand = true
@@ -1105,9 +1043,9 @@ __meta__ = {
 }
 
 [node name="healthBar" parent="GUI/PlayerGui" instance=ExtResource( 23 )]
-margin_left = 63.0934
+margin_left = 62.7188
 margin_top = 30.1271
-margin_right = 266.093
+margin_right = 265.718
 margin_bottom = 51.1271
 mouse_filter = 2
 
@@ -1118,10 +1056,10 @@ margin_right = 970.533
 margin_bottom = 19.3802
 
 [node name="Coins" type="Label" parent="GUI/PlayerGui"]
-margin_left = 90.1344
+margin_left = 90.3844
 margin_top = 50.9467
-margin_right = 192.134
-margin_bottom = 60.9467
+margin_right = 192.384
+margin_bottom = 64.9467
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -1210,7 +1148,7 @@ amount = 60
 lifetime = 10.0
 preprocess = 60.0
 speed_scale = 0.5
-process_material = SubResource( 32 )
+process_material = SubResource( 25 )
 texture = ExtResource( 43 )
 
 [node name="Leaves2" type="Particles2D" parent="."]
@@ -1219,19 +1157,20 @@ amount = 30
 lifetime = 10.0
 preprocess = 60.0
 speed_scale = 0.5
-process_material = SubResource( 32 )
+process_material = SubResource( 25 )
 texture = ExtResource( 43 )
 
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/ExitLevel" to="." method="_on_ExitLevel_interactable_text_signal"]
 [connection signal="SpawnWarning" from="YSort/TrafficSystemRight" to="." method="_on_TrafficSystemRight_SpawnWarning"]
 [connection signal="SpawnWarning" from="YSort/TrafficSystemLeft" to="." method="_on_TrafficSystemLeft_SpawnWarning"]
 [connection signal="closed" from="GUI/TextBox2" to="." method="_on_TextBox_closed"]
 
 [editable path="LevelBackground/CameraPositions/Street_Delimiter"]
 [editable path="YSort/Actors/AreaLockFight1/AreaLockFight1"]
+[editable path="YSort/Actors/AreaLockFight2/AreaLockFight2"]
 [editable path="YSort/Actors/AreaLockFight3/AreaLockFight3"]
 [editable path="YSort/Actors/AreaLockFight4/AreaLockFight4"]
 [editable path="YSort/Actors/AreaLockFight5/AreaLockFight5"]
 [editable path="YSort/Actors/AreaLockFight6/AreaLockFight6"]
 [editable path="YSort/Actors/AreaLockFight7/AreaLockFight7"]
-[editable path="YSort/Actors/AreaLockFight8/CustomDelimiter8"]
-[editable path="YSort/Actors/AreaLockFight2/AreaLockFight2"]
+[editable path="YSort/Actors/AreaLockFightBoss/CustomDelimiter8"]

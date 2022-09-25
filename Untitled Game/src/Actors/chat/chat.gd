@@ -1,7 +1,7 @@
 extends Enemy
 
 
-const bullet_scene = preload("res://src/Actors/shitman/Bullet.tscn")
+const bullet_scene = preload("res://src/Actors/chat/chatting.tscn")
 
 const _GRAVITY = 10
 const _JUMPFORCE = -160
@@ -14,12 +14,13 @@ onready var bulletSpawn: Position2D = $BulletSpawn
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_minDistanceToStayFromPlayer = 30;
+	_minDistanceToStayFromPlayer = 60;
 	_maxDistanceToStayFromPlayer = 90;
+	_flipBoxes = false;
 	_health = 8
 	_acceleration = 0.2
 	_speed = 65
-	_attack_range = 30
+	_attack_range = 90
 	_animationHandler = NodeStateMachineAnimationHandler.new($AnimationTree)
 	if($AnimationTree != null):
 		$AnimationTree.active = true
@@ -32,14 +33,14 @@ func _physics_process(_delta: float) -> void:
 			#print("attack state")
 			if !_isAttacking:
 				_isAttacking = true
-				if($AnimationTree != null):
-					$AnimationTree.get("parameters/playback").travel("attack")
+				summon_bullet()
+				_attack_done()
 
 
 func _attack_done():
 	_velocity = getMovement(Vector2.ZERO, 0, .5)
 	#_velocity = move_and_slide(_velocity)
-	_finishedAttack(2)
+	_finishedAttack(LevelGlobals.rng.randf_range(2,4))
 
 
 func _on_Attack_area_entered(area):

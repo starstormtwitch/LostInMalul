@@ -569,10 +569,13 @@ nodes/Special/node = SubResource( 30 )
 nodes/Special/position = Vector2( -360, 620 )
 nodes/Walk/node = SubResource( 31 )
 nodes/Walk/position = Vector2( -400, -80 )
-node_connections = [ "output", 0, "Main", "Special", 0, "HadoukenCharge", "Special", 1, "HadoukenRelease", "Movement", 0, "Idle", "Movement", 1, "Walk", "Attack", 0, "Combo1", "Attack", 1, "Combo2", "Attack", 2, "Special", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Combo1", 2, "HeadButt", "Combo2", 0, "Kick1", "Combo2", 1, "Kick2", "Combo2", 2, "Shoryuken", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack" ]
+node_connections = [ "output", 0, "Main", "Attack", 0, "Combo1", "Attack", 1, "Combo2", "Attack", 2, "Special", "Combo2", 0, "Kick1", "Combo2", 1, "Kick2", "Combo2", 2, "Shoryuken", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Combo1", 2, "HeadButt", "Movement", 0, "Idle", "Movement", 1, "Walk", "Special", 0, "HadoukenCharge", "Special", 1, "HadoukenRelease", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack" ]
 
-[sub_resource type="RectangleShape2D" id=33]
+[sub_resource type="RectangleShape2D" id=35]
 extents = Vector2( 11.7115, 6.11188 )
+
+[sub_resource type="RectangleShape2D" id=36]
+extents = Vector2( 9.75689, 9.03436 )
 
 [sub_resource type="RectangleShape2D" id=34]
 extents = Vector2( 10.2453, 11.7708 )
@@ -660,7 +663,18 @@ collision_mask = 4096
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2( -0.724312, 19.2232 )
-shape = SubResource( 33 )
+shape = SubResource( 35 )
+
+[node name="HurtBox2" type="Area2D" parent="." groups=[
+"hurtbox",
+]]
+position = Vector2( -2.65, -23.75 )
+collision_layer = 128
+collision_mask = 8192
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox2"]
+position = Vector2( 1.03803, 12.3291 )
+shape = SubResource( 36 )
 
 [node name="attack" type="Area2D" parent="."]
 position = Vector2( -0.730887, -23.75 )

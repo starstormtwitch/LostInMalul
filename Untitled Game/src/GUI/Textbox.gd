@@ -12,7 +12,7 @@ signal closed
 
 # node to handle player input, and call the proper response
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(EventsList.UI_CANCEL_EVENT):
+	if event.is_action_pressed(EventsList.INTERACT_EVENT) or event.is_action_pressed(EventsList.UI_CANCEL_EVENT):
 		_handleUICancelEvent()
 
 

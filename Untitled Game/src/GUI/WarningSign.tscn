@@ -15,6 +15,9 @@ margin_left = -15.1361
 margin_top = -31.5336
 margin_right = 16.8639
 margin_bottom = 0.466385
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Control" type="TextureRect" parent="."]
 margin_left = -39.9426
