@@ -40,6 +40,16 @@ func doSideSwipeKick(scene : Node):
 		combo_reset()
 
 
+func playKickPart2(scene : Node):
+	if attackLock.try_lock() == OK:
+		_attack_setup(true)
+		print("Sideswipe kick")
+		_animationHandler.kick2()
+		SoundPlayer.playSound(scene, missSound, -4)
+		damageForce = MAX_DAMAGE_FORCE
+		combo_reset()
+
+
 func doShoryuken(scene : Node):
 	if attackLock.try_lock() == OK:
 		_attack_setup(true)
