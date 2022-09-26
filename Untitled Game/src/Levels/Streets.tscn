@@ -546,7 +546,7 @@ g_path = "res://src/Props/StreetLevel/Vehicles/"
 [node name="Actors" type="YSort" parent="YSort"]
 
 [node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 3 )]
-position = Vector2( 4446.57, 151.521 )
+position = Vector2( 29.5833, 89.6671 )
 
 [node name="Box" parent="YSort/Actors" instance=ExtResource( 4 )]
 position = Vector2( 747.855, 29.9924 )
