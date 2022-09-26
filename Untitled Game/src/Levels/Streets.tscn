@@ -353,6 +353,7 @@ shape = SubResource( 22 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Grave"]
 visible = false
+position = Vector2( 2295.43, -39.8559 )
 texture = ExtResource( 74 )
 script = ExtResource( 75 )
 
@@ -367,6 +368,7 @@ shape = SubResource( 22 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Grave4"]
 visible = false
+position = Vector2( 2295.4, -40.3664 )
 texture = ExtResource( 74 )
 script = ExtResource( 75 )
 
@@ -381,6 +383,7 @@ shape = SubResource( 22 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Grave5"]
 visible = false
+position = Vector2( 2294.06, -42.1407 )
 texture = ExtResource( 74 )
 script = ExtResource( 75 )
 
@@ -395,6 +398,7 @@ shape = SubResource( 22 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Grave2"]
 visible = false
+position = Vector2( 2294.51, -37.2612 )
 texture = ExtResource( 74 )
 script = ExtResource( 75 )
 
@@ -409,6 +413,7 @@ shape = SubResource( 22 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Grave3"]
 visible = false
+position = Vector2( 2294.19, -53.7458 )
 texture = ExtResource( 74 )
 script = ExtResource( 75 )
 
@@ -421,9 +426,21 @@ position = Vector2( -1.1123, 4.83324 )
 shape = SubResource( 23 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/ExitLevel"]
+visible = false
 position = Vector2( -0.319336, -5.64977 )
 texture = ExtResource( 74 )
 script = ExtResource( 75 )
+
+[node name="ColorRect" type="ColorRect" parent="LevelBackground/Interactions/ExitLevel"]
+margin_left = -10.752
+margin_top = -57.76
+margin_right = 49.248
+margin_bottom = -17.76
+rect_scale = Vector2( 0.496522, 3.86322 )
+color = Color( 0.447059, 0.627451, 0.976471, 0.65098 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Teleports" type="Node" parent="LevelBackground"]
 
@@ -529,7 +546,7 @@ g_path = "res://src/Props/StreetLevel/Vehicles/"
 [node name="Actors" type="YSort" parent="YSort"]
 
 [node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 3 )]
-position = Vector2( 19.8676, 94.1062 )
+position = Vector2( 4446.57, 151.521 )
 
 [node name="Box" parent="YSort/Actors" instance=ExtResource( 4 )]
 position = Vector2( 747.855, 29.9924 )
@@ -934,7 +951,7 @@ position = Vector2( 4215.51, 11.8062 )
 position = Vector2( 247.727, 76.8876 )
 
 [node name="BanSign" parent="YSort/Graveyard" instance=ExtResource( 68 )]
-position = Vector2( 193.221, 63.842 )
+position = Vector2( 193.474, 80.888 )
 
 [node name="LeftSideFence" parent="YSort/Graveyard" instance=ExtResource( 70 )]
 position = Vector2( 138.736, 76.9454 )
@@ -1010,7 +1027,6 @@ custom_fonts/font = SubResource( 24 )
 text = "Chimera Beast,
 fortis escensio bulla"
 uppercase = true
-percent_visible = -0.03125
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1155,6 +1171,11 @@ speed_scale = 0.5
 process_material = SubResource( 25 )
 texture = ExtResource( 43 )
 
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Grave" to="." method="_on_InteractPromptArea_interactable_text_signal"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Grave4" to="." method="_on_InteractPromptArea_interactable_text_signal"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Grave5" to="." method="_on_InteractPromptArea_interactable_text_signal"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Grave2" to="." method="_on_InteractPromptArea_interactable_text_signal"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Grave3" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/ExitLevel" to="." method="_on_ExitLevel_interactable_text_signal"]
 [connection signal="SpawnWarning" from="YSort/TrafficSystemRight" to="." method="_on_TrafficSystemRight_SpawnWarning"]
 [connection signal="SpawnWarning" from="YSort/TrafficSystemLeft" to="." method="_on_TrafficSystemLeft_SpawnWarning"]

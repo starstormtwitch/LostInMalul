@@ -40,6 +40,7 @@ onready var _textBox: TextBox = $GUI/TextBox
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$CanvasModulate.visible = false;
 	_player = LevelGlobals.GetPlayerActor()
 	assert(is_instance_valid(_player),"Player instance invalid")
 	_player.connect("coin_changed", self, "_on_Player_coin_changed")

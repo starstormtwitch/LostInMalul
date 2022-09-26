@@ -391,7 +391,7 @@ texture = ExtResource( 3 )
 offset = Vector2( 0, -15 )
 hframes = 28
 vframes = 6
-frame = 31
+frame = 30
 
 [node name="Shadow" type="Sprite" parent="."]
 position = Vector2( 9.5579, -16.8736 )
