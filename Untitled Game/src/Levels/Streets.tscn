@@ -156,7 +156,9 @@ font_data = ExtResource( 178 )
 pause_mode = 2
 script = ExtResource( 7 )
 __meta__ = {
-"_edit_lock_": true
+"_edit_horizontal_guides_": [ 50.7088 ],
+"_edit_lock_": true,
+"_edit_vertical_guides_": [ 276.061, 449.13 ]
 }
 
 [node name="LevelBackground" type="Sprite" parent="."]
@@ -511,7 +513,7 @@ g_min_spawn_wait_ms = 16000
 g_max_spawn_wait_ms = 40000
 g_object_velocity = 100.0
 g_path = "res://src/Props/StreetLevel/Vehicles/"
-g_starting_x = 800
+g_left = false
 
 [node name="TrafficSystemLeft" type="Node2D" parent="YSort"]
 visible = false
@@ -524,7 +526,6 @@ g_min_spawn_wait_ms = 16000
 g_max_spawn_wait_ms = 40000
 g_object_velocity = -100.0
 g_path = "res://src/Props/StreetLevel/Vehicles/"
-g_starting_x = -100
 
 [node name="Actors" type="YSort" parent="YSort"]
 
