@@ -86,25 +86,25 @@ func _init(cameraTarget: Node, current: bool):
 func _ready():
 	self.set_process(true)
 
-func _process(delta: float):
+func _process(_delta: float):
 	if _zoomToPlayer:
-		_zoomToPlayer(delta)
+		_zoomToPlayer(_delta)
 	elif _zoomToAreaLock:
-		_zoomtToArenaLock(delta)
+		_zoomtToArenaLock(_delta)
 	elif _checkForRegularCameraBoundLimitSmoothing():
-		var cameraReachedTarget = _checkAndMoveCameraToTarget(delta)
-		var limitsReachedTarget = _checkAndMoveCameraLimitBounds(delta)
+		var cameraReachedTarget = _checkAndMoveCameraToTarget(_delta)
+		var limitsReachedTarget = _checkAndMoveCameraLimitBounds(_delta)
 		if cameraReachedTarget and limitsReachedTarget:
 			reachedCameraTarget()
 	elif _checkForPanToTarget():
 		var panTargetPosition = _panTarget.getPosition()
 		var distanceToTarget = self.position.distance_to(panTargetPosition)
-		self.position = lerp(self.get_global_position(), panTargetPosition,  delta * _panTarget._speed * abs(log(distanceToTarget)))
-		self.zoom = lerp(self.zoom, _panTarget._zoom , (delta * _panTarget._zoomSpeed) / distanceToTarget) #formula can/must be improved
+		self.position = lerp(self.get_global_position(), panTargetPosition,  _delta * _panTarget._speed * abs(log(distanceToTarget)))
+		self.zoom = lerp(self.zoom, _panTarget._zoom , (_delta * _panTarget._zoomSpeed) / distanceToTarget) #formula can/must be improved
 		if _panTarget._clearTimer == null and distanceToTarget < _CAMERA_DISTANCE_TARGET: #magic number that works well enough for now
 			yield(_panTarget.startPanTimer(), "timeout")
 			clearPan()
-	_handleShake(delta)
+	_handleShake(_delta)
 
 
 func _zoomToPlayer(delta: float):
