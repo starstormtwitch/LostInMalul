@@ -1118,7 +1118,6 @@ margin_top = -576.0
 margin_right = 512.0
 
 [node name="CRTLayer" parent="GUI" instance=ExtResource( 200 )]
-visible = false
 
 [node name="Warnings" type="Control" parent="GUI"]
 margin_left = 5.33936

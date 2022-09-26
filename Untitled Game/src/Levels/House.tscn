@@ -353,6 +353,9 @@ __meta__ = {
 "_edit_vertical_guides_": [ 2359.5, 2303.91, 2280.04 ]
 }
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.0313726, 0.113725, 0.27451, 1 )
+
 [node name="LevelBackground" type="Sprite" parent="."]
 pause_mode = 1
 texture = ExtResource( 8 )
@@ -2260,7 +2263,6 @@ margin_top = -576.0
 margin_right = 512.0
 
 [node name="CRTLayer" parent="GUI" instance=ExtResource( 200 )]
-visible = false
 
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_Toilet_interactable_text_signal"]
