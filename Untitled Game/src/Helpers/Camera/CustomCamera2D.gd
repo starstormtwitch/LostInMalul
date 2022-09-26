@@ -6,10 +6,11 @@ class_name CustomCamera2D
 const _DEFAULT_CAMERA_LIMIT_TOP_LEFT: int = -10000000
 const _DEFAULT_CAMERA_LIMIT_BOTTOM_RIGHT: int = 10000000
 const _DEFAULT_CAMERA_ZOOM: Vector2 = Vector2(0.4,0.4)
-const _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED: int = 2
+const _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED: int = 2 * 100
 
 const _DEFAULT_PAN_TIME = 1
 const _DEFAULT_PAN_SPEED = 1
+const _DEFAULT_LIMIT_MOVEMENT_WAIT_TIMER = 1.1
 const _DEFAULT_PAN_ZOOM = Vector2(0.2,0.2)
 const _DEFAULT_PAN_ZOOM_SPEED = 7
 const _CAMERA_DISTANCE_TARGET = 25
@@ -66,6 +67,10 @@ var _isLevelTwo = false
 var _player: Node2D
 
 
+#debug stuff
+var limitDebugOn = false
+var playerCameraDebugOn = false
+
 func _init(cameraTarget: Node, current: bool):
 	assert(cameraTarget, "Camera target is not a node.")
 	cameraTarget.get_tree().current_scene.add_child(self)
@@ -81,14 +86,14 @@ func _init(cameraTarget: Node, current: bool):
 func _ready():
 	self.set_process(true)
 
-func _process(delta):
+func _process(delta: float):
 	if _zoomToPlayer:
-		_zoomToPlayer()
+		_zoomToPlayer(delta)
 	elif _zoomToAreaLock:
 		_zoomtToArenaLock(delta)
 	elif _checkForRegularCameraBoundLimitSmoothing():
-		var cameraReachedTarget = _checkAndMoveCameraToTarget()
-		var limitsReachedTarget = _checkAndMoveCameraLimitBounds()
+		var cameraReachedTarget = _checkAndMoveCameraToTarget(delta)
+		var limitsReachedTarget = _checkAndMoveCameraLimitBounds(delta)
 		if cameraReachedTarget and limitsReachedTarget:
 			reachedCameraTarget()
 	elif _checkForPanToTarget():
@@ -102,18 +107,25 @@ func _process(delta):
 	_handleShake(delta)
 
 
-func _zoomToPlayer():
+func _zoomToPlayer(delta: float):
 	#if we just finished an arena fight, we always update target to player position
 	_limit_smooth_target_position = _player.position
 	#we need to change our cameraReached logic, Since we will be tracking a moving object AKA the player
-	var cameraReachedTarget = _checkAndMoveCameraToTarget()
-	var limitsReachedTarget = _checkAndMoveCameraLimitBounds()
+	var cameraReachedTarget = _checkAndMoveCameraToTarget(delta)
+	var limitsReachedTarget = _checkAndMoveCameraLimitBounds(delta)
+	if playerCameraDebugOn and cameraReachedTarget:
+		playerCameraDebugOn = false
+		print("camera target has been reached")
+	if limitsReachedTarget and limitDebugOn:
+		limitDebugOn = false
+		print("limits target has been reached")
 	if cameraReachedTarget and limitsReachedTarget:
 		_zoomToPlayer = false
 		reachedCameraTarget()
 
+
 func _zoomtToArenaLock(delta: float):
-	var cameraReachedTarget = _checkAndMoveCameraToTarget()
+	var cameraReachedTarget = _checkAndMoveCameraToTarget(delta)
 	if cameraReachedTarget:
 		setLimits(_limit_smooth_top, _limit_smooth_left, _limit_smooth_bottom, _limit_smooth_right)
 		_zoomToAreaLock = false
@@ -128,22 +140,36 @@ func _checkForPanToTarget() -> bool:
 	return _panTarget != null and !_is_shaking
 
 
-func _checkAndMoveCameraToTarget() -> bool:
-	var cameraReachedTarget = self.position.distance_to(_limit_smooth_target_position) < _SMALLER_CAMERA_DISTANCE_TARGET
+func _checkAndMoveCameraToTarget(delta: float) -> bool:
+	var cameraReachedTarget = self.position.distance_to(_limit_smooth_target_position) < _CAMERA_DISTANCE_TARGET
 	if !cameraReachedTarget:
-		self.position.x = move_toward(self.position.x, _limit_smooth_target_position.x, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
-		self.position.y = move_toward(self.position.y, _limit_smooth_target_position.y, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
+		self.position.x = move_toward(self.position.x, _limit_smooth_target_position.x, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED * delta)
+		self.position.y = move_toward(self.position.y, _limit_smooth_target_position.y, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED * delta)
 	return cameraReachedTarget
 
 
-func _checkAndMoveCameraLimitBounds() -> bool:
+func _checkAndMoveCameraLimitBounds(delta: float) -> bool:
 	var limitsReachedTarget = compareCameraLimitIsEqual(_limit_smooth_top, _limit_smooth_left, _limit_smooth_bottom, _limit_smooth_right)
 	if !limitsReachedTarget:
-		self.limit_top = move_toward(self.limit_top, _limit_smooth_top, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
-		self.limit_bottom = move_toward(self.limit_bottom, _limit_smooth_bottom, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
-		self.limit_left = move_toward(self.limit_left, _limit_smooth_left, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
-		self.limit_right = move_toward(self.limit_right, _limit_smooth_right, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED)
+		self.limit_top = move_toward(self.limit_top, _limit_smooth_top, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED * delta)
+		self.limit_bottom = move_toward(self.limit_bottom, _limit_smooth_bottom, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED * delta)
+		self.limit_left = move_toward(self.limit_left, _limit_smooth_left, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED * delta)
+		self.limit_right = move_toward(self.limit_right, _limit_smooth_right, _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED * delta)
 	return limitsReachedTarget
+
+
+func createLimitMovementTimer():
+	var timer := Timer.new()
+	add_child(timer)
+	timer.wait_time = _DEFAULT_LIMIT_MOVEMENT_WAIT_TIMER
+	timer.one_shot = true
+	timer.start()
+	timer.connect("timeout", self, "limitMovementTimerOver")
+
+
+func limitMovementTimerOver():
+	setRemoteUpdates(true)
+	setLimits(_limit_smooth_top, _limit_smooth_left, _limit_smooth_bottom, _limit_smooth_right)
 
 
 func reachedCameraTarget():
@@ -266,6 +292,8 @@ func limitCameraToPositions(topLeft: Position2D, bottomRight: Position2D, transi
 
 
 func limitCameraToCoordinates(top: int, left: int, bottom: int, right: int, transitionType: int = TransitionTypeEnum.INSTANT) -> void:
+	limitDebugOn = true
+	playerCameraDebugOn = true
 	if transitionType == TransitionTypeEnum.INSTANT:
 		clearPan() #todo: review this, but its a good idea to clear camera effects if the camera changes limits
 		setLimits(top, left, bottom, right)
@@ -328,7 +356,11 @@ func _fadeCamera(top: int, left: int, bottom: int, right: int):
 
 
 func compareCameraLimitIsEqual(top: int, left: int, bottom: int, right: int) -> bool:
-	return self.limit_top == top && self.limit_left == left && self.limit_bottom == bottom && self.limit_right == right
+	var topCorrect = abs(self.limit_top - top) < 10
+	var leftCorrect = abs(self.limit_left - left) < 10
+	var bottomCorrect = abs(self.limit_bottom - bottom) < 10
+	var rightCorrect = abs(self.limit_right - right) < 10
+	return topCorrect && leftCorrect && bottomCorrect && rightCorrect
 
 
 func compareCameraLimitIsEqualToDelimiter(delimiter: CustomDelimiter2D) -> bool:
@@ -336,6 +368,7 @@ func compareCameraLimitIsEqualToDelimiter(delimiter: CustomDelimiter2D) -> bool:
 
 
 func setSmoothingLimits(top: int, left: int, bottom: int, right: int) -> void:
+	print("set smoothing limit: " +  String(top) + " " + String(left) + " " + String(bottom) + " " + String(right))
 	_limit_smooth_top = top
 	_limit_smooth_left = left
 	_limit_smooth_bottom = bottom
@@ -371,6 +404,7 @@ func _startAreaLock(enabled: bool):
 	enableBounds(enabled)
 	if !enabled:
 		print("enable zoom to player" )
+		createLimitMovementTimer()
 		_zoomToPlayer = true
 
 ## Enable/disable one-way collision boxes around camera

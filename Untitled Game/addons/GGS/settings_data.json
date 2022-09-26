@@ -75,7 +75,7 @@
 			"value": true
 		},
 		"current": {
-			"value": false
+			"value": true
 		},
 		"logic": "res://src/Helpers/Settings/Display_Vsync.gd"
 	},
