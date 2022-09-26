@@ -85,7 +85,7 @@ extents = Vector2( 10, 119.7 )
 extents = Vector2( 257.807, 65.252 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 816.38, 64.0705 )
+extents = Vector2( 822.57, 64.0705 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 327.479, 53.3866 )
@@ -232,7 +232,6 @@ shape = SubResource( 3 )
 [node name="HouseBoundaries2" type="CollisionShape2D" parent="LevelBackground/Boundaries/OutsideBoundaries"]
 position = Vector2( 3394.41, 37.7356 )
 shape = SubResource( 4 )
-disabled = true
 
 [node name="RedHouseBoundaries" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 75.8518, 58.2467 )
@@ -620,12 +619,12 @@ enemy = "Shitman"
 automatic = false
 
 [node name="AreaLockFight4" parent="YSort/Actors/AreaLockFight4" instance=ExtResource( 20 )]
-position = Vector2( -116.203, -159.832 )
+position = Vector2( -199.203, -159.832 )
 AutomaticTransition = false
 IsAreaLockDelimeter = true
 
 [node name="BottomRight" parent="YSort/Actors/AreaLockFight4/AreaLockFight4" index="0"]
-position = Vector2( 258.764, 223.383 )
+position = Vector2( 368.764, 223.383 )
 
 [node name="AreaLockFight5" parent="YSort/Actors" instance=ExtResource( 44 )]
 position = Vector2( 2811.92, 160.191 )
@@ -642,15 +641,15 @@ enemy = "Chat"
 automatic = false
 
 [node name="AreaLockFight5" parent="YSort/Actors/AreaLockFight5" instance=ExtResource( 20 )]
-position = Vector2( -121.461, -166.497 )
+position = Vector2( -185.461, -166.497 )
 AutomaticTransition = false
 IsAreaLockDelimeter = true
 
 [node name="BottomRight" parent="YSort/Actors/AreaLockFight5/AreaLockFight5" index="0"]
-position = Vector2( 248.703, 221.579 )
+position = Vector2( 337.703, 221.579 )
 
 [node name="AreaLockFight6" parent="YSort/Actors" instance=ExtResource( 44 )]
-position = Vector2( 3173.18, 160.191 )
+position = Vector2( 3127.18, 160.191 )
 
 [node name="EnemySpawner" parent="YSort/Actors/AreaLockFight6" instance=ExtResource( 46 )]
 position = Vector2( 198.123, -5.34204 )
@@ -661,7 +660,7 @@ enemy = "Chat"
 automatic = false
 
 [node name="AreaLockFight6" parent="YSort/Actors/AreaLockFight6" instance=ExtResource( 20 )]
-position = Vector2( -125.081, -158.862 )
+position = Vector2( -196.081, -158.862 )
 AutomaticTransition = false
 IsAreaLockDelimeter = true
 
@@ -684,24 +683,17 @@ enemy = "Shitman"
 automatic = false
 
 [node name="AreaLockFight7" parent="YSort/Actors/AreaLockFight7" instance=ExtResource( 20 )]
-position = Vector2( -54.4124, -156.088 )
+position = Vector2( -196.412, -156.088 )
 AutomaticTransition = false
 IsAreaLockDelimeter = true
 
 [node name="BottomRight" parent="YSort/Actors/AreaLockFight7/AreaLockFight7" index="0"]
-position = Vector2( 158.139, 215.97 )
+position = Vector2( 322.139, 215.97 )
 
 [node name="AreaLockFightBoss" parent="YSort/Actors" instance=ExtResource( 44 )]
 position = Vector2( 4009.08, 161.231 )
 
-[node name="EnemySpawner" parent="YSort/Actors/AreaLockFightBoss" instance=ExtResource( 46 )]
-position = Vector2( -126.476, -8.62541 )
-duration_between_spawn = 30
-count = 10
-maxSpawnedAtATime = 1
-automatic = false
-
-[node name="EnemySpawner2" parent="YSort/Actors/AreaLockFightBoss" instance=ExtResource( 46 )]
+[node name="Boss" parent="YSort/Actors/AreaLockFightBoss" instance=ExtResource( 46 )]
 position = Vector2( 220.563, -4.48697 )
 enemy = "ChimeraBeast"
 automatic = false
@@ -999,7 +991,7 @@ __meta__ = {
 anchor_left = 0.025
 anchor_right = 0.025
 margin_left = 263.0
-margin_top = 520.0
+margin_top = 515.0
 margin_right = 759.0
 margin_bottom = 542.0
 theme = ExtResource( 179 )
@@ -1010,13 +1002,15 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="GUI/BossGui"]
-margin_left = 268.112
-margin_top = 520.0
-margin_right = 756.112
-margin_bottom = 544.0
+margin_left = 267.517
+margin_top = 517.027
+margin_right = 755.517
+margin_bottom = 541.027
 custom_fonts/font = SubResource( 24 )
-text = "Rex Magnus Rattorum, The Rat King"
+text = "Chimera Beast,
+fortis escensio bulla"
 uppercase = true
+percent_visible = -0.03125
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1164,6 +1158,9 @@ texture = ExtResource( 43 )
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/ExitLevel" to="." method="_on_ExitLevel_interactable_text_signal"]
 [connection signal="SpawnWarning" from="YSort/TrafficSystemRight" to="." method="_on_TrafficSystemRight_SpawnWarning"]
 [connection signal="SpawnWarning" from="YSort/TrafficSystemLeft" to="." method="_on_TrafficSystemLeft_SpawnWarning"]
+[connection signal="lockout_finished" from="YSort/Actors/AreaLockFightBoss" to="." method="_on_AreaLockFightBoss_lockout_finished"]
+[connection signal="lockout_started" from="YSort/Actors/AreaLockFightBoss" to="." method="_on_AreaLockFightBoss_lockout_started"]
+[connection signal="spawned" from="YSort/Actors/AreaLockFightBoss/Boss" to="." method="_on_Boss_spawned"]
 [connection signal="closed" from="GUI/TextBox2" to="." method="_on_TextBox_closed"]
 
 [editable path="LevelBackground/CameraPositions/Street_Delimiter"]

@@ -2148,9 +2148,9 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="GUI/BossGui"]
 margin_left = 268.112
-margin_top = 520.0
+margin_top = 524.44
 margin_right = 756.112
-margin_bottom = 544.0
+margin_bottom = 548.44
 custom_fonts/font = SubResource( 38 )
 text = "Rex Magnus Rattorum, The Rat King"
 uppercase = true

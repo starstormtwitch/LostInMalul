@@ -92,3 +92,17 @@ func _on_ExitLevel_interactable_text_signal(text):
 	LevelGlobals.SetCheckpoint("House", "DoneWithSwitch");
 	LevelGlobals.save_game();
 	LevelGlobals.load_checkpoint();
+
+func _on_AreaLockFightBoss_lockout_started():
+		$GUI/BossGui.set_deferred("visible", true);
+
+func _on_AreaLockFightBoss_lockout_finished():
+		$GUI/BossGui.set_deferred("visible", false);
+
+func _on_Boss_spawned(spawn):
+	spawn.connect("health_changed", self, "_on_Boss_health_changed")
+	$GUI/BossGui/ProgressBar.set_deferred("value",   (spawn._health / spawn._maxHealth) * 100);
+	
+func _on_Boss_health_changed(_oldHealth, newHealth, maxHealth):
+	var progressValue = (float(newHealth) / float(maxHealth)) * 100.00
+	$GUI/BossGui/ProgressBar.set_value(progressValue);
