@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 const _WARNING_TIMER = 2000
 
@@ -12,8 +12,7 @@ export var g_min_spawn_wait_ms: int = 3000
 export var g_max_spawn_wait_ms: int = 10000
 export var g_object_velocity: float = 2
 export var g_path: String = ""
-export var g_starting_x: int = 1700
-export var g_left_bounded: bool = true
+export var g_left: bool = true
 export var g_pool_location_x: int = -100
 export var g_pool_location_y: int = -100
 
@@ -51,6 +50,24 @@ func _process(delta: float) -> void:
 			g_rand_spawn_wait_ms = rand_range(g_min_spawn_wait_ms, g_max_spawn_wait_ms)
 		_add_to_available_objects()
 
+func _getViewportLeftPosition():
+	var v: Viewport = get_viewport()
+	var viewportRect: Rect2 = v.get_visible_rect()
+	var globalToViewportTransform: Transform2D = v.get_final_transform() * v.canvas_transform
+	var viewportToGlobalTransform: Transform2D = globalToViewportTransform.affine_inverse()
+	var viewportRectGlobal: Rect2 = viewportToGlobalTransform.xform(viewportRect)
+	var result = viewportRectGlobal.position.x - 100
+	return result;
+	
+func _getViewportRightPosition():
+	var v: Viewport = get_viewport()
+	var viewportRect: Rect2 = v.get_visible_rect()
+	var globalToViewportTransform: Transform2D = v.get_final_transform() * v.canvas_transform
+	var viewportToGlobalTransform: Transform2D = globalToViewportTransform.affine_inverse()
+	var viewportRectGlobal: Rect2 = viewportToGlobalTransform.xform(viewportRect)
+	var result = viewportRectGlobal.position.x + viewportRect.size.x + 100
+	return result
+	
 # check if we should show warning for spawning
 func _check_if_within_warning_time() -> void:
 	var time_diff = OS.get_system_time_msecs() - g_last_spawn_time_ms
@@ -61,7 +78,7 @@ func _check_if_within_warning_time() -> void:
 
 func _add_to_available_objects() -> void:
 	for object in g_object_pool:
-		if object.is_inside_tree() and (object.global_position != Vector2(g_pool_location_x, g_pool_location_y)) and ((g_left_bounded and object.global_position.x > (g_starting_x + 10)) or (!g_left_bounded and object.global_position.x < (g_starting_x - 10))):
+		if object.is_inside_tree() and (object.global_position != Vector2(g_pool_location_x, g_pool_location_y)) and ((g_left and object.global_position.x > (_getViewportRightPosition())) or (!g_left and object.global_position.x < (_getViewportLeftPosition()))):
 			object.global_position = Vector2(g_pool_location_x, g_pool_location_y)
 			object.reset()
 			g_object_pool_available.append(object)
@@ -97,7 +114,11 @@ func _get_full_paths(path: String) -> Array:
 func _get_random_global_position(object: Node2D) -> Vector2:
 	var texture_height: float = object.get_height()
 	var starting_y: float = rand_range(g_min_y, g_max_y) - (texture_height / 2)
-	return Vector2(g_starting_x, starting_y)
+	if(g_left):
+		return Vector2(_getViewportLeftPosition(), starting_y)
+	else:
+		return Vector2(_getViewportRightPosition(), starting_y)
+		
 	
 # Given a path to a directory, returns the names of all
 # files in that directory.
