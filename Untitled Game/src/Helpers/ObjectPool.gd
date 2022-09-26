@@ -56,7 +56,7 @@ func _getViewportLeftPosition():
 	var globalToViewportTransform: Transform2D = v.get_final_transform() * v.canvas_transform
 	var viewportToGlobalTransform: Transform2D = globalToViewportTransform.affine_inverse()
 	var viewportRectGlobal: Rect2 = viewportToGlobalTransform.xform(viewportRect)
-	var result = viewportRectGlobal.position.x - 100
+	var result = viewportRectGlobal.position.x - 150
 	return result;
 	
 func _getViewportRightPosition():
@@ -65,7 +65,7 @@ func _getViewportRightPosition():
 	var globalToViewportTransform: Transform2D = v.get_final_transform() * v.canvas_transform
 	var viewportToGlobalTransform: Transform2D = globalToViewportTransform.affine_inverse()
 	var viewportRectGlobal: Rect2 = viewportToGlobalTransform.xform(viewportRect)
-	var result = viewportRectGlobal.position.x + viewportRect.size.x + 100
+	var result = viewportRectGlobal.position.x + viewportRectGlobal.size.x + 150
 	return result
 	
 # check if we should show warning for spawning

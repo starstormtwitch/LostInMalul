@@ -64,7 +64,7 @@ func _on_LirikYaki_item_delete():
 func _play_warning_sound() -> void:
 	if !_playingWarningSound:
 		#print("play warning sounds")
-		SoundPlayer.playSound(get_tree().get_current_scene(), _warning_sfx, 0)
+#		SoundPlayer.playSound(get_tree().get_current_scene(), _warning_sfx, 0)
 		_playingWarningSound = true
 
 func _stop_warning_sound() -> void:
