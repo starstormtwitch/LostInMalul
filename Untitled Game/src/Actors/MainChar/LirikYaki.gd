@@ -3,8 +3,8 @@ extends MainChar
 class_name LirikYaki
 
 func _ready() -> void:
-	$Light2D.visible = false;
-	$Light2DMask.visible = false;
+	#$Light2D.visible = false;
+	#$Light2DMask.visible = false;
 	_attackManager = AttackManager.new(_attackResetTimer,
 		chargeBar, _animationHandler)
 
