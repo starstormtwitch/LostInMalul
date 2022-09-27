@@ -1,11 +1,26 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/Helpers/GUI/Settings/SettingsMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Levels/Menu/MainMenu.gd" type="Script" id=2]
-[ext_resource path="res://assets/SpriteSheets/sussy_spriteframes.tres" type="SpriteFrames" id=3]
-[ext_resource path="res://assets/SpriteSheets/sussyFR_spriteframes.tres" type="SpriteFrames" id=4]
+[ext_resource path="res://assets/Levels/titlle_2-Sheet.png" type="Texture" id=3]
 [ext_resource path="res://assets/GUI/Theme/Themes/MenuTheme.tres" type="Theme" id=5]
-[ext_resource path="res://assets/other/main_menu_title.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "default"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 5 ]
+}
 
 [node name="MainMenu" type="Node2D"]
 position = Vector2( 500, 250 )
@@ -19,6 +34,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+margin_left = -77.4207
+margin_top = 97.4434
+margin_right = -77.4207
+margin_bottom = 97.4434
 size_flags_horizontal = 3
 size_flags_vertical = 3
 use_top_left = true
@@ -78,42 +97,16 @@ margin_right = 190.0
 margin_bottom = 111.0
 text = "Exit"
 
-[node name="TextureRect" type="TextureRect" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -164.634
-margin_top = -228.258
-margin_right = 813.366
-margin_bottom = 444.742
-rect_scale = Vector2( 0.375017, 0.289533 )
-texture = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 10.3878, 39.6359 )
+scale = Vector2( 0.87, 0.87 )
+texture = ExtResource( 3 )
+hframes = 6
+frame = 3
 
-[node name="Label" type="Label" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = 222.911
-margin_top = -232.93
-margin_right = 511.911
-margin_bottom = -218.93
-text = "(get the artists to deign a tittle screen kekw)"
-
-[node name="Sussy" type="AnimatedSprite" parent="."]
-position = Vector2( -294.592, 24.2605 )
-scale = Vector2( 1.5, 1.5 )
-frames = ExtResource( 3 )
-speed_scale = 0.5
-playing = true
-
-[node name="SussyFR" type="AnimatedSprite" parent="."]
-position = Vector2( 322.514, 18.8457 )
-scale = Vector2( -1.5, 1.5 )
-frames = ExtResource( 4 )
-frame = 1
-speed_scale = 0.5
-playing = true
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+anims/default = SubResource( 1 )
 
 [connection signal="pressed" from="CanvasLayer/CenterContainer/MainMenuContainer/Menu/NewGameButton" to="." method="_on_NewGameButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/CenterContainer/MainMenuContainer/Menu/LoadGameButton" to="." method="_on_LoadGameButton_pressed"]

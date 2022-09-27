@@ -1,4 +1,4 @@
-[gd_scene load_steps=244 format=2]
+[gd_scene load_steps=250 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
@@ -204,6 +204,9 @@
 [ext_resource path="res://src/Actors/Box.tscn" type="PackedScene" id=202]
 [ext_resource path="res://src/Helpers/Interacts/interactSprite.tscn" type="PackedScene" id=203]
 [ext_resource path="res://src/Helpers/Interacts/interactSprite.gd" type="Script" id=204]
+[ext_resource path="res://src/Props/HouseLevel/Garage/RatVendor.tscn" type="PackedScene" id=205]
+[ext_resource path="res://assets/fonts/Textbox.tres" type="DynamicFont" id=206]
+[ext_resource path="res://assets/GUI/VormgeversCAPS.ttf" type="DynamicFontData" id=207]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3680.33, 10 )
@@ -327,6 +330,12 @@ extents = Vector2( 23.2275, 19.9813 )
 
 [sub_resource type="RectangleShape2D" id=36]
 
+[sub_resource type="RectangleShape2D" id=40]
+extents = Vector2( 15.3049, 15.2701 )
+
+[sub_resource type="RectangleShape2D" id=41]
+extents = Vector2( 15.3049, 15.2701 )
+
 [sub_resource type="RectangleShape2D" id=37]
 extents = Vector2( 447.481, 28.3017 )
 
@@ -337,12 +346,15 @@ outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
 font_data = ExtResource( 178 )
 
-[sub_resource type="DynamicFont" id=39]
-size = 8
+[sub_resource type="DynamicFont" id=42]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
-use_mipmaps = true
-font_data = ExtResource( 178 )
+font_data = ExtResource( 207 )
+
+[sub_resource type="DynamicFont" id=43]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 207 )
 
 [node name="House" type="Node2D"]
 pause_mode = 2
@@ -354,6 +366,7 @@ __meta__ = {
 }
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color( 0.0313726, 0.113725, 0.27451, 1 )
 
 [node name="LevelBackground" type="Sprite" parent="."]
@@ -577,7 +590,7 @@ scale = Vector2( 1, 1.01378 )
 interactableText = "I should use the toilet before I start my stream."
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon"]
-position = Vector2( 92.3209, 26.4027 )
+position = Vector2( 59.9909, 22.9577 )
 shape = SubResource( 25 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon"]
@@ -833,6 +846,34 @@ shape = SubResource( 36 )
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Garage/WorkBench"]
 visible = false
 position = Vector2( 3403, 461.919 )
+texture = ExtResource( 25 )
+script = ExtResource( 204 )
+
+[node name="RatVendor" parent="LevelBackground/Interactions/Garage" instance=ExtResource( 175 )]
+position = Vector2( 47.0934, 19.307 )
+interactableText = "Hey there pal. *nibble nibble* Yeah we broke your generator so what?  I got the parts here, but they gonna cost ya. *nibble nibble*"
+
+[node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Garage/RatVendor"]
+position = Vector2( 3402.84, 489.94 )
+shape = SubResource( 40 )
+
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Garage/RatVendor"]
+visible = false
+position = Vector2( 3402.84, 455.811 )
+texture = ExtResource( 25 )
+script = ExtResource( 204 )
+
+[node name="Generator" parent="LevelBackground/Interactions/Garage" instance=ExtResource( 175 )]
+position = Vector2( 47.0934, 19.307 )
+interactableText = "The generator is broken... I wonder if that rat over there knows anything about it."
+
+[node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Garage/Generator"]
+position = Vector2( 3298.06, 477.699 )
+shape = SubResource( 41 )
+
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Garage/Generator"]
+visible = false
+position = Vector2( 3298.06, 433.541 )
 texture = ExtResource( 25 )
 script = ExtResource( 204 )
 
@@ -1152,18 +1193,16 @@ AutomaticTransition = false
 position = Vector2( 491.927, 254.067 )
 
 [node name="Garage1" parent="YSort/Actors/GarageFight1" instance=ExtResource( 176 )]
-position = Vector2( 320.719, -34.488 )
-scale = Vector2( 1.0189, 1 )
-rect = Rect2( 0, 0, 20, 80 )
+position = Vector2( 267.977, 3.37903 )
+rect = Rect2( 0, 0, 20, 60 )
 duration_between_spawn = 1
 count = 8
 maxSpawnedAtATime = 4
 automatic = false
 
 [node name="Garage2" parent="YSort/Actors/GarageFight1" instance=ExtResource( 176 )]
-position = Vector2( 337.382, -33.415 )
-scale = Vector2( 1.0189, 1 )
-rect = Rect2( 0, 0, 20, 80 )
+position = Vector2( 303.209, 3.37903 )
+rect = Rect2( 0, 0, 20, 60 )
 duration_between_spawn = 1
 count = 4
 maxSpawnedAtATime = 2
@@ -1875,7 +1914,7 @@ position = Vector2( 828.397, 136.403 )
 position = Vector2( 790.557, 135.031 )
 
 [node name="Generator" parent="YSort/Props/Basement" instance=ExtResource( 94 )]
-position = Vector2( 721.267, 137.358 )
+position = Vector2( 3287.66, 137.478 )
 
 [node name="SingleFuel" parent="YSort/Props/Basement" instance=ExtResource( 97 )]
 position = Vector2( 747.661, 138.849 )
@@ -2073,8 +2112,11 @@ position = Vector2( 167.189, 91.1028 )
 [node name="Audi" parent="YSort/Props/Garage" instance=ExtResource( 158 )]
 position = Vector2( 443.662, 84.0597 )
 
+[node name="RatVendor" parent="YSort/Props/Garage" instance=ExtResource( 205 )]
+position = Vector2( 497.295, 145.352 )
+
 [node name="SmallTools" parent="YSort/Props/Garage" instance=ExtResource( 157 )]
-position = Vector2( 396.72, 137.154 )
+position = Vector2( -2174.3, 141.428 )
 
 [node name="Tires" parent="YSort/Props/Garage" instance=ExtResource( 156 )]
 position = Vector2( 193.218, 137.154 )
@@ -2192,13 +2234,13 @@ margin_right = 970.533
 margin_bottom = 19.3802
 
 [node name="Coins" type="Label" parent="GUI/PlayerGui"]
-margin_left = 90.1344
-margin_top = 50.9467
-margin_right = 192.134
-margin_bottom = 60.9467
+margin_left = 83.0934
+margin_top = 47.6612
+margin_right = 185.093
+margin_bottom = 73.6612
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 39 )
+custom_fonts/font = SubResource( 42 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "0"
 __meta__ = {
@@ -2206,13 +2248,13 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="GUI/PlayerGui"]
-margin_left = 76.2014
-margin_top = 56.7737
-margin_right = 96.2014
-margin_bottom = 86.7737
+margin_left = 73.0426
+margin_top = 53.3074
+margin_right = 88.0426
+margin_bottom = 79.3074
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 39 )
+custom_fonts/font = SubResource( 43 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "x"
 __meta__ = {
@@ -2263,6 +2305,22 @@ margin_top = -576.0
 margin_right = 512.0
 
 [node name="CRTLayer" parent="GUI" instance=ExtResource( 200 )]
+visible = false
+margin_top = -3.05176e-05
+margin_bottom = -6.10352e-05
+
+[node name="Help" type="Label" parent="GUI"]
+visible = false
+margin_left = 131.09
+margin_top = 21.6612
+margin_right = 925.091
+margin_bottom = 47.6612
+custom_fonts/font = ExtResource( 206 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "Use the WASD Keys to move, use left mouse click to punch, and right mouse to kick."
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_Toilet_interactable_text_signal"]
@@ -2286,6 +2344,9 @@ margin_right = 512.0
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Foyer/FoyerCabinet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Foyer/GarageNeedKey" to="." method="_on_GarageNeedKey_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Garage/WorkBench" to="." method="_on_WorkBench_interactable_text_signal"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Garage/RatVendor" to="." method="_on_RatVendor_interactable_text_signal"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Garage/Generator" to="." method="_on_Generator_interactable_text_signal"]
+[connection signal="body_exited" from="LevelBackground/Teleports/Bathroom_Bedroom_2WT/EndpointAlpha" to="." method="_on_BathroomToBedroom_body_exited"]
 [connection signal="item_delete" from="YSort/Actors/LirikYaki" to="." method="_on_LirikYaki_item_delete"]
 [connection signal="item_pickup" from="YSort/Actors/LirikYaki" to="." method="_on_LirikYaki_item_pickup"]
 [connection signal="AllEnemiesDefeated" from="YSort/Actors/GrannySpawner" to="." method="_on_GrannySpawner_AllEnemiesDefeated"]

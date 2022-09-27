@@ -327,7 +327,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Lost in Malul"
-run/main_scene="res://src/Levels/Menu/MainMenu.tscn"
+run/main_scene="res://src/Levels/Menu/TitleScreen.tscn"
 config/use_custom_user_dir=true
 config/icon="res://assets/lirik_icon-5.png"
 config/macos_native_icon="res://assets/lirik_icon-4.icns"

@@ -2,9 +2,9 @@ extends Node2D
 
 const section_time := 2.0
 const line_time := 0.3
-const base_speed := 100
+const base_speed := 25
 const speed_up_multiplier := 10.0
-const title_color := Color.darkorange
+const title_color := Color.lightblue
 
 var scroll_speed := base_speed
 var speed_up := false
@@ -115,8 +115,6 @@ func add_line():
 
 
 func _unhandled_input(event):
-	if event.is_action_pressed("ui_cancel"):
-		finish()
 	if event.is_action_pressed("ui_down") and !event.is_echo():
 		speed_up = true
 	if event.is_action_released("ui_down") and !event.is_echo():

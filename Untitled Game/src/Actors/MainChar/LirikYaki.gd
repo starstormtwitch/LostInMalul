@@ -8,6 +8,10 @@ func _ready() -> void:
 	_attackManager = AttackManager.new(_attackResetTimer,
 		chargeBar, _animationHandler)
 
+func ToggleLight(toggleStatus) -> void:
+	$Light2D.visible = toggleStatus;
+	$Light2DMask.visible = toggleStatus;
+
 func _check_for_events(delta) -> bool:
 	if Input.is_action_just_released(AttackManager.SPECIAL_ATTACK_EVENT) and _attackManager.IsChargingSpecial:
 		_summonHadouken()
