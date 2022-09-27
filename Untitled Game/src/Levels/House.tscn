@@ -2317,7 +2317,8 @@ margin_right = 925.091
 margin_bottom = 47.6612
 custom_fonts/font = ExtResource( 206 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-text = "Use the WASD Keys to move, use left mouse click to punch, and right mouse to kick."
+text = "Use the WASD Keys to move, use left mouse click to punch, and right mouse to kick.
+You can use C for your special, and use shift to dodge."
 __meta__ = {
 "_edit_use_anchors_": false
 }

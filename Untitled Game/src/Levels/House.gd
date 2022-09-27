@@ -285,14 +285,12 @@ func _on_RatKingSpawner_AllEnemiesDefeated():
 
 func _on_BedroomFight1_lockout_started():
 	get_node("GUI/PlayerGui/ContinueRight").stop_blinking()
-	$GUI/Help.visible = true;
 	_textBox.showText("I think I know what that is... but how is it alive?!")
 	get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", true);
 	get_node("LevelBackground/Teleports/Bathroom_Bedroom_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", true);
 
 func _on_BedroomFight1_lockout_finished():
 	_textBox.showText("That was insane, it had to have come from the basement...")
-	$GUI/Help.visible = false;
 	get_node("GUI/PlayerGui/ContinueRight").start_blinking()
 	
 func _on_BedroomFight2_lockout_started():
