@@ -1,10 +1,10 @@
-extends Node2D
+extends Control
 
 var mainMenu : PackedScene = preload("res://src/Levels/Menu/MainMenu.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	MusicManager.playMenuMusic()
 
 func StartHit():
 	get_tree().change_scene_to(mainMenu);

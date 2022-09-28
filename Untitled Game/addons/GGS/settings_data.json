@@ -85,7 +85,7 @@
 			"value": 0
 		},
 		"current": {
-			"value": 1
+			"value": 2
 		},
 		"logic": "res://src/Helpers/Settings/Display_WindowType.gd"
 	},

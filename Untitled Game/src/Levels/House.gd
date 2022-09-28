@@ -48,6 +48,7 @@ onready var _textBox: TextBox = $GUI/TextBox
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	MusicManager.playNormalBattleMusic()
 	$CanvasModulate.visible = false;
 	_player = LevelGlobals.GetPlayerActor()
 	assert(is_instance_valid(_player),"Player instance invalid")
@@ -269,6 +270,7 @@ func AllDefeatedGarage():
 
 func _on_BossEncounter_body_entered(body):
 	if (body == _player):
+		MusicManager.playBossMusic()
 		get_node("GUI/PlayerGui/ContinueRight").stop_blinking()
 		get_node("LevelBackground/Interactions/Basement/BossEncounter/BossEncounterCollision").set_deferred("disabled", true);
 		_textBox.showText("Rat King: So... you think you can take your house back from me? I'm afraid that can't happen... you see, us rats are sick of living in this damp disgusting basement.  We will enjoy this house better than you ever did, and now I'll make sure you never hurt a rat again.")
@@ -283,6 +285,7 @@ func _on_RatKingSpawner_spawned(spawn):
 
 func _on_RatKingSpawner_AllEnemiesDefeated():
 	_defeatedRatKing = true;
+	MusicManager.playNoMusic()
 	_textBox.showText("I've...I've done it, I've defeated the rat king, I've finally reclaimed my house as my own.  *checks phone* Oh no, I'm an hour late for my stream.  There is no way they will believe my excuse.")
 
 

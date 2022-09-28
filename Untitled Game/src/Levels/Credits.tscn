@@ -28,7 +28,7 @@ position = Vector2( 512.997, 285.497 )
 scale = Vector2( 0.87, 0.87 )
 texture = ExtResource( 2 )
 hframes = 6
-frame = 1
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "default"
@@ -48,9 +48,9 @@ __meta__ = {
 [node name="Line" type="Label" parent="CreditsContainer"]
 anchor_right = 1.0
 margin_left = 1.49094
-margin_top = 379.139
+margin_top = 376.311
 margin_right = 1.49097
-margin_bottom = 405.139
+margin_bottom = 402.311
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 3 )
 align = 1

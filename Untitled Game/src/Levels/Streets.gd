@@ -95,9 +95,11 @@ func _on_ExitLevel_interactable_text_signal(text):
 
 func _on_AreaLockFightBoss_lockout_started():
 		$GUI/BossGui.set_deferred("visible", true);
+		MusicManager.playBossMusic()
 
 func _on_AreaLockFightBoss_lockout_finished():
 		$GUI/BossGui.set_deferred("visible", false);
+		MusicManager.playNormalBattleMusic()
 
 func _on_Boss_spawned(spawn):
 	spawn.connect("health_changed", self, "_on_Boss_health_changed")
