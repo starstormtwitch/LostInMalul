@@ -396,7 +396,6 @@ func _on_Chair_interactable_text_signal(text):
 
 
 func _on_RatVendor_interactable_text_signal(text):
-	_player.add_item_to_inventory(generatorPart.instance())
 	if(!HasSocks && is_instance_valid(_player.InventoryItem) && _player.InventoryItem.name == "ComfySocks"):
 		_player.delete_item_from_inventory()
 		HasSocks = true;
