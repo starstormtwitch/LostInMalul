@@ -16,7 +16,7 @@ onready var bulletSpawn: Position2D = $BulletSpawn
 func _ready():
 	_minDistanceToStayFromPlayer = 30;
 	_maxDistanceToStayFromPlayer = 90;
-	_health = 8
+	_health = 4
 	_acceleration = 0.2
 	_speed = 65
 	_attack_range = 30

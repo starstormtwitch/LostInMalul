@@ -17,7 +17,7 @@ func _ready():
 	_minDistanceToStayFromPlayer = 60;
 	_maxDistanceToStayFromPlayer = 90;
 	_flipBoxes = false;
-	_health = 8
+	_health = 4
 	_acceleration = 0.2
 	_speed = 65
 	_attack_range = 90

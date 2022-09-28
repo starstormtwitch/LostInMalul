@@ -17,7 +17,7 @@ func _ready():
 	_canTakeKnockup = false;
 	_canBeStunned = false;
 	_flocks = false;
-	_health = 100
+	_health = 60
 	_acceleration = 0.2
 	_speed = 65
 	_attack_range = 50
