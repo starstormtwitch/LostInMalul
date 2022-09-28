@@ -14,7 +14,6 @@ var _textBox: TextBox
 func _ready():
 	_player = LevelGlobals.GetPlayerActor();
 	_textBox = LevelGlobals.GetTextBox();
-	$InteractPromptArea._player = _player
 	_health = 9999
 	_acceleration = 0.2
 	_speed = 40
@@ -62,7 +61,12 @@ func _physics_process(_delta: float) -> void:
 #	if(HasSocks && HasTrophy && HasPillow && HasCandle):
 #		die();
 #		self.dispose();
-		
+
+func _on_Attack_area_entered(area):
+	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
+		area.get_parent().take_damage(3, _velocity.normalized(), 500)
+
+
 func _on_itemTimer_cooldown_timeout():
 	_isStunned = false
 	self.modulate =  Color(1,1,1,1) 

@@ -275,7 +275,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		_attackManager.gotHit()
 		_hitDoneTimer.start(_hitAnimationTime)
 		_invincibilityTimer.start(3)
-		rightHitBox.disabled = true
+		rightHitBox.set_deferred("disabled", true)
 		var finalDamage = ceil(damage * _takeDamageModifier)
 		if isInfiniteHealth:
 			finalDamage = 0

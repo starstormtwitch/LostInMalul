@@ -450,7 +450,6 @@ func _on_BathroomToBedroom_body_exited(body):
 		$CanvasModulate.visible = true;
 		_player.ToggleLight(true);
 		_textBox.showText("*crashing noise* I better go check out what happened. Looks like the power shut off, I'll have to fire up my generator before I can turn on my pc...")
-		get_node("YSort/Actors/GrannySpawner").spawnEnemy()
 
 		
 		

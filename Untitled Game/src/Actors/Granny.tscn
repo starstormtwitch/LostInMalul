@@ -13,7 +13,7 @@ extents = Vector2( 7.53983, 10.4824 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 10, 3.7961 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=4]
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemy",
@@ -43,7 +43,7 @@ shape = SubResource( 1 )
 
 [node name="Attack" type="Area2D" parent="."]
 modulate = Color( 0.431373, 1, 0, 1 )
-position = Vector2( -2.58759, -12.2141 )
+position = Vector2( -6.05237, -11.2692 )
 collision_layer = 4096
 collision_mask = 64
 
@@ -76,14 +76,14 @@ offset = Vector2( 0, -15 )
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
 ]]
-visible = false
 position = Vector2( 4.22855, -23.0993 )
 collision_layer = 16384
 collision_mask = 16
 
 [node name="HurtBoxArea" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2( -3.31485, 11.8561 )
-shape = SubResource( 5 )
+shape = SubResource( 4 )
+disabled = true
 
 [connection signal="area_entered" from="Attack" to="." method="_on_Attack_area_entered"]
 [connection signal="body_entered" from="Attack" to="." method="_on_Attack_body_entered"]

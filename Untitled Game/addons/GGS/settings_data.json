@@ -55,7 +55,7 @@
 			"value": 50
 		},
 		"current": {
-			"value": 0
+			"value": 70
 		},
 		"logic": "res://src/Helpers/Settings/Audio_MusicVolume.gd"
 	},
@@ -75,7 +75,7 @@
 			"value": true
 		},
 		"current": {
-			"value": false
+			"value": true
 		},
 		"logic": "res://src/Helpers/Settings/Display_Vsync.gd"
 	},
@@ -129,7 +129,7 @@
 			"value": false
 		},
 		"current": {
-			"value": true
+			"value": false
 		},
 		"logic": "res://src/Helpers/Settings/Infinite Damage.gd"
 	},
