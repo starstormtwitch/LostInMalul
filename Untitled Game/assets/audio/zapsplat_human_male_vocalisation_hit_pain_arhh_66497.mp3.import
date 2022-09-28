@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/zapsplat_human_male_vocalisation_hit_pain_arhh_66497.mp3-9a29dd0bb9b92fce1bba2197dd138d6d.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/zapsplat_human_male_vocalisation_hit_pain_arhh_66497.mp3"
+dest_files=[ "res://.import/zapsplat_human_male_vocalisation_hit_pain_arhh_66497.mp3-9a29dd0bb9b92fce1bba2197dd138d6d.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

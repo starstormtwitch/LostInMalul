@@ -18,6 +18,7 @@ const dropped_item = preload("res://src/InventoryItems/DroppedItemBase.tscn")
 const footstep = preload("res://assets/audio/footsteps_sfx.wav")
 const woosh = preload("res://assets/audio/HitAudio/miss_sfx.wav")
 const deathSound = preload("res://assets/audio/main_char_death_sfx.wav")
+const hurtSound = preload("res://assets/audio/mainHurt.mp3")
 var hadouken_scene = preload("res://src/Actors/MainChar/HadoukenBlast.tscn")
 
 
@@ -271,6 +272,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if _canTakeDamage:
 		#print("call hurt logic")
 		_canTakeDamage = false
+		SoundPlayer.playSound(get_tree().get_current_scene(), hurtSound, -4)
 		_beingHurt = true
 		_attackManager.gotHit()
 		_hitDoneTimer.start(_hitAnimationTime)

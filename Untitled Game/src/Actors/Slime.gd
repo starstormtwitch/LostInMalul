@@ -4,6 +4,8 @@ const _GRAVITY = 10
 const _JUMPFORCE = -160
 const _JUMP_SPEED = 60
 
+const attackSound = preload("res://assets/audio/frWhoosh.mp3")
+
 var _jumpVelocity = Vector2()
 var _jumpDirection = Vector2()
 var _isJumping = false
@@ -28,6 +30,7 @@ func _physics_process(_delta: float) -> void:
 			#print("attack state")
 			if !_isAttacking:
 				_isAttacking = true
+				SoundPlayer.playSound(get_tree().get_current_scene(), attackSound, -15)
 				if($AnimationTree != null):
 					$AnimationTree.get("parameters/playback").travel("jump_attack")
 	if _isJumping:

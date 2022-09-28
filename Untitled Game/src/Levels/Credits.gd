@@ -1,7 +1,7 @@
 extends Node2D
 
-const section_time := 2.0
-const line_time := 0.3
+const section_time := 3.0
+const line_time := 1
 const base_speed := 25
 const speed_up_multiplier := 10.0
 const title_color := Color.lightblue
@@ -50,13 +50,18 @@ var credits = [
 		"",
 		"Art created with",
 		"Krita",
-		"Aseprite"
+		"Aseprite",
+		"",
+		"Free sounds from",
+		"ZapSplat",
 	],[
 		"Special thanks",
 		"Charlemagne420, for always being there.",
 	]
 ]
 
+func _ready():
+	MusicManager.playMenuMusic()
 
 func _process(delta):
 	var scroll_speed = base_speed * delta
