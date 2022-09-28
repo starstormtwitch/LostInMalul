@@ -14,6 +14,7 @@ const dropped_item = preload("res://src/InventoryItems/DroppedItemBase.tscn")
 const spawner = preload("res://src/Helpers/Spawning/Spawner.tscn")
 
 var _player : Actor
+var _granny
 const _MENU_EVENT: String = "Menu"
 const _UI_CANCEL_EVENT: String = "ui_cancel"
 
@@ -36,6 +37,7 @@ var _pickedUpSwitch: bool = false
 var _pickedUpScrewdriver: bool = false
 var _rightBasementDefeated: bool = false
 var _generatorPartNeededCount: int = 4
+var _defeatedRatKing = false;
 var HasSocks = false;
 var HasTrophy = false;
 var HasPillow = false;
@@ -79,6 +81,8 @@ func SetLevelCheckpointVariables(saveData):
 		"FirstEnemy":
 			get_node("LevelBackground/Checkpoints/Checkpoint").set_deferred("disabled", true)
 			_toiletClogged = false;
+			$CanvasModulate.visible = true;
+			_player.ToggleLight(true);
 			_toiletUsed = true;
 			_pickedUpPlunger = true;
 			_pickedUpSwitch = true;
@@ -278,10 +282,9 @@ func _on_RatKingSpawner_spawned(spawn):
 	$GUI/BossGui/ProgressBar.set_deferred("value",   (spawn._health / spawn._maxHealth) * 100);
 
 func _on_RatKingSpawner_AllEnemiesDefeated():
+	_defeatedRatKing = true;
 	_textBox.showText("I've...I've done it, I've defeated the rat king, I've finally reclaimed my house as my own.  *checks phone* Oh no, I'm an hour late for my stream.  There is no way they will believe my excuse.")
-	var gameScene = LevelGlobals.GetLevelScene("Credits");
-	assert(gameScene != null, "Unknown level!");
-	get_tree().change_scene_to(gameScene);
+
 
 func _on_BedroomFight1_lockout_started():
 	get_node("GUI/PlayerGui/ContinueRight").stop_blinking()
@@ -372,7 +375,7 @@ func _on_GarageFight2_lockout_finished():
 	get_node("LevelBackground/Checkpoints/Checkpoint").set_deferred("disabled", false)
 	get_node("LevelBackground/Teleports/Foyer_Garage_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
 	get_node("YSort/Actors/GrannySpawner").spawnEnemy()
-	_textBox.showText("Is that grandma's laugh I just heard? She has the key to the basement. I better find some comfy items to give to grandma to make her happy.")
+	_textBox.showText("Is that grandma's laugh I just heard? She has the key to the basement. I better get this generator working.")
 	AllDefeatedGarage();
 	
 	
@@ -393,25 +396,30 @@ func _on_Chair_interactable_text_signal(text):
 
 
 func _on_RatVendor_interactable_text_signal(text):
-	if(is_instance_valid(_player.InventoryItem) && _player.InventoryItem.name == "ComfySocks"):
+	_player.add_item_to_inventory(generatorPart.instance())
+	if(!HasSocks && is_instance_valid(_player.InventoryItem) && _player.InventoryItem.name == "ComfySocks"):
 		_player.delete_item_from_inventory()
 		HasSocks = true;
 		_player.add_item_to_inventory(generatorPart.instance())
 		_textBox.showText("Finally, I have the Cozy Collection socks... *sniffs* did...did you wear these? Anyways, here's a generator part.")
-	elif(is_instance_valid(_player.InventoryItem) && _player.InventoryItem.name == "Trophy"):
+		return
+	elif(!HasTrophy && is_instance_valid(_player.InventoryItem) && _player.InventoryItem.name == "Trophy"):
 		_player.delete_item_from_inventory()
 		HasTrophy = true;
 		_player.add_item_to_inventory(generatorPart.instance())
 		_textBox.showText("This thing looks kinda like a first-grader's art project at closer look, but here's the next part anyways.")
-	elif(is_instance_valid(_player.InventoryItem) && _player.InventoryItem.name == "Candle"):
+		return
+	elif(!HasCandle && is_instance_valid(_player.InventoryItem) && _player.InventoryItem.name == "Candle"):
 		_player.delete_item_from_inventory()
 		HasCandle = true;
 		_player.add_item_to_inventory(generatorPart.instance())
 		_textBox.showText("The Cozy Collection candle, a candle like this will keep a rat like me warm through a lifetime of winters.")
-	elif(is_instance_valid(_player.InventoryItem) && _player.InventoryItem.name == "Pillow"):
+		return
+	elif(!HasPillow && is_instance_valid(_player.InventoryItem) && _player.InventoryItem.name == "Pillow"):
 		HasPillow = true;
 		_player.add_item_to_inventory(generatorPart.instance())
 		_textBox.showText("This...this ain't what I wanted, if I give you the part will you get that thing away from me? *the fat rat looks at you with disgust and throws the part at you*")
+		return
 	else:
 		if(!HasSocks):
 			_textBox.showText("If you want the generator part, you'll have to bring me the Cozy Collection socks")
@@ -433,11 +441,8 @@ func _on_Generator_interactable_text_signal(text):
 			_textBox.showText("You slot the generator part into the generator, and flip the switch, but nothing happens.")
 		else:
 			_textBox.showText("You slot the generator part into the generator, and flip the switch......the generator hums to life.")
-			var children = $YSort/Actors/GrannySpawner.get_children();
-			for child in children:
-				if(child.is_in_group("enemy")):
-					if("isDying" in child && !child.isDying):
-						child.die()
+			_granny.die()
+			_granny.dispose()
 			$CanvasModulate.visible = false;
 			_player.ToggleLight(false);
 	else:
@@ -451,5 +456,14 @@ func _on_BathroomToBedroom_body_exited(body):
 		_player.ToggleLight(true);
 		_textBox.showText("*crashing noise* I better go check out what happened. Looks like the power shut off, I'll have to fire up my generator before I can turn on my pc...")
 
-		
-		
+func _on_GrannySpawner_spawned(spawn):
+	_granny = spawn;
+
+func _on_Computer_interactable_text_signal(text):
+	if(_defeatedRatKing):
+		var gameScene = LevelGlobals.GetLevelScene("Credits");
+		assert(gameScene != null, "Unknown level!");
+		get_tree().change_scene_to(gameScene);
+	else:
+		_textBox.showText(text);
+	

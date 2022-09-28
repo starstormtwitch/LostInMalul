@@ -330,28 +330,28 @@ extents = Vector2( 23.2275, 19.9813 )
 
 [sub_resource type="RectangleShape2D" id=36]
 
-[sub_resource type="RectangleShape2D" id=40]
-extents = Vector2( 15.3049, 15.2701 )
-
-[sub_resource type="RectangleShape2D" id=41]
-extents = Vector2( 15.3049, 15.2701 )
-
 [sub_resource type="RectangleShape2D" id=37]
+extents = Vector2( 15.3049, 15.2701 )
+
+[sub_resource type="RectangleShape2D" id=38]
+extents = Vector2( 15.3049, 15.2701 )
+
+[sub_resource type="RectangleShape2D" id=39]
 extents = Vector2( 447.481, 28.3017 )
 
-[sub_resource type="DynamicFont" id=38]
+[sub_resource type="DynamicFont" id=40]
 size = 8
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
 font_data = ExtResource( 178 )
 
-[sub_resource type="DynamicFont" id=42]
+[sub_resource type="DynamicFont" id=41]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 207 )
 
-[sub_resource type="DynamicFont" id=43]
+[sub_resource type="DynamicFont" id=42]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 207 )
@@ -855,7 +855,7 @@ interactableText = "Hey there pal. *nibble nibble* Yeah we broke your generator 
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Garage/RatVendor"]
 position = Vector2( 3402.84, 489.94 )
-shape = SubResource( 40 )
+shape = SubResource( 37 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Garage/RatVendor"]
 visible = false
@@ -869,7 +869,7 @@ interactableText = "The generator is broken... I wonder if that rat over there k
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Garage/Generator"]
 position = Vector2( 3298.06, 477.699 )
-shape = SubResource( 41 )
+shape = SubResource( 38 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Garage/Generator"]
 visible = false
@@ -1029,7 +1029,7 @@ collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/SpecialZones/BossMobZone"]
 position = Vector2( 669.398, 265.792 )
-shape = SubResource( 37 )
+shape = SubResource( 39 )
 
 [node name="Checkpoints" type="Node" parent="LevelBackground"]
 
@@ -2193,7 +2193,7 @@ margin_left = 268.112
 margin_top = 524.44
 margin_right = 756.112
 margin_bottom = 548.44
-custom_fonts/font = SubResource( 38 )
+custom_fonts/font = SubResource( 40 )
 text = "Rex Magnus Rattorum, The Rat King"
 uppercase = true
 __meta__ = {
@@ -2240,7 +2240,7 @@ margin_right = 185.093
 margin_bottom = 73.6612
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 42 )
+custom_fonts/font = SubResource( 41 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "0"
 __meta__ = {
@@ -2254,7 +2254,7 @@ margin_right = 88.0426
 margin_bottom = 79.3074
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 43 )
+custom_fonts/font = SubResource( 42 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "x"
 __meta__ = {
@@ -2337,7 +2337,7 @@ __meta__ = {
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Kitchen/Microwave" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Kitchen/BasementNeedKey" to="." method="_on_BasementNeedKey_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Kitchen/Drawer" to="." method="_on_Drawer_interactable_text_signal"]
-[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Office/Computer" to="." method="_on_InteractPromptArea_interactable_text_signal"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Office/Computer" to="." method="_on_Computer_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Office/OfficeCabinet" to="." method="_on_OfficeCabinet_interactable_text_signal"]
 [connection signal="body_entered" from="LevelBackground/Interactions/Basement/BossEncounter" to="." method="_on_BossEncounter_body_entered"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Foyer/FoyerEndTable" to="." method="_on_FoyerEndTable_interactable_text_signal"]
@@ -2351,6 +2351,8 @@ __meta__ = {
 [connection signal="item_delete" from="YSort/Actors/LirikYaki" to="." method="_on_LirikYaki_item_delete"]
 [connection signal="item_pickup" from="YSort/Actors/LirikYaki" to="." method="_on_LirikYaki_item_pickup"]
 [connection signal="AllEnemiesDefeated" from="YSort/Actors/GrannySpawner" to="." method="_on_GrannySpawner_AllEnemiesDefeated"]
+[connection signal="despawned" from="YSort/Actors/GrannySpawner" to="." method="_on_GrannySpawner_despawned"]
+[connection signal="spawned" from="YSort/Actors/GrannySpawner" to="." method="_on_GrannySpawner_spawned"]
 [connection signal="AllEnemiesDefeated" from="YSort/Actors/RatKingSpawner" to="." method="_on_RatKingSpawner_AllEnemiesDefeated"]
 [connection signal="spawned" from="YSort/Actors/RatKingSpawner" to="." method="_on_RatKingSpawner_spawned"]
 [connection signal="lockout_finished" from="YSort/Actors/GarageFight1" to="." method="_on_GarageFight1_lockout_finished"]

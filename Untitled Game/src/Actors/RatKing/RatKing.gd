@@ -73,7 +73,7 @@ func _physics_process(_delta: float) -> void:
 		_maxDistanceToStayFromPlayer = 120;
 		if(!_lightningPhase && _health < (_maxHealth / 2)):
 			_lightningPhase = true;
-		if(!_enragePhase && _health < (_maxHealth / 10)):
+		if(!_enragePhase && _health < (_maxHealth / 5)):
 			_enragePhase = true;
 			_lightningDuration = 30;
 			_lightningDurationBetweenStrikes = .10;

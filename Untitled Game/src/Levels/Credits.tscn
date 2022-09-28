@@ -28,7 +28,7 @@ position = Vector2( 512.997, 285.497 )
 scale = Vector2( 0.87, 0.87 )
 texture = ExtResource( 2 )
 hframes = 6
-frame = 5
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "default"
