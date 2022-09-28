@@ -10,7 +10,7 @@ const _DEFAULT_CAMERA_SMOOTH_STRANSITION_SPEED: int = 2 * 100
 
 const _DEFAULT_PAN_TIME = 1
 const _DEFAULT_PAN_SPEED = 1
-const _DEFAULT_LIMIT_MOVEMENT_WAIT_TIMER = 1.1
+const _DEFAULT_LIMIT_MOVEMENT_WAIT_TIMER = 2
 const _DEFAULT_PAN_ZOOM = Vector2(0.2,0.2)
 const _DEFAULT_PAN_ZOOM_SPEED = 7
 const _CAMERA_DISTANCE_TARGET = 25
@@ -111,15 +111,9 @@ func _zoomToPlayer(delta: float):
 	#if we just finished an arena fight, we always update target to player position
 	_limit_smooth_target_position = _player.position
 	#we need to change our cameraReached logic, Since we will be tracking a moving object AKA the player
-	var cameraReachedTarget = _checkAndMoveCameraToTarget(delta)
+	setRemoteUpdates(true)
 	var limitsReachedTarget = _checkAndMoveCameraLimitBounds(delta)
-	if playerCameraDebugOn and cameraReachedTarget:
-		playerCameraDebugOn = false
-		print("camera target has been reached")
-	if limitsReachedTarget and limitDebugOn:
-		limitDebugOn = false
-		print("limits target has been reached")
-	if cameraReachedTarget and limitsReachedTarget:
+	if limitsReachedTarget:
 		_zoomToPlayer = false
 		reachedCameraTarget()
 
