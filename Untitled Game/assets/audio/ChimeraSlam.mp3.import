@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ChimeraSlam.mp3-5c8377bab2c371fc2c5b072496bd1c3b.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/ChimeraSlam.mp3"
+dest_files=[ "res://.import/ChimeraSlam.mp3-5c8377bab2c371fc2c5b072496bd1c3b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

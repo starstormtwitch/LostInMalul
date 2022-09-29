@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/cartoon_anime_burst_laser_beam_energy_fast_hard_71598.mp3-144f415cb65019b487df22062e4f0bca.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/cartoon_anime_burst_laser_beam_energy_fast_hard_71598.mp3"
+dest_files=[ "res://.import/cartoon_anime_burst_laser_beam_energy_fast_hard_71598.mp3-144f415cb65019b487df22062e4f0bca.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

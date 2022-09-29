@@ -8,7 +8,6 @@ const _TIME = 1.4
 const _DAMAGE = 1
 var _direction = 1
 
-
 var _isMoving = false
 
 var _timer: Timer = Timer.new()

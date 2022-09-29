@@ -5,6 +5,9 @@ var _spawner = load("res://src/Helpers/Spawning/Spawner.tscn");
 var _lightningBolt = preload("res://src/Actors/RatKing/LightningSpell.tscn");
 var _ratSoldier = preload("res://src/Actors/RatSoldier.tscn");
 
+const castSound = preload("res://assets/audio/BossCast.mp3")
+const thudSound = preload("res://assets/audio/thud.mp3")
+
 #staff knockback info
 var KNOCKBACK_COOLDOWN = 5;
 
@@ -94,12 +97,14 @@ func _physics_process(_delta: float) -> void:
 							_canDoLightningAttack = false;
 							_isAttacking = true
 							$AnimationTree.get("parameters/playback").travel("attack")
+							SoundPlayer.playSound(get_tree().get_current_scene(), castSound, 5)
 							_lightning_spell();
 						elif(_canDoRatSpawn && !_doingLightningAttack):
 							_canDoRatSpawn = false;
 							_isAttacking = true
 							var ratsToSpawn = ceil(rand_range(2,5));
 							$AnimationTree.get("parameters/playback").travel("attack")
+							SoundPlayer.playSound(get_tree().get_current_scene(), castSound, 5)
 							_spawn_rats(ratsToSpawn);
 						elif(dist_to_target <= 40): #only do slam attacak
 							_isAttacking = true
@@ -115,6 +120,7 @@ func _lightning_spell():
 	spellSpawner.global_position.x = spellSpawner.global_position.x + rand_range(-100,100);
 	get_parent().add_child(spellSpawner);
 	spellSpawner.spawnMultipleInArea(_lightningBolt)
+	
 
 func _spawn_rats(amount):
 	assert(_mobSpawnArea != null, "Mob spawn area must be set in parent scene")

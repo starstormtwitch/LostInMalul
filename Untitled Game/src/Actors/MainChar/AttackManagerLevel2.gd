@@ -14,16 +14,18 @@ func resetCombo():
 
 
 func doSideSwipeAttack(scene : Node):
-	if attackLock.try_lock() == OK:
+	if  !isAttacking && attackLock.try_lock() == OK:
 		_attack_setup(false)
 		_playPunchSFX = true
 		#print("Combo A: " + String(_comboAPoints))
 		if _comboAPoints == 2:
+			print("punch1")
 			_animationHandler.punch1()
 			SoundPlayer.playSound(scene, missSound, -4)
 			_comboAPoints = _comboAPoints - 1
 			damageForce = MIN_DAMAGE_FORCE
 		elif _comboAPoints == 1:
+			print("punch2")
 			_animationHandler.punch2()
 			SoundPlayer.playSound(scene, missSound, -4)
 			_comboAPoints = _START_A_COMBO
@@ -31,7 +33,7 @@ func doSideSwipeAttack(scene : Node):
 
 
 func doSideSwipeKick(scene : Node):
-	if attackLock.try_lock() == OK:
+	if  !isAttacking &&  attackLock.try_lock() == OK:
 		_attack_setup(true)
 		print("Sideswipe kick")
 		_animationHandler.kick1()
@@ -41,17 +43,14 @@ func doSideSwipeKick(scene : Node):
 
 
 func playKickPart2(scene : Node):
-	if attackLock.try_lock() == OK:
-		_attack_setup(true)
-		print("Sideswipe kick")
-		_animationHandler.kick2()
-		SoundPlayer.playSound(scene, missSound, -4)
-		damageForce = MAX_DAMAGE_FORCE
-		combo_reset()
+	print("Sideswipe kick")
+	_animationHandler.kick2()
+	damageForce = MAX_DAMAGE_FORCE
+	combo_reset()
 
 
 func doShoryuken(scene : Node):
-	if attackLock.try_lock() == OK:
+	if  !isAttacking && attackLock.try_lock() == OK:
 		_attack_setup(true)
 		print("SHoryuken")
 		_animationHandler.shoryuken()

@@ -35,7 +35,7 @@
 			"value": false
 		},
 		"current": {
-			"value": true
+			"value": false
 		},
 		"logic": "res://src/Helpers/Settings/Infinite Health.gd"
 	},
@@ -55,7 +55,7 @@
 			"value": 50
 		},
 		"current": {
-			"value": 70
+			"value": 100
 		},
 		"logic": "res://src/Helpers/Settings/Audio_MusicVolume.gd"
 	},

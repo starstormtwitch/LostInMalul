@@ -384,6 +384,10 @@ texture={
 "stream": false,
 "svg/scale": 1.0
 }
+mp3={
+"loop": false,
+"loop_offset": 0
+}
 
 [input]
 

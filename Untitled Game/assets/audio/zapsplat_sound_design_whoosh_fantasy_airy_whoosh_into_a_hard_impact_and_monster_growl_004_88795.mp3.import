@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/zapsplat_sound_design_whoosh_fantasy_airy_whoosh_into_a_hard_impact_and_monster_growl_004_88795.mp3-e34b87f6ac74b121c904efa6f9103212.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/zapsplat_sound_design_whoosh_fantasy_airy_whoosh_into_a_hard_impact_and_monster_growl_004_88795.mp3"
+dest_files=[ "res://.import/zapsplat_sound_design_whoosh_fantasy_airy_whoosh_into_a_hard_impact_and_monster_growl_004_88795.mp3-e34b87f6ac74b121c904efa6f9103212.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

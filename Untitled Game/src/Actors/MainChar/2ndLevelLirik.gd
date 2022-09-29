@@ -39,3 +39,11 @@ func playChargeAnimation():
 
 func playKickPart2():
 	_attackManagerLevel2.playKickPart2(self)
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if(attackList.Has(anim_name)):
+		_finishedAttack()
+		
+func _on_AnimationPlayer_animation_changed(old_name, new_name):
+	if(attackList.Has(old_name)):
+		_finishedAttack()

@@ -32,7 +32,7 @@ const _FOOTSTEP_PARTICLE_POSITION_OFFSET = -6
 const _MAX_SUPER_CHARGES = 3
 const _MIN_SUPER_CHARGES = 0
 const STARTING_SUPER_CHARGES = 1
-const NORMAL_HEALTH_VALUE = 10
+const NORMAL_HEALTH_VALUE = 15
 const NORMAL_DAMAGE_VALUE = 1
 const INFINITE_HEALTH_VALUE = 20000
 const INFINITE_DAMAGE_VALUE = 2000
@@ -106,7 +106,7 @@ func _ready() -> void:
 	_invincibilityTimer.start(3)
 	
 	_maxHealth = NORMAL_HEALTH_VALUE
-	_health = _maxHealth
+	_health = 10
 	_acceleration = .1
 	_speed = 150
 	_directionFacing.x = .1;
@@ -353,8 +353,10 @@ func checkForEvent(event_name: String, delta) -> bool:
 	return false
 
 func _finishedAttack() -> void:
-	#print("attack finished")
-	_attackManager.isAttacking = false
+	if(_attackManager.isAttacking):
+		print("attack finished")
+		_attackManager.isAttacking = false
+		_attackManager.attackLock.unlock()
 
 
 # callback function for when hurt animation is done

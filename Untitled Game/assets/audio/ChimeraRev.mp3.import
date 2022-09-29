@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ChimeraRev.mp3-a534b2f404e7b7f4a9e6241a8a5646d2.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/ChimeraRev.mp3"
+dest_files=[ "res://.import/ChimeraRev.mp3-a534b2f404e7b7f4a9e6241a8a5646d2.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

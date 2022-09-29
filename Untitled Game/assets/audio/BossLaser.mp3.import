@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/BossLaser.mp3-ab9c173a2eb9d9e200c524b21b6088e1.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/BossLaser.mp3"
+dest_files=[ "res://.import/BossLaser.mp3-ab9c173a2eb9d9e200c524b21b6088e1.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

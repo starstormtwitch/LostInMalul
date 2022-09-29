@@ -62,7 +62,7 @@ func _attack_setup(is_kick: bool):
 
 
 func doSideSwipeAttack(scene : Node):
-	if attackLock.try_lock() == OK:
+	if !isAttacking && attackLock.try_lock() == OK:
 		_attack_setup(false)
 		_playPunchSFX = true
 		#print("Combo A: " + String(_comboAPoints))
@@ -86,7 +86,7 @@ func doSideSwipeAttack(scene : Node):
 
 
 func doSideSwipeKick(scene : Node):
-	if attackLock.try_lock() == OK:
+	if  !isAttacking && attackLock.try_lock() == OK:
 		_attack_setup(true)
 		#print("Combo B: " + String(_comboBPoints))
 		if _comboBPoints == 1 or _comboAPoints == 1:
@@ -122,12 +122,12 @@ func startSpecial():
 
 
 func releaseSpecial():
-	attackLock.lock()
-	isAttacking = true
-	_animationHandler.releaseHadouken()
-	IsChargingSpecial = false
-	_playHadoukenSFX = true
-	_hideChargeBar()
+	if  !isAttacking && attackLock.try_lock() == OK:
+		isAttacking = true
+		_animationHandler.releaseHadouken()
+		IsChargingSpecial = false
+		_playHadoukenSFX = true
+		_hideChargeBar()
 
 
 func _hideChargeBar():

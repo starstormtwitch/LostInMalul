@@ -64,7 +64,7 @@ func _physics_process(_delta: float) -> void:
 
 func _on_Attack_area_entered(area):
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
-		area.get_parent().take_damage(3, _velocity.normalized(), 500)
+		area.get_parent().take_damage(8, _velocity.normalized(), 500)
 
 
 func _on_itemTimer_cooldown_timeout():

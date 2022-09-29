@@ -3,6 +3,8 @@ extends Enemy
 
 const bullet_scene = preload("res://src/Actors/shitman/Bullet.tscn")
 
+const attackSound = preload("res://assets/audio/GunShot.mp3")
+
 const _GRAVITY = 10
 const _JUMPFORCE = -160
 const _JUMP_SPEED = 60
@@ -62,6 +64,7 @@ func summon_bullet():
 	instance.set_direction(_isFacingDirectionLeft)
 	instance.global_position = bulletSpawn.global_position
 	get_parent().add_child(instance)
+	SoundPlayer.playSound(get_tree().get_current_scene(), attackSound, -5)
 
 
 func _flipBoxesIfNecessary(velocity_x: float):

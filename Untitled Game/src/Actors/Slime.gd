@@ -30,7 +30,7 @@ func _physics_process(_delta: float) -> void:
 			#print("attack state")
 			if !_isAttacking:
 				_isAttacking = true
-				SoundPlayer.playSound(get_tree().get_current_scene(), attackSound, -15)
+				SoundPlayer.playSound(get_tree().get_current_scene(), attackSound, 3)
 				if($AnimationTree != null):
 					$AnimationTree.get("parameters/playback").travel("jump_attack")
 	if _isJumping:

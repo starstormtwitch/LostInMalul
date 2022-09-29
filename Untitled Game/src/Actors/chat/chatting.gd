@@ -8,6 +8,7 @@ const _TIME = 10
 const _DAMAGE = 1
 var _direction = 1
 
+const attackSound = preload("res://assets/audio/ShitmanBullet.mp3")
 
 var _isMoving = false
 
@@ -52,7 +53,7 @@ func set_direction(isFacingDirectionLeft: bool):
 
 func startMoving():
 	_isMoving = true
-	#trail.turnTrailOn()
+	SoundPlayer.playSound(get_tree().get_current_scene(), attackSound, -5)
 
 func _dispose():
 	queue_free()

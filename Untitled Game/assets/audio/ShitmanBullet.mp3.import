@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ShitmanBullet.mp3-8526fd942fcad994c66413b5af7664cd.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/ShitmanBullet.mp3"
+dest_files=[ "res://.import/ShitmanBullet.mp3-8526fd942fcad994c66413b5af7664cd.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

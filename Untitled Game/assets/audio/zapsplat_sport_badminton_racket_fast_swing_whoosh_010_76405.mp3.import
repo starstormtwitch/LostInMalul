@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/zapsplat_sport_badminton_racket_fast_swing_whoosh_010_76405.mp3-8ba88867e3f57a4d69be783941292445.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/zapsplat_sport_badminton_racket_fast_swing_whoosh_010_76405.mp3"
+dest_files=[ "res://.import/zapsplat_sport_badminton_racket_fast_swing_whoosh_010_76405.mp3-8ba88867e3f57a4d69be783941292445.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

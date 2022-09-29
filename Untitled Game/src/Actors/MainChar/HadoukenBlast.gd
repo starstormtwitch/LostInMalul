@@ -8,6 +8,8 @@ const _MAX_DAMAGE = 10
 const _MIN_DAMAGE = 1
 var _direction = 1
 
+const hadouken = preload("res://assets/audio/HitAudio/explosion_sound.wav")
+
 var _damage: int = _MAX_DAMAGE
 var _isExploding = false
 
@@ -58,6 +60,7 @@ func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
 		explosionBoxCollision.set_deferred("disabled", false)
 		queueFreeTimer.start()
+		SoundPlayer.playSound(get_tree().get_current_scene(), hadouken, 1)
 
 
 func _on_QueueFreeTimer_timeout():

@@ -6,6 +6,9 @@ var _isJumping = false
 var _canDoJumpAttack = true;
 const _JUMP_SPEED = 200
 
+const slamSound = preload("res://assets/audio/ChimeraSlam.mp3")
+const jumpSound = preload("res://assets/audio/ChimeraRev.mp3")
+
 var _jumpVelocity = Vector2()
 var _jumpDirection = Vector2()
 var _jumpCooldownTimer = Timer.new()
@@ -48,8 +51,10 @@ func _physics_process(_delta: float) -> void:
 						_canDoJumpAttack = false;
 						_jumpCooldownTimer.start(12)
 						$AnimationTree.get("parameters/playback").travel("jump_attack")
+						SoundPlayer.playSound(get_tree().get_current_scene(), jumpSound, 5)
 					else: #only do slam attack
 						$AnimationTree.get("parameters/playback").travel("slam")
+						SoundPlayer.playSound(get_tree().get_current_scene(), slamSound, 5)
 	if _isJumping:
 		_handleJumpPhysics()
 	

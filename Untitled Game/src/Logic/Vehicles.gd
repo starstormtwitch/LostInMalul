@@ -28,7 +28,7 @@ func get_height() -> float:
 
 func _on_Box_area_entered(area):
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
-		area.get_parent().take_damage(1, Vector2(0, LevelGlobals.rng.randf_range(-5,5)), 5000)
+		area.get_parent().take_damage(3, Vector2(0, LevelGlobals.rng.randf_range(-5,5)), 5000)
 
 	
 # @note: for ObjectPool.

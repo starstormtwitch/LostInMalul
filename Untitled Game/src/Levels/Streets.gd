@@ -20,6 +20,7 @@ onready var _rightWarningSign = $GUI/Warnings/WarningSignRight
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	._ready()
+	MusicManager.playNormalBattleMusic()
 	_cameraManager.zoom = Vector2(.3,.3)
 	_player = LevelGlobals.GetPlayerActor()
 	assert(is_instance_valid(_player),"Player instance invalid")

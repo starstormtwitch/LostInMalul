@@ -41,7 +41,7 @@ func _pauseAndShowMenu() -> void:
 	_switchMenu(ShowMenuEnum.PAUSE)
 
 func _unpauseAndHideMenu():
-	MusicManager.playNormalBattleMusic()
+	MusicManager.playLastMusic()
 	_menuOpen = false
 	get_tree().paused = false
 	_switchMenu(ShowMenuEnum.NONE)

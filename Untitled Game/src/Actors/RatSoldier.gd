@@ -7,6 +7,9 @@ const _JUMP_SPEED = 60
 var _jumpVelocity = Vector2()
 var _jumpDirection = Vector2()
 
+const attackSound = preload("res://assets/audio/thud.mp3")
+const whooshSound = preload("res://assets/audio/frWhoosh.mp3")
+
 onready var attackBox = $Attack/AttackBox
 
 # Called when the node enters the scene tree for the first time.
@@ -28,6 +31,7 @@ func _physics_process(_delta: float) -> void:
 			#print("attack state")
 			if !_isAttacking:
 				_isAttacking = true
+				SoundPlayer.playSound(get_tree().get_current_scene(), whooshSound, -15)
 				if($AnimationTree != null):
 					$AnimationTree.get("parameters/playback").travel("jump_attack")
 
@@ -47,6 +51,7 @@ func _attack_done():
 
 func _on_Attack_area_entered(area):
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
+		SoundPlayer.playSound(get_tree().get_current_scene(), attackSound, 1)
 		area.get_parent().take_damage(1, _velocity.normalized(), 500)
 
 

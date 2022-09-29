@@ -151,7 +151,7 @@ func _on_Toilet_interactable_text_signal(text):
 		LevelGlobals.SetCheckpoint("Streets", "Start");
 		LevelGlobals.save_game();
 		LevelGlobals.load_checkpoint();
-	elif(!_toiletClogged && !_toiletUsed):
+	elif(!_toiletClogged or !_toiletUsed):
 		_textBox.showText("I can't take my morning poop without my Switch.")
 	else:
 		_textBox.showText(text)

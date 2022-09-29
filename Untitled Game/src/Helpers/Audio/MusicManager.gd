@@ -6,6 +6,16 @@ onready var bossBattleMusic: AudioStreamPlayer = $BossMusicStreamPlayer
 
 var menuPos = 0
 var normalPos = 0
+var lastPlayed
+var playing
+
+func playLastMusic():
+	if(lastPlayed == "Boss"):
+		playBossMusic();
+	elif(lastPlayed == "Menu"):
+		playMenuMusic();
+	elif(lastPlayed == "Normal"):
+		playNormalBattleMusic();
 
 func playNoMusic():
 	normalBattleMusic.stop()
@@ -13,6 +23,8 @@ func playNoMusic():
 	bossBattleMusic.stop()
 	
 func playBossMusic():
+	lastPlayed = playing;
+	playing = "Boss";
 	menuPos = menuMusic.get_playback_position()
 	normalPos = normalBattleMusic.get_playback_position()
 	normalBattleMusic.stop()
@@ -23,6 +35,8 @@ func playBossMusic():
 		bossBattleMusic.stream_paused = false
 
 func playMenuMusic():
+	lastPlayed = playing;
+	playing = "Menu";
 	bossBattleMusic.stop()
 	normalPos = normalBattleMusic.get_playback_position()
 	normalBattleMusic.stop()
@@ -33,6 +47,8 @@ func playMenuMusic():
 		menuMusic.stream_paused = false
 
 func playNormalBattleMusic():
+	lastPlayed = playing;
+	playing = "Normal";
 	menuPos = menuMusic.get_playback_position()
 	bossBattleMusic.stop()
 	menuMusic.stop()
