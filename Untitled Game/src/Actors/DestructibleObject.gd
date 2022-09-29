@@ -38,7 +38,7 @@ func check_destruction_state():
 	if(_health <= 0):
 		$AnimationPlayer.play("broken")
 	elif(_health <= maxHealth):
-		$AnimationPlayer.play("damaged")
+		$AnimationPlayer.play("destroyed")
 		
 
 

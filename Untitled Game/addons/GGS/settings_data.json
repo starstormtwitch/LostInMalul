@@ -35,7 +35,7 @@
 			"value": false
 		},
 		"current": {
-			"value": false
+			"value": true
 		},
 		"logic": "res://src/Helpers/Settings/Infinite Health.gd"
 	},
@@ -85,7 +85,7 @@
 			"value": 0
 		},
 		"current": {
-			"value": 2
+			"value": 0
 		},
 		"logic": "res://src/Helpers/Settings/Display_WindowType.gd"
 	},
@@ -129,7 +129,7 @@
 			"value": false
 		},
 		"current": {
-			"value": false
+			"value": true
 		},
 		"logic": "res://src/Helpers/Settings/Infinite Damage.gd"
 	},
