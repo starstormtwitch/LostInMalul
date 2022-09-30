@@ -355,6 +355,7 @@ func checkForEvent(event_name: String, delta) -> bool:
 func _finishedAttack() -> void:
 	if(_attackManager.isAttacking):
 		print("attack finished")
+		$attack/sideSwipeRight.set_deferred("disabled", true);
 		_attackManager.isAttacking = false
 		_attackManager.attackLock.unlock()
 

@@ -164,6 +164,7 @@ func _resetAllSounds():
 func gotHit():
 	IsChargingSpecial = false
 	attackLock.unlock()
+	$attack/sideSwipeRight.set_deferred("disabled", true);
 	isAttacking = false
 	_hideChargeBar()
 	resetCombo()

@@ -542,7 +542,7 @@ nodes/Special/node = SubResource( 29 )
 nodes/Special/position = Vector2( -360, 620 )
 nodes/Walk/node = SubResource( 30 )
 nodes/Walk/position = Vector2( -400, -80 )
-node_connections = [ "output", 0, "Main", "Attack", 0, "Combo1", "Attack", 1, "Combo2", "Attack", 2, "Special", "Special", 0, "HadoukenStart", "Special", 1, "HadoukenCharge", "Special", 2, "HadoukenRelease", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack", "Combo2", 0, "Kick1", "Combo2", 1, "Kick2", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Movement", 0, "Idle", "Movement", 1, "Walk" ]
+node_connections = [ "output", 0, "Main", "Attack", 0, "Combo1", "Attack", 1, "Combo2", "Attack", 2, "Special", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Combo2", 0, "Kick1", "Combo2", 1, "Kick2", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack", "Movement", 0, "Idle", "Movement", 1, "Walk", "Special", 0, "HadoukenStart", "Special", 1, "HadoukenCharge", "Special", 2, "HadoukenRelease" ]
 
 [sub_resource type="RectangleShape2D" id=32]
 extents = Vector2( 4.15426, 7.5077 )

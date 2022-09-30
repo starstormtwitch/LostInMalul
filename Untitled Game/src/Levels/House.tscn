@@ -1104,7 +1104,7 @@ position = Vector2( 889.838, 509.569 )
 position = Vector2( 926.425, 509.588 )
 
 [node name="LirikYaki" parent="YSort/Actors" instance=ExtResource( 2 )]
-position = Vector2( 927.024, 248.449 )
+position = Vector2( 750.306, 239.925 )
 
 [node name="GrannySpawner" parent="YSort/Actors" instance=ExtResource( 176 )]
 position = Vector2( 1992.6, 208.628 )
@@ -1677,7 +1677,7 @@ position = Vector2( 129, 205.969 )
 position = Vector2( 621.604, 295.797 )
 
 [node name="Plant4" parent="YSort/Props/Livingroom" instance=ExtResource( 186 )]
-position = Vector2( 11.5817, 294.442 )
+position = Vector2( 11.5441, 294.492 )
 
 [node name="Mouse1" parent="YSort/Props/Livingroom" instance=ExtResource( 126 )]
 position = Vector2( 451.158, 194.298 )

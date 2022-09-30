@@ -16,7 +16,7 @@ func _ready():
 	_textBox = LevelGlobals.GetTextBox();
 	_health = 9999
 	_acceleration = 0.2
-	_speed = 40
+	_speed = 120
 	_animationHandler = AnimationHandler.new()
 	if(get_node_or_null("AnimationTree") != null):
 		$AnimationTree.active = true
