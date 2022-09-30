@@ -8,12 +8,10 @@ var HasPillow = false;
 var HasCandle = false;
 var _player;
 var _itemTimer = Timer.new()
-var _textBox: TextBox
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_player = LevelGlobals.GetPlayerActor();
-	_textBox = LevelGlobals.GetTextBox();
 	_health = 9999
 	_acceleration = 0.2
 	_speed = 120

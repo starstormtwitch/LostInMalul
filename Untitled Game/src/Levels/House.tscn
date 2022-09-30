@@ -1,4 +1,4 @@
-[gd_scene load_steps=250 format=2]
+[gd_scene load_steps=251 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/MainChar/LirikYaki.tscn" type="PackedScene" id=2]
@@ -207,6 +207,7 @@
 [ext_resource path="res://src/Props/HouseLevel/Garage/RatVendor.tscn" type="PackedScene" id=205]
 [ext_resource path="res://assets/fonts/Textbox.tres" type="DynamicFont" id=206]
 [ext_resource path="res://assets/GUI/VormgeversCAPS.ttf" type="DynamicFontData" id=207]
+[ext_resource path="res://src/GUI/PlayerTextbox.tscn" type="PackedScene" id=208]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3680.33, 10 )
@@ -2283,15 +2284,6 @@ margin_top = -6.17266
 margin_right = 9.33484
 margin_bottom = -6.17267
 
-[node name="TextBox2" parent="GUI" instance=ExtResource( 1 )]
-pause_mode = 2
-visible = false
-margin_left = -11.3578
-margin_top = -5.88671
-margin_right = -11.358
-margin_bottom = -5.88672
-mouse_filter = 1
-
 [node name="TextBox" parent="GUI" groups=[
 "MainTextbox",
 ] instance=ExtResource( 1 )]
@@ -2303,6 +2295,9 @@ anchor_right = 0.5
 margin_left = -512.0
 margin_top = -576.0
 margin_right = 512.0
+
+[node name="PlayerTextBox" parent="GUI" instance=ExtResource( 208 )]
+visible = false
 
 [node name="CRTLayer" parent="GUI" instance=ExtResource( 200 )]
 visible = false
@@ -2323,7 +2318,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_Toilet_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Sink" to="." method="_on_Sink_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/Bed" to="." method="_on_InteractPromptArea_interactable_text_signal"]
@@ -2379,7 +2373,7 @@ __meta__ = {
 [connection signal="lockout_started" from="YSort/Actors/BedroomFight1" to="." method="_on_BedroomFight1_lockout_started"]
 [connection signal="lockout_finished" from="YSort/Actors/BedroomFight2" to="." method="_on_BedroomFight2_lockout_finished"]
 [connection signal="lockout_started" from="YSort/Actors/BedroomFight2" to="." method="_on_BedroomFight2_lockout_started"]
-[connection signal="closed" from="GUI/TextBox2" to="." method="_on_TextBox_closed"]
+[connection signal="closed" from="GUI/PlayerTextBox" to="." method="_on_PlayerTextBox_closed"]
 
 [editable path="LevelBackground/Boundaries/StreamingRoom/Basement_Delimeter"]
 [editable path="LevelBackground/CameraPositions/Bathroom_Delimiter"]

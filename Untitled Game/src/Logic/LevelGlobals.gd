@@ -1,7 +1,6 @@
 extends Node
 
 var _player: Actor
-var _textbox: TextBox
 var _scene: Node
 
 var _layerDict: Dictionary = {}
@@ -123,23 +122,6 @@ func GetPlayerActor() -> Actor:
 	if(_player == null || !is_instance_valid(_player)):
 		assert(false, "Player node not found.")
 	return _player;
-	
-func GetTextBox() -> TextBox:
-	if(_textbox == null || !is_instance_valid(_textbox)):
-		_findTextBox()
-	if(_textbox == null || !is_instance_valid(_textbox)):
-		assert(false, "Textbox node not found.")
-	return _textbox;
-
-func _findTextBox() -> void:
-	var parent = get_parent()
-	if parent != null:
-		var tree = parent.get_tree()
-		var textboxes = tree.get_nodes_in_group("MainTextbox")
-		if textboxes.size() > 0:
-			_textbox = textboxes[0]
-	else:
-		printerr("Parent does not exist.")
 
 func _findPlayerEntity() -> void:
 	var parent = get_parent()

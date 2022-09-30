@@ -18,6 +18,7 @@ var _granny
 const _MENU_EVENT: String = "Menu"
 const _UI_CANCEL_EVENT: String = "ui_cancel"
 
+var _startSwitchLevel: bool = false
 var _menuOpen: bool = false
 var _sendKitchenCrash: bool = false
 var _leftBasementDefeated: bool = false
@@ -45,6 +46,7 @@ var HasCandle = false;
 var ratKing
 
 onready var _textBox: TextBox = $GUI/TextBox
+onready var _playerTextBox: TextBox = $GUI/PlayerTextBox
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -158,23 +160,22 @@ func _on_Player_health_changed(_oldHealth, newHealth, maxHealth):
 	healthBar.update_health()
 
 func _on_InteractPromptArea_interactable_text_signal(text):
-	_textBox.showText(text)
+	_playerTextBox.showText(text)
 
 func _on_Toilet_interactable_text_signal(text):
 	if($GUI/PlayerGui/Inventory.InventoryItem != null && $GUI/PlayerGui/Inventory.InventoryItem.name == "Plunger"):
-		_textBox.showText("*Unclogs toilet with plunger*  That's better, but I can't take my morning poop without my Switch.")
+		_playerTextBox.showText("*Unclogs toilet with plunger*  That's better, but I can't take my morning poop without a game.")
 		_player.delete_item_from_inventory()
 		_toiletClogged = false;
 	elif(_toiletClogged): 
-		_textBox.showText("The toilet is clogged, who just let this sit in here all night? I think I put a plunger underneath the sink.")
+		_playerTextBox.showText("The toilet is clogged, who just let this sit in here all night? I think I put a plunger underneath the sink.")
 	elif($GUI/PlayerGui/Inventory.InventoryItem != null && $GUI/PlayerGui/Inventory.InventoryItem.name == "Switch"):
 		_player.delete_item_from_inventory()
 		_toiletUsed = true;
-		LevelGlobals.SetCheckpoint("Streets", "Start");
-		LevelGlobals.save_game();
-		LevelGlobals.load_checkpoint();
+		_playerTextBox.showText("Finally, now I can play my new 'Lost in Malul' game and take my morning poop.")
+		_startSwitchLevel = true;
 	elif(!_toiletClogged or !_toiletUsed):
-		_textBox.showText("I can't take my morning poop without my Switch.")
+		_playerTextBox.showText("I can't take my morning poop without a game.")
 	else:
 		_textBox.showText(text)
 
@@ -190,7 +191,7 @@ func _on_LirikYaki_item_delete():
 	$GUI/PlayerGui/Inventory.InventoryItem = null; 
 
 func _on_FoyerEndTable_interactable_text_signal(text):
-	_textBox.showText(text)
+	_playerTextBox.showText(text)
 	if(!_pickedUpBasementKey):
 		_pickedUpBasementKey = true;
 		_player.add_item_to_inventory(garage_Key.instance())
@@ -204,11 +205,11 @@ func _on_BasementNeedKey_interactable_text_signal(text):
 		get_node("LevelBackground/Interactions/Kitchen/BasementNeedKey/CollisionShape").set_deferred("disabled", true);
 		get_node("LevelBackground/Teleports/Kitchen_Basement_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
 	else: 
-		_textBox.showText(text)
+		_playerTextBox.showText(text)
 
 
 func _on_Sink_interactable_text_signal(text):
-	_textBox.showText(text)
+	_playerTextBox.showText(text)
 	if(!_pickedUpPlunger):
 		_pickedUpPlunger = true
 		_player.add_item_to_inventory(plunger.instance())
@@ -217,7 +218,7 @@ func _on_Sink_interactable_text_signal(text):
 
 
 func _on_WorkBench_interactable_text_signal(text):
-	_textBox.showText(text)
+	_playerTextBox.showText(text)
 	if(!_pickedUpScrewdriver):
 		_pickedUpScrewdriver = true
 		_player.add_item_to_inventory(screwdriver.instance())
@@ -226,7 +227,7 @@ func _on_WorkBench_interactable_text_signal(text):
 
 
 func _on_Wardrobe_interactable_text_signal(text):
-	_textBox.showText(text)
+	_playerTextBox.showText(text)
 	if(!_pickedUpSocks):
 		_pickedUpSocks = true
 		_player.add_item_to_inventory(socks.instance())
@@ -235,7 +236,7 @@ func _on_Wardrobe_interactable_text_signal(text):
 
 
 func _on_OfficeCabinet_interactable_text_signal(text):
-	_textBox.showText(text)
+	_playerTextBox.showText(text)
 	if(!_pickedUpTrophy):
 		_pickedUpTrophy = true
 		_player.add_item_to_inventory(trophy.instance())
@@ -251,11 +252,11 @@ func _on_Drawer_interactable_text_signal(text):
 		_player.add_item_to_inventory(pillow.instance())
 		get_node("LevelBackground/Interactions/Kitchen/Drawer/CollisionShape").set_deferred("disabled", true);
 	else: 
-		_textBox.showText("The drawer is stuck closed, maybe a screwdriver would help... but where did I put one...")
+		_playerTextBox.showText("The drawer is stuck closed, maybe a screwdriver would help... but where did I put one...")
 
 
 func _on_TVStand_interactable_text_signal(text):
-	_textBox.showText(text)
+	_playerTextBox.showText(text)
 	if(!_pickedUpCandle):
 		_pickedUpCandle = true
 		_player.add_item_to_inventory(candle.instance())
@@ -264,16 +265,16 @@ func _on_TVStand_interactable_text_signal(text):
 
 func _on_GarageNeedKey_interactable_text_signal(text):
 	if($GUI/PlayerGui/Inventory.InventoryItem != null && $GUI/PlayerGui/Inventory.InventoryItem.name == "GarageKey"):
-		_textBox.showText("*Unlocks door with garage key*")
+		_playerTextBox.showText("*Unlocks door with garage key*")
 		$GUI/PlayerGui/Inventory.InventoryItem.queue_free()
 		$GUI/PlayerGui/Inventory.InventoryItem = null; 
 		get_node("LevelBackground/Interactions/Foyer/GarageNeedKey/CollisionShape").set_deferred("disabled", true);
 		get_node("LevelBackground/Teleports/Foyer_Garage_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
 	else: 
-		_textBox.showText(text)
+		_playerTextBox.showText(text)
 
 func GetReadyForBossEncounter():
-	_textBox.showText("I think that's all of them.")
+	_playerTextBox.showText("I think that's all of them.")
 	get_node("YSort/Actors/RatKingSpawner").call_deferred("spawnEnemy")
 
 func _on_GrannySpawner_AllEnemiesDefeated():
@@ -308,17 +309,17 @@ func _on_RatKingSpawner_spawned(spawn):
 func _on_RatKingSpawner_AllEnemiesDefeated():
 	_defeatedRatKing = true;
 	MusicManager.playNoMusic()
-	_textBox.showText("I've...I've done it, I've defeated the rat king, I've finally reclaimed my house as my own.  *checks phone* Oh no, I'm an hour late for my stream.  There is no way they will believe my excuse.")
+	_playerTextBox.showText("I've...I've done it, I've defeated the rat king, I've finally reclaimed my house as my own.  *checks phone* Oh no, I'm an hour late for my stream.  There is no way they will believe my excuse.")
 
 
 func _on_BedroomFight1_lockout_started():
 	get_node("GUI/PlayerGui/ContinueRight").stop_blinking()
-	_textBox.showText("I think I know what that is... but how is it alive?!")
+	_playerTextBox.showText("I think I know what that is... but how is it alive?!")
 	get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", true);
 	get_node("LevelBackground/Teleports/Bathroom_Bedroom_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", true);
 
 func _on_BedroomFight1_lockout_finished():
-	_textBox.showText("That was insane, it had to have come from the basement...")
+	_playerTextBox.showText("That was insane, it had to have come from the basement...")
 	get_node("GUI/PlayerGui/ContinueRight").start_blinking()
 	
 func _on_BedroomFight2_lockout_started():
@@ -382,7 +383,7 @@ func _on_FoyerFight_lockout_started():
 	get_node("GUI/PlayerGui/ContinueRight").stop_blinking()
 	
 func _on_FoyerFight_lockout_finished():
-	_textBox.showText("I need to find the basement key now that the house is cleared out... I think it might be in the garage.")
+	_playerTextBox.showText("I need to find the basement key now that the house is cleared out... I think it might be in the garage.")
 	get_node("LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
 	get_node("LevelBackground/Interactions/Foyer/GarageNeedKey/CollisionShape").set_deferred("disabled", false);
 
@@ -400,19 +401,19 @@ func _on_GarageFight2_lockout_finished():
 	get_node("LevelBackground/Checkpoints/Checkpoint").set_deferred("disabled", false)
 	get_node("LevelBackground/Teleports/Foyer_Garage_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
 	get_node("YSort/Actors/GrannySpawner").spawnEnemy()
-	_textBox.showText("Is that grandma's laugh I just heard? She has the key to the basement. I better get this generator working.")
+	_playerTextBox.showText("Is that grandma's laugh I just heard? She has the key to the basement. I better get this generator working.")
 	AllDefeatedGarage();
 	
 	
 func _on_BasementFight_lockout_started():
-	_textBox.showText("That's a lot of rats, I have a bad feeling about this.")
+	_playerTextBox.showText("That's a lot of rats, I have a bad feeling about this.")
 	
 func _on_BasementFight_lockout_finished():
 	get_node("GUI/PlayerGui/ContinueRight").start_blinking()
 	GetReadyForBossEncounter();
 
 func _on_Chair_interactable_text_signal(text):
-	_textBox.showText(text)
+	_playerTextBox.showText(text)
 	if(!_pickedUpSwitch):
 		_pickedUpSwitch = true
 		_player.add_item_to_inventory(switch.instance())
@@ -470,7 +471,7 @@ func _on_Generator_interactable_text_signal(text):
 			$CanvasModulate.visible = false;
 			_player.ToggleLight(false);
 	else:
-		_textBox.showText(text);
+		_playerTextBox.showText(text);
 
 
 func _on_BathroomToBedroom_body_exited(body):
@@ -478,7 +479,7 @@ func _on_BathroomToBedroom_body_exited(body):
 		_sendKitchenCrash = false
 		$CanvasModulate.visible = true;
 		_player.ToggleLight(true);
-		_textBox.showText("*crashing noise* I better go check out what happened. Looks like the power shut off, I'll have to fire up my generator before I can turn on my pc...")
+		_playerTextBox.showText("*crashing noise* I better go check out what happened. Looks like the power shut off, I'll have to fire up my generator before I can turn on my pc...")
 
 func _on_GrannySpawner_spawned(spawn):
 	_granny = spawn;
@@ -489,5 +490,13 @@ func _on_Computer_interactable_text_signal(text):
 		assert(gameScene != null, "Unknown level!");
 		get_tree().change_scene_to(gameScene);
 	else:
-		_textBox.showText(text);
+		_playerTextBox.showText(text);
 	
+
+
+func _on_PlayerTextBox_closed():
+	if(_startSwitchLevel):
+		_startSwitchLevel = false;
+		LevelGlobals.SetCheckpoint("Streets", "Start");
+		LevelGlobals.save_game();
+		LevelGlobals.load_checkpoint();
