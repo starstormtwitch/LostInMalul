@@ -5,7 +5,9 @@ class_name SecondLevelLirik
 var _attackManagerLevel2: AttackManagerLevel2 = null
 
 func _ready() -> void:
-	_animationHandler = Level2BlendTreeAnimationHandler.new(animationTree)
+	# getting error that "animatoinTree" isnt in current scope, but shoudl me in mainchar.gd
+	# also scene is working, so probably editor being dumb
+	var _animationHandler = Level2BlendTreeAnimationHandler.new(animationTree)
 	_attackManagerLevel2 = AttackManagerLevel2.new(_attackResetTimer,
 		chargeBar, _animationHandler)
 	_attackManager = _attackManagerLevel2

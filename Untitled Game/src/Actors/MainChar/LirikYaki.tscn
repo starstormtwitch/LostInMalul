@@ -569,7 +569,7 @@ nodes/Special/node = SubResource( 30 )
 nodes/Special/position = Vector2( -360, 620 )
 nodes/Walk/node = SubResource( 31 )
 nodes/Walk/position = Vector2( -400, -80 )
-node_connections = [ "output", 0, "Main", "Attack", 0, "Combo1", "Attack", 1, "Combo2", "Attack", 2, "Special", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Combo1", 2, "HeadButt", "Combo2", 0, "Kick1", "Combo2", 1, "Kick2", "Combo2", 2, "Shoryuken", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack", "Movement", 0, "Idle", "Movement", 1, "Walk", "Special", 0, "HadoukenCharge", "Special", 1, "HadoukenRelease" ]
+node_connections = [ "output", 0, "Main", "Combo2", 0, "Kick1", "Combo2", 1, "Kick2", "Combo2", 2, "Shoryuken", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Combo1", 2, "HeadButt", "Attack", 0, "Combo1", "Attack", 1, "Combo2", "Attack", 2, "Special", "Movement", 0, "Idle", "Movement", 1, "Walk", "Special", 0, "HadoukenCharge", "Special", 1, "HadoukenRelease" ]
 
 [sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 11.7115, 6.11188 )
@@ -599,7 +599,7 @@ position = Vector2( -0.893405, -23.5687 )
 texture = ExtResource( 6 )
 hframes = 10
 vframes = 9
-frame = 80
+frame = 60
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( -2.67837, -2.47936 )

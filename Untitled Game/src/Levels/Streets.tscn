@@ -1185,6 +1185,14 @@ speed_scale = 0.5
 process_material = SubResource( 27 )
 texture = ExtResource( 43 )
 
+[node name="LeftStreetWarningTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="RightStreetWarningTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Grave" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Grave4" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Grave5" to="." method="_on_InteractPromptArea_interactable_text_signal"]
@@ -1197,6 +1205,8 @@ texture = ExtResource( 43 )
 [connection signal="lockout_started" from="YSort/Actors/AreaLockFightBoss" to="." method="_on_AreaLockFightBoss_lockout_started"]
 [connection signal="spawned" from="YSort/Actors/AreaLockFightBoss/Boss" to="." method="_on_Boss_spawned"]
 [connection signal="closed" from="GUI/TextBox2" to="." method="_on_TextBox_closed"]
+[connection signal="timeout" from="LeftStreetWarningTimer" to="." method="turnOffLeftWarningSign"]
+[connection signal="timeout" from="RightStreetWarningTimer" to="." method="turnOffRightWarningSign"]
 
 [editable path="LevelBackground/CameraPositions/Street_Delimiter"]
 [editable path="YSort/Actors/AreaLockFight1/AreaLockFight1"]
