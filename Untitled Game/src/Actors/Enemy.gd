@@ -2,6 +2,7 @@ extends Actor
 class_name Enemy
 
 var _explosion_scene = preload("res://src/Effects/Explosion.tscn")
+var spawnSound = preload("res://assets/audio/BubblePop.mp3")
 
 #Enemy properties
 var _seperation_distance = 20
@@ -52,6 +53,8 @@ func _ready():
 		var players = tree.get_nodes_in_group("Player")
 		if(players.size() > 0):
 			_target = players[0]
+	
+	SoundPlayer.playSound(get_tree().get_current_scene(), spawnSound, 2)
 
 func _physics_process(_delta: float) -> void:
 	._physics_process(_delta)

@@ -1211,7 +1211,7 @@ one_shot = true
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Grave5" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Grave2" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Grave3" to="." method="_on_InteractPromptArea_interactable_text_signal"]
-[connection signal="area_entered" from="LevelBackground/Interactions/LeaveLevel" to="." method="_on_LeaveLevel_area_entered"]
+[connection signal="body_entered" from="LevelBackground/Interactions/LeaveLevel" to="." method="_on_LeaveLevel_body_entered"]
 [connection signal="SpawnWarning" from="YSort/TrafficSystemRight" to="." method="_on_TrafficSystemRight_SpawnWarning"]
 [connection signal="SpawnWarning" from="YSort/TrafficSystemLeft" to="." method="_on_TrafficSystemLeft_SpawnWarning"]
 [connection signal="lockout_finished" from="YSort/Actors/AreaLockFightBoss" to="." method="_on_AreaLockFightBoss_lockout_finished"]
