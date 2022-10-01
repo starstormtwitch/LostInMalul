@@ -265,8 +265,8 @@ func temporarylyFocusOn(target: Node, time: float, zoom: Vector2) -> void:
 
 
 func setRemoteUpdates(update: bool) -> void:
-	if _verbose:
-		print("CustomCamera2D: Set remote updates (follow target) to " + str(update))
+	#if _verbose:
+	#	print("CustomCamera2D: Set remote updates (follow target) to " + str(update))
 	_remoteTransform2d.update_position = update
 	_remoteTransform2d.update_rotation = update
 	_remoteTransform2d.update_scale = update

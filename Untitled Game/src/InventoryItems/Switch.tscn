@@ -5,10 +5,11 @@
 [node name="Switch" type="Node2D"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_left = -9.01861
-margin_top = -11.1736
-margin_right = 8.98139
-margin_bottom = 6.82638
+margin_left = -6.01341
+margin_top = -4.98641
+margin_right = 11.0
+margin_bottom = 13.0136
+rect_scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 4

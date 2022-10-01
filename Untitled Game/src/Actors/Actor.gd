@@ -108,7 +108,8 @@ func getMovement(direction: Vector2, speed: float, acceleration: float) -> Vecto
 	
 func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if !isDying:
-		var newHealth = _health-damage
+		# we take max, cause having health be lower than zero causes crashing/non respond issue
+		var newHealth = max(_health-damage, 0)
 		emit_signal("health_changed", _health, newHealth, _maxHealth)
 		_health=newHealth
 		#knockback
