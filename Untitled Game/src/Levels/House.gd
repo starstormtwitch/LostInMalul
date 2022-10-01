@@ -145,8 +145,8 @@ func SetLevelCheckpointVariables(saveData):
 			get_node("LevelBackground/Checkpoints/Checkpoint").set_deferred("disabled", true)
 			get_node("LevelBackground/Checkpoints/Checkpoint2").set_deferred("disabled", true)
 			get_node("LevelBackground/Boundaries/Basement/Lockout").set_deferred("disabled", false);
-			StartupPlayerInPosition(Vector2(200, 575), 5)
 			get_node("LevelBackground/Teleports/Kitchen_Basement_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", true);
+			StartupPlayerInPosition(Vector2(200, 575), 5)
 		_:
 			assert(false, "No matching checkpoint.")
 	
@@ -276,6 +276,8 @@ func _on_GarageNeedKey_interactable_text_signal(text):
 func GetReadyForBossEncounter():
 	_playerTextBox.showText("I think that's all of them.")
 	get_node("YSort/Actors/RatKingSpawner").call_deferred("spawnEnemy")
+	get_node("LevelBackground/Boundaries/Basement/Lockout").set_deferred("disabled", false);
+	get_node("LevelBackground/Teleports/Kitchen_Basement_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", true);
 
 func _on_GrannySpawner_AllEnemiesDefeated():
 	_textBox.showText("Grandma has faded away in the light, and she left you a little something.")
@@ -308,7 +310,10 @@ func _on_RatKingSpawner_spawned(spawn):
 
 func _on_RatKingSpawner_AllEnemiesDefeated():
 	_defeatedRatKing = true;
+	$GUI/BossGui.set_deferred("visible", false);
 	MusicManager.playNoMusic()
+	get_node("LevelBackground/Boundaries/Basement/Lockout").set_deferred("disabled", true);
+	get_node("LevelBackground/Teleports/Kitchen_Basement_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
 	_playerTextBox.showText("I've...I've done it, I've defeated the rat king, I've finally reclaimed my house as my own.  *checks phone* Oh no, I'm an hour late for my stream.  There is no way they will believe my excuse.")
 
 
