@@ -669,12 +669,12 @@ enemy = "Chat"
 automatic = false
 
 [node name="AreaLockFight5" parent="YSort/Actors/AreaLockFight5" instance=ExtResource( 20 )]
-position = Vector2( -185.461, -166.497 )
+position = Vector2( -185.461, -162.608 )
 AutomaticTransition = false
 IsAreaLockDelimeter = true
 
 [node name="BottomRight" parent="YSort/Actors/AreaLockFight5/AreaLockFight5" index="0"]
-position = Vector2( 337.703, 221.579 )
+position = Vector2( 337.703, 225.817 )
 
 [node name="AreaLockFight6" parent="YSort/Actors" instance=ExtResource( 44 )]
 position = Vector2( 3127.18, 160.191 )
