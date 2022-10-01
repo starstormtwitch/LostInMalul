@@ -112,8 +112,9 @@ func _on_Boss_health_changed(_oldHealth, newHealth, maxHealth):
 	var progressValue = (float(newHealth) / float(maxHealth)) * 100.00
 	$GUI/BossGui/ProgressBar.set_value(progressValue);
 
+func _on_LeaveLevel_body_entered(body):
+	if body == _player:
+		LevelGlobals.SetCheckpoint("House", "DoneWithSwitch");
+		LevelGlobals.save_game();
+		LevelGlobals.load_checkpoint();
 
-func _on_LeaveLevel_area_entered(area):
-	LevelGlobals.SetCheckpoint("House", "DoneWithSwitch");
-	LevelGlobals.save_game();
-	LevelGlobals.load_checkpoint();

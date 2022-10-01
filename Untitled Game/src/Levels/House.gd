@@ -50,7 +50,7 @@ onready var _playerTextBox: TextBox = $GUI/PlayerTextBox
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	MusicManager.playNormalBattleMusic()
+	MusicManager.playMenuMusic()
 	$CanvasModulate.visible = false;
 	_player = LevelGlobals.GetPlayerActor()
 	assert(is_instance_valid(_player),"Player instance invalid")
@@ -83,6 +83,7 @@ func SetLevelCheckpointVariables(saveData):
 			get_node("YSort/Actors/BedroomFight2").Enable()
 			StartupPlayerInPosition(Vector2(150, 225), 5)
 		"FirstEnemy":
+			MusicManager.playNormalBattleMusic()
 			get_node("LevelBackground/Checkpoints/Checkpoint").set_deferred("disabled", true)
 			_toiletClogged = false;
 			$CanvasModulate.visible = true;
@@ -121,6 +122,7 @@ func SetLevelCheckpointVariables(saveData):
 			get_node("LevelBackground/Teleports/Bedroom_Streaming_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
 			StartupPlayerInPosition(Vector2(3000, 525), 5)
 		"Boss":
+			MusicManager.playNormalBattleMusic()
 			get_node("YSort/Actors/BedroomFight1").Disable()
 			get_node("YSort/Actors/BedroomFight2").Disable()
 			get_node("YSort/Actors/LivingFight2").Disable()
@@ -485,6 +487,7 @@ func _on_BathroomToBedroom_body_exited(body):
 		_sendKitchenCrash = false
 		$CanvasModulate.visible = true;
 		_player.ToggleLight(true);
+		MusicManager.playNormalBattleMusic()
 		_playerTextBox.showText("*crashing noise* I better go check out what happened. Looks like the power shut off, I'll have to fire up my generator before I can turn on my pc...")
 
 func _on_GrannySpawner_spawned(spawn):

@@ -2,6 +2,7 @@ extends Actor
 class_name Enemy
 
 var _explosion_scene = preload("res://src/Effects/Explosion.tscn")
+var spawnSound = preload("res://assets/audio/BubblePop.mp3")
 
 #Enemy properties
 var _seperation_distance = 20
@@ -28,6 +29,7 @@ var _isFacingDirectionLeft = true
 var _minDistanceToStayFromPlayer = 0;
 var _maxDistanceToStayFromPlayer = 0;
 var _flipBoxes = true;
+var _foundTargetFirstTime = false;
 
 func _ready():
 	_attackCooldownTimer.connect("timeout",self,"_on_attack_cooldown_timeout") 
@@ -155,6 +157,9 @@ func try_chase() -> Vector2:
 	# if we can see the target, chase it
 	if !look.is_colliding():
 		direction = look.cast_to.normalized()
+#		if(!_foundTargetFirstTime):
+#			SoundPlayer.playSound(get_tree().get_current_scene(), spawnSound, 2)
+#			_foundTargetFirstTime = true;
 	# or chase first trail we can see
 	else:
 		for trail in _target._trail:
