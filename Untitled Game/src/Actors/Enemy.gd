@@ -29,6 +29,7 @@ var _isFacingDirectionLeft = true
 var _minDistanceToStayFromPlayer = 0;
 var _maxDistanceToStayFromPlayer = 0;
 var _flipBoxes = true;
+var _foundTargetFirstTime = false;
 
 func _ready():
 	_attackCooldownTimer.connect("timeout",self,"_on_attack_cooldown_timeout") 
@@ -53,8 +54,6 @@ func _ready():
 		var players = tree.get_nodes_in_group("Player")
 		if(players.size() > 0):
 			_target = players[0]
-	
-	SoundPlayer.playSound(get_tree().get_current_scene(), spawnSound, 2)
 
 func _physics_process(_delta: float) -> void:
 	._physics_process(_delta)
@@ -158,6 +157,9 @@ func try_chase() -> Vector2:
 	# if we can see the target, chase it
 	if !look.is_colliding():
 		direction = look.cast_to.normalized()
+#		if(!_foundTargetFirstTime):
+#			SoundPlayer.playSound(get_tree().get_current_scene(), spawnSound, 2)
+#			_foundTargetFirstTime = true;
 	# or chase first trail we can see
 	else:
 		for trail in _target._trail:
