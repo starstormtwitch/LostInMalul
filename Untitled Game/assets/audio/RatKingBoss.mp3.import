@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/RatKingBoss.mp3-6d376ee7c7e784a50c20138d250d11f5.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/RatKingBoss.mp3"
+dest_files=[ "res://.import/RatKingBoss.mp3-6d376ee7c7e784a50c20138d250d11f5.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

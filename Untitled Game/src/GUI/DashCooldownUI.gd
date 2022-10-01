@@ -7,7 +7,7 @@ var cooldown_time: float = 1
 onready var progressBar: ProgressBar = $ProgressBar
 onready var intervalTimer: Timer = $IntervalTimer
 onready var cooldownTimer: Timer = $CooldownTimer
-onready var sprite: Sprite = $Sprite
+onready var sprite: TextureRect = $Sprite
 
 
 func _ready():

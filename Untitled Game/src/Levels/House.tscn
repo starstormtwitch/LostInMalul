@@ -2229,10 +2229,10 @@ margin_bottom = 51.1271
 mouse_filter = 2
 
 [node name="DashCooldownUI" parent="GUI/PlayerGui" instance=ExtResource( 177 )]
-margin_left = 970.533
-margin_top = 19.3803
-margin_right = 970.533
-margin_bottom = 19.3802
+margin_left = 970.0
+margin_top = 11.0
+margin_right = 970.0
+margin_bottom = 10.9999
 
 [node name="Coins" type="Label" parent="GUI/PlayerGui"]
 margin_left = 83.0934
