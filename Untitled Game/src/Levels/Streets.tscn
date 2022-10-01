@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=2]
+[gd_scene load_steps=105 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Levels/Streets/Level_Start.png" type="Texture" id=2]
@@ -138,6 +138,8 @@ extents = Vector2( 55.2458, 14.7873 )
 
 [sub_resource type="RectangleShape2D" id=45]
 extents = Vector2( 38.8765, 13.279 )
+
+[sub_resource type="RectangleShape2D" id=52]
 
 [sub_resource type="RectangleShape2D" id=46]
 
@@ -320,6 +322,10 @@ shape = SubResource( 44 )
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 1199.87, -62.2343 )
 shape = SubResource( 45 )
+
+[node name="vending" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
+position = Vector2( 2164.94, -68.9129 )
+shape = SubResource( 52 )
 
 [node name="RatGraffitiHouse" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 212.257, 50.113 )
