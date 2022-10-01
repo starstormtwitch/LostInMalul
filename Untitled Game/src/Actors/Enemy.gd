@@ -2,7 +2,6 @@ extends Actor
 class_name Enemy
 
 var _explosion_scene = preload("res://src/Effects/Explosion.tscn")
-var spawnSound = preload("res://assets/audio/BubblePop.mp3")
 
 #Enemy properties
 var _seperation_distance = 20

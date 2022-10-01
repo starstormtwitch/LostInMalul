@@ -7,6 +7,7 @@ var _ratSoldier = preload("res://src/Actors/RatSoldier.tscn");
 
 const castSound = preload("res://assets/audio/BossCast.mp3")
 const thudSound = preload("res://assets/audio/thud.mp3")
+const deathSound = preload("res://assets/audio/ratSoldierDeath.mp3")
 
 #staff knockback info
 var KNOCKBACK_COOLDOWN = 5;
@@ -164,6 +165,7 @@ func _on_lightning_between_timeout():
 
 func die() -> void:
 	.die()
+	SoundPlayer.playSound(get_tree().get_current_scene(), deathSound, 0)
 	var children = get_parent().get_children();
 	for child in children:
 		if(child.is_in_group("enemy")):

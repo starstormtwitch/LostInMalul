@@ -272,7 +272,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 	if _canTakeDamage:
 		#print("call hurt logic")
 		_canTakeDamage = false
-		SoundPlayer.playSound(get_tree().get_current_scene(), hurtSound, -4)
+		SoundPlayer.playSound(get_tree().get_current_scene(), hurtSound, 0)
 		_beingHurt = true
 		_attackManager.gotHit()
 		$attack/sideSwipeRight.set_deferred("disabled", true);

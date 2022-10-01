@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ratSoldierDeath.mp3-d8298ce68dcdb21630a802dd7095918c.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/ratSoldierDeath.mp3"
+dest_files=[ "res://.import/ratSoldierDeath.mp3-d8298ce68dcdb21630a802dd7095918c.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

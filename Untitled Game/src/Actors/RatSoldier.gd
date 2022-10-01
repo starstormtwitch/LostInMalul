@@ -9,6 +9,7 @@ var _jumpDirection = Vector2()
 
 const attackSound = preload("res://assets/audio/thud.mp3")
 const whooshSound = preload("res://assets/audio/frWhoosh.mp3")
+const deathSound = preload("res://assets/audio/ratSoldierDeath.mp3")
 
 onready var attackBox = $Attack/AttackBox
 
@@ -63,3 +64,7 @@ func _on_FlockBox_area_entered(area):
 func _on_FlockBox_area_exited(area):
 	if(area.get_parent().is_in_group("enemy")):
 		remove_from_flock(area.get_parent())
+
+func die() -> void:
+	.die()
+	SoundPlayer.playSound(get_tree().get_current_scene(), deathSound, 0)
