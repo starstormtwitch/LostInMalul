@@ -349,7 +349,7 @@ shape = SubResource( 21 )
 position = Vector2( 0.704262, -0.318108 )
 
 [node name="BottomRight" parent="LevelBackground/CameraPositions/Street_Delimiter" index="0"]
-position = Vector2( 4575.09, 224.368 )
+position = Vector2( 4574.71, 222.69 )
 
 [node name="Interactions" type="Node" parent="LevelBackground"]
 
@@ -614,7 +614,7 @@ AutomaticTransition = false
 IsAreaLockDelimeter = true
 
 [node name="BottomRight" parent="YSort/Actors/AreaLockFight3/AreaLockFight3" index="0"]
-position = Vector2( 287.713, 219.237 )
+position = Vector2( 287.713, 220.498 )
 
 [node name="Spawner" parent="YSort/Actors/AreaLockFight3" instance=ExtResource( 46 )]
 position = Vector2( 241.626, -6.20362 )
@@ -674,7 +674,7 @@ AutomaticTransition = false
 IsAreaLockDelimeter = true
 
 [node name="BottomRight" parent="YSort/Actors/AreaLockFight5/AreaLockFight5" index="0"]
-position = Vector2( 337.703, 225.817 )
+position = Vector2( 337.835, 224.691 )
 
 [node name="AreaLockFight6" parent="YSort/Actors" instance=ExtResource( 44 )]
 position = Vector2( 3127.18, 160.191 )
@@ -842,7 +842,7 @@ position = Vector2( 282.603, 211.722 )
 position = Vector2( 1076.34, 213.507 )
 
 [node name="BottomLampost3" parent="YSort/Road" instance=ExtResource( 71 )]
-position = Vector2( 1311.56, 214.043 )
+position = Vector2( 1311.63, 214.341 )
 
 [node name="BottomLampost4" parent="YSort/Road" instance=ExtResource( 71 )]
 position = Vector2( 1510.6, 213.993 )
