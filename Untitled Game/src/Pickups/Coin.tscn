@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/SpriteSheets/main_char/mc_shadow.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 33.0211, 28.0112 )
+extents = Vector2( 33.0211, 51.3413 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "default"

@@ -19,7 +19,7 @@ func _process(_delta: float) -> void:
 		$CollisionShape2D.position.x = (spriteWidth*2)-30
 	else:
 		$Sprite.scale.x = 1
-		$CollisionShape2D.position.x = spriteWidth
+		$CollisionShape2D.position.x = (spriteWidth/2)
 
 # @note: for ObjectPool.
 func get_height() -> float:

@@ -268,6 +268,7 @@ func _on_GarageNeedKey_interactable_text_signal(text):
 		_playerTextBox.showText("*Unlocks door with garage key*")
 		$GUI/PlayerGui/Inventory.InventoryItem.queue_free()
 		$GUI/PlayerGui/Inventory.InventoryItem = null; 
+		get_node("LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
 		get_node("LevelBackground/Interactions/Foyer/GarageNeedKey/CollisionShape").set_deferred("disabled", true);
 		get_node("LevelBackground/Teleports/Foyer_Garage_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
 	else: 
@@ -389,7 +390,6 @@ func _on_FoyerFight_lockout_started():
 	
 func _on_FoyerFight_lockout_finished():
 	_playerTextBox.showText("I need to find the basement key now that the house is cleared out... I think it might be in the garage.")
-	get_node("LevelBackground/Teleports/Kitchen_Foyer_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", false);
 	get_node("LevelBackground/Interactions/Foyer/GarageNeedKey/CollisionShape").set_deferred("disabled", false);
 
 func _on_GarageFight1_lockout_started():

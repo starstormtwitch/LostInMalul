@@ -12,6 +12,7 @@ func _ready() -> void:
 		chargeBar, _animationHandler)
 	_attackManager = _attackManagerLevel2
 	hadouken_scene = preload("res://src/Actors/MainChar/HadoukenBlastLevel2.tscn")
+	_speed = 125
 
 
 func _check_for_events(delta) -> bool:

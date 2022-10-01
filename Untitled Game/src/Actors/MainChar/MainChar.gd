@@ -275,6 +275,7 @@ func take_damage(damage: int, direction: Vector2, force: float) -> void:
 		SoundPlayer.playSound(get_tree().get_current_scene(), hurtSound, -4)
 		_beingHurt = true
 		_attackManager.gotHit()
+		$attack/sideSwipeRight.set_deferred("disabled", true);
 		_hitDoneTimer.start(_hitAnimationTime)
 		_invincibilityTimer.start(3)
 		rightHitBox.set_deferred("disabled", true)

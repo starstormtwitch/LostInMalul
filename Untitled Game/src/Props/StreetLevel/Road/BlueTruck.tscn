@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/Props/street/Road/blue_truck.png" type="Texture" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32.8327, 10.7644 )
+extents = Vector2( 32.3651, 9.56182 )
 
 [node name="BlueTruck" type="Node2D"]
 
@@ -15,5 +15,5 @@ texture = ExtResource( 1 )
 position = Vector2( 0.140305, -6.73477 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 0, 10.7645 )
+position = Vector2( -0.140305, 11.3257 )
 shape = SubResource( 1 )

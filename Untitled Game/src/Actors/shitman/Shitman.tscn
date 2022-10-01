@@ -221,7 +221,7 @@ vframes = 5
 frame = 15
 
 [node name="Shadow" type="Sprite" parent="."]
-position = Vector2( -0.785804, -0.396992 )
+position = Vector2( -0.504871, -0.350169 )
 scale = Vector2( 0.374092, 0.388795 )
 texture = ExtResource( 4 )
 

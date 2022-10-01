@@ -24,7 +24,7 @@ scale_curve = SubResource( 2 )
 color = Color( 0.741176, 0.741176, 0.741176, 0.47451 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 7.74769, 3.16015 )
+extents = Vector2( 6.52572, 2.22462 )
 
 [sub_resource type="Animation" id=5]
 length = 0.35
@@ -87,7 +87,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 27.795, -14.9199 )
+position = Vector2( 25.3201, -11.6495 )
 scale = Vector2( 3.40721, 3.40721 )
 shape = SubResource( 4 )
 

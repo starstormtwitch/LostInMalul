@@ -10,7 +10,7 @@ const hadouken = preload("res://assets/audio/HitAudio/explosion_sound.wav")
 
 var _START_A_COMBO = 3
 const _START_B_COMBO = 3
-const COMBOTIME = 1
+const COMBOTIME = .5
 const MAX_DAMAGE_FORCE = 4000
 const MIN_DAMAGE_FORCE = 700
 const ATTACK1_EVENT = "side_swipe_attack"

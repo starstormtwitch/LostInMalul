@@ -2305,6 +2305,7 @@ margin_top = -3.05176e-05
 margin_bottom = -6.10352e-05
 
 [node name="Help" type="Label" parent="GUI"]
+visible = false
 margin_left = 119.705
 margin_top = 124.759
 margin_right = 913.705

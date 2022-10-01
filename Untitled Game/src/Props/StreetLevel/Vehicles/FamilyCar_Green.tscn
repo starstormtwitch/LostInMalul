@@ -24,7 +24,7 @@ scale_curve = SubResource( 2 )
 color = Color( 0.741176, 0.741176, 0.741176, 0.47451 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 6.54883, 3.0193 )
+extents = Vector2( 5.01834, 1.75052 )
 
 [sub_resource type="Animation" id=5]
 length = 0.35
@@ -57,7 +57,7 @@ collision_mask = 64
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 47.239, -6.91531 )
+position = Vector2( 47.239, -7.5 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
 texture = ExtResource( 1 )
@@ -87,7 +87,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 24.0633, -13.8255 )
+position = Vector2( 19.0925, -11.1258 )
 scale = Vector2( 3.40721, 3.40721 )
 shape = SubResource( 4 )
 

@@ -49,7 +49,7 @@ func _physics_process(_delta: float) -> void:
 				if($AnimationTree != null):
 					if(_canDoJumpAttack):
 						_canDoJumpAttack = false;
-						_jumpCooldownTimer.start(12)
+						_jumpCooldownTimer.start(10)
 						$AnimationTree.get("parameters/playback").travel("jump_attack")
 						SoundPlayer.playSound(get_tree().get_current_scene(), jumpSound, 5)
 					else: #only do slam attack
@@ -70,11 +70,10 @@ func _on_jump_attack():
 func _end_jump_attack():
 	_isJumping = false
 	_velocity = getMovement(Vector2.ZERO, 0, .5)
-	_finishedAttack(5)
+	_finishedAttack(8)
 
 func _attack_done():
 	_velocity = getMovement(Vector2.ZERO, 0, .5)
-	#_velocity = move_and_slide(_velocity)
 	_finishedAttack(5)
 
 func _on_jump_cooldown_timeout():
