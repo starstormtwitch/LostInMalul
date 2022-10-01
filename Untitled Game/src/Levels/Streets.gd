@@ -14,6 +14,8 @@ var _playingWarningSound = false
 
 onready var _textBox: TextBox = $GUI/TextBox
 
+onready var _leftStreetWarningTime: Timer = $LeftStreetWarningTimer
+onready var _rightStreetWarningTimer: Timer = $RightStreetWarningTimer
 onready var _leftWarningSign = $GUI/Warnings/WarningSignLeft
 onready var _rightWarningSign = $GUI/Warnings/WarningSignRight
 
@@ -77,16 +79,21 @@ func _on_TrafficSystemRight_SpawnWarning():
 	#print("right warnign sign")
 	_play_warning_sound()
 	#_rightWarningSign.visible = true
-	yield(get_tree().create_timer(2), "timeout")
-	#_rightWarningSign.visible = false
-	_stop_warning_sound()
+	_rightStreetWarningTimer.start()
+	
 
 func _on_TrafficSystemLeft_SpawnWarning():
 	#print("left warnign sign")
 	_play_warning_sound()
 	#_leftWarningSign.visible = true
-	yield(get_tree().create_timer(2), "timeout")
+	_leftStreetWarningTime.start()
+
+func turnOffLeftWarningSign():
 	#_leftWarningSign.visible = false
+	_stop_warning_sound()
+
+func turnOffRightWarningSign():
+	#_rightWarningSign.visible = false
 	_stop_warning_sound()
 
 func _on_ExitLevel_interactable_text_signal(text):
