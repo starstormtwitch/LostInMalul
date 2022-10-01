@@ -53,10 +53,11 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -180.5
-margin_top = 12.0
-margin_right = 180.5
-margin_bottom = 100.0
+margin_left = -82.0811
+margin_top = 26.9858
+margin_right = 278.919
+margin_bottom = 114.986
+rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -75,9 +76,11 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -225.5
-margin_top = -40.0
-margin_right = 225.5
+margin_left = -90.587
+margin_top = -64.5913
+margin_right = 360.413
+margin_bottom = -24.5913
+rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
