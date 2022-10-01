@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=2]
+[gd_scene load_steps=104 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Levels/Streets/Level_Start.png" type="Texture" id=2]
@@ -89,79 +89,82 @@ extents = Vector2( 257.807, 65.252 )
 extents = Vector2( 822.57, 64.0705 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 327.479, 53.3866 )
+extents = Vector2( 87.1035, 16.396 )
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 41.4407, 38.1506 )
+extents = Vector2( 327.479, 53.3866 )
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 29.0441, 21.0301 )
+extents = Vector2( 41.4407, 38.1506 )
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 14.9716, 12.1656 )
+extents = Vector2( 29.0441, 21.0301 )
 
 [sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 10, 7.2766 )
+extents = Vector2( 14.9716, 12.1656 )
 
 [sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 10, 3.0769 )
+extents = Vector2( 10, 7.2766 )
 
 [sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 36.0626, 17.9861 )
+extents = Vector2( 10, 3.0769 )
 
 [sub_resource type="RectangleShape2D" id=12]
-extents = Vector2( 58.1115, 53.4582 )
+extents = Vector2( 36.0626, 17.9861 )
 
 [sub_resource type="RectangleShape2D" id=13]
-extents = Vector2( 420.749, 58.1924 )
+extents = Vector2( 58.1115, 53.4582 )
 
 [sub_resource type="RectangleShape2D" id=14]
-extents = Vector2( 50.7107, 24.4466 )
+extents = Vector2( 420.749, 58.1924 )
 
 [sub_resource type="RectangleShape2D" id=15]
-extents = Vector2( 52.2573, 16.963 )
+extents = Vector2( 50.7107, 24.4466 )
 
 [sub_resource type="RectangleShape2D" id=16]
-extents = Vector2( 52.2573, 20.7088 )
+extents = Vector2( 52.2573, 16.963 )
 
 [sub_resource type="RectangleShape2D" id=17]
-extents = Vector2( 28.634, 10.2518 )
+extents = Vector2( 52.2573, 20.7088 )
 
 [sub_resource type="RectangleShape2D" id=18]
-extents = Vector2( 28.1875, 10 )
+extents = Vector2( 28.634, 10.2518 )
 
 [sub_resource type="RectangleShape2D" id=19]
-extents = Vector2( 55.2458, 14.7873 )
+extents = Vector2( 28.1875, 10 )
 
 [sub_resource type="RectangleShape2D" id=20]
-extents = Vector2( 38.8765, 13.279 )
+extents = Vector2( 55.2458, 14.7873 )
 
 [sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 38.8765, 13.279 )
 
 [sub_resource type="RectangleShape2D" id=22]
-extents = Vector2( 10.2012, 6.93721 )
 
 [sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 10.2012, 6.93721 )
+
+[sub_resource type="RectangleShape2D" id=24]
 extents = Vector2( 10, 62.1962 )
 
-[sub_resource type="DynamicFont" id=24]
+[sub_resource type="DynamicFont" id=25]
 size = 8
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
 font_data = ExtResource( 178 )
 
-[sub_resource type="DynamicFont" id=25]
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 5 )
-
 [sub_resource type="DynamicFont" id=26]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 5 )
 
-[sub_resource type="ShaderMaterial" id=27]
+[sub_resource type="DynamicFont" id=27]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="ShaderMaterial" id=28]
 
 [node name="Streets" type="Node2D"]
 pause_mode = 2
@@ -244,75 +247,79 @@ shape = SubResource( 3 )
 position = Vector2( 3394.41, 37.7356 )
 shape = SubResource( 4 )
 
+[node name="BossFix" type="CollisionShape2D" parent="LevelBackground/Boundaries/OutsideBoundaries"]
+position = Vector2( 3980.38, 107.703 )
+shape = SubResource( 5 )
+
 [node name="RedHouseBoundaries" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 75.8518, 58.2467 )
 
 [node name="BeginningHouse" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
 position = Vector2( 318.257, -6.21736 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
 position = Vector2( -43.0425, -27.3461 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
 position = Vector2( 660.334, 26.1932 )
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
 position = Vector2( -21.4076, 34.7462 )
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
 position = Vector2( -66.4233, 38.3303 )
-shape = SubResource( 9 )
+shape = SubResource( 10 )
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="LevelBackground/Boundaries/RedHouseBoundaries"]
 position = Vector2( -67.9571, 62.753 )
-shape = SubResource( 10 )
+shape = SubResource( 11 )
 
 [node name="Street" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 232.93, 170.192 )
 
 [node name="BusStop" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 234.554, -76.1289 )
-shape = SubResource( 11 )
+shape = SubResource( 12 )
 
 [node name="Park" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 613.44, -130.185 )
-shape = SubResource( 12 )
+shape = SubResource( 13 )
 
 [node name="Block2" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 1682.31, -123.285 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="truck" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 2295.45, -162.574 )
-shape = SubResource( 14 )
+shape = SubResource( 15 )
 
 [node name="parking1" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 2142.58, -80.9086 )
-shape = SubResource( 15 )
+shape = SubResource( 16 )
 
 [node name="parking2" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 2304.77, -87.651 )
-shape = SubResource( 16 )
+shape = SubResource( 17 )
 
 [node name="greencar" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 2130.94, -117.94 )
-shape = SubResource( 17 )
+shape = SubResource( 18 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 790.221, -64.5548 )
-shape = SubResource( 18 )
+shape = SubResource( 19 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 972.474, -63.028 )
-shape = SubResource( 19 )
+shape = SubResource( 20 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="LevelBackground/Boundaries/Street"]
 position = Vector2( 1199.87, -62.2343 )
-shape = SubResource( 20 )
+shape = SubResource( 21 )
 
 [node name="RatGraffitiHouse" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 212.257, 50.113 )
@@ -337,11 +344,11 @@ position = Vector2( 4221, 13.0621 )
 
 [node name="LeftBush" type="CollisionShape2D" parent="LevelBackground/Boundaries/Graveyard"]
 position = Vector2( 167.028, 80.2639 )
-shape = SubResource( 21 )
+shape = SubResource( 22 )
 
 [node name="RightBish" type="CollisionShape2D" parent="LevelBackground/Boundaries/Graveyard"]
 position = Vector2( 208.758, 80.0536 )
-shape = SubResource( 21 )
+shape = SubResource( 22 )
 
 [node name="CameraPositions" type="Node" parent="LevelBackground"]
 
@@ -360,7 +367,7 @@ interactableText = "Lilletsy (2020)"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Grave"]
 position = Vector2( 2294.62, -23.5937 )
-shape = SubResource( 22 )
+shape = SubResource( 23 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Grave"]
 visible = false
@@ -375,7 +382,7 @@ interactableText = "french_beret (2019)"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Grave4"]
 position = Vector2( 2294.62, -23.5937 )
-shape = SubResource( 22 )
+shape = SubResource( 23 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Grave4"]
 visible = false
@@ -390,7 +397,7 @@ interactableText = "StarStorm (tbd)"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Grave5"]
 position = Vector2( 2294.62, -23.5937 )
-shape = SubResource( 22 )
+shape = SubResource( 23 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Grave5"]
 visible = false
@@ -405,7 +412,7 @@ interactableText = "MrGoatsy (2021)"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Grave2"]
 position = Vector2( 2294.62, -23.5937 )
-shape = SubResource( 22 )
+shape = SubResource( 23 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Grave2"]
 visible = false
@@ -420,7 +427,7 @@ interactableText = "Ui20 (2016)"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Grave3"]
 position = Vector2( 2294.62, -23.5937 )
-shape = SubResource( 22 )
+shape = SubResource( 23 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Grave3"]
 visible = false
@@ -434,7 +441,7 @@ scale = Vector2( 1, 1.00842 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/ExitLevel"]
 position = Vector2( -1.1123, 4.83324 )
-shape = SubResource( 23 )
+shape = SubResource( 24 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/ExitLevel"]
 visible = false
@@ -1034,7 +1041,7 @@ margin_left = 267.517
 margin_top = 517.027
 margin_right = 755.517
 margin_bottom = 541.027
-custom_fonts/font = SubResource( 24 )
+custom_fonts/font = SubResource( 25 )
 text = "Chimera Beast,
 fortis escensio bulla"
 uppercase = true
@@ -1084,7 +1091,7 @@ margin_right = 192.384
 margin_bottom = 64.9467
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 25 )
+custom_fonts/font = SubResource( 26 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "0"
 __meta__ = {
@@ -1098,7 +1105,7 @@ margin_right = 95.9365
 margin_bottom = 86.7737
 rect_scale = Vector2( 1.6, 1.6 )
 size_flags_horizontal = 0
-custom_fonts/font = SubResource( 26 )
+custom_fonts/font = SubResource( 27 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "x"
 __meta__ = {
@@ -1173,7 +1180,7 @@ amount = 60
 lifetime = 10.0
 preprocess = 60.0
 speed_scale = 0.5
-process_material = SubResource( 27 )
+process_material = SubResource( 28 )
 texture = ExtResource( 43 )
 
 [node name="Leaves2" type="Particles2D" parent="."]
@@ -1182,7 +1189,7 @@ amount = 30
 lifetime = 10.0
 preprocess = 60.0
 speed_scale = 0.5
-process_material = SubResource( 27 )
+process_material = SubResource( 28 )
 texture = ExtResource( 43 )
 
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Grave" to="." method="_on_InteractPromptArea_interactable_text_signal"]

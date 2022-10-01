@@ -2305,11 +2305,10 @@ margin_top = -3.05176e-05
 margin_bottom = -6.10352e-05
 
 [node name="Help" type="Label" parent="GUI"]
-visible = false
-margin_left = 131.09
-margin_top = 21.6612
-margin_right = 925.091
-margin_bottom = 47.6612
+margin_left = 119.705
+margin_top = 124.759
+margin_right = 913.705
+margin_bottom = 179.759
 custom_fonts/font = ExtResource( 206 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 text = "Use the WASD Keys to move, use left mouse click to punch, and right mouse to kick.
