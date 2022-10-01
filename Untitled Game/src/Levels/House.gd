@@ -70,6 +70,7 @@ func SetLevelCheckpointVariables(saveData):
 			get_node("LevelBackground/Checkpoints/Checkpoint").set_deferred("disabled", true)
 			pass;
 		"DoneWithSwitch":
+			_playerTextBox.showText("Another game finished on first try. Now to start stream...")
 			get_node("LevelBackground/Checkpoints/Checkpoint").set_deferred("disabled", true)
 			_toiletClogged = false;
 			_toiletUsed = true;

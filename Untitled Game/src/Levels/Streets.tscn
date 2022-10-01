@@ -441,25 +441,25 @@ position = Vector2( 2294.19, -53.7458 )
 texture = ExtResource( 74 )
 script = ExtResource( 75 )
 
-[node name="ExitLevel" parent="LevelBackground/Interactions" instance=ExtResource( 73 )]
-position = Vector2( 4566.08, 158.846 )
-scale = Vector2( 1, 1.00842 )
+[node name="LeaveLevel" type="Area2D" parent="LevelBackground/Interactions"]
 
-[node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/ExitLevel"]
-position = Vector2( -1.1123, 4.83324 )
+[node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/LeaveLevel"]
+position = Vector2( 4564.97, 163.72 )
+scale = Vector2( 1, 1.00842 )
 shape = SubResource( 25 )
 
-[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/ExitLevel"]
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/LeaveLevel"]
 visible = false
-position = Vector2( -0.319336, -5.64977 )
+position = Vector2( 4565.76, 153.149 )
+scale = Vector2( 1, 1.00842 )
 texture = ExtResource( 74 )
 script = ExtResource( 75 )
 
-[node name="ColorRect" type="ColorRect" parent="LevelBackground/Interactions/ExitLevel"]
-margin_left = -10.752
-margin_top = -57.76
-margin_right = 49.248
-margin_bottom = -17.76
+[node name="ColorRect" type="ColorRect" parent="LevelBackground/Interactions/LeaveLevel"]
+margin_left = 4555.33
+margin_top = 100.6
+margin_right = 4615.33
+margin_bottom = 140.6
 rect_scale = Vector2( 0.496522, 3.86322 )
 color = Color( 0.447059, 0.627451, 0.976471, 0.65098 )
 __meta__ = {
@@ -1211,7 +1211,7 @@ one_shot = true
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Grave5" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Grave2" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Grave3" to="." method="_on_InteractPromptArea_interactable_text_signal"]
-[connection signal="interactable_text_signal" from="LevelBackground/Interactions/ExitLevel" to="." method="_on_ExitLevel_interactable_text_signal"]
+[connection signal="area_entered" from="LevelBackground/Interactions/LeaveLevel" to="." method="_on_LeaveLevel_area_entered"]
 [connection signal="SpawnWarning" from="YSort/TrafficSystemRight" to="." method="_on_TrafficSystemRight_SpawnWarning"]
 [connection signal="SpawnWarning" from="YSort/TrafficSystemLeft" to="." method="_on_TrafficSystemLeft_SpawnWarning"]
 [connection signal="lockout_finished" from="YSort/Actors/AreaLockFightBoss" to="." method="_on_AreaLockFightBoss_lockout_finished"]

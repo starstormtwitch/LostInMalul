@@ -456,6 +456,7 @@ position = Vector2( 3264.4, 88.3407 )
 shape = SubResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/Boundaries/Foyer"]
+scale = Vector2( 0.999429, 1.00787 )
 shape = SubResource( 13 )
 
 [node name="Garage" type="StaticBody2D" parent="LevelBackground/Boundaries"]
