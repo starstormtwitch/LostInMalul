@@ -26,7 +26,7 @@ func _ready():
 	_speed = 65
 	_attack_range = 50
 	_minDistanceToStayFromPlayer = 80;
-	_maxDistanceToStayFromPlayer = 120;
+	_maxDistanceToStayFromPlayer = 80;
 	attackBox.disabled = true
 	_animationHandler = NodeStateMachineAnimationHandler.new($AnimationTree)
 	if($AnimationTree != null):
