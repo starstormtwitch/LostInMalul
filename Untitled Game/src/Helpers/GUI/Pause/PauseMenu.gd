@@ -26,7 +26,7 @@ func _switchMenu(showMenu: int):
 
 
 func _on_RestartButton_pressed():
-	MusicManager.playNormalBattleMusic()
+	MusicManager.playLastMusic()
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 
@@ -55,7 +55,7 @@ func _on_ResumeButton_pressed():
 	_resume()
 
 func _resume():
-	MusicManager.playNormalBattleMusic()	
+	MusicManager.playLastMusic()	
 	get_tree().paused = false
 	_switchMenu(ShowMenuEnum.NONE)
 
