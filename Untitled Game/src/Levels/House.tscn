@@ -1192,7 +1192,7 @@ scale = Vector2( 1.0189, 1 )
 AutomaticTransition = false
 
 [node name="BottomRight" parent="YSort/Actors/GarageFight1/Garage_Fight" index="0"]
-position = Vector2( 491.927, 254.067 )
+position = Vector2( 491.927, 249.067 )
 
 [node name="Garage1" parent="YSort/Actors/GarageFight1" instance=ExtResource( 176 )]
 position = Vector2( 267.977, 3.37903 )
