@@ -55,6 +55,7 @@ func _on_ResumeButton_pressed():
 	_resume()
 
 func _resume():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	MusicManager.playLastMusic()	
 	get_tree().paused = false
 	_switchMenu(ShowMenuEnum.NONE)

@@ -11,11 +11,11 @@ func _init():
 	pass
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	#center MainMenu node to viewport
 #	var x = self.get_viewport().get_visible_rect().size.x / 2
 #	var y = self.get_viewport().get_visible_rect().size.y / 2
 #	self.position = Vector2(x,y);
-	
 	MusicManager.playRatKingBossMusic()
 	settingsMenu.connect("hide", self, "_show_menu")
 	

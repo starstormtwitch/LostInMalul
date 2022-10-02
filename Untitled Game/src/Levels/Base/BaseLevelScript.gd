@@ -15,6 +15,7 @@ func _ready():
 
 func _setup():
 #	MEGA IMPORTANT, PLAYER ALWAYS NEEDS TO BE REFRESHED IN EACH SCENE
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)  
 	var player = LevelGlobals.GetPlayerActor()
 	assert(is_instance_valid(player),"Player instance invalid")
 	print(self.name + ': setup start.')

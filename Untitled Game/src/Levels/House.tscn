@@ -296,58 +296,58 @@ extents = Vector2( 11.8075, 11.755 )
 [sub_resource type="RectangleShape2D" id=24]
 extents = Vector2( 9.60168, 10.0379 )
 
-[sub_resource type="RectangleShape2D" id=58]
+[sub_resource type="RectangleShape2D" id=25]
 extents = Vector2( 39, 10.0379 )
 
-[sub_resource type="RectangleShape2D" id=59]
+[sub_resource type="RectangleShape2D" id=26]
 extents = Vector2( 13, 10.0379 )
 
-[sub_resource type="RectangleShape2D" id=60]
+[sub_resource type="RectangleShape2D" id=27]
 extents = Vector2( 28, 19.7281 )
 
-[sub_resource type="RectangleShape2D" id=61]
+[sub_resource type="RectangleShape2D" id=28]
 extents = Vector2( 11, 4.93204 )
 
-[sub_resource type="RectangleShape2D" id=62]
+[sub_resource type="RectangleShape2D" id=29]
 extents = Vector2( 11, 4.93204 )
 
-[sub_resource type="RectangleShape2D" id=63]
+[sub_resource type="RectangleShape2D" id=30]
 extents = Vector2( 33, 17.7553 )
 
-[sub_resource type="RectangleShape2D" id=64]
+[sub_resource type="RectangleShape2D" id=31]
 extents = Vector2( 65, 17.7553 )
 
-[sub_resource type="RectangleShape2D" id=65]
+[sub_resource type="RectangleShape2D" id=32]
 extents = Vector2( 38, 17.7553 )
 
-[sub_resource type="RectangleShape2D" id=66]
+[sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 12.8932, 10 )
 
-[sub_resource type="RectangleShape2D" id=67]
+[sub_resource type="RectangleShape2D" id=34]
 extents = Vector2( 28, 19.7281 )
 
-[sub_resource type="RectangleShape2D" id=68]
+[sub_resource type="RectangleShape2D" id=35]
 extents = Vector2( 17.2043, 37.1483 )
 
-[sub_resource type="RectangleShape2D" id=69]
+[sub_resource type="RectangleShape2D" id=36]
 extents = Vector2( 18, 28.6058 )
 
-[sub_resource type="RectangleShape2D" id=70]
+[sub_resource type="RectangleShape2D" id=37]
 extents = Vector2( 22.6563, 31.9913 )
 
-[sub_resource type="RectangleShape2D" id=71]
+[sub_resource type="RectangleShape2D" id=38]
 extents = Vector2( 20.9963, 19.0431 )
 
-[sub_resource type="RectangleShape2D" id=72]
+[sub_resource type="RectangleShape2D" id=39]
 extents = Vector2( 10, 23.0021 )
 
-[sub_resource type="RectangleShape2D" id=73]
+[sub_resource type="RectangleShape2D" id=40]
 extents = Vector2( 23.5465, 27.1247 )
 
-[sub_resource type="RectangleShape2D" id=74]
+[sub_resource type="RectangleShape2D" id=41]
 extents = Vector2( 26.9954, 23.0021 )
 
-[sub_resource type="RectangleShape2D" id=75]
+[sub_resource type="RectangleShape2D" id=42]
 extents = Vector2( 19.2661, 19.2734 )
 
 [sub_resource type="RectangleShape2D" id=43]
@@ -623,7 +623,7 @@ interactableText = "Sometimes I need to get myself some candles, my ducky, a bat
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bathroom/Bathtub"]
 position = Vector2( 234, 270 )
-shape = SubResource( 58 )
+shape = SubResource( 25 )
 
 [node name="InteractSprite" parent="LevelBackground/Interactions/Bathroom/Bathtub" instance=ExtResource( 203 )]
 visible = false
@@ -635,7 +635,7 @@ interactableText = "Why are we trying to dig through the trash can... that's sus
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bathroom/Trashcan"]
 position = Vector2( 251, 194 )
-shape = SubResource( 59 )
+shape = SubResource( 26 )
 
 [node name="InteractSprite" parent="LevelBackground/Interactions/Bathroom/Trashcan" instance=ExtResource( 203 )]
 visible = false
@@ -656,7 +656,7 @@ scale = Vector2( 1, 0.986407 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bedroom/Bed"]
 position = Vector2( 0.367004, 13.4881 )
-shape = SubResource( 60 )
+shape = SubResource( 27 )
 
 [node name="EndTable" parent="LevelBackground/Interactions/Bedroom" instance=ExtResource( 175 )]
 position = Vector2( 222.633, 120.826 )
@@ -670,7 +670,7 @@ scale = Vector2( 1, 0.986407 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bedroom/EndTable"]
 position = Vector2( -62.633, -1.30796 )
-shape = SubResource( 61 )
+shape = SubResource( 28 )
 
 [node name="EndTable2" parent="LevelBackground/Interactions/Bedroom" instance=ExtResource( 175 )]
 position = Vector2( 222.633, 120.826 )
@@ -684,7 +684,7 @@ scale = Vector2( 1, 0.986407 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bedroom/EndTable2"]
 position = Vector2( 47.367, 1.65126 )
-shape = SubResource( 62 )
+shape = SubResource( 29 )
 
 [node name="TV" parent="LevelBackground/Interactions/Bedroom" instance=ExtResource( 175 )]
 position = Vector2( 222.633, 120.826 )
@@ -698,7 +698,7 @@ scale = Vector2( 1, 0.986407 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bedroom/TV"]
 position = Vector2( 51.367, 89.4415 )
-shape = SubResource( 63 )
+shape = SubResource( 30 )
 
 [node name="DresserWithMirror" parent="LevelBackground/Interactions/Bedroom" instance=ExtResource( 175 )]
 position = Vector2( 222.633, 120.826 )
@@ -712,7 +712,7 @@ scale = Vector2( 1, 0.986407 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bedroom/DresserWithMirror"]
 position = Vector2( 221.367, 30.2571 )
-shape = SubResource( 64 )
+shape = SubResource( 31 )
 
 [node name="Table" parent="LevelBackground/Interactions/Bedroom" instance=ExtResource( 175 )]
 position = Vector2( 223, 120.5 )
@@ -726,7 +726,7 @@ scale = Vector2( 1, 0.986407 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bedroom/Table"]
 position = Vector2( -74.633, 84.5095 )
-shape = SubResource( 65 )
+shape = SubResource( 32 )
 
 [node name="StreamRoomTooSoon" parent="LevelBackground/Interactions/Bedroom" instance=ExtResource( 175 )]
 position = Vector2( 423.739, 172.72 )
@@ -735,7 +735,7 @@ interactableText = "I should use the toilet before I start my stream."
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon"]
 position = Vector2( 59.9909, 22.9577 )
-shape = SubResource( 60 )
+shape = SubResource( 27 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Bedroom/StreamRoomTooSoon"]
 visible = false
@@ -750,7 +750,7 @@ interactableText = "Wow, my comfy socks, nothing is more comfy."
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bedroom/Wardrobe"]
 position = Vector2( -178.298, 1.95135 )
-shape = SubResource( 60 )
+shape = SubResource( 27 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Bedroom/Wardrobe"]
 visible = false
@@ -765,7 +765,7 @@ interactableText = "I found my switch in the cushion"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bedroom/Chair"]
 position = Vector2( -233.814, 28.2874 )
-shape = SubResource( 66 )
+shape = SubResource( 33 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Bedroom/Chair"]
 visible = false
@@ -783,7 +783,7 @@ interactableText = "Had to buy cat trees to stop Nabi from scratching the furnit
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/LivingRoom/InteractPromptArea"]
 scale = Vector2( 0.383436, 0.775982 )
-shape = SubResource( 60 )
+shape = SubResource( 27 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/LivingRoom/InteractPromptArea"]
 visible = false
@@ -799,7 +799,7 @@ interactableText = "I wonder where the cats are, probably hiding scared somewher
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/LivingRoom/InteractPromptArea2"]
 position = Vector2( -52.126, -6.66031 )
 scale = Vector2( 0.383436, 0.775982 )
-shape = SubResource( 67 )
+shape = SubResource( 34 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/LivingRoom/InteractPromptArea2"]
 visible = false
@@ -815,7 +815,7 @@ interactableText = "I found my gamer candle, part of the perfect comfy combo."
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/LivingRoom/TVStand"]
 position = Vector2( 246.312, 5.11754 )
 scale = Vector2( 0.383436, 0.775982 )
-shape = SubResource( 68 )
+shape = SubResource( 35 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/LivingRoom/TVStand"]
 visible = false
@@ -835,7 +835,7 @@ scale = Vector2( 1, 0.986407 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/LivingRoom/Bookshelf"]
 position = Vector2( -87, -46.3611 )
-shape = SubResource( 69 )
+shape = SubResource( 36 )
 
 [node name="Kitchen" type="Node2D" parent="LevelBackground/Interactions"]
 position = Vector2( 2590.31, 76.5638 )
@@ -848,7 +848,7 @@ interactableText = "$3000 coffee machine. Found this one through a review video 
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Coffee"]
 position = Vector2( -2.20678, 8.53776 )
-shape = SubResource( 70 )
+shape = SubResource( 37 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Kitchen/Coffee"]
 visible = false
@@ -867,7 +867,7 @@ script = ExtResource( 204 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Fridge"]
 position = Vector2( 0.472169, 20.4323 )
-shape = SubResource( 71 )
+shape = SubResource( 38 )
 
 [node name="Microwave" parent="LevelBackground/Interactions/Kitchen" instance=ExtResource( 175 )]
 position = Vector2( 281.583, 75.9244 )
@@ -880,14 +880,14 @@ script = ExtResource( 204 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Microwave"]
 position = Vector2( 2.05591, 26.5118 )
-shape = SubResource( 72 )
+shape = SubResource( 39 )
 
 [node name="BasementNeedKey" parent="LevelBackground/Interactions/Kitchen" instance=ExtResource( 175 )]
 interactableText = "I am going to need to search and bring the basement key first."
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/BasementNeedKey"]
 position = Vector2( 47.0188, 110.907 )
-shape = SubResource( 73 )
+shape = SubResource( 40 )
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Kitchen/BasementNeedKey"]
 visible = false
@@ -907,7 +907,7 @@ script = ExtResource( 204 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Kitchen/Drawer"]
 position = Vector2( 156.028, 70.5118 )
-shape = SubResource( 74 )
+shape = SubResource( 41 )
 
 [node name="Office" type="Node2D" parent="LevelBackground/Interactions"]
 
@@ -922,7 +922,7 @@ scale = Vector2( 1, 0.986407 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Office/VideoGames"]
 position = Vector2( -46, -44.3883 )
-shape = SubResource( 64 )
+shape = SubResource( 31 )
 
 [node name="Computer" type="Area2D" parent="LevelBackground/Interactions/Office"]
 position = Vector2( 119.399, 4.50531 )
@@ -938,7 +938,7 @@ script = ExtResource( 204 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Office/Computer"]
 position = Vector2( 1496.63, 226.537 )
-shape = SubResource( 73 )
+shape = SubResource( 40 )
 
 [node name="OfficeCabinet" type="Area2D" parent="LevelBackground/Interactions/Office"]
 position = Vector2( 119.399, 4.50531 )
@@ -954,7 +954,7 @@ script = ExtResource( 204 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Office/OfficeCabinet"]
 position = Vector2( 1472.76, 185.663 )
-shape = SubResource( 75 )
+shape = SubResource( 42 )
 
 [node name="Basement" type="Node2D" parent="LevelBackground/Interactions"]
 
@@ -977,7 +977,7 @@ scale = Vector2( 1, 0.986407 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Basement/rats"]
 position = Vector2( -46, -44.3883 )
-shape = SubResource( 64 )
+shape = SubResource( 31 )
 
 [node name="rats2" parent="LevelBackground/Interactions/Basement" instance=ExtResource( 175 )]
 position = Vector2( 1007, 527 )
@@ -991,7 +991,7 @@ scale = Vector2( 1, 0.986407 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Basement/rats2"]
 position = Vector2( -44, -44.3884 )
-shape = SubResource( 64 )
+shape = SubResource( 31 )
 
 [node name="Foyer" type="Node2D" parent="LevelBackground/Interactions"]
 
@@ -1069,7 +1069,7 @@ interactableText = "I am going to need to search and bring the garage key first.
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Foyer/GarageNeedKey"]
 position = Vector2( 2638.5, 187.895 )
-shape = SubResource( 73 )
+shape = SubResource( 40 )
 disabled = true
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Foyer/GarageNeedKey"]
@@ -2450,6 +2450,20 @@ position = Vector2( 511, 209 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
+[node name="Help" type="Label" parent="GUI"]
+visible = false
+margin_left = 119.705
+margin_top = 124.759
+margin_right = 913.705
+margin_bottom = 179.759
+custom_fonts/font = ExtResource( 206 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "Use the WASD Keys to move, use left mouse click to punch, and right mouse to kick.
+You can use C for your special, and use shift to dodge."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="BossGui" type="Control" parent="GUI"]
 visible = false
 margin_right = 40.0
@@ -2587,20 +2601,6 @@ visible = false
 visible = false
 margin_top = -3.05176e-05
 margin_bottom = -6.10352e-05
-
-[node name="Help" type="Label" parent="GUI"]
-visible = false
-margin_left = 119.705
-margin_top = 124.759
-margin_right = 913.705
-margin_bottom = 179.759
-custom_fonts/font = ExtResource( 206 )
-custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-text = "Use the WASD Keys to move, use left mouse click to punch, and right mouse to kick.
-You can use C for your special, and use shift to dodge."
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Toilet" to="." method="_on_Toilet_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bathroom/Sink" to="." method="_on_Sink_interactable_text_signal"]

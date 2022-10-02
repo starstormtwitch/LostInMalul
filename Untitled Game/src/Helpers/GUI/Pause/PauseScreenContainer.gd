@@ -35,12 +35,14 @@ func _input(event: InputEvent) -> void:
 		_unpauseAndHideMenu()
 
 func _pauseAndShowMenu() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	MusicManager.playMenuMusic()
 	_menuOpen = true
 	get_tree().paused = true
 	_switchMenu(ShowMenuEnum.PAUSE)
 
 func _unpauseAndHideMenu():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	MusicManager.playLastMusic()
 	_menuOpen = false
 	get_tree().paused = false
