@@ -53,7 +53,6 @@ onready var _playerTextBox: TextBox = $GUI/PlayerTextBox
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	MusicManager.playMenuMusic()
 	$CanvasModulate.visible = false;
 	_player = LevelGlobals.GetPlayerActor()
 	assert(is_instance_valid(_player),"Player instance invalid")
@@ -67,12 +66,14 @@ func SetLevelCheckpointVariables(saveData):
 	assert(saveData.has("checkpoint"))
 	match(saveData["checkpoint"]):
 		"Start":
+			MusicManager.playMenuMusic()
 			$GUI/Help.visible = true;
 			get_node("YSort/Actors/BedroomFight2").Disable()
 			get_node("YSort/Actors/BedroomFight1").Disable()
 			get_node("LevelBackground/Checkpoints/Checkpoint").set_deferred("disabled", true)
 			pass;
 		"DoneWithSwitch":
+			MusicManager.playMenuMusic()
 			_playerTextBox.showText("Another game finished on first try. Now to start stream...")
 			get_node("LevelBackground/Checkpoints/Checkpoint").set_deferred("disabled", true)
 			_toiletClogged = false;
@@ -287,7 +288,7 @@ func GetReadyForBossEncounter():
 	get_node("LevelBackground/Teleports/Kitchen_Basement_2WT/EndpointBeta/ToAlphaActivationArea").set_deferred("disabled", true);
 
 func _on_GrannySpawner_AllEnemiesDefeated():
-	_textBox.showText("Grandma has faded away in the light, and she left you a little something.")
+	_textBox.showText("Grandma has faded away in the light, and she left the basement key in your inventory.")
 	_player.add_item_to_inventory(basement_Key.instance())
 
 func AllDefeatedGarage():

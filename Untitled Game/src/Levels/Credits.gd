@@ -26,7 +26,7 @@ var credits = [
 	],[
 		"This is a game by and for Lirik's community",
 	],[
-		"Project Lead/Programmer/Artist/Pepega",
+		"Project Lead/Lead Pepega",
 		"StarStorm"
 	],[
 		"Lead Programmer",
@@ -53,7 +53,7 @@ var credits = [
 		"Aseprite",
 		"",
 		"Free sounds from",
-		"ZapSplat",
+		"ZapSplat.com",
 	],[
 		"Special thanks",
 		"Charlemagne420, for always being there.",
