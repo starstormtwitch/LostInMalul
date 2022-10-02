@@ -807,17 +807,17 @@ position = Vector2( -51.1259, -18.6101 )
 texture = ExtResource( 25 )
 script = ExtResource( 204 )
 
-[node name="Tv" parent="LevelBackground/Interactions/LivingRoom" instance=ExtResource( 175 )]
+[node name="TVStand" parent="LevelBackground/Interactions/LivingRoom" instance=ExtResource( 175 )]
 position = Vector2( 164.106, 123.506 )
 scale = Vector2( 1, 1.0042 )
 interactableText = "I found my gamer candle, part of the perfect comfy combo."
 
-[node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/LivingRoom/Tv"]
+[node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/LivingRoom/TVStand"]
 position = Vector2( 246.312, 5.11754 )
 scale = Vector2( 0.383436, 0.775982 )
 shape = SubResource( 68 )
 
-[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/LivingRoom/Tv"]
+[node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/LivingRoom/TVStand"]
 visible = false
 position = Vector2( 259.327, -21.8804 )
 texture = ExtResource( 25 )
@@ -1558,7 +1558,7 @@ automatic = false
 position = Vector2( 2307.66, 242.827 )
 
 [node name="LivingRoom_Fight2" parent="YSort/Actors/LivingFight2" instance=ExtResource( 20 )]
-position = Vector2( -252.094, -191.83 )
+position = Vector2( -251.77, -201.827 )
 AutomaticTransition = false
 
 [node name="BottomRight" parent="YSort/Actors/LivingFight2/LivingRoom_Fight2" index="0"]
@@ -2617,7 +2617,7 @@ __meta__ = {
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Bedroom/Chair" to="." method="_on_Chair_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/LivingRoom/InteractPromptArea" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/LivingRoom/InteractPromptArea2" to="." method="_on_InteractPromptArea_interactable_text_signal"]
-[connection signal="interactable_text_signal" from="LevelBackground/Interactions/LivingRoom/Tv" to="." method="_on_TVStand_interactable_text_signal"]
+[connection signal="interactable_text_signal" from="LevelBackground/Interactions/LivingRoom/TVStand" to="." method="_on_TVStand_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/LivingRoom/Bookshelf" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Kitchen/Coffee" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Kitchen/Fridge" to="." method="_on_InteractPromptArea_interactable_text_signal"]

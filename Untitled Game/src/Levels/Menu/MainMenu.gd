@@ -38,3 +38,9 @@ func _on_ExitButton_pressed():
 
 func _show_menu():
 	menuContainer.show()
+
+
+func _on_Credits_pressed():
+	var gameScene = LevelGlobals.GetLevelScene("Credits");
+	assert(gameScene != null, "Unknown level!");
+	get_tree().change_scene_to(gameScene);

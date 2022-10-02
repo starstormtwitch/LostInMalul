@@ -38,9 +38,9 @@ func hideText():
 
 
 func showText(text: String):
-	SoundPlayer.playSound(get_tree().get_current_scene(), textType, 15)
 	print("show text")
 	if(get_tree() != null):
+		SoundPlayer.playSound(get_tree().get_current_scene(), textType, 15)
 		get_tree().paused = true
 		self.visible = true
 		isShowing = true
