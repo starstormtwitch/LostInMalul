@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/squishDeath.mp3-fc27614516c05483b4175ed6746b3d70.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/squishDeath.mp3"
+dest_files=[ "res://.import/squishDeath.mp3-fc27614516c05483b4175ed6746b3d70.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

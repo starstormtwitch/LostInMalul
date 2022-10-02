@@ -5,6 +5,7 @@ const _JUMPFORCE = -160
 const _JUMP_SPEED = 60
 
 const attackSound = preload("res://assets/audio/frWhoosh.mp3")
+const deathSound = preload("res://assets/audio/BubblePop.mp3")
 
 var _jumpVelocity = Vector2()
 var _jumpDirection = Vector2()
@@ -75,3 +76,8 @@ func _on_FlockBox_area_entered(area):
 func _on_FlockBox_area_exited(area):
 	if(area.get_parent().is_in_group("enemy")):
 		remove_from_flock(area.get_parent())
+		
+func die() -> void:
+	.die()
+	SoundPlayer.playSound(get_tree().get_current_scene(), deathSound, 0)
+	

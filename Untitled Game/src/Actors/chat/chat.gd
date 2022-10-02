@@ -2,6 +2,7 @@ extends Enemy
 
 
 const bullet_scene = preload("res://src/Actors/chat/chatting.tscn")
+const deathSound = preload("res://assets/audio/chatDying.mp3")
 
 const _GRAVITY = 10
 const _JUMPFORCE = -160
@@ -71,3 +72,8 @@ func _flipBoxesIfNecessary(velocity_x: float):
 		bulletSpawn.position.x = abs(bulletSpawn.position.x)
 	elif velocity_x < 0:
 		bulletSpawn.position.x = -abs(bulletSpawn.position.x)
+
+func die() -> void:
+	.die()
+	SoundPlayer.playSound(get_tree().get_current_scene(), deathSound, 0)
+	

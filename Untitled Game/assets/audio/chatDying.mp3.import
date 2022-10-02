@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/chatDying.mp3-57b24de0e3059585afea403d34d53a29.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/chatDying.mp3"
+dest_files=[ "res://.import/chatDying.mp3-57b24de0e3059585afea403d34d53a29.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

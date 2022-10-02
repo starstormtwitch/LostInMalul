@@ -16,7 +16,7 @@ func _ready():
 #	var y = self.get_viewport().get_visible_rect().size.y / 2
 #	self.position = Vector2(x,y);
 	
-	MusicManager.playMenuMusic()
+	MusicManager.playRatKingBossMusic()
 	settingsMenu.connect("hide", self, "_show_menu")
 	
 #	$VBoxContainer.modulate = Color(0.0, 100.0, 0.0, 1.0);
