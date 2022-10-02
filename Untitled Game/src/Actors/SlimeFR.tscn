@@ -263,7 +263,7 @@ graph_offset = Vector2( -100.741, 38 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=26]
 
 [sub_resource type="RectangleShape2D" id=27]
-extents = Vector2( 12.25, 6.66518 )
+extents = Vector2( 9.46991, 6.66518 )
 
 [sub_resource type="RectangleShape2D" id=28]
 extents = Vector2( 12.25, 4.03799 )
@@ -277,14 +277,14 @@ extents = Vector2( 8.87926, 5.5252 )
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemy",
 ]]
-position = Vector2( -7.12134, -2.25845 )
+position = Vector2( 0.122915, -0.207261 )
 z_as_relative = false
 collision_layer = 1024
 collision_mask = 7
 script = ExtResource( 2 )
 
 [node name="Shadow" type="Sprite" parent="."]
-position = Vector2( 3.32684, -34.9794 )
+position = Vector2( -0.141861, -31.7209 )
 texture = ExtResource( 3 )
 hframes = 13
 vframes = 4
@@ -294,7 +294,7 @@ frame = 39
 
 [node name="PunchHitMarkerParticles" type="Particles2D" parent="KinematicSprite"]
 material = SubResource( 1 )
-position = Vector2( 3.49044, -16.8037 )
+position = Vector2( 0.0217438, -13.5452 )
 scale = Vector2( 3, 3 )
 emitting = false
 amount = 1
@@ -307,7 +307,7 @@ script = ExtResource( 4 )
 
 [node name="KickHitMarkerParticles" type="Particles2D" parent="KinematicSprite"]
 material = SubResource( 3 )
-position = Vector2( 3.70824, -12.1191 )
+position = Vector2( 0.239544, -8.86063 )
 scale = Vector2( 3, 3 )
 emitting = false
 amount = 1
@@ -318,7 +318,7 @@ process_material = SubResource( 4 )
 texture = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="KinematicSprite"]
-position = Vector2( 3.56418, -19.7197 )
+position = Vector2( 0.09548, -16.4612 )
 z_as_relative = false
 texture = ExtResource( 1 )
 offset = Vector2( 0, -15 )
@@ -338,12 +338,14 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource( 26 )
 
 [node name="Sight" type="RayCast2D" parent="."]
+visible = false
 modulate = Color( 0.054902, 1, 0, 1 )
 position = Vector2( 3.36215, -8.8321 )
 enabled = true
 cast_to = Vector2( 0, 100 )
 
 [node name="ObstacleAvoidRaycasts" type="Node2D" parent="."]
+visible = false
 position = Vector2( 6.68174, 3.34087 )
 
 [node name="ObstacleAvoidSE" type="RayCast2D" parent="ObstacleAvoidRaycasts"]
@@ -371,12 +373,13 @@ enabled = true
 cast_to = Vector2( 0, 100 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2( 3.18838, -9.9084 )
+position = Vector2( -0.280321, -6.64993 )
 shape = SubResource( 27 )
 
 [node name="HurtBox" type="Area2D" parent="." groups=[
 "hurtbox",
 ]]
+visible = false
 position = Vector2( 2.35411, -16.0959 )
 collision_layer = 16384
 collision_mask = 16
@@ -388,6 +391,7 @@ shape = SubResource( 28 )
 [node name="FlockBox" type="Area2D" parent="." groups=[
 "enemy",
 ]]
+visible = false
 position = Vector2( 0.103554, -14.8493 )
 collision_layer = 262144
 collision_mask = 262144
@@ -398,22 +402,24 @@ shape = SubResource( 29 )
 
 [node name="Attack" type="Area2D" parent="."]
 modulate = Color( 0.431373, 1, 0, 1 )
-position = Vector2( 0.353554, -14.8493 )
+position = Vector2( -0.240147, -11.7158 )
 collision_layer = 4096
 collision_mask = 0
 
 [node name="AttackBox" type="CollisionShape2D" parent="Attack"]
-position = Vector2( 2.66387, 7.07219 )
+position = Vector2( -1.77363, 6.94719 )
 shape = SubResource( 30 )
+disabled = true
 
 [node name="LootDropper" parent="." instance=ExtResource( 6 )]
-position = Vector2( -6.62912, -19.4454 )
+visible = false
+position = Vector2( -10.0978, -16.1869 )
 scale = Vector2( 0.990515, 1 )
 MaxCoins = 2
 PowerupChance = 30
 
 [node name="explosionPosition" type="Position2D" parent="."]
-position = Vector2( 4.03946, -13.3391 )
+position = Vector2( 0.570759, -10.0806 )
 
 [connection signal="area_entered" from="FlockBox" to="." method="_on_FlockBox_area_entered"]
 [connection signal="area_exited" from="FlockBox" to="." method="_on_FlockBox_area_exited"]
