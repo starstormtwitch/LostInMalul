@@ -459,6 +459,9 @@ shape = SubResource( 12 )
 scale = Vector2( 0.999429, 1.00787 )
 shape = SubResource( 13 )
 
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LevelBackground/Boundaries/Foyer"]
+polygon = PoolVector2Array( 259.6, 96.6593, 372.6, 211.659, 396.6, 211.659, 262.6, 82.6593 )
+
 [node name="Garage" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 3216.99, 400.452 )
 
