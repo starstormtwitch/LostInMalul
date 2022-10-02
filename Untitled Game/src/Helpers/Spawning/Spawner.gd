@@ -27,7 +27,9 @@ func spawnInstantiatedNode(node : Node2D, position : Vector2):
 	var parent = get_parent()
 	while(parent != null && not parent is YSort):
 		parent = parent.get_parent()
-	assert(parent != null && parent is YSort, "No parent YSORT in scene")
+	# if parent null we just return instead. This is to avoid crash when dying with item
+	if parent == null: 
+		return
 	
 	#add instance to spawner, defer call in case parent is still being setup
 	if(_countToSpawn > 0 && CurrentSpawnedCount < maxSpawnedAtATime):
