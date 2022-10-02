@@ -14,7 +14,7 @@ func _ready():
 	_player = LevelGlobals.GetPlayerActor();
 	_health = 9999
 	_acceleration = 0.2
-	_speed = 120
+	_speed = 100
 	_animationHandler = AnimationHandler.new()
 	if(get_node_or_null("AnimationTree") != null):
 		$AnimationTree.active = true
