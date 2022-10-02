@@ -345,7 +345,7 @@ shape = SubResource( 22 )
 [node name="RatClinic" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 2836.62, 69.4901 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/Boundaries/RatClinic"]
+[node name="Bench" type="CollisionShape2D" parent="LevelBackground/Boundaries/RatClinic"]
 position = Vector2( 11.7859, 27.5003 )
 shape = SubResource( 29 )
 
