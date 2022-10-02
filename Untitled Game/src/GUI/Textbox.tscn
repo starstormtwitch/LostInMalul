@@ -75,7 +75,7 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 margin_left = 16.0
 margin_right = 1008.0
-margin_bottom = 198.0
+margin_bottom = 96.0
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20

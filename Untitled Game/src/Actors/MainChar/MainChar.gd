@@ -19,6 +19,7 @@ const footstep = preload("res://assets/audio/footsteps_sfx.wav")
 const woosh = preload("res://assets/audio/HitAudio/miss_sfx.wav")
 const deathSound = preload("res://assets/audio/main_char_death_sfx.wav")
 const hurtSound = preload("res://assets/audio/mainHurt.mp3")
+const pickupSound = preload("res://assets/audio/itemPickup.mp3")
 var hadouken_scene = preload("res://src/Actors/MainChar/HadoukenBlast.tscn")
 
 
@@ -249,7 +250,8 @@ func add_trail() -> void:
 		_trail.push_front(trail)
 
 func add_item_to_inventory(item : Node2D):
-	emit_signal("item_pickup", item);
+	emit_signal("item_pickup", item)
+	SoundPlayer.playSound(get_tree().get_current_scene(), pickupSound, 0)
 	if(is_instance_valid(InventoryItem)):
 		var slotItem = InventoryItem;
 		var itemDropper = spawner.instance();

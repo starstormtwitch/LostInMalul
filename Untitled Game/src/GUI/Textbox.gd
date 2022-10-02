@@ -4,6 +4,7 @@ class_name TextBox
 
 onready var label = $MarginContainer/MarginContainer/Label
 onready var animationPlayer = $AnimationPlayer
+var textType = preload("res://assets/audio/textboxTyping.mp3")
 
 var isShowing = false
 var isAnimating = false
@@ -14,7 +15,6 @@ signal closed
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(EventsList.INTERACT_EVENT) or event.is_action_pressed(EventsList.UI_CANCEL_EVENT):
 		_handleUICancelEvent()
-
 
 # Call when the "UI_Cacnel" event is called. will close textboxes if open
 func _handleUICancelEvent() -> void:
@@ -38,6 +38,7 @@ func hideText():
 
 
 func showText(text: String):
+	SoundPlayer.playSound(get_tree().get_current_scene(), textType, 15)
 	print("show text")
 	if(get_tree() != null):
 		get_tree().paused = true

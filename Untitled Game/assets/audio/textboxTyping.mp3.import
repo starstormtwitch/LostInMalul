@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/textboxTyping.mp3-190f59d3f7b6eb90add7af8f1a0448ff.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/textboxTyping.mp3"
+dest_files=[ "res://.import/textboxTyping.mp3-190f59d3f7b6eb90add7af8f1a0448ff.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

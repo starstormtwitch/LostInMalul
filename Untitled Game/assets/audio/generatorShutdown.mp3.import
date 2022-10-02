@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/generatorShutdown.mp3-6bced2a57e2118e78a998aaca1c830f6.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/generatorShutdown.mp3"
+dest_files=[ "res://.import/generatorShutdown.mp3-6bced2a57e2118e78a998aaca1c830f6.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
