@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=2]
+[gd_scene load_steps=105 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Levels/Streets/Level_Start.png" type="Texture" id=2]
@@ -136,6 +136,9 @@ extents = Vector2( 55.2458, 14.7873 )
 extents = Vector2( 38.8765, 13.279 )
 
 [sub_resource type="RectangleShape2D" id=22]
+
+[sub_resource type="RectangleShape2D" id=29]
+extents = Vector2( 12.3213, 10 )
 
 [sub_resource type="RectangleShape2D" id=23]
 extents = Vector2( 10.2012, 6.93721 )
@@ -338,6 +341,13 @@ shape = SubResource( 22 )
 [node name="RightBish" type="CollisionShape2D" parent="LevelBackground/Boundaries/Graveyard"]
 position = Vector2( 208.758, 80.0536 )
 shape = SubResource( 22 )
+
+[node name="RatClinic" type="StaticBody2D" parent="LevelBackground/Boundaries"]
+position = Vector2( 2836.62, 69.4901 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/Boundaries/RatClinic"]
+position = Vector2( 11.7859, 27.5003 )
+shape = SubResource( 29 )
 
 [node name="CameraPositions" type="Node" parent="LevelBackground"]
 
