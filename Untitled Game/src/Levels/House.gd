@@ -12,6 +12,9 @@ var candle : PackedScene = preload("res://src/InventoryItems/Candle.tscn")
 var generatorPart : PackedScene = preload("res://src/InventoryItems/GeneratorPart.tscn")
 const dropped_item = preload("res://src/InventoryItems/DroppedItemBase.tscn")
 const spawner = preload("res://src/Helpers/Spawning/Spawner.tscn")
+const generatorSound = preload("res://assets/audio/EngineStart.mp3")
+const generatorDiesSound = preload("res://assets/audio/generatorShutdown.mp3")
+const crashSound = preload("res://assets/audio/Crash.mp3")
 
 var _player : Actor
 var _granny
@@ -473,6 +476,7 @@ func _on_Generator_interactable_text_signal(text):
 		if(_generatorPartNeededCount > 0):
 			_textBox.showText("You slot the generator part into the generator, and flip the switch, but nothing happens.")
 		else:
+			SoundPlayer.playSound(get_tree().get_current_scene(), generatorSound, 2)
 			_textBox.showText("You slot the generator part into the generator, and flip the switch......the generator hums to life.")
 			_granny.die()
 			_granny.dispose()
@@ -487,8 +491,10 @@ func _on_BathroomToBedroom_body_exited(body):
 		_sendKitchenCrash = false
 		$CanvasModulate.visible = true;
 		_player.ToggleLight(true);
+		SoundPlayer.playSound(get_tree().get_current_scene(), crashSound, 2)
+		SoundPlayer.playSound(get_tree().get_current_scene(), generatorDiesSound, 2)
 		MusicManager.playNormalBattleMusic()
-		_playerTextBox.showText("*crashing noise* I better go check out what happened. Looks like the power shut off, I'll have to fire up my generator before I can turn on my pc...")
+		_playerTextBox.showText("I better go check out what happened. Looks like the power shut off, I'll have to fire up my generator before I can turn on my pc...")
 
 func _on_GrannySpawner_spawned(spawn):
 	_granny = spawn;
