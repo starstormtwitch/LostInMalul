@@ -38,7 +38,7 @@ func _physics_process(_delta: float) -> void:
 	
 func _on_Attack_area_entered(area):
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
-		area.get_parent().take_damage(8, _velocity.normalized(), 500)
+		area.get_parent().take_damage(5, _velocity.normalized(), 500)
 		_isStunned = true;
 		_itemTimer.start(30)
 		self.modulate =  Color(0,0,1,1) 

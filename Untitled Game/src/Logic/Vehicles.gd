@@ -41,12 +41,12 @@ func start(velocity: float) -> void:
 	var current_traffic_noise = LevelGlobals.rng.randi_range(1,4)
 	match current_traffic_noise:
 		1:
-			SoundPlayer.playSound(get_tree().get_current_scene(), traffic1, 1)
+			SoundPlayer.playSound(get_tree().get_current_scene(), traffic1, -2)
 		2:
-			SoundPlayer.playSound(get_tree().get_current_scene(), traffic2, 1)
+			SoundPlayer.playSound(get_tree().get_current_scene(), traffic2, -2)
 		3:
-			SoundPlayer.playSound(get_tree().get_current_scene(), traffic3, 1)
+			SoundPlayer.playSound(get_tree().get_current_scene(), traffic3, -2)
 		4:
-			SoundPlayer.playSound(get_tree().get_current_scene(), traffic4, 1)
+			SoundPlayer.playSound(get_tree().get_current_scene(), traffic4, -2)
 	#$AnimationPlayer.play('Walk')
 
