@@ -11,7 +11,7 @@ var _itemTimer = Timer.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_player = LevelGlobals.GetPlayerActor();
+	_player = LevelGlobals.GetPlayerActor()
 	_health = 9999
 	_acceleration = 0.1
 	_speed = 90

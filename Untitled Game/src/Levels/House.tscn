@@ -431,7 +431,7 @@ position = Vector2( 240.006, 305.733 )
 scale = Vector2( 0.497642, 0.497642 )
 
 [node name="bottom_segment" type="CollisionShape2D" parent="LevelBackground/Boundaries/Universal"]
-position = Vector2( 3189.41, -2.58612 )
+position = Vector2( 3189.03, -3.48242 )
 shape = SubResource( 1 )
 
 [node name="top_segment" type="CollisionShape2D" parent="LevelBackground/Boundaries/Universal"]
