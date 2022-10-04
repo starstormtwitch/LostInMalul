@@ -24,7 +24,16 @@ var credits = [
 	[
 		"Lost In Malul"
 	],[
-		"This is a game by and for Lirik's community",
+		"This is a game by and for Lirik's community.",
+		"This game was completed after 14 months of hard work, with",
+		"nearly 40 community members involved. We met every Thursday,",
+		"from the very beginning where we all used an excel sheet to jot",
+		"down ideas, to voting on the core elements of the game, finally",
+		"to the final meeting before release... This team of community",
+		"members worked really hard to show that we do actually care",
+		"about each other and the bonds we've built.",
+		"",
+		"You were all a part of my life that I cherish, and I will never forget you guys."
 	],[
 		"Project Lead/Lead Pepega",
 		"StarStorm"
@@ -35,14 +44,40 @@ var credits = [
 		"Lead Artist",
 		"Weelqa"
 	],[
-		"Artist",
-		"placeholder"
+		"Artists",
+		"Raeftato",
+		"Rappy90",
+		"Melartini",
+		"YakiCL"
+	],[
+		"Programmers",
+		"Exomart"
+	],[
+		"Game Consultant",
+		"TamzidFarhanMogno",
+	],[
+		"Font Master",
+		"SirLawrence_",
 	],[
 		"Sound and Music",
-		"placeholder"
+		"SmackDE",
+		"Yookzlol"
 	],[
 		"Testers",
-		"placeholder",
+		"Shironatsu",
+		"Linnuxs",
+		"Rappy90",
+		"BeyondStealikez",
+	],[
+		"Additional Thanks To",
+		"Anik",
+		"Bluerivella",
+		"Essencethief",
+		"jindujuna",
+		"niyomshi",
+		"Norglace",
+		"Roborekt",
+		"RogueRatKing"
 	],[
 		"Tools used",
 		"Developed with Godot Engine",
