@@ -80,13 +80,6 @@ mouse_default_cursor_shape = 2
 size_flags_horizontal = 4
 text = "Exit"
 
-[node name="DebugButton" type="Button" parent="PanelContainer/PauseMenuContainer"]
-visible = false
-margin_top = 259.0
-margin_right = 160.0
-margin_bottom = 283.0
-text = "*DEBUG*"
-
 [node name="ExitMenuContainer" type="VBoxContainer" parent="PanelContainer"]
 visible = false
 margin_left = 5.0
@@ -293,7 +286,6 @@ text = "House"
 [connection signal="pressed" from="PanelContainer/PauseMenuContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="PanelContainer/PauseMenuContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="PanelContainer/PauseMenuContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
-[connection signal="pressed" from="PanelContainer/PauseMenuContainer/DebugButton" to="." method="_on_DebugButton_pressed"]
 [connection signal="pressed" from="PanelContainer/ExitMenuContainer/ExitMenuResumeButton" to="." method="_on_ExitMenuResumeButton_pressed"]
 [connection signal="pressed" from="PanelContainer/ExitMenuContainer/ExitMenuSaveButton" to="." method="_on_ExitMenuSaveButton_pressed"]
 [connection signal="pressed" from="PanelContainer/ExitMenuContainer/ExitMenuExitButton" to="." method="_on_ExitMenuExitButton_pressed"]

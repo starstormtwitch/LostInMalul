@@ -46,7 +46,7 @@ static func load_game_settings() -> GameSettings:
 	var settings = ggsManager.settings_data
 	var infiniteHealth = settings["3"]["current"]["value"]
 	var infiniteDamage = settings["12"]["current"]["value"]
-	return GameSettings.new(infiniteHealth, infiniteDamage)
+	return GameSettings.new(false, false)
 
 
 static func GetScreenShakeDuration() -> float:

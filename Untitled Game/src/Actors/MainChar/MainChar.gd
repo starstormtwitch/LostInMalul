@@ -469,5 +469,5 @@ func playShoryukenSFX():
 
 func _getDebugSettings():
 	var gameSettings = Settings.load_game_settings()
-	isInfiniteDamage = gameSettings.infiniteDamage
-	isInfiniteHealth = gameSettings.infiniteHealth
+#	isInfiniteDamage = gameSettings.infiniteDamage
+#	isInfiniteHealth = gameSettings.infiniteHealth

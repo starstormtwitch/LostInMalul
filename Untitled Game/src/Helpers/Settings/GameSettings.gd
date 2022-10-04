@@ -7,5 +7,6 @@ var infiniteHealth: float
 var infiniteDamage: float
 
 func _init(_infiniteHealth: bool, _infiniteDamage: bool):
-	infiniteHealth = _infiniteHealth
-	infiniteDamage = _infiniteDamage
+	pass
+#	infiniteHealth = _infiniteHealth
+#	infiniteDamage = _infiniteDamage
