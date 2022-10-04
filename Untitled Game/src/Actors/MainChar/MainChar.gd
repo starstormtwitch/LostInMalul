@@ -45,6 +45,7 @@ var _canTakeDamage: bool = false
 var _isDodging = false
 var _canDodge = true
 var _directionFacing: Vector2 = Vector2.ZERO
+var _isFacingRight = true
 var _dodgeDirection: Vector2 = Vector2.ZERO
 var _trail = []
 var _invincibilityTimer: Timer = Timer.new()
@@ -334,11 +335,13 @@ func _flip_nodes(direction: Vector2):
 		hadoukenSpawn.position.x = -abs(hadoukenSpawn.position.x)
 		sprite.flip_h = true
 		shadow.flip_h = true
+		_isFacingRight = false
 	elif direction.x > 0:
 		rightHitBox.position.x = abs(rightHitBox.position.x)
 		hadoukenSpawn.position.x = abs(hadoukenSpawn.position.x)
 		sprite.flip_h = false
 		shadow.flip_h = false
+		_isFacingRight = true
 
 
 func _check_for_events(delta) -> bool:
@@ -397,7 +400,7 @@ func sendPlayerDeadSignal():
 func summon_hadouken_blast():
 	var instance = hadouken_scene.instance()
 	instance.calculateDamage(_lastHadoukenDamagePercentage)
-	instance.set_direction(_directionFacing)
+	instance.set_direction(_isFacingRight)
 	instance.global_position = hadoukenSpawn.global_position
 	get_parent().add_child(instance)
 
