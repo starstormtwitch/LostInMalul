@@ -35,6 +35,7 @@ const _MIN_SUPER_CHARGES = 0
 const STARTING_SUPER_CHARGES = 1
 const NORMAL_HEALTH_VALUE = 15
 const NORMAL_DAMAGE_VALUE = 1
+const ENEMY_BIT_MASK = 10
 const INFINITE_HEALTH_VALUE = 20000
 const INFINITE_DAMAGE_VALUE = 2000
 
@@ -75,6 +76,7 @@ onready var dashDurationTimer: Timer = $DashDurationTimer
 onready var dashCooldownTimer: Timer = $DashCooldownTimer
 onready var animationTree: AnimationTree = $AnimationTree
 onready var chargeBar: TextureProgress = $ChargeBar
+onready var hurtBox: CollisionShape2D = $HurtBox/CollisionShape2D
 
 
 func _init():
@@ -406,6 +408,7 @@ func _start_dash():
 	if _canDodge:
 		_isDodging = true
 		_canDodge = false
+		turnOffHurtBoxAndCollider()
 		emit_signal("player_dodge")
 		ghostIntervalTimer.start()
 		ghostDurationTimer.start()
@@ -413,11 +416,22 @@ func _start_dash():
 		dashDurationTimer.start()
 
 
+func turnOnHurtBoxAndCollider():
+	hurtBox.disabled = false
+	set_collision_mask_bit(ENEMY_BIT_MASK, true)
+
+
+func turnOffHurtBoxAndCollider():
+	hurtBox.disabled = true
+	set_collision_mask_bit(ENEMY_BIT_MASK, false)
+
+
 func _cancel_dash():
 	_isDodging = false
 	ghostIntervalTimer.stop()
 	ghostDurationTimer.stop()
 	dashDurationTimer.stop()
+	turnOnHurtBoxAndCollider()
 	_velocity = Vector2.ZERO
 
 
@@ -441,6 +455,7 @@ func _on_DashCooldownTimer_timeout():
 
 func _on_GhostDurationTImer_timeout():
 	ghostIntervalTimer.stop()
+	turnOnHurtBoxAndCollider()
 
 
 func _on_ChargeIntervalTimer_timeout():

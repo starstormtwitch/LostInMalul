@@ -353,7 +353,7 @@ extents = Vector2( 58.1992, 23.4494 )
 position = Vector2( 0.41935, -0.648771 )
 z_as_relative = false
 collision_layer = 1024
-collision_mask = 7
+collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="Shadow" type="Sprite" parent="."]
@@ -396,7 +396,7 @@ texture = ExtResource( 3 )
 offset = Vector2( 0, -15 )
 hframes = 28
 vframes = 6
-frame = 31
+frame = 32
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Slam = SubResource( 5 )
