@@ -280,7 +280,7 @@ extents = Vector2( 8.87926, 5.5252 )
 position = Vector2( 0.122915, -0.207261 )
 z_as_relative = false
 collision_layer = 1024
-collision_mask = 7
+collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="Shadow" type="Sprite" parent="."]
