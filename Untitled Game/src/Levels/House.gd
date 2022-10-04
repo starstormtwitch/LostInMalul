@@ -198,11 +198,12 @@ func _on_LirikYaki_item_delete():
 	$GUI/PlayerGui/Inventory.InventoryItem = null; 
 
 func _on_FoyerEndTable_interactable_text_signal(text):
-	_playerTextBox.showText(text)
 	if(!_pickedUpBasementKey):
 		_pickedUpBasementKey = true;
 		_player.add_item_to_inventory(garage_Key.instance())
-		$LevelBackground/Interactions/Foyer/FoyerEndTable.interactableText = "Just a lamp."
+		_playerTextBox.showText(text)
+	else:
+		_playerTextBox.showText("Just a lamp.")
 	pass # Replace with function body.
 
 func _on_BasementNeedKey_interactable_text_signal(text):

@@ -569,7 +569,7 @@ nodes/Special/node = SubResource( 30 )
 nodes/Special/position = Vector2( -360, 620 )
 nodes/Walk/node = SubResource( 31 )
 nodes/Walk/position = Vector2( -400, -80 )
-node_connections = [ "output", 0, "Main", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack", "Combo2", 0, "Kick1", "Combo2", 1, "Kick2", "Combo2", 2, "Shoryuken", "Attack", 0, "Combo1", "Attack", 1, "Combo2", "Attack", 2, "Special", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Combo1", 2, "HeadButt", "Special", 0, "HadoukenCharge", "Special", 1, "HadoukenRelease", "Movement", 0, "Idle", "Movement", 1, "Walk" ]
+node_connections = [ "output", 0, "Main", "Special", 0, "HadoukenCharge", "Special", 1, "HadoukenRelease", "Movement", 0, "Idle", "Movement", 1, "Walk", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack", "Attack", 0, "Combo1", "Attack", 1, "Combo2", "Attack", 2, "Special", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Combo1", 2, "HeadButt", "Combo2", 0, "Kick1", "Combo2", 1, "Kick2", "Combo2", 2, "Shoryuken" ]
 
 [sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 11.7115, 6.11188 )
@@ -585,7 +585,7 @@ extents = Vector2( 12.3063, 13.7856 )
 ]]
 collision_layer = 4
 collision_mask = 1031
-collision/safe_margin = 0.001
+collision/safe_margin = 2.0
 script = ExtResource( 1 )
 
 [node name="Shadow" type="Sprite" parent="."]
@@ -593,6 +593,7 @@ position = Vector2( -1.88372, -1.24144 )
 texture = ExtResource( 2 )
 
 [node name="KinematicSprite" type="KinematicBody2D" parent="."]
+collision/safe_margin = 2.0
 
 [node name="Sprite" type="Sprite" parent="KinematicSprite"]
 position = Vector2( -0.893405, -23.5687 )
