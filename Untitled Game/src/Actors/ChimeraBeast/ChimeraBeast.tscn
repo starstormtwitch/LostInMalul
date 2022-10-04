@@ -354,7 +354,7 @@ position = Vector2( 0.41935, -0.648771 )
 z_as_relative = false
 collision_layer = 1024
 collision_mask = 3
-collision/safe_margin = 2.0
+collision/safe_margin = 10.0
 script = ExtResource( 2 )
 
 [node name="Shadow" type="Sprite" parent="."]
@@ -364,7 +364,7 @@ texture = ExtResource( 1 )
 
 [node name="KinematicSprite" type="KinematicBody2D" parent="."]
 position = Vector2( 4.50378, -16.6435 )
-collision/safe_margin = 2.0
+collision/safe_margin = 10.0
 
 [node name="PunchHitMarkerParticles" type="Particles2D" parent="KinematicSprite"]
 material = SubResource( 1 )
