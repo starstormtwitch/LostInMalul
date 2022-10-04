@@ -354,6 +354,7 @@ position = Vector2( 0.41935, -0.648771 )
 z_as_relative = false
 collision_layer = 1024
 collision_mask = 7
+collision/safe_margin = 2.0
 script = ExtResource( 2 )
 
 [node name="Shadow" type="Sprite" parent="."]
@@ -363,6 +364,7 @@ texture = ExtResource( 1 )
 
 [node name="KinematicSprite" type="KinematicBody2D" parent="."]
 position = Vector2( 4.50378, -16.6435 )
+collision/safe_margin = 2.0
 
 [node name="PunchHitMarkerParticles" type="Particles2D" parent="KinematicSprite"]
 material = SubResource( 1 )
@@ -396,7 +398,7 @@ texture = ExtResource( 3 )
 offset = Vector2( 0, -15 )
 hframes = 28
 vframes = 6
-frame = 31
+frame = 29
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Slam = SubResource( 5 )
@@ -435,6 +437,7 @@ enabled = true
 cast_to = Vector2( 0, 150 )
 
 [node name="ObstacleAvoidNW" type="RayCast2D" parent="ObstacleAvoidRaycasts"]
+visible = false
 modulate = Color( 1, 0, 0, 1 )
 position = Vector2( -10.861, -9.58638 )
 enabled = true

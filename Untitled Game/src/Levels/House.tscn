@@ -1650,10 +1650,10 @@ automatic = false
 position = Vector2( 3252.71, 240.287 )
 
 [node name="CustomDelimiter2D" parent="YSort/Actors/FoyerFight" instance=ExtResource( 20 )]
-position = Vector2( -126.57, -192.16 )
+position = Vector2( -103.82, -190.287 )
 
 [node name="BottomRight" parent="YSort/Actors/FoyerFight/CustomDelimiter2D" index="0"]
-position = Vector2( 413.13, 252.453 )
+position = Vector2( 388, 251 )
 
 [node name="FoyerEnemies" parent="YSort/Actors/FoyerFight" instance=ExtResource( 176 )]
 position = Vector2( 317.48, 24.2602 )
@@ -1674,8 +1674,8 @@ AutomaticTransition = false
 position = Vector2( 487.18, 239.767 )
 
 [node name="BasementL1" parent="YSort/Actors/BasementFight" instance=ExtResource( 176 )]
-position = Vector2( -232.013, -28.213 )
-scale = Vector2( 1.67996, 0.856959 )
+position = Vector2( -228.719, -22.413 )
+scale = Vector2( 1.67996, 0.594458 )
 rect = Rect2( 0, 0, 20, 80 )
 duration_between_spawn = 1
 count = 15
@@ -1683,7 +1683,8 @@ maxSpawnedAtATime = 5
 automatic = false
 
 [node name="BasementR1" parent="YSort/Actors/BasementFight" instance=ExtResource( 176 )]
-position = Vector2( 297.651, -19.8616 )
+position = Vector2( 312.281, -20.413 )
+scale = Vector2( 1, 0.642857 )
 rect = Rect2( 0, 0, 50, 70 )
 duration_between_spawn = 1
 count = 15

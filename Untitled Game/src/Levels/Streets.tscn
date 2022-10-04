@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=2]
+[gd_scene load_steps=106 format=2]
 
 [ext_resource path="res://src/GUI/Textbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Levels/Streets/Level_Start.png" type="Texture" id=2]
@@ -136,6 +136,9 @@ extents = Vector2( 55.2458, 14.7873 )
 extents = Vector2( 38.8765, 13.279 )
 
 [sub_resource type="RectangleShape2D" id=20]
+
+[sub_resource type="RectangleShape2D" id=28]
+extents = Vector2( 2.50391, 52.1946 )
 
 [sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 12.3213, 10 )
@@ -342,6 +345,14 @@ shape = SubResource( 20 )
 position = Vector2( 208.758, 80.0536 )
 shape = SubResource( 20 )
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/Boundaries/Graveyard"]
+position = Vector2( 93.4263, 24.0417 )
+shape = SubResource( 28 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LevelBackground/Boundaries/Graveyard"]
+position = Vector2( 285.186, 23.1498 )
+shape = SubResource( 28 )
+
 [node name="RatClinic" type="StaticBody2D" parent="LevelBackground/Boundaries"]
 position = Vector2( 2836.62, 69.4901 )
 
@@ -362,7 +373,7 @@ position = Vector2( 4574.71, 222.69 )
 [node name="Grave" parent="LevelBackground/Interactions" instance=ExtResource( 73 )]
 position = Vector2( 2039.1, 86.5948 )
 scale = Vector2( 1, 1.0042 )
-interactableText = "Lilletsy (2020)"
+interactableText = "Lirikker (2017)"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Grave"]
 position = Vector2( 2294.62, -23.5937 )
@@ -510,7 +521,7 @@ position = Vector2( 3336.71, 128.401 )
 position = Vector2( 3079.04, 105.476 )
 
 [node name="PcShop" parent="LevelBackground" instance=ExtResource( 50 )]
-position = Vector2( 2741.28, 134.232 )
+position = Vector2( 2741.28, 135.232 )
 
 [node name="NomuBuilding" parent="LevelBackground" instance=ExtResource( 57 )]
 position = Vector2( 3521.34, 128.496 )
@@ -569,7 +580,7 @@ position = Vector2( 29.957, 95.4201 )
 position = Vector2( 747.855, 29.9924 )
 
 [node name="Box2" parent="YSort/Actors" instance=ExtResource( 4 )]
-position = Vector2( 2366.35, 31.2059 )
+position = Vector2( 2370.76, 59.3759 )
 
 [node name="AreaLockFight1" parent="YSort/Actors" instance=ExtResource( 44 )]
 position = Vector2( 115.37, 165.563 )
