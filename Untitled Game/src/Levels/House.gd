@@ -50,6 +50,7 @@ var ratKing
 
 onready var _textBox: TextBox = $GUI/TextBox
 onready var _playerTextBox: TextBox = $GUI/PlayerTextBox
+onready var _foyerFight: AreaLockFight = $YSort/Actors/FoyerFight
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -108,6 +109,7 @@ func SetLevelCheckpointVariables(saveData):
 			get_node("YSort/Actors/OfficeFight1").Disable()
 			get_node("YSort/Actors/OfficeFight2").Disable()
 			get_node("YSort/Actors/FoyerFight").Disable()
+			removeFoyerFight()
 			get_node("YSort/Actors/BathroomSpawner").spawnEnemy()
 			get_node("YSort/Actors/BedroomSpawner").spawnEnemy()
 			get_node("YSort/Actors/OfficeSpawner").spawnEnemy()
@@ -138,6 +140,7 @@ func SetLevelCheckpointVariables(saveData):
 			get_node("YSort/Actors/OfficeFight1").Disable()
 			get_node("YSort/Actors/OfficeFight2").Disable()
 			get_node("YSort/Actors/FoyerFight").Disable()
+			removeFoyerFight()
 			get_node("LevelBackground/Teleports/LivingRoom_Kitchen_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
 			get_node("LevelBackground/Interactions/Kitchen/BasementNeedKey/CollisionShape").set_deferred("disabled", true);
 			get_node("LevelBackground/Teleports/Kitchen_Basement_2WT/EndpointAlpha/ToBetaActivationArea").set_deferred("disabled", false);
@@ -398,7 +401,9 @@ func _on_FoyerFight_lockout_started():
 	
 func _on_FoyerFight_lockout_finished():
 	_playerTextBox.showText("I need to find the basement key now that the house is cleared out... I think it might be in the garage.")
-	get_node("LevelBackground/Interactions/Foyer/GarageNeedKey/CollisionShape").set_deferred("disabled", false);
+	get_node("LevelBackground/Interactions/Foyer/GarageNeedKey/CollisionShape").set_deferred("disabled", false)
+	removeFoyerFight()
+	
 
 func _on_GarageFight1_lockout_started():
 	get_node("GUI/PlayerGui/ContinueRight").stop_blinking()
@@ -517,3 +522,8 @@ func _on_PlayerTextBox_closed():
 		LevelGlobals.SetCheckpoint("Streets", "Start");
 		LevelGlobals.save_game();
 		LevelGlobals.load_checkpoint();
+
+
+func removeFoyerFight():
+	remove_child(_foyerFight)
+	_foyerFight.queue_free()
