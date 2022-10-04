@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/Levels/Credits.gd" type="Script" id=1]
 [ext_resource path="res://assets/Levels/END_2-Sheet.png" type="Texture" id=2]
 [ext_resource path="res://assets/fonts/Textbox.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/other/LostInMalulDoc.ogv" type="VideoStream" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"
@@ -58,3 +59,18 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="VideoPlayer" type="VideoPlayer" parent="."]
+visible = false
+margin_left = 28.5908
+margin_top = 111.972
+margin_right = 1308.59
+margin_bottom = 831.972
+rect_scale = Vector2( 0.5, 0.5 )
+stream = ExtResource( 4 )
+expand = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="finished" from="VideoPlayer" to="." method="_on_VideoPlayer_finished"]

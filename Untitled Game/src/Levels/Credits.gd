@@ -70,6 +70,7 @@ var credits = [
 		"BeyondStealikez",
 	],[
 		"Additional Thanks To",
+		"Amar9995",
 		"Anik",
 		"Bluerivella",
 		"Essencethief",
@@ -129,15 +130,14 @@ func _process(delta):
 				lines.erase(l)
 				l.queue_free()
 	elif started:
-		finish()
+		finishcredits()
 
 
-func finish():
+func finishcredits():
 	if not finished:
 		finished = true
-		var gameScene = LevelGlobals.GetLevelScene("MainMenu");
-		assert(gameScene != null, "Unknown level!");
-		get_tree().change_scene_to(gameScene);
+		$VideoPlayer.set_deferred("visible", true);
+		$VideoPlayer.play()
 
 
 func add_line():
@@ -160,3 +160,10 @@ func _unhandled_input(event):
 		speed_up = true
 	if event.is_action_released("ui_down") and !event.is_echo():
 		speed_up = false
+
+
+func _on_VideoPlayer_finished():
+	yield(get_tree().create_timer(3), "timeout")
+	var gameScene = LevelGlobals.GetLevelScene("MainMenu");
+	assert(gameScene != null, "Unknown level!");
+	get_tree().change_scene_to(gameScene);
