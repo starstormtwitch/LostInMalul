@@ -27,5 +27,4 @@ bus = "Music"
 
 [node name="NormalBattleStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
-autoplay = true
 bus = "Music"
