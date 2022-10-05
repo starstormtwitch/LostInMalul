@@ -65,7 +65,7 @@ func _ready():
 	
 func SetLevelCheckpointVariables(saveData):
 	assert(saveData.has("checkpoint"))
-	match(saveData.has("checkpoint")):
+	match(saveData["checkpoint"]):
 		"Start":
 			MusicManager.playMenuMusic()
 			$GUI/Help.visible = true;
