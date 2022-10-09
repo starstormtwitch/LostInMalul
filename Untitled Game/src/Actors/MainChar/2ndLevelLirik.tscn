@@ -542,17 +542,15 @@ nodes/Special/node = SubResource( 29 )
 nodes/Special/position = Vector2( -360, 620 )
 nodes/Walk/node = SubResource( 30 )
 nodes/Walk/position = Vector2( -400, -80 )
-node_connections = [ "output", 0, "Main", "Special", 0, "HadoukenStart", "Special", 1, "HadoukenCharge", "Special", 2, "HadoukenRelease", "Movement", 0, "Idle", "Movement", 1, "Walk", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack", "Attack", 0, "Combo1", "Attack", 1, "Combo2", "Attack", 2, "Special", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Combo2", 0, "Kick1", "Combo2", 1, "Kick2" ]
+node_connections = [ "output", 0, "Main", "Combo1", 0, "Punch1", "Combo1", 1, "Punch2", "Movement", 0, "Idle", "Movement", 1, "Walk", "Combo2", 0, "Kick1", "Combo2", 1, "Kick2", "Main", 0, "Movement", "Main", 1, "Hurt", "Main", 2, "Die", "Main", 3, "Attack", "Attack", 0, "Combo1", "Attack", 1, "Combo2", "Attack", 2, "Special", "Special", 0, "HadoukenStart", "Special", 1, "HadoukenCharge", "Special", 2, "HadoukenRelease" ]
 
 [sub_resource type="RectangleShape2D" id=32]
-extents = Vector2( 4.15426, 7.5077 )
+extents = Vector2( 4.15426, 5.75385 )
 
 [sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 7.29451, 6.86698 )
 
-[node name="LirikYaki" type="KinematicBody2D" groups=[
-"Player",
-]]
+[node name="LirikYaki" type="KinematicBody2D" groups=["Player"]]
 position = Vector2( 1.17985, 0 )
 collision_layer = 4
 collision_mask = 1031
@@ -568,7 +566,7 @@ texture = ExtResource( 2 )
 position = Vector2( -8.96681, 1.41581 )
 
 [node name="Sprite" type="Sprite" parent="KinematicSprite"]
-position = Vector2( 6.29999, -15.7138 )
+position = Vector2( 6.78696, -13.4158 )
 texture = ExtResource( 3 )
 hframes = 15
 vframes = 7
@@ -629,20 +627,17 @@ one_shot = true
 wait_time = 0.02
 autostart = true
 
-[node name="HurtBox" type="Area2D" parent="." groups=[
-"hurtbox",
-]]
+[node name="HurtBox" type="Area2D" parent="." groups=["hurtbox"]]
 position = Vector2( -2.65, -23.75 )
 collision_layer = 64
 collision_mask = 4096
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2( 0.101578, 20.757 )
+position = Vector2( 0.47015, 18.5038 )
 shape = SubResource( 32 )
 
-[node name="HurtBox2" type="Area2D" parent="." groups=[
-"hurtbox",
-]]
+[node name="HurtBox2" type="Area2D" parent="." groups=["hurtbox"]]
+visible = false
 position = Vector2( -2.65, -23.75 )
 collision_layer = 128
 collision_mask = 8192
