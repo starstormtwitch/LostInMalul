@@ -288,13 +288,12 @@ radius = 13.2807
 [sub_resource type="RectangleShape2D" id=43]
 extents = Vector2( 13.3553, 8.96162 )
 
-[node name="Enemy" type="KinematicBody2D" groups=[
-"enemy",
-]]
+[node name="Enemy" type="KinematicBody2D" groups=["enemy"]]
 position = Vector2( -5, -1 )
 z_as_relative = false
 collision_layer = 1024
 collision_mask = 3
+collision/safe_margin = 2.0
 script = ExtResource( 2 )
 
 [node name="KinematicSprite" type="KinematicBody2D" parent="."]

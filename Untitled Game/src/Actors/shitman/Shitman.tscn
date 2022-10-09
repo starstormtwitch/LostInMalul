@@ -210,6 +210,7 @@ graph_offset = Vector2( -13, 80 )
 
 [node name="Shitman" type="KinematicBody2D"]
 collision_layer = 1024
+collision/safe_margin = 2.0
 script = ExtResource( 2 )
 
 [node name="KinematicSprite" type="KinematicBody2D" parent="."]

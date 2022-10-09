@@ -178,6 +178,7 @@ graph_offset = Vector2( 17, 79 )
 
 [node name="chat" type="KinematicBody2D"]
 collision_layer = 1024
+collision/safe_margin = 2.0
 script = ExtResource( 2 )
 
 [node name="KinematicSprite" type="KinematicBody2D" parent="."]

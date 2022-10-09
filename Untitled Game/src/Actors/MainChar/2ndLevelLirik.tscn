@@ -550,13 +550,11 @@ extents = Vector2( 4.15426, 7.5077 )
 [sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 7.29451, 6.86698 )
 
-[node name="LirikYaki" type="KinematicBody2D" groups=[
-"Player",
-]]
+[node name="LirikYaki" type="KinematicBody2D" groups=["Player"]]
 position = Vector2( 1.17985, 0 )
 collision_layer = 4
 collision_mask = 1031
-collision/safe_margin = 0.001
+collision/safe_margin = 2.0
 script = ExtResource( 1 )
 
 [node name="Shadow" type="Sprite" parent="."]
