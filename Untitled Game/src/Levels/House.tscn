@@ -2644,6 +2644,7 @@ margin_bottom = -6.10352e-05
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Garage/lawnmower" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="interactable_text_signal" from="LevelBackground/Interactions/Garage/tools" to="." method="_on_InteractPromptArea_interactable_text_signal"]
 [connection signal="body_exited" from="LevelBackground/Teleports/Bathroom_Bedroom_2WT/EndpointAlpha" to="." method="_on_BathroomToBedroom_body_exited"]
+[connection signal="died" from="YSort/Actors/LirikYaki" to="GUI/PauseScreenContainer" method="_on_player_died"]
 [connection signal="item_delete" from="YSort/Actors/LirikYaki" to="." method="_on_LirikYaki_item_delete"]
 [connection signal="item_pickup" from="YSort/Actors/LirikYaki" to="." method="_on_LirikYaki_item_pickup"]
 [connection signal="AllEnemiesDefeated" from="YSort/Actors/GrannySpawner" to="." method="_on_GrannySpawner_AllEnemiesDefeated"]

@@ -1228,6 +1228,7 @@ one_shot = true
 [connection signal="body_entered" from="LevelBackground/Interactions/LeaveLevel" to="." method="_on_LeaveLevel_body_entered"]
 [connection signal="SpawnWarning" from="YSort/TrafficSystemRight" to="." method="_on_TrafficSystemRight_SpawnWarning"]
 [connection signal="SpawnWarning" from="YSort/TrafficSystemLeft" to="." method="_on_TrafficSystemLeft_SpawnWarning"]
+[connection signal="died" from="YSort/Actors/LirikYaki" to="GUI/PauseScreenContainer" method="_on_player_died"]
 [connection signal="lockout_finished" from="YSort/Actors/AreaLockFightBoss" to="." method="_on_AreaLockFightBoss_lockout_finished"]
 [connection signal="lockout_started" from="YSort/Actors/AreaLockFightBoss" to="." method="_on_AreaLockFightBoss_lockout_started"]
 [connection signal="spawned" from="YSort/Actors/AreaLockFightBoss/Boss" to="." method="_on_Boss_spawned"]
