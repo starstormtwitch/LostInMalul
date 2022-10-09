@@ -278,4 +278,9 @@ visible = false
 position = Vector2( -9.6676, -19.0703 )
 MinCoins = 0
 MaxCoins = 2
+DropsPowerup = true
+AutomaticOnDeath = true
 PowerupChance = 80
+
+[node name="explosionPosition" type="Position2D" parent="."]
+position = Vector2( 0, -15 )

@@ -358,6 +358,9 @@ position = Vector2( -1.54915, 14.6626 )
 shape = SubResource( 36 )
 disabled = true
 
+[node name="explosionPosition" type="Position2D" parent="."]
+position = Vector2( -0.30768, -24.2833 )
+
 [connection signal="area_entered" from="FlockBox" to="." method="_on_FlockBox_area_entered"]
 [connection signal="area_exited" from="FlockBox" to="." method="_on_FlockBox_area_exited"]
 [connection signal="area_entered" from="Attack" to="." method="_on_Attack_area_entered"]
