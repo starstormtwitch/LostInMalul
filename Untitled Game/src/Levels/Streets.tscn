@@ -620,7 +620,7 @@ AutomaticTransition = false
 IsAreaLockDelimeter = true
 
 [node name="BottomRight" parent="YSort/Actors/AreaLockFight2/AreaLockFight2" index="0"]
-position = Vector2( 310.38, 223.343 )
+position = Vector2( 311.219, 221.763 )
 
 [node name="AreaLockFight3" parent="YSort/Actors" instance=ExtResource( 44 )]
 position = Vector2( 1321.44, 160.89 )
