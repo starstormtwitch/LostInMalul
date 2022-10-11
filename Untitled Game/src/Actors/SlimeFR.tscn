@@ -76,18 +76,6 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36 ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("Shadow:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36 ]
-}
 
 [sub_resource type="Animation" id=6]
 length = 0.3
