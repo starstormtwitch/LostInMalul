@@ -239,10 +239,10 @@ func _on_WorkBench_interactable_text_signal(text):
 
 func _on_Wardrobe_interactable_text_signal(text):
 	_playerTextBox.showText(text)
-	if(!_pickedUpSocks):
-		_pickedUpSocks = true
-		_player.add_item_to_inventory(socks.instance())
-		$LevelBackground/Interactions/Bedroom/Wardrobe.interactableText = "Some say it's cringe to wear your own merch, but I call it advertising."
+	if(!_pickedUpPillow):
+		_pickedUpPillow = true
+		_player.add_item_to_inventory(pillow.instance())
+		$LevelBackground/Interactions/Bedroom/Wardrobe.interactableText = "This is my deep dark sin. I must keep it a secret."
 	pass # Replace with function body.
 
 
@@ -259,19 +259,20 @@ func _on_Drawer_interactable_text_signal(text):
 	if($GUI/PlayerGui/Inventory.InventoryItem != null && $GUI/PlayerGui/Inventory.InventoryItem.name == "Screwdriver"):
 		_textBox.showText("*Wedges the screwdriver in the drawer and pops it open*"+ text)
 		_player.delete_item_from_inventory()
-		_pickedUpPillow = true
-		_player.add_item_to_inventory(pillow.instance())
-		get_node("LevelBackground/Interactions/Kitchen/Drawer/CollisionShape").set_deferred("disabled", true);
+		_pickedUpCandle = true
+		_player.add_item_to_inventory(candle.instance())
+		get_node("LevelBackground/Interactions/Kitchen/Drawer/CollisionShape").set_deferred("disabled", true)
 	else: 
 		_playerTextBox.showText("The drawer is stuck closed, maybe a screwdriver would help... but where did I put one...")
 
 
 func _on_TVStand_interactable_text_signal(text):
 	_playerTextBox.showText(text)
-	if(!_pickedUpCandle):
-		_pickedUpCandle = true
-		_player.add_item_to_inventory(candle.instance())
+	if(!_pickedUpSocks):
+		_pickedUpSocks = true
+		_player.add_item_to_inventory(socks.instance())
 		get_node("LevelBackground/Interactions/LivingRoom/TVStand/CollisionShape").set_deferred("disabled", true);
+		$LevelBackground/Interactions/LivingRoom/TVStand.interactableText = "Some say it's cringe to wear your own merch, but I call it advertising."
 	pass # Replace with function body.
 
 func _on_GarageNeedKey_interactable_text_signal(text):

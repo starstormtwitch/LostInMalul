@@ -746,7 +746,7 @@ script = ExtResource( 204 )
 [node name="Wardrobe" parent="LevelBackground/Interactions/Bedroom" instance=ExtResource( 175 )]
 position = Vector2( 222.633, 120.826 )
 scale = Vector2( 1, 1.01378 )
-interactableText = "Wow, my comfy socks, nothing is more comfy."
+interactableText = "Wow! A pristine waifu pillow, i spent a fortune on this."
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/Bedroom/Wardrobe"]
 position = Vector2( -178.298, 1.95135 )
@@ -810,7 +810,7 @@ script = ExtResource( 204 )
 [node name="TVStand" parent="LevelBackground/Interactions/LivingRoom" instance=ExtResource( 175 )]
 position = Vector2( 164.106, 123.506 )
 scale = Vector2( 1, 1.0042 )
-interactableText = "I found my gamer candle, part of the perfect comfy combo."
+interactableText = "Wow, my comfy socks, nothing is more comfy."
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LevelBackground/Interactions/LivingRoom/TVStand"]
 position = Vector2( 246.312, 5.11754 )
@@ -897,7 +897,7 @@ script = ExtResource( 204 )
 
 [node name="Drawer" parent="LevelBackground/Interactions/Kitchen" instance=ExtResource( 175 )]
 position = Vector2( 281.583, 75.9244 )
-interactableText = "Wow! A pristine waifu pillow, how did this fit in here?"
+interactableText = "I found my gamer candle, part of the perfect comfy combo."
 
 [node name="InteractSprite" type="Sprite" parent="LevelBackground/Interactions/Kitchen/Drawer"]
 visible = false
@@ -2016,6 +2016,15 @@ position = Vector2( 431.352, 192.045 )
 
 [node name="Window1" parent="YSort/Props/Livingroom" instance=ExtResource( 112 )]
 position = Vector2( 283.532, 150.108 )
+
+[node name="Socks" parent="YSort/Props/Livingroom" instance=ExtResource( 51 )]
+position = Vector2( 521.776, 221.997 )
+
+[node name="Socks2" parent="YSort/Props/Livingroom" instance=ExtResource( 199 )]
+position = Vector2( 538.174, 237.133 )
+
+[node name="Socks3" parent="YSort/Props/Livingroom" instance=ExtResource( 51 )]
+position = Vector2( 547.424, 241.758 )
 
 [node name="Window2" parent="YSort/Props/Livingroom" instance=ExtResource( 113 )]
 position = Vector2( 417.578, 150.108 )
