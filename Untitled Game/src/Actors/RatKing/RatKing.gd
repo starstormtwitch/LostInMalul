@@ -34,7 +34,7 @@ var _enragePhase = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_maxHealth = 150
+	_maxHealth = 200
 	_health = _maxHealth
 	_acceleration = .5
 	_speed = 25

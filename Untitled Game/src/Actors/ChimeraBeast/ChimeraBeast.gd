@@ -90,7 +90,7 @@ func _on_FlockBox_body_exited(body):
 
 func _on_Attack_area_entered(area):
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
-		area.get_parent().take_damage(1, _velocity.normalized(), 500)
+		area.get_parent().take_damage(3, _velocity.normalized(), 500)
 
 
 func _on_FlockBox_area_entered(area):

@@ -53,7 +53,7 @@ func _attack_done():
 func _on_Attack_area_entered(area):
 	if area.is_in_group("hurtbox") && area.get_parent() != null && area.get_parent().has_method("take_damage"):
 		SoundPlayer.playSound(get_tree().get_current_scene(), attackSound, 1)
-		area.get_parent().take_damage(1, _velocity.normalized(), 500)
+		area.get_parent().take_damage(2, _velocity.normalized(), 500)
 
 
 func _on_FlockBox_area_entered(area):
