@@ -1,4 +1,4 @@
-# UntitledGame
+# LostInMalul
 All pull requests must be approved by starstorm
 
 ## Setup
