@@ -180,9 +180,9 @@ anchor_bottom = 0.0
 
 [node name="MainMenuContainer" type="PanelContainer" parent="CanvasLayer/CenterContainer"]
 margin_left = -100.0
-margin_top = -73.0
+margin_top = -87.0
 margin_right = 100.0
-margin_bottom = 73.0
+margin_bottom = 87.0
 rect_min_size = Vector2( 200, 125 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -192,7 +192,7 @@ theme = ExtResource( 5 )
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 195.0
-margin_bottom = 141.0
+margin_bottom = 169.0
 theme = ExtResource( 5 )
 alignment = 1
 __meta__ = {
@@ -210,26 +210,33 @@ margin_right = 190.0
 margin_bottom = 52.0
 text = "Load Game"
 
-[node name="Credits" type="Button" parent="CanvasLayer/CenterContainer/MainMenuContainer/Menu"]
+[node name="Minigame" type="Button" parent="CanvasLayer/CenterContainer/MainMenuContainer/Menu"]
 margin_top = 56.0
 margin_right = 190.0
 margin_bottom = 80.0
-text = "Credits"
+text = "Mini-Game"
 
-[node name="OptionsButton" type="Button" parent="CanvasLayer/CenterContainer/MainMenuContainer/Menu"]
+[node name="Credits" type="Button" parent="CanvasLayer/CenterContainer/MainMenuContainer/Menu"]
 margin_top = 84.0
 margin_right = 190.0
 margin_bottom = 108.0
-text = "Options"
+text = "Credits"
 
-[node name="ExitButton" type="Button" parent="CanvasLayer/CenterContainer/MainMenuContainer/Menu"]
+[node name="OptionsButton" type="Button" parent="CanvasLayer/CenterContainer/MainMenuContainer/Menu"]
 margin_top = 112.0
 margin_right = 190.0
 margin_bottom = 136.0
+text = "Options"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/CenterContainer/MainMenuContainer/Menu"]
+margin_top = 140.0
+margin_right = 190.0
+margin_bottom = 164.0
 text = "Exit"
 
 [connection signal="pressed" from="CanvasLayer/CenterContainer/MainMenuContainer/Menu/NewGameButton" to="." method="_on_NewGameButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/CenterContainer/MainMenuContainer/Menu/LoadGameButton" to="." method="_on_LoadGameButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/MainMenuContainer/Menu/Minigame" to="." method="_on_Minigame_pressed"]
 [connection signal="pressed" from="CanvasLayer/CenterContainer/MainMenuContainer/Menu/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="CanvasLayer/CenterContainer/MainMenuContainer/Menu/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/CenterContainer/MainMenuContainer/Menu/ExitButton" to="." method="_on_ExitButton_pressed"]

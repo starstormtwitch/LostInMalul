@@ -19,6 +19,7 @@ const _levelDictionary = {
 	"House" : preload("res://src/Levels/House.tscn"),
 	"Streets" : preload("res://src/Levels/Streets.tscn"),
 	"Credits" : preload("res://src/Levels/Credits.tscn"),
+	"Minigame" : preload("res://src/Levels/BanningMinigame.tscn"),
 }  
 var rng = RandomNumberGenerator.new();
 
