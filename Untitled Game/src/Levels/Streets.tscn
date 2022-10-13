@@ -186,7 +186,7 @@ centered = false
 [node name="SubBackgrounds" type="Node2D" parent="LevelBackground"]
 
 [node name="Grass" parent="LevelBackground/SubBackgrounds" instance=ExtResource( 60 )]
-position = Vector2( 887.839, -10.2071 )
+position = Vector2( 887.415, -10.764 )
 
 [node name="Grass2" parent="LevelBackground/SubBackgrounds" instance=ExtResource( 60 )]
 position = Vector2( 1649.55, 11.0301 )
@@ -539,7 +539,7 @@ position = Vector2( 846.415, 96.5624 )
 position = Vector2( 4408.1, 150.64 )
 
 [node name="ABunchOfApartments" parent="LevelBackground" instance=ExtResource( 59 )]
-position = Vector2( 1315.64, 225.392 )
+position = Vector2( 1316.42, 225.236 )
 
 [node name="CafeBuilding" parent="LevelBackground" instance=ExtResource( 56 )]
 position = Vector2( 4057.59, 128.052 )
@@ -596,10 +596,12 @@ position = Vector2( 318.932, 222.644 )
 [node name="Spawner" parent="YSort/Actors/AreaLockFight1" instance=ExtResource( 46 )]
 position = Vector2( 246.382, -19.6063 )
 count = 3
+enemy = "SlimeFR"
+level = 1
 automatic = false
 
 [node name="AreaLockFight2" parent="YSort/Actors" instance=ExtResource( 44 )]
-position = Vector2( 642.117, 161.111 )
+position = Vector2( 630, 161 )
 
 [node name="EnemySpawner2" parent="YSort/Actors/AreaLockFight2" instance=ExtResource( 46 )]
 position = Vector2( -199.321, -6.8246 )
@@ -620,13 +622,13 @@ AutomaticTransition = false
 IsAreaLockDelimeter = true
 
 [node name="BottomRight" parent="YSort/Actors/AreaLockFight2/AreaLockFight2" index="0"]
-position = Vector2( 310.38, 223.343 )
+position = Vector2( 326.336, 222.374 )
 
 [node name="AreaLockFight3" parent="YSort/Actors" instance=ExtResource( 44 )]
 position = Vector2( 1321.44, 160.89 )
 
 [node name="AreaLockFight3" parent="YSort/Actors/AreaLockFight3" instance=ExtResource( 20 )]
-position = Vector2( -75.5099, -157.742 )
+position = Vector2( -119.44, -157.89 )
 AutomaticTransition = false
 IsAreaLockDelimeter = true
 
@@ -669,7 +671,7 @@ AutomaticTransition = false
 IsAreaLockDelimeter = true
 
 [node name="BottomRight" parent="YSort/Actors/AreaLockFight4/AreaLockFight4" index="0"]
-position = Vector2( 368.764, 223.383 )
+position = Vector2( 368.703, 219.641 )
 
 [node name="AreaLockFight5" parent="YSort/Actors" instance=ExtResource( 44 )]
 position = Vector2( 2811.92, 160.191 )
@@ -691,7 +693,7 @@ AutomaticTransition = false
 IsAreaLockDelimeter = true
 
 [node name="BottomRight" parent="YSort/Actors/AreaLockFight5/AreaLockFight5" index="0"]
-position = Vector2( 337.835, 224.691 )
+position = Vector2( 338.541, 219.417 )
 
 [node name="AreaLockFight6" parent="YSort/Actors" instance=ExtResource( 44 )]
 position = Vector2( 3127.18, 160.191 )
@@ -1227,6 +1229,7 @@ one_shot = true
 [connection signal="body_entered" from="LevelBackground/Interactions/LeaveLevel" to="." method="_on_LeaveLevel_body_entered"]
 [connection signal="SpawnWarning" from="YSort/TrafficSystemRight" to="." method="_on_TrafficSystemRight_SpawnWarning"]
 [connection signal="SpawnWarning" from="YSort/TrafficSystemLeft" to="." method="_on_TrafficSystemLeft_SpawnWarning"]
+[connection signal="died" from="YSort/Actors/LirikYaki" to="GUI/PauseScreenContainer" method="_on_player_died"]
 [connection signal="lockout_finished" from="YSort/Actors/AreaLockFightBoss" to="." method="_on_AreaLockFightBoss_lockout_finished"]
 [connection signal="lockout_started" from="YSort/Actors/AreaLockFightBoss" to="." method="_on_AreaLockFightBoss_lockout_started"]
 [connection signal="spawned" from="YSort/Actors/AreaLockFightBoss/Boss" to="." method="_on_Boss_spawned"]

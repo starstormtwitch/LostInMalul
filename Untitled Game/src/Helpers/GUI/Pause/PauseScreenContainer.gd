@@ -10,6 +10,7 @@ signal settings_changed
 const _MENU_EVENT: String = "Menu"
 
 var _menuOpen = false
+var _dontOpenMenu = false # mostly used for when player is dying and screen goes black
 
 onready var pause_menu: PauseMenu = $PauseMenu
 onready var settings_menu: SettingsMenu = $SettingsMenu
@@ -29,9 +30,9 @@ func _switchMenu(showMenu: int):
 
 # node to handle player input, and call the proper response
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(_MENU_EVENT) and !_isMenuOpen():
+	if event.is_action_pressed(_MENU_EVENT) and !_isMenuOpen() and !_dontOpenMenu:
 		_pauseAndShowMenu()
-	elif event.is_action_pressed(_MENU_EVENT) and _isMenuOpen():
+	elif event.is_action_pressed(_MENU_EVENT) and _isMenuOpen() and !_dontOpenMenu:
 		_unpauseAndHideMenu()
 
 func _pauseAndShowMenu() -> void:
@@ -57,3 +58,7 @@ func _on_settings_changed():
 
 func _isMenuOpen() -> bool:
 	return pause_menu.visible || settings_menu.visible
+
+
+func _on_player_died():
+	_dontOpenMenu = true
